@@ -3,17 +3,17 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Icons
-import { BouncerIcon } from 'icons/BouncerIcon';
+import { BouncerIcon } from '@icons/BouncerIcon';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { useColorizeBackground } from './utils/useColorizeBackground';
 

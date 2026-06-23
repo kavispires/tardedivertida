@@ -1,18 +1,18 @@
 // Types
 import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import { useCardWidth } from '@hooks/useCardWidth';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { SlideShow } from 'components/slide-show/SlideShow';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { SlideShow } from '@components/slide-show/SlideShow';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Characters, GalleryEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';

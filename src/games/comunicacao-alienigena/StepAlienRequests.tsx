@@ -4,16 +4,16 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type {
   InquiryHistoryEntry,

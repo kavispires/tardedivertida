@@ -3,20 +3,20 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { MedalIcon } from 'icons/MedalIcon';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { MedalIcon } from '@icons/MedalIcon';
+import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { Bracket, FightingContender, SubmitBetsPayload } from '../utils/type';
 import { getSmartBetContenderOptions } from '../utils/helpers';

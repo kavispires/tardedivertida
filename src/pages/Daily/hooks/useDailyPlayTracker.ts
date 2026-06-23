@@ -2,7 +2,7 @@ import { useSelector } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
 import { useEffect } from 'react';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday } from '@utils/helpers';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
 import { updateStreak } from '../utils/streakManager';

@@ -1,14 +1,14 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { CrownIcon } from 'icons/CrownIcon';
+import { CrownIcon } from '@icons/CrownIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { FinalGalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';

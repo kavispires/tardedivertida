@@ -14,7 +14,7 @@ import {
 } from '@ant-design/icons';
 import { Typography, theme } from 'antd';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Sass
 import styles from './RuleInstruction.module.scss';
 

@@ -6,25 +6,25 @@ import { Button, Divider, Flex, Layout, Space, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { AnswerNoButton, AnswerYesButton } from '@components/buttons/AnswerButtons';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
+import { Region, RegionHint, RegionText } from '@pages/Daily/components/Region';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

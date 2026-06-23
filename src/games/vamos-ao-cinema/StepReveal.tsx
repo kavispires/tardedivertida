@@ -2,26 +2,26 @@
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { MovieCard, MovieReviewCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { getAnimationClass, pluralize } from 'utils/helpers';
+import { getAnimationClass, pluralize } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { Title } from 'components/text/Title';
-import { ViewIf } from 'components/views/ViewIf';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { ListOfPlayers } from '@components/players/ListOfPlayers';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { SubmitMovieEliminationPayload, SubmitMoviePosterPayload } from './utils/types';
 import { Reviews } from './components/Reviews';

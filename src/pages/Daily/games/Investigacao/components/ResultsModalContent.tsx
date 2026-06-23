@@ -2,20 +2,20 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { getSuspectImageId } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { getSuspectImageId } from '@components/cards/SuspectCard';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Pages
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';

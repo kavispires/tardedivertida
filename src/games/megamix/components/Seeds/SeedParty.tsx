@@ -2,14 +2,14 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { Title } from 'components/text/Title';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryParty } from '../../utils/types';
 

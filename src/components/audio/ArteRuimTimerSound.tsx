@@ -1,8 +1,8 @@
-import arteRuimTimer from 'assets/sounds/arte-ruim-timer.mp3';
+import arteRuimTimer from '@assets/sounds/arte-ruim-timer.mp3';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 
 /**
  * Component that plays the Arte Ruim timer sound with volume controls

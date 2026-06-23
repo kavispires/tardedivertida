@@ -1,9 +1,9 @@
-import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+import { HouseCard } from '@games/na-rua-do-medo/components/HouseCard';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Components
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps, StreetCard } from '../../utils/types';
 

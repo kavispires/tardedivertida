@@ -4,13 +4,13 @@ import { Steps } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
+import { useStep } from '@hooks/useStep';
 // Components
-import { Translate } from 'components/language/Translate';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SeedEntry, SubmitAnswerPayload } from './utils/types';
 import { buildSeedingSteps } from './utils/helpers';

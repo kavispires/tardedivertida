@@ -7,22 +7,22 @@ import { Modal, Button, Divider, Alert, App, Space } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
+import { useRedirectToNewGame } from '@hooks/useRedirectToNewGame';
 // Services
-import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API, HOST_API_ACTIONS } from '@services/adapters';
 // Components
-import { GameStrip } from 'components/general/GameBanner';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { LanguageSwitch } from 'components/language/LanguageSwitch';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Loading } from 'components/loaders/Loading';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { GameStrip } from '@components/general/GameBanner';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { LanguageSwitch } from '@components/language/LanguageSwitch';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Loading } from '@components/loaders/Loading';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { GameCustomizations } from './GameCustomizations';
 

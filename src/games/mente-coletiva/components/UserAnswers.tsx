@@ -4,12 +4,12 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 
 type UserAnswersProps = {
   answerGroup: any;

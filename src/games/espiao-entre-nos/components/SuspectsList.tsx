@@ -5,11 +5,11 @@ import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useLanguage } from 'hooks/useLanguage';
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useCache } from '@hooks/useCache';
+import { useLanguage } from '@hooks/useLanguage';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type SuspectsListProps = {
   players: GamePlayers;

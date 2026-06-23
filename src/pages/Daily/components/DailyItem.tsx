@@ -3,10 +3,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Utils
-import { DEFAULT_PADDING } from 'utils/constants';
+import { DEFAULT_PADDING } from '@utils/constants';
 // Components
-import { getSource, type ItemCardProps } from 'components/cards/ItemCard';
-import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
+import { getSource, type ItemCardProps } from '@components/cards/ItemCard';
+import { DEFAULT_SPRITE_SIZE, Sprite } from '@components/sprites/Sprite';
 // Internal
 import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 

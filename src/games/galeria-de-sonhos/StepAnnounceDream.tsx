@@ -5,19 +5,19 @@ import { Alert, Divider, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import type { UseStep } from 'hooks/useStep';
+import { useCardWidth } from '@hooks/useCardWidth';
+import type { UseStep } from '@hooks/useStep';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { getAvatarColorById } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step } from 'components/steps/Step';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step } from '@components/steps/Step';
 // Internal
 import type { LatestInfo } from './utils/types';
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';

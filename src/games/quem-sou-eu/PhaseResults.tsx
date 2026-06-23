@@ -1,16 +1,16 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSlideShow } from 'hooks/useSlideShow';
-import { useStep } from 'hooks/useStep';
+import { useSlideShow } from '@hooks/useSlideShow';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { MirrorIcon } from 'icons/MirrorIcon';
+import { MirrorIcon } from '@icons/MirrorIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { QUEM_SOU_EU_PHASES, SLIDE_DURATION } from './utils/constants';
 import type { PhaseResultsState } from './utils/types';

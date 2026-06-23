@@ -4,14 +4,14 @@ import { Button, Flex, Progress, Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

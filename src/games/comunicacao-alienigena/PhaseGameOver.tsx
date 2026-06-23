@@ -3,13 +3,13 @@ import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayersTabs } from 'components/players/PlayersTabs';
-import { ViewIf } from 'components/views/ViewIf';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayersTabs } from '@components/players/PlayersTabs';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

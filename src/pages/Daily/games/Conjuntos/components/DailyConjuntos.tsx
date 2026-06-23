@@ -6,16 +6,16 @@ import { Layout, Modal, Rate, Tooltip, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { Region, RegionText } from 'pages/Daily/components/Region';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { Region, RegionText } from '@pages/Daily/components/Region';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

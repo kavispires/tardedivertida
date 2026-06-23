@@ -1,16 +1,16 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { UfoIcon } from 'icons/UfoIcon';
+import { UfoIcon } from '@icons/UfoIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSelectPlayer } from '@components/steps/StepSelectPlayer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './utils/constants';

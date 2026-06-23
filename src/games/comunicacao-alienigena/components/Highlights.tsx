@@ -1,9 +1,9 @@
 // Icons
-import { HieroglyphIcon } from 'icons/HieroglyphIcon';
-import { MagicSkullIcon } from 'icons/MagicSkullIcon';
-import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
+import { HieroglyphIcon } from '@icons/HieroglyphIcon';
+import { MagicSkullIcon } from '@icons/MagicSkullIcon';
+import { PlayerIconsIcon } from '@icons/PlayerIconsIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function ItemsHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

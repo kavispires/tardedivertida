@@ -8,20 +8,20 @@ import { Badge, Col, Flex, Modal, Row, Select, Switch } from 'antd';
 import type { GameInfo } from 'types/game-info';
 import type { GameUserStatistics } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useQueryParams } from 'hooks/useQueryParams';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useQueryParams } from '@hooks/useQueryParams';
 // Utils
-import ACHIEVEMENTS_DICT from 'utils/achievements';
+import ACHIEVEMENTS_DICT from '@utils/achievements';
 // Icons
-import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { AnimatedVideoConferenceIcon } from '@icons/AnimatedVideoConferenceIcon';
+import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { GameBanner } from 'components/general/GameBanner';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { GameBanner } from '@components/general/GameBanner';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { GameStatistics } from './GameStatistics';
 

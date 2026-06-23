@@ -4,9 +4,9 @@ import { Button, Tag } from 'antd';
 // Types
 import type { TeenageMotivation } from 'types/tdr';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { FofocaQuenteDefaultState, SocialGroup } from '../utils/types';
 import { useFofocaQuenteContext } from '../utils/FofocaQuenteContext';

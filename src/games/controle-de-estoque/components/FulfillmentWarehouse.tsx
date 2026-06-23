@@ -3,12 +3,12 @@ import { useCallback, useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Icons
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { DraggableItem, DroppableArea } from 'components/drag-and-drop/DragAndDrop';
-import { Translate } from 'components/language/Translate';
-import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
+import { DraggableItem, DroppableArea } from '@components/drag-and-drop/DragAndDrop';
+import { Translate } from '@components/language/Translate';
+import { ZoomPanPinchContainer } from '@components/layout/ZoomPanPinchContainer';
 // Internal
 import type { Good, WarehouseSlot } from '../utils/types';
 import { useGoodSize } from '../utils/hooks';

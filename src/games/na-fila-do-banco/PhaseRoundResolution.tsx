@@ -1,14 +1,14 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { DeskIcon } from 'icons/DeskIcon';
+import { DeskIcon } from '@icons/DeskIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import type { PhaseRoundResolutionState } from './utils/types';
 import { NA_FILA_DO_BANCO_PHASES } from './utils/constants';

@@ -1,6 +1,6 @@
 // Components
-import { Translate } from 'components/language/Translate';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { Translate } from '@components/language/Translate';
+import { TextHighlight } from '@components/text/TextHighlight';
 
 export function FirstRoundIntroduction() {
   return (

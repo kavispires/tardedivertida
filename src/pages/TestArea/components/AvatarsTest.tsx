@@ -1,18 +1,18 @@
-import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
+import { SheepAvatar } from '@games/mente-coletiva/components/SheepAvatar';
 import { random } from 'lodash';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { ClubberAvatar } from '@components/avatars/ClubberAvatar';
+import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
+import { SuperHeroAvatar } from '@components/avatars/SuperHeroAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

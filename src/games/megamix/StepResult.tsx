@@ -7,20 +7,20 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useCountdown } from '@hooks/useCountdown';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
-import { DJIcon } from 'icons/DJIcon';
-import { GarbageIcon } from 'icons/GarbageIcon';
-import { VIPLineIcon } from 'icons/VIPLineIcon';
+import { DJIcon } from '@icons/DJIcon';
+import { GarbageIcon } from '@icons/GarbageIcon';
+import { VIPLineIcon } from '@icons/VIPLineIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Track } from './utils/types';
 import { useColorizeBackground } from './utils/useColorizeBackground';

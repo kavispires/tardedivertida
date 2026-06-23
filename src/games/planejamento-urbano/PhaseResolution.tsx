@@ -1,18 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSlideShow } from 'hooks/useSlideShow';
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useSlideShow } from '@hooks/useSlideShow';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { MapCityIcon } from 'icons/MapCityIcon';
+import { MapCityIcon } from '@icons/MapCityIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { PLANEJAMENTO_URBANO_PHASES, SLIDE_DURATION } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';

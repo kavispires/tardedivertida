@@ -4,16 +4,16 @@ import { InputNumber, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { GamblingChipIcon } from 'icons/GamblingChipIcon';
-import { LodgeIcon } from 'icons/LodgeIcon';
+import { GamblingChipIcon } from '@icons/GamblingChipIcon';
+import { LodgeIcon } from '@icons/LodgeIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { AvatarGroup } from 'components/players/PlayerAvatarGroup';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { AvatarGroup } from '@components/players/PlayerAvatarGroup';
 // Internal
 import type { Lodge, SubmitBetsPayload } from '../utils/types';
 import { LODGE_COLORS } from '../utils/constants';

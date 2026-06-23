@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SendButton } from '@components/buttons/SendButton';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import { ALIEN_CANVAS } from '../utils/constants';
 

@@ -2,7 +2,7 @@ import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { useEffect } from 'react';
 // Services
-import { firestore } from 'services/firebase';
+import { firestore } from '@services/firebase';
 
 /**
  * React hook that retrieves a Firestore document and provides the result as a query object.

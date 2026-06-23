@@ -5,7 +5,7 @@ import { Button, Popover } from 'antd';
 // Types
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Sass
 import styles from './SceneTile.module.scss';
 

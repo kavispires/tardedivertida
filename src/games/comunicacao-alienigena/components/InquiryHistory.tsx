@@ -4,11 +4,11 @@ import { Space, Table } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { ItemCard } from '@components/cards/ItemCard';
+import { SignCard } from '@components/cards/SignCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { InquiryHistoryEntry, PhaseBasicState } from '../utils/types';
 

@@ -2,10 +2,10 @@ import { type ChangeEvent, useEffect, useRef, useState } from 'react';
 // Ant Design Resources
 import { Flex, Input, type InputRef, Space } from 'antd';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { SubmitCluePayload } from '../utils/types';
 

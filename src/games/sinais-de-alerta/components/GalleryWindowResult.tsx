@@ -3,13 +3,13 @@ import { Typography } from 'antd';
 // Types
 import type { TextCard } from 'types/tdr';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import {
   SlideShowBubbleValue,
   SlideShowLabel,
   SlideShowNoWins,
-} from 'components/slide-show/SlideShowComposableComponents';
+} from '@components/slide-show/SlideShowComposableComponents';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';

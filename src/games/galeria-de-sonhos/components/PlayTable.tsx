@@ -3,18 +3,18 @@ import { motion } from 'motion/react';
 // Ant Design Resources
 import { Image } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { StarIcon } from 'icons/StarIcon';
+import { StarIcon } from '@icons/StarIcon';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardBack } from 'components/image-cards/ImageCardBack';
-import { ImageCardButton } from 'components/image-cards/ImageCardButton';
-import { Translate } from 'components/language/Translate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardBack } from '@components/image-cards/ImageCardBack';
+import { ImageCardButton } from '@components/image-cards/ImageCardButton';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 import { BORDER_TOTAL_SIZE } from '../utils/constants';

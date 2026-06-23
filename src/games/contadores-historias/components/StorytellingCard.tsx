@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Card } from 'components/cards/Card';
+import { Card } from '@components/cards/Card';
 
 type StorytellingCardProps = {
   story: string;

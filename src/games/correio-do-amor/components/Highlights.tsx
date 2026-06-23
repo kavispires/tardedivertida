@@ -1,11 +1,11 @@
 // Icons
-import { DeckIcon } from 'icons/DeckIcon';
-import { NoIcon } from 'icons/NoIcon';
-import { SecurityIcon } from 'icons/SecurityIcon';
-import { TrashIcon } from 'icons/TrashIcon';
-import { VictoryCoinIcon } from 'icons/VictoryCoinIcon';
+import { DeckIcon } from '@icons/DeckIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { SecurityIcon } from '@icons/SecurityIcon';
+import { TrashIcon } from '@icons/TrashIcon';
+import { VictoryCoinIcon } from '@icons/VictoryCoinIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function DeckHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<DeckIcon />}>{children}</MetricHighlight>;

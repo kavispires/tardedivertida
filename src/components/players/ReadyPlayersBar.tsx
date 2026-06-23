@@ -4,8 +4,8 @@ import { Avatar, Typography } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Sass
 import styles from './ReadyPlayersBar.module.scss';
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useWindowSize } from 'react-use';
 import { useControls } from 'react-zoom-pan-pinch';
 // Components
-import { GridMap } from 'components/toolKits/GridMap';
+import { GridMap } from '@components/toolKits/GridMap';
 // Internal
 import type { City, CityLocationsDict } from '../utils/types';
 import { useLocationWidth } from '../utils/custom-hooks';

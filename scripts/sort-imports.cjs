@@ -94,31 +94,31 @@ const sortImports = (imports) => {
       groups.antd.push(line);
     }
     // Hooks imports
-    else if (line.includes("'hooks/")) {
+    else if (line.includes("'hooks/") || line.includes("'@hooks/")) {
       groups.hooks.push(line);
     }
     // Types imports
-    else if (line.includes("'types/")) {
+    else if (line.includes("'types/") || line.includes("'@types/")) {
       groups.types.push(line);
     }
     // Constants imports
-    else if (line.includes("'constants/")) {
+    else if (line.includes("'constants/") || line.includes("'@constants/")) {
       groups.constants.push(line);
     }
     // Services imports
-    else if (line.includes("'services/")) {
+    else if (line.includes("'services/") || line.includes("'@services/")) {
       groups.services.push(line);
     }
     // Utils imports
-    else if (line.includes("'utils/")) {
+    else if (line.includes("'utils/") || line.includes("'@utils/")) {
       groups.utils.push(line);
     }
     // Icons imports
-    else if (line.includes("'icons/")) {
+    else if (line.includes("'icons/") || line.includes("'@icons/")) {
       groups.icons.push(line);
     }
     // Components imports
-    else if (line.includes("'components/")) {
+    else if (line.includes("'components/") || line.includes("'@components/")) {
       groups.components.push(line);
     }
     // Sass imports
@@ -130,7 +130,7 @@ const sortImports = (imports) => {
       groups.images.push(line);
     }
     // Page imports
-    else if (line.includes("'pages/")) {
+    else if (line.includes("'pages/") || line.includes("'@pages/")) {
       groups.pages.push(line);
     }
     // Relative imports

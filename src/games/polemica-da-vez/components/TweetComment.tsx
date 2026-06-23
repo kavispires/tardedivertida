@@ -2,7 +2,7 @@ import { formatDistanceToNow } from 'date-fns';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import { CommentText } from './CommentText';
 

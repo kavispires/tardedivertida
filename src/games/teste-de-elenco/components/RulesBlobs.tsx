@@ -1,5 +1,5 @@
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { ActorHighlight } from './Highlights';
 

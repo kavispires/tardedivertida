@@ -2,20 +2,20 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { SleepIcon } from 'icons/SleepIcon';
+import { SleepIcon } from '@icons/SleepIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { WaitingRoom } from 'components/players/WaitingRoom';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { ViewIf } from 'components/views/ViewIf';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { WaitingRoom } from '@components/players/WaitingRoom';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';

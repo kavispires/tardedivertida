@@ -5,15 +5,15 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useLoading } from 'hooks/useLoading';
+import { useDevFeatures } from '@hooks/useDevFeatures';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { WaitingTime } from 'components/timers/WaitingTime';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { WaitingTime } from '@components/timers/WaitingTime';
 // Internal
 import type {
   AddAnswerPayload,

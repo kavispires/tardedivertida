@@ -5,19 +5,19 @@ import { Flex, Space } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { SuspectCard as SuspectCardType, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
 import {
   AnswerKindaNoButton,
   AnswerMaybeYesButton,
   AnswerNoButton,
   AnswerYesButton,
-} from 'components/buttons/AnswerButtons';
-import { SuspectCard } from 'components/cards/SuspectCard';
-import { Translate } from 'components/language/Translate';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
-import { Title } from 'components/text/Title';
+} from '@components/buttons/AnswerButtons';
+import { SuspectCard } from '@components/cards/SuspectCard';
+import { Translate } from '@components/language/Translate';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SubmitAnswerPayload } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';

@@ -5,17 +5,17 @@ import { Checkbox } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useHost } from 'hooks/useHost';
-import { useLanguage } from 'hooks/useLanguage';
+import { useHost } from '@hooks/useHost';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Card } from 'components/cards/Card';
-import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
-import { Translate } from 'components/language/Translate';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { Title } from 'components/text/Title';
+import { Card } from '@components/cards/Card';
+import { GroupQuestionCard } from '@components/cards/GroupQuestionCard';
+import { Translate } from '@components/language/Translate';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { AnswerGroupObject, Question } from '../utils/types';
 import { SheepAvatar } from './SheepAvatar';

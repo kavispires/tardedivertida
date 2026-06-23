@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import { RiseOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 // Icons
-import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
-import { TwitterIcon } from 'icons/TwitterIcon';
+import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
+import { TwitterIcon } from '@icons/TwitterIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 
 type TweetProps = {
   tweet: string;

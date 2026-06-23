@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Utils
-import { getGameList } from 'utils/info';
+import { getGameList } from '@utils/info';
 
 /**
  * Hook that fetches and caches the complete game list.

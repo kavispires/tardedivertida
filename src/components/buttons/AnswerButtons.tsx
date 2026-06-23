@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import type { ComponentProps } from 'react';
 // Icons
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxMinusIcon } from 'icons/BoxMinusIcon';
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxMinusIcon } from '@icons/BoxMinusIcon';
+import { BoxPlusIcon } from '@icons/BoxPlusIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { TransparentButton } from './TransparentButton';
 // Sass

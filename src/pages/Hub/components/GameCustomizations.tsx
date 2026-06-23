@@ -4,7 +4,7 @@ import { Typography, Switch, Radio, Checkbox } from 'antd';
 // Types
 import type { GameInfo, GameInfoOption } from 'types/game-info';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type GameCustomizationsProps = {
   options?: GameInfo['options'];

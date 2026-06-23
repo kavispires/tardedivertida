@@ -1,22 +1,22 @@
-import { mockDrawing } from 'mock/drawing';
+import { mockDrawing } from '@mock/drawing';
 import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useCountdown } from '@hooks/useCountdown';
+import { useDevFeatures } from '@hooks/useDevFeatures';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { PanicIcon } from 'icons/PanicIcon';
+import { PanicIcon } from '@icons/PanicIcon';
 // Components
-import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { Card } from 'components/cards/Card';
-import { DevButton } from 'components/debug/DevButton';
-import { Step, type StepProps } from 'components/steps/Step';
+import { ArteRuimTimerSound } from '@components/audio/ArteRuimTimerSound';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { Card } from '@components/cards/Card';
+import { DevButton } from '@components/debug/DevButton';
+import { Step, type StepProps } from '@components/steps/Step';
 // Internal
 import type { ArteRuimCustomCard } from './utils/types';
 

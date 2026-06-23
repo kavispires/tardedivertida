@@ -1,7 +1,7 @@
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
 // Internal
 import { SecretWordHighlight, WordsHighlight } from './Highlights';
 

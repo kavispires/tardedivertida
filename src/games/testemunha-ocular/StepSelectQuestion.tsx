@@ -1,17 +1,17 @@
 // Types
 import type { SuspectCard } from 'types/tdr';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Outcome, Question, SelectQuestionPayload, Status, THistoryEntry } from './utils/types';
 import { OUTCOME } from './utils/constants';

@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { NoIcon } from 'icons/NoIcon';
-import { YesIcon } from 'icons/YesIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { YesIcon } from '@icons/YesIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { GlyphCard } from 'components/cards/GlyphCard';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { GlyphCard } from '@components/cards/GlyphCard';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import { parseSelectedGlyphs } from '../utils/helpers';
 

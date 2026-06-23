@@ -2,9 +2,9 @@
 import { CaretDownOutlined } from '@ant-design/icons';
 import { Flex, Modal } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { Region } from 'pages/Daily/components/Region';
+import { Region } from '@pages/Daily/components/Region';
 // Internal
 import type { useConjuntosEngine } from '../utils/useConjuntosEngine';
 import { Thing } from './Thing';

@@ -4,18 +4,18 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, App, Switch, Space, type ButtonProps } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { resetPassword, signIn, signInWithGoogle } from 'services/firebase';
+import { resetPassword, signIn, signInWithGoogle } from '@services/firebase';
 // Icons
-import { GoogleIcon } from 'icons/GoogleIcon';
+import { GoogleIcon } from '@icons/GoogleIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text/Title';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Title } from '@components/text/Title';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg?url';
+import logo from '@assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import styles from './auth.module.scss';
 

@@ -1,5 +1,5 @@
 // Pages
-import type { DateKey } from 'pages/Daily/utils/types';
+import type { DateKey } from '@pages/Daily/utils/types';
 
 export type Gender = 'boy' | 'girl';
 export interface Kid {

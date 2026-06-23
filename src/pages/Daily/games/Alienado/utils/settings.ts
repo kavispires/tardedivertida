@@ -1,7 +1,7 @@
 // Icons
-import { DailyAlienGameIcon } from 'icons/DailyAlienGameIcon';
+import { DailyAlienGameIcon } from '@icons/DailyAlienGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'ALIENADO',

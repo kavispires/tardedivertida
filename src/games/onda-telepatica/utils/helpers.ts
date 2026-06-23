@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 
 export const getColorModifier = (letter: string) => {
   const index = LETTERS.indexOf(letter);

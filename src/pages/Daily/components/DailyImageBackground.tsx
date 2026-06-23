@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import type { CSSProperties } from 'react';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 
 type DailyImageBackgroundProps = {
   /**

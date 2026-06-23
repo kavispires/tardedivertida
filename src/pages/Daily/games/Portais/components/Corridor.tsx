@@ -3,12 +3,12 @@ import { isIOS, isSafari } from 'react-device-detect';
 // Ant Design Resources
 import { Avatar, Flex, Image, Tag, Typography } from 'antd';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Components
-import { DoorFrame } from 'components/game/DoorFrame';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { DoorFrame } from '@components/game/DoorFrame';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type CorridorProps = {
   number: number;

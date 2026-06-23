@@ -3,7 +3,7 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Flex, Space } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Internal
 import type { LettersDictionary } from '../utils/types';
 

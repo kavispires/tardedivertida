@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Switch, type SwitchProps } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 export function YesNoSwitch({ checkedChildren, unCheckedChildren, ...props }: SwitchProps) {
   return (

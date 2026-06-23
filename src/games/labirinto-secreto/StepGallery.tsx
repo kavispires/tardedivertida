@@ -1,17 +1,17 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { SlideShowControls } from 'components/slide-show/SlideShowControls';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { Title } from 'components/text/Title';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { SlideShowControls } from '@components/slide-show/SlideShowControls';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { Tree } from './utils/types';
 import { buildPlayerMapping } from './utils/helpers';

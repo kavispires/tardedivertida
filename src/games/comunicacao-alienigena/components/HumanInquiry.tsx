@@ -5,24 +5,24 @@ import { Badge, Flex, Select, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useCache } from 'hooks/useCache';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useCache } from '@hooks/useCache';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { DevButton } from 'components/debug/DevButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
-import { PlayerFlex } from 'components/player/PlayerFlex';
-import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { DevButton } from '@components/debug/DevButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
+import { PlayerFlex } from '@components/player/PlayerFlex';
+import { alienAttributesUtils } from '@components/toolKits/AlienAttributes';
 // Internal
 import type { OfferingsStatus, PhaseBasicState, SubmitHumanInquiryPayload } from '../utils/types';
 import { MAX_INQUIRY_OBJECTS, SPRITE_SIZE } from '../utils/constants';

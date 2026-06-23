@@ -4,14 +4,14 @@ import { useKeyPressEvent } from 'react-use';
 // Ant Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useCountdown } from '@hooks/useCountdown';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { type AnimationType, getAnimationClass } from 'utils/helpers';
+import { type AnimationType, getAnimationClass } from '@utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Sass
 import styles from './PhaseAnnouncement.module.scss';
 

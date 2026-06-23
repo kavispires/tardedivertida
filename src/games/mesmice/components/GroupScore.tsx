@@ -2,10 +2,10 @@
 import { StarFilled } from '@ant-design/icons';
 import { Divider } from 'antd';
 // Components
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text/Instruction';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Instruction } from '@components/text/Instruction';
 
 type GroupScoreProps = {
   groupScore: number;

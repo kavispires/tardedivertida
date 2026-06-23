@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
 // Internal
 import type { useEstoquistaEngine } from '../utils/useEstoquistaEngine';
 

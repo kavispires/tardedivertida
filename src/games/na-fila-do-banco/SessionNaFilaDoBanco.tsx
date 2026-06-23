@@ -1,10 +1,10 @@
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION } from '@utils/constants';
 // Components
-import { PhaseError } from 'components/phases/PhaseError';
-import { Session } from 'components/session/Session';
+import { PhaseError } from '@components/phases/PhaseError';
+import { Session } from '@components/session/Session';
 // Internal
 import { NA_FILA_DO_BANCO_PHASES } from './utils/constants';
 import { PhaseCardPlay } from './PhaseCardPlay';

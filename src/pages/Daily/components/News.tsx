@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { BellFilled } from '@ant-design/icons';
 import { Button, Divider, Flex, Modal, Typography } from 'antd';
 // Icons
-import { BellIcon } from 'icons/BellIcon';
+import { BellIcon } from '@icons/BellIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { NEWS_LIST } from './NewsList';
 import { usePreference } from '../hooks/useDailyPreferences';

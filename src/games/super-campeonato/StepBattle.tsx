@@ -2,9 +2,9 @@
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Components
-import { ReadyPlayersBar } from 'components/players/ReadyPlayersBar';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from './utils/type';
 import { Brackets } from './components/Brackets';

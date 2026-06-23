@@ -4,14 +4,14 @@ import { InputNumber, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { LodgeIcon } from 'icons/LodgeIcon';
+import { LodgeIcon } from '@icons/LodgeIcon';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
 // Internal
 import type { Lodge, SubmitBetsPayload } from '../utils/types';
 import { LODGE_COLORS, SKIER_BET_TYPES } from '../utils/constants';

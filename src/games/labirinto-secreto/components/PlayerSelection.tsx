@@ -1,8 +1,8 @@
 // Icons
-import { NoIcon } from 'icons/NoIcon';
+import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';

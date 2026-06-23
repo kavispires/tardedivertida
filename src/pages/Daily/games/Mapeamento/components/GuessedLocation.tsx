@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type GuessedLocationProps = {
   typedLocation: string;

@@ -4,18 +4,18 @@ import { Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { Menu } from 'pages/Daily/components/Menu';
-import { Region } from 'pages/Daily/components/Region';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Keyboard } from '@pages/Daily/components/Keyboard';
+import { Menu } from '@pages/Daily/components/Menu';
+import { Region } from '@pages/Daily/components/Region';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

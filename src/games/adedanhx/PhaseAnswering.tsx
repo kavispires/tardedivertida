@@ -2,20 +2,20 @@
 import type { PhaseProps } from 'types/game';
 import type { TopicCard } from 'types/tdr';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { LockIcon } from 'icons/LockIcon';
-import { TimedWritingIcon } from 'icons/TimedWritingIcon';
+import { LockIcon } from '@icons/LockIcon';
+import { TimedWritingIcon } from '@icons/TimedWritingIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 import { ADEDANHX_PHASES, ANSWERING_TIME_IN_MINUTES } from './utils/constants';

@@ -2,14 +2,14 @@
 import { SkinFilled } from '@ant-design/icons';
 import { Flex, Modal, Typography } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { getSuspectImageId } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { getSuspectImageId } from '@components/cards/SuspectCard';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { Region } from 'pages/Daily/components/Region';
+import { Region } from '@pages/Daily/components/Region';
 // Internal
 import type { DailyInvestigacaoEntry } from '../utils/types';
 import type { useInvestigacaoEngine } from '../utils/useInvestigacaoEngine';

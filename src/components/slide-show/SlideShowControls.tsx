@@ -9,12 +9,12 @@ import {
 } from '@ant-design/icons';
 import { Button, type ButtonProps, Space } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import { useCountdown } from '@hooks/useCountdown';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import styles from './styles';
 

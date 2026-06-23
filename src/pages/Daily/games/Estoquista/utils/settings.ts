@@ -1,7 +1,7 @@
 // Icons
-import { DailyWarehouseGameIcon } from 'icons/DailyWarehouseGameIcon';
+import { DailyWarehouseGameIcon } from '@icons/DailyWarehouseGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'ESTOQUISTA',

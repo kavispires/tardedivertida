@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { KnifeIcon } from 'icons/KnifeIcon';
+import { KnifeIcon } from '@icons/KnifeIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
 type PlayerTargetCardButtonProps = {
   player: GamePlayer;

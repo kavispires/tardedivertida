@@ -1,7 +1,7 @@
 // Icons
-import { DailyDiagramGameIcon } from 'icons/DailyDiagramGameIcon';
+import { DailyDiagramGameIcon } from '@icons/DailyDiagramGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'CONJUNTOS',

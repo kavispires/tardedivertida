@@ -2,14 +2,14 @@
 import type { GamePlayer } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Components
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { MonsterCard } from 'components/cards/MonsterCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { Title } from 'components/text/Title';
-import { TimerBar } from 'components/timers/TimerBar';
-import { ViewIf } from 'components/views/ViewIf';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { MonsterCard } from '@components/cards/MonsterCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { Title } from '@components/text/Title';
+import { TimerBar } from '@components/timers/TimerBar';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { TIMES } from '../utils/constants';
 

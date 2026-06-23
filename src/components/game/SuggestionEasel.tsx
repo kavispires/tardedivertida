@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Input } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Sass
 import styles from './SuggestionEasel.module.scss';
 

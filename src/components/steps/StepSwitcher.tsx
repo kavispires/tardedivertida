@@ -2,11 +2,11 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { print } from 'utils/helpers';
+import { print } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { Loading } from 'components/loaders/Loading';
-import { WaitingRoom } from 'components/players/WaitingRoom';
+import { Translate } from '@components/language/Translate';
+import { Loading } from '@components/loaders/Loading';
+import { WaitingRoom } from '@components/players/WaitingRoom';
 
 /**
  * Returns the appropriate waiting room instruction message based on the kind of wait (SERVER, PLAYERS, or default)

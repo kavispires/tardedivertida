@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, type ButtonProps } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from '@hooks/useCountdown';
 // Sass
 import styles from './TimedButton.module.scss';
 

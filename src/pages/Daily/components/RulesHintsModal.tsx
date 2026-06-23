@@ -4,9 +4,9 @@ import { useToggle } from 'react-use';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Typography } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { Region } from 'pages/Daily/components/Region';
+import { Region } from '@pages/Daily/components/Region';
 
 type RulesHintsProps = {
   label: ReactNode;

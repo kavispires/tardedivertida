@@ -2,10 +2,10 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { RunnerCard } from '../utils/types';
 

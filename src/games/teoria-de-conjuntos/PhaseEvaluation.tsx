@@ -1,11 +1,11 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Components
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitEvaluationAPIRequest } from './utils/api-requests';
 import type { Guess, PhaseEvaluationState } from './utils/types';

@@ -1,15 +1,15 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSlideShow } from 'hooks/useSlideShow';
-import { useStep } from 'hooks/useStep';
+import { useSlideShow } from '@hooks/useSlideShow';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { PictureIcon } from 'icons/PictureIcon';
+import { PictureIcon } from '@icons/PictureIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import { ARTE_RUIM_PHASES, SLIDE_DURATION } from './utils/constants';
 import type { PhaseGalleryState } from './utils/types';

@@ -1,6 +1,6 @@
 // Utils
-import { LETTERS } from 'utils/constants';
-import { getRandomItem } from 'utils/helpers';
+import { LETTERS } from '@utils/constants';
+import { getRandomItem } from '@utils/helpers';
 
 export const mockMovieSelection = () => {
   return getRandomItem(['A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'F', 'G']);

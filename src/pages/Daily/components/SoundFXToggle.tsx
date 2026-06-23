@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { MutedOutlined, SoundFilled } from '@ant-design/icons';
 import { Switch, type SwitchProps } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Internal
 import { dailySoundEffects } from '../utils/soundEffects';
 

@@ -1,8 +1,8 @@
 // Icons
-import { NoIcon } from 'icons/NoIcon';
-import { YesIcon } from 'icons/YesIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { YesIcon } from '@icons/YesIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function PositiveHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

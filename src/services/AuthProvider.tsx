@@ -7,10 +7,10 @@ import { App } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { getToday, print } from 'utils/helpers';
+import { getToday, print } from '@utils/helpers';
 // Internal
 import { auth } from './firebase';
 import { USER_API, USER_API_ACTIONS } from './adapters';

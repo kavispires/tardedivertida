@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
+import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCardPlayState } from './utils/types';
 import { NA_FILA_DO_BANCO_PHASES } from './utils/constants';

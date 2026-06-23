@@ -2,9 +2,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Divider, Space, Switch, Tooltip } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 

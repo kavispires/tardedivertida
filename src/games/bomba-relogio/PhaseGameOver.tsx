@@ -3,22 +3,22 @@ import { Switch } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
-import { BombIcon } from 'icons/BombIcon';
-import { CrownIcon } from 'icons/CrownIcon';
-import { SecurityIcon } from 'icons/SecurityIcon';
-import { TraitorIcon } from 'icons/TraitorIcon';
+import { BombIcon } from '@icons/BombIcon';
+import { CrownIcon } from '@icons/CrownIcon';
+import { SecurityIcon } from '@icons/SecurityIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { Instruction } from 'components/text/Instruction';
-import { ConfettiEffect } from 'components/visual-effects/ConfettiEffect';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { Instruction } from '@components/text/Instruction';
+import { ConfettiEffect } from '@components/visual-effects/ConfettiEffect';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { DataCounts, PhaseGameOverState, Status } from './utils/types';

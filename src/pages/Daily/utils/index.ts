@@ -1,6 +1,6 @@
 import { parse, getDay, format, isAfter, differenceInDays, subDays } from 'date-fns';
 // Utils
-import { getToday, stringRemoveAccents } from 'utils/helpers';
+import { getToday, stringRemoveAccents } from '@utils/helpers';
 // Internal
 import type { BasicResultsOptions, WithRequiredId } from './types';
 import { getSettings } from './settings';

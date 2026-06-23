@@ -1,9 +1,9 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (

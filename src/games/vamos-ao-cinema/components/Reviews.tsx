@@ -1,8 +1,8 @@
 // Types
 import type { MovieReviewCard as MovieReviewCardType } from 'types/tdr';
 // Components
-import { MovieReviewCard } from 'components/cards/MovieReviewCard';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { MovieReviewCard } from '@components/cards/MovieReviewCard';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type ReviewsProps = {
   goodReview: MovieReviewCardType;

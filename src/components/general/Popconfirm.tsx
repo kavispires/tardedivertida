@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Popconfirm as AntPopConfirm, type PopconfirmProps } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type PopconfirmComponentProps = PopconfirmProps & {
   type?: 'yes-no' | 'default';

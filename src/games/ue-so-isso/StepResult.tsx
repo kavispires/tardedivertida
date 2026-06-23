@@ -1,18 +1,18 @@
 // Types
 import type { GamePlayer, GameRound } from 'types/game';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { SecretWord, Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';

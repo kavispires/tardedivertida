@@ -3,15 +3,15 @@ import { Avatar, Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { NoIcon } from 'icons/NoIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
+import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { RunActivity, RunnerCard } from '../utils/types';
 import { RunCard } from './RunCard';

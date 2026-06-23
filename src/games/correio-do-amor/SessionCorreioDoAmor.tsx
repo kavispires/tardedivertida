@@ -1,11 +1,11 @@
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION } from '@utils/constants';
 // Components
-import { PhaseError } from 'components/phases/PhaseError';
-import { PhasePlaceholder } from 'components/phases/PhasePlaceholder';
-import { Session } from 'components/session/Session';
+import { PhaseError } from '@components/phases/PhaseError';
+import { PhasePlaceholder } from '@components/phases/PhasePlaceholder';
+import { Session } from '@components/session/Session';
 // Internal
 import { CORREIO_DO_AMOR_PHASES } from './utils/constants';
 import { PhaseCardPlay } from './PhaseCardPlay';

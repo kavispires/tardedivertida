@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { StatusBar } from 'components/general/StatusBar';
-import { Translate } from 'components/language/Translate';
+import { StatusBar } from '@components/general/StatusBar';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { PLAYER_STATUS, POINTS_GOAL } from '../utils/constants';
 import {

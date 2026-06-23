@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { LocationIcon } from 'icons/LocationIcon';
-import { OnlineOrderIcon } from 'icons/OnlineOrderIcon';
+import { CheckMarkIcon } from '@icons/CheckMarkIcon';
+import { LocationIcon } from '@icons/LocationIcon';
+import { OnlineOrderIcon } from '@icons/OnlineOrderIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
 // Internal
 import type { useEstoquistaEngine } from '../utils/useEstoquistaEngine';
 

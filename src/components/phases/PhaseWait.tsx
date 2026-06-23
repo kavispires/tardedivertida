@@ -1,13 +1,13 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from '@utils/phases';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 // Sass

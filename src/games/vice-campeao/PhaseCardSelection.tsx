@@ -1,16 +1,16 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
+import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCardSelectionState } from './utils/types';
 import { VICE_CAMPEAO_PHASES } from './utils/constants';

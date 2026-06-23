@@ -1,11 +1,11 @@
+import { USE_FIRESTORE_EMULATOR, USE_MOCKS } from '@dev-configs';
 import { format } from 'date-fns';
-import { USE_FIRESTORE_EMULATOR, USE_MOCKS } from 'dev-configs';
 import { camelCase, orderBy, startCase } from 'lodash';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { GameInfo } from 'types/game-info';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Internal
 import { SEPARATOR } from './constants';
 

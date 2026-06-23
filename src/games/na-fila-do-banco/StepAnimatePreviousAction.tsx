@@ -1,13 +1,13 @@
 // Types
 import type { GamePlayers, GamePlayer, GameRound } from 'types/game';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { ClientCard, Teller } from './utils/types';
 import { useNextStepDuration, useOrderedTellers } from './utils/hooks';

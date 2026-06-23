@@ -1,5 +1,5 @@
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Sass
 import './HomeVideoBackground.scss';
 

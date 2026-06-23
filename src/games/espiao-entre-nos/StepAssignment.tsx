@@ -1,11 +1,11 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { Step } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { Step } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Location } from './utils/types';
 import { EspiaoEntreNosCard as Card } from './components/Card';

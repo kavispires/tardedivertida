@@ -4,25 +4,25 @@ import { Popover, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { NoIcon } from 'icons/NoIcon';
-import { YesIcon } from 'icons/YesIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { YesIcon } from '@icons/YesIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { GlyphCard } from 'components/cards/GlyphCard';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { GlyphCard } from '@components/cards/GlyphCard';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Characters, SubmitGlyphsPayload } from './utils/types';
 import { prepareGlyphs } from './utils/helpers';

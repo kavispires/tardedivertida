@@ -4,7 +4,7 @@ import { forwardRef, useCallback } from 'react';
 import { SendOutlined } from '@ant-design/icons';
 import { Button, type ButtonProps } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 
 type SendButtonProps = ButtonProps & {
   /**

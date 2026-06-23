@@ -6,17 +6,17 @@ import { Flex, Typography } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Utils
-import { getContrastColor } from 'utils/helpers';
+import { getContrastColor } from '@utils/helpers';
 // Icons
-import { StarIcon } from 'icons/StarIcon';
+import { StarIcon } from '@icons/StarIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
 import {
   SlideShowBubbleValue,
   SlideShowLabel,
   SlideShowPlayersList,
-} from 'components/slide-show/SlideShowComposableComponents';
+} from '@components/slide-show/SlideShowComposableComponents';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';

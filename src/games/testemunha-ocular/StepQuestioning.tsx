@@ -4,18 +4,18 @@ import { Flex } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
 // Components
-import { AnswerNoButton, AnswerYesButton } from 'components/buttons/AnswerButtons';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { AnswerNoButton, AnswerYesButton } from '@components/buttons/AnswerButtons';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { Outcome, Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
 import { mockWitnessTestimony } from './utils/mock';

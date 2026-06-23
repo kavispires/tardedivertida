@@ -1,6 +1,6 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
 // Internal
 import type { SubmitCardPayload } from './types';
 import { CORREIO_DO_AMOR_ACTIONS } from './constants';

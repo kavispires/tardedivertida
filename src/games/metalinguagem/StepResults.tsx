@@ -5,21 +5,21 @@ import { Badge, Flex, Tooltip } from 'antd';
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
-import { SkullIcon } from 'icons/SkullIcon';
-import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
-import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
+import { SkullIcon } from '@icons/SkullIcon';
+import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Card } from 'components/cards/Card';
-import { ItemCard } from 'components/cards/ItemCard';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Card } from '@components/cards/Card';
+import { ItemCard } from '@components/cards/ItemCard';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { WordLength } from './utils/types';
 import { WORD_LENGTH_STATUS } from './utils/constants';

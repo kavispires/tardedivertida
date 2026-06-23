@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Icons
-import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
+import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { ArteRuimCustomCard, ArteRuimDrawing } from '../utils/types';
 

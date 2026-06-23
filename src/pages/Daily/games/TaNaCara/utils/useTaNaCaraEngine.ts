@@ -1,15 +1,15 @@
 import { cloneDeep, sampleSize } from 'lodash';
 import { useEffect } from 'react';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Pages
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
-import { usePreference } from 'pages/Daily/hooks/useDailyPreferences';
-import { useDailySaveTestimonies } from 'pages/Daily/hooks/useDailySave';
-import { getAnalyticsEventName } from 'pages/Daily/utils';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { useDailyGameState, useDailySessionState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from '@pages/Daily/hooks/useDailyPlayTracker';
+import { usePreference } from '@pages/Daily/hooks/useDailyPreferences';
+import { useDailySaveTestimonies } from '@pages/Daily/hooks/useDailySave';
+import { getAnalyticsEventName } from '@pages/Daily/utils';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTaNaCaraEntry, GameState, SessionState } from './types';

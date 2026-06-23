@@ -2,13 +2,13 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { RevolverIcon } from 'icons/RevolverIcon';
-import { ThinkingIcon } from 'icons/ThinkingIcon';
+import { RevolverIcon } from '@icons/RevolverIcon';
+import { ThinkingIcon } from '@icons/ThinkingIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
 type PlayerStatusProps = {
   player: GamePlayer;

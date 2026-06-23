@@ -3,16 +3,16 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from '@hooks/useCountdown';
 // Components
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TimerBar } from 'components/timers/TimerBar';
+import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TimerBar } from '@components/timers/TimerBar';
 // Internal
 import type { SecretWord, Suggestion } from './utils/types';
 import { GUESSING_DURATION } from './utils/constants';

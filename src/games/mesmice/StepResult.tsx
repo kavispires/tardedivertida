@@ -7,20 +7,20 @@ import { Divider } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { XIcon } from 'icons/XIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { ExtendedObjectFeatureCard, HistoryEntry, MostVotesResult, ObjectCardObj } from './utils/types';
 import { OUTCOME } from './utils/constants';

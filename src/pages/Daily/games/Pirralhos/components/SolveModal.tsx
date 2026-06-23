@@ -3,11 +3,11 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Flex, Typography } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { GeneratedKid, KidAssessment } from '../utils/types';
 import { KIDS_LIBRARY } from '../utils/constants';

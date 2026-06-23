@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday } from '@utils/helpers';
 // Pages
-import { DemoGame } from 'pages/Daily/components/DailyGame';
-import { wait } from 'pages/Daily/utils';
+import { DemoGame } from '@pages/Daily/components/DailyGame';
+import { wait } from '@pages/Daily/utils';
 // Internal
 import type { DailyPanicoEntry } from './utils/types';
 import { generators } from './utils/generator';

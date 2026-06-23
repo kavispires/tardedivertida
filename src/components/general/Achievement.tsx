@@ -5,8 +5,8 @@ import { Button, Popover, Tag } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/game';
 // Components
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import { Medal } from './Medal';
 // Sass

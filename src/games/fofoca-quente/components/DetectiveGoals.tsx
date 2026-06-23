@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Button, Tag } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Translate } from '@components/language/Translate';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 
 type DetectiveGoalsProps = {
   bestFriendId?: string;

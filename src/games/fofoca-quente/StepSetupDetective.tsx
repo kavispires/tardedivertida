@@ -4,16 +4,16 @@ import { Alert, Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
-import { TeenDetectiveIcon } from 'icons/TeenDetectiveIcon';
+import { TeenDetectiveIcon } from '@icons/TeenDetectiveIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { FofocaQuenteDefaultState, SubmitDetectiveLocationPayload } from './utils/types';
 import { useFofocaQuenteContext } from './utils/FofocaQuenteContext';

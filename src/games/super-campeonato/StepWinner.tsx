@@ -3,14 +3,14 @@ import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { TextCard } from 'types/tdr';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Bet, Bracket } from './utils/type';
 import { BetsFloatingHand } from './components/BetsFloatingHand';

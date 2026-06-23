@@ -1,11 +1,11 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Components
-import { DynamicCard } from 'components/cards/DynamicCard';
-import { ComponentPreview } from 'components/general/ComponentPreview';
-import { Translate } from 'components/language/Translate';
+import { DynamicCard } from '@components/cards/DynamicCard';
+import { ComponentPreview } from '@components/general/ComponentPreview';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { FestaJuninaCard } from '../utils/types';
 

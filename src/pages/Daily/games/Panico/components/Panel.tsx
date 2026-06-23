@@ -3,13 +3,13 @@ import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button } from 'antd';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { CrownIcon } from 'icons/CrownIcon';
-import { SkullIcon } from 'icons/SkullIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
+import { CrownIcon } from '@icons/CrownIcon';
+import { SkullIcon } from '@icons/SkullIcon';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import type { ButtonEntry } from '../utils/types';
 import { ButtonPuzzle } from './ButtonPuzzle';

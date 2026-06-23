@@ -3,15 +3,15 @@ import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { OfferingsStatus, PhaseBasicState, SubmitOfferingsPayload } from '../utils/types';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';

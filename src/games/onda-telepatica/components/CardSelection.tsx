@@ -1,8 +1,8 @@
 // Types
 import type { SpectrumCard } from 'types/tdr';
 // Components
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 

@@ -3,10 +3,10 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
 // Internal
 import type { GalleryEntry } from './utils/types';
 

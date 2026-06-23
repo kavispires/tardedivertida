@@ -2,12 +2,12 @@ import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { endOfDay, differenceInMilliseconds } from 'date-fns';
 import { createContext, type ReactNode, useContext, useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
-import { logAnalyticsEvent } from 'services/firebase';
+import { DAILY_API, DAILY_API_ACTIONS } from '@services/adapters';
+import { logAnalyticsEvent } from '@services/firebase';
 // Utils
-import { getToday, print } from 'utils/helpers';
+import { getToday, print } from '@utils/helpers';
 // Internal
 import type { DailyResponse } from '../utils/types';
 import { getSourceName } from '../utils';

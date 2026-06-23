@@ -1,5 +1,5 @@
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import type { ExtendedObjectFeatureCard, HistoryEntry, ObjectCardObj } from './types';
 

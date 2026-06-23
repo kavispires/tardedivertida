@@ -1,16 +1,16 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { WriteIdeaIcon } from 'icons/WriteIdeaIcon';
+import { WriteIdeaIcon } from '@icons/WriteIdeaIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';

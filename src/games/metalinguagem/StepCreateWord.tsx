@@ -5,19 +5,19 @@ import { Button, Collapse, type CollapseProps, Flex, Input, Slider, Tag } from '
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
+import { useStep } from '@hooks/useStep';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Card } from 'components/cards/Card';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { Card } from '@components/cards/Card';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitWordPayload, WordLength } from './utils/types';
 import { mockNewWord } from './utils/mock';

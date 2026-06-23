@@ -2,13 +2,13 @@ import clsx from 'clsx';
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
+import { ZoomPanPinchContainer } from '@components/layout/ZoomPanPinchContainer';
 // Internal
 import type { Event, Good, WarehouseSlot } from '../utils/types';
 import { useGoodSize } from '../utils/hooks';

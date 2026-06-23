@@ -3,18 +3,18 @@ import { Divider, Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { BookPatternCard } from 'components/cards/BookPatternCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { ListOfPlayers } from 'components/players/ListOfPlayers';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { BookPatternCard } from '@components/cards/BookPatternCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { ListOfPlayers } from '@components/players/ListOfPlayers';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { GalleryEntry } from './utils/types';
 

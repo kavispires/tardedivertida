@@ -5,22 +5,22 @@ import { Layout, Button, Divider } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
+import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { Instruction } from '@components/text/Instruction';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

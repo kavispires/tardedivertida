@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { StarFilled } from '@ant-design/icons';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './StarPoints.module.scss';
 

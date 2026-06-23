@@ -5,14 +5,14 @@ import { Card, Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { StarIcon } from 'icons/StarIcon';
-import { XIcon } from 'icons/XIcon';
+import { CheckMarkIcon } from '@icons/CheckMarkIcon';
+import { StarIcon } from '@icons/StarIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { GalleryEntry, Good } from '../utils/types';
 

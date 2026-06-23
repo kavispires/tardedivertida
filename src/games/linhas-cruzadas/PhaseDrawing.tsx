@@ -1,17 +1,17 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { DrawingIcon } from 'icons/DrawingIcon';
+import { DrawingIcon } from '@icons/DrawingIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { DRAWING_TIME_IN_SECONDS, LINHAS_CRUZADAS_PHASES } from './utils/constants';

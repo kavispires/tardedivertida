@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { App, Button, type ButtonProps } from 'antd';
 // Services
-import { signOut } from 'services/firebase';
+import { signOut } from '@services/firebase';
 // Components
-import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language/Translate';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { Translate } from '@components/language/Translate';
 
 /**
  * Button that signs the user out and redirects to the home page with confirmation

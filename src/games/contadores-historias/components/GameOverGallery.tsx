@@ -1,12 +1,12 @@
 // Ant Design Resources
 import { Image } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 

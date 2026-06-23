@@ -1,15 +1,15 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { GarbageIcon } from 'icons/GarbageIcon';
-import { QualitySealIcon } from 'icons/QualitySealIcon';
-import { TheEndIcon } from 'icons/TheEndIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { GarbageIcon } from '@icons/GarbageIcon';
+import { QualitySealIcon } from '@icons/QualitySealIcon';
+import { TheEndIcon } from '@icons/TheEndIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';

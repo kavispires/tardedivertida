@@ -3,16 +3,16 @@ import { Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { FlagIcon } from 'icons/FlagIcon';
-import { MapIcon } from 'icons/MapIcon';
-import { NoIcon } from 'icons/NoIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
+import { FlagIcon } from '@icons/FlagIcon';
+import { MapIcon } from '@icons/MapIcon';
+import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TreeCard } from 'components/cards/TreeCard';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TreeCard } from '@components/cards/TreeCard';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';

@@ -2,20 +2,20 @@ import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { HandcuffsIcon } from 'icons/HandcuffsIcon';
-import { MapLocationIcon } from 'icons/MapLocationIcon';
-import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
-import { ThiefIcon } from 'icons/ThiefIcon';
+import { HandcuffsIcon } from '@icons/HandcuffsIcon';
+import { MapLocationIcon } from '@icons/MapLocationIcon';
+import { NuclearExplosionIcon } from '@icons/NuclearExplosionIcon';
+import { ThiefIcon } from '@icons/ThiefIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { ViewIf } from 'components/views/ViewIf';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PhaseTimerReset } from '@components/phases/PhaseTimerReset';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
 import { determineView } from './utils/helpers';

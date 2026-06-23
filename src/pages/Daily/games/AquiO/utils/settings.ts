@@ -1,7 +1,7 @@
 // Icons
-import { DailyFindingGameIcon } from 'icons/DailyFindingGameIcon';
+import { DailyFindingGameIcon } from '@icons/DailyFindingGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'AQUI_O',

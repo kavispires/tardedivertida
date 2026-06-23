@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
 // Components
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import { PAIR_ICONS } from '../utils/helpers';
 

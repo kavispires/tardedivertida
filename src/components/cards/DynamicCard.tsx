@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import type { React, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Sass
 import styles from './DynamicCard.module.scss';
 

@@ -1,12 +1,12 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { DuetosGalleryEntry, PhaseGameOverState } from './utils/types';

@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { PhaseBetsState, SubmitBetsPayload } from './utils/types';
 import { mockSkierBets } from './utils/mock';

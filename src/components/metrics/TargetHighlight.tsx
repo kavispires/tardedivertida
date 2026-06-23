@@ -1,7 +1,7 @@
 // Icons
-import { TargetIcon } from 'icons/TargetIcon';
+import { TargetIcon } from '@icons/TargetIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 /**
  * Metric highlight component displaying a target icon for goal-related metrics

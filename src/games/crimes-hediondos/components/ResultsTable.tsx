@@ -4,16 +4,16 @@ import { Table, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Icons
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxMinusIcon } from 'icons/BoxMinusIcon';
-import { BoxOneIcon } from 'icons/BoxOneIcon';
-import { BoxThreeIcon } from 'icons/BoxThreeIcon';
-import { BoxTwoIcon } from 'icons/BoxTwoIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxMinusIcon } from '@icons/BoxMinusIcon';
+import { BoxOneIcon } from '@icons/BoxOneIcon';
+import { BoxThreeIcon } from '@icons/BoxThreeIcon';
+import { BoxTwoIcon } from '@icons/BoxTwoIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { Results } from '../utils/types';
 import { GUESS_STATUS } from '../utils/constants';

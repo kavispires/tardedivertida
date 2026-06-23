@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { isEverybodyReady } from 'utils/helpers';
+import { isEverybodyReady } from '@utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
 
 type AutoNextPhaseProps = {
   /**

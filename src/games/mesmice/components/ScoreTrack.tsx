@@ -1,13 +1,13 @@
 // Icons
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxBlankIcon } from '@icons/BoxBlankIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { HistoryEntry } from '../utils/types';
 // Images

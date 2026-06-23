@@ -7,20 +7,20 @@ import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Utils
-import { getMeanDuration } from 'utils/helpers';
+import { getMeanDuration } from '@utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { StarPoints } from 'components/points/StarPoints';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StarPoints } from '@components/points/StarPoints';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { CurrentCategory } from './utils/types';
 import { countDifferentGuesses, getGuessResultClass, getPoints } from './utils/helpers';

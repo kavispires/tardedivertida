@@ -1,9 +1,9 @@
+import { mockClue } from '@mock/clues';
 import { sample } from 'lodash';
-import { mockClue } from 'mock/clues';
 // Types
 import type { Item } from 'types/tdr';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import type { SubmitWordPayload, WordLength } from './types';
 import { WORD_LENGTH_STATUS } from './constants';

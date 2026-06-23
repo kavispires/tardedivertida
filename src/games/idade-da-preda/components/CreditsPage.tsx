@@ -5,18 +5,18 @@ import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
-import { StarIcon } from 'icons/StarIcon';
+import { StarIcon } from '@icons/StarIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarEntry } from 'components/player/PlayerAvatarEntry';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarEntry } from '@components/player/PlayerAvatarEntry';
 import {
   SlideShowBubbleValue,
   SlideShowLabel,
   SlideShowNoWins,
   SlideShowPlayersList,
-} from 'components/slide-show/SlideShowComposableComponents';
+} from '@components/slide-show/SlideShowComposableComponents';
 // Internal
 import type { GalleryEntry } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';

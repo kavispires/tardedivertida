@@ -4,11 +4,11 @@ import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { SuspectCard } from 'components/cards/SuspectCard';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { SuspectCard } from '@components/cards/SuspectCard';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { ActingRole } from '../utils/types';
 

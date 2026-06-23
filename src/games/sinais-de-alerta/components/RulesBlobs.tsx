@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { Instruction } from '@components/text/Instruction';
 
 type DrawInstructionProps = {
   timeLimit: number;

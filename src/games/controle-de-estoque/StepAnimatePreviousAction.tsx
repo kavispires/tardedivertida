@@ -2,17 +2,17 @@
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { BossIdeaCard } from 'types/tdr';
 // Icons
-import { BossIdeaIcon } from 'icons/BossIdeaIcon';
+import { BossIdeaIcon } from '@icons/BossIdeaIcon';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Event, Good, Status, WarehouseSlot } from './utils/types';
 import { BOSS_IDEAS_IDS, OUTCOME } from './utils/constants';

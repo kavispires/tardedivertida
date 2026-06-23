@@ -1,7 +1,7 @@
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
-import { useGameAppearance, useGameInfoContext } from 'components/session/GameInfoContext';
+import { useGameAppearance, useGameInfoContext } from '@components/session/GameInfoContext';
 // Sass
 import styles from './ImageBackground.module.scss';
 

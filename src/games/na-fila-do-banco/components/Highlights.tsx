@@ -1,11 +1,11 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Icons
-import { DeckIcon } from 'icons/DeckIcon';
+import { DeckIcon } from '@icons/DeckIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 // Internal
 import { CHARACTER_TYPES } from '../utils/constants';
 import { ClientSprite } from './ClientSprite';

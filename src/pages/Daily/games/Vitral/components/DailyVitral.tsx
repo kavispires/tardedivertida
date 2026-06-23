@@ -5,18 +5,18 @@ import { Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
+import { useTDImageCardUrl } from '@hooks/useTDImageCardUrl';
 // Icons
-import { ClockIcon } from 'icons/ClockIcon';
-import { PuzzleIcon } from 'icons/PuzzleIcon';
-import { VictoryCoinIcon } from 'icons/VictoryCoinIcon';
+import { ClockIcon } from '@icons/ClockIcon';
+import { PuzzleIcon } from '@icons/PuzzleIcon';
+import { VictoryCoinIcon } from '@icons/VictoryCoinIcon';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { Region } from 'pages/Daily/components/Region';
-import { RegionStats } from 'pages/Daily/components/RegionStats';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { Region } from '@pages/Daily/components/Region';
+import { RegionStats } from '@pages/Daily/components/RegionStats';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

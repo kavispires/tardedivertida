@@ -5,20 +5,20 @@ import { App } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useHost } from 'hooks/useHost';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useHost } from '@hooks/useHost';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { HostButton } from 'components/host/HostButton';
-import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { messageContent } from 'components/pop-up/messageContent';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { SendButton } from '@components/buttons/SendButton';
+import { HostButton } from '@components/host/HostButton';
+import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { messageContent } from '@components/pop-up/messageContent';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type {
   SecretWord,

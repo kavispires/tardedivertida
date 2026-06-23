@@ -3,20 +3,20 @@ import { Space } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { AlienIcon } from 'icons/AlienIcon';
+import { AlienIcon } from '@icons/AlienIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { SpeechBubble } from 'components/text/SpeechBubble';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { SignCard } from '@components/cards/SignCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { SpeechBubble } from '@components/text/SpeechBubble';
 // Internal
 import type { AlienSign, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

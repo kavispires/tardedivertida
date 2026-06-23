@@ -3,16 +3,16 @@ import { SendOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Components
-import { DevButton } from 'components/debug/DevButton';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { ControlledInputWriting } from 'components/input/ControlledInputWriting';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { DevButton } from '@components/debug/DevButton';
+import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { ControlledInputWriting } from '@components/input/ControlledInputWriting';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { mockSuggestions } from './utils/mock';
 import type { SecretWord, SubmitSuggestionsPayload } from './utils/types';

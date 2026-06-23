@@ -3,13 +3,13 @@ import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { Card } from 'components/cards/Card';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { Card } from '@components/cards/Card';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

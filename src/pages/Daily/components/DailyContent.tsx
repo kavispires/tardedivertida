@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 // Ant Design Resources
 import { Flex, Layout } from 'antd';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 // Internal
 import { DailyImageBackground } from './DailyImageBackground';
 
@@ -26,7 +26,7 @@ const DATE_RANGE_EFFECTS: DateRangeEffect[] = [
     startDate: '2025-12-31',
     endDate: '2026-01-10',
     component: lazy(() =>
-      import('components/visual-effects/FireworksEffect').then((module) => ({
+      import('@components/visual-effects/FireworksEffect').then((module) => ({
         default: module.FireworksEffect,
       })),
     ),
@@ -37,7 +37,7 @@ const DATE_RANGE_EFFECTS: DateRangeEffect[] = [
     startDate: '2026-02-13',
     endDate: '2026-02-18',
     component: lazy(() =>
-      import('components/visual-effects/ConfettiEffect').then((module) => ({
+      import('@components/visual-effects/ConfettiEffect').then((module) => ({
         default: module.ConfettiEffect,
       })),
     ),
@@ -48,7 +48,7 @@ const DATE_RANGE_EFFECTS: DateRangeEffect[] = [
   //   startDate: '2026-02-10',
   //   endDate: '2026-02-16',
   //   component: lazy(() =>
-  //     import('components/visual-effects/ConfettiEffect').then((module) => ({
+  //     import('@components/visual-effects/ConfettiEffect').then((module) => ({
   //       default: module.ConfettiEffect,
   //     })),
   //   ),
@@ -59,7 +59,7 @@ const DATE_RANGE_EFFECTS: DateRangeEffect[] = [
     startDate: '2026-12-01',
     endDate: '2027-12-26',
     component: lazy(() =>
-      import('components/visual-effects/SnowEffect').then((module) => ({ default: module.SnowEffect })),
+      import('@components/visual-effects/SnowEffect').then((module) => ({ default: module.SnowEffect })),
     ),
     background: 'linear-gradient(#cf3434, #810505)', // Christmas theme
   },

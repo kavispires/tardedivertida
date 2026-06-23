@@ -2,16 +2,16 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { GamePlayer, PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { MapIcon } from 'icons/MapIcon';
+import { MapIcon } from '@icons/MapIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { ViewIf } from 'components/views/ViewIf';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { CustomPlayerProps, MapSegment, PhaseMapBuildingState } from './utils/types';
 import { useOnSubmitMapAPIRequest } from './utils/api-requests';

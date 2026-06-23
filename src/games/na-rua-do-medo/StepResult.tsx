@@ -2,14 +2,14 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
-import { Title } from 'components/text/Title';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
 import { PlayerStats } from './components/PlayerStats';

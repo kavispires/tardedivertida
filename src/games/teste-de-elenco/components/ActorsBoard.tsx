@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { SuspectCard } from 'components/cards/SuspectCard';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { SuspectCard } from '@components/cards/SuspectCard';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ActingRole, SubmitMovieActorPayload } from '../utils/types';
 

@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Components
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { CardEntry } from './utils/types';
 import { Table } from './components/Table';

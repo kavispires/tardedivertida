@@ -1,7 +1,7 @@
 import { has } from 'lodash';
 import type { ReactNode } from 'react';
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { Track } from '../utils/types';
 

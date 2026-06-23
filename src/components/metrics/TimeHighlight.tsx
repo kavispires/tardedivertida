@@ -1,7 +1,7 @@
 // Icons
-import { ClockIcon } from 'icons/ClockIcon';
+import { ClockIcon } from '@icons/ClockIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 /**
  * Metric highlight component displaying a clock icon for time-related metrics

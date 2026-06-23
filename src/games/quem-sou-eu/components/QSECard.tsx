@@ -1,9 +1,9 @@
 // Types
 import type { ContenderCard } from 'types/tdr';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
 
 type QSECardProps = {
   character: ContenderCard;

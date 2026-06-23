@@ -1,8 +1,8 @@
 // Components
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { Instruction } from 'components/text/Instruction';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 

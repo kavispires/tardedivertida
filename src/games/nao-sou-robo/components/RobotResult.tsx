@@ -1,12 +1,12 @@
 // Icons
-import { RobotIcon } from 'icons/RobotIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+import { RobotIcon } from '@icons/RobotIcon';
+import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { SpeechBubble } from 'components/text/SpeechBubble';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { SpeechBubble } from '@components/text/SpeechBubble';
 // Internal
 import type { Robot, RobotGalleryEntry } from '../utils/types';
 import { BEAT_THRESHOLD, OUTCOME } from '../utils/constants';

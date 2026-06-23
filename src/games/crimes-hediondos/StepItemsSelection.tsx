@@ -5,15 +5,15 @@ import { Button } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { CrimesHediondosCard } from 'types/tdr';
 // Utils
-import { shuffle } from 'utils/helpers';
+import { shuffle } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { CrimeItemCard } from '@components/cards/CrimeItemCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { GroupedItems, ItemsDict, SubmitCrimePayload } from './utils/types';
 import { ContinueButton } from './components/ContinueButton';

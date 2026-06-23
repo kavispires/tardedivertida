@@ -2,9 +2,9 @@ import { Fragment, useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Flex, Typography } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { Solutions } from '../utils/types';
 import { countWordProperties } from '../utils/helper';

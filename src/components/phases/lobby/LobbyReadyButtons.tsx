@@ -5,24 +5,24 @@ import { Button, Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useHost } from 'hooks/useHost';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useUser } from 'hooks/useUser';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useHost } from '@hooks/useHost';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
+import { useUser } from '@hooks/useUser';
 // Services
-import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS } from '@services/adapters';
 // Utils
 import {
   getRandomNegativeReadyMessage,
   getRandomNeutralReadyMessage,
   getRandomPositiveReadyMessage,
   speak,
-} from 'utils/speech';
+} from '@utils/speech';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type LobbyReadyButtonsProps = {
   /**

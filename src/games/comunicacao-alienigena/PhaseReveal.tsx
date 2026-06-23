@@ -2,18 +2,18 @@ import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { AlienAngry2Icon } from 'icons/AlienAngry2Icon';
-import { AlienAngryIcon } from 'icons/AlienAngryIcon';
-import { AlienHappyIcon } from 'icons/AlienHappyIcon';
-import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
+import { AlienAngry2Icon } from '@icons/AlienAngry2Icon';
+import { AlienAngryIcon } from '@icons/AlienAngryIcon';
+import { AlienHappyIcon } from '@icons/AlienHappyIcon';
+import { AlienNeutralIcon } from '@icons/AlienNeutralIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import type { PhaseRevealState, RequestHistoryEntry } from './utils/types';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEM_TYPES } from './utils/constants';

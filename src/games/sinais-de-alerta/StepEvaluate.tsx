@@ -6,20 +6,20 @@ import { Button, Space } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { CanvasResizer } from 'components/canvas/CanvasResizer';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { DrawingEntry, SubmitEvaluationPayload } from './utils/types';
 import { useGuessing } from './utils/useGuessing';

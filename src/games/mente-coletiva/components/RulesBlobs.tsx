@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
 
 type GamePremiseRulesProps = {
   activePlayer: GamePlayer;

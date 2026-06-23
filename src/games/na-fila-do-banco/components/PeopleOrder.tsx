@@ -1,10 +1,10 @@
 // Ant Design Resources
 import { Flex, Tooltip } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import { ORDER } from '../utils/constants';
 

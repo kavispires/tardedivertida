@@ -4,19 +4,19 @@ import { TrophyOutlined } from '@ant-design/icons';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import type { UseStep } from 'hooks/useStep';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import type { UseStep } from '@hooks/useStep';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { MonsterCard } from 'components/cards/MonsterCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { MonsterCard } from '@components/cards/MonsterCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Sketch } from './utils/types';
 import { MonsterSketches } from './components/MonsterSketches';

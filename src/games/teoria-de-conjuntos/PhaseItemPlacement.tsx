@@ -2,12 +2,12 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Components
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { ViewIf } from 'components/views/ViewIf';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitEvaluationFixAPIRequest, useOnSubmitItemPlacementAPIRequest } from './utils/api-requests';
 import type { Guess, PhaseItemPlacementState } from './utils/types';

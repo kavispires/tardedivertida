@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { GroupAnswerEvaluationEntry, SubmitEvaluationsPayload } from './utils/types';
 import { EvaluationGroup } from './components/EvaluationGroup';

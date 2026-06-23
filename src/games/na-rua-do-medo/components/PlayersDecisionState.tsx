@@ -3,17 +3,17 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { CandyIcon } from 'icons/CandyIcon';
-import { HouseIcon } from 'icons/HouseIcon';
-import { ScaredIcon } from 'icons/ScaredIcon';
-import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
-import { WalkIcon } from 'icons/WalkIcon';
+import { CandyIcon } from '@icons/CandyIcon';
+import { HouseIcon } from '@icons/HouseIcon';
+import { ScaredIcon } from '@icons/ScaredIcon';
+import { TrickOrTreatIcon } from '@icons/TrickOrTreatIcon';
+import { WalkIcon } from '@icons/WalkIcon';
 // Components
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
+import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;

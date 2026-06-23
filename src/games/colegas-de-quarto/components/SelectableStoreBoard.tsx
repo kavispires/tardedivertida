@@ -4,8 +4,8 @@ import { Badge } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { BoardEntry, GuessedPair } from '../utils/types';
 import { getTitleForRound } from '../utils/helpers';

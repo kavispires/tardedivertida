@@ -1,5 +1,5 @@
 // Components
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
 
 type PreloadItemsProps = {
   goods: string[];

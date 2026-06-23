@@ -4,8 +4,8 @@ import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App } from 'antd';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { PageLayout } from 'components/layout/PageLayout';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { PageLayout } from '@components/layout/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
 

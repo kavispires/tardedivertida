@@ -1,7 +1,7 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
+import type { UseStep } from '@hooks/useStep';
 // Internal
 import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 import type {

@@ -4,19 +4,19 @@ import { Flex, Input, InputNumber } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { AlienKeyboard } from 'components/alien/AlienKeyboard';
-import { AlienText } from 'components/alien/AlienText';
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { AlienKeyboard } from '@components/alien/AlienKeyboard';
+import { AlienText } from '@components/alien/AlienText';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitRequestPayload, Summary } from './utils/types';
 import { STATUS } from './utils/constants';

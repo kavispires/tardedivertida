@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 // Icons
-import { BossIdeaIcon } from 'icons/BossIdeaIcon';
+import { BossIdeaIcon } from '@icons/BossIdeaIcon';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Event, Gallery, Good, WarehouseSlot } from './utils/types';
 import { Warehouse } from './components/Warehouse';

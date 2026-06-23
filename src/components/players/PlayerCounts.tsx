@@ -7,10 +7,10 @@ import { Avatar, Tooltip, type TooltipProps } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { PlayerAvatar, type PlayerAvatarProps } from 'components/player/PlayerAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { PlayerAvatar, type PlayerAvatarProps } from '@components/player/PlayerAvatar';
 // Sass
 import styles from './PlayerCounts.module.scss';
 

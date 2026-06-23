@@ -1,5 +1,5 @@
 // Components
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { CrimeItemCard } from '@components/cards/CrimeItemCard';
 // Internal
 import { CARD_CODES_BY_TYPE } from '../utils/constants';
 

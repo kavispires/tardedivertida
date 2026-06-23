@@ -5,10 +5,10 @@ import { Collapse, Table, type TableProps, type CollapseProps, Flex } from 'antd
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { AlienText } from 'components/alien/AlienText';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
+import { AlienText } from '@components/alien/AlienText';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { DeckEntry, HistoryEntry } from '../utils/types';
 import { HistoryDeliverableEntry } from './HistoryDeliverableEntry';

@@ -4,22 +4,22 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { isEverybodyReady } from 'utils/helpers';
+import { isEverybodyReady } from '@utils/helpers';
 // Components
-import { Card } from 'components/cards/Card';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardButton } from 'components/image-cards/ImageCardButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TimedTimerBar } from 'components/timers/TimedTimerBar';
+import { Card } from '@components/cards/Card';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardButton } from '@components/image-cards/ImageCardButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TimedTimerBar } from '@components/timers/TimedTimerBar';
 // Internal
 import type { SubmitVotePayload, TableEntry } from './utils/types';
 import { mockVote } from './utils/mock';

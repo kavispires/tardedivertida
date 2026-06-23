@@ -1,8 +1,8 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type WaitingRoomSuggestionsProps = {
   user: GamePlayer;

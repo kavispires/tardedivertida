@@ -1,9 +1,9 @@
 // Icons
-import { MovieActionIcon } from 'icons/MovieActionIcon';
-import { MovieComedyIcon } from 'icons/MovieComedyIcon';
-import { MovieDramaIcon } from 'icons/MovieDramaIcon';
-import { MovieHorrorIcon } from 'icons/MovieHorrorIcon';
-import { MovieSciFiIcon } from 'icons/MovieSciFiIcon';
+import { MovieActionIcon } from '@icons/MovieActionIcon';
+import { MovieComedyIcon } from '@icons/MovieComedyIcon';
+import { MovieDramaIcon } from '@icons/MovieDramaIcon';
+import { MovieHorrorIcon } from '@icons/MovieHorrorIcon';
+import { MovieSciFiIcon } from '@icons/MovieSciFiIcon';
 // Internal
 import type { FeatureFilm } from './types';
 

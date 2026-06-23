@@ -1,19 +1,19 @@
-import { PlayerGlyphs } from 'games/quem-sou-eu/components/PlayerGlyphs';
-import type { FightingContender } from 'games/super-campeonato/utils/type';
+import { PlayerGlyphs } from '@games/quem-sou-eu/components/PlayerGlyphs';
+import type { FightingContender } from '@games/super-campeonato/utils/type';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

@@ -1,12 +1,12 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { WarehouseIcon } from 'icons/WarehouseIcon';
+import { WarehouseIcon } from '@icons/WarehouseIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { useOnMakeReady } from './utils/api-requests';

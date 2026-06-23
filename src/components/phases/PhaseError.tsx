@@ -1,9 +1,9 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { PageError } from 'components/errors/PageError';
+import { PageError } from '@components/errors/PageError';
 
 /**
  * Phase component that displays an error screen with translated error message

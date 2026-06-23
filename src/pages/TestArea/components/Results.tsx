@@ -1,11 +1,11 @@
 // Icons
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxBlankIcon } from '@icons/BoxBlankIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 const getActiveIcon = (value?: boolean, active?: boolean) => {
   if (value) return BoxCheckMarkIcon;

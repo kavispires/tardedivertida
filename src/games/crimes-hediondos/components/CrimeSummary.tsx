@@ -16,16 +16,16 @@ import { Button, Tooltip } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+import { BoxBlankIcon } from '@icons/BoxBlankIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { CrimeItemCard } from '@components/cards/CrimeItemCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { Crime, GuessHistoryEntry, ItemsDict, ScenesDict } from '../utils/types';
 import { ItemCardEmpty } from './ItemCardEmpty';

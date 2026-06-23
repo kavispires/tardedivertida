@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import type { GamePlayer } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCountdown } from '@hooks/useCountdown';
+import { useGlobalState } from '@hooks/useGlobalState';
 // Components
-import { ViewSwitch } from 'components/views/ViewSwitch';
+import { ViewSwitch } from '@components/views/ViewSwitch';
 // Internal
 import { TIMES, VIEWS } from './utils/constants';
 import type { SubmitOrientationPayload, SubmitSketchPayload } from './utils/types';

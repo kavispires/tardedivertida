@@ -6,25 +6,25 @@ import { App, Tag, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Services
-import { HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API, HOST_API_ACTIONS } from '@services/adapters';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Components
-import { HostButton } from 'components/host/HostButton';
-import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { HostButton } from '@components/host/HostButton';
+import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { useGameInfoContext } from '@components/session/GameInfoContext';
 // Internal
 import { Settings } from './Settings';
 // Images
-import avatars from 'assets/images/avatars.svg?url';
+import avatars from '@assets/images/avatars.svg?url';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 

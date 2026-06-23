@@ -2,10 +2,10 @@ import clsx from 'clsx';
 import { motion } from 'motion/react';
 import type { ReactNode } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useLanguage } from '@hooks/useLanguage';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from '@utils/constants';
 // Sass
 import styles from './GameVideo.module.scss';
 

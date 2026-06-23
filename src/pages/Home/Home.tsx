@@ -8,21 +8,21 @@ import { useIdle, useTitle } from 'react-use';
 import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Flex, Image, Input, Space } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { resetGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { resetGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { AdminButton } from 'components/admin/AdminButton';
-import { LanguageSwitch } from 'components/language/LanguageSwitch';
-import { Translate } from 'components/language/Translate';
-import { PageLayout } from 'components/layout/PageLayout';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text/Title';
+import { AdminButton } from '@components/admin/AdminButton';
+import { LanguageSwitch } from '@components/language/LanguageSwitch';
+import { Translate } from '@components/language/Translate';
+import { PageLayout } from '@components/layout/PageLayout';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Title } from '@components/text/Title';
 // Internal
 import { HomeVideoBackground } from './HomeVideoBackground';
 import { AnimatedBackground } from './AnimatedBackground';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg?url';
+import logo from '@assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import './Home.scss';
 

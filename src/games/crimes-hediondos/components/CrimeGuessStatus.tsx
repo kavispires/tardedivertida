@@ -2,17 +2,17 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Icons
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxMinusIcon } from 'icons/BoxMinusIcon';
-import { BoxOneIcon } from 'icons/BoxOneIcon';
-import { BoxThreeIcon } from 'icons/BoxThreeIcon';
-import { BoxTwoIcon } from 'icons/BoxTwoIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { LockIcon } from 'icons/LockIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxMinusIcon } from '@icons/BoxMinusIcon';
+import { BoxOneIcon } from '@icons/BoxOneIcon';
+import { BoxThreeIcon } from '@icons/BoxThreeIcon';
+import { BoxTwoIcon } from '@icons/BoxTwoIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { LockIcon } from '@icons/LockIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { GUESS_STATUS } from '../utils/constants';
 

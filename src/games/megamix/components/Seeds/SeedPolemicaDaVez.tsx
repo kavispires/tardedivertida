@@ -1,7 +1,7 @@
 // Components
-import { Tweet } from 'components/game/SocialProfile';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { Tweet } from '@components/game/SocialProfile';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryPolemicaDaVez } from '../../utils/types';
 

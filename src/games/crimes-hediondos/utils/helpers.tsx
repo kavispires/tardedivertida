@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Types
 import type { CrimesHediondosCard } from 'types/tdr';
 // Utils
-import { getLastItem } from 'utils/helpers';
+import { getLastItem } from '@utils/helpers';
 // Internal
 import type { GuessHistoryEntry, History, ItemsDict } from '../utils/types';
 import { CARD_TYPE_BY_CODE } from './constants';

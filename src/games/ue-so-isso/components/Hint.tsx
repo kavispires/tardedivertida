@@ -2,11 +2,11 @@ import { motion } from 'motion/react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Components
-import { Translate } from 'components/language/Translate';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { Translate } from '@components/language/Translate';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { SecretWord } from '../utils/types';
 

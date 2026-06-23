@@ -7,18 +7,18 @@ import { Alert, Button, Typography } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
-import { useStep } from 'hooks/useStep';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { resetGlobalState, useGlobalState } from '@hooks/useGlobalState';
+import { useStep } from '@hooks/useStep';
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from '@utils/phases';
 // Components
-import { AdminMenuDrawer } from 'components/admin/AdminMenuDrawer';
-import { GameStrip } from 'components/general/GameBanner';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { AdminMenuDrawer } from '@components/admin/AdminMenuDrawer';
+import { GameStrip } from '@components/general/GameBanner';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { useGameInfoContext } from '@components/session/GameInfoContext';
 // Internal
 import { CloudBackground } from './lobby/CloudBackground';
 import { StepJoin } from './lobby/StepJoin';

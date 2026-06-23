@@ -2,9 +2,9 @@ import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App } from 'antd';
 // Services
-import { GAME_API, GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { GAME_API, GAME_API_COMMON_ACTIONS } from '@services/adapters';
 // Utils
-import { getRandomWelcomeMessage, speak } from 'utils/speech';
+import { getRandomWelcomeMessage, speak } from '@utils/speech';
 // Internal
 import { useGameMeta } from './useGameMeta';
 import { useGlobalState } from './useGlobalState';

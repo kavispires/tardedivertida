@@ -2,12 +2,12 @@
 import { ArrowRightOutlined } from '@ant-design/icons';
 import { Flex, Space, Typography } from 'antd';
 // Components
-import { DivButton } from 'components/buttons/DivButton';
-import { SignCard } from 'components/cards/SignCard';
-import { Translate } from 'components/language/Translate';
+import { DivButton } from '@components/buttons/DivButton';
+import { SignCard } from '@components/cards/SignCard';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Region } from 'pages/Daily/components/Region';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
+import { Region } from '@pages/Daily/components/Region';
 // Internal
 import type { DailyAlienadoEntry } from '../utils/types';
 

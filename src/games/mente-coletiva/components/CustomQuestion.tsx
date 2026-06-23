@@ -2,11 +2,11 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Divider, Input, InputNumber, Select, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SubmitCustomQuestionPayload } from '../utils/types';
 

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 // Icons
-import { RulesIcon } from 'icons/RulesIcon';
-import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
+import { RulesIcon } from '@icons/RulesIcon';
+import { VideoGameControllerIcon } from '@icons/VideoGameControllerIcon';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 /**
  * Creates a modal message with a confirmation button and auto-close timeout for control or rules notifications

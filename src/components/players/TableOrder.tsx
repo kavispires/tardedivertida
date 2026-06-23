@@ -5,12 +5,12 @@ import { BackwardFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { TableIcon } from 'icons/TableIcon';
+import { TableIcon } from '@icons/TableIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import { reorder } from './reorder';
 // Sass

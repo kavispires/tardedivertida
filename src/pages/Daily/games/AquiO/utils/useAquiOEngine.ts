@@ -1,23 +1,23 @@
 import { intersectionBy } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from '@hooks/useCountdown';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Utils
-import { inNSeconds } from 'utils/helpers';
-import { speak } from 'utils/speech';
+import { inNSeconds } from '@utils/helpers';
+import { speak } from '@utils/speech';
 // Pages
-import { useDailyChallengeContext } from 'pages/Daily/hooks/useDailyChallengeContext';
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
-import { usePreference } from 'pages/Daily/hooks/useDailyPreferences';
-import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { checkWeekend, getAnalyticsEventName } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
-import { vibrate } from 'pages/Daily/utils/vibrate';
+import { useDailyChallengeContext } from '@pages/Daily/hooks/useDailyChallengeContext';
+import { useDailyGameState, useDailySessionState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from '@pages/Daily/hooks/useDailyPlayTracker';
+import { usePreference } from '@pages/Daily/hooks/useDailyPreferences';
+import { useShowResultModal } from '@pages/Daily/hooks/useShowResultModal';
+import { checkWeekend, getAnalyticsEventName } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
+import { vibrate } from '@pages/Daily/utils/vibrate';
 // Internal
 import { getDiscs } from './helpers';
 import { SETTINGS } from './settings';

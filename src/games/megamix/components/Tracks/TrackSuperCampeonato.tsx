@@ -1,18 +1,18 @@
-import type { FightingContender } from 'games/super-campeonato/utils/type';
+import type { FightingContender } from '@games/super-campeonato/utils/type';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { Card } from 'components/cards/Card';
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { Card } from '@components/cards/Card';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

@@ -4,12 +4,12 @@ import { Flex } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ItemCard } from 'components/cards/ItemCard';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { SpeechBubble } from 'components/text/SpeechBubble';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ItemCard } from '@components/cards/ItemCard';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { SpeechBubble } from '@components/text/SpeechBubble';
 // Internal
 import type { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';

@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { StatusBar } from 'components/general/StatusBar';
-import { Translate } from 'components/language/Translate';
+import { StatusBar } from '@components/general/StatusBar';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { Robot } from '../utils/types';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';

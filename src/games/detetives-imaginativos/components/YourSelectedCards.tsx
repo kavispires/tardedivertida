@@ -1,9 +1,9 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
+import { FloatingHand } from '@components/general/FloatingHand';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { CardEntry } from '../utils/types';
 

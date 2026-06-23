@@ -2,16 +2,16 @@
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import { useCardWidth } from '@hooks/useCardWidth';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { SlideShow } from 'components/slide-show/SlideShow';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { SlideShow } from '@components/slide-show/SlideShow';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import { GalleryWindowCredits } from './components/GalleryWindowCredits';

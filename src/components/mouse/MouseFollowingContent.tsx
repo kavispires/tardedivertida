@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { type ReactNode, useEffect } from 'react';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Sass
 import styles from './MouseFollowingContent.module.scss';
 

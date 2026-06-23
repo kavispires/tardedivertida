@@ -2,10 +2,10 @@ import { useToggle } from 'react-use';
 // Ant Design Resources
 import { Button, Card, Tag } from 'antd';
 // Components
-import { ModalOverlay } from 'components/general/ModalOverlay';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { ModalOverlay } from '@components/general/ModalOverlay';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { StaffMember } from '../utils/types';
 import { StudentIcon } from './StudentIcon';

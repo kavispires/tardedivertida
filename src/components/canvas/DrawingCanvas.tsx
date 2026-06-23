@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Flex, Space } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './DrawingCanvas.module.scss';
 

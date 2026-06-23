@@ -3,13 +3,13 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
-import { PopoverRule } from 'components/rules/PopoverRule';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
+import { PopoverRule } from '@components/rules/PopoverRule';
 // Internal
 import { ScoringRules } from './components/RulesBlobs';
 

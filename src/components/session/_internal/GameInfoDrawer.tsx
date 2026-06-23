@@ -6,16 +6,16 @@ import { Avatar, Badge, Button, Divider, Drawer, Flex, Space, Tag, Tooltip, Typo
 // Types
 import type { GameState, GamePlayers } from 'types/game';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { GameStrip } from 'components/general/GameBanner';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
-import { RulesModal } from 'components/rules/RulesModal';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { GameStrip } from '@components/general/GameBanner';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayersStatusBar } from '@components/players/PlayersStatusBar';
+import { RulesModal } from '@components/rules/RulesModal';
+import { useGameInfoContext } from '@components/session/GameInfoContext';
 // Internal
 import { SectionMeta } from './SectionMeta';
 import { SectionRankedPlayers } from './SectionRankedPlayers';

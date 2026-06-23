@@ -1,7 +1,7 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
+import type { UseStep } from '@hooks/useStep';
 // Internal
 import type { SubmitCluesPayload, SubmitGuessesPayload, SubmitWordsPayload } from './types';
 import { COLEGAS_DE_QUARTO_ACTIONS } from './constants';

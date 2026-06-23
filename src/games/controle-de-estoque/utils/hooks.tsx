@@ -5,13 +5,13 @@ import { useMemo } from 'react';
 // Types
 import type { BossIdeaCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { CraneHookedGoodIcon } from 'icons/CraneHookedGoodIcon';
-import { LockedBoxIcon } from 'icons/LockedBoxIcon';
-import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
+import { CraneHookedGoodIcon } from '@icons/CraneHookedGoodIcon';
+import { LockedBoxIcon } from '@icons/LockedBoxIcon';
+import { MysteryBoxIcon } from '@icons/MysteryBoxIcon';
 // Components
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
 // Internal
 import type { Good, WarehouseSlot } from './types';
 import { BOSS_IDEAS_IDS } from './constants';

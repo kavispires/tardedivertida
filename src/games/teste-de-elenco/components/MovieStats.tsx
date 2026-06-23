@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Divider, Tooltip } from 'antd';
 // Icons
-import { AgeIcon } from 'icons/AgeIcon';
-import { CulturesIcon } from 'icons/CulturesIcon';
-import { GenderIcon } from 'icons/GenderIcon';
-import { RainbowIcon } from 'icons/RainbowIcon';
+import { AgeIcon } from '@icons/AgeIcon';
+import { CulturesIcon } from '@icons/CulturesIcon';
+import { GenderIcon } from '@icons/GenderIcon';
+import { RainbowIcon } from '@icons/RainbowIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
+import { Translate } from '@components/language/Translate';
+import { MetricHighlight } from '@components/metrics/MetricHighlight';
 // Internal
 import type { FeatureFilm } from '../utils/types';
 import { getMovieSummary } from '../utils/helpers';

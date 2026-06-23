@@ -2,12 +2,12 @@ import { motion } from 'motion/react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
+import { AnimatedVideoConferenceIcon } from '@icons/AnimatedVideoConferenceIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { LoadingPageLayout } from 'components/layout/PageLayout';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { LoadingPageLayout } from '@components/layout/PageLayout';
 // Sass
 import styles from './loaders.module.scss';
 

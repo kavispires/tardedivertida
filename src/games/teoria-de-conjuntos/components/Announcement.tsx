@@ -4,21 +4,21 @@ import { Flex } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Icons
-import { ApplauseIcon } from 'icons/ApplauseIcon';
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { BoxEqualIcon } from 'icons/BoxEqualIcon';
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
-import { CrownIcon } from 'icons/CrownIcon';
-import { DiagramIcon } from 'icons/DiagramIcon';
-import { GarbageIcon } from 'icons/GarbageIcon';
-import { SkullIcon } from 'icons/SkullIcon';
+import { ApplauseIcon } from '@icons/ApplauseIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
+import { BoxEqualIcon } from '@icons/BoxEqualIcon';
+import { CheckMarkIcon } from '@icons/CheckMarkIcon';
+import { CrownIcon } from '@icons/CrownIcon';
+import { DiagramIcon } from '@icons/DiagramIcon';
+import { GarbageIcon } from '@icons/GarbageIcon';
+import { SkullIcon } from '@icons/SkullIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { OUTCOME } from '../utils/constants';
 import type { Guess } from '../utils/types';

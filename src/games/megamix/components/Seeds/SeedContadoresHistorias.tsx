@@ -2,12 +2,12 @@ import { format } from 'date-fns';
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryContadoresHistorias } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';

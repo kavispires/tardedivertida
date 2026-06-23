@@ -6,10 +6,10 @@ import { Collapse, Flex, Radio, Typography, type CollapseProps } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCache } from '@hooks/useCache';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language/Translate';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 import type { Concept } from '../utils/types';

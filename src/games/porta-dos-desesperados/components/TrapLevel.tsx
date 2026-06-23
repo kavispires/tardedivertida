@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Rate } from 'antd';
 // Icons
-import { MagicSkullIcon } from 'icons/MagicSkullIcon';
+import { MagicSkullIcon } from '@icons/MagicSkullIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 
 type TrapLevelProps = {
   level: number;

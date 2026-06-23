@@ -1,4 +1,4 @@
-import dailySfxFile from 'assets/sounds/daily-sfx.mp3';
+import dailySfxFile from '@assets/sounds/daily-sfx.mp3';
 import { Howl } from 'howler';
 import { sample } from 'lodash';
 

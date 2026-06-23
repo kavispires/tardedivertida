@@ -3,11 +3,11 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 // Ant Design Resources
 import { ConfigProvider, App as AntApp } from 'antd';
 // Hooks
-import { useAppSetup } from 'hooks/useAppSetup';
+import { useAppSetup } from '@hooks/useAppSetup';
 // Services
-import { AuthProvider } from 'services/AuthProvider';
+import { AuthProvider } from '@services/AuthProvider';
 // Components
-import { RouteError } from 'components/errors/RouteError';
+import { RouteError } from '@components/errors/RouteError';
 // Internal
 import { AnimatedRoutes, routes } from './Routes';
 

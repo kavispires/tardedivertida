@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { SkiingIcon } from 'icons/SkiingIcon';
-import { SnowHillIcon } from 'icons/SnowHillIcon';
+import { SkiingIcon } from '@icons/SkiingIcon';
+import { SnowHillIcon } from '@icons/SnowHillIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

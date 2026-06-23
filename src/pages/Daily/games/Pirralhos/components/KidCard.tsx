@@ -3,14 +3,14 @@ import type { JSX } from 'react';
 // Ant Design Resources
 import { Button, Typography } from 'antd';
 // Icons
-import { GuessIcon } from 'icons/GuessIcon';
-import { InnocentIcon } from 'icons/InnocentIcon';
-import { LiarIcon } from 'icons/LiarIcon';
-import { TraitorIcon } from 'icons/TraitorIcon';
+import { GuessIcon } from '@icons/GuessIcon';
+import { InnocentIcon } from '@icons/InnocentIcon';
+import { LiarIcon } from '@icons/LiarIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import type { GeneratedKid, Kid, KidAssessment } from '../utils/types';
 import { KIDS_LIBRARY } from '../utils/constants';

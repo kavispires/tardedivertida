@@ -5,20 +5,20 @@ import { Space, Avatar, Tooltip } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { StarIcon } from 'icons/StarIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { StarIcon } from '@icons/StarIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 
 type ResultsProps = {
   players: GamePlayers;

@@ -1,15 +1,15 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { DreamIcon } from 'icons/DreamIcon';
+import { DreamIcon } from '@icons/DreamIcon';
 // Components
-import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import type { ImageCardObj, PhaseDreamsSelectionState } from './utils/types';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';

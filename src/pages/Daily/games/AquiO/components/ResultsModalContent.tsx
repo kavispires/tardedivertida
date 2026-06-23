@@ -4,21 +4,21 @@ import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { ApplauseIcon } from 'icons/ApplauseIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { ApplauseIcon } from '@icons/ApplauseIcon';
+import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
+import { SkullIcon } from '@icons/SkullIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import { writeResult } from '../utils/helpers';

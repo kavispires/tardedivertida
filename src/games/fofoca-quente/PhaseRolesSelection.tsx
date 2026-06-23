@@ -1,15 +1,15 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { LawIcon } from 'icons/LawIcon';
+import { LawIcon } from '@icons/LawIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSelectPlayer } from 'components/steps/StepSelectPlayer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSelectPlayer } from '@components/steps/StepSelectPlayer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import { useOnSubmitPlayersRolesAPIRequest } from './utils/api-requests';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';

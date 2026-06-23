@@ -5,13 +5,13 @@ import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { PastTweet, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
-import { ItemSprite } from 'components/cards/ItemCard';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { ItemSprite } from '@components/cards/ItemCard';
+import { DualTranslate } from '@components/language/DualTranslate';
 
 type ThingCardProps = {
   itemId: string;

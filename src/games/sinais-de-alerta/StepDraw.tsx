@@ -1,20 +1,20 @@
-import { mockDrawing } from 'mock/drawing';
+import { mockDrawing } from '@mock/drawing';
 import { useEffect, useState } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { PanicIcon } from 'icons/PanicIcon';
+import { PanicIcon } from '@icons/PanicIcon';
 // Components
-import { SinaisDeAlertaTimerSound } from 'components/audio/SinaisDeAlertaSound';
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { Card } from 'components/cards/Card';
-import { DevButton } from 'components/debug/DevButton';
-import { Step, type StepProps } from 'components/steps/Step';
+import { SinaisDeAlertaTimerSound } from '@components/audio/SinaisDeAlertaSound';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { Card } from '@components/cards/Card';
+import { DevButton } from '@components/debug/DevButton';
+import { Step, type StepProps } from '@components/steps/Step';
 // Internal
 import { getTitle } from './utils/helpers';
 import type { SubmitDrawingPayload } from './utils/types';

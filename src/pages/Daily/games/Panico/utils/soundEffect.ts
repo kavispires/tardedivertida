@@ -1,4 +1,4 @@
-import dailySfxButtonFile from 'assets/sounds/daily-sfx-button.mp3';
+import dailySfxButtonFile from '@assets/sounds/daily-sfx-button.mp3';
 import { Howl } from 'howler';
 
 export const buttonCountdownSfx = new Howl({

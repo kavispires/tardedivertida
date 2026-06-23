@@ -3,17 +3,17 @@ import { UnorderedListOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { PhaseBetsState } from './utils/types';
 import { BET_TYPES } from './utils/constants';

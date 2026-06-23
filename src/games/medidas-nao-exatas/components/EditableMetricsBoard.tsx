@@ -5,7 +5,7 @@ import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 // Types
 import type { TextCard } from 'types/tdr';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
 // Internal
 import { Pip } from './Pip';
 

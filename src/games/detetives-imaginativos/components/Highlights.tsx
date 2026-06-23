@@ -1,8 +1,8 @@
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { DisguiseIcon } from 'icons/DisguiseIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { DisguiseIcon } from '@icons/DisguiseIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function ImpostorHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<DisguiseIcon />}>{children}</MetricHighlight>;

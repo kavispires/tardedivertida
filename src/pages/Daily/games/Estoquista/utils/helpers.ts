@@ -1,10 +1,10 @@
 import { cloneDeep, merge } from 'lodash';
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Pages
-import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import type { BasicResultsOptions } from 'pages/Daily/utils/types';
+import { generateShareableResult, loadLocalToday } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import type { BasicResultsOptions } from '@pages/Daily/utils/types';
 // Internal
 import { PHASES, SETTINGS } from './settings';
 import type { DailyEstoquistaEntry, GameState } from './types';

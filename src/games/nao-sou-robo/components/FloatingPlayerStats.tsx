@@ -1,12 +1,12 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { UserStatsIcon } from 'icons/UserStatsIcon';
+import { UserStatsIcon } from '@icons/UserStatsIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 // Internal
 import type { Robot } from '../utils/types';
 import { CaptchaHighlight, EnergyHighlight, SuspicionHighlight } from './Highlights';

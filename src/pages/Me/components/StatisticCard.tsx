@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Card, Col, Statistic, type StatisticProps } from 'antd';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 
 type StatisticCardProps = {
   icon: ReactNode;

@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 
 /**
  * Creates a glyph reference dictionary where true means positive and false means negative

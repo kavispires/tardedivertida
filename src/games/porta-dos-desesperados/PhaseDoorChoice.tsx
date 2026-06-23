@@ -2,19 +2,19 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { MagicDoorIcon } from 'icons/MagicDoorIcon';
+import { MagicDoorIcon } from '@icons/MagicDoorIcon';
 // Components
-import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { ViewIf } from 'components/views/ViewIf';
+import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PhaseTimerReset } from '@components/phases/PhaseTimerReset';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
 import { useOnMakeReady, useOnSubmitDoorAPIRequest } from './utils/api-requests';

@@ -3,18 +3,18 @@ import { Progress } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { FlagIcon } from 'icons/FlagIcon';
+import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { TextHighlight } from 'components/text/TextHighlight';
-import { Title } from 'components/text/Title';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { TextHighlight } from '@components/text/TextHighlight';
+import { Title } from '@components/text/Title';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

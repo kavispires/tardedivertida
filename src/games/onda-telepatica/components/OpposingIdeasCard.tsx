@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
 // Components
-import { DivButton } from 'components/buttons/DivButton';
+import { DivButton } from '@components/buttons/DivButton';
 // Internal
 import { getColorModifier } from '../utils/helpers';
 

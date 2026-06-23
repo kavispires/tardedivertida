@@ -1,9 +1,9 @@
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 

@@ -5,19 +5,19 @@ import { Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useHost } from 'hooks/useHost';
-import { useLoading } from 'hooks/useLoading';
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useHost } from '@hooks/useHost';
+import { useLoading } from '@hooks/useLoading';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction, type RuleInstructionProps } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction, type RuleInstructionProps } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 
 type StepSelectPlayerProps = {
   /**

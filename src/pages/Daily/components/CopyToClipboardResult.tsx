@@ -3,11 +3,11 @@ import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
 import { App, Input, Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type CopyToClipboardResultProps = {
   result: string;

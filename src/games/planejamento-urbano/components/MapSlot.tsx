@@ -4,10 +4,10 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Tag } from 'antd';
 // Icons
-import { ConeIcon } from 'icons/ConeIcon';
+import { ConeIcon } from '@icons/ConeIcon';
 // Components
-import { DroppableArea } from 'components/drag-and-drop/DragAndDrop';
-import type { GridMapCellComponentProps } from 'components/toolKits/GridMap/GridMap';
+import { DroppableArea } from '@components/drag-and-drop/DragAndDrop';
+import type { GridMapCellComponentProps } from '@components/toolKits/GridMap/GridMap';
 // Internal
 import type { CityLocationsDict, Construction, Cone } from '../utils/types';
 import { getConeColor } from '../utils/helpers';

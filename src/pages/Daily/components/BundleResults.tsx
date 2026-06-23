@@ -5,13 +5,13 @@ import { useCopyToClipboard } from 'react-use';
 import { ShareAltOutlined } from '@ant-design/icons';
 import { App, Button, Checkbox, Flex, Modal, Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { DailyResponse, GameSettings } from '../utils/types';
 import { ALL_HELPERS } from '../utils/helpers';

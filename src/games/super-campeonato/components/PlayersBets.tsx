@@ -5,13 +5,13 @@ import { Divider } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { Bracket, ContenderByTier } from '../utils/type';
 import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';

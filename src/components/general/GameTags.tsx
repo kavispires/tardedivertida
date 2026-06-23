@@ -3,33 +3,33 @@ import { useMemo } from 'react';
 import { SettingFilled } from '@ant-design/icons';
 import { Badge, Space, type SpaceProps, Tag, Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { TAG_DICT } from 'utils/constants';
+import { TAG_DICT } from '@utils/constants';
 // Icons
-import { AudienceIcon } from 'icons/AudienceIcon';
-import { BadgeIcon } from 'icons/BadgeIcon';
-import { BrainIcon } from 'icons/BrainIcon';
-import { CloverIcon } from 'icons/CloverIcon';
-import { CompetitiveGameIcon } from 'icons/CompetitiveGameIcon';
-import { CooperativeGameIcon } from 'icons/CooperativeGameIcon';
-import { DrawingIcon } from 'icons/DrawingIcon';
-import { EvaluateIcon } from 'icons/EvaluateIcon';
-import { GamblingChipIcon } from 'icons/GamblingChipIcon';
-import { ImageCardsIcon } from 'icons/ImageCardsIcon';
-import { PlayerDropIcon } from 'icons/PlayerDropIcon';
-import { PuzzleIcon } from 'icons/PuzzleIcon';
-import { RobotIcon } from 'icons/RobotIcon';
-import { SmartphoneIcon } from 'icons/SmartphoneIcon';
-import { SoundEffectsIcon } from 'icons/SoundEffectsIcon';
-import { TalkIcon } from 'icons/TalkIcon';
-import { ThinkingIcon } from 'icons/ThinkingIcon';
-import { TimerIcon } from 'icons/TimerIcon';
-import { TogetherGameIcon } from 'icons/TogetherGameIcon';
-import { TraitorIcon } from 'icons/TraitorIcon';
-import { TurnBasedGameIcon } from 'icons/TurnBasedGameIcon';
-import { VoteIcon } from 'icons/VoteIcon';
-import { WritingIcon } from 'icons/WritingIcon';
+import { AudienceIcon } from '@icons/AudienceIcon';
+import { BadgeIcon } from '@icons/BadgeIcon';
+import { BrainIcon } from '@icons/BrainIcon';
+import { CloverIcon } from '@icons/CloverIcon';
+import { CompetitiveGameIcon } from '@icons/CompetitiveGameIcon';
+import { CooperativeGameIcon } from '@icons/CooperativeGameIcon';
+import { DrawingIcon } from '@icons/DrawingIcon';
+import { EvaluateIcon } from '@icons/EvaluateIcon';
+import { GamblingChipIcon } from '@icons/GamblingChipIcon';
+import { ImageCardsIcon } from '@icons/ImageCardsIcon';
+import { PlayerDropIcon } from '@icons/PlayerDropIcon';
+import { PuzzleIcon } from '@icons/PuzzleIcon';
+import { RobotIcon } from '@icons/RobotIcon';
+import { SmartphoneIcon } from '@icons/SmartphoneIcon';
+import { SoundEffectsIcon } from '@icons/SoundEffectsIcon';
+import { TalkIcon } from '@icons/TalkIcon';
+import { ThinkingIcon } from '@icons/ThinkingIcon';
+import { TimerIcon } from '@icons/TimerIcon';
+import { TogetherGameIcon } from '@icons/TogetherGameIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
+import { TurnBasedGameIcon } from '@icons/TurnBasedGameIcon';
+import { VoteIcon } from '@icons/VoteIcon';
+import { WritingIcon } from '@icons/WritingIcon';
 // Sass
 import styles from './GameTags.module.scss';
 

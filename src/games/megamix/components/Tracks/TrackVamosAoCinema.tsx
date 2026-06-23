@@ -1,14 +1,14 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { MovieCard } from 'components/cards/MovieCard';
-import { MovieReviewCard } from 'components/cards/MovieReviewCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { MovieCard } from '@components/cards/MovieCard';
+import { MovieReviewCard } from '@components/cards/MovieReviewCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

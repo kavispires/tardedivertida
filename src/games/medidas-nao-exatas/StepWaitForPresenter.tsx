@@ -5,13 +5,13 @@ import { Flex } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { WaitingRoom } from 'components/players/WaitingRoom';
-import { Step, type StepProps } from 'components/steps/Step';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { WaitingRoom } from '@components/players/WaitingRoom';
+import { Step, type StepProps } from '@components/steps/Step';
 
 type StepWaitForPresenterProps = {
   players: GamePlayers;

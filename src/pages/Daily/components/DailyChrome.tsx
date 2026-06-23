@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 // Icons
-import { CalendarIcon } from 'icons/CalendarIcon';
+import { CalendarIcon } from '@icons/CalendarIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PageLayout } from 'components/layout/PageLayout';
+import { Translate } from '@components/language/Translate';
+import { PageLayout } from '@components/layout/PageLayout';
 // Internal
 import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';
 import { Header } from './Header';

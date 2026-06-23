@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 
 type SpacePlayerCheckWrapperProps = {
   playersList: GamePlayer[];

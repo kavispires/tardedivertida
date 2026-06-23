@@ -1,5 +1,5 @@
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import type { ClientCard } from '../utils/types';
 

@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Internal
 import type { CandySidewalk, StreetCard } from '../utils/types';
 import { HouseCard } from './HouseCard';

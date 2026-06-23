@@ -1,9 +1,9 @@
 // Types
 import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
+import { CrimeItemCard } from '@components/cards/CrimeItemCard';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

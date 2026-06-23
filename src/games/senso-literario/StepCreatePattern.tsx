@@ -6,20 +6,20 @@ import { Flex, Segmented } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { BookPatternCard } from 'components/cards/BookPatternCard';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { SendButton } from '@components/buttons/SendButton';
+import { BookPatternCard } from '@components/cards/BookPatternCard';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { COLORS, GENRES, LETTERS } from './utils/constants';
 import type { SubmitPatternPayload } from './utils/types';

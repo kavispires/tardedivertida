@@ -1,7 +1,7 @@
 // Types
 import type { SuspectStyleVariant } from 'types/tdr';
 // Pages
-import type { DateKey } from 'pages/Daily/utils/types';
+import type { DateKey } from '@pages/Daily/utils/types';
 
 export type TaNaCaraQuestion = {
   testimonyId: string;

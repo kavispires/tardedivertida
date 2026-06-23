@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { CompassIcon } from 'icons/CompassIcon';
-import { FinishLineIcon } from 'icons/FinishLineIcon';
-import { FlagIcon } from 'icons/FlagIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
+import { CompassIcon } from '@icons/CompassIcon';
+import { FinishLineIcon } from '@icons/FinishLineIcon';
+import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Internal
 import type { Direction, MapSegment, Tree, TreeId } from '../utils/types';
 import { getOriginDirection } from '../utils/helpers';

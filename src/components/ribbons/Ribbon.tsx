@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Utils
-import { getAnimationClass, getColorFromLetter } from 'utils/helpers';
+import { getAnimationClass, getColorFromLetter } from '@utils/helpers';
 // Sass
 import styles from './Ribbons.module.scss';
 

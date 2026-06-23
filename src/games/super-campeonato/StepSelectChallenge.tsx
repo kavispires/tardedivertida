@@ -4,20 +4,20 @@ import { Divider } from 'antd';
 import type { GameRound } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Card } from 'components/cards/Card';
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Card } from '@components/cards/Card';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { FightingContender, SubmitChallengePayload } from './utils/type';
 import { mockSelectChallenge } from './utils/mock';

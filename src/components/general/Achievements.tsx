@@ -6,14 +6,14 @@ import { Button, Popover } from 'antd';
 // Types
 import type { Achievement, AchievementReference, GamePlayers } from 'types/game';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Instruction } from 'components/text/Instruction';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { Medal } from './Medal';
 // Sass

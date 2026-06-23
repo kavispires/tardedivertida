@@ -1,7 +1,7 @@
-import { mockClue } from 'mock/clues';
-import { mockDrawing } from 'mock/drawing';
+import { mockClue } from '@mock/clues';
+import { mockDrawing } from '@mock/drawing';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import type { SeedEntry } from './types';
 

@@ -3,14 +3,14 @@ import { RadarChartOutlined, RobotOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Components
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { TOTAL_DOORS } from '../utils/constants';
 import { getTrapIcon } from '../utils/helpers';

@@ -2,10 +2,10 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useLanguage } from '@hooks/useLanguage';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Internal
 import type { SocialGroup, Student } from '../utils/types';
 import { AgeIcon, BuildIcon, GenderIcon, HeightIcon, SocialGroupIcon } from './StudentIcon';

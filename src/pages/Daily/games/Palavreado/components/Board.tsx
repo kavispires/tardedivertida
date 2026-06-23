@@ -2,7 +2,7 @@ import { useDraggable, useDroppable } from '@dnd-kit/core';
 import clsx from 'clsx';
 import { motion } from 'motion/react';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Internal
 import type { PalavreadoLetter } from '../utils/types';
 

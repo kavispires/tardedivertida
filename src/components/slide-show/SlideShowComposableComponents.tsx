@@ -7,13 +7,13 @@ import { Avatar, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getContrastColor, getPlayerNamesFromIds } from 'utils/helpers';
+import { getContrastColor, getPlayerNamesFromIds } from '@utils/helpers';
 // Icons
-import { GarbageIcon } from 'icons/GarbageIcon';
+import { GarbageIcon } from '@icons/GarbageIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import styles from './styles';
 

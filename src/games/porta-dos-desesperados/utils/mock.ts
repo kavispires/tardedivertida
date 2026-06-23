@@ -1,6 +1,6 @@
 import { sampleSize } from 'lodash';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import { TRAPS } from './constants';
 

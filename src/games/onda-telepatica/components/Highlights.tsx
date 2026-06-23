@@ -3,12 +3,12 @@ import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 // Types
 import type { SpectrumCard } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
+import { WavelengthDeviceIcon } from '@icons/WavelengthDeviceIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
+import { TextHighlight } from '@components/text/TextHighlight';
 
 export function WavelengthHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

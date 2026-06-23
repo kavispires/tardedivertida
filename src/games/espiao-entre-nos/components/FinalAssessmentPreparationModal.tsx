@@ -4,10 +4,10 @@ import { Button, Modal } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useHost } from 'hooks/useHost';
+import { useHost } from '@hooks/useHost';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type FinalAssessmentModalProps = {
   // isModalVisible: boolean;

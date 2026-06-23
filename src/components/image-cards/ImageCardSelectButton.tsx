@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type ImageCardSelectButtonProps = {
   /**

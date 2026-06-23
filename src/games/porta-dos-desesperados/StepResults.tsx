@@ -3,15 +3,15 @@ import { Space } from 'antd';
 // Types
 import type { GameRound, GamePlayers } from 'types/game';
 // Utils
-import { LETTERS } from 'utils/constants';
-import { pluralize } from 'utils/helpers';
+import { LETTERS } from '@utils/constants';
+import { pluralize } from '@utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 import type { TrapEntry } from './utils/types';

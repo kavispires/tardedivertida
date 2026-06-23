@@ -1,19 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { MonsterIcon } from 'icons/MonsterIcon';
+import { MonsterIcon } from '@icons/MonsterIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
 import { RETRATO_FALADO_PHASES, TIMES } from './utils/constants';

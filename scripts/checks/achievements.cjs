@@ -95,7 +95,7 @@ module.exports = {
     const globalAchContent = fs.readFileSync(globalAchDictPath, 'utf8');
 
     // 1. Verify the game is imported at the top of the file
-    const importRegex = new RegExp(`from 'games/${gameDir}/utils/achievements'`);
+    const importRegex = new RegExp(`from '@games/${gameDir}/utils/achievements'`);
     if (!importRegex.test(globalAchContent)) {
       return fail(`Global: ${gameDir} is not imported in src/utils/achievements.ts`);
     }

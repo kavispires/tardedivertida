@@ -1,6 +1,6 @@
 import { sampleSize, union } from 'lodash';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import type { ExtendedTextCard, MapSegment, TreeId } from './types';
 import { getAvailableSegments } from './helpers';

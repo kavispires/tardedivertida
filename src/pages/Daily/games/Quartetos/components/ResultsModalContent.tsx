@@ -3,16 +3,16 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyQuartetosEntry } from '../utils/types';

@@ -1,7 +1,7 @@
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { Step, type StepProps } from 'components/steps/Step';
+import { Step, type StepProps } from '@components/steps/Step';
 // Internal
 import type { SubmitAnswerPayload, Track } from './utils/types';
 import { ClubLine } from './components/ClubLine';

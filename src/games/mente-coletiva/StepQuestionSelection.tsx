@@ -1,15 +1,15 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
-import { Translate } from 'components/language/Translate';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { GroupQuestionCard } from '@components/cards/GroupQuestionCard';
+import { Translate } from '@components/language/Translate';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Question, SubmitCustomQuestionPayload, SubmitQuestionPayload } from './utils/types';
 import { mockSelectQuestion } from './utils/mock';

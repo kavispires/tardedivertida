@@ -4,11 +4,11 @@ import { Avatar, Space } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { EmojiCard } from 'components/cards/EmojiCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
+import { EmojiCard } from '@components/cards/EmojiCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import type { ScaleEntry } from '../utils/types';
 

@@ -2,21 +2,21 @@ import { useMemo } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Utils
-import { isDevEnv } from 'utils/helpers';
+import { isDevEnv } from '@utils/helpers';
 // Icons
-import { OnlineOrderIcon } from 'icons/OnlineOrderIcon';
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+import { OnlineOrderIcon } from '@icons/OnlineOrderIcon';
+import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { useOnSubmitFulfillmentAPIRequest } from './utils/api-requests';

@@ -1,7 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Components
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 
 /**
  * Phase component that displays a loading screen while fetching game phase data

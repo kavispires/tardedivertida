@@ -4,13 +4,13 @@ import { Card, Divider, Badge, Space, Tag, Tooltip } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
+import { calculateGameAverageDuration, truncateRecommended } from '@utils/helpers';
 // Components
-import { GameStrip } from 'components/general/GameBanner';
-import { GameTags } from 'components/general/GameTags';
-import { RulesModal } from 'components/rules/RulesModal';
+import { GameStrip } from '@components/general/GameBanner';
+import { GameTags } from '@components/general/GameTags';
+import { RulesModal } from '@components/rules/RulesModal';
 // Internal
 import { CreateGameFlow } from './CreateGameModal';
 

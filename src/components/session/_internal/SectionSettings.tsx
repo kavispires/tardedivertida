@@ -2,13 +2,13 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Switch, Tooltip } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useDevFeatures } from '@hooks/useDevFeatures';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useGlobalState } from '@hooks/useGlobalState';
 // Components
-import { LanguageSwitch } from 'components/language/LanguageSwitch';
-import { Translate } from 'components/language/Translate';
+import { LanguageSwitch } from '@components/language/LanguageSwitch';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { BlurOptions } from './BlurOptions';
 // Sass

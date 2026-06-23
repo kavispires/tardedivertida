@@ -2,8 +2,8 @@ import { clsx } from 'clsx';
 // Types
 import type { SuspectCard as SuspectCardType, SuspectStyleVariant } from 'types/tdr';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Sass
 import styles from './SuspectCard.module.scss';
 

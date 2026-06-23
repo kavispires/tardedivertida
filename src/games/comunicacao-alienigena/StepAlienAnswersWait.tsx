@@ -4,27 +4,27 @@ import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
+import { useCache } from '@hooks/useCache';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLoading } from '@hooks/useLoading';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { SignCard } from 'components/cards/SignCard';
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
-import { PlayerFlex } from 'components/player/PlayerFlex';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { SignCard } from '@components/cards/SignCard';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
+import { PlayerFlex } from '@components/player/PlayerFlex';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type {
   InquiryHistoryEntry,

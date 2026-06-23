@@ -2,23 +2,23 @@ import { useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useStep } from 'hooks/useStep';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { AnonymousIcon } from 'icons/AnonymousIcon';
-import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
-import { CrimeTapeIcon } from 'icons/CrimeTapeIcon';
-import { EventIcon } from 'icons/EventIcon';
-import { LocationIcon } from 'icons/LocationIcon';
-import { SkullIcon } from 'icons/SkullIcon';
+import { AnonymousIcon } from '@icons/AnonymousIcon';
+import { CrimeSceneIcon } from '@icons/CrimeSceneIcon';
+import { CrimeTapeIcon } from '@icons/CrimeTapeIcon';
+import { EventIcon } from '@icons/EventIcon';
+import { LocationIcon } from '@icons/LocationIcon';
+import { SkullIcon } from '@icons/SkullIcon';
 // Components
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';

@@ -3,11 +3,11 @@ import { type ReactNode, useCallback } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Icons
-import { BrickWallIcon } from 'icons/BrickWallIcon';
-import { ConeIcon } from 'icons/ConeIcon';
+import { BrickWallIcon } from '@icons/BrickWallIcon';
+import { ConeIcon } from '@icons/ConeIcon';
 // Components
-import { DraggableItem } from 'components/drag-and-drop/DragAndDrop';
-import { Title } from 'components/text/Title';
+import { DraggableItem } from '@components/drag-and-drop/DragAndDrop';
+import { Title } from '@components/text/Title';
 // Internal
 import type { City, CityLocationsDict } from '../utils/types';
 import { getConeColor } from '../utils/helpers';

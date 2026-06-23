@@ -1,6 +1,6 @@
-import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+import { HouseCard } from '@games/na-rua-do-medo/components/HouseCard';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

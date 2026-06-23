@@ -5,17 +5,17 @@ import { Avatar, Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { Title } from 'components/text/Title';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
 // Internal
 import type { DuetosGalleryEntry, Item, LeftOutEntry } from './utils/types';
 import { Pair } from './components/Pair';

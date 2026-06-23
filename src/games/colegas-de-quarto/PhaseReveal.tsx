@@ -1,17 +1,17 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSlideShow } from 'hooks/useSlideShow';
-import { useStep } from 'hooks/useStep';
+import { useSlideShow } from '@hooks/useSlideShow';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { CashRegisterIcon } from 'icons/CashRegisterIcon';
+import { CashRegisterIcon } from '@icons/CashRegisterIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseRevealState } from './utils/types';
 import { COLEGAS_DE_QUARTO_PHASES } from './utils/constants';

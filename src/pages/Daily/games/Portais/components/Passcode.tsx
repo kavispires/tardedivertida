@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 
 type PasscodeProps = {
   passcode: string;

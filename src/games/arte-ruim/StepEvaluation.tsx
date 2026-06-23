@@ -5,23 +5,23 @@ import { Button, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { useVotingMatch } from 'hooks/useVotingMatch';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
+import { useVotingMatch } from '@hooks/useVotingMatch';
 // Utils
-import { LETTERS } from 'utils/constants';
-import { getEntryId, shuffle } from 'utils/helpers';
+import { LETTERS } from '@utils/constants';
+import { getEntryId, shuffle } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { CanvasResizer } from 'components/canvas/CanvasResizer';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { ArteRuimCustomCard, ArteRuimDrawing, SubmitVotingPayload } from './utils/types';
 import { prepareVotes } from './utils/helpers';

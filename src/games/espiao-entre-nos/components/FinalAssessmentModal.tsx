@@ -3,8 +3,8 @@ import { Modal } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { FinalAssessment } from '../utils/types';
 import { PlayerSelect } from './PlayerSelect';

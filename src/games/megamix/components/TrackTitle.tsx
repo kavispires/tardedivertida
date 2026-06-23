@@ -1,5 +1,5 @@
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import type { Track } from '../utils/types';
 import { TITLES } from '../utils/constants';

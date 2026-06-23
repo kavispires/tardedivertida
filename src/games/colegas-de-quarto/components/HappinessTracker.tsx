@@ -1,11 +1,11 @@
 // Ant Design Resources
 import { Flex, Popover, Progress, Space } from 'antd';
 // Icons
-import { RatingIcon } from 'icons/RatingIcon';
+import { RatingIcon } from '@icons/RatingIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { HouseHappiness } from '../utils/types';
 

@@ -2,15 +2,15 @@
 import { PlusCircleFilled } from '@ant-design/icons';
 import { Button, type ButtonProps } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { SpeechBubble } from 'components/text/SpeechBubble';
+import { SpreadsheetCell, SpreadsheetGrid } from '@components/general/SpreadsheetGrid';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { SpeechBubble } from '@components/text/SpeechBubble';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

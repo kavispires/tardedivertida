@@ -4,19 +4,19 @@ import { App } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLanguage } from '@hooks/useLanguage';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { LoupeIcon } from 'icons/LoupeIcon';
-import { OpinionsIcon } from 'icons/OpinionsIcon';
-import { TimerIcon } from 'icons/TimerIcon';
+import { LoupeIcon } from '@icons/LoupeIcon';
+import { OpinionsIcon } from '@icons/OpinionsIcon';
+import { TimerIcon } from '@icons/TimerIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import {
   useOnGuessLocationAPIRequest,

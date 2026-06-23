@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 // Internal
 import type { ClientCard, Teller } from '../utils/types';
 import { BankClient } from './BankClient';

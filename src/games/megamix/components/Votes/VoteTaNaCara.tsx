@@ -1,6 +1,6 @@
 // Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
+import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

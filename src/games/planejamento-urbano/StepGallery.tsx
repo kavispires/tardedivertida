@@ -4,29 +4,29 @@ import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import { useCardWidth } from '@hooks/useCardWidth';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Icons
-import { ArrowIcon } from 'icons/ArrowIcon';
-import { ConeIcon } from 'icons/ConeIcon';
-import { CrownIcon } from 'icons/CrownIcon';
-import { XIcon } from 'icons/XIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
+import { ConeIcon } from '@icons/ConeIcon';
+import { CrownIcon } from '@icons/CrownIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { StarPoints } from 'components/points/StarPoints';
-import { SlideShow } from 'components/slide-show/SlideShow';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StarPoints } from '@components/points/StarPoints';
+import { SlideShow } from '@components/slide-show/SlideShow';
 import {
   SlideShowBubbleValue,
   SlideShowPlayersList,
   SlideShowLabel,
   SlideShowNoWins,
-} from 'components/slide-show/SlideShowComposableComponents';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
-import { gridMapUtils } from 'components/toolKits/GridMap';
+} from '@components/slide-show/SlideShowComposableComponents';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
+import { gridMapUtils } from '@components/toolKits/GridMap';
 // Internal
 import type { City, CityLocationsDict, GalleryEntry } from './utils/types';
 import { getConeColor } from './utils/helpers';

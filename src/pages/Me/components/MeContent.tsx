@@ -5,28 +5,28 @@ import { Layout, Row, Divider, Space, Switch, type TabsProps, Tabs } from 'antd'
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { usePlayableGames } from 'hooks/useGameList';
-import { useLanguage } from 'hooks/useLanguage';
+import { usePlayableGames } from '@hooks/useGameList';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import ACHIEVEMENTS_DICT from 'utils/achievements';
+import ACHIEVEMENTS_DICT from '@utils/achievements';
 // Icons
-import { CalendarIcon } from 'icons/CalendarIcon';
-import { CatalogIcon } from 'icons/CatalogIcon';
-import { ClockIcon } from 'icons/ClockIcon';
-import { DiceIcon } from 'icons/DiceIcon';
-import { PlayersIcon } from 'icons/PlayersIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
-import { UserStatsIcon } from 'icons/UserStatsIcon';
+import { CalendarIcon } from '@icons/CalendarIcon';
+import { CatalogIcon } from '@icons/CatalogIcon';
+import { ClockIcon } from '@icons/ClockIcon';
+import { DiceIcon } from '@icons/DiceIcon';
+import { PlayersIcon } from '@icons/PlayersIcon';
+import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
+import { SkullIcon } from '@icons/SkullIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
+import { UserStatsIcon } from '@icons/UserStatsIcon';
 // Components
-import { LogoutButton } from 'components/auth/LogoutButton';
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { LanguageSwitch } from 'components/language/LanguageSwitch';
-import { Translate } from 'components/language/Translate';
-import { PageLayout } from 'components/layout/PageLayout';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Title } from 'components/text/Title';
+import { LogoutButton } from '@components/auth/LogoutButton';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { LanguageSwitch } from '@components/language/LanguageSwitch';
+import { Translate } from '@components/language/Translate';
+import { PageLayout } from '@components/layout/PageLayout';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Title } from '@components/text/Title';
 // Internal
 import { durationToHours, timestampToDate } from '../utils';
 import { UserName } from './UserName';

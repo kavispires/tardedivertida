@@ -2,17 +2,17 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
-import { ShooterIcon } from 'icons/ShooterIcon';
+import { ShooterIcon } from '@icons/ShooterIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

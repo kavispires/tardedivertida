@@ -1,9 +1,9 @@
 // Types
 import type { GameRound } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Instruction } from '@components/text/Instruction';
 
 export function DJInstructions({ round }: { round: GameRound }) {
   if (round.current <= 1) {

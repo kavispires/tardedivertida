@@ -2,7 +2,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 // Utils
-import { NOOP } from 'utils/constants';
+import { NOOP } from '@utils/constants';
 // Internal
 import type { AdedanhxGalleryEntry } from '../utils/types';
 import { CategoryCell, LetterCell } from './Grid';

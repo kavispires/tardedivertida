@@ -2,13 +2,13 @@ import clsx from 'clsx';
 // Types
 import type { ContenderCard, SuspectCard as SuspectCardType } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Card } from 'components/cards/Card';
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { ItemCard } from 'components/cards/ItemCard';
-import { SuspectCard } from 'components/cards/SuspectCard';
-import { ImageCard } from 'components/image-cards/ImageCard';
+import { Card } from '@components/cards/Card';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { ItemCard } from '@components/cards/ItemCard';
+import { SuspectCard } from '@components/cards/SuspectCard';
+import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import { SIDES } from '../utils/constants';
 import type { DeckEntry } from '../utils/types';

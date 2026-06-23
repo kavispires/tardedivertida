@@ -4,14 +4,14 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Title } from 'components/text/Title';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryUeSoIsso } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';

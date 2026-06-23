@@ -5,9 +5,9 @@ import { useMemo, useState } from 'react';
 import { ClearOutlined, FilterOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Collapse, Input, InputNumber, Select, Space, type TreeDataNode, TreeSelect } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { SEPARATOR, TAG_DICT } from 'utils/constants';
+import { SEPARATOR, TAG_DICT } from '@utils/constants';
 
 const { SHOW_PARENT } = TreeSelect;
 

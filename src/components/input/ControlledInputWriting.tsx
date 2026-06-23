@@ -2,11 +2,11 @@ import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { Button, type ButtonProps, Space } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Components
-import { SpaceFloat } from 'components/layout/SpaceFloat';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
 
 type InputComponentBaseProps = {
   id: string;

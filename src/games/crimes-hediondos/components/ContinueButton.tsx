@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, type ButtonProps } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 interface ContinueButtonProps extends Omit<ButtonProps, 'onClick'> {
   onClick: NonNullable<ButtonProps['onClick']>;

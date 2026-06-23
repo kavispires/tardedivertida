@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
 
 /**
  * Button group for switching between Portuguese and English languages using flag icons

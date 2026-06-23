@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 
 type DualTransLateProps = {
   /**

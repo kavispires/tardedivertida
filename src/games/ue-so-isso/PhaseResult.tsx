@@ -1,18 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { SpeechBubbleIcon } from 'icons/SpeechBubbleIcon';
+import { SpeechBubbleIcon } from '@icons/SpeechBubbleIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { UE_SO_ISSO_PHASES } from './utils/constants';
 import type { PhaseResultState } from './utils/types';

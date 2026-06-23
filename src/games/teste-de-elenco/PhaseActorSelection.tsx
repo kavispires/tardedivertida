@@ -1,17 +1,17 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { SofaIcon } from 'icons/SofaIcon';
+import { SofaIcon } from '@icons/SofaIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
 import { TESTE_DE_ELENCO_PHASES } from './utils/constants';

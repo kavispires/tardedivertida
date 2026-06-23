@@ -16,18 +16,18 @@ import {
 // Types
 import type { GameState, GamePlayers } from 'types/game';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useHostActionRequest } from 'hooks/useHostActionRequest';
-import { useLoading } from 'hooks/useLoading';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useHostActionRequest } from '@hooks/useHostActionRequest';
+import { useLoading } from '@hooks/useLoading';
 // Services
-import { HOST_API_ACTIONS } from 'services/adapters';
-import { getFirestoreConsoleUrl } from 'services/firebase';
+import { HOST_API_ACTIONS } from '@services/adapters';
+import { getFirestoreConsoleUrl } from '@services/firebase';
 // Components
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language/Translate';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './AdminMenuDrawer.module.scss';
 

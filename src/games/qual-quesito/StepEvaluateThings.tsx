@@ -5,17 +5,17 @@ import { Flex, Segmented } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TripleStateButton } from 'components/buttons/TripleStateButton';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { TripleStateButton } from '@components/buttons/TripleStateButton';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitEvaluationsPayload, TableEntry } from './utils/types';
 import { mockEvaluations } from './utils/mock';

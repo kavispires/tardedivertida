@@ -3,11 +3,11 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;

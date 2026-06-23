@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useCountdown } from 'hooks/useCountdown';
+import { useCache } from '@hooks/useCache';
+import { useCountdown } from '@hooks/useCountdown';
 // Utils
-import { formatTime, getRandomItem } from 'utils/helpers';
+import { formatTime, getRandomItem } from '@utils/helpers';
 // Icons
-import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
+import { MagicHourGlassIcon } from '@icons/MagicHourGlassIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Internal
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
 import type { DoorsCache, SubmitDoorPayload } from '../utils/types';

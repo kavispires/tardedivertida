@@ -4,25 +4,25 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Icons
-import { LockIcon } from 'icons/LockIcon';
-import { StopIcon } from 'icons/StopIcon';
+import { LockIcon } from '@icons/LockIcon';
+import { StopIcon } from '@icons/StopIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Step } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TimerClock } from 'components/timers/TimerClock';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { Step } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TimerClock } from '@components/timers/TimerClock';
 // Internal
 import type { AdedanhxGrid, Answer, SubmitGridAnswersPayload } from './utils/types';
 import { buildAnswerSheet } from './utils/helpers';

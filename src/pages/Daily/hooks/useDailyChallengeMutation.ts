@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 // Services
-import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
+import { DAILY_API, DAILY_API_ACTIONS } from '@services/adapters';
 
 type DailySetterPayload = {
   id: string; // Format YYYY-MM-DD

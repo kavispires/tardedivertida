@@ -4,9 +4,9 @@ import type { ReactNode, Ref } from 'react';
 // Ant Design Resources
 import { type GetProps, Image, Space } from 'antd';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Internal
 import { ImageCard } from './ImageCard';
 import { ImageCardButton } from './ImageCardButton';

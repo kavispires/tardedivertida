@@ -1,5 +1,5 @@
 // Pages
-import { DailyGame } from 'pages/Daily/components/DailyGame';
+import { DailyGame } from '@pages/Daily/components/DailyGame';
 // Internal
 import { DailyInvestigacao } from './components/DailyInvestigacao';
 // Sass

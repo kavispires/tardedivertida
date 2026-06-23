@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { memoize } from 'lodash';
 // Utils
-import { DEFAULT_PADDING } from 'utils/constants';
+import { DEFAULT_PADDING } from '@utils/constants';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { DEFAULT_SPRITE_SIZE, Sprite } from '@components/sprites/Sprite';
 // Sass
 import styles from './ItemCard.module.scss';
 

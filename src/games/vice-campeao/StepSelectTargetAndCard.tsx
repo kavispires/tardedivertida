@@ -5,17 +5,17 @@ import { Button, Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PlayersSelect } from 'components/players/PlayersSelect';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { PlayersSelect } from '@components/players/PlayersSelect';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { RunActivity, RunnerCard, SubmitCardPayload } from './utils/types';
 import { mockCardPlay } from './utils/mock';

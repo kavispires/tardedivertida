@@ -1,10 +1,10 @@
 // Types
 import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
-import { RoundsLeftInstruction } from 'components/text/RoundsLeftInstruction';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
+import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 // Internal
 import type { Bracket } from './utils/type';
 import { Brackets } from './components/Brackets';

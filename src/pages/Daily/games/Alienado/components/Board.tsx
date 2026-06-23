@@ -4,15 +4,15 @@ import { motion } from 'motion/react';
 // Ant Design Resources
 import { Avatar, Button, Flex, Space, Typography } from 'antd';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { SignCard } from 'components/cards/SignCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { SignCard } from '@components/cards/SignCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { Region } from 'pages/Daily/components/Region';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
+import { Region } from '@pages/Daily/components/Region';
 // Internal
 import type { DailyAlienadoEntry } from '../utils/types';
 

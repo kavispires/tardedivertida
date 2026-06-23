@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Utils
-import { PLACEHOLDER_PLAYER } from 'utils/constants';
+import { PLACEHOLDER_PLAYER } from '@utils/constants';
 // Internal
 import { useGlobalState } from './useGlobalState';
 

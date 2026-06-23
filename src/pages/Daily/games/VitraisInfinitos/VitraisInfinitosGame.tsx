@@ -1,5 +1,5 @@
 // Pages
-import { EndlessGame } from 'pages/Daily/components/DailyGame';
+import { EndlessGame } from '@pages/Daily/components/DailyGame';
 // Internal
 import { useEndlessVitrais } from './utils/useEndlessVitrais';
 import { EndlessVitraisContent } from './components/EndlessVitraisContent';

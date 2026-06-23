@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { Characters } from '../utils/types';
 import { QSECard } from './QSECard';

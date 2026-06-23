@@ -3,18 +3,18 @@ import { Button } from 'antd';
 // Types
 import type { CrimesHediondosCard } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { KnifeIcon } from 'icons/KnifeIcon';
-import { LoupeIcon } from 'icons/LoupeIcon';
+import { KnifeIcon } from '@icons/KnifeIcon';
+import { LoupeIcon } from '@icons/LoupeIcon';
 // Components
-import { CrimeItemCard } from 'components/cards/CrimeItemCard';
-import { SceneTile } from 'components/game/SceneTile';
-import { Translate } from 'components/language/Translate';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { CrimeItemCard } from '@components/cards/CrimeItemCard';
+import { SceneTile } from '@components/game/SceneTile';
+import { Translate } from '@components/language/Translate';
+import { MetricHighlight } from '@components/metrics/MetricHighlight';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

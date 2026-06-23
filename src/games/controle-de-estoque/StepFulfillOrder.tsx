@@ -2,19 +2,19 @@ import { useState } from 'react';
 // Types
 import type { GamePlayer, GameRound } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLoading } from 'hooks/useLoading';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLoading } from '@hooks/useLoading';
 // Icons
-import { BossIdeaIcon } from 'icons/BossIdeaIcon';
+import { BossIdeaIcon } from '@icons/BossIdeaIcon';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TimerBar } from 'components/timers/TimerBar';
+import { SendButton } from '@components/buttons/SendButton';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TimerBar } from '@components/timers/TimerBar';
 // Internal
 import type { Good, SubmitFulfillmentPayload, WarehouseSlot } from './utils/types';
 import { FULFILLMENT_TIMER } from './utils/constants';

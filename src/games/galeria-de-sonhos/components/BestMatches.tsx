@@ -2,12 +2,12 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Avatar, Divider } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { Step } from 'components/steps/Step';
-import { Title } from 'components/text/Title';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { Step } from '@components/steps/Step';
+import { Title } from '@components/text/Title';
 // Internal
 import type { ImageCardMatch } from '../utils/types';
 

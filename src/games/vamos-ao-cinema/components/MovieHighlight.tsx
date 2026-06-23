@@ -1,10 +1,10 @@
 // Types
 import type { MovieCard } from 'types/tdr';
 // Icons
-import { FilmReelIcon } from 'icons/FilmReelIcon';
+import { FilmReelIcon } from '@icons/FilmReelIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { getMovieTitle } from '../utils/helpers';
 

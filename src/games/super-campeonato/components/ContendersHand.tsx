@@ -1,11 +1,11 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { Translate } from 'components/language/Translate';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { FloatingHand } from '@components/general/FloatingHand';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { FightingContender } from '../utils/type';
 import { contenderWidthOptions } from '../utils/helpers';

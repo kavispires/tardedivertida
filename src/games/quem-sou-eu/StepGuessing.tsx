@@ -7,22 +7,22 @@ import { Button } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
-import { useVotingMatch } from 'hooks/useVotingMatch';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
+import { useVotingMatch } from '@hooks/useVotingMatch';
 // Utils
-import { getEntryId } from 'utils/helpers';
+import { getEntryId } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RibbonGroup } from 'components/ribbons/RibbonGroup';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RibbonGroup } from '@components/ribbons/RibbonGroup';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Characters, SubmitGuessesPayload } from './utils/types';
 import { getRibbons, prepareGuesses } from './utils/helpers';

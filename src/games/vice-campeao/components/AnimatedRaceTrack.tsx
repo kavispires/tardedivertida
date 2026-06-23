@@ -4,13 +4,11 @@ import { Progress } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { RunActivity, RunnerCard } from '../utils/types';
 import { RaceTrack } from './RaceTrack';
 import { CardPlay } from './CardPlay';
-// Utils
-// Icons
 
 type AnimatedRaceTrackProps = {
   race: RunActivity[];

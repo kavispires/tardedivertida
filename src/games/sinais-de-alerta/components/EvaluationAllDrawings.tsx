@@ -4,15 +4,15 @@ import { Typography } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Icons
-import { CheckMarkIcon } from 'icons/CheckMarkIcon';
+import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { DrawingEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';

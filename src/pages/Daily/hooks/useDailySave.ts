@@ -2,9 +2,9 @@ import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { DAILY_API, DAILY_API_ACTIONS } from 'services/adapters';
+import { DAILY_API, DAILY_API_ACTIONS } from '@services/adapters';
 // Internal
 import type { DrawingToSave } from '../games/Picaco/utils/types';
 import type { AnswerToSave } from '../games/TaNaCara/utils/types';

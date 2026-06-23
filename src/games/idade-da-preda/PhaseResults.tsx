@@ -1,15 +1,15 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSlideShow } from 'hooks/useSlideShow';
-import { useStep } from 'hooks/useStep';
+import { useSlideShow } from '@hooks/useSlideShow';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { BooksIcon } from 'icons/BooksIcon';
+import { BooksIcon } from '@icons/BooksIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import type { PhaseResultsState } from './utils/types';
 import { IDADE_DA_PREDA_PHASES, SLIDE_DURATION } from './utils/constants';

@@ -1,7 +1,7 @@
 // Icons
-import { DailyDrawingGameIcon } from 'icons/DailyDrawingGameIcon';
+import { DailyDrawingGameIcon } from '@icons/DailyDrawingGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'PICACO',

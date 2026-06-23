@@ -1,5 +1,5 @@
 // Components
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
 // Internal
 import { WarningSignBackgroundMask } from './WarningSignBackgroundMask';
 

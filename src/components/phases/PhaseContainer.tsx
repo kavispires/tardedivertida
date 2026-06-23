@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { type ReactNode, useRef } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { PageError } from 'components/errors/PageError';
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { PageError } from '@components/errors/PageError';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 // Sass
 import styles from './PhaseContainer.module.scss';
 

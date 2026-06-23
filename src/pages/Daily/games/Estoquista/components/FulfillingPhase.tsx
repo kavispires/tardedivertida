@@ -2,11 +2,11 @@
 import { BarChartOutlined, WarningFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { Region, RegionText } from 'pages/Daily/components/Region';
+import { Region, RegionText } from '@pages/Daily/components/Region';
 // Internal
 import { PHASES } from '../utils/settings';
 import type { useEstoquistaEngine } from '../utils/useEstoquistaEngine';

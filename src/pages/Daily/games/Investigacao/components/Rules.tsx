@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { AppstoreOutlined, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
+import { RulesWrapper } from '@pages/Daily/components/RulesWrapper';
 
 type RulesProps = {
   date: string;

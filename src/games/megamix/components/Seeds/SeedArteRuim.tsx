@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { NOOP } from 'utils/constants';
+import { NOOP } from '@utils/constants';
 // Icons
-import { PanicIcon } from 'icons/PanicIcon';
+import { PanicIcon } from '@icons/PanicIcon';
 // Components
-import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { ArteRuimTimerSound } from '@components/audio/ArteRuimTimerSound';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryArteRuim } from '../../utils/types';
 

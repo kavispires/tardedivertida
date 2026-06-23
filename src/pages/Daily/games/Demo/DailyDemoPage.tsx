@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { random, sample, shuffle } from 'lodash';
 // Pages
-import { DemoGame } from 'pages/Daily/components/DailyGame';
+import { DemoGame } from '@pages/Daily/components/DailyGame';
 // Internal
 import { DailyDemoContent } from './components/DailyDemoContent';
 // Sass

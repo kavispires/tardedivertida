@@ -2,7 +2,7 @@ import { createContext, useContext, useMemo, useState } from 'react';
 // Types
 import type { PhaseProviderProps } from 'types/game';
 // Hooks
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Internal
 import { StudentModal } from '../components/StudentModal';
 import { Info } from '../components/Info';

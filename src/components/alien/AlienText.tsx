@@ -3,9 +3,9 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Spin, Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { SignCard } from 'components/cards/SignCard';
+import { SignCard } from '@components/cards/SignCard';
 // Internal
 import { useAlienAttributes } from './useAlienAttributes';
 // Sass

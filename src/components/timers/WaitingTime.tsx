@@ -1,5 +1,5 @@
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from '@hooks/useCountdown';
 // Sass
 import styles from './timers.module.scss';
 

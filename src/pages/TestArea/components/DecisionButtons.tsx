@@ -1,10 +1,10 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
 
 type DecisionButtonsProps = {
   step: number;

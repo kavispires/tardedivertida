@@ -3,17 +3,17 @@ import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { CrownIcon } from 'icons/CrownIcon';
+import { CrownIcon } from '@icons/CrownIcon';
 // Components
-import { BookPatternCard } from 'components/cards/BookPatternCard';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { ListOfPlayers } from 'components/players/ListOfPlayers';
+import { BookPatternCard } from '@components/cards/BookPatternCard';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { ListOfPlayers } from '@components/players/ListOfPlayers';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

@@ -5,23 +5,23 @@ import { Button, Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Icons
-import { LiarIcon } from 'icons/LiarIcon';
-import { OpposingArrowIcon } from 'icons/OpposingArrowIcon';
-import { TraitorIcon } from 'icons/TraitorIcon';
+import { LiarIcon } from '@icons/LiarIcon';
+import { OpposingArrowIcon } from '@icons/OpposingArrowIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { Region, RegionHint, RegionText } from '@pages/Daily/components/Region';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { calculateEllipsePositions, getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { FireFilled } from '@ant-design/icons';
 import { Modal, Typography, Space } from 'antd';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 
 type StreakMilestoneModalProps = {
   /**

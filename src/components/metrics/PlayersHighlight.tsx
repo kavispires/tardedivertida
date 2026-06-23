@@ -1,7 +1,7 @@
 // Icons
-import { PlayersIcon } from 'icons/PlayersIcon';
+import { PlayersIcon } from '@icons/PlayersIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 /**
  * Metric highlight component displaying a players group icon for multi-player metrics

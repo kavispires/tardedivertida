@@ -5,13 +5,13 @@ import { Avatar } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { Slide } from '../utils/types';
 

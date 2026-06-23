@@ -4,7 +4,7 @@ import { HeartFilled, MoonFilled, StarFilled, SunFilled } from '@ant-design/icon
 // Types
 import type { GameRound } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { GuessedPair } from './types';
 

@@ -4,11 +4,11 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Carousel, Typography } from 'antd';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { GameSettings } from '../utils/types';
 import { ALL_SETTINGS } from '../utils/settings';

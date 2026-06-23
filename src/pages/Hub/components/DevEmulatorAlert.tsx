@@ -4,8 +4,8 @@ import { useEffectOnce } from 'react-use';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Alert, Button, Modal } from 'antd';
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useDevFeatures } from '@hooks/useDevFeatures';
+import { useGlobalState } from '@hooks/useGlobalState';
 
 /**
  * The emulator only properly works if using the local ip, to allow multi device testing

@@ -2,10 +2,10 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Flex, Popover, Typography } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { DataCounts, TimeBombCard } from '../utils/types';
 import { CARD_IMAGE_NAMES } from '../utils/constants';

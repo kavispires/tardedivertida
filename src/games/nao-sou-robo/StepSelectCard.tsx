@@ -5,22 +5,22 @@ import { Badge, Button, Flex, InputNumber, Space, Typography } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Captcha, Robot, SubmitRobotCardsPayload } from './utils/types';
 import { mockCardPicks } from './utils/mock';

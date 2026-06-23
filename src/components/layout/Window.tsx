@@ -1,14 +1,13 @@
 import { DndContext, useDraggable, type DragEndEvent } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { motion, AnimatePresence } from 'motion/react';
-import type React from 'react';
 import { useState, useEffect, type ReactNode } from 'react';
 import { useWindowSize } from 'react-use';
 // Ant Design Resources
 import { CloseOutlined, DragOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Hooks
-import { useQueryParams } from 'hooks/useQueryParams';
+import { useQueryParams } from '@hooks/useQueryParams';
 // Sass
 import styles from './Window.module.scss';
 

@@ -12,28 +12,28 @@ import { Badge, Button, Divider, Flex, Layout, Segmented, Space, Switch, Typogra
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
+import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Card } from 'components/cards/Card';
-import { SuspectCard } from 'components/cards/SuspectCard';
-import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Card } from '@components/cards/Card';
+import { SuspectCard } from '@components/cards/SuspectCard';
+import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { Region } from 'pages/Daily/components/Region';
-import { StepDots } from 'pages/Daily/components/StepDots';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
+import { Region } from '@pages/Daily/components/Region';
+import { StepDots } from '@pages/Daily/components/StepDots';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

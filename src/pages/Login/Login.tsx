@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
 // Services
-import { signIn } from 'services/firebase';
+import { signIn } from '@services/firebase';
 // Components
-import { PageLayout } from 'components/layout/PageLayout';
+import { PageLayout } from '@components/layout/PageLayout';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg?url';
+import logo from '@assets/images/tarde-divertida-logo.svg?url';
 
 const layout = {
   labelCol: { span: 8 },

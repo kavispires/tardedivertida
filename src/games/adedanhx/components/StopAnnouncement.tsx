@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { StopIcon } from 'icons/StopIcon';
+import { StopIcon } from '@icons/StopIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
-import { TimedTimerBar } from 'components/timers/TimedTimerBar';
+import { Translate } from '@components/language/Translate';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
+import { TimedTimerBar } from '@components/timers/TimedTimerBar';
 
 type StopAnnouncementProps = {
   stopper: GamePlayer;

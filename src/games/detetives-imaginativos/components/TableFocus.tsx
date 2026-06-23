@@ -3,17 +3,17 @@ import { motion } from 'motion/react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { AVATARS } from 'utils/avatars';
+import { getAnimation } from '@utils/animations';
+import { AVATARS } from '@utils/avatars';
 // Icons
-import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
+import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { CardEntry } from '../utils/types';
 

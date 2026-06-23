@@ -2,9 +2,9 @@
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Hooks
-import { useBlurCards } from 'hooks/useBlurCards';
+import { useBlurCards } from '@hooks/useBlurCards';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './ImageBlurButton.module.scss';
 

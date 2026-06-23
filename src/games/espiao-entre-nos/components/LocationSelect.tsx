@@ -3,11 +3,11 @@ import { useMemo, useState } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Button, Select, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language/Translate';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { Location } from '../utils/types';
 

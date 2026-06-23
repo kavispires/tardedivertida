@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCache } from '@hooks/useCache';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { Location } from '../utils/types';
 

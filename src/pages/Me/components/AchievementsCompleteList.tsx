@@ -6,14 +6,14 @@ import { Flex, Row, Select, Switch } from 'antd';
 import type { AchievementInfo } from 'types/game';
 import type { GameUserStatistics } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGameList, usePlayableGames } from 'hooks/useGameList';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useGameList, usePlayableGames } from '@hooks/useGameList';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import ACHIEVEMENTS_DICT from 'utils/achievements';
+import ACHIEVEMENTS_DICT from '@utils/achievements';
 // Components
-import { VirtualizationWrapper } from 'components/general/VirtualizationWrapper';
-import { Translate } from 'components/language/Translate';
+import { VirtualizationWrapper } from '@components/general/VirtualizationWrapper';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { AchievementCard } from './AchievementCard';
 

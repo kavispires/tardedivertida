@@ -1,5 +1,5 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Internal
 import type { Track } from '../utils/types';
 import { INSTRUCTIONS } from '../utils/constants';

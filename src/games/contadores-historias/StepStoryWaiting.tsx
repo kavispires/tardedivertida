@@ -1,14 +1,14 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { TableOrder } from 'components/players/TableOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { FloatingHand } from '@components/general/FloatingHand';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { TableOrder } from '@components/players/TableOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 
 type StepStoryWaitingProps = {
   storyteller: GamePlayer;

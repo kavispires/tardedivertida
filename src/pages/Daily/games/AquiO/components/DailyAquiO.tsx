@@ -3,19 +3,19 @@ import { useMeasure } from 'react-use';
 // Ant Design Resources
 import { Button, Flex, FloatButton, Layout, Modal, Space, Switch, Typography } from 'antd';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { isDevEnv } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { isDevEnv } from '@utils/helpers';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimerBar } from 'components/timers/TimerBar';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TimerBar } from '@components/timers/TimerBar';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyAquiOEntry } from '../utils/types';

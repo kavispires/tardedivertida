@@ -1,5 +1,5 @@
 // Utils
-import { shuffle } from 'utils/helpers';
+import { shuffle } from '@utils/helpers';
 // Internal
 import type { Item } from './types';
 

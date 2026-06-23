@@ -1,17 +1,17 @@
-import { Book } from 'games/porta-dos-desesperados/components/Book';
+import { Book } from '@games/porta-dos-desesperados/components/Book';
 // Ant Design Resources
 import { Button, Image, Space } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { DoorFrame } from 'components/game/DoorFrame';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { DoorFrame } from '@components/game/DoorFrame';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

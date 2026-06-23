@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { inNSeconds } from 'utils/helpers';
+import { inNSeconds } from '@utils/helpers';
 
 type UseTimerArgs = Parameters<typeof useTimer>[0];
 

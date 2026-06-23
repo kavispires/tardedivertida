@@ -1,22 +1,22 @@
-import { mockClue } from 'mock/clues';
+import { mockClue } from '@mock/clues';
 import { useState } from 'react';
 // Ant Design Resources
 import { Input } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitSecretCluePayload } from './utils/types';
 import { ImpostorHighlight } from './components/Highlights';

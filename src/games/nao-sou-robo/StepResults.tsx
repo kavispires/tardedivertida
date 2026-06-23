@@ -5,21 +5,21 @@ import { Avatar, Flex, Space } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import type { UseStep } from 'hooks/useStep';
+import { useCardWidth } from '@hooks/useCardWidth';
+import type { UseStep } from '@hooks/useStep';
 // Icons
-import { RobotIcon } from 'icons/RobotIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
+import { RobotIcon } from '@icons/RobotIcon';
+import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TimedButton } from 'components/buttons/TimedButton';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Step, type StepProps } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Step, type StepProps } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Robot, RobotGalleryEntry } from './utils/types';
 import { CaptchaTopic } from './components/CaptchaTopic';

@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 import { RocketFilled } from '@ant-design/icons';
 import { Button, type ButtonProps } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLoading } from 'hooks/useLoading';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLoading } from '@hooks/useLoading';
 
 type AdminButtonProps = ButtonProps & {
   /**

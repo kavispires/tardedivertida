@@ -1,18 +1,18 @@
 import { chunk, cloneDeep } from 'lodash';
 import { useEffect } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Pages
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
-import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { getAnalyticsEventName } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
-import { vibrate } from 'pages/Daily/utils/vibrate';
+import { useDailyGameState, useDailySessionState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from '@pages/Daily/hooks/useDailyPlayTracker';
+import { useShowResultModal } from '@pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
+import { vibrate } from '@pages/Daily/utils/vibrate';
 // Internal
 import { smartShuffle as smartShuffleHelper } from './helpers';
 import { SETTINGS } from './settings';

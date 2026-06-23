@@ -1,7 +1,7 @@
 // Types
 import type { Achievement } from 'types/game';
 // Components
-import type { AlienAttribute, AlienItem } from 'components/toolKits/AlienAttributes';
+import type { AlienAttribute, AlienItem } from '@components/toolKits/AlienAttributes';
 
 /**
  * Payload for submitting selected alien player

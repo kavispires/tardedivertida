@@ -1,9 +1,9 @@
 // Types
 import type { DatingCandidateCard, DatingCandidateImageCard } from 'types/tdr';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 
 type CandidateProps = {
   head: DatingCandidateImageCard;

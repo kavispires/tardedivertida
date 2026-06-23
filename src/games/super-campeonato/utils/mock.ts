@@ -2,7 +2,7 @@ import { cloneDeep, sampleSize } from 'lodash';
 // Types
 import type { TextCard } from 'types/tdr';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import type { Bet, Bracket, FightingContender } from './type';
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';

@@ -4,18 +4,18 @@ import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass, getRandomItem } from 'utils/helpers';
+import { getAnimationClass, getRandomItem } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { messageContent } from 'components/pop-up/messageContent';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { messageContent } from '@components/pop-up/messageContent';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { CardEntry, SubmitDefensePayload } from './utils/types';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';

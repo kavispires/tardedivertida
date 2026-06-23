@@ -3,16 +3,16 @@ import { Space } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useHost } from 'hooks/useHost';
-import { useLoading } from 'hooks/useLoading';
+import { useHost } from '@hooks/useHost';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { Step } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { Step } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 
 type StepBossPlayerSelectionProps = {
   players: GamePlayers;

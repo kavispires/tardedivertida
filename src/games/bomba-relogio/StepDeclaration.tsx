@@ -4,19 +4,19 @@ import { InputNumber, Space, Tooltip } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { BombIcon } from 'icons/BombIcon';
-import { WireIcon } from 'icons/WireIcon';
+import { BombIcon } from '@icons/BombIcon';
+import { WireIcon } from '@icons/WireIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { DataCounts, Status, SubmitDeclarationPayload } from './utils/types';
 import { mockDeclaration } from './utils/mock';

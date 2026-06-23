@@ -2,7 +2,7 @@
 import { BugFilled } from '@ant-design/icons';
 import { Button, Collapse } from 'antd';
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useDevFeatures } from '@hooks/useDevFeatures';
 // Internal
 import { dailySoundEffects, SFXAllNames } from '../utils/soundEffects';
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';

@@ -2,14 +2,14 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Icons
-import { WaitingRoomIcon } from 'icons/WaitingRoomIcon';
+import { WaitingRoomIcon } from '@icons/WaitingRoomIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { ReadyPlayersBar } from 'components/players/ReadyPlayersBar';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { Translate } from '@components/language/Translate';
+import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Sass
 import styles from './WaitingRoom.module.scss';
 

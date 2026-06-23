@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import type { ButtonProps } from 'antd';
 // Hooks
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Internal
 import { SlideShowControls } from './SlideShowControls';
 import styles from './styles';

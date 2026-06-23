@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { NOOP } from 'utils/constants';
-import { getAnimationClass } from 'utils/helpers';
+import { NOOP } from '@utils/constants';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import type { StreetCard } from '../utils/types';
 

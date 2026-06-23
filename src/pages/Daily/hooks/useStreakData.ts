@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday } from '@utils/helpers';
 // Internal
 import { loadStreakData, saveStreakData } from '../utils/streakManager';
 import type { DailyStreakData } from '../utils/types';

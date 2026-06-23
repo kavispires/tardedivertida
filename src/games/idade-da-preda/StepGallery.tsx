@@ -1,15 +1,15 @@
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { SlideShow } from 'components/slide-show/SlideShow';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { SlideShow } from '@components/slide-show/SlideShow';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Concept, GalleryEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';

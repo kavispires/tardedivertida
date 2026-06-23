@@ -2,8 +2,8 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Divider, Space, Tooltip } from 'antd';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
 
 type Stat = {
   key: string;

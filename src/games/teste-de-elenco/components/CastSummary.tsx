@@ -3,20 +3,20 @@ import type { ComponentType } from 'react';
 import { CheckOutlined, QuestionOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 // Icons
-import { AudioIcon } from 'icons/AudioIcon';
-import { BrainIcon } from 'icons/BrainIcon';
-import { ComedyIcon } from 'icons/ComedyIcon';
-import { FireIcon } from 'icons/FireIcon';
-import { KnifeIcon } from 'icons/KnifeIcon';
-import { LoveIcon } from 'icons/LoveIcon';
-import { MovieStarIcon } from 'icons/MovieStarIcon';
-import { PlayerIcon } from 'icons/PlayerIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { StarIcon } from 'icons/StarIcon';
-import { SupportIcon } from 'icons/SupportIcon';
+import { AudioIcon } from '@icons/AudioIcon';
+import { BrainIcon } from '@icons/BrainIcon';
+import { ComedyIcon } from '@icons/ComedyIcon';
+import { FireIcon } from '@icons/FireIcon';
+import { KnifeIcon } from '@icons/KnifeIcon';
+import { LoveIcon } from '@icons/LoveIcon';
+import { MovieStarIcon } from '@icons/MovieStarIcon';
+import { PlayerIcon } from '@icons/PlayerIcon';
+import { SkullIcon } from '@icons/SkullIcon';
+import { StarIcon } from '@icons/StarIcon';
+import { SupportIcon } from '@icons/SupportIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import type { FeatureFilm } from '../utils/types';
 

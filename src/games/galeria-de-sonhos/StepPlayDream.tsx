@@ -6,21 +6,21 @@ import { App } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { messageContent } from 'components/pop-up/messageContent';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { messageContent } from '@components/pop-up/messageContent';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { ImageCardObj, PlayCardPayload } from './utils/types';
 import { BotsRules, CardPlayRules } from './components/RulesBlobs';

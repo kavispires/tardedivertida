@@ -1,7 +1,7 @@
 // Icons
-import { DailyMapsGameIcon } from 'icons/DailyMapsGameIcon';
+import { DailyMapsGameIcon } from '@icons/DailyMapsGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'MAPEAMENTO',

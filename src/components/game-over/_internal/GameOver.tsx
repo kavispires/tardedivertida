@@ -7,23 +7,23 @@ import { Button, Progress, Space } from 'antd';
 // Types
 import type { GameState, GamePlayer } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Components
-import { GameStrip } from 'components/general/GameBanner';
-import { HostButton } from 'components/host/HostButton';
-import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
+import { GameStrip } from '@components/general/GameBanner';
+import { HostButton } from '@components/host/HostButton';
+import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { useGameInfoContext } from '@components/session/GameInfoContext';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { RateGameWidget } from './RateGameWidget';
 // Images
-import gameOverTitle from 'assets/images/game-over-title.svg?url';
+import gameOverTitle from '@assets/images/game-over-title.svg?url';
 // Sass
 import styles from './gameOver.module.scss';
 

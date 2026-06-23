@@ -1,9 +1,9 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarEntry } from 'components/player/PlayerAvatarEntry';
-import { SlideShowLabel } from 'components/slide-show/SlideShowComposableComponents';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarEntry } from '@components/player/PlayerAvatarEntry';
+import { SlideShowLabel } from '@components/slide-show/SlideShowComposableComponents';
 
 type GalleryWindowCreditsProps = {
   artist: GamePlayer;

@@ -3,12 +3,12 @@ import { Button, Form, Popover, Select } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { PLACEHOLDER_PLAYER } from 'utils/constants';
+import { PLACEHOLDER_PLAYER } from '@utils/constants';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { Message } from '../utils/types';
 

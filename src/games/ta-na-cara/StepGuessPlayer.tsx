@@ -5,15 +5,15 @@ import { Select } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCache } from '@hooks/useCache';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitGuessPayload } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';

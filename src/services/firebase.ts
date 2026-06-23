@@ -1,4 +1,4 @@
-import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
+import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from '@dev-configs';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 import { type FirebaseApp, initializeApp } from 'firebase/app';
 import {
@@ -17,11 +17,9 @@ import {
 import { getFirestore, connectFirestoreEmulator, type Firestore } from 'firebase/firestore';
 import { getFunctions, connectFunctionsEmulator, type Functions } from 'firebase/functions';
 // Hooks
-import { setGlobalState } from 'hooks/useGlobalState';
+import { setGlobalState } from '@hooks/useGlobalState';
 // Utils
-import { isDevEnv } from 'utils/helpers';
-// Ant Design Resources
-// import { message, notification } from 'antd';
+import { isDevEnv } from '@utils/helpers';
 
 const buildKey = () => {
   return [

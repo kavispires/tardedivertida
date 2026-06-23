@@ -1,19 +1,19 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { MysteryBoxIcon } from 'icons/MysteryBoxIcon';
+import { MysteryBoxIcon } from '@icons/MysteryBoxIcon';
 // Components
-import { AlienText } from 'components/alien/AlienText';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { TextHighlight } from 'components/text/TextHighlight';
-import { ViewIf } from 'components/views/ViewIf';
+import { AlienText } from '@components/alien/AlienText';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { TextHighlight } from '@components/text/TextHighlight';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnStopDeliveryAPIRequest, useOnSubmitDeliveryAPIRequest } from './utils/api-requests';
 import { COMUNICACAO_DUO_PHASES } from './utils/constants';

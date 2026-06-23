@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
 
 type SelectedDreamsProps = {
   user: GamePlayer;

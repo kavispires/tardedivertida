@@ -1,6 +1,6 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
 // Internal
 import type { SubmitPlayCardPayload } from './types';
 import { NA_FILA_DO_BANCO_ACTIONS } from './constants';

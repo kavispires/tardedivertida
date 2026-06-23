@@ -4,12 +4,12 @@ import { Progress } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { WaitingRoom } from 'components/players/WaitingRoom';
-import { Step } from 'components/steps/Step';
+import { Translate } from '@components/language/Translate';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { WaitingRoom } from '@components/players/WaitingRoom';
+import { Step } from '@components/steps/Step';
 // Internal
 import { UE_SO_ISSO_PHASES } from '../utils/constants';
 

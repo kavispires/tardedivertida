@@ -4,7 +4,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { BugFilled } from '@ant-design/icons';
 import { Button, type ButtonProps } from 'antd';
 // Services
-import { firestore } from 'services/firebase';
+import { firestore } from '@services/firebase';
 // Internal
 import { DebugOnly } from './DebugOnly';
 

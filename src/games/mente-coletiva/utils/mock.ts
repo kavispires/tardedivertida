@@ -1,6 +1,6 @@
 import { shuffle } from 'lodash';
 // Utils
-import { getEntryId, getRandomItem } from 'utils/helpers';
+import { getEntryId, getRandomItem } from '@utils/helpers';
 // Internal
 import type { Question } from './types';
 

@@ -7,19 +7,19 @@ import { Typography, Layout, Divider, Row, Col, Tag, Flex } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useGameList } from 'hooks/useGameList';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameList } from '@hooks/useGameList';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { SEPARATOR } from 'utils/constants';
-import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
+import { SEPARATOR } from '@utils/constants';
+import { calculateGameAverageDuration, isDevEnv } from '@utils/helpers';
 // Components
-import { LogoutButton } from 'components/auth/LogoutButton';
-import { LanguageSwitch } from 'components/language/LanguageSwitch';
-import { Translate } from 'components/language/Translate';
-import { PageLayout } from 'components/layout/PageLayout';
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { LogoutButton } from '@components/auth/LogoutButton';
+import { LanguageSwitch } from '@components/language/LanguageSwitch';
+import { Translate } from '@components/language/Translate';
+import { PageLayout } from '@components/layout/PageLayout';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 // Pages
-import { DevHeader } from 'pages/Dev/DevHeader';
+import { DevHeader } from '@pages/Dev/DevHeader';
 // Internal
 import { GameCard } from './components/GameCard';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';

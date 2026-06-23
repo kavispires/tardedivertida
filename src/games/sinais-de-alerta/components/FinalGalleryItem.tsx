@@ -3,10 +3,10 @@ import { Progress, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';

@@ -1,5 +1,5 @@
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 export function PlanningRules() {
   return (

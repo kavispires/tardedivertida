@@ -1,8 +1,8 @@
-import sinaisDeAlertaTimer from 'assets/sounds/sinais-de-alerta-30.mp3';
+import sinaisDeAlertaTimer from '@assets/sounds/sinais-de-alerta-30.mp3';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 
 /**
  * Component that plays the Sinais de Alerta timer sound with volume controls

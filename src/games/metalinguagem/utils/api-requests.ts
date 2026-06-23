@@ -1,6 +1,6 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
 // Internal
 import type { SubmitGuessesPayload, SubmitWordPayload } from './types';
 import { METALINGUAGEM_ACTIONS } from './constants';

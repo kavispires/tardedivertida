@@ -1,4 +1,4 @@
-import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
+import { SheepAvatar } from '@games/mente-coletiva/components/SheepAvatar';
 import { orderBy, truncate } from 'lodash';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -6,19 +6,19 @@ import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { App, Button, Col, Divider, Flex, Layout, Row, Select, Tag, type TagProps } from 'antd';
 // Hooks
-import { useQueryParams } from 'hooks/useQueryParams';
+import { useQueryParams } from '@hooks/useQueryParams';
 // Utils
-import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
-import { makeArray } from 'utils/helpers';
+import { AVAILABLE_AVATAR_IDS, AVATARS } from '@utils/avatars';
+import { makeArray } from '@utils/helpers';
 // Components
-import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
-import { EmojiCard } from 'components/cards/EmojiCard';
-import { TreeCard } from 'components/cards/TreeCard';
-import { Medal } from 'components/general/Medal';
-import { PageLayout } from 'components/layout/PageLayout';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { ClubberAvatar } from '@components/avatars/ClubberAvatar';
+import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
+import { SuperHeroAvatar } from '@components/avatars/SuperHeroAvatar';
+import { EmojiCard } from '@components/cards/EmojiCard';
+import { TreeCard } from '@components/cards/TreeCard';
+import { Medal } from '@components/general/Medal';
+import { PageLayout } from '@components/layout/PageLayout';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import { MEDALS_IDS } from './utils/constants';
 import { DevHeader } from './DevHeader';

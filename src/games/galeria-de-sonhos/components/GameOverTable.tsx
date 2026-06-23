@@ -2,12 +2,12 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { ImageBlurButton } from 'components/image-cards/ImageBlurButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
+import { ImageBlurButton } from '@components/image-cards/ImageBlurButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 

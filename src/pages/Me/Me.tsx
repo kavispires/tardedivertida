@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useTitle } from 'react-use';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Internal
 import { LoginModal } from './components/LoginModal';
 import { MeContent } from './components/MeContent';

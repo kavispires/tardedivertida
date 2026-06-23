@@ -1,16 +1,16 @@
 // Types
 import type { GameRound, GamePlayer } from 'types/game';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { BotHighlight } from 'components/metrics/BotHighlight';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
-import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { BotHighlight } from '@components/metrics/BotHighlight';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { PlayerHighlight } from '@components/metrics/PlayerHighlight';
+import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 
 type WordSelectionRulesProps = {
   scout: GamePlayer;

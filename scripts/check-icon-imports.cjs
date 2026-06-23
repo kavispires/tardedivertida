@@ -16,8 +16,8 @@ const ALLOWED_FILES = [
 ];
 
 try {
-  // Search for imports from icons/collection (must start with 'import')
-  const grepCommand = 'grep -rn "^import.*from.*icons/collection" src/ || true';
+  // Search for imports from icons/collection or @icons/collection (must start with 'import')
+  const grepCommand = 'grep -rn "^import.*from.*[@]\\?icons/collection" src/ || true';
   const result = execSync(grepCommand, { encoding: 'utf-8' });
 
   if (!result.trim()) {
@@ -41,8 +41,8 @@ try {
     console.error(`  ${violation}`);
   });
   console.error('\n⚠️  Use direct imports instead:');
-  console.error('   ❌ BAD:  import { MyIcon } from \'icons/collection\';');
-  console.error('   ✅ GOOD: import { MyIcon } from \'icons/MyIcon\';\n');
+  console.error('   ❌ BAD:  import { MyIcon } from \'@icons/collection\';');
+  console.error('   ✅ GOOD: import { MyIcon } from \'@icons/MyIcon\';\n');
 
   process.exit(1);
 } catch (error) {

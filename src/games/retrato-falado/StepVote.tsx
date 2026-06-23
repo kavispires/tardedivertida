@@ -6,20 +6,20 @@ import { Space } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { MonsterImage } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { CanvasResizer } from 'components/canvas/CanvasResizer';
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
-import { MonsterCard } from 'components/cards/MonsterCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { SendButton } from '@components/buttons/SendButton';
+import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { MonsterCard } from '@components/cards/MonsterCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { Sketch, SubmitVotePayload } from './utils/types';
 

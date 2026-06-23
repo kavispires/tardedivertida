@@ -4,21 +4,21 @@ import { useMeasure } from 'react-use';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useScreenSize } from 'hooks/useScreenSize';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useScreenSize } from '@hooks/useScreenSize';
 // Utils
-import { PLACEHOLDER_PLAYER } from 'utils/constants';
+import { PLACEHOLDER_PLAYER } from '@utils/constants';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
-import { ArrowIcon } from 'icons/ArrowIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
+import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DivButton } from 'components/buttons/DivButton';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { ZoomPanPinchContainer } from 'components/layout/ZoomPanPinchContainer';
-import { AvatarGroup } from 'components/players/PlayerAvatarGroup';
-import { ViewIf } from 'components/views/ViewIf';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DivButton } from '@components/buttons/DivButton';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { ZoomPanPinchContainer } from '@components/layout/ZoomPanPinchContainer';
+import { AvatarGroup } from '@components/players/PlayerAvatarGroup';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { MapSegment, PlayerMapping, Tree, TreeId } from '../utils/types';
 import { getDirection } from '../utils/helpers';

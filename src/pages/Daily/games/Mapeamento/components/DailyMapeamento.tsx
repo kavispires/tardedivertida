@@ -5,14 +5,14 @@ import { Layout, Modal, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Keyboard } from 'pages/Daily/components/Keyboard';
-import { Menu } from 'pages/Daily/components/Menu';
-import { RegionHint, RegionText } from 'pages/Daily/components/Region';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Keyboard } from '@pages/Daily/components/Keyboard';
+import { Menu } from '@pages/Daily/components/Menu';
+import { RegionHint, RegionText } from '@pages/Daily/components/Region';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

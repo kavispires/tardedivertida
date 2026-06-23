@@ -2,8 +2,8 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language/Translate';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { Bracket, BracketTier } from '../utils/type';
 import { BracketContenderVotes } from './BracketContenderVotes';

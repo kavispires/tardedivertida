@@ -5,17 +5,17 @@ import { Badge, Button } from 'antd';
 import type { GamePlayer } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useMock } from 'hooks/useMock';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useMock } from '@hooks/useMock';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitWordsPayload } from './utils/types';
 

@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, type AvatarProps } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Images
-import avatars from 'assets/images/avatars.svg?url';
+import avatars from '@assets/images/avatars.svg?url';
 
 export type PlayerAvatarProps = AvatarProps & {
   /**

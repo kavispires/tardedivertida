@@ -1,9 +1,8 @@
 // Icons
-import { GamblingChipIcon } from 'icons/GamblingChipIcon';
-import { LodgeIcon } from 'icons/LodgeIcon';
+import { GamblingChipIcon } from '@icons/GamblingChipIcon';
+import { LodgeIcon } from '@icons/LodgeIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
-// Icons
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function ChipsHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<GamblingChipIcon />}>{children}</MetricHighlight>;

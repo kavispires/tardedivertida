@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Images
-import trees from 'assets/images/trees.svg?url';
+import trees from '@assets/images/trees.svg?url';
 // Sass
 import styles from './TreeCard.module.scss';
 

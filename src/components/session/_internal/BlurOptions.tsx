@@ -3,10 +3,10 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Alert, App, Button, Checkbox, Spin } from 'antd';
 // Hooks
-import { useBlurCards } from 'hooks/useBlurCards';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useBlurCards } from '@hooks/useBlurCards';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './drawers.module.scss';
 

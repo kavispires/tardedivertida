@@ -1,7 +1,7 @@
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
+import { CharacterCard } from '@components/cards/CharacterCard';
 // Internal
 import type { Bracket } from '../utils/type';
 

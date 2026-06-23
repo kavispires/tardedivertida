@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Carousel } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
 
 type DrawingCarouselProps = {
   drawings: string[];

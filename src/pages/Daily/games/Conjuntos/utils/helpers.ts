@@ -1,10 +1,10 @@
 import { cloneDeep, merge } from 'lodash';
 // Utils
-import { stringRemoveAccents } from 'utils/helpers';
+import { stringRemoveAccents } from '@utils/helpers';
 // Pages
-import { checkWeekend, generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import type { BasicResultsOptions } from 'pages/Daily/utils/types';
+import { checkWeekend, generateShareableResult, loadLocalToday } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import type { BasicResultsOptions } from '@pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyConjuntosEntry, GameState } from './types';

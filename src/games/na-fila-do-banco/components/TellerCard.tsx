@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Flex, Tooltip } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { Teller } from '../utils/types';
 import { CHARACTER_TYPES } from '../utils/constants';

@@ -6,12 +6,12 @@ import { Flex, Popover, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { ImageCardButton } from 'components/image-cards/ImageCardButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
-import { ViewIf } from 'components/views/ViewIf';
+import { ImageCardButton } from '@components/image-cards/ImageCardButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { ClientCard } from '../utils/types';
 import { CHARACTER_TYPES } from '../utils/constants';

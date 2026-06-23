@@ -5,19 +5,19 @@ import { Input, Tag } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TimerBar } from 'components/timers/TimerBar';
+import { SendButton } from '@components/buttons/SendButton';
+import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TimerBar } from '@components/timers/TimerBar';
 // Internal
 import type { SecretWord, SendGuessPayload, SubmitOutcomePayload, Suggestion } from './utils/types';
 import { GUESSING_DURATION } from './utils/constants';

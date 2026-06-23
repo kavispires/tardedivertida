@@ -5,14 +5,14 @@ import { Avatar, Divider, Flex } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { TextCard } from 'types/tdr';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { XIcon } from 'icons/XIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Card } from 'components/cards/Card';
-import { PlayerAvatarTooltip } from 'components/player/PlayerAvatarTooltip';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Card } from '@components/cards/Card';
+import { PlayerAvatarTooltip } from '@components/player/PlayerAvatarTooltip';
 // Internal
 import type { GalleryBracket } from '../utils/types';
 import { BracketPointsBox } from './BracketPointsBox';

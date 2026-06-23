@@ -1,11 +1,11 @@
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { GAME_COLLECTION } from 'utils/constants';
-import { PHASES } from 'utils/phases';
+import { GAME_COLLECTION } from '@utils/constants';
+import { PHASES } from '@utils/phases';
 // Components
-import { PhaseError } from 'components/phases/PhaseError';
-import { Session } from 'components/session/Session';
+import { PhaseError } from '@components/phases/PhaseError';
+import { Session } from '@components/session/Session';
 // Internal
 import { MESMICE_PHASES } from './utils/constants';
 import { PhaseClueWriting } from './PhaseClueWriting';

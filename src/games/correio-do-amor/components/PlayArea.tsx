@@ -3,13 +3,13 @@ import { type ReactNode, useMemo } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
-import { NoIcon } from 'icons/NoIcon';
-import { SpeechBubbleHeartIcon } from 'icons/SpeechBubbleHeartIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { SpeechBubbleHeartIcon } from '@icons/SpeechBubbleHeartIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayerFlex } from 'components/player/PlayerFlex';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayerFlex } from '@components/player/PlayerFlex';
 // Internal
 import { PLAYER_STATUS } from '../utils/constants';
 

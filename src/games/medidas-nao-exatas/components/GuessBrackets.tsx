@@ -2,9 +2,9 @@ import { orderBy } from 'lodash';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { removeDuplicates } from 'utils/helpers';
+import { removeDuplicates } from '@utils/helpers';
 // Components
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { Guess } from '../utils/types';
 import { BracketPointsBox } from './BracketPointsBox';

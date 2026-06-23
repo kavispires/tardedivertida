@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { BoxEqualIcon } from 'icons/BoxEqualIcon';
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
+import { BoxEqualIcon } from '@icons/BoxEqualIcon';
+import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Card } from 'components/cards/Card';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Card } from '@components/cards/Card';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 import { ObjectCard } from './ObjectCard';

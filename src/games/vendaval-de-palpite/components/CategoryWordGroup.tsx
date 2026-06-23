@@ -1,5 +1,5 @@
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import { CategoryCard } from './CategoryCard';
 import { SecretWordCard } from './SecretWordCard';

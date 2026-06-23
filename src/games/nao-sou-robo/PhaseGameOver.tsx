@@ -1,13 +1,13 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { BadgeIcon } from 'icons/BadgeIcon';
-import { NoIcon } from 'icons/NoIcon';
-import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { BadgeIcon } from '@icons/BadgeIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { NuclearExplosionIcon } from '@icons/NuclearExplosionIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
 // Internal
 import achievementsReference from './utils/achievements';
 import { OUTCOME } from './utils/constants';

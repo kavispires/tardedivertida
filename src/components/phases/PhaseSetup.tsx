@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useGameId } from 'hooks/useGameId';
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameId } from '@hooks/useGameId';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from '@utils/phases';
 // Icons
-import { AnimatedGearIcon } from 'icons/AnimatedGearIcon';
+import { AnimatedGearIcon } from '@icons/AnimatedGearIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
 import { VideoBackground } from './lobby/VideoBackground';

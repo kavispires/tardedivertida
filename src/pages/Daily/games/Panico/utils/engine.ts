@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Internal
 import type { ButtonEntry } from './types';
 import { BUTTONS_LIBRARY, POOLS } from './data';

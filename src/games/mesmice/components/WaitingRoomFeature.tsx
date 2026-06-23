@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { XIcon } from 'icons/XIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
 import { ActivePlayerObjectClue } from './ActivePlayerObjectClue';

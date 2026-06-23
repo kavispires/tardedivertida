@@ -1,5 +1,5 @@
 // Pages
-import type { DateKey, LettersDictionary } from 'pages/Daily/utils/types';
+import type { DateKey, LettersDictionary } from '@pages/Daily/utils/types';
 
 export type GameState = {
   id: DateKey;

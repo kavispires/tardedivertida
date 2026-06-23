@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from '@hooks/useCountdown';
 // Pages
-import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import { validateButtonPress } from '../utils/engine';
 import type { ButtonEntry } from '../utils/types';

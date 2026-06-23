@@ -1,15 +1,15 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
-import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { StarPoints } from 'components/points/StarPoints';
-import { FireworksEffect } from 'components/visual-effects/FireworksEffect';
+import { Translate } from '@components/language/Translate';
+import { PlayerHighlight } from '@components/metrics/PlayerHighlight';
+import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StarPoints } from '@components/points/StarPoints';
+import { FireworksEffect } from '@components/visual-effects/FireworksEffect';
 
 type MatchCountProps = {
   matchCount: number;

@@ -5,16 +5,16 @@ import { Flex } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { TestimonyQuestionCard } from 'types/tdr';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxMinusIcon } from 'icons/BoxMinusIcon';
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxMinusIcon } from '@icons/BoxMinusIcon';
+import { BoxPlusIcon } from '@icons/BoxPlusIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
 type QuestionHistoryProps = {
   players: GamePlayers;

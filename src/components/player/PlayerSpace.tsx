@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space, type SpaceProps } from 'antd';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 
 export type PlayerSpaceProps = SpaceProps & {
   /**

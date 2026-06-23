@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Icons
-import { ArrowSignIcon } from 'icons/ArrowSignIcon';
+import { ArrowSignIcon } from '@icons/ArrowSignIcon';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type RoundTypeProps = {
   /**

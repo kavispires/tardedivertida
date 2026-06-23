@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { BulbOutlined } from '@ant-design/icons';
 import { Flex, Typography, type SpaceProps } from 'antd';
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 export function Region({ align, orientation, children, className, ...props }: SpaceProps) {
   return (

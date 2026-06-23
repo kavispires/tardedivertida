@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { Step } from 'components/steps/Step';
+import { Step } from '@components/steps/Step';
 
 type StepResolutionProps = {
   players: GamePlayers;

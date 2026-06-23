@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import { CloseOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 // Utils
-import { LETTERS } from 'utils/constants';
-import { getColorFromIndex } from 'utils/helpers';
+import { LETTERS } from '@utils/constants';
+import { getColorFromIndex } from '@utils/helpers';
 // Components
-import { Card } from 'components/cards/Card';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Card } from '@components/cards/Card';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 
 type SuggestionCardProps = {
   avatarId: string;

@@ -7,13 +7,13 @@ import { Button, Flex, Popover, Space, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCache } from '@hooks/useCache';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { SignCard } from '@components/cards/SignCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
 import { SPRITE_SIZE } from '../utils/constants';

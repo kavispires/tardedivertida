@@ -9,14 +9,14 @@
 ## 🚨 Critical Import Rules
 
 ### Icons (Bundle Size)
-**NEVER import from `icons/collection`** except in `src/pages/Dev/**` and `src/icons/collectionByGame.tsx`
+**NEVER import from `@pages/Dev/utils/iconsCollection** except in `src/pages/Dev/**` and `src/icons/iconsCollectionByGame.tsx`
 
 ```typescript
 // ❌ BAD - Creates 1.8MB bundle
-import { MyIcon } from 'icons/collection';
+import { MyIcon } from '`@pages/Dev/utils/iconsCollection';
 
 // ✅ GOOD - Tree-shakeable
-import { MyIcon } from 'icons/MyIcon';
+import { MyIcon } from '@icons/MyIcon';
 ```
 
 ### Components (No Barrel Exports)
@@ -24,10 +24,10 @@ import { MyIcon } from 'icons/MyIcon';
 
 ```typescript
 // ❌ BAD
-import { Button } from 'components/buttons';
+import { Button } from '@components/buttons';
 
 // ✅ GOOD
-import { Button } from 'components/buttons/Button';
+import { Button } from '@components/buttons/Button';
 ```
 
 ### Lodash (Tree-Shaking)
@@ -101,19 +101,19 @@ import { useState, useMemo } from 'react';
 import type { PhaseProps } from 'types/game';
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from '@hooks/useStep';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { HieroglyphIcon } from 'icons/HieroglyphIcon';
+import { HieroglyphIcon } from '@icons/HieroglyphIcon';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { Translate } from '@components/language/Translate';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
 // Utils (optional)
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Images (optional)
-import avatars from 'assets/images/avatars.svg?url';
+import avatars from '@assets/images/avatars.svg?url';
 // Services (optional)
 // Sass (if using CSS modules)
 import styles from './Component.module.scss';
@@ -543,7 +543,7 @@ const handleClick = useCallback(
 
 ## 📝 Common Issues to Avoid
 
-1. ❌ Importing from `icons/collection`
+1. ❌ Importing from `@pages/Dev/utils/iconsCollection`
 2. ❌ Using barrel exports in components
 3. ❌ Using `import _ from 'lodash'`
 4. ❌ Missing JSDoc on type properties

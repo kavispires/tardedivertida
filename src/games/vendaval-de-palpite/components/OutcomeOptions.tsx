@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Alert, Button, Divider } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Instruction } from '@components/text/Instruction';
 
 type OutcomeOptionsProps = {
   outcome?: string;

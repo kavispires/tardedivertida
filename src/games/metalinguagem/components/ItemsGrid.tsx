@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import type { GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Components
-import { DivButton } from 'components/buttons/DivButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { AvatarGroup } from 'components/players/PlayerAvatarGroup';
+import { DivButton } from '@components/buttons/DivButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { AvatarGroup } from '@components/players/PlayerAvatarGroup';
 
 type ItemsGridProps = {
   items: Item[];

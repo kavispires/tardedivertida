@@ -1,6 +1,6 @@
 import { useEffectOnce } from 'react-use';
 // Utils
-import { speak } from 'utils/speech';
+import { speak } from '@utils/speech';
 // Internal
 import { useGlobalLocalStorage } from './useGlobalLocalStorage';
 import { useLanguage } from './useLanguage';

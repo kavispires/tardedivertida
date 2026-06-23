@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 
 type PhaseTimerResetProps = {
   /**

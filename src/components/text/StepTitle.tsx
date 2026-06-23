@@ -4,10 +4,10 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { type AvatarProps, Typography } from 'antd';
 // Icons
-import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
+import { AnimatedClockIcon } from '@icons/AnimatedClockIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { useGameAppearance } from 'components/session/GameInfoContext';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { useGameAppearance } from '@components/session/GameInfoContext';
 // Sass
 import styles from './StepTitle.module.scss';
 

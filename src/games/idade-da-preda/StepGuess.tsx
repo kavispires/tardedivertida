@@ -4,24 +4,24 @@ import { Divider, Flex } from 'antd';
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { useVotingMatch } from 'hooks/useVotingMatch';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
+import { useVotingMatch } from '@hooks/useVotingMatch';
 // Utils
-import { getEntryId, parseEntryId } from 'utils/helpers';
+import { getEntryId, parseEntryId } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { SpeechBubble } from 'components/text/SpeechBubble';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { SpeechBubble } from '@components/text/SpeechBubble';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { Concept, NewNameEntry, SubmitGuessesPayload } from './utils/types';
 import { useSpriteWidth } from './utils/useSpriteWidth';

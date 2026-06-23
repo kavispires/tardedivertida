@@ -2,9 +2,9 @@
 import { FireFilled } from '@ant-design/icons';
 import { Button, Flex, Popover, Typography } from 'antd';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { useStreakData } from '../hooks/useStreakData';
 

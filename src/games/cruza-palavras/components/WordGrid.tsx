@@ -2,7 +2,7 @@ import type { ElementType } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
+import { SpreadsheetCell, SpreadsheetGrid } from '@components/general/SpreadsheetGrid';
 // Internal
 import type { Grid, GridType } from '../utils/types';
 import { WordGridHeader } from './WordGridHeader';

@@ -2,21 +2,21 @@ import { useEffect, useMemo, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { BarcodeIcon } from 'icons/BarcodeIcon';
-import { BossIdeaIcon } from 'icons/BossIdeaIcon';
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+import { BarcodeIcon } from '@icons/BarcodeIcon';
+import { BossIdeaIcon } from '@icons/BossIdeaIcon';
+import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK, OUTCOME } from './utils/constants';
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';

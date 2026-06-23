@@ -2,17 +2,17 @@ import { orderBy } from 'lodash';
 // Types
 import type { PhaseProps, GamePlayer } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Icons
-import { PoopIcon } from 'icons/PoopIcon';
+import { PoopIcon } from '@icons/PoopIcon';
 // Components
-import { CostumeAvatar } from 'components/avatars/CostumeAvatar';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
+import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import { GRID_REPEAT } from './utils/constants';

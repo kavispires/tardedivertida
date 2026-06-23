@@ -2,7 +2,7 @@
 import type { Achievement, GameRanking, GamePlayer } from 'types/game';
 import type { CityLocation } from 'types/tdr';
 // Components
-import type { GridMapType } from 'components/toolKits/GridMap';
+import type { GridMapType } from '@components/toolKits/GridMap';
 
 /**
  * Payload for submitting planning decisions

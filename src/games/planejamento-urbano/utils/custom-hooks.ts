@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 
 export const useLocationWidth = (cityWidth: number) => {
   return useCardWidth(cityWidth + 2, {

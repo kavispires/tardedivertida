@@ -6,18 +6,18 @@ import { Tooltip } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useHost } from 'hooks/useHost';
-import { useHostActionRequest } from 'hooks/useHostActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useCountdown } from '@hooks/useCountdown';
+import { useHost } from '@hooks/useHost';
+import { useHostActionRequest } from '@hooks/useHostActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Services
-import { HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API_ACTIONS } from '@services/adapters';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { WaitingTime } from 'components/timers/WaitingTime';
+import { Translate } from '@components/language/Translate';
+import { WaitingTime } from '@components/timers/WaitingTime';
 // Internal
 import { HostOnlyContainer, hostOnlyContainerStyles } from './HostOnlyContainer';
 import { HostButton } from './HostButton';

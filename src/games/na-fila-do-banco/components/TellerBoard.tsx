@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 // Ant Design Resources
 import { Button, Flex } from 'antd';
 // Icons
-import { ActionAlertIcon } from 'icons/ActionAlertIcon';
+import { ActionAlertIcon } from '@icons/ActionAlertIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { ClientCard, Teller } from '../utils/types';
 import { CHARACTER_TYPES, TELLER_EFFECT_TYPE } from '../utils/constants';

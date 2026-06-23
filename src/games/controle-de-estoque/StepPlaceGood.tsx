@@ -7,22 +7,22 @@ import { Divider } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { BossIdeaCard } from 'types/tdr';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { BossIdeaIcon } from 'icons/BossIdeaIcon';
+import { BossIdeaIcon } from '@icons/BossIdeaIcon';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { WarehouseGoodCard } from 'components/cards/WarehouseGoodCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Good, PlaceGoodPayload, Status, WarehouseSlot } from './utils/types';
 import { useGoodComponentAndClass, useGoodSize } from './utils/hooks';

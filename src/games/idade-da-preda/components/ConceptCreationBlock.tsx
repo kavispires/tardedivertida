@@ -7,16 +7,16 @@ import { Button, Card, Flex, Input, Tooltip } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCache } from '@hooks/useCache';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { SpeakButton } from 'components/audio/SpeakButton';
-import { DivButton } from 'components/buttons/DivButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { SpeakButton } from '@components/audio/SpeakButton';
+import { DivButton } from '@components/buttons/DivButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { Concept } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';

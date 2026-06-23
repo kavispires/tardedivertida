@@ -2,22 +2,22 @@ import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useMock } from '@hooks/useMock';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { TrendingIcon } from 'icons/TrendingIcon';
+import { TrendingIcon } from '@icons/TrendingIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { WaitingRoom } from 'components/players/WaitingRoom';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { Step } from 'components/steps/Step';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { ViewIf } from 'components/views/ViewIf';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { WaitingRoom } from '@components/players/WaitingRoom';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { Step } from '@components/steps/Step';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
 import { mockTweetSelection } from './utils/mock';

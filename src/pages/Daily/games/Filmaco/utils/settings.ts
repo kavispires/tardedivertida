@@ -1,7 +1,7 @@
 // Icons
-import { DailyMovieGameIcon } from 'icons/DailyMovieGameIcon';
+import { DailyMovieGameIcon } from '@icons/DailyMovieGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'FILMACO',

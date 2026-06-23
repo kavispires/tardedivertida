@@ -4,7 +4,7 @@ import { Badge } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Components
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { BoardEntry, PlayerAssignedPair } from '../utils/types';
 import { getTitleForRound, PAIR_COLORS, PAIR_ICONS } from '../utils/helpers';

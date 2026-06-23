@@ -3,7 +3,7 @@ import { throttle } from 'lodash';
 // Ant Design Resources
 import { App } from 'antd';
 // Services
-import { GAME_API, type GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { GAME_API, type GAME_API_COMMON_ACTIONS } from '@services/adapters';
 // Internal
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';

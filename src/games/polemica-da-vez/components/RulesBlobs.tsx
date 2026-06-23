@@ -1,11 +1,11 @@
 // Types
 import type { GameRound, GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { TargetHighlight } from 'components/metrics/TargetHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { TargetHighlight } from '@components/metrics/TargetHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
 
 type ScoringRulesProps = {
   round: GameRound;

@@ -3,21 +3,21 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Form, Image, Modal } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
 // Services
-import { convertGuestoToUser } from 'services/firebase';
+import { convertGuestoToUser } from '@services/firebase';
 // Icons
-import { UserStatsIcon } from 'icons/UserStatsIcon';
+import { UserStatsIcon } from '@icons/UserStatsIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { SignUpForm } from './SignUp';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg?url';
+import logo from '@assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import styles from './auth.module.scss';
 

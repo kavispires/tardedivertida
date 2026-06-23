@@ -1,7 +1,7 @@
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { RulesWrapper } from 'pages/Daily/components/RulesWrapper';
+import { RulesWrapper } from '@pages/Daily/components/RulesWrapper';
 
 export function Rules() {
   return (

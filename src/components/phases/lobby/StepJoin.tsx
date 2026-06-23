@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Modal, Typography } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import type { UseStep } from 'hooks/useStep';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import type { UseStep } from '@hooks/useStep';
 // Services
-import { signInAsGuest } from 'services/firebase';
+import { signInAsGuest } from '@services/firebase';
 // Components
-import { SignIn, SignInWithGoogle } from 'components/auth/SignIn';
-import { SignUp } from 'components/auth/SignUp';
-import { Translate } from 'components/language/Translate';
+import { SignIn, SignInWithGoogle } from '@components/auth/SignIn';
+import { SignUp } from '@components/auth/SignUp';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 

@@ -3,17 +3,17 @@ import { useEffect } from 'react';
 // Types
 import type { Me } from 'types/user';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Utils
-import { SEPARATOR } from 'utils/constants';
-import { removeDuplicates } from 'utils/helpers';
+import { SEPARATOR } from '@utils/constants';
+import { removeDuplicates } from '@utils/helpers';
 // Pages
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
-import { useDailySaveDrawings } from 'pages/Daily/hooks/useDailySave';
-import { getAnalyticsEventName, wait } from 'pages/Daily/utils';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { useDailyGameState, useDailySessionState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from '@pages/Daily/hooks/useDailyPlayTracker';
+import { useDailySaveDrawings } from '@pages/Daily/hooks/useDailySave';
+import { getAnalyticsEventName, wait } from '@pages/Daily/utils';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyPicacoEntry, DrawingToSave, GameState, SessionState } from './types';

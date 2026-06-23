@@ -1,13 +1,13 @@
 // Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Components
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { MonsterCard } from 'components/cards/MonsterCard';
-import { Translate } from 'components/language/Translate';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { Title } from 'components/text/Title';
-import { TimerBar } from 'components/timers/TimerBar';
-import { ViewIf } from 'components/views/ViewIf';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { MonsterCard } from '@components/cards/MonsterCard';
+import { Translate } from '@components/language/Translate';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { Title } from '@components/text/Title';
+import { TimerBar } from '@components/timers/TimerBar';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { TIMES } from '../utils/constants';
 

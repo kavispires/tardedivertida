@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useDevFeatures } from '@hooks/useDevFeatures';
 // Utils
-import { LETTERS } from 'utils/constants';
-import { getEntryId } from 'utils/helpers';
+import { LETTERS } from '@utils/constants';
+import { getEntryId } from '@utils/helpers';
 // Internal
 import type { ArteRuimCustomCard } from '../utils/types';
 import { ArteRuimCard } from './Card';

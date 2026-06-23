@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { RocketOutlined } from '@ant-design/icons';
 import { Space, type SpaceProps } from 'antd';
 // Hooks
-import { useHost } from 'hooks/useHost';
+import { useHost } from '@hooks/useHost';
 // Sass
 import styles from './HostOnlyContainer.module.scss';
 

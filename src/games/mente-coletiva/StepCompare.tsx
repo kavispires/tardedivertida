@@ -1,9 +1,9 @@
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { Step, type StepProps } from 'components/steps/Step';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { Step, type StepProps } from '@components/steps/Step';
 // Internal
 import type {
   AddAnswerPayload,

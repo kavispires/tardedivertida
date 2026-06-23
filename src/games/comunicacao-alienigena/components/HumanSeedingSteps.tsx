@@ -6,23 +6,23 @@ import { Badge, Button, Flex, Steps, Switch, Typography, type StepsProps } from 
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { SEPARATOR } from 'utils/constants';
-import { getAnimationClass } from 'utils/helpers';
+import { SEPARATOR } from '@utils/constants';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Card } from 'components/cards/Card';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DevButton } from 'components/debug/DevButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { Title } from 'components/text/Title';
-import { alienAttributesUtils } from 'components/toolKits/AlienAttributes';
+import { Card } from '@components/cards/Card';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DevButton } from '@components/debug/DevButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { Title } from '@components/text/Title';
+import { alienAttributesUtils } from '@components/toolKits/AlienAttributes';
 // Internal
 import type { Seed, SubmitSeedingPayload } from '../utils/types';
 import { mockSeeds } from '../utils/mockSeeds';

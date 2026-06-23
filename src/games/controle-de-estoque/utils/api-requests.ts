@@ -1,8 +1,8 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
-import { useOnMakeMeReady } from 'hooks/useMakeMeReady';
-import type { UseStep } from 'hooks/useStep';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
+import { useOnMakeMeReady } from '@hooks/useMakeMeReady';
+import type { UseStep } from '@hooks/useStep';
 // Internal
 import type { PlaceGoodPayload, SubmitFulfillmentPayload } from './types';
 import { CONTROLE_DE_ESTOQUE_ACTIONS } from './constants';

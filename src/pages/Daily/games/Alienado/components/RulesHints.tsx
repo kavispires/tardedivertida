@@ -1,7 +1,7 @@
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { RuleEntry, RulesHintsModal } from 'pages/Daily/components/RulesHintsModal';
+import { RuleEntry, RulesHintsModal } from '@pages/Daily/components/RulesHintsModal';
 
 export function RulesHints() {
   return (

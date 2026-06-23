@@ -5,13 +5,13 @@ import { useMemo } from 'react';
 import { CheckCircleFilled, CheckSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Popover, Space, Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { SignCard } from '@components/cards/SignCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
 import { SPRITE_SIZE } from '../utils/constants';

@@ -3,12 +3,12 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Flex, Modal, Typography } from 'antd';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardButton } from 'components/image-cards/ImageCardButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { SendButton } from '@components/buttons/SendButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardButton } from '@components/image-cards/ImageCardButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload } from '../utils/types';
 import { ClientHighlight, DecksColorsHighlight } from './Highlights';

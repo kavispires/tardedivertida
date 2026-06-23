@@ -5,18 +5,18 @@ import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { DataCounts, Status, SubmitTargetPayload, UpdateTargetPlayerPayload } from './utils/types';
 import { CARD_IMAGE_NAMES, OUTCOME } from './utils/constants';

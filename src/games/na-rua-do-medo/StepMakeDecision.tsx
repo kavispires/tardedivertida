@@ -2,23 +2,23 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { HouseIcon } from 'icons/HouseIcon';
-import { WalkIcon } from 'icons/WalkIcon';
+import { HouseIcon } from '@icons/HouseIcon';
+import { WalkIcon } from '@icons/WalkIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { Title } from 'components/text/Title';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
 // Internal
 import type { CandySidewalk, StreetCard, SubmitDecisionPayload } from './utils/types';
 import { mockPlayerDecision } from './utils/mock';

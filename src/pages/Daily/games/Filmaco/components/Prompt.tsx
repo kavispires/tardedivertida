@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar, Space } from 'antd';
 // Icons
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+import { BoxBlankIcon } from '@icons/BoxBlankIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Pages
-import { cleanupLetter, isLetter } from 'pages/Daily/utils';
-import type { LettersDictionary } from 'pages/Daily/utils/types';
+import { cleanupLetter, isLetter } from '@pages/Daily/utils';
+import type { LettersDictionary } from '@pages/Daily/utils/types';
 
 type PromptProps = {
   text: string;

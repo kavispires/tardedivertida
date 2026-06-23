@@ -3,12 +3,12 @@ import { Alert } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
 import { Board } from './components/Board';

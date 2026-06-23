@@ -1,9 +1,9 @@
 // Components
-import { LanguageButtons } from 'components/language/LanguageButtons';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { LanguageButtons } from '@components/language/LanguageButtons';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

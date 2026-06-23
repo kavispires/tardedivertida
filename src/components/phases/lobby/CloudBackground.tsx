@@ -2,9 +2,9 @@ import { sampleSize } from 'lodash';
 import { motion, type MotionProps } from 'motion/react';
 import { useMemo } from 'react';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
-import { useGameAppearance } from 'components/session/GameInfoContext';
+import { useGameAppearance } from '@components/session/GameInfoContext';
 // Sass
 import styles from './CloudBackground.module.scss';
 

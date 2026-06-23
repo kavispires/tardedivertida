@@ -7,19 +7,19 @@ import { Button, Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Icons
-import { LodgeIcon } from 'icons/LodgeIcon';
-import { QualitySealIcon } from 'icons/QualitySealIcon';
+import { LodgeIcon } from '@icons/LodgeIcon';
+import { QualitySealIcon } from '@icons/QualitySealIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Lodge } from './utils/types';
 import { LODGE_COLORS } from './utils/constants';

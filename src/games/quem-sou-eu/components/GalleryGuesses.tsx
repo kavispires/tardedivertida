@@ -4,16 +4,16 @@ import { Space } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { StarPoints } from 'components/points/StarPoints';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { StarPoints } from '@components/points/StarPoints';
 import {
   SlideShowBubbleValue,
   SlideShowLabel,
   SlideShowNoWins,
   SlideShowPlayersList,
-} from 'components/slide-show/SlideShowComposableComponents';
+} from '@components/slide-show/SlideShowComposableComponents';
 // Internal
 import type { Characters } from '../utils/types';
 

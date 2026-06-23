@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { FlagFilled, HeartFilled, MessageFilled } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { SixPackIcon } from 'icons/SixPackIcon';
+import { SixPackIcon } from '@icons/SixPackIcon';
 // Components
-import { GroupQuestionCard } from 'components/cards/GroupQuestionCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Title } from 'components/text/Title';
+import { GroupQuestionCard } from '@components/cards/GroupQuestionCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryMenteColetiva } from '../../utils/types';
 import { SVGPhone } from '../SVGPhone';

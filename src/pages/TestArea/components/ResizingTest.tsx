@@ -1,12 +1,12 @@
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { CanvasResizer } from 'components/canvas/CanvasResizer';
-import { ImageCardBack } from 'components/image-cards/ImageCardBack';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { ImageCardBack } from '@components/image-cards/ImageCardBack';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

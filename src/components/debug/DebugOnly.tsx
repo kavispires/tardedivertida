@@ -1,7 +1,7 @@
-import { USE_DEV } from 'dev-configs';
+import { USE_DEV } from '@dev-configs';
 import type { ReactNode } from 'react';
 // Hooks
-import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useDevFeatures } from '@hooks/useDevFeatures';
 
 type DebugOnlyProps = {
   /**

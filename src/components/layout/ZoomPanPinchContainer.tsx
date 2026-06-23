@@ -24,7 +24,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Space, Tooltip } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './ZoomPanPinchContainer.module.scss';
 

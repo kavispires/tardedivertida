@@ -6,15 +6,15 @@ import { Button, Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { Region, RegionText } from 'pages/Daily/components/Region';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { Region, RegionText } from '@pages/Daily/components/Region';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

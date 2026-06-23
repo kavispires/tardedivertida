@@ -4,25 +4,25 @@ import { App } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useCountdown } from '@hooks/useCountdown';
+import { useLanguage } from '@hooks/useLanguage';
+import { useMock } from '@hooks/useMock';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Icons
-import { ImageCardsIcon } from 'icons/ImageCardsIcon';
+import { ImageCardsIcon } from '@icons/ImageCardsIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { messageContent } from 'components/pop-up/messageContent';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TimedTimerClock } from 'components/timers/TimedTimerClock';
-import { WaitingTime } from 'components/timers/WaitingTime';
-import { ViewIf } from 'components/views/ViewIf';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { messageContent } from '@components/pop-up/messageContent';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TimedTimerClock } from '@components/timers/TimedTimerClock';
+import { WaitingTime } from '@components/timers/WaitingTime';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { CardEntry, SubmitPlayCardPayload } from './utils/types';
 import { isEarliestPlayerWithFewestCards } from './utils/helpers';

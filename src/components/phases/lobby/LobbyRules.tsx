@@ -4,14 +4,14 @@ import { Flex, Image, Space, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useLanguage } from '@hooks/useLanguage';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Components
-import { GameTags } from 'components/general/GameTags';
-import { Translate } from 'components/language/Translate';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { GameTags } from '@components/general/GameTags';
+import { Translate } from '@components/language/Translate';
+import { useGameInfoContext } from '@components/session/GameInfoContext';
 // Internal
 import { LobbyReadyButtons } from './LobbyReadyButtons';
 // Sass

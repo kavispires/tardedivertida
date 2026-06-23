@@ -2,14 +2,14 @@ import { type ReactNode, useState } from 'react';
 // Types
 import type { GameState, GamePlayers } from 'types/game';
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from '@utils/phases';
 // Icons
-import { TheEndIcon } from 'icons/TheEndIcon';
+import { TheEndIcon } from '@icons/TheEndIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import { GameOver } from './_internal/GameOver';
 

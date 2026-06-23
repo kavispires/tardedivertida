@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 // Ant Design Resources
 import { App } from 'antd';
 // Utils
-import { getGameIdFromPathname, isValidGameId } from 'utils/helpers';
+import { getGameIdFromPathname, isValidGameId } from '@utils/helpers';
 // Internal
 import { useLanguage } from './useLanguage';
 

@@ -1,7 +1,7 @@
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Components
-import { alienAttributesUtils } from 'components/toolKits/AlienAttributes/alien-attributes';
+import { alienAttributesUtils } from '@components/toolKits/AlienAttributes/alien-attributes';
 // Internal
 import type { Seed, SubmitSeedingPayload } from './types';
 

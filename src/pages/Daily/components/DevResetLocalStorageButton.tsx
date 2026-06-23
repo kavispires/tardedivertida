@@ -2,10 +2,10 @@
 import { BugOutlined } from '@ant-design/icons';
 import { App, Button, Flex, Space } from 'antd';
 // Utils
-import { getToday, isDevEnv } from 'utils/helpers';
+import { getToday, isDevEnv } from '@utils/helpers';
 // Components
-import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language/Translate';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
 import { resetStreak } from '../utils/streakManager';

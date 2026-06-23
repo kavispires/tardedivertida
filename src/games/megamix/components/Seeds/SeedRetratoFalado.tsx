@@ -1,22 +1,22 @@
-import arteRuimTimer from 'assets/sounds/arte-ruim-timer.mp3';
+import arteRuimTimer from '@assets/sounds/arte-ruim-timer.mp3';
 import { useEffect, useState } from 'react';
 import { useAudio } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useCountdown } from '@hooks/useCountdown';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Utils
-import { NOOP } from 'utils/constants';
+import { NOOP } from '@utils/constants';
 // Icons
-import { PanicIcon } from 'icons/PanicIcon';
+import { PanicIcon } from '@icons/PanicIcon';
 // Components
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { MonsterCard } from 'components/cards/MonsterCard';
-import { ImageCardPreloadHand } from 'components/image-cards/ImageCardPreloadHand';
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { MonsterCard } from '@components/cards/MonsterCard';
+import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryRetratoFalado } from '../../utils/types';
 

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Flex, Typography } from 'antd';
 // Pages
-import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
 // Internal
 import { countThing } from '../utils/helpers';
 

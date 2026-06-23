@@ -1,11 +1,11 @@
 // Icons
-import { DreamCatcherIcon } from 'icons/DreamCatcherIcon';
-import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
-import { MagicDivinationIcon } from 'icons/MagicDivinationIcon';
-import { MagicHamsaIcon } from 'icons/MagicHamsaIcon';
-import { MagicRunesIcon } from 'icons/MagicRunesIcon';
-import { MagicTarotCardsIcon } from 'icons/MagicTarotCardsIcon';
-import { MagicVoodooDollIcon } from 'icons/MagicVoodooDollIcon';
+import { DreamCatcherIcon } from '@icons/DreamCatcherIcon';
+import { MagicCandlesIcon } from '@icons/MagicCandlesIcon';
+import { MagicDivinationIcon } from '@icons/MagicDivinationIcon';
+import { MagicHamsaIcon } from '@icons/MagicHamsaIcon';
+import { MagicRunesIcon } from '@icons/MagicRunesIcon';
+import { MagicTarotCardsIcon } from '@icons/MagicTarotCardsIcon';
+import { MagicVoodooDollIcon } from '@icons/MagicVoodooDollIcon';
 // Internal
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './constants';
 import type { TrapEntry } from './types';

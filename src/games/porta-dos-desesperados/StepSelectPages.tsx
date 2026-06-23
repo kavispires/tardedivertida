@@ -4,24 +4,24 @@ import { useMemo, useState } from 'react';
 import { CloseCircleFilled } from '@ant-design/icons';
 import { Button, Flex, Typography } from 'antd';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageBlurButton } from 'components/image-cards/ImageBlurButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardHand } from 'components/image-cards/ImageCardHand';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { Title } from 'components/text/Title';
+import { SendButton } from '@components/buttons/SendButton';
+import { FloatingHand } from '@components/general/FloatingHand';
+import { ImageBlurButton } from '@components/image-cards/ImageBlurButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardHand } from '@components/image-cards/ImageCardHand';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
 // Internal
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';

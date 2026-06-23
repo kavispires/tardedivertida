@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Utils
-import { getColorFromLetter } from 'utils/helpers';
+import { getColorFromLetter } from '@utils/helpers';
 // Sass
 import styles from './Card.module.scss';
 

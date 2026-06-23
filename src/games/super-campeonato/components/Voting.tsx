@@ -3,19 +3,19 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
+import { useCountdown } from '@hooks/useCountdown';
+import { useMock } from '@hooks/useMock';
+import { useStep } from '@hooks/useStep';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { CharacterCard, type OverlayColor } from 'components/cards/CharacterCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { CharacterCard, type OverlayColor } from '@components/cards/CharacterCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from '../utils/type';
 import { useBracketVoting } from '../utils/useBracketVoting';

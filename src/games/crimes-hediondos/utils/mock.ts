@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Utils
-import { getRandomItem, shuffle } from 'utils/helpers';
+import { getRandomItem, shuffle } from '@utils/helpers';
 // Internal
 import type { GroupedItems, Guess, SubmitCrimePayload } from '../utils/types';
 import { GUESS_STATUS } from './constants';

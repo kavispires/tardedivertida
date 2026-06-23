@@ -5,12 +5,12 @@ import { Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass

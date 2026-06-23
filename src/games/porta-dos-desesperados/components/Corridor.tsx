@@ -7,18 +7,18 @@ import { Avatar, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCache } from '@hooks/useCache';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DoorFrame } from 'components/game/DoorFrame';
-import { ImageBlurButton } from 'components/image-cards/ImageBlurButton';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardBack } from 'components/image-cards/ImageCardBack';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { DoorFrame } from '@components/game/DoorFrame';
+import { ImageBlurButton } from '@components/image-cards/ImageBlurButton';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardBack } from '@components/image-cards/ImageCardBack';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import { TRAPS } from '../utils/constants';
 import type { DoorsCache, SubmitDoorPayload } from '../utils/types';

@@ -1,7 +1,7 @@
 // Internal
 import { type CustomAvatarProps, CustomAvatarWrapper } from './_internal/CustomAvatarWrapper';
 // Images
-import costumes from 'assets/images/costumes.svg?url';
+import costumes from '@assets/images/costumes.svg?url';
 
 /**
  * Clubber Avatar with Player Avatar on top

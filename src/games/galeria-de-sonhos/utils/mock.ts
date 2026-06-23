@@ -1,6 +1,6 @@
 import { sample } from 'lodash';
 // Utils
-import { shuffle } from 'utils/helpers';
+import { shuffle } from '@utils/helpers';
 // Internal
 import type { ImageCardObj } from './types';
 

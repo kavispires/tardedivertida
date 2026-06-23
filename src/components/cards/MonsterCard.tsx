@@ -6,11 +6,11 @@ import { Button, Space, type SpaceProps } from 'antd';
 // Types
 import type { MonsterImage } from 'types/tdr';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useGlobalState } from '@hooks/useGlobalState';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './MonsterCard.module.scss';
 

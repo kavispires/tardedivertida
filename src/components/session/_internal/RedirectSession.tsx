@@ -5,11 +5,11 @@ import { Flex, Modal } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Hooks
-import { useGameList } from 'hooks/useGameList';
+import { useGameList } from '@hooks/useGameList';
 // Components
-import { GameStrip } from 'components/general/GameBanner';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { GameStrip } from '@components/general/GameBanner';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 
 type RedirectSessionProps = {
   /**

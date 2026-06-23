@@ -5,16 +5,16 @@ import { Button, Flex, Switch, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { pluralize } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { pluralize } from '@utils/helpers';
 // Icons
-import { SecurityIcon } from 'icons/SecurityIcon';
-import { TraitorIcon } from 'icons/TraitorIcon';
+import { SecurityIcon } from '@icons/SecurityIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 // Internal
 import { useNotesStore } from '../utils/useNotesStore';
 import { CARD_IMAGE_NAMES } from '../utils/constants';

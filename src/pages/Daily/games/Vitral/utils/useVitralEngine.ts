@@ -10,13 +10,13 @@ import { addSeconds } from 'date-fns';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStopwatch } from 'react-timer-hook';
 // Pages
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyGlobalStore } from 'pages/Daily/hooks/useDailyGlobalStore';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
-import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { useDailyGameState, useDailySessionState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyGlobalStore } from '@pages/Daily/hooks/useDailyGlobalStore';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from '@pages/Daily/hooks/useDailyPlayTracker';
+import { useShowResultModal } from '@pages/Daily/hooks/useShowResultModal';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyVitralEntry, GameState, GridState, PieceData, SessionState } from './types';

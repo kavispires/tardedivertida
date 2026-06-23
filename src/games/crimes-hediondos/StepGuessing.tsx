@@ -4,21 +4,21 @@ import { Alert } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAvatarColorById, getLastItem } from 'utils/helpers';
+import { getAvatarColorById, getLastItem } from '@utils/helpers';
 // Icons
-import { InvestigationIcon } from 'icons/InvestigationIcon';
+import { InvestigationIcon } from '@icons/InvestigationIcon';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { DevButton } from 'components/debug/DevButton';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { DevButton } from '@components/debug/DevButton';
+import { FloatingHand } from '@components/general/FloatingHand';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type {
   Crime,

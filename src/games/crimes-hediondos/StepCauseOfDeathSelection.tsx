@@ -2,11 +2,11 @@ import { useState } from 'react';
 // Types
 import type { CrimeSceneTile } from 'types/tdr';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { ItemsDict, SceneTilePayload, SubmitCrimePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';

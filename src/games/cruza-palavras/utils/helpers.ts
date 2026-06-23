@@ -1,5 +1,5 @@
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 // Internal
 import type { Clue } from './types';
 

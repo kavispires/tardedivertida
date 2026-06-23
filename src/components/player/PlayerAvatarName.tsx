@@ -2,11 +2,11 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { AVATARS } from 'utils/avatars';
-import { getAvatarColorById } from 'utils/helpers';
+import { AVATARS } from '@utils/avatars';
+import { getAvatarColorById } from '@utils/helpers';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass

@@ -1,7 +1,6 @@
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 
-// 1-2 words
 const shortSentences = ['Bom dia', 'Vamos lá', 'Até logo', 'Tudo bem?', 'Não sei', 'Belo trabalho'];
 
 // 3-5 words

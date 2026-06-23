@@ -3,13 +3,13 @@ import { Flex, Table, type TableProps } from 'antd';
 // Types
 import type { SuspectCard } from 'types/tdr';
 // Icons
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
+import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SuspectCard as SuspectCardComponent } from 'components/cards/SuspectCard';
-import { Translate } from 'components/language/Translate';
-import { CollapsibleRule } from 'components/rules/CollapsibleRule';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SuspectCard as SuspectCardComponent } from '@components/cards/SuspectCard';
+import { Translate } from '@components/language/Translate';
+import { CollapsibleRule } from '@components/rules/CollapsibleRule';
 // Internal
 import type { THistoryEntry } from '../utils/types';
 

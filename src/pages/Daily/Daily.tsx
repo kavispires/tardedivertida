@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useTitle } from 'react-use';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 // Pages
-import { LoginModal } from 'pages/Me/components/LoginModal';
+import { LoginModal } from '@pages/Me/components/LoginModal';
 // Internal
 import { DailyChrome } from './components/DailyChrome';
 import { Hub } from './DailyHub';

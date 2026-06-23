@@ -3,7 +3,7 @@ import { Store } from '@tanstack/store';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { PLACEHOLDER_PLAYER } from 'utils/constants';
+import { PLACEHOLDER_PLAYER } from '@utils/constants';
 
 /**
  * Global state for the app with value that should be shared across components during the duration of the app.

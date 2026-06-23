@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 // Icons
-import { AudioIcon } from 'icons/AudioIcon';
-import { IncreaseDifficultyIcon } from 'icons/IncreaseDifficultyIcon';
-import { PrototypeIcon } from 'icons/PrototypeIcon';
-import { RulesIcon } from 'icons/RulesIcon';
-import { WeekendIcon } from 'icons/WeekendIcon';
+import { AudioIcon } from '@icons/AudioIcon';
+import { IncreaseDifficultyIcon } from '@icons/IncreaseDifficultyIcon';
+import { PrototypeIcon } from '@icons/PrototypeIcon';
+import { RulesIcon } from '@icons/RulesIcon';
+import { WeekendIcon } from '@icons/WeekendIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
 import type { GameSettings } from '../utils/types';

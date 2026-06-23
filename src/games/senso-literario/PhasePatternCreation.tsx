@@ -3,18 +3,18 @@ import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { BooksIcon } from 'icons/BooksIcon';
+import { BooksIcon } from '@icons/BooksIcon';
 // Components
-import { BookPatternCard } from 'components/cards/BookPatternCard';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { RoundAnnouncement } from 'components/round/RoundAnnouncement';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { BookPatternCard } from '@components/cards/BookPatternCard';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { PhasePatternCreationState } from './utils/types';
 import { SENSO_LITERARIO_PHASES } from './utils/constants';

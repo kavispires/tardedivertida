@@ -3,18 +3,18 @@ import { Flex, Tag } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { AlienKeyboard } from 'components/alien/AlienKeyboard';
-import { AlienText } from 'components/alien/AlienText';
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
-import { ViewIf } from 'components/views/ViewIf';
+import { AlienKeyboard } from '@components/alien/AlienKeyboard';
+import { AlienText } from '@components/alien/AlienText';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitDeliveryPayload, Summary } from './utils/types';
 import { Board } from './components/Board';

@@ -1,5 +1,5 @@
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
+import { ItemCard } from '@components/cards/ItemCard';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';

@@ -2,14 +2,14 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { GamblingChipIcon } from 'icons/GamblingChipIcon';
+import { GamblingChipIcon } from '@icons/GamblingChipIcon';
 // Components
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { FloatingHand } from 'components/general/FloatingHand';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { Translate } from 'components/language/Translate';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { FloatingHand } from '@components/general/FloatingHand';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { Bet, Bracket } from '../utils/type';
 import { contenderWidthOptions, findBetContenders } from '../utils/helpers';

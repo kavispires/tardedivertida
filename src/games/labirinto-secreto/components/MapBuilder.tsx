@@ -7,21 +7,21 @@ import { Alert, Button, Checkbox, Flex, Popconfirm, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { LocationIcon } from 'icons/LocationIcon';
-import { NoIcon } from 'icons/NoIcon';
+import { LocationIcon } from '@icons/LocationIcon';
+import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type {
   CustomPlayerProps,

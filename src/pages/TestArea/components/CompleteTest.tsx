@@ -3,10 +3,10 @@ import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
 import { Button, Input, App } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { TestStepProps } from '../TestArea';
 

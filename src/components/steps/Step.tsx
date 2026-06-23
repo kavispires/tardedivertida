@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { type ReactNode, forwardRef } from 'react';
 // Hooks
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Sass
 import styles from './Step.module.scss';
 

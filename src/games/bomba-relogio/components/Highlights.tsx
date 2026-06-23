@@ -1,11 +1,11 @@
 // Icons
-import { BombIcon } from 'icons/BombIcon';
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
-import { SecurityIcon } from 'icons/SecurityIcon';
-import { TraitorIcon } from 'icons/TraitorIcon';
-import { WireIcon } from 'icons/WireIcon';
+import { BombIcon } from '@icons/BombIcon';
+import { BoxBlankIcon } from '@icons/BoxBlankIcon';
+import { SecurityIcon } from '@icons/SecurityIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
+import { WireIcon } from '@icons/WireIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function TerroristHighlight({ children }: HighlightProps) {
   return (

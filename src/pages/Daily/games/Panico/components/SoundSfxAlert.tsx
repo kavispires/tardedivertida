@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { Alert } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { Region } from 'pages/Daily/components/Region';
-import { SoundFXToggle } from 'pages/Daily/components/SoundFXToggle';
+import { Region } from '@pages/Daily/components/Region';
+import { SoundFXToggle } from '@pages/Daily/components/SoundFXToggle';
 // Internal
 import { buttonCountdownSfx } from '../utils/soundEffect';
 

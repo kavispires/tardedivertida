@@ -7,24 +7,24 @@ import { Button, Flex, Image, Tooltip } from 'antd';
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { SuspectCard } from 'types/tdr';
 // Hooks
-import { useCache } from 'hooks/useCache';
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCache } from '@hooks/useCache';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { AgeAdultIcon } from 'icons/AgeAdultIcon';
-import { AgeChildIcon } from 'icons/AgeChildIcon';
-import { AgeTeenIcon } from 'icons/AgeTeenIcon';
-import { PetIcon } from 'icons/PetIcon';
-import { QuestionIcon } from 'icons/QuestionIcon';
+import { AgeAdultIcon } from '@icons/AgeAdultIcon';
+import { AgeChildIcon } from '@icons/AgeChildIcon';
+import { AgeTeenIcon } from '@icons/AgeTeenIcon';
+import { PetIcon } from '@icons/PetIcon';
+import { QuestionIcon } from '@icons/QuestionIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 
 type CharactersBoardProps = {
   characters: SuspectCard[];

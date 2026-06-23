@@ -2,13 +2,13 @@ import { useMutation } from '@tanstack/react-query';
 // Ant Design Resources
 import { Button, Form, Input, Alert, Image, type FormInstance } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { signUp } from 'services/firebase';
+import { signUp } from '@services/firebase';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Images
-import logo from 'assets/images/tarde-divertida-logo.svg?url';
+import logo from '@assets/images/tarde-divertida-logo.svg?url';
 // Sass
 import styles from './auth.module.scss';
 

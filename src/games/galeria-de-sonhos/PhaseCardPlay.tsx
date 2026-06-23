@@ -2,22 +2,22 @@ import { useEffect, useState } from 'react';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLoading } from '@hooks/useLoading';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { DoorSignIcon } from 'icons/DoorSignIcon';
-import { NightmareIcon } from 'icons/NightmareIcon';
+import { DoorSignIcon } from '@icons/DoorSignIcon';
+import { NightmareIcon } from '@icons/NightmareIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PhaseTimerReset } from 'components/phases/PhaseTimerReset';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PhaseTimerReset } from '@components/phases/PhaseTimerReset';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import {

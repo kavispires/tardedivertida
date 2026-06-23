@@ -1,4 +1,4 @@
-import { mockPlayerName } from 'mock/players';
+import { mockPlayerName } from '@mock/players';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
@@ -7,16 +7,16 @@ import { Alert, AutoComplete, Button, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useAddPlayer } from 'hooks/useAddPlayer';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useLanguage } from 'hooks/useLanguage';
-import type { UseStep } from 'hooks/useStep';
+import { useAddPlayer } from '@hooks/useAddPlayer';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useLanguage } from '@hooks/useLanguage';
+import type { UseStep } from '@hooks/useStep';
 // Utils
-import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
-import { getRandomItem, isDevEnv } from 'utils/helpers';
+import { AVAILABLE_AVATAR_IDS } from '@utils/avatars';
+import { getRandomItem, isDevEnv } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { useGameInfoContext } from 'components/session/GameInfoContext';
+import { Translate } from '@components/language/Translate';
+import { useGameInfoContext } from '@components/session/GameInfoContext';
 // Internal
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';

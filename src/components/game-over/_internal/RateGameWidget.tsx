@@ -4,20 +4,20 @@ import { type ReactNode, useState } from 'react';
 import { CloseOutlined, StarFilled } from '@ant-design/icons';
 import { Alert, Button, Flex, Input, Rate, Typography } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useCountdown } from '@hooks/useCountdown';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Services
-import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS } from '@services/adapters';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { Translate } from 'components/language/Translate';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Translate } from '@components/language/Translate';
 
 const { TextArea } = Input;
 

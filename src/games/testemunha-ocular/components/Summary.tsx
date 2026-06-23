@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 // Icons
-import { ClockIcon } from 'icons/ClockIcon';
-import { PeopleAssessmentIcon } from 'icons/PeopleAssessmentIcon';
+import { ClockIcon } from '@icons/ClockIcon';
+import { PeopleAssessmentIcon } from '@icons/PeopleAssessmentIcon';
 // Components
-import { StatusBar } from 'components/general/StatusBar';
-import { Translate } from 'components/language/Translate';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { StatusBar } from '@components/general/StatusBar';
+import { Translate } from '@components/language/Translate';
+import { MetricHighlight } from '@components/metrics/MetricHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 // Internal
 import type { Status } from '../utils/types';
 

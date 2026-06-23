@@ -3,11 +3,11 @@ import { Badge, Button, Flex } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import { ThingCard } from './ThingCard';
 import { ThingHighlight } from './Highlights';

@@ -5,17 +5,17 @@ import { Button } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useLanguage } from '@hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { TimedButton } from 'components/buttons/TimedButton';
-import { Translate } from 'components/language/Translate';
-import { useGameAppearance } from 'components/session/GameInfoContext';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { Translate } from '@components/language/Translate';
+import { useGameAppearance } from '@components/session/GameInfoContext';
 // Images
-import roundTitleEn from 'assets/images/round-title-en.svg?url';
-import roundTitlePt from 'assets/images/round-title-pt.svg?url';
+import roundTitleEn from '@assets/images/round-title-en.svg?url';
+import roundTitlePt from '@assets/images/round-title-pt.svg?url';
 // Sass
 import styles from './RoundAnnouncement.module.scss';
 

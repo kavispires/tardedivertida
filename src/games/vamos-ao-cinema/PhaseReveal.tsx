@@ -1,18 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
-import { ScaredIcon } from 'icons/ScaredIcon';
-import { TomatoIcon } from 'icons/TomatoIcon';
+import { MovieTheaterIcon } from '@icons/MovieTheaterIcon';
+import { ScaredIcon } from '@icons/ScaredIcon';
+import { TomatoIcon } from '@icons/TomatoIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 import { getAnnouncementKey } from './utils/helpers';

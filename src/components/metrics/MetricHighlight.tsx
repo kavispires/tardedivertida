@@ -2,7 +2,7 @@ import type { AvatarSize } from 'antd/lib/avatar/AvatarContext';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Sass
 import styles from './MetricHighlight.module.scss';
 

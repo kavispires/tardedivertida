@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayers } from 'types/game';
 // Icons
-import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
+import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerCounts } from 'components/players/PlayerCounts';
+import { Translate } from '@components/language/Translate';
+import { PlayerCounts } from '@components/players/PlayerCounts';
 
 type PlayersHandsCountsProps = {
   players: GamePlayers;

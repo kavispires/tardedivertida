@@ -5,28 +5,28 @@ import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers } from 'types/game';
 // Hooks
-import type { SlideShowConfig } from 'hooks/useSlideShow';
+import type { SlideShowConfig } from '@hooks/useSlideShow';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { getAvatarColorById } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { BoxPlusIcon } from 'icons/BoxPlusIcon';
-import { CrownIcon } from 'icons/CrownIcon';
-import { XIcon } from 'icons/XIcon';
+import { BoxPlusIcon } from '@icons/BoxPlusIcon';
+import { CrownIcon } from '@icons/CrownIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
-import { StarPoints } from 'components/points/StarPoints';
-import { SlideShow } from 'components/slide-show/SlideShow';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { StarPoints } from '@components/points/StarPoints';
+import { SlideShow } from '@components/slide-show/SlideShow';
 import {
   SlideShowBubbleValue,
   SlideShowPlayersList,
   SlideShowLabel,
-} from 'components/slide-show/SlideShowComposableComponents';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
+} from '@components/slide-show/SlideShowComposableComponents';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { BoardEntry, GalleryEntry } from './utils/types';
 import { HappinessHighlight } from './components/Highlights';

@@ -1,8 +1,8 @@
-import { USE_MOCKS } from 'dev-configs';
+import { USE_MOCKS } from '@dev-configs';
 import { useState } from 'react';
 // Utils
-import { VIEWER_ID } from 'utils/constants';
-import { getRandomItem, isDevEnv } from 'utils/helpers';
+import { VIEWER_ID } from '@utils/constants';
+import { getRandomItem, isDevEnv } from '@utils/helpers';
 // Internal
 import { useCountdown } from './useCountdown';
 import { useGlobalState } from './useGlobalState';

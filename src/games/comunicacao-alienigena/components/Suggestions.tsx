@@ -2,14 +2,14 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Button, Flex, Popover } from 'antd';
 // Hooks
-import { useCache } from 'hooks/useCache';
+import { useCache } from '@hooks/useCache';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { SignCard } from 'components/cards/SignCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { TextHighlight } from 'components/text/TextHighlight';
-import { type AlienAttribute, alienAttributesUtils } from 'components/toolKits/AlienAttributes';
+import { ItemCard } from '@components/cards/ItemCard';
+import { SignCard } from '@components/cards/SignCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { TextHighlight } from '@components/text/TextHighlight';
+import { type AlienAttribute, alienAttributesUtils } from '@components/toolKits/AlienAttributes';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
 

@@ -6,13 +6,13 @@ import { Alert, Divider, Flex } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import type { DiagramArea, Reevaluation } from '../utils/types';
 import { checkIsDoubleDiagram } from '../utils/helper';

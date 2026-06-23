@@ -1,5 +1,5 @@
 // Services
-import { GAME_API_COMMON_ACTIONS } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS } from '@services/adapters';
 // Internal
 import { useLanguage } from './useLanguage';
 import { useGameActionRequest, type UseGameActionRequestArgs } from './useGameActionRequest';

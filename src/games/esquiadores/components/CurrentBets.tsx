@@ -1,10 +1,10 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { LodgeIcon } from 'icons/LodgeIcon';
+import { LodgeIcon } from '@icons/LodgeIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { Lodge } from '../utils/types';
 import { LODGE_COLORS } from '../utils/constants';

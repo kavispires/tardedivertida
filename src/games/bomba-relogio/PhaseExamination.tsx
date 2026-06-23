@@ -2,21 +2,21 @@ import { sortBy } from 'lodash';
 // Types
 import type { GameRound, PhaseProps, GamePlayer } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { BombIcon } from 'icons/BombIcon';
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
-import { BuildingIcon } from 'icons/BuildingIcon';
-import { WalkieTalkieIcon } from 'icons/WalkieTalkieIcon';
-import { WireIcon } from 'icons/WireIcon';
+import { BombIcon } from '@icons/BombIcon';
+import { BoxBlankIcon } from '@icons/BoxBlankIcon';
+import { BuildingIcon } from '@icons/BuildingIcon';
+import { WalkieTalkieIcon } from '@icons/WalkieTalkieIcon';
+import { WireIcon } from '@icons/WireIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseDeclarationState, PhaseExaminationState } from './utils/types';
 import { BOMBA_RELOGIO_PHASES } from './utils/constants';

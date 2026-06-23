@@ -5,24 +5,24 @@ import { ConfigProvider } from 'antd';
 // Types
 import type { GameState, PhaseProps, PhaseProviderProps } from 'types/game';
 // Hooks
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useGameState } from 'hooks/useGameState';
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useIdleRedirect } from 'hooks/useIdleRedirect';
-import { useLanguage } from 'hooks/useLanguage';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
-import { useUser } from 'hooks/useUser';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useGameState } from '@hooks/useGameState';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useIdleRedirect } from '@hooks/useIdleRedirect';
+import { useLanguage } from '@hooks/useLanguage';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
+import { useUser } from '@hooks/useUser';
 // Utils
-import { PHASES } from 'utils/phases';
+import { PHASES } from '@utils/phases';
 // Components
-import { AdminMenuDrawer } from 'components/admin/AdminMenuDrawer';
-import { AutoNextPhase } from 'components/general/AutoNextPhase';
-import { PageLayout } from 'components/layout/PageLayout';
-import { PhaseError } from 'components/phases/PhaseError';
-import { PhaseLoading } from 'components/phases/PhaseLoading';
-import { PhaseLobby } from 'components/phases/PhaseLobby';
-import { PhaseSetup } from 'components/phases/PhaseSetup';
+import { AdminMenuDrawer } from '@components/admin/AdminMenuDrawer';
+import { AutoNextPhase } from '@components/general/AutoNextPhase';
+import { PageLayout } from '@components/layout/PageLayout';
+import { PhaseError } from '@components/phases/PhaseError';
+import { PhaseLoading } from '@components/phases/PhaseLoading';
+import { PhaseLobby } from '@components/phases/PhaseLobby';
+import { PhaseSetup } from '@components/phases/PhaseSetup';
 // Internal
 import { RedirectSession } from './_internal/RedirectSession';
 import { GameInfoProvider, useGameAppearance, useGameInfoContext } from './GameInfoContext';

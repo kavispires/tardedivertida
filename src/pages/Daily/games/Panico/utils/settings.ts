@@ -1,7 +1,7 @@
 // Icons
-import { DailyButtonGameIcon } from 'icons/DailyButtonGameIcon';
+import { DailyButtonGameIcon } from '@icons/DailyButtonGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'PANICO',

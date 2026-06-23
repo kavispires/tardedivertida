@@ -1,10 +1,10 @@
 // Icons
-import { AnonymousIcon } from 'icons/AnonymousIcon';
-import { CardboardBoxIcon } from 'icons/CardboardBoxIcon';
-import { KnifeIcon } from 'icons/KnifeIcon';
-import { LocationIcon } from 'icons/LocationIcon';
+import { AnonymousIcon } from '@icons/AnonymousIcon';
+import { CardboardBoxIcon } from '@icons/CardboardBoxIcon';
+import { KnifeIcon } from '@icons/KnifeIcon';
+import { LocationIcon } from '@icons/LocationIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function WeaponHighlight({ children, type, iconSize, className }: HighlightProps) {
   return (

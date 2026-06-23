@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Switch } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Internal
 import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
 // Sass

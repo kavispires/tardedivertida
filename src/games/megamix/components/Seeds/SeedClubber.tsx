@@ -4,15 +4,15 @@ import { Segmented } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Components
-import { ClubberAvatar } from 'components/avatars/ClubberAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Title } from 'components/text/Title';
+import { ClubberAvatar } from '@components/avatars/ClubberAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryClubberOutfit, SubmitAnswerPayload } from '../../utils/types';
 

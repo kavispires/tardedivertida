@@ -1,18 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useStep } from 'hooks/useStep';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLoading } from '@hooks/useLoading';
+import { useStep } from '@hooks/useStep';
+import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { HangingPhotographIcon } from 'icons/HangingPhotographIcon';
+import { HangingPhotographIcon } from '@icons/HangingPhotographIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';

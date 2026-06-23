@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
 // Pages
-import { loadLocalToday } from 'pages/Daily/utils';
+import { loadLocalToday } from '@pages/Daily/utils';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyPicacoEntry, GameState } from './types';

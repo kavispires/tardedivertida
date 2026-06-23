@@ -1,6 +1,6 @@
 import { httpsCallable } from 'firebase/functions';
 // Services
-import { functions } from 'services/firebase';
+import { functions } from '@services/firebase';
 
 export const USER_API_ACTIONS = {
   GET_USER: 'GET_USER',

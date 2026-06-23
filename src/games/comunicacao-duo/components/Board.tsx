@@ -5,17 +5,17 @@ import { useToggle } from 'react-use';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Image, Tooltip } from 'antd';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { AlienHeartEyesIcon } from 'icons/AlienHeartEyesIcon';
-import { AlienNeutralIcon } from 'icons/AlienNeutralIcon';
-import { AlienStarEyesIcon } from 'icons/AlienStarEyesIcon';
+import { AlienHeartEyesIcon } from '@icons/AlienHeartEyesIcon';
+import { AlienNeutralIcon } from '@icons/AlienNeutralIcon';
+import { AlienStarEyesIcon } from '@icons/AlienStarEyesIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DivButton } from 'components/buttons/DivButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Popconfirm } from 'components/general/Popconfirm';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DivButton } from '@components/buttons/DivButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Popconfirm } from '@components/general/Popconfirm';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { DeckEntry } from '../utils/types';
 import { AFFILIATIONS, DECK_ENTRY_STATUS, SIDES } from '../utils/constants';

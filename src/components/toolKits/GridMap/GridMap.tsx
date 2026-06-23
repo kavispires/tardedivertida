@@ -4,7 +4,7 @@ import type React from 'react';
 import {
   ZoomPanPinchContainer,
   type ZoomPanPinchContainerProps,
-} from 'components/layout/ZoomPanPinchContainer';
+} from '@components/layout/ZoomPanPinchContainer';
 // Internal
 import type { GridMapType, GridMapCellType } from './grid-map';
 // Sass

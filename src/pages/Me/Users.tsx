@@ -6,10 +6,10 @@ import { useTitle } from 'react-use';
 // Ant Design Resources
 import { App, Button, Input, Select, Space, Typography } from 'antd';
 // Services
-import { USER_API, USER_API_ACTIONS } from 'services/adapters';
-import { firestore } from 'services/firebase';
+import { USER_API, USER_API_ACTIONS } from '@services/adapters';
+import { firestore } from '@services/firebase';
 // Components
-import { PageLayout } from 'components/layout/PageLayout';
+import { PageLayout } from '@components/layout/PageLayout';
 // Sass
 import './Me.scss';
 

@@ -1,6 +1,6 @@
 import { parse, subDays, format } from 'date-fns';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday } from '@utils/helpers';
 // Internal
 import type { DateKey, DailyStreakData } from './types';
 

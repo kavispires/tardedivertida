@@ -1,7 +1,7 @@
 // Icons
-import { DailyJudgingGameIcon } from 'icons/DailyJudgingGameIcon';
+import { DailyJudgingGameIcon } from '@icons/DailyJudgingGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'TA_NA_CARA',

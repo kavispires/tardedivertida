@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Utils
-import { stringRemoveAccents } from 'utils/helpers';
+import { stringRemoveAccents } from '@utils/helpers';
 // Internal
 import type { DiagramArea } from './types';
 

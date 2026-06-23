@@ -1,10 +1,10 @@
 // Ant Design Resources
 import { Flex } from 'antd';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { TextHighlight } from 'components/text/TextHighlight';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { ROLE_IMAGES_NAMES } from '../utils/constants';
 import type { DataCounts } from '../utils/types';

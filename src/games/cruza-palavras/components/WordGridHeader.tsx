@@ -2,13 +2,13 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Tooltip } from 'antd';
 // Hooks
-import { useBlurCards } from 'hooks/useBlurCards';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useBlurCards } from '@hooks/useBlurCards';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
+import { ItemCard } from '@components/cards/ItemCard';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import type { GridCell, GridType } from '../utils/types';
 

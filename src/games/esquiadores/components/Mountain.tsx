@@ -4,14 +4,14 @@ import { forwardRef, useEffect, useRef } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useMouseDirection } from 'hooks/useMouseDirection';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useMouseDirection } from '@hooks/useMouseDirection';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { SkierIcon } from 'icons/SkierIcon';
+import { SkierIcon } from '@icons/SkierIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 // Internal
 import type { MountainDilemma } from '../utils/types';
 // Images

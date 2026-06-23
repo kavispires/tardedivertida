@@ -5,19 +5,19 @@ import { Button, Flex, Layout, Modal } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { Region, RegionHint, RegionText } from 'pages/Daily/components/Region';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { Region, RegionHint, RegionText } from '@pages/Daily/components/Region';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';

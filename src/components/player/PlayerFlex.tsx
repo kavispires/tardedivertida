@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Flex, type FlexProps } from 'antd';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 
 export type PlayerFlexProps = FlexProps & {
   /**

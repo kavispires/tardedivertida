@@ -2,8 +2,8 @@ import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { Layout, Typography } from 'antd';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
 

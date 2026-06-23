@@ -3,29 +3,29 @@ import { Navigate, Outlet, useLocation, type RouteObject } from 'react-router-do
 // Ant Design Resources
 import { App as AntApp } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useError } from 'hooks/useError';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
+import { useError } from '@hooks/useError';
+import { useGlobalState } from '@hooks/useGlobalState';
 // Components
-import { PageError } from 'components/errors/PageError';
-import { LoadingBar } from 'components/loaders/LoadingBar';
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { PageError } from '@components/errors/PageError';
+import { LoadingBar } from '@components/loaders/LoadingBar';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 // Internal
 import Home from './Home/Home';
 import Login from './Login/Login';
 
-const Me = lazy(() => import('pages/Me/Me' /* webpackChunkName: "page-me" */));
-const Users = lazy(() => import('pages/Me/Users' /* webpackChunkName: "page-users" */));
-const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
-const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
-const TestArea = lazy(() => import('pages/TestArea/TestArea' /* webpackChunkName: "page-test-area" */));
-const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
-const DevColors = lazy(() => import('pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
-const DevSprites = lazy(() => import('pages/Dev/Sprites' /* webpackChunkName: "page-dev-sprites" */));
+const Me = lazy(() => import('@pages/Me/Me' /* webpackChunkName: "page-me" */));
+const Users = lazy(() => import('@pages/Me/Users' /* webpackChunkName: "page-users" */));
+const Hub = lazy(() => import('@pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
+const Game = lazy(() => import('@pages/Game/Game' /* webpackChunkName: "page-game" */));
+const TestArea = lazy(() => import('@pages/TestArea/TestArea' /* webpackChunkName: "page-test-area" */));
+const DevIcons = lazy(() => import('@pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
+const DevColors = lazy(() => import('@pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
+const DevSprites = lazy(() => import('@pages/Dev/Sprites' /* webpackChunkName: "page-dev-sprites" */));
 const DevPlayground = lazy(
-  () => import('pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */),
+  () => import('@pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */),
 );
-const Daily = lazy(() => import('pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
+const Daily = lazy(() => import('@pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
 
 const LazyMe = () => (
   <Suspense fallback={<LoadingPage />}>

@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Input, Space, Typography } from 'antd';
 // Hooks
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday } from '@utils/helpers';
 // Internal
 import { ALL_SETTINGS } from './utils/settings';
 import { DailyChrome } from './components/DailyChrome';

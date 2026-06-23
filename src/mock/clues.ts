@@ -1,5 +1,5 @@
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 
 const lowClues = ['agua', 'bola', 'coco', 'dedo'];
 const clues = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];

@@ -2,17 +2,17 @@ import { isEqual } from 'lodash';
 // Types
 import type { PhaseProps, GamePlayer } from 'types/game';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Icons
-import { CrownIcon } from 'icons/CrownIcon';
+import { CrownIcon } from '@icons/CrownIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Instruction } from 'components/text/Instruction';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { achievementsReference } from './utils/achievements';
 

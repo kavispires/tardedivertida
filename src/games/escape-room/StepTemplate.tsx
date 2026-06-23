@@ -1,12 +1,12 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { Translate } from 'components/language/Translate';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { Translate } from '@components/language/Translate';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { StepTitle } from '@components/text/StepTitle';
 
 type StepTemplateProps = {
   players: GamePlayers;

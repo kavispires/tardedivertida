@@ -2,10 +2,10 @@
 import { DragOutlined } from '@ant-design/icons';
 import { Slider } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { FixedMenuButton } from 'components/buttons/FixedMenuButton';
-import { Translate } from 'components/language/Translate';
+import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './CanvasResizer.module.scss';
 

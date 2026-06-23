@@ -4,13 +4,13 @@ import { motion } from 'motion/react';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Image } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Components
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { ImageCardButton } from 'components/image-cards/ImageCardButton';
-import { Translate } from 'components/language/Translate';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { ImageCardButton } from '@components/image-cards/ImageCardButton';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { ImageCardObj } from '../utils/types';
 import { BORDER_TOTAL_SIZE } from '../utils/constants';

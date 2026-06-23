@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import type { SVGProps } from 'react';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Images
-import avatars from 'assets/images/avatars.svg?url';
-import sheep from 'assets/images/sheep.svg?url';
+import avatars from '@assets/images/avatars.svg?url';
+import sheep from '@assets/images/sheep.svg?url';
 
 type SheepAvatarProps = {
   id?: string;

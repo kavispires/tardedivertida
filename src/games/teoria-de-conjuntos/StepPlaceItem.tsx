@@ -6,23 +6,23 @@ import { Flex, Tag, Tooltip } from 'antd';
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { Item } from 'types/tdr';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { useMock } from 'hooks/useMock';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type {
   DiagramArea,

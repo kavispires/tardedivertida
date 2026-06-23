@@ -5,27 +5,27 @@ import { Avatar, Flex, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useMock } from 'hooks/useMock';
+import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass, shuffle } from 'utils/helpers';
+import { getAnimationClass, shuffle } from '@utils/helpers';
 // Icons
-import { RobotIcon } from 'icons/RobotIcon';
+import { RobotIcon } from '@icons/RobotIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SendButton } from 'components/buttons/SendButton';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ImageBlurButtonContainer } from 'components/image-cards/ImageBlurButtonContainer';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { CardHighlight } from 'components/metrics/CardHighlight';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { SpeechBubble } from 'components/text/SpeechBubble';
-import { StepTitle } from 'components/text/StepTitle';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SendButton } from '@components/buttons/SendButton';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { CardHighlight } from '@components/metrics/CardHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { SpeechBubble } from '@components/text/SpeechBubble';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Captcha, CaptchaCard, Robot, SubmitRobotGuessPayload } from './utils/types';
 import { mockGuess } from './utils/mock';

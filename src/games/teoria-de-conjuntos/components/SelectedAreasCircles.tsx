@@ -1,9 +1,9 @@
 import { Fragment, type ReactElement } from 'react';
 // Icons
-import { CircleIcon } from 'icons/CircleIcon';
-import { XIcon } from 'icons/XIcon';
+import { CircleIcon } from '@icons/CircleIcon';
+import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 
 type SelectedAreasCirclesProps = {
   selectedArea: string | null;

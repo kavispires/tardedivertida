@@ -1,6 +1,6 @@
 import { random, sampleSize, shuffle } from 'lodash';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 // Internal
 import type { SubmitGuessPayload, SubmitMetricsPayload, SubmitPoolPayload } from './types';
 

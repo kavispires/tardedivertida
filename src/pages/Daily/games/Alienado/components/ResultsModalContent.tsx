@@ -3,21 +3,21 @@ import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Space, Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Icons
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { SignCard } from 'components/cards/SignCard';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { SignCard } from '@components/cards/SignCard';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
-import { DailyItem } from 'pages/Daily/components/DailyItem';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { Region } from 'pages/Daily/components/Region';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
+import { Region } from '@pages/Daily/components/Region';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import type { DailyAlienadoEntry } from '../utils/types';

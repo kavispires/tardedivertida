@@ -3,10 +3,10 @@ import { useTitle } from 'react-use';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useGameList } from 'hooks/useGameList';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameList } from '@hooks/useGameList';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 
 const PLACEHOLDER_GAME_INFO: GameInfo = {
   gameCode: ' ',

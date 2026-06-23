@@ -1,6 +1,6 @@
 // Components
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 import { Candidate } from '../Candidate';

@@ -40,7 +40,7 @@ src/pages/Daily/games/{GameName}/
 
 ```typescript
 // Pages
-import { DailyGame } from 'pages/Daily/components/DailyGame';
+import { DailyGame } from '@pages/Daily/components/DailyGame';
 // Internal
 import { Daily{GameName} } from './components/Daily{GameName}';
 // Sass
@@ -62,7 +62,7 @@ export function Daily{GameName}Game() {
 
 ```typescript
 // Pages
-import type { DateKey } from 'pages/Daily/utils/types';
+import type { DateKey } from '@pages/Daily/utils/types';
 
 export type Daily{GameName}Entry = {
   id: DateKey;
@@ -90,9 +90,9 @@ export type SessionState = {
 
 ```typescript
 // Icons
-import { Daily{Type}GameIcon } from 'icons/Daily{Type}GameIcon';
+import { Daily{Type}GameIcon } from '@icons/Daily{Type}GameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: '{GAME_KEY}',                    // All caps, used for localStorage
@@ -121,9 +121,9 @@ export const SETTINGS: GameSettings = {
 ```typescript
 import { cloneDeep } from 'lodash';
 // Pages
-import { generateShareableResult, loadLocalToday } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import type { BasicResultsOptions } from 'pages/Daily/utils/types';
+import { generateShareableResult, loadLocalToday } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import type { BasicResultsOptions } from '@pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { Daily{GameName}Entry, GameState } from './types';
@@ -170,15 +170,15 @@ export const getResultsText = (state: GameState, options: BasicResultsOptions): 
 import { useEffect } from 'react';
 import { App } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Pages
-import { useDailyGameState, useDailySessionState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { getAnalyticsEventName } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
+import { useDailyGameState, useDailySessionState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { getAnalyticsEventName } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import { SETTINGS } from './settings';
 import type { Daily{GameName}Entry, GameState, SessionState } from './types';
@@ -242,15 +242,15 @@ export function use{GameName}Engine(data: Daily{GameName}Entry, initialState: Ga
 ```typescript
 import { App } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { NextGameSuggestion } from 'pages/Daily/components/NextGameSuggestion';
-import { ShowResultsButton } from 'pages/Daily/components/ShowResultsButton';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { Header } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
+import { ShowResultsButton } from '@pages/Daily/components/ShowResultsButton';
 // Internal
 import { getInitialState } from '../utils/helpers';
 import { SETTINGS } from '../utils/settings';
@@ -307,7 +307,7 @@ Daily games use different types of external resources. Choose based on your game
 
 **Components**:
 ```typescript
-import { DailyItem } from 'pages/Daily/components/DailyItem';
+import { DailyItem } from '@pages/Daily/components/DailyItem';
 
 // Usage
 <DailyItem id={itemId} />
@@ -329,7 +329,7 @@ const item = items[itemId]; // { id, name: { en, pt } }
 
 **Components**:
 ```typescript
-import { SignCard } from 'components/cards/SignCard';
+import { SignCard } from '@components/cards/SignCard';
 
 // Usage
 <SignCard id={spriteId} width={100} />
@@ -343,11 +343,11 @@ import { SignCard } from 'components/cards/SignCard';
 
 **Components**:
 ```typescript
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { useTDImageCardUrl } from '@hooks/useTDImageCardUrl';
 
 // For suspect images
-import { getSuspectImageId } from 'pages/Daily/utils';
+import { getSuspectImageId } from '@pages/Daily/utils';
 
 // Usage
 <ImageCard id={imageId} />

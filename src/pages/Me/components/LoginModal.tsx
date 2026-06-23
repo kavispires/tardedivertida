@@ -1,10 +1,10 @@
 // Ant Design Resources
 import { Modal } from 'antd';
 // Utils
-import { NOOP } from 'utils/constants';
+import { NOOP } from '@utils/constants';
 // Components
-import { SignIn } from 'components/auth/SignIn';
-import { Translate } from 'components/language/Translate';
+import { SignIn } from '@components/auth/SignIn';
+import { Translate } from '@components/language/Translate';
 
 type LoginModalProps = {
   isAuthenticated: boolean;

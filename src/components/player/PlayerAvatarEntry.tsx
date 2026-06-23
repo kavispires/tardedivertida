@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass

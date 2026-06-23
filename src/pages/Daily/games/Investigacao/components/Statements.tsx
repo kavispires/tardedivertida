@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { AppstoreOutlined, AudioFilled, HeartFilled, SkinFilled } from '@ant-design/icons';
 import { Alert, Flex } from 'antd';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Internal
 import type { DailyInvestigacaoEntry } from '../utils/types';
 

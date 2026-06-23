@@ -1,6 +1,6 @@
 import { shuffle } from 'lodash';
 // Utils
-import { getToday } from 'utils/helpers';
+import { getToday } from '@utils/helpers';
 // Internal
 import type { GameState, PairToEvaluate } from './types';
 import { SETTINGS } from './settings';

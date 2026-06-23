@@ -1,13 +1,13 @@
-import { getGameSession } from 'games/gameLoader';
+import { getGameSession } from '@games/gameLoader';
 import { Suspense } from 'react';
 // Hooks
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useIsGameStale } from 'hooks/useIsGameStale';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useIsGameStale } from '@hooks/useIsGameStale';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { PageError } from 'components/errors/PageError';
-import { LoadingPage } from 'components/loaders/LoadingPage';
+import { PageError } from '@components/errors/PageError';
+import { LoadingPage } from '@components/loaders/LoadingPage';
 
 function Game() {
   const { translate } = useLanguage();

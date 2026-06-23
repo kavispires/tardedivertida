@@ -2,17 +2,17 @@ import { useState } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Icons
-import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
+import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DrawingCanvas } from 'components/canvas/DrawingCanvas';
-import { Card } from 'components/cards/Card';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Step } from 'components/steps/Step';
-import { TimedTimerBar } from 'components/timers/TimedTimerBar';
+import { SendButton } from '@components/buttons/SendButton';
+import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
+import { Card } from '@components/cards/Card';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Step } from '@components/steps/Step';
+import { TimedTimerBar } from '@components/timers/TimedTimerBar';
 // Internal
 import type { Prompt, SubmitDrawingPayload } from './utils/types';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';

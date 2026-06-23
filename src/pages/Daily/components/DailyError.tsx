@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Alert, Button, Space, Typography } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { DailyChrome } from './DailyChrome';
 import { DailyContent } from './DailyContent';

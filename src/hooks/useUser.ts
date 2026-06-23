@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // Types
 import type { GameState, GamePlayers, GamePlayer } from 'types/game';
 // Utils
-import { PLACEHOLDER_PLAYER, VIEWER_ID } from 'utils/constants';
+import { PLACEHOLDER_PLAYER, VIEWER_ID } from '@utils/constants';
 // Internal
 import { useGlobalState } from './useGlobalState';
 

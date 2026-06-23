@@ -7,29 +7,29 @@ import type { AchievementReference } from 'types/game';
 import type { GameInfo } from 'types/game-info';
 import type { GameUserStatistics } from 'types/user';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
-import { useQueryParams } from 'hooks/useQueryParams';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useCardWidth } from '@hooks/useCardWidth';
+import { useLanguage } from '@hooks/useLanguage';
+import { useQueryParams } from '@hooks/useQueryParams';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
-import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
+import { calculateGameAverageDuration, truncateRecommended } from '@utils/helpers';
 // Icons
-import { CalendarIcon } from 'icons/CalendarIcon';
-import { ClockIcon } from 'icons/ClockIcon';
-import { DiceIcon } from 'icons/DiceIcon';
-import { MultitaskIcon } from 'icons/MultitaskIcon';
-import { PlayersIcon } from 'icons/PlayersIcon';
-import { SealOfApprovalIcon } from 'icons/SealOfApprovalIcon';
-import { SkullIcon } from 'icons/SkullIcon';
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { CalendarIcon } from '@icons/CalendarIcon';
+import { ClockIcon } from '@icons/ClockIcon';
+import { DiceIcon } from '@icons/DiceIcon';
+import { MultitaskIcon } from '@icons/MultitaskIcon';
+import { PlayersIcon } from '@icons/PlayersIcon';
+import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
+import { SkullIcon } from '@icons/SkullIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { GameStrip, GameBanner } from 'components/general/GameBanner';
-import { GameTags } from 'components/general/GameTags';
-import { GameVideo } from 'components/general/GameVideo';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { GameStrip, GameBanner } from '@components/general/GameBanner';
+import { GameTags } from '@components/general/GameTags';
+import { GameVideo } from '@components/general/GameVideo';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Internal
 import { formatDurationToHoursAndMinutes, timestampToDate } from '../utils';
 import { InfoCard } from './InfoCard';

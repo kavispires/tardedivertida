@@ -5,17 +5,17 @@ import { Button, Steps } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
+import { useMock } from '@hooks/useMock';
+import { useStep } from '@hooks/useStep';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayersTurnOrder } from 'components/players/PlayersTurnOrder';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { PhaseBetsState, SubmitChoicesPayload } from './utils/types';
 import { MountainIllustration } from './components/Mountain';

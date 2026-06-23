@@ -4,10 +4,10 @@ import { Flex, Tag, Tooltip } from 'antd';
 // Types
 import type { Item } from 'types/tdr';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { ViewIf } from 'components/views/ViewIf';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { ViewIf } from '@components/views/ViewIf';
 
 type MyThingsProps = {
   hand: string[];

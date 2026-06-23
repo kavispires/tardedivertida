@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Internal
 import { calculatePlayerPaths, type PlayerPathSegment } from '../utils/helpers';
 

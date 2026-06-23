@@ -3,18 +3,18 @@ import { Badge, Divider, Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { TrophyIcon } from 'icons/TrophyIcon';
+import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { Card } from 'components/cards/Card';
-import { CharacterCard } from 'components/cards/CharacterCard';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { Title } from 'components/text/Title';
+import { Card } from '@components/cards/Card';
+import { CharacterCard } from '@components/cards/CharacterCard';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { Title } from '@components/text/Title';
 // Internal
 import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';

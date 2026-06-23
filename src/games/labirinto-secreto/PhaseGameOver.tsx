@@ -3,17 +3,17 @@ import { Space } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { FlagIcon } from 'icons/FlagIcon';
+import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { PlayerAvatarStrip } from 'components/player/PlayerAvatarStrip';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import type { MapSegment, PhaseGameOverState, Tree } from './utils/types';
 import { achievementsReference } from './utils/achievements';

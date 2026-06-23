@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { speak } from 'utils/speech';
+import { speak } from '@utils/speech';
 // Components
-import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
-import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
-import { Speak } from 'components/audio/Speak';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { ArteRuimTimerSound } from '@components/audio/ArteRuimTimerSound';
+import { DJPruPruPruSound } from '@components/audio/DJPruPruPruSound';
+import { Speak } from '@components/audio/Speak';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

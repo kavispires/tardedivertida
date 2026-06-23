@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Utils
-import { DEFAULT_PADDING } from 'utils/constants';
+import { DEFAULT_PADDING } from '@utils/constants';
 // Components
-import { DEFAULT_SPRITE_SIZE, Sprite } from 'components/sprites/Sprite';
+import { DEFAULT_SPRITE_SIZE, Sprite } from '@components/sprites/Sprite';
 // Sass
 import styles from './SignCard.module.scss';
 

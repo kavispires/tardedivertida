@@ -1,9 +1,9 @@
 // Icons
-import { ClockIcon } from 'icons/ClockIcon';
-import { ShippingBoxIcon } from 'icons/ShippingBoxIcon';
+import { ClockIcon } from '@icons/ClockIcon';
+import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
+import { Translate } from '@components/language/Translate';
+import { MetricHighlight } from '@components/metrics/MetricHighlight';
 // Internal
 import type { Status } from '../utils/types';
 

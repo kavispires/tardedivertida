@@ -3,16 +3,16 @@ import { Avatar } from 'antd';
 // Types
 import type { PhaseProps, GameRound } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { DJIcon } from 'icons/DJIcon';
+import { DJIcon } from '@icons/DJIcon';
 // Components
-import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { DJPruPruPruSound } from '@components/audio/DJPruPruPruSound';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitTrackAnswerAPIRequest } from './utils/api-requests';
 import { useColorizeBackground } from './utils/useColorizeBackground';

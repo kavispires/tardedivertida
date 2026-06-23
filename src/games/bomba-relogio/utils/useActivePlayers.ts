@@ -3,9 +3,9 @@ import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalState } from '@hooks/useGlobalState';
 // Utils
-import { PLACEHOLDER_PLAYER } from 'utils/constants';
+import { PLACEHOLDER_PLAYER } from '@utils/constants';
 // Internal
 import type { Status } from './types';
 

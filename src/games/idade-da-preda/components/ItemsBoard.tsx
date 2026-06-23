@@ -5,13 +5,13 @@ import { useMemo } from 'react';
 // Types
 import type { Item } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { stringRemoveAccents } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { stringRemoveAccents } from '@utils/helpers';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ItemCard } from 'components/cards/ItemCard';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ItemCard } from '@components/cards/ItemCard';
 // Internal
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 

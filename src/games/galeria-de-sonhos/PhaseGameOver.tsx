@@ -1,10 +1,10 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { LadderIcon } from 'icons/LadderIcon';
+import { LadderIcon } from '@icons/LadderIcon';
 // Components
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

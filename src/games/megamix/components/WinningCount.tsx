@@ -1,6 +1,6 @@
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
 
 type WinningCountProps = {
   winners: number;

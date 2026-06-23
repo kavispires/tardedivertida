@@ -5,13 +5,13 @@ import { Badge, Tag } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useUser } from 'hooks/useUser';
+import { useLanguage } from '@hooks/useLanguage';
+import { useUser } from '@hooks/useUser';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Sass
 import styles from './drawers.module.scss';
 

@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Images
-import avatars from 'assets/images/avatars.svg?url';
+import avatars from '@assets/images/avatars.svg?url';
 // Sass
 import styles from './CustomAvatarWrapper.module.scss';
 

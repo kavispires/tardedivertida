@@ -1,6 +1,6 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
 // Internal
 import { NA_RUA_DO_MEDO_ACTIONS } from './constants';
 import type { SubmitDecisionPayload } from './types';

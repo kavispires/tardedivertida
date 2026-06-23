@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import type { ExtendedObjectFeatureCard } from '../utils/types';
 // Images

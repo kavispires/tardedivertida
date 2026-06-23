@@ -7,19 +7,19 @@ import { Divider, Input, Popover, Switch } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { TopicCard } from 'types/tdr';
 // Utils
-import { NOOP } from 'utils/constants';
+import { NOOP } from '@utils/constants';
 // Icons
-import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
-import { NoIcon } from 'icons/NoIcon';
-import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
-import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
+import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from '@icons/BoxXIcon';
+import { NoIcon } from '@icons/NoIcon';
+import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type {
   AdedanhxGrid,

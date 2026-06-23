@@ -1,7 +1,7 @@
 // Types
 import type { SpectrumCard } from 'types/tdr';
 // Utils
-import { getRandomItem } from 'utils/helpers';
+import { getRandomItem } from '@utils/helpers';
 
 export const mockGuess = (target: number): number => {
   return getRandomItem([

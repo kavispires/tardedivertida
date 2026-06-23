@@ -5,7 +5,7 @@ import { App } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
 // Services
-import { GAME_API, GAME_API_COMMON_ACTIONS, HOST_API, HOST_API_ACTIONS } from 'services/adapters';
+import { GAME_API, GAME_API_COMMON_ACTIONS, HOST_API, HOST_API_ACTIONS } from '@services/adapters';
 // Internal
 import { useCurrentUserContext } from './useCurrentUserContext';
 

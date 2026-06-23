@@ -1,17 +1,17 @@
-import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
+import { HouseCard } from '@games/na-rua-do-medo/components/HouseCard';
 // Ant Design Resources
 import { Avatar, Button, Space } from 'antd';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useLoading } from '@hooks/useLoading';
+import { useMock } from '@hooks/useMock';
 // Icons
-import { StreetIcon } from 'icons/StreetIcon';
+import { StreetIcon } from '@icons/StreetIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { RuleInstruction } from 'components/text/RuleInstruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { StreetCard, TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';

@@ -1,14 +1,14 @@
 // Ant Design Resources
 import { Button, type ButtonProps } from 'antd';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { speak } from 'utils/speech';
+import { speak } from '@utils/speech';
 // Icons
-import { AudioIcon } from 'icons/AudioIcon';
+import { AudioIcon } from '@icons/AudioIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
 
 type SpeakButtonProps = {
   /**

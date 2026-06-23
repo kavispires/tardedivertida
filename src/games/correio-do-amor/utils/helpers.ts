@@ -1,5 +1,5 @@
 // Utils
-import { SEPARATOR } from 'utils/constants';
+import { SEPARATOR } from '@utils/constants';
 
 /**
  * Get the card key which is used as a key for cardsDict

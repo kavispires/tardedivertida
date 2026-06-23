@@ -1,11 +1,11 @@
 // Icons
-import { CaptchaIcon } from 'icons/CaptchaIcon';
-import { EnergyIcon } from 'icons/EnergyIcon';
-import { EventIcon } from 'icons/EventIcon';
-import { RobotIcon } from 'icons/RobotIcon';
-import { ThiefIcon } from 'icons/ThiefIcon';
+import { CaptchaIcon } from '@icons/CaptchaIcon';
+import { EnergyIcon } from '@icons/EnergyIcon';
+import { EventIcon } from '@icons/EventIcon';
+import { RobotIcon } from '@icons/RobotIcon';
+import { ThiefIcon } from '@icons/ThiefIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function EventHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<EventIcon />}>{children}</MetricHighlight>;

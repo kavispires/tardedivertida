@@ -1,8 +1,8 @@
 import { cloneDeep } from 'lodash';
 // Utils
-import { removeDuplicates } from 'utils/helpers';
+import { removeDuplicates } from '@utils/helpers';
 // Pages
-import { loadLocalToday } from 'pages/Daily/utils';
+import { loadLocalToday } from '@pages/Daily/utils';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyTaNaCaraEntry, GameState } from './types';

@@ -4,13 +4,13 @@ import { Badge, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
+import { useLanguage } from '@hooks/useLanguage';
+import { useLoading } from '@hooks/useLoading';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { ItemCard } from 'components/cards/ItemCard';
-import { Translate } from 'components/language/Translate';
-import { Title } from 'components/text/Title';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { ItemCard } from '@components/cards/ItemCard';
+import { Translate } from '@components/language/Translate';
+import { Title } from '@components/text/Title';
 // Internal
 import type { OfferingsStatus, PhaseBasicState } from '../utils/types';
 import { BADGE_INSTRUCTION } from '../utils/constants';

@@ -3,16 +3,16 @@ import { useState } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
+import { useMock } from '@hooks/useMock';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { DevButton } from 'components/debug/DevButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
+import { SendButton } from '@components/buttons/SendButton';
+import { DevButton } from '@components/debug/DevButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
 // Internal
 import type { MapSegment, OnSubmitPathGuessFunction, Tree, TreeId } from '../utils/types';
 import { buildPlayerMappingForLatestTree, getAvailableSegments } from '../utils/helpers';

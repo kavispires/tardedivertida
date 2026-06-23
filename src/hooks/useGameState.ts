@@ -4,7 +4,7 @@ import { App } from 'antd';
 // Types
 import type { GameState } from 'types/game';
 // Utils
-import { print } from 'utils/helpers';
+import { print } from '@utils/helpers';
 // Internal
 import { useFirestoreDocument } from './useFirestoreDocument';
 

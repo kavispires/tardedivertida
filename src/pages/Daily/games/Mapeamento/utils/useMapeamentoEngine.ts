@@ -2,20 +2,20 @@ import { useEffect, useMemo } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Services
-import { logAnalyticsEvent } from 'services/firebase';
+import { logAnalyticsEvent } from '@services/firebase';
 // Utils
-import { stringRemoveAccents } from 'utils/helpers';
+import { stringRemoveAccents } from '@utils/helpers';
 // Pages
-import { useDailyGameState } from 'pages/Daily/hooks/useDailyGameState';
-import { useDailyLocalToday } from 'pages/Daily/hooks/useDailyLocalToday';
-import { useMarkAsPlayed } from 'pages/Daily/hooks/useDailyPlayTracker';
-import { useShowResultModal } from 'pages/Daily/hooks/useShowResultModal';
-import { getAnalyticsEventName } from 'pages/Daily/utils';
-import { STATUSES } from 'pages/Daily/utils/constants';
-import { playSFX } from 'pages/Daily/utils/soundEffects';
-import type { LettersDictionary } from 'pages/Daily/utils/types';
+import { useDailyGameState } from '@pages/Daily/hooks/useDailyGameState';
+import { useDailyLocalToday } from '@pages/Daily/hooks/useDailyLocalToday';
+import { useMarkAsPlayed } from '@pages/Daily/hooks/useDailyPlayTracker';
+import { useShowResultModal } from '@pages/Daily/hooks/useShowResultModal';
+import { getAnalyticsEventName } from '@pages/Daily/utils';
+import { STATUSES } from '@pages/Daily/utils/constants';
+import { playSFX } from '@pages/Daily/utils/soundEffects';
+import type { LettersDictionary } from '@pages/Daily/utils/types';
 // Internal
 import { SETTINGS } from './settings';
 import type { DailyMapeamentoEntry, GameState } from './types';

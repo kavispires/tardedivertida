@@ -1,9 +1,9 @@
 // Types
 import type { GamePlayers } from 'types/game';
 // Components
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { ArteRuimDrawing } from '../utils/types';
 import { DrawingGrade } from './DrawingGrade';

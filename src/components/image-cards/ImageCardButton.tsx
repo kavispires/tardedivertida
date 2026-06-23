@@ -5,8 +5,8 @@ import { useEffect, useMemo, useRef, type ComponentPropsWithoutRef, type ReactNo
 import { DownCircleOutlined, UpCircleOutlined } from '@ant-design/icons';
 import { Button, Typography, type ButtonProps } from 'antd';
 // Components
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { Translate } from 'components/language/Translate';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { ImageBlurButtonContainer } from './ImageBlurButtonContainer';
 // Sass

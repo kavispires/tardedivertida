@@ -1,18 +1,18 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useStep } from 'hooks/useStep';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { RankIcon } from 'icons/RankIcon';
+import { RankIcon } from '@icons/RankIcon';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
-import { RoundsLeftInstruction } from 'components/text/RoundsLeftInstruction';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
+import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 // Internal
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';

@@ -1,16 +1,16 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
+import { useMock } from '@hooks/useMock';
+import { useStep } from '@hooks/useStep';
 // Icons
-import { FeedbackIcon } from 'icons/FeedbackIcon';
+import { FeedbackIcon } from '@icons/FeedbackIcon';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PhaseAnnouncement } from 'components/phases/PhaseAnnouncement';
-import { PhaseContainer } from 'components/phases/PhaseContainer';
-import { StepSwitcher } from 'components/steps/StepSwitcher';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { StepSwitcher } from '@components/steps/StepSwitcher';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 import { mockGuess } from './utils/mock';

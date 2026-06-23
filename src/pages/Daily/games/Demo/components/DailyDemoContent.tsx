@@ -1,15 +1,15 @@
 // Ant Design Resources
 import { Layout } from 'antd';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 // Icons
-import { AnimatedProcessingIcon } from 'icons/AnimatedProcessingIcon';
+import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 // Components
-import { DualTranslate } from 'components/language/DualTranslate';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { Header } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { Header } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
 
 type DailyDemoProps = {
   data: unknown;

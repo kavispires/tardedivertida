@@ -2,16 +2,16 @@
 import type { GamePlayers } from 'types/game';
 import type { CrimeSceneTile } from 'types/tdr';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { SendButton } from 'components/buttons/SendButton';
-import { SceneTile } from 'components/game/SceneTile';
-import { Translate } from 'components/language/Translate';
-import { SpaceFloat } from 'components/layout/SpaceFloat';
-import { ReadyPlayersBar } from 'components/players/ReadyPlayersBar';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
+import { SendButton } from '@components/buttons/SendButton';
+import { SceneTile } from '@components/game/SceneTile';
+import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { ItemsDict, SubmitCrimePayload } from './utils/types';
 import { SelectedItems } from './components/SelectedItems';

@@ -7,13 +7,13 @@ import { Button, Popover, Tooltip, Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Utils
-import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
+import { AVAILABLE_AVATAR_IDS, AVATARS } from '@utils/avatars';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Images
-import avatars from 'assets/images/avatars.svg?url';
+import avatars from '@assets/images/avatars.svg?url';
 // Sass
 import styles from '../PhaseLobby.module.scss';
 

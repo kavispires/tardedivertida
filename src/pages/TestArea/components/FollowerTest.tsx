@@ -5,15 +5,15 @@ import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Icons
-import { EarthIcon } from 'icons/EarthIcon';
+import { EarthIcon } from '@icons/EarthIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { MouseFollowingContent } from 'components/mouse/MouseFollowingContent';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { Instruction } from 'components/text/Instruction';
-import { Title } from 'components/text/Title';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { Instruction } from '@components/text/Instruction';
+import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
 import type { TestStepProps } from '../TestArea';

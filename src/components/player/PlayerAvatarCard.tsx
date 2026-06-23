@@ -3,12 +3,12 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalState } from '@hooks/useGlobalState';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { AVATARS } from 'utils/avatars';
+import { AVATARS } from '@utils/avatars';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass

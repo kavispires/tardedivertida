@@ -6,20 +6,20 @@ import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { Alert, Divider, Flex, Space, Typography } from 'antd';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
+import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
 // Services
-import { getFirestoreConsoleUrl, logAnalyticsEvent } from 'services/firebase';
+import { getFirestoreConsoleUrl, logAnalyticsEvent } from '@services/firebase';
 // Utils
-import { getAnimation } from 'utils/animations';
-import { getToday } from 'utils/helpers';
+import { getAnimation } from '@utils/animations';
+import { getToday } from '@utils/helpers';
 // Icons
-import { DailyContributionGameIcon } from 'icons/DailyContributionGameIcon';
-import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { DailyContributionGameIcon } from '@icons/DailyContributionGameIcon';
+import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { playSFX } from './utils/soundEffects';
 import type { GameSettings } from './utils/types';

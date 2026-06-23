@@ -4,13 +4,13 @@ import { useMeasure, useToggle } from 'react-use';
 // Ant Design Resources
 import { Drawer } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Icons
-import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
+import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DivButton } from 'components/buttons/DivButton';
-import { Translate } from 'components/language/Translate';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DivButton } from '@components/buttons/DivButton';
+import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './FloatingHand.module.scss';
 

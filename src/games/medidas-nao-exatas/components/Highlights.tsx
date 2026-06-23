@@ -1,9 +1,8 @@
 // Icons
-import { GuessIcon } from 'icons/GuessIcon';
-import { ListIcon } from 'icons/ListIcon';
+import { GuessIcon } from '@icons/GuessIcon';
+import { ListIcon } from '@icons/ListIcon';
 // Components
-import { type HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
-// Icons
+import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function WordsHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<ListIcon />}>{children}</MetricHighlight>;

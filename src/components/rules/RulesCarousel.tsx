@@ -8,13 +8,13 @@ import { Typography, Image, Carousel, Button } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useLanguage } from '@hooks/useLanguage';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL } from '@utils/constants';
 // Components
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Sass
 import styles from './rules.module.scss';
 

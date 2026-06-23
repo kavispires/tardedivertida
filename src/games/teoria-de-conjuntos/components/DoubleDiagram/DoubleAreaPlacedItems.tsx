@@ -1,13 +1,12 @@
-import type { DiagramArea } from 'games/teoria-de-conjuntos/utils/types';
+import type { DiagramArea } from '@games/teoria-de-conjuntos/utils/types';
 import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar } from 'antd';
 // Utils
-import { getAnimation } from 'utils/animations';
+import { getAnimation } from '@utils/animations';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-// Utils
+import { ItemCard } from '@components/cards/ItemCard';
 
 const CONTAINER_BOX_WIDTH = 820;
 const CONTAINER_BOX_HEIGHT = 648;

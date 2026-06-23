@@ -4,7 +4,7 @@ import { Button, Popover } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { GridCell, SubmitCluePayload } from '../utils/types';
 import { PreviousClue } from './PreviousClue';

@@ -5,10 +5,10 @@ import { ForwardFilled } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import { reorder } from './reorder';
 // Sass

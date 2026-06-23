@@ -1,6 +1,6 @@
 import { shuffle } from 'lodash';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 
 export function mockAction(placements: number, availableProjectsIds: string[]) {
   const siteIds = shuffle(Array.from({ length: placements }, (_, index) => LETTERS[index]));

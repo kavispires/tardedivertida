@@ -1,16 +1,16 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAvatarColorById } from 'utils/helpers';
+import { getAvatarColorById } from '@utils/helpers';
 // Icons
-import { TheEndIcon } from 'icons/TheEndIcon';
+import { TheEndIcon } from '@icons/TheEndIcon';
 // Components
-import { CanvasSVG } from 'components/canvas/CanvasSVG';
-import { GameOverWrapper } from 'components/game-over/GameOverWrapper';
-import { Achievements } from 'components/general/Achievements';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Achievements } from '@components/general/Achievements';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { AlbumEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

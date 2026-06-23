@@ -2,14 +2,14 @@ import type { ReactNode } from 'react';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
-import { KnifeIcon } from 'icons/KnifeIcon';
-import { LockIcon } from 'icons/LockIcon';
+import { KnifeIcon } from '@icons/KnifeIcon';
+import { LockIcon } from '@icons/LockIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { PlayerAvatarCard } from 'components/player/PlayerAvatarCard';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 // Internal
 import type { History } from '../utils/types';
 import { isHistoryLocked } from '../utils/helpers';

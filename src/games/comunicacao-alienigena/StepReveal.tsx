@@ -3,24 +3,24 @@ import { Space } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useGlobalState } from '@hooks/useGlobalState';
 // Icons
-import { ClockIcon } from 'icons/ClockIcon';
-import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
+import { ClockIcon } from '@icons/ClockIcon';
+import { PlayerIconsIcon } from '@icons/PlayerIconsIcon';
 // Components
-import { ItemCard } from 'components/cards/ItemCard';
-import { DebugOnly } from 'components/debug/DebugOnly';
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { PopoverRule } from 'components/rules/PopoverRule';
-import { Step, type StepProps } from 'components/steps/Step';
-import { Instruction } from 'components/text/Instruction';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { ViewIf } from 'components/views/ViewIf';
+import { ItemCard } from '@components/cards/ItemCard';
+import { DebugOnly } from '@components/debug/DebugOnly';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { MetricHighlight } from '@components/metrics/MetricHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PopoverRule } from '@components/rules/PopoverRule';
+import { Step, type StepProps } from '@components/steps/Step';
+import { Instruction } from '@components/text/Instruction';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type {
   InquiryHistoryEntry,

@@ -1,8 +1,8 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
-import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
-import { getRandomItem } from 'utils/helpers';
+import { AVAILABLE_AVATAR_IDS } from '@utils/avatars';
+import { getRandomItem } from '@utils/helpers';
 
 /**
  * Random names used during Dev

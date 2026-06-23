@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { WarningOutlined } from '@ant-design/icons';
 import { Spin, Tooltip } from 'antd';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 
 export const DEFAULT_SPRITE_SIZE = 72;
 

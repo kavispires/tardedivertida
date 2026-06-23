@@ -3,10 +3,10 @@ import { motion } from 'motion/react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Components
-import { ItemSprite } from 'components/cards/ItemCard';
-import { WarehouseGoodSprite } from 'components/cards/WarehouseGoodCard';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
+import { ItemSprite } from '@components/cards/ItemCard';
+import { WarehouseGoodSprite } from '@components/cards/WarehouseGoodCard';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { ButtonEntry } from '../utils/types';
 

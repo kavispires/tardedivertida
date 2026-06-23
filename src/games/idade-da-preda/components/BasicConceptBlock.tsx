@@ -2,11 +2,11 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Card, Flex, Input } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { SpeakButton } from 'components/audio/SpeakButton';
-import { DivButton } from 'components/buttons/DivButton';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { SpeakButton } from '@components/audio/SpeakButton';
+import { DivButton } from '@components/buttons/DivButton';
+import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import type { Concept } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';

@@ -5,9 +5,9 @@ import { App } from 'antd';
 // Types
 import type { GameMeta } from 'types/game';
 // Services
-import { GAME_API_COMMON_ACTIONS, GAME_API } from 'services/adapters';
+import { GAME_API_COMMON_ACTIONS, GAME_API } from '@services/adapters';
 // Utils
-import { print } from 'utils/helpers';
+import { print } from '@utils/helpers';
 // Internal
 import { useLanguage } from './useLanguage';
 import { useLoading } from './useLoading';

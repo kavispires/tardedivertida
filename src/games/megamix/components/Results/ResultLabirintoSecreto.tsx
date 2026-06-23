@@ -2,13 +2,13 @@ import { Fragment } from 'react';
 // Ant Design Resources
 import { RightSquareOutlined } from '@ant-design/icons';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Icons
-import { MapIcon } from 'icons/MapIcon';
+import { MapIcon } from '@icons/MapIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 

@@ -5,10 +5,10 @@ import { Button, type ButtonProps, Modal } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Translate } from 'components/language/Translate';
-import { RulesCarousel } from 'components/rules/RulesCarousel';
+import { Translate } from '@components/language/Translate';
+import { RulesCarousel } from '@components/rules/RulesCarousel';
 // Sass
 import styles from './rules.module.scss';
 

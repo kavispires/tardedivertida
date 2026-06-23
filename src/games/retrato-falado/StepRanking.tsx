@@ -3,12 +3,12 @@ import { Button } from 'antd';
 // Types
 import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Hooks
-import type { UseStep } from 'hooks/useStep';
+import type { UseStep } from '@hooks/useStep';
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { StepRankingWrapper } from 'components/ranking/StepRankingWrapper';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
 
 type StepRankingProps = {
   ranking: GameRanking;

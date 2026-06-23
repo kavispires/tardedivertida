@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Select } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import type { BracketTier, FightingContender } from '../utils/type';
 

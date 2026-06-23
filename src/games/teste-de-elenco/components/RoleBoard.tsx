@@ -2,17 +2,17 @@ import { Fragment } from 'react';
 // Ant Design Resources
 import { Space, Avatar } from 'antd';
 // Utils
-import { pluralize } from 'utils/helpers';
+import { pluralize } from '@utils/helpers';
 // Icons
-import { MovieGenreIcon } from 'icons/MovieGenreIcon';
-import { NoIcon } from 'icons/NoIcon';
+import { MovieGenreIcon } from '@icons/MovieGenreIcon';
+import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { DualTranslate } from 'components/language/DualTranslate';
-import { Translate } from 'components/language/Translate';
-import { Instruction } from 'components/text/Instruction';
-import { TextHighlight } from 'components/text/TextHighlight';
-import { Title } from 'components/text/Title';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { DualTranslate } from '@components/language/DualTranslate';
+import { Translate } from '@components/language/Translate';
+import { Instruction } from '@components/text/Instruction';
+import { TextHighlight } from '@components/text/TextHighlight';
+import { Title } from '@components/text/Title';
 // Internal
 import type { ActingRole, FeatureFilm } from '../utils/types';
 import { Icons } from '../utils/helpers';

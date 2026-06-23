@@ -1,5 +1,5 @@
+import { mockClue } from '@mock/clues';
 import { random } from 'lodash';
-import { mockClue } from 'mock/clues';
 // Types
 import type { TopicCard } from 'types/tdr';
 // Internal

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Hooks
-import { useCountdown } from 'hooks/useCountdown';
+import { useCountdown } from '@hooks/useCountdown';
 // Internal
 import { TimerBar } from './TimerBar';
 // Sass

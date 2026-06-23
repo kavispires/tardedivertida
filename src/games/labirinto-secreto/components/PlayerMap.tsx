@@ -1,5 +1,5 @@
 // Components
-import { SpaceContainer } from 'components/layout/SpaceContainer';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { MapSegment, Tree } from '../utils/types';
 import { MapEntry } from './MapEntry';

@@ -1,7 +1,7 @@
 // Icons
-import { DailyConexoesGameIcon } from 'icons/DailyConexoesGameIcon';
+import { DailyConexoesGameIcon } from '@icons/DailyConexoesGameIcon';
 // Pages
-import type { GameSettings } from 'pages/Daily/utils/types';
+import type { GameSettings } from '@pages/Daily/utils/types';
 
 export const SETTINGS: GameSettings = {
   KEY: 'CONEXOES',

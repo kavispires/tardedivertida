@@ -1,8 +1,8 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
-import { Step, type StepProps } from 'components/steps/Step';
-import { ViewIf } from 'components/views/ViewIf';
+import { Step, type StepProps } from '@components/steps/Step';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { CardEntry, SubmitDefensePayload } from './utils/types';
 import { StepDefendingAction } from './StepDefendingAction';

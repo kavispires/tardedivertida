@@ -1,5 +1,5 @@
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Sass
 import styles from './loaders.module.scss';
 

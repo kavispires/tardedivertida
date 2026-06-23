@@ -17,15 +17,15 @@ import { useEffect, useState, useMemo } from 'react';
 // Ant Design Resources
 import { Button, Flex, Layout } from 'antd';
 // Hooks
-import { useCardWidthByContainerRef } from 'hooks/useCardWidth';
-import { useTDImageCardUrl } from 'hooks/useTDImageCardUrl';
+import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
+import { useTDImageCardUrl } from '@hooks/useTDImageCardUrl';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Pages
-import { DailyContent } from 'pages/Daily/components/DailyContent';
-import { GameHeader } from 'pages/Daily/components/Header';
-import { Menu } from 'pages/Daily/components/Menu';
-import { RegionText } from 'pages/Daily/components/Region';
+import { DailyContent } from '@pages/Daily/components/DailyContent';
+import { GameHeader } from '@pages/Daily/components/Header';
+import { Menu } from '@pages/Daily/components/Menu';
+import { RegionText } from '@pages/Daily/components/Region';
 // Internal
 import { SETTINGS } from '../utils/settings';
 import {

@@ -2,9 +2,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Flex, Popover, Tag } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { Instruction } from 'components/text/Instruction';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { WordLength } from '../utils/types';
 import { WORD_LENGTH_STATUS } from '../utils/constants';

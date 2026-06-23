@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Hooks
-import { useCardWidth } from 'hooks/useCardWidth';
+import { useCardWidth } from '@hooks/useCardWidth';
 // Internal
 import type { Teller } from './types';
 import { TELLER_EFFECT_TYPE } from './constants';

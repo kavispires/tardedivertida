@@ -6,20 +6,20 @@ import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { NOOP } from 'utils/constants';
-import { getAnimationClass } from 'utils/helpers';
+import { NOOP } from '@utils/constants';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { NoIcon } from 'icons/NoIcon';
+import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { TimedButton } from 'components/buttons/TimedButton';
-import { TripleStateButton } from 'components/buttons/TripleStateButton';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { TimedButton } from '@components/buttons/TimedButton';
+import { TripleStateButton } from '@components/buttons/TripleStateButton';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { GroupAnswerEvaluationEntry, SubmitEvaluationsPayload } from '../utils/types';
 import { ANSWERING_TIME } from '../utils/constants';

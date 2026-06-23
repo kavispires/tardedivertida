@@ -1,8 +1,8 @@
 // Components
-import { HostNextPhaseButton } from 'components/host/HostNextPhaseButton';
-import { Translate } from 'components/language/Translate';
-import { Step } from 'components/steps/Step';
-import { StepTitle } from 'components/text/StepTitle';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
+import { Translate } from '@components/language/Translate';
+import { Step } from '@components/steps/Step';
+import { StepTitle } from '@components/text/StepTitle';
 
 export function StepEvaluationComplete() {
   return (

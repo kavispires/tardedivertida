@@ -5,9 +5,9 @@ import { Button, Popover } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/game';
 // Components
-import { GameBanner } from 'components/general/GameBanner';
-import { Medal } from 'components/general/Medal';
-import { DualTranslate } from 'components/language/DualTranslate';
+import { GameBanner } from '@components/general/GameBanner';
+import { Medal } from '@components/general/Medal';
+import { DualTranslate } from '@components/language/DualTranslate';
 
 type AchievementProps = {
   gameName: string;

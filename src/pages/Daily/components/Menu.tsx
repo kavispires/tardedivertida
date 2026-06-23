@@ -3,7 +3,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { AppstoreFilled, HeartFilled, HeartOutlined, QuestionCircleFilled } from '@ant-design/icons';
 import { Button, Drawer, Space } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 // Internal
 import { useDailyGlobalStore } from '../hooks/useDailyGlobalStore';
 import { useDailyChallengeContext } from '../hooks/useDailyChallengeContext';

@@ -4,9 +4,9 @@ import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
-import { useSortedPlayers } from 'hooks/useSortedPlayers';
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
-import { VIPLineIcon } from 'icons/VIPLineIcon';
+import { VIPLineIcon } from '@icons/VIPLineIcon';
 // Internal
 import { ClubberAvatar } from '../../../components/avatars/ClubberAvatar';
 

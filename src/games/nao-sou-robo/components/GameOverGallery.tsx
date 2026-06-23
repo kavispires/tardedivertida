@@ -1,13 +1,13 @@
 // Types
 import type { GamePlayers } from 'types/game';
 // Icons
-import { RobotIcon } from 'icons/RobotIcon';
+import { RobotIcon } from '@icons/RobotIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { ImageCard } from 'components/image-cards/ImageCard';
-import { Translate } from 'components/language/Translate';
-import { TitledContainer } from 'components/layout/TitledContainer';
-import { ListOfPlayers } from 'components/players/ListOfPlayers';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
+import { TitledContainer } from '@components/layout/TitledContainer';
+import { ListOfPlayers } from '@components/players/ListOfPlayers';
 // Internal
 import type { RobotGalleryEntry } from '../utils/types';
 

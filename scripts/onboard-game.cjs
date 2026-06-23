@@ -571,12 +571,12 @@ async function runFrontendSetup() {
       fileContent = fileContent
         .replace(/SessionTemplate/g, `Session${pascalName}`)
         .replace(/GAME_COLLECTION\._TEMPLATE/g, `GAME_COLLECTION.${gameKey}`)
-        // Remove the PHASES import from utils/phases
-        .replace(/import \{ PHASES \} from 'utils\/phases';\n/, '')
+        // Remove the PHASES import from @utils/phases
+        .replace(/import \{ PHASES \} from '@utils\/phases';\n/, '')
         // Add local phases import after GAME_COLLECTION import
         .replace(
-          /import \{ GAME_COLLECTION \} from 'utils\/constants';/,
-          `import { GAME_COLLECTION } from 'utils/constants';\n// Internal\nimport { ${gameKey}_PHASES } from './utils/constants';`,
+          /import \{ GAME_COLLECTION \} from '@utils\/constants';/,
+          `import { GAME_COLLECTION } from '@utils/constants';\n// Internal\nimport { ${gameKey}_PHASES } from './utils/constants';`,
         )
         // Replace phase references
         .replace(/PHASES\.TEMPLATE\.UNKNOWN/g, `${gameKey}_PHASES.${firstPhase}`)

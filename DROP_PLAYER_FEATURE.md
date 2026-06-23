@@ -359,12 +359,12 @@ import { Button, Form, Select } from 'antd';
 // Types
 import type { GamePlayers, GameState } from 'types/game';
 // Hooks
-import { useGameMeta } from 'hooks/useGameMeta';
-import { useHost } from 'hooks/useHost';
-import { useHostActionRequest } from 'hooks/useHostActionRequest';
-import { useLoading } from 'hooks/useLoading';
+import { useGameMeta } from '@hooks/useGameMeta';
+import { useHost } from '@hooks/useHost';
+import { useHostActionRequest } from '@hooks/useHostActionRequest';
+import { useLoading } from '@hooks/useLoading';
 // Services
-import { HOST_API_ACTIONS } from 'services/adapters';
+import { HOST_API_ACTIONS } from '@services/adapters';
 // Components
 import { Popconfirm } from 'components/general/Popconfirm';
 import { Translate } from 'components/language/Translate';

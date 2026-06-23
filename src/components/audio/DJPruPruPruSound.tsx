@@ -1,8 +1,8 @@
-import airHorn from 'assets/sounds/airhorn.mp3';
+import airHorn from '@assets/sounds/airhorn.mp3';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Hooks
-import { useGlobalLocalStorage } from 'hooks/useGlobalLocalStorage';
+import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 
 /**
  * Component that plays an air horn sound effect with volume controls for DJ Pru Pru Pru game

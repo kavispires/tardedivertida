@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Components
-import { Translate } from 'components/language/Translate';
+import { Translate } from '@components/language/Translate';
 
 type ResetButtonProps = {
   goToStep: (index: number) => void;

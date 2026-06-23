@@ -1,6 +1,6 @@
 // Hooks
-import { useGameActionRequest } from 'hooks/useGameActionRequest';
-import { useLanguage } from 'hooks/useLanguage';
+import { useGameActionRequest } from '@hooks/useGameActionRequest';
+import { useLanguage } from '@hooks/useLanguage';
 // Internal
 import type { SubmitDeliveryPayload, SubmitRequestPayload } from './types';
 import { COMUNICACAO_DUO_ACTIONS } from './constants';

@@ -4,11 +4,11 @@ import { Avatar, Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Icons
-import { QuestionIcon } from 'icons/QuestionIcon';
+import { QuestionIcon } from '@icons/QuestionIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { Translate } from 'components/language/Translate';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Translate } from '@components/language/Translate';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { BoardObject, Clue, Clues } from '../utils/types';
 

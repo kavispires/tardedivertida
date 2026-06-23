@@ -1,7 +1,7 @@
 // Types
 import type { PhaseProps } from 'types/game';
 // Components
-import { PhaseContainer } from 'components/phases/PhaseContainer';
+import { PhaseContainer } from '@components/phases/PhaseContainer';
 // Internal
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import type { PhaseResultState } from './utils/types';

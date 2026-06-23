@@ -1,6 +1,6 @@
 import { random, shuffle, sampleSize } from 'lodash';
 // Utils
-import { LETTERS } from 'utils/constants';
+import { LETTERS } from '@utils/constants';
 // Internal
 import { BUTTONS_LIBRARY, POOLS } from './data';
 

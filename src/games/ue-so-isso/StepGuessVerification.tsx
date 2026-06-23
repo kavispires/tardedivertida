@@ -6,21 +6,21 @@ import { Button, App, Space } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SuggestionEasel } from 'components/game/SuggestionEasel';
-import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
-import { Translate } from 'components/language/Translate';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatarName } from 'components/player/PlayerAvatarName';
-import { messageContent } from 'components/pop-up/messageContent';
-import { Step, type StepProps } from 'components/steps/Step';
-import { RuleInstruction } from 'components/text/RuleInstruction';
-import { StepTitle } from 'components/text/StepTitle';
-import { TextHighlight } from 'components/text/TextHighlight';
-import { ViewIf } from 'components/views/ViewIf';
+import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
+import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { messageContent } from '@components/pop-up/messageContent';
+import { Step, type StepProps } from '@components/steps/Step';
+import { RuleInstruction } from '@components/text/RuleInstruction';
+import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
+import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { SecretWord, SubmitOutcomePayload, Suggestion } from './utils/types';
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';

@@ -5,18 +5,18 @@ import { Avatar, Button, Space, Spin } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { MovieCard as MovieCardType } from 'types/tdr';
 // Hooks
-import { useLoading } from 'hooks/useLoading';
+import { useLoading } from '@hooks/useLoading';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass } from '@utils/helpers';
 // Icons
-import { ScaredIcon } from 'icons/ScaredIcon';
-import { StarIcon } from 'icons/StarIcon';
-import { TomatoIcon } from 'icons/TomatoIcon';
+import { ScaredIcon } from '@icons/ScaredIcon';
+import { StarIcon } from '@icons/StarIcon';
+import { TomatoIcon } from '@icons/TomatoIcon';
 // Components
-import { IconAvatar } from 'components/avatars/IconAvatar';
-import { MovieCard } from 'components/cards/MovieCard';
-import { SpaceContainer } from 'components/layout/SpaceContainer';
-import { PlayerAvatar } from 'components/player/PlayerAvatar';
+import { IconAvatar } from '@components/avatars/IconAvatar';
+import { MovieCard } from '@components/cards/MovieCard';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 
 type MoviesProps = {
   movies: MovieCardType[];

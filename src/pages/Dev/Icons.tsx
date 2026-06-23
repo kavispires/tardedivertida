@@ -4,8 +4,8 @@ import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, App, Switch, Divider, Input, Space } from 'antd';
 // Components
-import { TransparentButton } from 'components/buttons/TransparentButton';
-import { PageLayout } from 'components/layout/PageLayout';
+import { TransparentButton } from '@components/buttons/TransparentButton';
+import { PageLayout } from '@components/layout/PageLayout';
 // Internal
 import * as icons from './utils/iconsCollection';
 import { collectionByCategory, collectionByGame, collectionUnassigned } from './utils/iconsCollectionByGame';

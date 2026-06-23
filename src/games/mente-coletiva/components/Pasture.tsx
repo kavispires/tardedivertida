@@ -5,7 +5,7 @@ import { useWindowSize } from 'react-use';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
-import { useTDBaseUrl } from 'hooks/useTDBaseUrl';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Internal
 import { RoundType } from './RoundType';
 import { SheepAvatar } from './SheepAvatar';
