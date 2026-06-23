@@ -1,1 +1,0 @@
-import{V as e}from"./react-vendor-B4MxxhR7.js";import{t}from"./CustomAvatarWrapper-Dqb2Cf1K.js";var n=`/tardedivertida/assets/super-heroes-BoxNuE4M.svg`,r=e(),i=e=>(0,r.jsx)(t,{sprite:n,prefix:`super-hero`,...e});export{i as t};

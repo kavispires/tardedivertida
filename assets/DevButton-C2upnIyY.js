@@ -1,1 +1,0 @@
-import{Jt as e,cr as t}from"./antd-vendor-CyTuTWjB.js";import{V as n}from"./react-vendor-B4MxxhR7.js";import{t as r}from"./DebugOnly-B10zzTDm.js";var i=n();function a({children:n,ghost:a,type:o,...s}){return(0,i.jsx)(r,{devOnly:!0,children:(0,i.jsx)(t,{icon:(0,i.jsx)(e,{}),ghost:a??!0,type:o??`primary`,...s,children:n})})}export{a as t};

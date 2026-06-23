@@ -1,1 +1,0 @@
-import{V as e}from"./react-vendor-B4MxxhR7.js";import{t}from"./useDevFeatures-Cl2teTth.js";var n=e();function r({children:e,div:r=!1,dev:i=!1,devOnly:a=!1}){let{isDebugEnabled:o,isDevEnv:s}=t();return a?r&&s?(0,n.jsx)(`div`,{children:e}):s?e:null:i&&s||o?r?(0,n.jsx)(`div`,{children:e}):(0,n.jsx)(n.Fragment,{children:e}):null}export{r as t};
