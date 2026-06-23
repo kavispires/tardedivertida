@@ -6,9 +6,9 @@ import type { PhaseProps } from 'types/game';
 import { TrophyIcon } from '@icons/TrophyIcon';
 import { WavelengthDeviceIcon } from '@icons/WavelengthDeviceIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Achievements } from '@components/general/Achievements';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Title } from '@components/text/Title';
 // Internal
@@ -60,7 +60,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                   key={category.id}
                   className="o-past-category-entry"
                 >
-                  <IconAvatar
+                  <Icon
                     icon={<WavelengthDeviceIcon />}
                     size={48}
                   />

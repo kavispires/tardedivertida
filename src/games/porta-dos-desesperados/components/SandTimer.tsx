@@ -9,7 +9,7 @@ import { formatTime, getRandomItem } from '@utils/helpers';
 // Icons
 import { MagicHourGlassIcon } from '@icons/MagicHourGlassIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Internal
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';
 import type { DoorsCache, SubmitDoorPayload } from '../utils/types';
@@ -76,14 +76,14 @@ export function SandTimer({
   if (timeLeft - TIMER_LEAD < 0) {
     return (
       <div className="i-sand-timer i-sand-timer--negative">
-        <IconAvatar icon={<MagicHourGlassIcon />} /> 0
+        <Icon icon={<MagicHourGlassIcon />} /> 0
       </div>
     );
   }
 
   return (
     <div className="i-sand-timer">
-      <IconAvatar icon={<MagicHourGlassIcon />} /> {formatTime(timeLeft - TIMER_LEAD)}
+      <Icon icon={<MagicHourGlassIcon />} /> {formatTime(timeLeft - TIMER_LEAD)}
     </div>
   );
 }

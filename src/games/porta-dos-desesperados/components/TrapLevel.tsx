@@ -3,7 +3,7 @@ import { Rate } from 'antd';
 // Icons
 import { MagicSkullIcon } from '@icons/MagicSkullIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 
 type TrapLevelProps = {
   level: number;
@@ -19,7 +19,7 @@ export function TrapLevel({ level, count = 3 }: TrapLevelProps) {
       count={count}
       disabled
       character={({ value, index }) => (
-        <IconAvatar
+        <Icon
           size="small"
           icon={<MagicSkullIcon />}
           className={value && index && index >= value ? 'i-trap-level-opacity' : ''}

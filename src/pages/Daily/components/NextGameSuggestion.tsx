@@ -6,7 +6,7 @@ import { Carousel, Typography } from 'antd';
 // Services
 import { logAnalyticsEvent } from '@services/firebase';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -61,7 +61,7 @@ function NextSuggestionEntry({ settings }: NextSuggestionEntryProps) {
         onClick={handleClick}
         className="daily-next-game-suggestion-button"
       >
-        <IconAvatar icon={<settings.HUB_ICON />} /> <DualTranslate>{settings.NAME}</DualTranslate>!
+        <Icon icon={<settings.HUB_ICON />} /> <DualTranslate>{settings.NAME}</DualTranslate>!
       </button>
     </Typography.Paragraph>
   );

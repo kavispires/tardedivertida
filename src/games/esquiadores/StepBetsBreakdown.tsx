@@ -12,8 +12,8 @@ import type { UseStep } from '@hooks/useStep';
 import { LodgeIcon } from '@icons/LodgeIcon';
 import { QualitySealIcon } from '@icons/QualitySealIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TimedButton } from '@components/buttons/TimedButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { TitledContainer } from '@components/layout/TitledContainer';
@@ -60,7 +60,7 @@ export function StepBetsBreakdown({
             className="lodge-result"
           >
             <div className="lodge-result__selected">
-              <IconAvatar
+              <Icon
                 size="large"
                 icon={<QualitySealIcon className={clsx(!lodge.selected && 'invisible')} />}
               />

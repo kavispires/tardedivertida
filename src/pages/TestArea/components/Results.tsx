@@ -4,7 +4,7 @@ import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 const getActiveIcon = (value?: boolean, active?: boolean) => {
@@ -35,8 +35,7 @@ export function Results({ steps, results, activeStep }: ResultsProps) {
       {steps.map((_, index) => {
         const ActiveIcon = getActiveIcon(results[index], activeStep === index);
         return (
-          <IconAvatar
-            // biome-ignore lint/suspicious/noArrayIndexKey: no unique key for icons
+          <Icon
             key={index}
             icon={<ActiveIcon />}
             {...getActiveClass(results[index], activeStep === index)}

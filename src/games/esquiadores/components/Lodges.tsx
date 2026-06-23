@@ -9,8 +9,8 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { GamblingChipIcon } from '@icons/GamblingChipIcon';
 import { LodgeIcon } from '@icons/LodgeIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { AvatarGroup } from '@components/players/PlayerAvatarGroup';
@@ -64,7 +64,7 @@ export function Lodges({ lodges, players, user, onSubmitBets, betType }: LodgesP
                   />
                 }
               >
-                <IconAvatar
+                <Icon
                   icon={<GamblingChipIcon />}
                   size="small"
                 />

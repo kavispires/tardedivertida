@@ -13,8 +13,8 @@ import { DiagramIcon } from '@icons/DiagramIcon';
 import { GarbageIcon } from '@icons/GarbageIcon';
 import { SkullIcon } from '@icons/SkullIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -118,7 +118,7 @@ export function Announcement({
               itemId={item.id}
               width={84}
             />{' '}
-            <IconAvatar
+            <Icon
               icon={<ArrowIcon />}
               size="large"
             />{' '}
@@ -162,7 +162,7 @@ export function Announcement({
               itemId={item.id}
               width={84}
             />{' '}
-            <IconAvatar
+            <Icon
               icon={<ArrowIcon />}
               size="large"
             />{' '}
@@ -170,11 +170,11 @@ export function Announcement({
               selectedArea={previousGuess.correctArea}
               size={75}
             />
-            <IconAvatar
+            <Icon
               icon={<BoxEqualIcon />}
               size="large"
             />
-            <IconAvatar
+            <Icon
               icon={<ApplauseIcon />}
               size={75}
             />
@@ -230,7 +230,7 @@ export function Announcement({
               itemId={item.id}
               width={84}
             />{' '}
-            <IconAvatar
+            <Icon
               icon={<ArrowIcon />}
               size="small"
             />{' '}
@@ -238,11 +238,11 @@ export function Announcement({
               selectedArea={previousGuess.suggestedArea}
               size={50}
             />
-            <IconAvatar
+            <Icon
               icon={<BoxEqualIcon />}
               size="small"
             />
-            <IconAvatar
+            <Icon
               icon={<SkullIcon />}
               size={50}
             />
@@ -257,7 +257,7 @@ export function Announcement({
               itemId={item.id}
               width={84}
             />{' '}
-            <IconAvatar
+            <Icon
               icon={<ArrowIcon />}
               size="small"
             />{' '}
@@ -265,11 +265,11 @@ export function Announcement({
               selectedArea={previousGuess.correctArea}
               size={50}
             />
-            <IconAvatar
+            <Icon
               icon={<BoxEqualIcon />}
               size="small"
             />
-            <IconAvatar
+            <Icon
               icon={<CheckMarkIcon />}
               size={50}
             />
@@ -333,7 +333,7 @@ export const GameOverIcon = ({ items, lastGuess }: GameOverIconProps) => {
         text={item.name}
         width={100}
       />{' '}
-      <IconAvatar
+      <Icon
         icon={<ArrowIcon />}
         size="large"
       />{' '}
@@ -341,11 +341,11 @@ export const GameOverIcon = ({ items, lastGuess }: GameOverIconProps) => {
         selectedArea={lastGuess.correctArea}
         size={75}
       />
-      <IconAvatar
+      <Icon
         icon={<BoxEqualIcon />}
         size="large"
       />
-      <IconAvatar
+      <Icon
         icon={isWin ? <CrownIcon /> : <GarbageIcon />}
         size={125}
       />

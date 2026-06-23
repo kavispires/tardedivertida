@@ -8,9 +8,9 @@ import { useLanguage } from '@hooks/useLanguage';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -93,7 +93,7 @@ export function StepEliminationSuspect({
               pt="NÃO"
             />
           )}{' '}
-          <IconAvatar
+          <Icon
             size="large"
             icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
           />{' '}

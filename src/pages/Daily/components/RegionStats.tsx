@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Divider, Space, Tooltip } from 'antd';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 
 type Stat = {
@@ -32,7 +32,7 @@ export function RegionStats({ stats }: RegionStatsProps) {
           key={key}
           title={<DualTranslate>{tooltip}</DualTranslate>}
         >
-          <IconAvatar
+          <Icon
             icon={icon}
             size="small"
           />{' '}

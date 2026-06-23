@@ -13,7 +13,7 @@ import { getAnimation } from '@utils/animations';
 // Icons
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -173,7 +173,7 @@ export function StepResult({
                   className={clsx(feature.eliminated && 'features-container__eliminated-object')}
                 />
                 {feature.eliminated && (
-                  <IconAvatar
+                  <Icon
                     icon={<XIcon />}
                     size="large"
                     className="features-container__eliminated-x"

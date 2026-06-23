@@ -13,8 +13,8 @@ import { PLACEHOLDER_PLAYER } from '@utils/constants';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { DivButton } from '@components/buttons/DivButton';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { ZoomPanPinchContainer } from '@components/layout/ZoomPanPinchContainer';
 import { AvatarGroup } from '@components/players/PlayerAvatarGroup';
@@ -66,7 +66,7 @@ export function Forest({
   if (!forest || !map || map.length === 0 || !screenWidth) {
     return (
       <SpaceContainer vertical>
-        <IconAvatar
+        <Icon
           icon={<AnimatedProcessingIcon />}
           size="large"
         />
@@ -183,7 +183,7 @@ export function Forest({
                             isActive && 'forest__tree--active',
                           )}
                         />
-                        <IconAvatar
+                        <Icon
                           icon={<ArrowIcon />}
                           size="large"
                           className={clsx(
@@ -197,7 +197,7 @@ export function Forest({
                     )}
 
                     {isPathForward && !disabled && (
-                      <IconAvatar
+                      <Icon
                         icon={<ArrowIcon />}
                         size="large"
                         className={clsx(

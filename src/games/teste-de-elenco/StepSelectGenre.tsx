@@ -11,10 +11,10 @@ import { getRandomItem } from '@utils/helpers';
 // Icons
 import { MovieGenreIcon } from '@icons/MovieGenreIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -85,7 +85,7 @@ export function StepSelectGenre({
         }}
       >
         {genres.map((genre) => {
-          const Icon = Icons?.[genre.key] ?? MovieGenreIcon;
+          const IconComponent = Icons?.[genre.key] ?? MovieGenreIcon;
           return (
             <TransparentButton
               key={genre.key}
@@ -95,8 +95,8 @@ export function StepSelectGenre({
               active={selectedGenre === genre.key}
               activeClass="movie-personalization-selection__button--selected"
             >
-              <IconAvatar
-                icon={<Icon />}
+              <Icon
+                icon={<IconComponent />}
                 size={64}
               />
               <DualTranslate>{genre.title}</DualTranslate>

@@ -6,8 +6,8 @@ import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { NoIcon } from '@icons/NoIcon';
 import { YesIcon } from '@icons/YesIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GlyphCard } from '@components/cards/GlyphCard';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import { parseSelectedGlyphs } from '../utils/helpers';
@@ -38,7 +38,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             className="q-player-glyphs__entry q-player-glyphs__entry--positive"
             key={`pos-${player.id}-${id}-${index}`}
           >
-            <IconAvatar
+            <Icon
               icon={<YesIcon />}
               size="small"
             />
@@ -62,7 +62,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
             className="q-player-glyphs__entry q-player-glyphs__entry--negative"
             key={`neg-${player.id}-${id}-${index}`}
           >
-            <IconAvatar
+            <Icon
               icon={<NoIcon />}
               size="small"
             />

@@ -17,7 +17,7 @@ import { getToday } from '@utils/helpers';
 import { DailyContributionGameIcon } from '@icons/DailyContributionGameIcon';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -308,7 +308,7 @@ function HubList({ list, width, startingIndex }: HubListProps) {
             lsKey={KEY}
             width={width}
             href={ROUTE}
-            Icon={HUB_ICON}
+            IconComponent={HUB_ICON}
             name={NAME}
             color={COLOR}
             version={VERSION}
@@ -338,7 +338,7 @@ type GameButtonProps = {
   width: number;
   disabled?: boolean;
   href: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  IconComponent: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   name: DualLanguageValue;
   color: string;
   releaseDate: string;
@@ -351,7 +351,7 @@ function GameButton({
   width,
   disabled,
   href,
-  Icon,
+  IconComponent,
   name,
   color,
   releaseDate,
@@ -379,7 +379,7 @@ function GameButton({
   return (
     <motion.div className="played-wrapper">
       {wasPlayed && (
-        <IconAvatar
+        <Icon
           icon={<SpeechBubbleAcceptedIcon />}
           size="small"
           className="played-wrapper__played"
@@ -404,7 +404,10 @@ function GameButton({
           onClick={handleClick}
         >
           <div className="hub-link">
-            <Icon style={{ width: width / 2 }} />
+            <Icon
+              icon={<IconComponent />}
+              style={{ width: width / 2 }}
+            />
             <DualTranslate>{name}</DualTranslate>
           </div>
         </motion.button>

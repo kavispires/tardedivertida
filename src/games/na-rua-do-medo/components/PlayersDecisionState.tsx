@@ -12,7 +12,7 @@ import { TrickOrTreatIcon } from '@icons/TrickOrTreatIcon';
 import { WalkIcon } from '@icons/WalkIcon';
 // Components
 import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 
 type PlayersDecisionStateProps = {
@@ -69,7 +69,7 @@ export function PlayersDecisionState({
             pt={
               <>
                 Cada um levou {candyInHand + cashedInCandy}{' '}
-                <IconAvatar
+                <Icon
                   icon={<CandyIcon />}
                   size="small"
                 />{' '}
@@ -79,7 +79,7 @@ export function PlayersDecisionState({
             en={
               <>
                 Each one took {candyInHand + cashedInCandy}{' '}
-                <IconAvatar
+                <Icon
                   icon={<CandyIcon />}
                   size="small"
                 />{' '}
@@ -122,7 +122,7 @@ export function PlayersDecisionState({
               pt={
                 <>
                   Perderam {candyInHand}{' '}
-                  <IconAvatar
+                  <Icon
                     icon={<CandyIcon />}
                     size="small"
                   />
@@ -132,7 +132,7 @@ export function PlayersDecisionState({
               en={
                 <>
                   Lost {candyInHand}{' '}
-                  <IconAvatar
+                  <Icon
                     icon={<CandyIcon />}
                     size="small"
                   />{' '}
@@ -145,7 +145,7 @@ export function PlayersDecisionState({
               pt={
                 <>
                   Cada um tem {candyInHand}{' '}
-                  <IconAvatar
+                  <Icon
                     icon={<CandyIcon />}
                     size="small"
                   />{' '}
@@ -155,7 +155,7 @@ export function PlayersDecisionState({
               en={
                 <>
                   Each one has {candyInHand}{' '}
-                  <IconAvatar
+                  <Icon
                     icon={<CandyIcon />}
                     size="small"
                   />{' '}
@@ -189,7 +189,7 @@ function DecisionSection({ players, playersInSection, icon, title, description }
           !hasPlayers && getAnimationClass('fadeOut') && 'n-players-decision__title--empty',
         )}
       >
-        <IconAvatar icon={icon} />
+        <Icon icon={icon} />
         {title}
       </h3>
 

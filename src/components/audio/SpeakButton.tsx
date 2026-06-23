@@ -8,7 +8,7 @@ import { speak } from '@utils/speech';
 // Icons
 import { AudioIcon } from '@icons/AudioIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 
 type SpeakButtonProps = {
   /**
@@ -28,7 +28,7 @@ export function SpeakButton({ text, icon, ...buttonProps }: SpeakButtonProps) {
     <Button
       onClick={() => speak(text, language, volume || 0.5)}
       icon={
-        <IconAvatar
+        <Icon
           size="small"
           icon={icon ?? <AudioIcon />}
         />

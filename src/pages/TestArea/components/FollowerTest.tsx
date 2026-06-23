@@ -7,7 +7,7 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { EarthIcon } from '@icons/EarthIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
@@ -87,7 +87,7 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
           <PlayerAvatarName player={player} />
         </MouseFollowingContent>
         <MouseFollowingContent active={contentType === 'icon'}>
-          <IconAvatar
+          <Icon
             icon={<EarthIcon />}
             size="large"
           />

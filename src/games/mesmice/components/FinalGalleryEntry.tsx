@@ -4,8 +4,8 @@ import type { GamePlayers } from 'types/game';
 import { BoxEqualIcon } from '@icons/BoxEqualIcon';
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry } from '../utils/types';
@@ -29,7 +29,7 @@ export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntr
       <div className="selections-container__object selections-container__content">
         <ObjectCard item={entry.item} />
         <div>
-          <IconAvatar
+          <Icon
             icon={<BoxPlusIcon />}
             size="small"
           />
@@ -38,7 +38,7 @@ export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntr
           <Card hideHeader>{entry.clue}</Card>
         </div>
         <div>
-          <IconAvatar
+          <Icon
             icon={<BoxEqualIcon />}
             size="small"
           />

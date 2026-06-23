@@ -22,8 +22,8 @@ import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { BoxBlankIcon } from '@icons/BoxBlankIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { CrimeItemCard } from '@components/cards/CrimeItemCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
@@ -204,7 +204,7 @@ export function CrimeSummary({
           {historyEntryIndex === -1 && isLocked && <CrimeGuessStatus status="LOCKED" />}
           {historyEntryIndex === -1 && (
             <span className="crime-guess-status">
-              <IconAvatar
+              <Icon
                 icon={<BoxBlankIcon />}
                 className="invisible"
               />

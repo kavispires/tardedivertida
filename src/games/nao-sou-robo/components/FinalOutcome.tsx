@@ -5,7 +5,7 @@ import type { GamePlayers } from 'types/game';
 import { NuclearExplosionIcon } from '@icons/NuclearExplosionIcon';
 import { UnderConstructionIcon } from '@icons/UnderConstructionIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { ListOfPlayers } from '@components/players/ListOfPlayers';
@@ -51,7 +51,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
       <TitledContainer
         title={
           <>
-            <IconAvatar icon={<NuclearExplosionIcon />} />{' '}
+            <Icon icon={<NuclearExplosionIcon />} />{' '}
             <Translate
               pt="Os robôs venceram!"
               en="Robots win!"
@@ -89,7 +89,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
       <TitledContainer
         title={
           <>
-            <IconAvatar icon={<UnderConstructionIcon />} />{' '}
+            <Icon icon={<UnderConstructionIcon />} />{' '}
             <Translate
               pt="Banidos do servidor!"
               en="Banned from the server!"

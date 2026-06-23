@@ -3,7 +3,7 @@ import type { GamePlayers } from 'types/game';
 // Icons
 import { RobotIcon } from '@icons/RobotIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
@@ -51,7 +51,7 @@ export function GameOverGallery({ gallery, players }: GameOverGalleryProps) {
                 avatarsOnly
               />
             ) : (
-              <IconAvatar icon={<RobotIcon />} />
+              <Icon icon={<RobotIcon />} />
             )}
           </div>
         </div>

@@ -9,7 +9,7 @@ import { convertGuestoToUser } from '@services/firebase';
 // Icons
 import { UserStatsIcon } from '@icons/UserStatsIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Instruction } from '@components/text/Instruction';
@@ -107,7 +107,7 @@ export function ConvertGuestToAccountModal() {
           size="xx-small"
           level={3}
         >
-          <IconAvatar
+          <Icon
             size="large"
             icon={<UserStatsIcon />}
           />

@@ -10,9 +10,9 @@ import { CrownIcon } from '@icons/CrownIcon';
 import { SecurityIcon } from '@icons/SecurityIcon';
 import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Achievements } from '@components/general/Achievements';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
@@ -86,13 +86,13 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
               }}
               onChange={(checked) => setPlayerNote(player.id, checked ? 'terrorist' : 'agent')}
               checkedChildren={
-                <IconAvatar
+                <Icon
                   icon={<TraitorIcon />}
                   size="small"
                 />
               }
               unCheckedChildren={
-                <IconAvatar
+                <Icon
                   icon={<SecurityIcon />}
                   size="small"
                 />
@@ -110,7 +110,7 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
     case OUTCOME.AGENTS_WIN: {
       return (
         <Instruction contained>
-          <IconAvatar
+          <Icon
             icon={<SecurityIcon />}
             size={64}
           />
@@ -140,7 +140,7 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
     case OUTCOME.TERRORISTS_WIN: {
       return (
         <Instruction contained>
-          <IconAvatar
+          <Icon
             icon={<TraitorIcon />}
             size={64}
           />
@@ -170,7 +170,7 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
     case OUTCOME.BOMB: {
       return (
         <Instruction contained>
-          <IconAvatar
+          <Icon
             icon={<BombIcon />}
             size={64}
           />

@@ -8,7 +8,7 @@ import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
 import { ShooterIcon } from '@icons/ShooterIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -60,7 +60,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
                 key={player.id}
                 className="qnm-shooter"
               >
-                <IconAvatar
+                <Icon
                   icon={<ShooterIcon />}
                   size={48}
                   className={clsx(index >= arr.length / 2 && 'qnm-shooter__reverse')}

@@ -18,8 +18,8 @@ import { AgeTeenIcon } from '@icons/AgeTeenIcon';
 import { PetIcon } from '@icons/PetIcon';
 import { QuestionIcon } from '@icons/QuestionIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { DualTranslate } from '@components/language/DualTranslate';
@@ -208,7 +208,7 @@ function DeckType({ deck }: Pick<SuspectCard, 'deck'>) {
   return (
     <span className="t-characters-table__deck-type">
       <Tooltip title={<DualTranslate>{entry.title}</DualTranslate>}>
-        <IconAvatar
+        <Icon
           size="small"
           icon={entry.icon}
           shape="circle"

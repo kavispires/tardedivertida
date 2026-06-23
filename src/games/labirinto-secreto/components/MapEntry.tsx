@@ -4,7 +4,7 @@ import { ArrowIcon } from '@icons/ArrowIcon';
 import { MapIcon } from '@icons/MapIcon';
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Internal
 import type { MapSegment, Tree } from '../utils/types';
 import { TreeImage } from './TreeImage';
@@ -30,7 +30,7 @@ export function MapEntry({ segment, tree, showArrow, className }: MapEntryProps)
         />
       )}
 
-      <IconAvatar
+      <Icon
         icon={<MapIcon />}
         size="large"
         className="map-entry__icon"
@@ -43,7 +43,7 @@ export function MapEntry({ segment, tree, showArrow, className }: MapEntryProps)
           >
             {clue.text}
             {clue?.negate && (
-              <IconAvatar
+              <Icon
                 icon={<NoIcon />}
                 size="small"
                 className="map-entry__clue-no"
@@ -54,7 +54,7 @@ export function MapEntry({ segment, tree, showArrow, className }: MapEntryProps)
       })}
 
       {showArrow && (
-        <IconAvatar
+        <Icon
           icon={<ArrowIcon />}
           size="small"
           className="map-entry__arrow"

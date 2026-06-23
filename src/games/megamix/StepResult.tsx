@@ -14,8 +14,8 @@ import { DJIcon } from '@icons/DJIcon';
 import { GarbageIcon } from '@icons/GarbageIcon';
 import { VIPLineIcon } from '@icons/VIPLineIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TimedButton } from '@components/buttons/TimedButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -83,7 +83,7 @@ export function StepResult({
       </StepTitle>
 
       <RuleInstruction type="event">
-        <IconAvatar
+        <Icon
           icon={<DJIcon />}
           size="large"
         />
@@ -121,7 +121,7 @@ export function StepResult({
           id="area-w"
         >
           <span className="results__icon">
-            <IconAvatar
+            <Icon
               icon={<VIPLineIcon />}
               size="large"
             />
@@ -151,7 +151,7 @@ export function StepResult({
           id="area-l"
         >
           <span className="results__icon">
-            <IconAvatar
+            <Icon
               icon={<GarbageIcon />}
               size="large"
             />

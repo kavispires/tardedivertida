@@ -7,7 +7,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
@@ -65,7 +65,7 @@ export function ResultsModalContent({
       >
         {win ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Icon icon={<TrophyIcon />} />{' '}
             <Translate
               pt="Parabéns!"
               en="Congratulations!"
@@ -73,7 +73,7 @@ export function ResultsModalContent({
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Icon icon={<BoxXIcon />} />{' '}
             <Translate
               pt="Que pena!"
               en="Too bad!"

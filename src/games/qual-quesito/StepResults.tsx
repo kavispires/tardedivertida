@@ -8,8 +8,8 @@ import type { Item } from 'types/tdr';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TimedButton } from '@components/buttons/TimedButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -101,7 +101,7 @@ export function StepResults({
               gap={8}
               align="center"
             >
-              <IconAvatar
+              <Icon
                 size="large"
                 icon={accepted ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
               />

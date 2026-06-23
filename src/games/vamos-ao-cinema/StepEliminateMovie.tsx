@@ -7,7 +7,7 @@ import { getAnimationClass } from '@utils/helpers';
 import { StarIcon } from '@icons/StarIcon';
 import { TomatoIcon } from '@icons/TomatoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
@@ -84,14 +84,14 @@ export function StepEliminateMovie({
         <Translate
           pt={
             <>
-              O seu filme está marcado com uma <IconAvatar icon={<StarIcon />} />, os filmes eliminados estão
-              marcados com <IconAvatar icon={<TomatoIcon />} />
+              O seu filme está marcado com uma <Icon icon={<StarIcon />} />, os filmes eliminados estão
+              marcados com <Icon icon={<TomatoIcon />} />
             </>
           }
           en={
             <>
-              Your movie is marked with a <IconAvatar icon={<StarIcon />} />, while eliminated movies are
-              marked with <IconAvatar icon={<TomatoIcon />} />
+              Your movie is marked with a <Icon icon={<StarIcon />} />, while eliminated movies are marked
+              with <Icon icon={<TomatoIcon />} />
             </>
           }
         />

@@ -6,7 +6,7 @@ import { useMock } from '@hooks/useMock';
 import { NoIcon } from '@icons/NoIcon';
 import { TreeIcon } from '@icons/TreeIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -109,14 +109,14 @@ export function StepBuildMap({
               (dessa rodada ou de uma rodada anterior já que as cartas são cumulativas).
               <br />
               3. Na barra abaixo, se quiser negar{' '}
-              <IconAvatar
+              <Icon
                 icon={<NoIcon />}
                 size="small"
               />{' '}
               um adjectivo selecionado, clique nele acima da árvore para trocar.
               <br />
               4. Se quiser refazer uma árvore{' '}
-              <IconAvatar
+              <Icon
                 icon={<TreeIcon />}
                 size="small"
               />
@@ -133,14 +133,14 @@ export function StepBuildMap({
               this round or a previous one since the cards are cumulative).
               <br />
               If you want to negate{' '}
-              <IconAvatar
+              <Icon
                 icon={<NoIcon />}
                 size="small"
               />{' '}
               an adjective you selected, click on it below the tree to change.
               <br />
               If you want to redo a tree{' '}
-              <IconAvatar
+              <Icon
                 icon={<TreeIcon />}
                 size="small"
               />

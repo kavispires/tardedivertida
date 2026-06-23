@@ -9,9 +9,9 @@ import { SkullIcon } from '@icons/SkullIcon';
 import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -98,7 +98,7 @@ export function StepResults({
           >
             <Badge
               count={
-                <IconAvatar
+                <Icon
                   icon={<SpeechBubbleThumbsDownIcon />}
                   size="small"
                 />
@@ -152,7 +152,7 @@ export function StepResults({
           >
             <Badge
               count={
-                <IconAvatar
+                <Icon
                   icon={<SpeechBubbleThumbsDownIcon />}
                   size="small"
                 />

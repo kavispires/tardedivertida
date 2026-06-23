@@ -6,8 +6,8 @@ import { QualitySealIcon } from '@icons/QualitySealIcon';
 import { TheEndIcon } from '@icons/TheEndIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
@@ -33,7 +33,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
       >
         {state.outcome === 'WIN' ? (
           <>
-            <IconAvatar
+            <Icon
               icon={<QualitySealIcon />}
               size={100}
               shape="square"
@@ -45,7 +45,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
           </>
         ) : (
           <>
-            <IconAvatar
+            <Icon
               icon={<GarbageIcon />}
               size={100}
               shape="square"

@@ -4,7 +4,7 @@ import { Switch } from 'antd';
 // Hooks
 import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Internal
 import { BrazilFlag, UnitedStatesFlag } from './LanguageButtons';
 // Sass
@@ -23,7 +23,7 @@ export function LanguageSwitch() {
   return (
     <Switch
       checkedChildren={
-        <IconAvatar
+        <Icon
           icon={
             <BrazilFlag
               width="1em"
@@ -35,7 +35,7 @@ export function LanguageSwitch() {
         />
       }
       unCheckedChildren={
-        <IconAvatar
+        <Icon
           icon={
             <UnitedStatesFlag
               width="1em"

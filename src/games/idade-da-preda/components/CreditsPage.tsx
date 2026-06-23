@@ -7,8 +7,8 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
 import { StarIcon } from '@icons/StarIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarEntry } from '@components/player/PlayerAvatarEntry';
 import {
@@ -92,7 +92,7 @@ export function CreditsPage({
                       gap={3}
                       style={{ height: '100%' }}
                     >
-                      <IconAvatar
+                      <Icon
                         icon={<StarIcon />}
                         size="small"
                       />{' '}

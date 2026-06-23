@@ -3,8 +3,8 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import type { ObjectCardObj } from '../utils/types';
@@ -26,7 +26,7 @@ export function ActivePlayerObjectClue({ activePlayer, item, clue }: ActivePlaye
       <div className="selections-container__object">
         <ObjectCard item={item} />
         <div>
-          <IconAvatar
+          <Icon
             icon={<BoxPlusIcon />}
             size="small"
           />

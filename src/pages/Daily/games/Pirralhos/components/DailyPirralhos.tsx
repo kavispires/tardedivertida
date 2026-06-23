@@ -13,7 +13,7 @@ import { LiarIcon } from '@icons/LiarIcon';
 import { OpposingArrowIcon } from '@icons/OpposingArrowIcon';
 import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Pages
@@ -94,7 +94,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
 
         <RegionText>
           <TextHighlight>
-            <IconAvatar
+            <Icon
               icon={<TraitorIcon />}
               size="small"
             />{' '}
@@ -105,7 +105,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
             />
           </TextHighlight>
           <TextHighlight>
-            <IconAvatar
+            <Icon
               icon={<LiarIcon />}
               size="small"
             />{' '}
@@ -221,7 +221,7 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
                     zIndex: 16,
                   }}
                 >
-                  <IconAvatar
+                  <Icon
                     icon={<OpposingArrowIcon />}
                     size="small"
                   />
@@ -237,23 +237,23 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               <>
                 Você pode clicar no botão{' '}
                 {
-                  <IconAvatar
+                  <Icon
                     icon={assessmentIconMap.unknown}
                     size="small"
                   />
                 }{' '}
                 em cada criança pra marcá-las como culpada{' '}
-                <IconAvatar
+                <Icon
                   icon={assessmentIconMap.culprit}
                   size="small"
                 />
                 , mentirosa{' '}
-                <IconAvatar
+                <Icon
                   icon={assessmentIconMap.liar}
                   size="small"
                 />{' '}
                 ou inocente{' '}
-                <IconAvatar
+                <Icon
                   icon={assessmentIconMap.innocent}
                   size="small"
                 />
@@ -264,23 +264,23 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
               <>
                 You can click the{' '}
                 {
-                  <IconAvatar
+                  <Icon
                     icon={assessmentIconMap.unknown}
                     size="small"
                   />
                 }{' '}
                 button on each kid to mark them as culprit{' '}
-                <IconAvatar
+                <Icon
                   icon={assessmentIconMap.culprit}
                   size="small"
                 />
                 , liar{' '}
-                <IconAvatar
+                <Icon
                   icon={assessmentIconMap.liar}
                   size="small"
                 />{' '}
                 or innocent{' '}
-                <IconAvatar
+                <Icon
                   icon={assessmentIconMap.innocent}
                   size="small"
                 />

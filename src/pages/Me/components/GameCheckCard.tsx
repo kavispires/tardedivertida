@@ -17,9 +17,9 @@ import ACHIEVEMENTS_DICT from '@utils/achievements';
 import { AnimatedVideoConferenceIcon } from '@icons/AnimatedVideoConferenceIcon';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { GameBanner } from '@components/general/GameBanner';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -85,7 +85,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
         />
       ) : (
         <div className="me-modal__content">
-          <IconAvatar
+          <Icon
             icon={<AnimatedVideoConferenceIcon />}
             size={100}
           />
@@ -154,9 +154,7 @@ export function GameCheckCard({ info, games }: GameUserStatisticsProps) {
           >
             <TransparentButton onClick={() => addParam('game', gameInfo.gameName)}>
               <Badge
-                count={
-                  games[gameInfo.gameName] ? <IconAvatar icon={<SpeechBubbleAcceptedIcon />} /> : undefined
-                }
+                count={games[gameInfo.gameName] ? <Icon icon={<SpeechBubbleAcceptedIcon />} /> : undefined}
                 size="small"
                 classNames={{
                   indicator: 'me__game-bingo-badge',

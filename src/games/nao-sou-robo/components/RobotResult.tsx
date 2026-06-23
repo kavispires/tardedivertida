@@ -2,7 +2,7 @@
 import { RobotIcon } from '@icons/RobotIcon';
 import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { CardHighlight } from '@components/metrics/CardHighlight';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -25,7 +25,7 @@ export function RobotResult({ result, robot }: RobotResultProps) {
   return (
     <>
       <div className="n-table-robot">
-        <IconAvatar
+        <Icon
           icon={<RobotIcon />}
           size={64}
         />
@@ -60,7 +60,7 @@ export function RobotResult({ result, robot }: RobotResultProps) {
       <RuleInstruction type={someoneBeat ? 'event' : 'rule'}>
         {someoneBeat ? (
           <>
-            <IconAvatar
+            <Icon
               icon={<SealOfApprovalIcon />}
               size="small"
             />

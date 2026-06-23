@@ -21,7 +21,7 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 import { UserStatsIcon } from '@icons/UserStatsIcon';
 // Components
 import { LogoutButton } from '@components/auth/LogoutButton';
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { LanguageSwitch } from '@components/language/LanguageSwitch';
 import { Translate } from '@components/language/Translate';
 import { PageLayout } from '@components/layout/PageLayout';
@@ -55,7 +55,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
     {
       key: 'all-games',
       icon: (
-        <IconAvatar
+        <Icon
           icon={<CatalogIcon />}
           size="small"
         />
@@ -76,7 +76,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
     {
       key: 'all-achievements',
       icon: (
-        <IconAvatar
+        <Icon
           icon={<SealOfApprovalIcon />}
           size="small"
         />
@@ -102,7 +102,7 @@ export function MeContent({ user, additionalContent }: MeContentProps) {
             level={1}
             align="left"
           >
-            <IconAvatar
+            <Icon
               icon={<UserStatsIcon />}
               size="large"
             />

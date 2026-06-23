@@ -6,7 +6,7 @@ import type { GamePlayers } from 'types/game';
 // Icons
 import { QuestionIcon } from '@icons/QuestionIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
@@ -59,7 +59,7 @@ export function Board({ board, clues, players }: BoardProps) {
                   </Avatar>
                 </Tooltip>
               ) : (
-                <IconAvatar
+                <Icon
                   icon={<QuestionIcon />}
                   size={48}
                   shape="square"

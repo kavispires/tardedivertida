@@ -11,8 +11,8 @@ import type { UseStep } from '@hooks/useStep';
 import { RobotIcon } from '@icons/RobotIcon';
 import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TimedButton } from '@components/buttons/TimedButton';
+import { Icon } from '@components/general/Icon';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
@@ -79,7 +79,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
               >
                 {option.bot ? (
                   <>
-                    <IconAvatar
+                    <Icon
                       icon={<RobotIcon />}
                       size="large"
                     />
@@ -90,7 +90,7 @@ export function StepResult({ user, announcement, goToNextStep, players, result, 
                   </>
                 ) : (
                   <>
-                    <IconAvatar
+                    <Icon
                       icon={<SealOfApprovalIcon />}
                       size="large"
                     />

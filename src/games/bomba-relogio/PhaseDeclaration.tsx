@@ -6,7 +6,7 @@ import { useStep } from '@hooks/useStep';
 import { BuildingIcon } from '@icons/BuildingIcon';
 import { WalkieTalkieIcon } from '@icons/WalkieTalkieIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
@@ -40,7 +40,7 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
       type="overlay"
     >
       <Instruction>
-        <IconAvatar icon={<WalkieTalkieIcon />} />
+        <Icon icon={<WalkieTalkieIcon />} />
         <Translate
           pt={<>"Todos em seus postos! O que você tem ai?"</>}
           en={<>"Everyone to your posts! What do you have there?"</>}

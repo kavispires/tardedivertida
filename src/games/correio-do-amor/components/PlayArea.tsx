@@ -6,7 +6,7 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { NoIcon } from '@icons/NoIcon';
 import { SpeechBubbleHeartIcon } from '@icons/SpeechBubbleHeartIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayerFlex } from '@components/player/PlayerFlex';
@@ -125,7 +125,7 @@ function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boole
               'a-play-area__player-entry-status--ELIMINATED',
             )}
           >
-            <IconAvatar
+            <Icon
               icon={<NoIcon />}
               size="small"
             />
@@ -138,7 +138,7 @@ function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boole
           <span
             className={clsx('a-play-area__player-entry-status', 'a-play-area__player-entry-status--ACTIVE')}
           >
-            <IconAvatar
+            <Icon
               icon={<SpeechBubbleHeartIcon />}
               size="small"
             />

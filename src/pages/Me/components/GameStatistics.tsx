@@ -23,10 +23,10 @@ import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 import { SkullIcon } from '@icons/SkullIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GameStrip, GameBanner } from '@components/general/GameBanner';
 import { GameTags } from '@components/general/GameTags';
 import { GameVideo } from '@components/general/GameVideo';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { Title } from '@components/text/Title';
@@ -264,7 +264,7 @@ function GamePlayStatistics({ game, achievements, info }: GameUserStatisticsProp
   if (!game) {
     return (
       <div className="me-modal__no-plays">
-        <IconAvatar
+        <Icon
           icon={<MultitaskIcon />}
           size={75}
         />
@@ -396,7 +396,7 @@ function GameAchievements({ game, achievements }: GameUserStatisticsProps) {
   if (!achievements) {
     return (
       <div className="me-modal__no-achievements">
-        <IconAvatar
+        <Icon
           icon={<SkullIcon />}
           size={75}
         />

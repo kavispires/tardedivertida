@@ -6,7 +6,7 @@ import { LETTERS } from '@utils/constants';
 // Icons
 import { MapIcon } from '@icons/MapIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Instruction } from '@components/text/Instruction';
 // Internal
@@ -32,7 +32,7 @@ export function ResultLabirintoSecreto({ track, winningValues }: ResultComponent
               className="cm-clues__clue cm-clues__clue--small"
             >
               {LETTERS[Number(value)]}
-              <IconAvatar
+              <Icon
                 icon={<MapIcon />}
                 size={48}
               />

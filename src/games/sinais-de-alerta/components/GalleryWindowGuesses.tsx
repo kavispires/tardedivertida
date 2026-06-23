@@ -10,7 +10,7 @@ import { getContrastColor } from '@utils/helpers';
 // Icons
 import { StarIcon } from '@icons/StarIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import {
   SlideShowBubbleValue,
@@ -120,7 +120,7 @@ export function GalleryWindowGuesses({
                   align="center"
                   gap={3}
                 >
-                  <IconAvatar
+                  <Icon
                     icon={<StarIcon />}
                     size="small"
                   />{' '}

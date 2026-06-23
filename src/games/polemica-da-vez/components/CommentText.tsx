@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { StarPoints } from '@components/points/StarPoints';
 
@@ -19,7 +19,7 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
     <span>
       {reaction ? (
         <>
-          <IconAvatar
+          <Icon
             icon={<SpeechBubbleThumbsUpIcon />}
             shape="square"
             className="p-like-icon"
@@ -32,7 +32,7 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
         </>
       ) : (
         <>
-          <IconAvatar
+          <Icon
             icon={<SpeechBubbleThumbsDownIcon />}
             shape="square"
             className="p-like-icon"

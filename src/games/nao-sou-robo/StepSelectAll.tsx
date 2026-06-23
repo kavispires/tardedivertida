@@ -13,9 +13,9 @@ import { getAnimationClass, shuffle } from '@utils/helpers';
 // Icons
 import { RobotIcon } from '@icons/RobotIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
@@ -113,7 +113,7 @@ export function StepSelectAll({
 
       <div className="n-table-container">
         <div className="n-table-robot">
-          <IconAvatar
+          <Icon
             icon={<RobotIcon />}
             size={64}
           />

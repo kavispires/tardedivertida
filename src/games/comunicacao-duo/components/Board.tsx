@@ -11,9 +11,9 @@ import { AlienHeartEyesIcon } from '@icons/AlienHeartEyesIcon';
 import { AlienNeutralIcon } from '@icons/AlienNeutralIcon';
 import { AlienStarEyesIcon } from '@icons/AlienStarEyesIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { DivButton } from '@components/buttons/DivButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -240,7 +240,7 @@ function NeutralDeliveriesWrapper({
     >
       {haveIDelivered && (
         <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('tada'))}>
-          <IconAvatar
+          <Icon
             className={clsx('cd-board-entry-neutral-item', `cd-board-entry-neutral-item--${userSide}`)}
             icon={<AlienNeutralIcon color={userSide === 'A' ? 'teal' : 'orange'} />}
           />
@@ -248,7 +248,7 @@ function NeutralDeliveriesWrapper({
       )}
       {hasTheOtherPlayerDelivered && (
         <span className={clsx(animateEntries.includes(entry.id) && getAnimationClass('tada'))}>
-          <IconAvatar
+          <Icon
             className={clsx(
               'cd-board-entry-neutral-item',
               `cd-board-entry-neutral-item--${getOtherSide(userSide)}`,

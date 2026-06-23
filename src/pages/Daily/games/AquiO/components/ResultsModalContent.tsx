@@ -13,7 +13,7 @@ import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 import { SkullIcon } from '@icons/SkullIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
@@ -27,35 +27,35 @@ import { CopyToClipboardResult } from '../../../components/CopyToClipboardResult
 
 const titles = [
   <Fragment key="1">
-    <IconAvatar icon={<SkullIcon />} />{' '}
+    <Icon icon={<SkullIcon />} />{' '}
     <Translate
       pt="Você é muito ruim!"
       en="You are really bad!"
     />
   </Fragment>,
   <Fragment key="2">
-    <IconAvatar icon={<SealOfApprovalIcon />} />{' '}
+    <Icon icon={<SealOfApprovalIcon />} />{' '}
     <Translate
       pt="Foi bem mais ou menos!"
       en="Pretty Weak!"
     />
   </Fragment>,
   <Fragment key="3">
-    <IconAvatar icon={<ApplauseIcon />} />{' '}
+    <Icon icon={<ApplauseIcon />} />{' '}
     <Translate
       pt="Muito bom!"
       en="Very good!"
     />
   </Fragment>,
   <Fragment key="4">
-    <IconAvatar icon={<TrophyIcon />} />{' '}
+    <Icon icon={<TrophyIcon />} />{' '}
     <Translate
       pt="Quase lá!"
       en="Almost there!"
     />
   </Fragment>,
   <Fragment key="5">
-    <IconAvatar icon={<TrophyIcon />} />{' '}
+    <Icon icon={<TrophyIcon />} />{' '}
     <Translate
       pt="Incrível!"
       en="Incredible!"

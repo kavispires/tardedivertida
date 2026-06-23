@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Card, Col, Statistic, type StatisticProps } from 'antd';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 
 type StatisticCardProps = {
   icon: ReactNode;
@@ -27,7 +27,7 @@ export function StatisticCard({ icon, title, value, disabled, description, ...re
           title={title}
           value={disabled ? 0 : value}
           prefix={
-            <IconAvatar
+            <Icon
               size="small"
               icon={icon}
             />

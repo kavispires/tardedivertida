@@ -10,8 +10,8 @@ import { getAnimation } from '@utils/animations';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarTooltip } from '@components/player/PlayerAvatarTooltip';
 // Internal
 import type { GalleryBracket } from '../utils/types';
@@ -46,7 +46,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
                   </motion.div>
                 );
               })}
-              {bracket.playersIds.length === 0 && <IconAvatar icon={<BoxXIcon />} />}
+              {bracket.playersIds.length === 0 && <Icon icon={<BoxXIcon />} />}
             </Avatar.Group>
             <Divider orientation="vertical" />
             <Flex vertical>
@@ -56,7 +56,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
                     key={guess.playerId}
                     align="center"
                   >
-                    <IconAvatar
+                    <Icon
                       icon={<XIcon />}
                       size={16}
                     />{' '}

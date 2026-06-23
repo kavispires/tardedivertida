@@ -7,8 +7,8 @@ import { useMock } from '@hooks/useMock';
 // Icons
 import { StreetIcon } from '@icons/StreetIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -70,7 +70,7 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
               className="margin"
             >
               <Avatar style={{ backgroundColor: 'brown' }}>A</Avatar>
-              <IconAvatar
+              <Icon
                 icon={<StreetIcon />}
                 size="large"
               />
@@ -97,7 +97,7 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
               className="margin"
             >
               <Avatar style={{ backgroundColor: 'dodgerblue' }}>B</Avatar>
-              <IconAvatar
+              <Icon
                 icon={<StreetIcon />}
                 size="large"
               />

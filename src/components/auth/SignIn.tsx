@@ -10,7 +10,7 @@ import { resetPassword, signIn, signInWithGoogle } from '@services/firebase';
 // Icons
 import { GoogleIcon } from '@icons/GoogleIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Title } from '@components/text/Title';
@@ -102,7 +102,7 @@ export function SignInWithGoogle({ onSuccess, ...buttonProps }: SignInProps & Bu
         loading={isPending}
         block
         icon={
-          <IconAvatar
+          <Icon
             icon={<GoogleIcon />}
             size="small"
           />

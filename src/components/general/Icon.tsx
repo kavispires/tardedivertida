@@ -4,17 +4,17 @@ import { isIOS, isSafari } from 'react-device-detect';
 // Ant Design Resources
 import { Avatar, type AvatarProps } from 'antd';
 
-type IconAvatarProps = AvatarProps & {
+type IconProps = AvatarProps & {
   /**
    * The TD icon component
    */
-  icon?: ReactNode;
+  icon: ReactNode;
 };
 
 /**
- * Avatar wrapper to icons
+ * Ant Design's Avatar wrapper to icons
  */
-export function IconAvatar({ icon, shape, size, ...rest }: IconAvatarProps) {
+export function Icon({ icon, shape, size, ...rest }: IconProps) {
   return (
     <Avatar
       src={icon}

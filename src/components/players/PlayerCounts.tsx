@@ -9,7 +9,7 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Utils
 import { getAvatarColorById } from '@utils/helpers';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatar, type PlayerAvatarProps } from '@components/player/PlayerAvatar';
 // Sass
 import styles from './PlayerCounts.module.scss';
@@ -76,7 +76,7 @@ export function PlayerCounts({
         {title && (
           <div className={styles.playerCountsTitle}>
             <Tooltip title={title}>
-              <IconAvatar
+              <Icon
                 size={size}
                 icon={icon ?? <InfoCircleOutlined style={{ color: 'black' }} />}
               />

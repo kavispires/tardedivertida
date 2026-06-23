@@ -15,7 +15,7 @@ import { NoIcon } from '@icons/NoIcon';
 import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -241,7 +241,7 @@ function ResultCell({ data, players }: CellProps) {
         }
       >
         <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
-          <IconAvatar
+          <Icon
             icon={<BoxQuestionMarkIcon />}
             size="large"
           />
@@ -261,7 +261,7 @@ function ResultCell({ data, players }: CellProps) {
         }
       >
         <div className={clsx('adedanhx-grid-cell adedanhx-grid-cell__results')}>
-          <IconAvatar
+          <Icon
             icon={<BoxXIcon />}
             size="large"
           />
@@ -321,19 +321,19 @@ function PopoverResult({ groupAnswer, players }: PopoverResultProps) {
           <PlayerAvatarName player={players[answer.playerId]} />
           <span>{answer.answer}</span>
           {answer.autoRejected && (
-            <IconAvatar
+            <Icon
               icon={<NoIcon />}
               size="small"
             />
           )}
           {answer.rejected && !answer.autoRejected && (
-            <IconAvatar
+            <Icon
               icon={<SpeechBubbleThumbsDownIcon />}
               size="small"
             />
           )}
           {!answer.rejected && !answer.autoRejected && (
-            <IconAvatar
+            <Icon
               icon={<SpeechBubbleThumbsUpIcon />}
               size="small"
             />

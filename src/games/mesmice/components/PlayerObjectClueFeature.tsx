@@ -5,8 +5,8 @@ import type { GamePlayer } from 'types/game';
 import { BoxEqualIcon } from '@icons/BoxEqualIcon';
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
@@ -30,14 +30,14 @@ export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeat
     <SpaceContainer>
       <ObjectCard item={selectedObject} />
       <div>
-        <IconAvatar
+        <Icon
           icon={<BoxPlusIcon />}
           size="small"
         />
       </div>
       <Card hideHeader>{user.clue}</Card>
       <div>
-        <IconAvatar
+        <Icon
           icon={<BoxEqualIcon />}
           size="small"
         />

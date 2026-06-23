@@ -11,8 +11,8 @@ import { MedalIcon } from '@icons/MedalIcon';
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -63,7 +63,7 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
             getAnimationClass('zoomIn'),
           )}
         >
-          <IconAvatar
+          <Icon
             icon={<TrophyIcon />}
             size="large"
           />
@@ -117,7 +117,7 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
             getAnimationClass('zoomIn'),
           )}
         >
-          <IconAvatar
+          <Icon
             icon={<MedalIcon />}
             size="large"
           />
@@ -171,7 +171,7 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
             getAnimationClass('zoomIn'),
           )}
         >
-          <IconAvatar
+          <Icon
             icon={<ThumbsUpIcon />}
             size="large"
           />

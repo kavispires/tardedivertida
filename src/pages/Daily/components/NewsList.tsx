@@ -6,7 +6,7 @@ import { PrototypeIcon } from '@icons/PrototypeIcon';
 import { RulesIcon } from '@icons/RulesIcon';
 import { WeekendIcon } from '@icons/WeekendIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import { ALL_SETTINGS } from '../utils/settings';
@@ -158,7 +158,7 @@ export const NEWS_LIST: NewsItem[] = [
         <em>Nova sessão de jogos especiais:</em>
         <br />
         Jogue quantas vezes quiser o jogo{' '}
-        <IconAvatar
+        <Icon
           icon={<ALL_SETTINGS.ENDLESS_VITRAIS.HUB_ICON />}
           size="small"
         />{' '}
@@ -465,7 +465,7 @@ function NewGameEntry({ game, tagline, type = 'game' }: NewGameEntryProps) {
         {type === 'contribution' && 'Nova forma de contribuir:'}
       </em>
       <div style={{ display: 'grid', gap: 6, gridTemplateColumns: 'min-content 1fr' }}>
-        <IconAvatar
+        <Icon
           icon={<game.HUB_ICON />}
           size="small"
         />
@@ -486,7 +486,7 @@ type GameFeatureEntryProps = {
 function GameFeatureEntry({ type, description, game }: GameFeatureEntryProps) {
   return (
     <div style={{ display: 'grid', gap: 6, gridTemplateColumns: 'min-content 1fr' }}>
-      <IconAvatar
+      <Icon
         icon={
           <>
             {type === 'weekend' && <WeekendIcon />}
@@ -517,7 +517,7 @@ type EngineImprovementEntryProps = {
 function EngineImprovementEntry({ icon, description }: EngineImprovementEntryProps) {
   return (
     <div style={{ display: 'grid', gap: 6, gridTemplateColumns: 'min-content 1fr' }}>
-      <IconAvatar
+      <Icon
         icon={icon ?? <PrototypeIcon />}
         size="small"
       />

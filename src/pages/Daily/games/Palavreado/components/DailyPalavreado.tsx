@@ -19,7 +19,7 @@ import { pluralize } from '@utils/helpers';
 import { SwapIcon } from '@icons/SwapIcon';
 import { VictoryCoinIcon } from '@icons/VictoryCoinIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Pages
 import { DailyContent } from '@pages/Daily/components/DailyContent';
@@ -96,7 +96,7 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
   useEffect(() => {
     if (letterScore || scoringMessage || latestCorrectLettersCount > 0) {
       notification.warning({
-        icon: <IconAvatar icon={<VictoryCoinIcon />} />,
+        icon: <Icon icon={<VictoryCoinIcon />} />,
         title:
           latestCorrectLettersCount > 0 ? (
             <Translate

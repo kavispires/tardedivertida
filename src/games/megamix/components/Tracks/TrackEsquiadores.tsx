@@ -10,9 +10,9 @@ import { useMock } from '@hooks/useMock';
 import { SkiingIcon } from '@icons/SkiingIcon';
 import { SnowHillIcon } from '@icons/SnowHillIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -94,7 +94,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
 
         <SpaceContainer vertical>
           <div className="dd-animated-skiier">
-            <IconAvatar
+            <Icon
               icon={<SkiingIcon />}
               size={84}
               className={clsx('dd-animated-skiier__skiier', `dd-animated-skiier__skiier--${direction}`)}
@@ -115,7 +115,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
                 className="dd-button"
               >
                 <span className="dd-button__hill dd-button__hill--left">
-                  <IconAvatar
+                  <Icon
                     icon={<SnowHillIcon />}
                     size={64}
                   />
@@ -128,7 +128,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
                 className="dd-button"
               >
                 <span className="dd-button__hill">
-                  <IconAvatar
+                  <Icon
                     icon={<SnowHillIcon />}
                     size={64}
                   />

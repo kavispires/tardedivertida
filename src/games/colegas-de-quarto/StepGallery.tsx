@@ -14,7 +14,7 @@ import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 import { CrownIcon } from '@icons/CrownIcon';
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { StarPoints } from '@components/points/StarPoints';
@@ -111,7 +111,7 @@ export function StepGallery({ board, gallery, slideShowConfig, players, round }:
                 text={itemsDict[galleryEntry.ids[0]].text}
               />
 
-              <IconAvatar
+              <Icon
                 icon={<BoxPlusIcon color={playerColor} />}
                 size="small"
               />
@@ -134,7 +134,7 @@ export function StepGallery({ board, gallery, slideShowConfig, players, round }:
             {galleryEntry.correct.length > 0 && (
               <Flex vertical>
                 <SlideShowLabel>
-                  <IconAvatar
+                  <Icon
                     icon={<CrownIcon />}
                     size="small"
                   />{' '}
@@ -181,7 +181,7 @@ export function StepGallery({ board, gallery, slideShowConfig, players, round }:
                 className="mt-10"
               >
                 <SlideShowLabel style={{ marginTop: '1em' }}>
-                  <IconAvatar
+                  <Icon
                     icon={<XIcon />}
                     size="small"
                   />{' '}

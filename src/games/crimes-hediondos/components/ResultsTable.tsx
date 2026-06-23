@@ -11,7 +11,7 @@ import { BoxThreeIcon } from '@icons/BoxThreeIcon';
 import { BoxTwoIcon } from '@icons/BoxTwoIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
@@ -87,7 +87,7 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
           }
           color="white"
         >
-          <IconAvatar
+          <Icon
             icon={<BoxCheckMarkIcon />}
             shape="square"
             alt={status}
@@ -105,7 +105,7 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
           }
           color="white"
         >
-          <IconAvatar
+          <Icon
             icon={<BoxOneIcon />}
             shape="square"
             alt={status}
@@ -123,7 +123,7 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
           }
           color="white"
         >
-          <IconAvatar
+          <Icon
             icon={<BoxTwoIcon />}
             shape="square"
             alt={status}
@@ -141,7 +141,7 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
           }
           color="white"
         >
-          <IconAvatar
+          <Icon
             icon={<BoxThreeIcon />}
             shape="square"
             alt={status}
@@ -159,7 +159,7 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
           }
           color="white"
         >
-          <IconAvatar
+          <Icon
             icon={<BoxMinusIcon />}
             shape="square"
             alt={status}
@@ -177,7 +177,7 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
           }
           color="white"
         >
-          <IconAvatar
+          <Icon
             icon={<BoxXIcon />}
             shape="square"
             alt={status}

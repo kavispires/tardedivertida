@@ -10,7 +10,7 @@ import { BoxTwoIcon } from '@icons/BoxTwoIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { LockIcon } from '@icons/LockIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
@@ -32,7 +32,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.LOCKED:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<LockIcon />} />
+          <Icon icon={<LockIcon />} />
           <TextHighlight>
             <Translate
               pt="TRAVADO"
@@ -50,7 +50,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.CORRECT:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<BoxCheckMarkIcon />} />
+          <Icon icon={<BoxCheckMarkIcon />} />
           <TextHighlight>
             <Translate
               pt="CORRETO"
@@ -68,7 +68,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.ONE:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<BoxOneIcon />} />
+          <Icon icon={<BoxOneIcon />} />
           <TextHighlight>
             <Translate
               pt="SOMENTE UM"
@@ -86,7 +86,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.TWO:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<BoxTwoIcon />} />
+          <Icon icon={<BoxTwoIcon />} />
           <TextHighlight>
             <Translate
               pt="DOIS"
@@ -104,7 +104,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.THREE:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<BoxThreeIcon />} />
+          <Icon icon={<BoxThreeIcon />} />
           <TextHighlight>
             <Translate
               pt="TRÊS"
@@ -122,7 +122,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.WRONG:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<BoxMinusIcon />} />
+          <Icon icon={<BoxMinusIcon />} />
           <TextHighlight>
             <Translate
               pt="ERRADO"
@@ -140,7 +140,7 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
     case GUESS_STATUS.WRONG_GROUP:
       return (
         <span className={clsx(baseClass, `${baseClass}--${status}`, className)}>
-          <IconAvatar icon={<BoxXIcon />} />
+          <Icon icon={<BoxXIcon />} />
           <TextHighlight>
             <Translate
               pt="GRUPO ERRADO"

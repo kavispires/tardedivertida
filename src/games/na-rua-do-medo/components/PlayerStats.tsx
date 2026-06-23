@@ -6,8 +6,8 @@ import { QuestionIcon } from '@icons/QuestionIcon';
 import { TrickOrTreatIcon } from '@icons/TrickOrTreatIcon';
 import { WalkIcon } from '@icons/WalkIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { FloatingHand } from '@components/general/FloatingHand';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
@@ -111,7 +111,7 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
   if (omitDecision) {
     return (
       <>
-        <IconAvatar
+        <Icon
           icon={<QuestionIcon />}
           shape="square"
         />
@@ -125,7 +125,7 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
 
   return decision === 'CONTINUE' ? (
     <>
-      <IconAvatar icon={<WalkIcon />} />
+      <Icon icon={<WalkIcon />} />
       <Translate
         pt="Continuando"
         en="Continuing"
@@ -133,7 +133,7 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
     </>
   ) : (
     <>
-      <IconAvatar icon={<HouseIcon />} />
+      <Icon icon={<HouseIcon />} />
       <Translate
         pt="Em casa"
         en="At home"

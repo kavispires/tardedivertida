@@ -13,8 +13,8 @@ import { getAnimationClass } from '@utils/helpers';
 import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -78,7 +78,7 @@ export function StepLiking({
           )}
           onClick={() => setLike(true)}
         >
-          <IconAvatar
+          <Icon
             icon={<SpeechBubbleThumbsUpIcon />}
             shape="square"
             className="p-like-icon"
@@ -96,7 +96,7 @@ export function StepLiking({
           )}
           onClick={() => setLike(false)}
         >
-          <IconAvatar
+          <Icon
             icon={<SpeechBubbleThumbsDownIcon />}
             shape="square"
             className="p-like-icon"

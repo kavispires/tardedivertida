@@ -3,7 +3,7 @@ import { Flex } from 'antd';
 // Icons
 import { DeckIcon } from '@icons/DeckIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 // Internal
@@ -17,7 +17,7 @@ export function ClientHighlight({
   return (
     <MetricHighlight
       icon={
-        <IconAvatar
+        <Icon
           icon={
             <ClientSprite
               spriteId={client.spriteId}

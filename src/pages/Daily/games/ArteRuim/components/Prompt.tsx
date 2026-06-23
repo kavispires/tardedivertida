@@ -4,7 +4,7 @@ import { Avatar, Space } from 'antd';
 // Icons
 import { BoxBlankIcon } from '@icons/BoxBlankIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Pages
 import { cleanupLetter, isLetter } from '@pages/Daily/utils';
 import type { LettersDictionary } from '@pages/Daily/utils/types';
@@ -44,7 +44,7 @@ export function Prompt({ text, guesses }: PromptProps) {
                     {l}
                   </Avatar>
                 ) : (
-                  <IconAvatar
+                  <Icon
                     key={key}
                     icon={<BoxBlankIcon />}
                     className="letter-blank"

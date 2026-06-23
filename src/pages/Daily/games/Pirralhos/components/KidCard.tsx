@@ -8,7 +8,7 @@ import { InnocentIcon } from '@icons/InnocentIcon';
 import { LiarIcon } from '@icons/LiarIcon';
 import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
@@ -103,7 +103,7 @@ function AssessmentSwitch({ kidId, assessment, assessKid }: AssessmentSwitchProp
         assessKid(String(kidId));
       }}
       icon={
-        <IconAvatar
+        <Icon
           icon={icon}
           size="small"
         />

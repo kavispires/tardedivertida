@@ -3,8 +3,8 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { UserStatsIcon } from '@icons/UserStatsIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 // Internal
@@ -27,7 +27,7 @@ export function FloatingPlayerStats({ user, robot }: FloatingPlayerStatsProps) {
       type="popover"
       position={1}
       icon={
-        <IconAvatar
+        <Icon
           icon={<UserStatsIcon />}
           size="small"
         />

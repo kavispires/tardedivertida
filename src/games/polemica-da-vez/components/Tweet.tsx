@@ -6,7 +6,7 @@ import { Avatar } from 'antd';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 import { TwitterIcon } from '@icons/TwitterIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 
 type TweetProps = {
   tweet: string;
@@ -20,7 +20,7 @@ type TweetProps = {
 export function Tweet({ tweet, likes, className = '' }: TweetProps) {
   return (
     <div className={clsx('p-trending-tweet', className)}>
-      <IconAvatar icon={<TwitterIcon />} /> {tweet} <RiseOutlined />{' '}
+      <Icon icon={<TwitterIcon />} /> {tweet} <RiseOutlined />{' '}
       {Boolean(likes) && (
         <span className="p-trending-tweet__likes">
           <Avatar

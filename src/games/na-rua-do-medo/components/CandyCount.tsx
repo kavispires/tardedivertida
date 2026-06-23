@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 // Icons
 import { CandyIcon } from '@icons/CandyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 
 type CandyCountProps = {
   candyCount: number;
@@ -13,7 +13,7 @@ type CandyCountProps = {
 export function CandyCount({ candyCount, size = 'small' }: CandyCountProps) {
   return (
     <>
-      <IconAvatar
+      <Icon
         icon={<CandyIcon />}
         size={size}
       />

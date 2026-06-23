@@ -8,8 +8,8 @@ import { useLanguage } from '@hooks/useLanguage';
 // Icons
 import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { DivButton } from '@components/buttons/DivButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Sass
 import styles from './FloatingHand.module.scss';
@@ -47,7 +47,7 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
         onBlur={() => setIsExpanded(false)}
       >
         <h3 className={styles.floatingHandLabel}>
-          <IconAvatar
+          <Icon
             icon={icon ?? <HandOfCardsIcon />}
             size={isExpanded ? 30 : 40}
             className={styles.floatingHandIcon}
@@ -95,7 +95,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
         onFocus={() => toggleDrawer(true)}
       >
         <span className={styles.floatingHandDrawerLabel}>
-          <IconAvatar
+          <Icon
             icon={icon ?? <HandOfCardsIcon />}
             className={styles.floatingHandDrawerIcon}
             alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}
@@ -125,7 +125,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
             onClick={() => toggleDrawer(false)}
             onKeyDown={(e) => e.key === 'Enter' && toggleDrawer(false)}
           >
-            <IconAvatar
+            <Icon
               icon={icon ?? <HandOfCardsIcon />}
               className={styles.floatingHandDrawerIcon}
               alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}

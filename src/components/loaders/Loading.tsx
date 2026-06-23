@@ -4,7 +4,7 @@ import { Space, Typography } from 'antd';
 // Icons
 import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Sass
 import styles from './loaders.module.scss';
 
@@ -25,7 +25,7 @@ type LoadingProps = {
 export function Loading({ message, margin = false }: LoadingProps) {
   return (
     <Space className={clsx(styles.loading, margin && styles['loading--margin'])}>
-      <IconAvatar
+      <Icon
         icon={<AnimatedLoaderIcon />}
         style={{ display: 'block' }}
       />

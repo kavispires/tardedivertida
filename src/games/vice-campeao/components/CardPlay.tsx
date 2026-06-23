@@ -8,7 +8,7 @@ import { getAnimationClass } from '@utils/helpers';
 import { ArrowIcon } from '@icons/ArrowIcon';
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -59,7 +59,7 @@ export function CardPlay({
           gap={6}
           align="center"
         >
-          <IconAvatar icon={<ArrowIcon />} />
+          <Icon icon={<ArrowIcon />} />
           <Translate
             en="played"
             pt="jogou"
@@ -77,14 +77,14 @@ export function CardPlay({
               gap={6}
               align="center"
             >
-              <IconAvatar icon={<ArrowIcon />} />
+              <Icon icon={<ArrowIcon />} />
               <Translate
                 en="on"
                 pt="em"
               />
             </Flex>
 
-            {lockedPlayersIds.includes(runActivity.targetId) && <IconAvatar icon={<NoIcon />} />}
+            {lockedPlayersIds.includes(runActivity.targetId) && <Icon icon={<NoIcon />} />}
             <PlayerAvatarCard
               player={players[runActivity.targetId]}
               withName

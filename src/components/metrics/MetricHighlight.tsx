@@ -2,7 +2,7 @@ import type { AvatarSize } from 'antd/lib/avatar/AvatarContext';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Sass
 import styles from './MetricHighlight.module.scss';
 
@@ -51,7 +51,7 @@ export function MetricHighlight({
     >
       {iconPlacement === 'before' && (
         <>
-          <IconAvatar
+          <Icon
             size={iconSize}
             icon={icon}
           />{' '}
@@ -61,7 +61,7 @@ export function MetricHighlight({
       {iconPlacement === 'after' && (
         <>
           {' '}
-          <IconAvatar
+          <Icon
             size={iconSize}
             icon={icon}
           />

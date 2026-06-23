@@ -20,9 +20,9 @@ import { getAnimation } from '@utils/animations';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { Icon } from '@components/general/Icon';
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -92,7 +92,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
           />
           {alreadyPlayed && (
             <Instruction className="info-screen">
-              <IconAvatar icon={<ThumbsUpIcon />} />
+              <Icon icon={<ThumbsUpIcon />} />
               <Translate
                 pt="Você já jogou hoje!"
                 en="You've already played today!"
@@ -250,7 +250,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
         )}
         {isSaving && (
           <Instruction className="info-screen">
-            <IconAvatar icon={<AnimatedProcessingIcon />} />
+            <Icon icon={<AnimatedProcessingIcon />} />
             <Translate
               pt="Salvando"
               en="Saving"

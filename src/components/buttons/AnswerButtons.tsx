@@ -6,7 +6,7 @@ import { BoxMinusIcon } from '@icons/BoxMinusIcon';
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Internal
 import { TransparentButton } from './TransparentButton';
@@ -29,7 +29,7 @@ export function AnswerYesButton({ className, ...props }: AnswerButtonProps) {
       className={clsx(styles.answerButton, styles.yes, className)}
       {...props}
     >
-      <IconAvatar
+      <Icon
         icon={<BoxCheckMarkIcon />}
         size={64}
       />
@@ -52,7 +52,7 @@ export function AnswerNoButton({ className, ...props }: AnswerButtonProps) {
       className={clsx(styles.answerButton, styles.no, className)}
       {...props}
     >
-      <IconAvatar
+      <Icon
         icon={<BoxXIcon />}
         size={64}
       />
@@ -75,7 +75,7 @@ export function AnswerMaybeYesButton({ className, ...props }: AnswerButtonProps)
       className={clsx(styles.answerButton, styles.maybeYes, className)}
       {...props}
     >
-      <IconAvatar
+      <Icon
         icon={<BoxPlusIcon color="#83d39c" />}
         size={64}
       />
@@ -98,7 +98,7 @@ export function AnswerKindaNoButton({ className, ...props }: AnswerButtonProps) 
       className={clsx(styles.answerButton, styles.kindaNo, className)}
       {...props}
     >
-      <IconAvatar
+      <Icon
         icon={<BoxMinusIcon color="#e8818c" />}
         size={64}
       />

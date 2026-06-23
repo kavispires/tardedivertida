@@ -6,7 +6,7 @@ import { getAnimation } from '@utils/animations';
 // Icons
 import { TeenDetectiveIcon } from '@icons/TeenDetectiveIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 
 export function DetectiveToken() {
@@ -23,7 +23,7 @@ export function DetectiveToken() {
           />
         }
       >
-        <IconAvatar
+        <Icon
           icon={<TeenDetectiveIcon />}
           size={48}
           className="detective-token__avatar"

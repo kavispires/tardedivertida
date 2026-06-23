@@ -3,7 +3,7 @@ import { AnimatedClockIcon } from '@icons/AnimatedClockIcon';
 import { EarthIcon } from '@icons/EarthIcon';
 import { HeartIcon } from '@icons/HeartIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Instruction } from '@components/text/Instruction';
@@ -40,7 +40,7 @@ export function IconsTest({ onResult, step }: TestStepProps) {
         className="full-width"
         vertical
       >
-        <IconAvatar
+        <Icon
           icon={<EarthIcon />}
           className="letter-blank"
         />

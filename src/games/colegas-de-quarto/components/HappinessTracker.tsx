@@ -3,7 +3,7 @@ import { Flex, Popover, Progress, Space } from 'antd';
 // Icons
 import { RatingIcon } from '@icons/RatingIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
@@ -55,7 +55,7 @@ export function HappinessTracker({ happiness }: HappinessTrackerProps) {
             </Flex>
           }
         >
-          <IconAvatar icon={<RatingIcon />} />
+          <Icon icon={<RatingIcon />} />
         </Popover>
       </Space.Addon>
       <Space.Addon style={{ width: 200 }}>

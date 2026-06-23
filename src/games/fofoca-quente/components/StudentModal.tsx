@@ -7,9 +7,9 @@ import type { TeenageRumor } from 'types/tdr';
 import { BlackmailIcon } from '@icons/BlackmailIcon';
 import { CyberBullyingIcon } from '@icons/CyberBullyingIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { DebugOnly } from '@components/debug/DebugOnly';
+import { Icon } from '@components/general/Icon';
 import { ModalOverlay } from '@components/general/ModalOverlay';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
@@ -243,7 +243,7 @@ function IntimidationFlow({
         size="large"
         block
         icon={
-          <IconAvatar
+          <Icon
             icon={<BlackmailIcon />}
             size="small"
           />
@@ -316,7 +316,7 @@ function RumorFlow({
         disabled={rumorIndex === null}
         block
         icon={
-          <IconAvatar
+          <Icon
             icon={<CyberBullyingIcon />}
             size="small"
           />

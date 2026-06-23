@@ -13,9 +13,9 @@ import { getAnimationClass } from '@utils/helpers';
 // Icons
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TimedButton } from '@components/buttons/TimedButton';
 import { TripleStateButton } from '@components/buttons/TripleStateButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
@@ -136,7 +136,7 @@ export function EvaluationGroup({
                     />
                   }
                 >
-                  <IconAvatar
+                  <Icon
                     icon={<NoIcon />}
                     size="small"
                   />
@@ -150,13 +150,13 @@ export function EvaluationGroup({
                   disabled={isSubmitted}
                   icons={{
                     true: (
-                      <IconAvatar
+                      <Icon
                         icon={<CheckOutlined />}
                         size="small"
                       />
                     ),
                     false: (
-                      <IconAvatar
+                      <Icon
                         icon={<NoIcon className={clsx({ grayscale: evaluations[answer.id] !== false })} />}
                         size="small"
                       />

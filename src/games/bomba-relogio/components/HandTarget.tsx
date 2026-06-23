@@ -9,8 +9,8 @@ import { LETTERS } from '@utils/constants';
 // Icons
 import { PliersIcon } from '@icons/PliersIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
 import { ViewIf } from '@components/views/ViewIf';
@@ -70,7 +70,7 @@ export function HandTarget({ hand, activeColor, onSelectCard }: HandTargetProps)
                 ease: 'easeOut',
               }}
             >
-              <IconAvatar
+              <Icon
                 icon={<PliersIcon />}
                 size={64}
                 style={{
@@ -112,7 +112,7 @@ export function HandTarget({ hand, activeColor, onSelectCard }: HandTargetProps)
               ease: 'easeInOut',
             }}
           >
-            <IconAvatar
+            <Icon
               icon={<PliersIcon />}
               size={64}
               style={{ rotate: '-220deg', marginBottom: '16px' }}

@@ -8,9 +8,9 @@ import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Achievements } from '@components/general/Achievements';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -67,9 +67,9 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                   size="small"
                 />
 
-                {entry.outcome === 'CORRECT' && <IconAvatar icon={<BoxCheckMarkIcon />} />}
-                {entry.outcome === 'WRONG' && <IconAvatar icon={<BoxXIcon />} />}
-                {entry.outcome === 'PASS' && <IconAvatar icon={<BoxBlankIcon />} />}
+                {entry.outcome === 'CORRECT' && <Icon icon={<BoxCheckMarkIcon />} />}
+                {entry.outcome === 'WRONG' && <Icon icon={<BoxXIcon />} />}
+                {entry.outcome === 'PASS' && <Icon icon={<BoxBlankIcon />} />}
               </div>
             </div>
           );

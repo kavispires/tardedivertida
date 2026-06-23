@@ -6,8 +6,8 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
 import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -105,7 +105,7 @@ export function StepSetupGossiper({
                     key={socialGroupId}
                     onClick={() => setSelectedSocialGroupId(socialGroupId)}
                     icon={
-                      <IconAvatar
+                      <Icon
                         icon={
                           selectedSocialGroupId === socialGroupId ? (
                             <CheckMarkIcon />

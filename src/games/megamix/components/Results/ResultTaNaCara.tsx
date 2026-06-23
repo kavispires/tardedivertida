@@ -2,7 +2,7 @@
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Instruction } from '@components/text/Instruction';
 // Internal
@@ -31,7 +31,7 @@ export function ResultTaNaCara({ winningValues }: ResultComponentProps) {
             key={`answer-${value}`}
             className="track-result-values__text-value"
           >
-            <IconAvatar
+            <Icon
               size="large"
               icon={value === 'yes' ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
             />

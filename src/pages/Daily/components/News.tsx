@@ -7,7 +7,7 @@ import { Button, Divider, Flex, Modal, Typography } from 'antd';
 // Icons
 import { BellIcon } from '@icons/BellIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Internal
 import { NEWS_LIST } from './NewsList';
@@ -83,7 +83,7 @@ export function News() {
             align="center"
             gap={8}
           >
-            <IconAvatar
+            <Icon
               icon={<BellIcon />}
               size="small"
             />

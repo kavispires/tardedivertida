@@ -6,7 +6,7 @@ import { useMock } from '@hooks/useMock';
 // Icons
 import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -63,7 +63,7 @@ export function StepCategorySelection({
         />
         {isLoading && (
           <div>
-            <IconAvatar
+            <Icon
               icon={<AnimatedLoaderIcon />}
               size="small"
             />

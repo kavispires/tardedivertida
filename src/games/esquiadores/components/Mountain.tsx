@@ -11,7 +11,7 @@ import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { SkierIcon } from '@icons/SkierIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Internal
 import type { MountainDilemma } from '../utils/types';
 // Images
@@ -77,7 +77,7 @@ export function Mountain({ mountain, skier, animateFrom = 0, animateTo, betType,
         className="ski-mountain__skier"
         animate={controls}
       >
-        <IconAvatar
+        <Icon
           size="large"
           icon={<SkierIcon color={getAvatarColorById(skier.avatarId)} />}
           className={clsx('ski-mountain__skier-icon', `ski-mountain__skier-icon--${skierDirection}`)}

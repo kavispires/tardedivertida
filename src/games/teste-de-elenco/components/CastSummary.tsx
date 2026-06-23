@@ -15,7 +15,7 @@ import { SkullIcon } from '@icons/SkullIcon';
 import { StarIcon } from '@icons/StarIcon';
 import { SupportIcon } from '@icons/SupportIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import type { FeatureFilm } from '../utils/types';
@@ -43,7 +43,7 @@ export function CastSummary({ movie }: CastSummaryProps) {
     <div className="cast-summary">
       {movie.rolesOrder.map((roleId) => {
         const role = movie.roles[roleId];
-        const Icon = icons?.[role.type] ?? MovieStarIcon;
+        const IconComponent = icons?.[role.type] ?? MovieStarIcon;
         return (
           <div
             key={roleId}
@@ -51,8 +51,8 @@ export function CastSummary({ movie }: CastSummaryProps) {
           >
             <div className="cast-summary__type">
               <Tooltip title={<DualTranslate>{role.title}</DualTranslate>}>
-                <IconAvatar
-                  icon={<Icon />}
+                <Icon
+                  icon={<IconComponent />}
                   size="small"
                 />
               </Tooltip>

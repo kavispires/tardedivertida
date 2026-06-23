@@ -12,8 +12,8 @@ import { useMock } from '@hooks/useMock';
 // Icons
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -199,7 +199,7 @@ export function StepSelectFeature({
                     className={clsx(feature.eliminated && 'features-container__eliminated-object')}
                   />
                   {feature.eliminated && (
-                    <IconAvatar
+                    <Icon
                       icon={<XIcon />}
                       size="large"
                       className="features-container__eliminated-x"

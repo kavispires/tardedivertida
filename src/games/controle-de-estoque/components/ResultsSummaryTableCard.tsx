@@ -9,8 +9,8 @@ import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 import { StarIcon } from '@icons/StarIcon';
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
@@ -48,12 +48,12 @@ export function ResultsSummaryTableCard({
           pt="Corretos"
           en="Fulfilled"
         />
-        <IconAvatar icon={<CheckMarkIcon />} />
+        <Icon icon={<CheckMarkIcon />} />
       </Flex>
       <div>
         <span className="c-results-summary-table__score-highlight">
           {correctPointValue}
-          <IconAvatar
+          <Icon
             icon={<StarIcon />}
             size="small"
           />
@@ -69,13 +69,13 @@ export function ResultsSummaryTableCard({
           pt="Errados"
           en="Wrong"
         />
-        <IconAvatar icon={<XIcon />} />
+        <Icon icon={<XIcon />} />
       </Flex>
 
       <div>
         <span className="c-results-summary-table__score-highlight-loss">
           {wrongPointValue}
-          <IconAvatar
+          <Icon
             icon={<StarIcon />}
             size="small"
           />

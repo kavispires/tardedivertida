@@ -6,7 +6,7 @@ import { type AvatarProps, Typography } from 'antd';
 // Icons
 import { AnimatedClockIcon } from '@icons/AnimatedClockIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { useGameAppearance } from '@components/session/GameInfoContext';
 // Sass
 import styles from './StepTitle.module.scss';
@@ -74,7 +74,7 @@ export const StepTitle = ({
     >
       {(!!icon || wait) && (
         <span className={styles.stepTitleIcon}>
-          <IconAvatar
+          <Icon
             size={size}
             icon={wait ? <AnimatedClockIcon /> : icon}
           />

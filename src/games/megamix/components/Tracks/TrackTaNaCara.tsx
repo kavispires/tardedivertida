@@ -9,9 +9,9 @@ import { useMock } from '@hooks/useMock';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -64,7 +64,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
       <SpaceContainer>
         <Button
           size="large"
-          icon={<IconAvatar icon={<SpeechBubbleDeclinedIcon />} />}
+          icon={<Icon icon={<SpeechBubbleDeclinedIcon />} />}
           onClick={() => onSelect('no')}
           disabled={isLoading}
           shape="round"
@@ -77,7 +77,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
 
         <Button
           size="large"
-          icon={<IconAvatar icon={<SpeechBubbleAcceptedIcon />} />}
+          icon={<Icon icon={<SpeechBubbleAcceptedIcon />} />}
           onClick={() => onSelect('yes')}
           disabled={isLoading}
           shape="round"

@@ -7,7 +7,7 @@ import { getAnimationClass } from '@utils/helpers';
 import { RevolverIcon } from '@icons/RevolverIcon';
 import { ThinkingIcon } from '@icons/ThinkingIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
 type PlayerStatusProps = {
@@ -24,7 +24,7 @@ export function PlayerStatus({ player, side }: PlayerStatusProps) {
         size="small"
       />
       <div className={clsx('q-player-status__icon', `q-player-status__icon--${side}`)}>
-        <IconAvatar
+        <Icon
           icon={
             player.target ? (
               <RevolverIcon className={clsx(getAnimationClass('rotateInDownLeft'))} />

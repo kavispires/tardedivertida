@@ -12,11 +12,11 @@ import { useLoading } from '@hooks/useLoading';
 // Icons
 import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { ItemCard } from '@components/cards/ItemCard';
 import { DebugOnly } from '@components/debug/DebugOnly';
 import { DevButton } from '@components/debug/DevButton';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -220,7 +220,7 @@ export function HumanSelectedInquiry({ attributes, items, user }: HumanSelectedI
           />
         ))}
 
-      <IconAvatar
+      <Icon
         icon={<ArrowIcon />}
         size="small"
       />

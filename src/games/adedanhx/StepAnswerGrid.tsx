@@ -13,8 +13,8 @@ import { SEPARATOR } from '@utils/constants';
 import { LockIcon } from '@icons/LockIcon';
 import { StopIcon } from '@icons/StopIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { DevButton } from '@components/debug/DevButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
@@ -115,7 +115,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             <>
               <strong>Escreva</strong> na ordem que achar melhor e não esqueça de <strong>apertar</strong> do
               botão de cadeado{' '}
-              <IconAvatar
+              <Icon
                 size="small"
                 icon={<LockIcon />}
               />{' '}
@@ -128,7 +128,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             <>
               <strong>Write</strong> tne the answers in the order you think is best and don't forget to{' '}
               <strong>press</strong> the lock button{' '}
-              <IconAvatar
+              <Icon
                 size="small"
                 icon={<LockIcon />}
               />{' '}
@@ -173,7 +173,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             disabled={isLoading || timeLeft < 20 || !allLocked}
             loading={isLoading}
             icon={
-              <IconAvatar
+              <Icon
                 size="small"
                 icon={<StopIcon />}
               />

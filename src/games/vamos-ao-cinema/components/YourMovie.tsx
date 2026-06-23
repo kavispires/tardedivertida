@@ -3,7 +3,7 @@ import type { MovieCard } from 'types/tdr';
 // Icons
 import { FilmReelIcon } from '@icons/FilmReelIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
@@ -24,7 +24,7 @@ export function YourMovie({ movies, movieId }: YourMovieProps) {
         />
         :
         <TextHighlight>
-          <IconAvatar icon={<FilmReelIcon />} /> {getMovieTitle(movies, movieId)}
+          <Icon icon={<FilmReelIcon />} /> {getMovieTitle(movies, movieId)}
         </TextHighlight>
       </Instruction>
     );

@@ -7,7 +7,7 @@ import { pluralize } from '@utils/helpers';
 import { MovieGenreIcon } from '@icons/MovieGenreIcon';
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { Instruction } from '@components/text/Instruction';
@@ -29,7 +29,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
   const traitCount = activeRole.traits.length;
 
   const movieId = movie?.id ?? '';
-  const Icon = Icons?.[movieId] ?? MovieGenreIcon;
+  const IconComponent = Icons?.[movieId] ?? MovieGenreIcon;
 
   return (
     <Space wrap>
@@ -40,7 +40,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
       >
         {movie && (
           <>
-            <Icon width={75} />
+            <IconComponent width={75} />
             <Title
               size="small"
               className="role__title"
@@ -101,7 +101,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
 
           {instruction === 'CAST' && !activeRole.cast && (
             <div className="role__cancelled">
-              <IconAvatar icon={<NoIcon />} />{' '}
+              <Icon icon={<NoIcon />} />{' '}
               <Translate
                 pt="Papel cancelado por falta de atores competentes"
                 en="Role canceled due to lack of competent actors"

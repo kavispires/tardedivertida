@@ -11,8 +11,8 @@ import { getAnimationClass } from '@utils/helpers';
 import { HouseIcon } from '@icons/HouseIcon';
 import { WalkIcon } from '@icons/WalkIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step } from '@components/steps/Step';
@@ -186,7 +186,7 @@ export function StepMakeDecision({
             onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
             disabled={isLoading || user.ready}
           >
-            <IconAvatar
+            <Icon
               icon={<HouseIcon />}
               size="large"
             />
@@ -200,7 +200,7 @@ export function StepMakeDecision({
             onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
             disabled={isLoading || user.ready}
           >
-            <IconAvatar
+            <Icon
               icon={<WalkIcon />}
               size="large"
             />

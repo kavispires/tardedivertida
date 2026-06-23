@@ -10,8 +10,8 @@ import { getAnimationClass } from '@utils/helpers';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
@@ -64,7 +64,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
         <div ref={headerRef}>
           {alreadyPlayed && (
             <Instruction className="info-screen">
-              <IconAvatar icon={<ThumbsUpIcon />} />
+              <Icon icon={<ThumbsUpIcon />} />
               <Translate
                 pt="Você já jogou hoje!"
                 en="You've already played today!"
@@ -106,7 +106,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
 
         {isSaving && (
           <Instruction className="info-screen">
-            <IconAvatar icon={<AnimatedProcessingIcon />} />
+            <Icon icon={<AnimatedProcessingIcon />} />
             <Translate
               pt="Salvando"
               en="Saving"

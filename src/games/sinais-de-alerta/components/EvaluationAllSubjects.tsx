@@ -3,9 +3,9 @@ import type { TextCard } from 'types/tdr';
 // Icons
 import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 
 type EvaluationAllSubjectsProps = {
@@ -36,7 +36,7 @@ export function EvaluationAllSubjects({
           className="sda-word-button"
         >
           {matchedItems[subjectId] && (
-            <IconAvatar
+            <Icon
               icon={<CheckMarkIcon />}
               className="sda-word-button__matched"
             />

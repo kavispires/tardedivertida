@@ -10,8 +10,8 @@ import { TreeOneIcon } from '@icons/TreeOneIcon';
 import { TreeThreeIcon } from '@icons/TreeThreeIcon';
 import { TreeTwoIcon } from '@icons/TreeTwoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -63,7 +63,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
 
       <div className="cm-trees">
         <div className="cm-trees__tree">
-          <IconAvatar
+          <Icon
             icon={<TreeOneIcon />}
             size={84}
           />
@@ -71,7 +71,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
         </div>
 
         <div className="cm-trees__tree">
-          <IconAvatar
+          <Icon
             icon={<TreeTwoIcon />}
             size={84}
           />
@@ -79,7 +79,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
         </div>
 
         <div className="cm-trees__tree">
-          <IconAvatar
+          <Icon
             icon={<TreeThreeIcon />}
             size={84}
           />
@@ -94,7 +94,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
           onClick={() => onSelect(0)}
         >
           {'A'}
-          <IconAvatar
+          <Icon
             icon={<MapIcon />}
             size={48}
           />
@@ -113,7 +113,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
           onClick={() => onSelect(1)}
         >
           {'B'}
-          <IconAvatar
+          <Icon
             icon={<MapIcon />}
             size={48}
           />
@@ -132,7 +132,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
           onClick={() => onSelect(2)}
         >
           {'C'}
-          <IconAvatar
+          <Icon
             icon={<MapIcon />}
             size={48}
           />

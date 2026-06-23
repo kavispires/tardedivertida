@@ -6,8 +6,8 @@ import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Icons
 import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
 import type { ArteRuimCustomCard, ArteRuimDrawing } from '../utils/types';
@@ -48,7 +48,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
   if (!votes) {
     return (
       <div className="a-evaluated-drawings">
-        <IconAvatar icon={<AnimatedLoaderIcon />} />
+        <Icon icon={<AnimatedLoaderIcon />} />
       </div>
     );
   }

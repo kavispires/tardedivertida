@@ -4,7 +4,7 @@ import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -41,7 +41,7 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
           >
             <div className="score-track__item-icon">
               {entry.featureId ? (
-                <IconAvatar
+                <Icon
                   icon={
                     <svg viewBox="0 0 512 512">
                       <use href={`${featuresIcons}#${entry.featureId}`}></use>
@@ -50,7 +50,7 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
                   size="small"
                 />
               ) : (
-                <IconAvatar
+                <Icon
                   icon={<BoxQuestionMarkIcon />}
                   size="small"
                 />
@@ -58,18 +58,18 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
               <div className="score-track__item-score">{entry.score}</div>
               {entry.featureId ? (
                 entry.pass ? (
-                  <IconAvatar
+                  <Icon
                     icon={<BoxCheckMarkIcon />}
                     size="small"
                   />
                 ) : (
-                  <IconAvatar
+                  <Icon
                     icon={<BoxXIcon />}
                     size="small"
                   />
                 )
               ) : (
-                <IconAvatar
+                <Icon
                   icon={<BoxBlankIcon />}
                   size="small"
                   className="invisible"

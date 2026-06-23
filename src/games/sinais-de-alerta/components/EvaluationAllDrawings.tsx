@@ -8,8 +8,8 @@ import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Icons
 import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -67,7 +67,7 @@ export function EvaluationAllDrawings({
           >
             <span className="sda-word-button__avatar">
               {isFullyGuessed && (
-                <IconAvatar
+                <Icon
                   icon={<CheckMarkIcon />}
                   className="sda-word-button__matched"
                 />

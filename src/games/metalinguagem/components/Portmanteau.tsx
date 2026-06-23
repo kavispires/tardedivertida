@@ -7,9 +7,9 @@ import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
 import { SpeakButton } from '@components/audio/SpeakButton';
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
@@ -35,7 +35,7 @@ export function Portmanteau({ word, itemsIds, names, correct }: PortmanteauProps
           {!!itemsIds?.[0] && <ItemCard itemId={itemsIds[0]} />}
           {names && <TextHighlight className="center">{names[0]}</TextHighlight>}
         </Flex>
-        <IconAvatar
+        <Icon
           icon={<BoxPlusIcon />}
           size="small"
         />
@@ -46,19 +46,19 @@ export function Portmanteau({ word, itemsIds, names, correct }: PortmanteauProps
           {!!itemsIds?.[1] && <ItemCard itemId={itemsIds[1]} />}
           {names && <TextHighlight className="center">{names[1]}</TextHighlight>}
         </Flex>
-        <IconAvatar
+        <Icon
           icon={<BoxEqualIcon />}
           size="small"
         />
         <Card hideHeader>{word}</Card>
         {correct && (
-          <IconAvatar
+          <Icon
             icon={<BoxCheckMarkIcon />}
             size="small"
           />
         )}
         {correct === false && (
-          <IconAvatar
+          <Icon
             icon={<BoxXIcon />}
             size="small"
           />

@@ -12,7 +12,7 @@ import { ConeIcon } from '@icons/ConeIcon';
 import { CrownIcon } from '@icons/CrownIcon';
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -119,7 +119,7 @@ export function StepGallery({
               width={constructionWidth}
               fontSize="small"
             />
-            <IconAvatar
+            <Icon
               icon={<ArrowIcon />}
               size={48}
             />
@@ -132,7 +132,7 @@ export function StepGallery({
           {galleryEntry.correctPlayersIds.length > 0 && (
             <>
               <SlideShowLabel>
-                <IconAvatar
+                <Icon
                   icon={<CrownIcon />}
                   size="small"
                 />{' '}
@@ -165,7 +165,7 @@ export function StepGallery({
           {Object.keys(galleryEntry.playersSay).length > 0 && (
             <>
               <SlideShowLabel style={{ marginTop: '1em' }}>
-                <IconAvatar
+                <Icon
                   icon={<XIcon />}
                   size="small"
                 />{' '}

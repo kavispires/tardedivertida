@@ -11,7 +11,7 @@ import { pluralize } from '@utils/helpers';
 import { SecurityIcon } from '@icons/SecurityIcon';
 import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
@@ -122,13 +122,13 @@ export function PlayerTableEntry({
             }}
             onChange={(checked) => setPlayerNote(player.id, checked ? 'terrorist' : 'agent')}
             checkedChildren={
-              <IconAvatar
+              <Icon
                 icon={<TraitorIcon />}
                 size="small"
               />
             }
             unCheckedChildren={
-              <IconAvatar
+              <Icon
                 icon={<SecurityIcon />}
                 size="small"
               />

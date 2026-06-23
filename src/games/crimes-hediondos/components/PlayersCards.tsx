@@ -7,8 +7,8 @@ import { useSortedPlayers } from '@hooks/useSortedPlayers';
 import { KnifeIcon } from '@icons/KnifeIcon';
 import { LockIcon } from '@icons/LockIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 // Internal
 import type { History } from '../utils/types';
@@ -55,13 +55,13 @@ export function PlayersCards({
                   className="h-players-cards__avatar"
                   replacementAvatar={
                     (isLocked && (
-                      <IconAvatar
+                      <Icon
                         icon={<LockIcon />}
                         className="h-players-cards__seal"
                       />
                     )) ||
                     (isComplete && (
-                      <IconAvatar
+                      <Icon
                         icon={<KnifeIcon />}
                         className="h-players-cards__seal"
                       />

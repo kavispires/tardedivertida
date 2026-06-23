@@ -7,7 +7,7 @@ import { useStep } from '@hooks/useStep';
 import { LockIcon } from '@icons/LockIcon';
 import { TimedWritingIcon } from '@icons/TimedWritingIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
@@ -51,7 +51,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
                   Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight> para preencher o
                   maior número de células da tabela combinando coluna e linha.
                   <br />A cada célula que você completa, lembre-se de apertar o{' '}
-                  <IconAvatar
+                  <Icon
                     size="small"
                     icon={<LockIcon />}
                   />{' '}
@@ -64,7 +64,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
                   many cells of the table as possible by combining column and row.
                   <br />
                   For each cell you complete, remember to press the{' '}
-                  <IconAvatar
+                  <Icon
                     size="small"
                     icon={<LockIcon />}
                   />{' '}

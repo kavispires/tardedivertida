@@ -3,7 +3,7 @@ import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { BoxMinusIcon } from '@icons/BoxMinusIcon';
 import { BoxOneIcon } from '@icons/BoxOneIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Internal
 import type { PhaseBasicState } from '../utils/types';
@@ -20,7 +20,7 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
   if (item?.type === ITEM_TYPES.CURSE) {
     return (
       <div>
-        <IconAvatar
+        <Icon
           icon={<BoxMinusIcon />}
           size="small"
         />{' '}
@@ -35,7 +35,7 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
   if (item?.type === ITEM_TYPES.ITEM) {
     return (
       <div>
-        <IconAvatar
+        <Icon
           icon={<BoxCheckMarkIcon />}
           size="small"
         />{' '}
@@ -49,7 +49,7 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
 
   return (
     <div>
-      <IconAvatar
+      <Icon
         icon={<BoxOneIcon />}
         size="small"
       />{' '}

@@ -13,7 +13,7 @@ import { getRandomItem } from '@utils/helpers';
 // Icons
 import { ImageCardsIcon } from '@icons/ImageCardsIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { ImageCardHand } from '@components/image-cards/ImageCardHand';
 import { Translate } from '@components/language/Translate';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
@@ -117,7 +117,7 @@ export function StepPlayCardAction({
         <ViewIf condition={isUserTheImpostor}>
           {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
-            <IconAvatar
+            <Icon
               icon={<ImageCardsIcon />}
               size="large"
               shape="square"
@@ -132,7 +132,7 @@ export function StepPlayCardAction({
         <ViewIf condition={!isUserTheImpostor}>
           {/** biome-ignore lint/complexity/noUselessFragments: View Container TODO: could it be a div? */}
           <>
-            <IconAvatar
+            <Icon
               icon={<ImageCardsIcon />}
               size="large"
               shape="square"

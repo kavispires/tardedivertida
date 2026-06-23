@@ -3,7 +3,7 @@ import { Fragment, type ReactElement } from 'react';
 import { CircleIcon } from '@icons/CircleIcon';
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 
 type SelectedAreasCirclesProps = {
   selectedArea: string | null;
@@ -19,25 +19,25 @@ export function SelectedAreasCircles({ selectedArea, size = 'small' }: SelectedA
 
   const icons: Record<string, ReactElement> = {
     A: (
-      <IconAvatar
+      <Icon
         size={size}
         icon={<CircleIcon mainColor="blue" />}
       />
     ),
     W: (
-      <IconAvatar
+      <Icon
         size={size}
         icon={<CircleIcon mainColor="yellow" />}
       />
     ),
     C: (
-      <IconAvatar
+      <Icon
         size={size}
         icon={<CircleIcon mainColor="red" />}
       />
     ),
     O: (
-      <IconAvatar
+      <Icon
         size={size}
         icon={<XIcon mainColor="#736357" />}
       />

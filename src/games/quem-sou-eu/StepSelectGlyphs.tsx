@@ -12,11 +12,11 @@ import { useMock } from '@hooks/useMock';
 import { NoIcon } from '@icons/NoIcon';
 import { YesIcon } from '@icons/YesIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { GlyphCard } from '@components/cards/GlyphCard';
 import { DevButton } from '@components/debug/DevButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -159,7 +159,7 @@ export function StepSelectGlyphs({
                 key={`pos-${entry}-${id}`}
               >
                 <div className="q-selections__entry">
-                  <IconAvatar icon={<YesIcon />} />
+                  <Icon icon={<YesIcon />} />
                   {id !== undefined ? (
                     <TransparentButton
                       onClick={() => updatePositive(id)}
@@ -199,7 +199,7 @@ export function StepSelectGlyphs({
                 key={`neg-${entry}-${id}`}
               >
                 <div className="q-selections__entry">
-                  <IconAvatar icon={<NoIcon />} />
+                  <Icon icon={<NoIcon />} />
                   {id !== undefined ? (
                     <TransparentButton onClick={() => updateNegative(id)}>
                       <Tooltip
@@ -310,7 +310,7 @@ function PopoverGlyph({
         onClick={() => updatePositive(id)}
         disabled={disablePositive}
       >
-        <IconAvatar
+        <Icon
           icon={<YesIcon />}
           size="large"
         />
@@ -319,7 +319,7 @@ function PopoverGlyph({
         onClick={() => updateNegative(id)}
         disabled={disableNegative}
       >
-        <IconAvatar
+        <Icon
           icon={<NoIcon />}
           size="large"
         />

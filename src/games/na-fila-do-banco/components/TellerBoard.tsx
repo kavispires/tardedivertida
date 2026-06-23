@@ -5,7 +5,7 @@ import { Button, Flex } from 'antd';
 // Icons
 import { ActionAlertIcon } from '@icons/ActionAlertIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -117,7 +117,7 @@ export function TellerBoard({ teller, deckDict, cardWidth, onSelectTeller, anima
         } else {
           firstSpeech = (
             <>
-              <IconAvatar
+              <Icon
                 size="small"
                 icon={<ActionAlertIcon />}
               />

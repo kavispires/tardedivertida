@@ -6,8 +6,8 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Icons
 import { TeenDetectiveIcon } from '@icons/TeenDetectiveIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -20,7 +20,6 @@ import { useFofocaQuenteContext } from './utils/FofocaQuenteContext';
 import { SchoolBoard } from './components/SchoolBoard';
 import { BoardSummary } from './components/BoardSummary';
 import { DetectiveGoals } from './components/DetectiveGoals';
-import { Info } from './components/Info';
 
 type StepSetupDetectiveProps = {
   players: GamePlayers;
@@ -97,7 +96,7 @@ export function StepSetupDetective({
                     to select it, then come back here to confirm.
                     <br />
                     Your position on the map will be represented by the icon{' '}
-                    <IconAvatar
+                    <Icon
                       icon={<TeenDetectiveIcon />}
                       size="small"
                     />{' '}
@@ -112,7 +111,7 @@ export function StepSetupDetective({
                     para selecioná-lo, depois volte aqui para confirmar.
                     <br />
                     Sua posição no mapa será representada pelo ícone{' '}
-                    <IconAvatar
+                    <Icon
                       icon={<TeenDetectiveIcon />}
                       size="small"
                     />{' '}

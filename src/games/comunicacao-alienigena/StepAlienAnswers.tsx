@@ -10,11 +10,11 @@ import { useLoading } from '@hooks/useLoading';
 // Icons
 import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { ItemCard } from '@components/cards/ItemCard';
 import { SignCard } from '@components/cards/SignCard';
 import { DebugOnly } from '@components/debug/DebugOnly';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
@@ -205,7 +205,7 @@ export function StepAlienAnswers({
                   />
                 ))}
 
-              <IconAvatar
+              <Icon
                 icon={<ArrowIcon />}
                 size="small"
               />

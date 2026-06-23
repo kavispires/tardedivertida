@@ -6,8 +6,8 @@ import type { Item } from 'types/tdr';
 // Icons
 import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { SpeechBubble } from '@components/text/SpeechBubble';
 // Internal
@@ -46,7 +46,7 @@ export function PlayerGuess({ item, currentGuess, activePlayer }: PlayerGuessPro
             width={100}
             className="q-player-guess-bubble"
           />{' '}
-          <IconAvatar
+          <Icon
             icon={<ArrowIcon />}
             size="small"
           />

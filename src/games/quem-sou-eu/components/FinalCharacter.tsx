@@ -5,8 +5,8 @@ import type { GamePlayers } from 'types/game';
 import { NoIcon } from '@icons/NoIcon';
 import { YesIcon } from '@icons/YesIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GlyphCard } from '@components/cards/GlyphCard';
+import { Icon } from '@components/general/Icon';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
 import type { FinalCharacterEntry } from '../utils/types';
@@ -42,7 +42,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
             className="q-player-glyphs__entry q-player-glyphs__entry--positive"
             key={`pos-${character.id}-${id}-${index}`}
           >
-            <IconAvatar
+            <Icon
               icon={<YesIcon />}
               size="small"
             />
@@ -66,7 +66,7 @@ export function FinalCharacter({ players, character, glyphWidth, imageCardsMode 
             className="q-player-glyphs__entry q-player-glyphs__entry--negative"
             key={`neg-${character.id}-${id}-${index}`}
           >
-            <IconAvatar
+            <Icon
               icon={<NoIcon />}
               size="small"
             />

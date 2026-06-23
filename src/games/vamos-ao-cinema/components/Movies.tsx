@@ -13,8 +13,8 @@ import { ScaredIcon } from '@icons/ScaredIcon';
 import { StarIcon } from '@icons/StarIcon';
 import { TomatoIcon } from '@icons/TomatoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { MovieCard } from '@components/cards/MovieCard';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 
@@ -264,7 +264,7 @@ type MovieButtonLabel = {
 function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }: MovieButtonLabel) {
   if (isWrong) {
     return (
-      <IconAvatar
+      <Icon
         icon={<ScaredIcon />}
         size="small"
       />
@@ -273,7 +273,7 @@ function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }
 
   if (isEliminated) {
     return (
-      <IconAvatar
+      <Icon
         icon={<TomatoIcon />}
         size="small"
       />
@@ -282,7 +282,7 @@ function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }
 
   if (isPlayerMovie) {
     return (
-      <IconAvatar
+      <Icon
         icon={<StarIcon />}
         size="small"
       />

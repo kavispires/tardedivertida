@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { useGameAppearance } from '@components/session/GameInfoContext';
 // Sass
 import styles from './Title.module.scss';
@@ -90,7 +90,7 @@ export const Title = ({
     >
       {Boolean(icon) && (
         <span className={styles.titleIcon}>
-          <IconAvatar icon={icon} />
+          <Icon icon={icon} />
         </span>
       )}
       {children}

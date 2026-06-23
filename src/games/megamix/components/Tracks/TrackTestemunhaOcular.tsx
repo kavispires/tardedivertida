@@ -11,9 +11,9 @@ import { useMock } from '@hooks/useMock';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { Card } from '@components/cards/Card';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -82,7 +82,7 @@ export const TrackTestemunhaOcular = ({ track, onSubmitAnswer, user }: TrackProp
                 pt="NÃO"
               />
             )}{' '}
-            <IconAvatar
+            <Icon
               size="large"
               icon={track.data.answer ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
             />

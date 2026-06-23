@@ -1,7 +1,7 @@
 // Icons
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ExtendedTextCard, MapSegment, Tree } from '../utils/types';
@@ -35,7 +35,7 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
               <div className="map-builder__card map-builder__card--new">
                 {mapLocation.text}
                 {mapLocation?.negate && (
-                  <IconAvatar
+                  <Icon
                     icon={<NoIcon />}
                     size="small"
                     className="map-builder__card-no"
@@ -51,7 +51,7 @@ export function PlayerSelectionMap({ forest, map, newMap }: PlayerSelectionMapPr
                 >
                   {clue.text}
                   {clue?.negate && (
-                    <IconAvatar
+                    <Icon
                       icon={<NoIcon />}
                       size="small"
                       className="map-builder__card-no"

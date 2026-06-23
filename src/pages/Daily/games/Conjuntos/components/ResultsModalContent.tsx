@@ -8,7 +8,7 @@ import { BoxXIcon } from '@icons/BoxXIcon';
 import { CircleIcon } from '@icons/CircleIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
@@ -61,7 +61,7 @@ export function ResultsModalContent({
       >
         {isWin ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Icon icon={<TrophyIcon />} />{' '}
             <Translate
               pt="Parabéns!"
               en="Congratulations!"
@@ -69,7 +69,7 @@ export function ResultsModalContent({
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Icon icon={<BoxXIcon />} />{' '}
             <Translate
               pt="Que pena!"
               en="Too bad!"
@@ -80,7 +80,7 @@ export function ResultsModalContent({
 
       <Typography.Paragraph className="center">
         Regra do círculo{' '}
-        <IconAvatar
+        <Icon
           icon={<CircleIcon mainColor="gold" />}
           size="small"
         />
@@ -90,7 +90,7 @@ export function ResultsModalContent({
 
       <Typography.Paragraph className="center">
         Regra do círculo{' '}
-        <IconAvatar
+        <Icon
           icon={<CircleIcon mainColor="red" />}
           size="small"
         />

@@ -8,9 +8,9 @@ import type { PhaseProps } from 'types/game';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Achievements } from '@components/general/Achievements';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Internal
 import type { PastTweet, PhaseGameOverState } from './utils/types';
@@ -51,7 +51,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                 {trended ? <RiseOutlined /> : <FallOutlined />} {tweet.text}
               </h3>
               <div className="p-all-tweets__comment">
-                <IconAvatar
+                <Icon
                   icon={<SpeechBubbleThumbsUpIcon />}
                   shape="square"
                   className="p-like-icon"

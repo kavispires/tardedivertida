@@ -7,7 +7,7 @@ import { CompassIcon } from '@icons/CompassIcon';
 import { FinishLineIcon } from '@icons/FinishLineIcon';
 import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 // Internal
 import type { Direction, MapSegment, Tree, TreeId } from '../utils/types';
 import { getOriginDirection } from '../utils/helpers';
@@ -92,7 +92,7 @@ export function ForestTree({
         width={width * (tree.blocked ? 0.5 : 0.8)}
       />
       {showPath && isFinalPoint && (
-        <IconAvatar
+        <Icon
           icon={<FinishLineIcon />}
           className={`forest__end forest__end--${finishLineDirection}`}
         />
@@ -100,7 +100,7 @@ export function ForestTree({
 
       {isCurrentTree && (
         <div className="forest__compass">
-          <IconAvatar
+          <Icon
             icon={<CompassIcon />}
             size="large"
             className={clsx('forest__compass-icon', getAnimationClass('pulse', { infinite: true }))}
@@ -108,7 +108,7 @@ export function ForestTree({
         </div>
       )}
       {isStartingPoint && (
-        <IconAvatar
+        <Icon
           icon={<FlagIcon />}
           size="large"
           className={`forest__start forest__start--${originDirection}`}
@@ -124,7 +124,7 @@ export function ForestTree({
               isCurrentTree && 'forest__tree--current',
             )}
           />
-          <IconAvatar
+          <Icon
             icon={<ArrowIcon />}
             size="large"
             className={`forest__arrow forest__arrow--${segment.direction}`}

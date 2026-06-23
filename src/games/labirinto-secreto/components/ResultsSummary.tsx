@@ -8,8 +8,8 @@ import { FlagIcon } from '@icons/FlagIcon';
 import { MapIcon } from '@icons/MapIcon';
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TreeCard } from '@components/cards/TreeCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -56,7 +56,7 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
                 />
               )}
 
-              <IconAvatar
+              <Icon
                 icon={<MapIcon />}
                 size="large"
                 className="player-map__icon"
@@ -71,7 +71,7 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
                     >
                       {clue.text}
                       {clue?.negate && (
-                        <IconAvatar
+                        <Icon
                           icon={<NoIcon />}
                           size="small"
                           className="player-map__clue-no"
@@ -83,7 +83,7 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
               </div>
 
               {segment.index === 0 && (
-                <IconAvatar
+                <Icon
                   icon={<FlagIcon />}
                   size="small"
                   className="player-map__starting-flag"
@@ -91,7 +91,7 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
               )}
 
               {arr.length - 1 !== index && (
-                <IconAvatar
+                <Icon
                   icon={<ArrowIcon />}
                   size="small"
                   className="player-map__arrow"

@@ -10,8 +10,8 @@ import { useMock } from '@hooks/useMock';
 import { BombIcon } from '@icons/BombIcon';
 import { WireIcon } from '@icons/WireIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -125,7 +125,7 @@ export function StepDeclaration({
                 />
               }
             >
-              <IconAvatar
+              <Icon
                 icon={<WireIcon />}
                 size="small"
               />
@@ -152,7 +152,7 @@ export function StepDeclaration({
                 />
               }
             >
-              <IconAvatar
+              <Icon
                 icon={<BombIcon />}
                 size="small"
               />

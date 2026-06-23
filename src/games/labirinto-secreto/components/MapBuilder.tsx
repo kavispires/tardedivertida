@@ -12,10 +12,10 @@ import { getAnimation } from '@utils/animations';
 import { LocationIcon } from '@icons/LocationIcon';
 import { NoIcon } from '@icons/NoIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Card } from '@components/cards/Card';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -33,7 +33,7 @@ import type {
 import { getPossibleTreeIds } from '../utils/helpers';
 import { TreeImage } from './TreeImage';
 
-const MotionIconAvatar = motion.create(IconAvatar);
+const MotionIconAvatar = motion.create(Icon);
 const MotionTextHighlight = motion.create(TextHighlight);
 
 type MapBuilderProps = {
@@ -148,7 +148,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                     className="map-builder__card map-builder__card--new"
                   >
                     {selections?.[index]?.negate && (
-                      <IconAvatar
+                      <Icon
                         icon={<NoIcon />}
                         size="small"
                         className="map-builder__card-no"
@@ -166,7 +166,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
                     key={card.id}
                   >
                     {card?.negate && (
-                      <IconAvatar
+                      <Icon
                         icon={<NoIcon />}
                         size="small"
                         className="map-builder__card-no"

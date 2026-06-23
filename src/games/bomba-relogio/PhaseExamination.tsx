@@ -10,7 +10,7 @@ import { BuildingIcon } from '@icons/BuildingIcon';
 import { WalkieTalkieIcon } from '@icons/WalkieTalkieIcon';
 import { WireIcon } from '@icons/WireIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
@@ -104,7 +104,7 @@ function getAnnouncement({
         duration={5}
       >
         <Instruction>
-          <IconAvatar icon={<WalkieTalkieIcon />} />
+          <Icon icon={<WalkieTalkieIcon />} />
           <Translate
             pt={
               <>
@@ -190,7 +190,7 @@ function getAnnouncement({
         duration={4}
       >
         <Instruction>
-          <IconAvatar icon={<WalkieTalkieIcon />} />
+          <Icon icon={<WalkieTalkieIcon />} />
           {nextMessage}
         </Instruction>
       </PhaseAnnouncement>

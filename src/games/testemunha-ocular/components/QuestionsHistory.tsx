@@ -6,8 +6,8 @@ import type { SuspectCard } from 'types/tdr';
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { SuspectCard as SuspectCardComponent } from '@components/cards/SuspectCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { CollapsibleRule } from '@components/rules/CollapsibleRule';
 // Internal
@@ -43,7 +43,7 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
         if (statement) {
           return (
             <Flex gap={6}>
-              <IconAvatar
+              <Icon
                 icon={<SpeechBubbleAcceptedIcon />}
                 size="small"
               />{' '}
@@ -56,7 +56,7 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
         }
         return (
           <Flex gap={6}>
-            <IconAvatar
+            <Icon
               icon={<SpeechBubbleDeclinedIcon />}
               size="small"
             />{' '}

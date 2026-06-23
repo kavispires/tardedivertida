@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { XIcon } from '@icons/XIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { ExtendedObjectFeatureCard, ObjectCardObj } from '../utils/types';
@@ -32,7 +32,7 @@ export function WaitingRoomFeature({
         item={item}
         clue={clue}
       />
-      <IconAvatar
+      <Icon
         icon={<XIcon />}
         size="large"
       />

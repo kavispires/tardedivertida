@@ -10,7 +10,7 @@ import { AVATARS } from '@utils/avatars';
 // Icons
 import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -30,7 +30,7 @@ export function Table({ table, players, animateAllCards }: TableProps) {
   if (!table?.length) {
     return (
       <div className={clsx(baseClass, `${baseClass}--center`)}>
-        <IconAvatar icon={<AnimatedLoaderIcon />} />
+        <Icon icon={<AnimatedLoaderIcon />} />
       </div>
     );
   }

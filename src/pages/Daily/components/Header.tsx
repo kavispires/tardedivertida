@@ -2,7 +2,7 @@ import { type ReactNode, useState } from 'react';
 // Ant Design Resources
 import { Layout, Typography } from 'antd';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 // Internal
 import { DevResetLocalStorageButton } from './DevResetLocalStorageButton';
@@ -23,7 +23,7 @@ export function Header({ icon, children, localStorageKey }: HeaderProps) {
         onClick={localStorageKey ? () => setCount((prev) => prev + 1) : undefined}
         className="invisible-secret-button daily-header"
       >
-        <IconAvatar
+        <Icon
           icon={icon}
           className="daily-header__icon"
         />

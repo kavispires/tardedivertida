@@ -8,10 +8,10 @@ import { useMock } from '@hooks/useMock';
 // Icons
 import { AlienIcon } from '@icons/AlienIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { ItemCard } from '@components/cards/ItemCard';
 import { SignCard } from '@components/cards/SignCard';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -64,7 +64,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
         </RuleInstruction>
 
         <SpaceContainer>
-          <IconAvatar
+          <Icon
             icon={<AlienIcon />}
             size="large"
           />{' '}

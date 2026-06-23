@@ -11,7 +11,7 @@ import { getContrastColor, getPlayerNamesFromIds } from '@utils/helpers';
 // Icons
 import { GarbageIcon } from '@icons/GarbageIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
@@ -140,7 +140,7 @@ export function SlideShowNoWins({ children, icon, className, ...props }: SlideSh
       className={clsx(styles.slideShowComposable__noWins, className)}
       {...props}
     >
-      <IconAvatar
+      <Icon
         icon={icon ?? <GarbageIcon />}
         size="large"
         shape="square"

@@ -12,8 +12,8 @@ import { getAnimation } from '@utils/animations';
 // Icons
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { AnswerNoButton, AnswerYesButton } from '@components/buttons/AnswerButtons';
+import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
@@ -81,7 +81,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
           />
           {alreadyPlayed && (
             <Instruction className="info-screen">
-              <IconAvatar icon={<ThumbsUpIcon />} />
+              <Icon icon={<ThumbsUpIcon />} />
               <Translate
                 pt="Você já jogou hoje!"
                 en="You've already played today!"

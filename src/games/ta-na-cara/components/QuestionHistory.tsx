@@ -12,7 +12,7 @@ import { BoxMinusIcon } from '@icons/BoxMinusIcon';
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
@@ -66,7 +66,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
                     align="center"
                     className="t-question-history-table__answer"
                   >
-                    <IconAvatar
+                    <Icon
                       icon={<BoxXIcon />}
                       size={24}
                     />
@@ -87,7 +87,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
                     align="center"
                     className="t-question-history-table__answer"
                   >
-                    <IconAvatar
+                    <Icon
                       icon={<BoxMinusIcon color="#e8818c" />}
                       size={24}
                     />
@@ -109,7 +109,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
                     align="center"
                     className="t-question-history-table__answer"
                   >
-                    <IconAvatar
+                    <Icon
                       icon={<BoxPlusIcon color="#83d39c" />}
                       size={24}
                     />
@@ -131,7 +131,7 @@ export function QuestionHistory({ players, questionsHistory }: QuestionHistoryPr
                     align="center"
                     className="t-question-history-table__answer"
                   >
-                    <IconAvatar
+                    <Icon
                       icon={<BoxCheckMarkIcon />}
                       size={24}
                     />

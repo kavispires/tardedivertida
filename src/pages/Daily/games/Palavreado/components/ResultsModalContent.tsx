@@ -8,7 +8,7 @@ import { BoxXIcon } from '@icons/BoxXIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 import { VictoryCoinIcon } from '@icons/VictoryCoinIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Pages
@@ -69,7 +69,7 @@ export function ResultsModalContent({
       >
         {isWin ? (
           <>
-            <IconAvatar icon={<TrophyIcon />} />{' '}
+            <Icon icon={<TrophyIcon />} />{' '}
             <Translate
               pt="Parabéns!"
               en="Congratulations!"
@@ -77,7 +77,7 @@ export function ResultsModalContent({
           </>
         ) : (
           <>
-            <IconAvatar icon={<BoxXIcon />} />{' '}
+            <Icon icon={<BoxXIcon />} />{' '}
             <Translate
               pt="Que pena!"
               en="Too bad!"
@@ -102,7 +102,7 @@ export function ResultsModalContent({
           pt={
             <>
               Sua pontuação:{' '}
-              <IconAvatar
+              <Icon
                 icon={<VictoryCoinIcon />}
                 size="small"
               />{' '}
@@ -112,7 +112,7 @@ export function ResultsModalContent({
           en={
             <>
               Your score:{' '}
-              <IconAvatar
+              <Icon
                 icon={<VictoryCoinIcon />}
                 size="small"
               />{' '}

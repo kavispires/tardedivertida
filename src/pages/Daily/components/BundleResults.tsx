@@ -9,7 +9,7 @@ import { useLanguage } from '@hooks/useLanguage';
 // Icons
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -93,7 +93,7 @@ export function BundleResults({ list }: BundleResultsProps) {
       <Modal
         title={
           <Flex gap={4}>
-            <IconAvatar
+            <Icon
               icon={<SpeechBubbleAcceptedIcon />}
               size="small"
             />
@@ -129,7 +129,7 @@ export function BundleResults({ list }: BundleResultsProps) {
                 }}
                 className="full-width"
               >
-                <IconAvatar
+                <Icon
                   icon={<game.HUB_ICON />}
                   size="small"
                 />

@@ -13,7 +13,7 @@ import { getAvatarColorById } from '@utils/helpers';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { StarIcon } from '@icons/StarIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
@@ -116,15 +116,15 @@ export function Results({ players, correctOrder, roundType }: ResultsProps) {
 function TripleStar() {
   return (
     <>
-      <IconAvatar
+      <Icon
         icon={<StarIcon />}
         size="small"
       />
-      <IconAvatar
+      <Icon
         icon={<StarIcon />}
         size="small"
       />
-      <IconAvatar
+      <Icon
         icon={<StarIcon />}
         size="small"
       />
@@ -149,7 +149,7 @@ function PositiveStarPoints({ roundType, position }: PositiveStarPointsProps) {
   }
 
   return (
-    <IconAvatar
+    <Icon
       icon={<StarIcon />}
       size="small"
     />
@@ -164,7 +164,7 @@ type NegativeStarPointsProps = {
 function NegativeStarPoints({ roundType, position }: NegativeStarPointsProps) {
   if (roundType === 'CURSED_FIRST_POSITION' && position === 1) {
     return (
-      <IconAvatar
+      <Icon
         icon={<BoxXIcon />}
         size="small"
       />
@@ -172,7 +172,7 @@ function NegativeStarPoints({ roundType, position }: NegativeStarPointsProps) {
   }
   if (roundType === 'CURSED_LAST_POSITION' && position === 5) {
     return (
-      <IconAvatar
+      <Icon
         icon={<BoxXIcon />}
         size="small"
       />

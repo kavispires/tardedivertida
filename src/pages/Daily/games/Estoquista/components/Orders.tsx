@@ -6,9 +6,9 @@ import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 import { LocationIcon } from '@icons/LocationIcon';
 import { OnlineOrderIcon } from '@icons/OnlineOrderIcon';
 // Components
-import { IconAvatar } from '@components/avatars/IconAvatar';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
+import { Icon } from '@components/general/Icon';
 // Internal
 import type { useEstoquistaEngine } from '../utils/useEstoquistaEngine';
 
@@ -37,9 +37,9 @@ export function Orders({ fulfillments, orders, onSelectOrder, shelfWidth, active
               onClick={() => onSelectOrder(order)}
               disabled={fulfillments.length === 4 || !!isFulfilled}
             >
-              {!!isFulfilled && <IconAvatar icon={<CheckMarkIcon />} />}
+              {!!isFulfilled && <Icon icon={<CheckMarkIcon />} />}
               {activeOrder === order && (
-                <IconAvatar
+                <Icon
                   icon={<LocationIcon />}
                   className={getAnimationClass('bounce', { infinite: true })}
                 />
