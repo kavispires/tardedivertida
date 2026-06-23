@@ -13,7 +13,8 @@ import { useLanguage } from 'hooks/useLanguage';
 import { AVATARS } from 'utils/avatars';
 // Components
 import { GameStrip } from 'components/general/GameBanner';
-import { HostOnlyButton } from 'components/host/HostOnlyButton';
+import { HostButton } from 'components/host/HostButton';
+import { HostOnlyContainer } from 'components/host/HostOnlyContainer';
 import { Translate } from 'components/language/Translate';
 import { PlayerAvatar } from 'components/player/PlayerAvatar';
 import { useGameInfoContext } from 'components/session/GameInfoContext';
@@ -247,7 +248,14 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
           </Button>
         </Space.Compact>
 
-        <HostOnlyButton onClick={() => navigate('/hub')}>Hub</HostOnlyButton>
+        <HostOnlyContainer>
+          <HostButton onClick={() => navigate('/hub')}>
+            <Translate
+              en="Go to Hub"
+              pt="Ir para o Hub"
+            />
+          </HostButton>
+        </HostOnlyContainer>
       </Space>
     </Step>
   );
