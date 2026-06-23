@@ -101,7 +101,7 @@ export function DailyConjuntos({ data }: DailyConjuntosProps) {
 
         <Region>
           <Diagram
-            width={Math.min(contentMeasure.width - 16, 600)}
+            width={Math.min(Math.max(contentMeasure.width - 16, 96), 600)}
             leftCircleChildren={
               isComplete ? (
                 <InDiagramThings
