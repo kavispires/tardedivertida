@@ -42,6 +42,7 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
     isWin,
     isComplete,
     keyboardMapping,
+    hasFoundAllLetters,
   } = useMapeamentoEngine(data, initialState);
 
   const [typedLocation, setTypedLocation] = useState('');
@@ -115,6 +116,14 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
         </ul>
 
         {!isWin && <LocationFragments fragments={locationFragments} />}
+        {hasFoundAllLetters && !isComplete && (
+          <RegionHint className="mt-0">
+            <Translate
+              pt="Parece que você encontrou todas as letras da palavra em tentativas diferentes! Agora, só falta digitar o nome completo."
+              en=" It seems you found all the letters of the word in different attempts! Now, just type the full name."
+            />
+          </RegionHint>
+        )}
 
         {isComplete && (
           <RegionText>
@@ -163,7 +172,7 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
         />
 
         {locationFragments.includes('_') && (
-          <RegionHint>
+          <RegionHint className="mt-6">
             <Translate
               pt={
                 <>
@@ -185,6 +194,12 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
 
         {guesses.length > 0 && (
           <RegionText>
+            <div className="mt-2">
+              <Translate
+                pt="Suas tentativas:"
+                en="Your guesses:"
+              />
+            </div>
             {guesses.map((guess, i) => (
               <div key={i}>{guess.toUpperCase()}</div>
             ))}
