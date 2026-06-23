@@ -1,8 +1,0 @@
-@use "styles/sass" as *;
-$canvas-size: 500px;
-
-.canvas {
-  width: $canvas-size;
-  height: $canvas-size;
-  background-color: get-color("white");
-}
