@@ -35,7 +35,7 @@ function update_package_version {
       echo "☑️  tarde-divertida version was already updated: ${current_version}"
   else
       # Always increment the patch version
-      npm version patch --no-git-tag-version
+      yarn version --patch --no-git-tag-version
 
       git add package.json
 
@@ -111,7 +111,7 @@ sort_imports() {
 
   # Run biome on all files after sorting imports
   if [ -n "$files_to_format" ]; then
-    npx biome check --staged --write $files_to_format
+    yarn biome check --staged --write $files_to_format
     git add $files_to_format
     echo "   ✨ Biome formatting applied to all files"
   fi
