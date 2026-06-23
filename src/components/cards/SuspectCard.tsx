@@ -5,7 +5,7 @@ import type { SuspectCardData as SuspectCardType, SuspectStyleVariant } from 'ty
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { DualTranslate } from '@components/language/DualTranslate';
 // Sass
-import styles from './SuspectCardData.module.scss';
+import styles from './SuspectCard.module.scss';
 
 type SuspectCardProps = {
   /**
