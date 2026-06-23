@@ -11,7 +11,7 @@ import { PanicIcon } from '@icons/PanicIcon';
 // Components
 import { ArteRuimTimerSound } from '@components/audio/ArteRuimTimerSound';
 import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { Instruction } from '@components/text/Instruction';
@@ -88,7 +88,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
           />
         </Button>
 
-        <Card
+        <TextCard
           size="large"
           header={translate({ pt: 'Desenhe', en: 'Draw' })}
           className="a-draw__card"
@@ -102,7 +102,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
           ) : (
             '?'
           )}
-        </Card>
+        </TextCard>
         {isRunning && <ArteRuimTimerSound />}
         {isTimesUp ? (
           <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />

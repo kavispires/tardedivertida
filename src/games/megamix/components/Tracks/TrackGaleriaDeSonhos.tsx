@@ -6,7 +6,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
@@ -53,12 +53,12 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
         />
       </RuleInstruction>
 
-      <Card
+      <TextCard
         header={translate({ pt: 'Tema', en: 'Theme' })}
         color="orange"
       >
         {track.data.theme.text}
-      </Card>
+      </TextCard>
 
       <Image.PreviewGroup>
         <SpaceContainer>

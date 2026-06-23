@@ -13,8 +13,8 @@ import { useLoading } from '@hooks/useLoading';
 import { SEPARATOR } from '@utils/constants';
 import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Card } from '@components/cards/Card';
 import { ItemCard } from '@components/cards/ItemCard';
+import { TextCard } from '@components/cards/TextCard';
 import { DevButton } from '@components/debug/DevButton';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
@@ -145,10 +145,9 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
         </RuleInstruction>
 
         <SpaceContainer vertical>
-          <Card
+          <TextCard
             className={clsx('attribute-card', getAnimationClass('tada'))}
             key={seed.attribute.id}
-            hideHeader
           >
             <Flex vertical>
               <DualTranslate>{seed.attribute.name}</DualTranslate>
@@ -158,7 +157,7 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
                 </em>
               </small>
             </Flex>
-          </Card>
+          </TextCard>
         </SpaceContainer>
 
         <Flex

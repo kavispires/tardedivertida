@@ -10,7 +10,7 @@ import { getAnimation } from '@utils/animations';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { XIcon } from '@icons/XIcon';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { PlayerAvatarTooltip } from '@components/player/PlayerAvatarTooltip';
 // Internal
@@ -61,12 +61,7 @@ export function ResultBrackets({ brackets, players, cards }: ResultBracketsProps
                       size={16}
                     />{' '}
                     <PlayerAvatarTooltip player={players[guess.playerId]} />
-                    <Card
-                      hideHeader
-                      size="small"
-                    >
-                      {cards[guess.cardId]?.text || '???'}
-                    </Card>
+                    <TextCard size="small">{cards[guess.cardId]?.text || '???'}</TextCard>
                   </Flex>
                 );
               })}

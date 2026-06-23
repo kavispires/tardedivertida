@@ -6,7 +6,7 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -49,24 +49,24 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
             onClick={() => onSelect(0)}
             disabled={isLoading || user.ready}
           >
-            <Card
+            <TextCard
               header={translate({ pt: 'Isso', en: 'This' })}
               color="red"
             >
               {track.data.card.options[0]}
-            </Card>
+            </TextCard>
           </TransparentButton>
 
           <TransparentButton
             onClick={() => onSelect(1)}
             disabled={isLoading || user.ready}
           >
-            <Card
+            <TextCard
               header={translate({ pt: 'Aquilo', en: 'That' })}
               color="blue"
             >
               {track.data.card.options[1]}
-            </Card>
+            </TextCard>
           </TransparentButton>
         </SpaceContainer>
       </Space>

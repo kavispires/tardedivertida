@@ -8,7 +8,7 @@ import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step } from '@components/steps/Step';
@@ -41,13 +41,13 @@ export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: St
 
   return (
     <Step>
-      <Card
+      <TextCard
         size="large"
         header={author.name}
         color={AVATARS[author.avatarId].color}
       >
         {currentPrompt.content}
-      </Card>
+      </TextCard>
       <TimedTimerBar
         steps={90}
         duration={DRAWING_TIME_IN_SECONDS}

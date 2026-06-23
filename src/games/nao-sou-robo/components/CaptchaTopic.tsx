@@ -3,9 +3,9 @@ import { Space } from 'antd';
 // Types
 import type { TextCardData } from 'types/tdr';
 // Components
-import { Card } from '@components/cards/Card';
 import { EmojiCard } from '@components/cards/EmojiCard';
 import { GlyphCard } from '@components/cards/GlyphCard';
+import { TextCard } from '@components/cards/TextCard';
 import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
 // Internal
 import type { Captcha } from '../utils/types';
@@ -55,5 +55,5 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
 
   const values = captcha.values as TextCardData;
 
-  return <Card hideHeader>{values.text}</Card>;
+  return <TextCard>{values.text}</TextCard>;
 }

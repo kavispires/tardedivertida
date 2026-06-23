@@ -5,12 +5,12 @@ import { useLanguage } from '@hooks/useLanguage';
 import { ClubberAvatar } from '@components/avatars/ClubberAvatar';
 import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from '@components/avatars/SuperHeroAvatar';
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
 import { EmojiCard } from '@components/cards/EmojiCard';
 import { GlyphCard } from '@components/cards/GlyphCard';
 import { ItemCard } from '@components/cards/ItemCard';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { TextCard } from '@components/cards/TextCard';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
@@ -54,13 +54,12 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
 
   if (itemEntry.type === 'words') {
     return (
-      <Card
-        hideHeader
+      <TextCard
         className={className}
         size={size}
       >
         {itemEntry.value.text}
-      </Card>
+      </TextCard>
     );
   }
 

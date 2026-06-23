@@ -6,7 +6,7 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
 import type { TrackProps } from '../../utils/types';
@@ -36,48 +36,48 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
         align="center"
         className="contained margin"
       >
-        <Card
+        <TextCard
           header={translate({ pt: 'Pergunta', en: 'Question' })}
           color="orange"
         >
           {track.data.card.question}
-        </Card>
+        </TextCard>
 
         <SpaceContainer>
           <TransparentButton
             onClick={() => onSelect(0)}
             disabled={isLoading || user.ready}
           >
-            <Card
+            <TextCard
               header="A"
               color="red"
             >
               {track.data.card.options[0]}
-            </Card>
+            </TextCard>
           </TransparentButton>
 
           <TransparentButton
             onClick={() => onSelect(1)}
             disabled={isLoading || user.ready}
           >
-            <Card
+            <TextCard
               header="B"
               color="purple"
             >
               {track.data.card.options[1]}
-            </Card>
+            </TextCard>
           </TransparentButton>
 
           <TransparentButton
             onClick={() => onSelect(2)}
             disabled={isLoading || user.ready}
           >
-            <Card
+            <TextCard
               header="C"
               color="blue"
             >
               {track.data.card.options[2]}
-            </Card>
+            </TextCard>
           </TransparentButton>
         </SpaceContainer>
       </Space>

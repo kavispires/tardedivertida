@@ -7,8 +7,8 @@ import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
+import { TextCard } from '@components/cards/TextCard';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -41,12 +41,12 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card
+        <TextCard
           header={translate({ pt: 'Desafio', en: 'Challenge' })}
           color="purple"
         >
           {track.data.challenge.text}
-        </Card>
+        </TextCard>
       </SpaceContainer>
 
       <SpaceContainer>

@@ -4,7 +4,7 @@ import { WarningOutlined } from '@ant-design/icons';
 // Utils
 import { getColorFromLetter } from '@utils/helpers';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 
 type ArteRuimCardProps = {
   /**
@@ -28,13 +28,13 @@ type ArteRuimCardProps = {
  */
 export const ArteRuimCard = ({ text, level, header = 'X' }: ArteRuimCardProps) => {
   return (
-    <Card
+    <TextCard
       color={getColorFromLetter(header)}
       header={header}
       size="medium"
       footer={Array(level).fill('•').join('')}
     >
       {text ?? <WarningOutlined />}
-    </Card>
+    </TextCard>
   );
 };

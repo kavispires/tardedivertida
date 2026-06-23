@@ -8,7 +8,7 @@ import type { GamePlayers } from 'types/game';
 import { getAnimationClass } from '@utils/helpers';
 // Components
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -58,7 +58,16 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
       {slide.type === 'title' &&
         (currentPage === 0 ? (
           <div className={clsx('l-page__container', animationClass)}>
-            <Card>{slide.content}</Card>
+            <TextCard
+              header={
+                <Translate
+                  pt="Carta"
+                  en="Card"
+                />
+              }
+            >
+              {slide.content}
+            </TextCard>
           </div>
         ) : (
           <div className={clsx('l-page__container l-page__text', animationClass)}>"{slide.content}"</div>

@@ -1,7 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/game';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 
 type StorytellingCardProps = {
   story: string;
@@ -11,12 +11,7 @@ type StorytellingCardProps = {
 export function StorytellingCard({ story, storyteller }: StorytellingCardProps) {
   return (
     <div className="c-story-card__container">
-      <Card
-        hideHeader
-        className="c-story-card"
-      >
-        {story}
-      </Card>
+      <TextCard className="c-story-card">{story}</TextCard>
       <div className="c-story-card__storyteller">{storyteller.name}</div>
     </div>
   );

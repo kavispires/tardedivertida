@@ -9,7 +9,7 @@ import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -92,7 +92,7 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
               onClick={() => updateDict(card.id)}
               active={keys.includes(card.id)}
             >
-              <Card hideHeader>{card.text}</Card>
+              <TextCard>{card.text}</TextCard>
             </TransparentButton>
           );
         })}

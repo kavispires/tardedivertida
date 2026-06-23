@@ -3,7 +3,7 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 
 type EspiaoEntreNosCardProps = {
   location: string;
@@ -19,15 +19,15 @@ export const EspiaoEntreNosCard = ({ location, role, header }: EspiaoEntreNosCar
   const agentFooter = translate({ pt: `Você é um(a) ${role}`, en: `You are a ${role}` });
 
   return (
-    <Card
+    <TextCard
       color={location === 'SPY' ? 'red' : 'lime'}
       header={location === 'SPY' ? spyHeader : header}
       size="large"
       footer={role === 'SPY' ? spyFooter : agentFooter}
       className="e-card"
-      footerClassName="e-card__footer"
+      classNames={{ footer: 'e-card__footer' }}
     >
       {location === 'SPY' ? <QuestionCircleFilled /> : location}
-    </Card>
+    </TextCard>
   );
 };

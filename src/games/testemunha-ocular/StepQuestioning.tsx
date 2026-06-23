@@ -8,7 +8,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
 // Components
 import { AnswerNoButton, AnswerYesButton } from '@components/buttons/AnswerButtons';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -87,7 +87,7 @@ export function StepQuestioning({
             disabled={!isUserTheWitness || isLoading}
           />
 
-          <Card
+          <TextCard
             header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
             color="blue"
             className="t-card"
@@ -95,7 +95,7 @@ export function StepQuestioning({
             footer={Array(question.level).fill('•').join('')}
           >
             {question.question}
-          </Card>
+          </TextCard>
 
           <AnswerYesButton
             onClick={() => onAnswer({ testimony: true })}
@@ -124,7 +124,7 @@ export function StepQuestioning({
           align="center"
           orientation="vertical"
         >
-          <Card
+          <TextCard
             header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
             color="blue"
             className="t-card"
@@ -132,7 +132,7 @@ export function StepQuestioning({
             footer={Array(question.level).fill('•').join('')}
           >
             {question.question}
-          </Card>
+          </TextCard>
         </SpaceContainer>
 
         <RuleInstruction type="wait">

@@ -10,7 +10,7 @@ import { getAnimationClass } from '@utils/helpers';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -80,7 +80,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
 
           {!alreadyPlayed && !isSaving && (
             <SpaceContainer>
-              <Card
+              <TextCard
                 key={isPlaying ? card.id : 'none'}
                 header={isPlaying ? `#${cardNumber}` : '?'}
                 color="gold"
@@ -89,7 +89,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                 {!isPlaying
                   ? 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore.'
                   : card.text}
-              </Card>
+              </TextCard>
             </SpaceContainer>
           )}
         </div>

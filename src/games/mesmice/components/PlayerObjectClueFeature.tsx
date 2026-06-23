@@ -5,7 +5,7 @@ import type { GamePlayer } from 'types/game';
 import { BoxEqualIcon } from '@icons/BoxEqualIcon';
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 // Internal
@@ -35,7 +35,7 @@ export function PlayerObjectClueFeature({ user, features }: PlayerObjectClueFeat
           size="small"
         />
       </div>
-      <Card hideHeader>{user.clue}</Card>
+      <TextCard>{user.clue}</TextCard>
       <div>
         <Icon
           icon={<BoxEqualIcon />}

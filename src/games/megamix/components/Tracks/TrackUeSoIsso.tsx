@@ -9,7 +9,7 @@ import { useMock } from '@hooks/useMock';
 import { LETTERS } from '@utils/constants';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { SuggestionEasel } from '@components/game/SuggestionEasel';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -82,12 +82,12 @@ export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
               disabled={isLoading}
               onClick={() => onSubmitClue(card.text)}
             >
-              <Card
+              <TextCard
                 header={LETTERS[index]}
                 randomColor
               >
                 {card.text}
-              </Card>
+              </TextCard>
             </TransparentButton>
           ))}
         </SpaceContainer>

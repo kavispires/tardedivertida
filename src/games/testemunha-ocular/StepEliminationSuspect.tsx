@@ -9,7 +9,7 @@ import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -105,14 +105,14 @@ export function StepEliminationSuspect({
       </StepTitle>
 
       <SpaceContainer align="center">
-        <Card
+        <TextCard
           header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
           color={testimony ? 'green' : 'red'}
           className="t-card"
           size="large"
         >
           {answer}
-        </Card>
+        </TextCard>
       </SpaceContainer>
 
       {isUserTheQuestioner ? (

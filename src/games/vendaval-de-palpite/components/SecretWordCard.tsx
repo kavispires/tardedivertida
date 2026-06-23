@@ -1,7 +1,7 @@
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 
 type SecretWordCardProps = {
   secretWord: string;
@@ -11,11 +11,11 @@ export function SecretWordCard({ secretWord }: SecretWordCardProps) {
   const { translate } = useLanguage();
 
   return (
-    <Card
+    <TextCard
       header={translate({ pt: 'Palavra Secreta', en: 'Secret Word' })}
       color="red"
     >
       {secretWord}
-    </Card>
+    </TextCard>
   );
 }

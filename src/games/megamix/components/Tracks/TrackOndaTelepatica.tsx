@@ -8,7 +8,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-desig
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { TextHighlight } from '@components/text/TextHighlight';
@@ -58,7 +58,16 @@ export const TrackOndaTelepatica = ({ track, onSubmitAnswer, user }: TrackProps)
         />
       </RuleInstruction>
 
-      <Card>{track.data.option.value}</Card>
+      <TextCard
+        header={
+          <Translate
+            pt="Carta"
+            en="Card"
+          />
+        }
+      >
+        {track.data.option.value}
+      </TextCard>
 
       <div className="o-simple-dial">
         <svg

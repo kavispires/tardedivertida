@@ -3,7 +3,7 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
@@ -36,7 +36,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
           en="Select the player who said this fact:"
         />
       </RuleInstruction>
-      <Card hideHeader>"{track.data.card.text}"</Card>
+      <TextCard>"{track.data.card.text}"</TextCard>
 
       <SpaceContainer>
         {track.data.card.options.map((playerId: UID) => {

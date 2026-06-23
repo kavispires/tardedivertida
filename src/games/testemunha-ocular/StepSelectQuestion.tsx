@@ -6,7 +6,7 @@ import { useMock } from '@hooks/useMock';
 import { LETTERS } from '@utils/constants';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -86,14 +86,14 @@ export function StepSelectQuestion({
               onClick={() => onSelectQuestion({ questionId: id })}
               disabled={isLoading}
             >
-              <Card
+              <TextCard
                 header={LETTERS[index]}
                 color={['blue', 'teal', 'purple', 'gray'][index % 4]}
                 className="t-card"
                 footer={Array(level).fill('•').join('')}
               >
                 {question}
-              </Card>
+              </TextCard>
             </TransparentButton>
           );
         })}

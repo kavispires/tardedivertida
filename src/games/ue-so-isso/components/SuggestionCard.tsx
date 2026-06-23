@@ -6,7 +6,7 @@ import { Avatar } from 'antd';
 import { LETTERS } from '@utils/constants';
 import { getColorFromIndex } from '@utils/helpers';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 
 type SuggestionCardProps = {
@@ -19,7 +19,7 @@ type SuggestionCardProps = {
 
 export function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }: SuggestionCardProps) {
   return (
-    <Card
+    <TextCard
       size="medium"
       color={getColorFromIndex(index)}
       className={clsx(invalid && 'u-suggestion-card__invalid')}
@@ -40,6 +40,6 @@ export function SuggestionCard({ avatarId, playerName, index, invalid, suggestio
         />
       )}
       {suggestion}
-    </Card>
+    </TextCard>
   );
 }

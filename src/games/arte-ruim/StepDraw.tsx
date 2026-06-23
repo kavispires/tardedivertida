@@ -14,7 +14,7 @@ import { PanicIcon } from '@icons/PanicIcon';
 // Components
 import { ArteRuimTimerSound } from '@components/audio/ArteRuimTimerSound';
 import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { DevButton } from '@components/debug/DevButton';
 import { Step, type StepProps } from '@components/steps/Step';
 // Internal
@@ -67,7 +67,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
         align="center"
         vertical
       >
-        <Card
+        <TextCard
           size="large"
           header={translate({
             pt: 'Desenhe',
@@ -84,7 +84,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
               <span className="a-draw-step__timer">{seconds > 1 ? seconds - 2 : 0}</span>
             </>
           )}
-        </Card>
+        </TextCard>
         {isRunning && <ArteRuimTimerSound />}
 
         <DevButton onClick={onMockDrawing}>Mock Drawing</DevButton>

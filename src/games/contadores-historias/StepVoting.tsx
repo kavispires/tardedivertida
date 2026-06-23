@@ -10,7 +10,7 @@ import { useMock } from '@hooks/useMock';
 // Utils
 import { isEverybodyReady } from '@utils/helpers';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { ImageCardButton } from '@components/image-cards/ImageCardButton';
 import { Translate } from '@components/language/Translate';
@@ -75,13 +75,13 @@ export function StepVoting({
       </StepTitle>
 
       <SpaceContainer>
-        <Card
+        <TextCard
           header={storyteller.name}
           className="c-story-card"
           color="yellow"
         >
           {story}
-        </Card>
+        </TextCard>
       </SpaceContainer>
 
       <PopoverRule content={<VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />} />

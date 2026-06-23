@@ -11,7 +11,7 @@ import { SkiingIcon } from '@icons/SkiingIcon';
 import { SnowHillIcon } from '@icons/SnowHillIcon';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -100,12 +100,12 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
               className={clsx('dd-animated-skiier__skiier', `dd-animated-skiier__skiier--${direction}`)}
             />
           </div>
-          <Card
+          <TextCard
             header={translate({ pt: 'Dica', en: 'Clue' })}
             color="red"
           >
             {track.data.dilemma.prompt}
-          </Card>
+          </TextCard>
 
           <SpaceContainer>
             <div className="dd-buttons">
