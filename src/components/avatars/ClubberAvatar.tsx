@@ -1,10 +1,10 @@
 // Internal
-import { type CustomAvatarProps, CustomAvatarWrapper } from './CustomAvatarWrapper';
+import { type CustomAvatarProps, CustomAvatarWrapper } from './_internal/CustomAvatarWrapper';
 // Images
 import clubbers from 'assets/images/clubbers.svg?url';
 
 /**
- * Clubber Avatar
+ * Clubber Avatar with Player Avatar on top
  */
 export const ClubberAvatar = (props: CustomAvatarProps) => {
   return (

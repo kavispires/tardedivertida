@@ -1,26 +1,6 @@
 @use "styles/sass" as *;
 
-.clubberAvatar {
-  width: 100px;
-  border-radius: var(--border-radius);
-  margin: get-unit(0 2);
-
-  &Animated {
-    animation: bounce-kid 2000ms ease-in-out infinite;
-  }
-}
-
-.costumeAvatar {
-  width: 100px;
-  border-radius: var(--border-radius);
-  margin: get-unit(0 2);
-
-  &Animated {
-    animation: bounce-kid 2000ms ease-in-out infinite;
-  }
-}
-
-.superHeroAvatar {
+.customAvatar {
   width: 100px;
   border-radius: var(--border-radius);
   margin: get-unit(0 2);
