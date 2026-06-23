@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "?",
   "gameName": "template",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,
@@ -23,8 +23,10 @@
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
     "primaryColor": "",
+    "surfaceColor": "",
     "colorScheme": "light",
-    "videoBackground": false
+    "videoBackground": false,
+    "imageBackground": false
   },
   "rules": {
     "pt": ["TBD"],
