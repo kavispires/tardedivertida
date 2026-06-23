@@ -24,6 +24,7 @@ export const gameSessions: GameSessionMap = {
   [GAME_COLLECTION.CONTROLE_DE_ESTOQUE]: lazy(
     () => import('games/controle-de-estoque/SessionControleDeEstoque'),
   ),
+  [GAME_COLLECTION.CORREIO_DO_AMOR]: lazy(() => import('games/correio-do-amor/SessionCorreioDoAmor')),
   [GAME_COLLECTION.CRIMES_HEDIONDOS]: lazy(() => import('games/crimes-hediondos/SessionCrimesHediondos')),
   [GAME_COLLECTION.CRUZA_PALAVRAS]: lazy(() => import('games/cruza-palavras/SessionCruzaPalavras')),
   [GAME_COLLECTION.DETETIVES_IMAGINATIVOS]: lazy(

@@ -24,7 +24,7 @@ export function RunCard({ card, width = 128 }: RunCardProps) {
       style={{
         width: `${width}px`,
         height: `${width * 1.5}px`,
-        backgroundImage: `url(${baseUrl}/er/backgrounds/default.jpg)`,
+        backgroundImage: `url(${baseUrl}/er/bg/default.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

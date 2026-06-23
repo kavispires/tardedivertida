@@ -16,6 +16,7 @@ const GAME_INFO_PATHS: Record<string, () => Promise<{ default: GameInfo }>> = {
   'comunicacao-duo': () => import('games/comunicacao-duo/game-info.json'),
   'contadores-historias': () => import('games/contadores-historias/game-info.json'),
   'controle-de-estoque': () => import('games/controle-de-estoque/game-info.json'),
+  'correio-do-amor': () => import('games/correio-do-amor/game-info.json'),
   'crimes-hediondos': () => import('games/crimes-hediondos/game-info.json'),
   'cruza-palavras': () => import('games/cruza-palavras/game-info.json'),
   'detetives-imaginativos': () => import('games/detetives-imaginativos/game-info.json'),

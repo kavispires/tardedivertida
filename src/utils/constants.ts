@@ -249,6 +249,7 @@ export const GAME_COLLECTION = {
   COMUNICACAO_DUO: 'comunicacao-duo',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CONTROLE_DE_ESTOQUE: 'controle-de-estoque',
+  CORREIO_DO_AMOR: 'correio-do-amor',
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   CRUZA_PALAVRAS: 'cruza-palavras',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',

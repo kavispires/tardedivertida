@@ -7,8 +7,6 @@ import { Layout } from 'antd';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
 import { DevHeader } from './DevHeader';
-// import { Image, Layout } from 'antd';
-// Resources
 
 function Playground() {
   useTitle('Playground | Dev | Tarde Divertida');

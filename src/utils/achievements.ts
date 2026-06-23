@@ -52,6 +52,7 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   'comunicacao-duo': COMUNICACAO_DUO,
   'contadores-historias': CONTADORES_HISTORIAS,
   'controle-de-estoque': CONTROLE_DE_ESTOQUE,
+  'correio-do-amor': null,
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,

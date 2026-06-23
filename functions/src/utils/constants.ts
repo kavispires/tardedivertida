@@ -46,6 +46,11 @@ const GAMES = [
     key: 'CONTROLE_DE_ESTOQUE',
   },
   {
+    name: 'correio-do-amor',
+    code: 'A',
+    key: 'CORREIO_DO_AMOR',
+  },
+  {
     name: 'crimes-hediondos',
     code: 'H',
     key: 'CRIMES_HEDIONDOS',

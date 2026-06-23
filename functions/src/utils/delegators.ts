@@ -7,6 +7,7 @@ import * as comunicacaoAlienigenaEngine from '../engine/comunicacao-alienigena';
 import * as comunicacaoDuoEngine from '../engine/comunicacao-duo';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
 import * as controleDeEstoqueEngine from '../engine/controle-de-estoque';
+import * as correioDoAmorEngine from '../engine/correio-do-amor';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
@@ -57,6 +58,7 @@ const engines = {
   [GAME_NAMES.COMUNICACAO_DUO]: comunicacaoDuoEngine,
   [GAME_NAMES.CONTADORES_HISTORIAS]: contadoresHistoriasEngine,
   [GAME_NAMES.CONTROLE_DE_ESTOQUE]: controleDeEstoqueEngine,
+  [GAME_NAMES.CORREIO_DO_AMOR]: correioDoAmorEngine,
   [GAME_NAMES.CRIMES_HEDIONDOS]: crimesHediondosEngine,
   [GAME_NAMES.CRUZA_PALAVRAS]: cruzaPalavrasEngine,
   [GAME_NAMES.DETETIVES_IMAGINATIVOS]: detetivesImaginativosEngine,

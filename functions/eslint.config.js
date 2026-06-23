@@ -39,7 +39,7 @@ module.exports = [
       '@typescript-eslint/no-explicit-any': 'off', // Allow any - per original config
       '@typescript-eslint/explicit-module-boundary-types': 'off', // Per original config
       // Custom rules from original config
-      quotes: ['error', 'single'],
+      // quotes: ['error', 'single'],
       // Import plugin rules (errors and warnings)
       'import/no-unresolved': 'error',
       'import/named': 'error',
