@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Utils
 import { getAnimation } from '@utils/animations';
 // Components
@@ -17,7 +17,7 @@ type StepWaitForPresenterProps = {
   players: GamePlayers;
   presenter: GamePlayer;
   turnOrder: UID[];
-  wordsDict: Dictionary<TextCard>;
+  wordsDict: Dictionary<TextCardData>;
   poolIds?: UID[];
 } & Pick<StepProps, 'announcement'>;
 

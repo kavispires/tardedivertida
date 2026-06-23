@@ -3,7 +3,7 @@
 // import { TDR_RESOURCES } from '../../utils/constants';
 // Types
 import type { ResourceData } from './types';
-import type { BossIdeaCard } from '../../types/tdr';
+import type { BossIdeaCardData } from '../../types/tdr';
 // Utils
 // import * as resourceUtils from '../resource';
 import { GOODS_LIBRARY_COUNT } from './constants';
@@ -15,7 +15,7 @@ import utils from '../../utils';
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get full deck
-  // const allBossIdeas = await resourceUtils.fetchResource<Dictionary<BossIdeaCard>>(
+  // const allBossIdeas = await resourceUtils.fetchResource<Dictionary<BossIdeaCardData>>(
   //   TDR_RESOURCES.WAREHOUSE_BOSS_IDEAS,
   // );
   const allBossIdeas = BOSS_IDEAS;
@@ -25,7 +25,7 @@ export const getData = async (): Promise<ResourceData> => {
   return { allBossIdeas, goodsIds };
 };
 
-export const BOSS_IDEAS: Dictionary<BossIdeaCard> = {
+export const BOSS_IDEAS: Dictionary<BossIdeaCardData> = {
   FIRST_DAY: {
     id: 'FIRST_DAY',
     type: 'default',
@@ -221,7 +221,7 @@ export const BOSS_IDEAS: Dictionary<BossIdeaCard> = {
       en: "Let's take a peak before we store it and talk about it",
       pt: 'Vamos dar uma olhada antes de armazenar e conversar sobre o produto',
     },
-    ogRule: 'Unexpected Item in Area',
+    ogRule: 'Unexpected ItemData in Area',
     difficulty: 2,
   },
   FENG_SHUI: {

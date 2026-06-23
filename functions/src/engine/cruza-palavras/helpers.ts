@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { shuffle } from 'lodash';
 import type { ClueEntry, CruzaPalavrasOptions, Deck, FirebaseStoreData, GridCell, PastClues } from './types';
 // Constants
@@ -45,7 +45,7 @@ export const determineNextPhase = (
  */
 export const buildGrid = (
   words: Deck,
-  playersClues: TextCard[],
+  playersClues: TextCardData[],
   wordsPerCoordinate: number,
   shouldUsePlayersClues: boolean,
 ): GridCell[] => {

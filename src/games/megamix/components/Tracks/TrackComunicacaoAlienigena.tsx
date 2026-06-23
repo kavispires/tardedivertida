@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -90,7 +90,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
         </RuleInstruction>
 
         <SpaceContainer>
-          {track.data.items.map((item: Item) => {
+          {track.data.items.map((item: ItemData) => {
             return (
               <TransparentButton
                 key={`item-${item.id}`}

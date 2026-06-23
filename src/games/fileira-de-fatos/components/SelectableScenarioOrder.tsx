@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { UndoOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
@@ -22,7 +22,7 @@ import { mockOrder } from '../utils/mock';
 import { Scenarios } from './Scenarios';
 
 type SelectableScenarioOrderProps = {
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   kind: 'positive' | 'negative';
   onSubmitOrder: (payload: SubmitScenarioOrderPayload) => void;
 };
@@ -36,11 +36,11 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
   });
   const reference = getReference(kind);
 
-  const [selection, setSelection] = useState<(null | TextCard)[]>(Array(scenarios.length).fill(null));
+  const [selection, setSelection] = useState<(null | TextCardData)[]>(Array(scenarios.length).fill(null));
 
   const availableScenarios = scenarios.filter((card) => !selection.includes(card));
 
-  const onAddScenario = (card: TextCard) => {
+  const onAddScenario = (card: TextCardData) => {
     setSelection((selection) => {
       const newSelection = [...selection];
       const firstNullIndex = newSelection.indexOf(null);

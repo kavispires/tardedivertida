@@ -1,5 +1,5 @@
 // Types
-import type { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCardData } from '../../types/tdr';
 import type { ExtendedPlayerAnswerEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {
@@ -144,7 +144,7 @@ export const prepareEverybodyWritesPhase = async (
 
   const currentQuestion = store.customQuestion
     ? store.customQuestion
-    : store.deck.find((question: GroupQuestionCard) => question.id === store.questionId);
+    : store.deck.find((question: GroupQuestionCardData) => question.id === store.questionId);
 
   const pastQuestions = store.currentQuestion
     ? store.pastQuestions

@@ -7,7 +7,7 @@ import type { QuemSouEuOptions, ResourceData } from './types';
 import * as globalUtils from '../global';
 import * as collectionUtils from '../collections';
 import utils from '../../utils';
-import type { ContenderCard } from '../../types/tdr';
+import type { ContenderCardData } from '../../types/tdr';
 
 /**
  * Get characters based on the game's language
@@ -30,7 +30,7 @@ export const getResourceData = async (
   const characters = imageCardsMode
     ? []
     : await utils.tdr.getContenders(language, allowNSFW, options.contenderDecks, quantityNeeded);
-  const imageCards: ContenderCard[] = (
+  const imageCards: ContenderCardData[] = (
     imageCardsMode ? await utils.imageCards.getImageCards(quantityNeeded) : []
   ).map((cardId) => ({
     id: cardId,

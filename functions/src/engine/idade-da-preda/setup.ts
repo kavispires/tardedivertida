@@ -11,9 +11,9 @@ import {
   PLAYER_COUNTS,
   TOTAL_ROUNDS,
 } from './constants';
-import type { Concept, FirebaseStateData, FirebaseStoreData, NewNameEntry, ResourceData } from './types';
+import type { ConceptData, FirebaseStateData, FirebaseStoreData, NewNameEntry, ResourceData } from './types';
 import { buildGalleryAndRanking, gatherConcepts } from './helpers';
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 
 /**
  * Setup phase - initializes game state and resources
@@ -97,7 +97,7 @@ export const prepareCreatingConceptsPhase = async (
   );
 
   // Add new items
-  const items: Dictionary<Item> = { ...(state.items ?? {}), ...keyBy(roundsItems, 'id') };
+  const items: Dictionary<ItemData> = { ...(state.items ?? {}), ...keyBy(roundsItems, 'id') };
 
   return {
     update: {
@@ -150,9 +150,9 @@ export const prepareCommunicatingThingsPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
-  const concepts: Concept[] = state.concepts;
+  const concepts: ConceptData[] = state.concepts;
 
-  const pool: Item[] = state.pool;
+  const pool: ItemData[] = state.pool;
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.hand) {

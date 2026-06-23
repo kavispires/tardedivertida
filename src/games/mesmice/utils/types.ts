@@ -1,6 +1,6 @@
 // Types
 import type { Achievement } from 'types/game';
-import type { Item, ObjectFeatureCard } from 'types/tdr';
+import type { ItemData, ObjectFeatureCardData } from 'types/tdr';
 
 /**
  * Payload for submitting an object and clue
@@ -29,12 +29,12 @@ export type SubmitFeaturePayload = {
 /**
  * Simplified object card containing only ID and name
  */
-export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
+export type ObjectCardObj = Pick<ItemData, 'id' | 'name'>;
 
 /**
  * Object feature card with optional elimination status
  */
-export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
+export type ExtendedObjectFeatureCard = ObjectFeatureCardData & { eliminated?: boolean };
 
 /**
  * Entry recording one elimination attempt in a round

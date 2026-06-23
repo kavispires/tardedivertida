@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Types
-import type { ContenderCard, SuspectCard as SuspectCardType, TextCard } from 'types/tdr';
+import type { ContenderCardData, SuspectCardData as SuspectCardType, TextCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -73,7 +73,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
         <CharacterCard
-          character={deliverable.data as unknown as ContenderCard}
+          character={deliverable.data as unknown as ContenderCardData}
           size={96}
           className="history-entry-image-card"
         />
@@ -102,7 +102,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
         key={`cd-history-entry-${deliverable.data.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
-        <Card hideHeader>{(deliverable.data as unknown as TextCard).text}</Card>
+        <Card hideHeader>{(deliverable.data as unknown as TextCardData).text}</Card>
       </div>
     );
   }

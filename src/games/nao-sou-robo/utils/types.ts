@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking, GameRound } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Payload for submitting robot cards
@@ -59,7 +59,7 @@ export type Captcha = {
   /**
    * Values to display in the captcha challenge
    */
-  values: TextCard | number | number[] | string[];
+  values: TextCardData | number | number[] | string[];
 };
 
 /**

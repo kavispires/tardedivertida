@@ -4,7 +4,7 @@ import { DATA_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import type { FinalGalleryEntry, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import * as globalUtils from '../global';
 
 /**
@@ -14,12 +14,12 @@ import * as globalUtils from '../global';
  * @returns A promise that resolves to an object containing all the warning sign descriptions and subjects.
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
-  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.WARNING_SIGNS_DESCRIPTORS,
     language,
   );
 
-  const allSubjects = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allSubjects = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.WARNING_SIGNS_SUBJECTS,
     language,
   );

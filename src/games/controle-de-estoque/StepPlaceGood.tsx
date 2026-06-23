@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Divider } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { BossIdeaCard } from 'types/tdr';
+import type { BossIdeaCardData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -33,7 +33,7 @@ import { StockingProgress } from './components/StockingProgress';
 type StepPlaceGoodProps = {
   players: GamePlayers;
   user: GamePlayer;
-  bossIdea: BossIdeaCard;
+  bossIdea: BossIdeaCardData;
   goodsDict: Dictionary<Good>;
   warehouse: WarehouseSlot[];
   supervisor: GamePlayer;

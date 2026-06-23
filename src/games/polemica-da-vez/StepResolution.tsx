@@ -2,7 +2,7 @@
 import { CommentOutlined, LikeFilled, ShareAltOutlined, TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
 import type { UseStep } from '@hooks/useStep';
@@ -20,7 +20,7 @@ type StepResolutionProps = {
   players: GamePlayers;
   totalLikes: number;
   customTweet: string | null;
-  currentTweet: TextCard;
+  currentTweet: TextCardData;
   goToNextStep: UseStep['goToNextStep'];
 } & Pick<StepProps, 'announcement'>;
 

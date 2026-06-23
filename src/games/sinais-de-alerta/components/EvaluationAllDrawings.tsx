@@ -2,7 +2,7 @@
 import { Typography } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Icons
@@ -14,13 +14,13 @@ import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
-import type { DrawingEntry } from '../utils/types';
+import type { DrawingEntryData } from '../utils/types';
 import { WarningDrawing } from './WarningDrawing';
 
 type EvaluationAllDrawingsProps = {
   players: GamePlayers;
-  cards: Dictionary<TextCard>;
-  drawings: DrawingEntry[];
+  cards: Dictionary<TextCardData>;
+  drawings: DrawingEntryData[];
   onSelect: (cardId: UID) => void;
   subjectGuesses: Dictionary<string>;
   descriptorGuesses: Dictionary<string>;

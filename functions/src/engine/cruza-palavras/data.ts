@@ -1,6 +1,6 @@
 // Types
 import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { sampleSize } from 'lodash';
 // Utils
 import * as dataUtils from '../collections';
@@ -19,7 +19,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 28;
 
   if (options?.gridType === 'properties') {
-    const allCards = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+    const allCards = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
       TDR_RESOURCES.THINGS_QUALITIES,
       language,
     );

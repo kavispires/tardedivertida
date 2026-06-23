@@ -1,4 +1,4 @@
-import type { ContenderCard } from '../../types/tdr';
+import type { ContenderCardData } from '../../types/tdr';
 import type { QUEM_SOU_EU_ACTIONS } from './constants';
 
 export type QuemSouEuOptions = {
@@ -17,8 +17,8 @@ export type QuemSouEuOptions = {
 } & ContendersDecksOptions;
 
 export interface ResourceData {
-  characters: ContenderCard[];
-  imageCards: ContenderCard[];
+  characters: ContenderCardData[];
+  imageCards: ContenderCardData[];
 }
 
 export interface Character {

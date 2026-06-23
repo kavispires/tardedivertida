@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer } from 'types/game';
-import type { MonsterImage } from 'types/tdr';
+import type { MonsterImageData } from 'types/tdr';
 // Components
 import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
 import { MonsterCard } from '@components/cards/MonsterCard';
@@ -18,7 +18,7 @@ type ViewWitnessingProps = {
   remainingWitnessingTime: number;
   lines: CanvasLine[];
   setLines: CanvasSetLine;
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   witness: GamePlayer;
 };
 

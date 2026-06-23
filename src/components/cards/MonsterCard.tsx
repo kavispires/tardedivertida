@@ -4,7 +4,7 @@ import { useEffectOnce } from 'react-use';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 import { Button, Space, type SpaceProps } from 'antd';
 // Types
-import type { MonsterImage } from 'types/tdr';
+import type { MonsterImageData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useGlobalState } from '@hooks/useGlobalState';
@@ -18,7 +18,7 @@ type MonsterCardProps = SpaceProps & {
   /**
    * The current monster to display
    */
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   /**
    * Flag to show or hide orientation control buttons
    */

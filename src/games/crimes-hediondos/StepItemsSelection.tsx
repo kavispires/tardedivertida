@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCardData } from 'types/tdr';
 // Utils
 import { shuffle } from '@utils/helpers';
 // Components
@@ -53,7 +53,7 @@ export function StepItemsSelection({
 
   const userItems = groupedItems[user.itemGroupIndex];
 
-  const onSelectItem = (item: CrimesHediondosCard) => {
+  const onSelectItem = (item: CrimesHediondosCardData) => {
     if (item.type === 'weapon') {
       return setWeaponId(item.id);
     }

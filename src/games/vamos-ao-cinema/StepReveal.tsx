@@ -1,6 +1,6 @@
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
-import type { MovieCard, MovieReviewCard } from 'types/tdr';
+import type { MovieCardData, MovieReviewCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
@@ -32,9 +32,9 @@ import { MovieHighlight } from './components/MovieHighlight';
 type StepRevealProps = {
   players: GamePlayers;
   user: GamePlayer;
-  goodReview: MovieReviewCard;
-  badReview: MovieReviewCard;
-  movies: MovieCard[];
+  goodReview: MovieReviewCardData;
+  badReview: MovieReviewCardData;
+  movies: MovieCardData[];
   onEliminateMovie: (payload: SubmitMovieEliminationPayload) => void;
   activePlayer: GamePlayer;
   eliminatedMovies: string[];

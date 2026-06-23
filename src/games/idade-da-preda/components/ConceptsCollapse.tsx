@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Collapse, Flex, Radio, Typography, type CollapseProps } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useCache } from '@hooks/useCache';
 // Components
@@ -12,18 +12,18 @@ import { ItemCard } from '@components/cards/ItemCard';
 import { Translate } from '@components/language/Translate';
 // Internal
 import { useSpriteWidth } from '../utils/useSpriteWidth';
-import type { Concept } from '../utils/types';
+import type { ConceptData } from '../utils/types';
 import { BasicConceptBlock } from './BasicConceptBlock';
 import { ConceptCreationBlock } from './ConceptCreationBlock';
 
 type ConceptsCollapseProps = {
   user: GamePlayer;
   players: GamePlayers;
-  items: Dictionary<Item>;
-  concepts: Concept[];
-  basicConcepts?: Concept[];
+  items: Dictionary<ItemData>;
+  concepts: ConceptData[];
+  basicConcepts?: ConceptData[];
   onSelectConcept?: (conceptId: string) => void;
-  pool?: Item[];
+  pool?: ItemData[];
   defaultActiveKey?: ('basic-concepts' | 'concepts' | 'pool')[];
 };
 

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Typography } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -15,7 +15,7 @@ import type { GalleryEntry } from '../utils/types';
 import { getTitle } from '../utils/helpers';
 
 type GalleryWindowResultProps = {
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   galleryEntry: GalleryEntry;
   gameLanguage: Language;
 };

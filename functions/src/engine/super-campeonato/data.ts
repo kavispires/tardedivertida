@@ -1,7 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { PastBattles, ResourceData, SuperCampeonatoOptions } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -22,7 +22,7 @@ export const getResourceData = async (
   options: SuperCampeonatoOptions,
 ): Promise<ResourceData> => {
   // Get full challenges deck
-  const challengesResponse = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const challengesResponse = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.CHALLENGES,
     language,
   );

@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { Item, SuspectCard } from 'types/tdr';
+import type { ItemData, SuspectCardData } from 'types/tdr';
 
 /**
  * Payload for submitting movie genre selection
@@ -98,7 +98,7 @@ export type ActingRole = {
   /**
    * Dictionary of candidate actors for this role
    */
-  candidates: Dictionary<SuspectCard>;
+  candidates: Dictionary<SuspectCardData>;
   /**
    * Array of actor IDs selected by players
    */
@@ -140,7 +140,7 @@ export type FeatureFilm = {
   /**
    * Array of movie props
    */
-  movieProps: Item[];
+  movieProps: ItemData[];
   /**
    * Movie genre in multiple languages
    */
@@ -170,7 +170,7 @@ export type PhaseMovieGenreSelectionState = {
   /**
    * Available movie props to select
    */
-  movieProps: Item[];
+  movieProps: ItemData[];
 };
 
 /**

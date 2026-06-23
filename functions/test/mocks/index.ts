@@ -1,6 +1,6 @@
-import { ArteRuimCard, TextCard } from '../../src/types/tdr';
+import { ArteRuimCardData, TextCardData } from '../../src/types/tdr';
 
-export const mockArteRuimCardDatabase: Record<UID, ArteRuimCard> = Array(120)
+export const mockArteRuimCardDatabase: Record<UID, ArteRuimCardData> = Array(120)
   .fill(1)
   .reduce((acc, element, index) => {
     const id = `a-${element + index}-br`;
@@ -12,7 +12,7 @@ export const mockArteRuimCardDatabase: Record<UID, ArteRuimCard> = Array(120)
     return acc;
   }, {});
 
-export const mockUseSoIssoCardDatabase: TextCard[] = Array(100)
+export const mockUseSoIssoCardDatabase: TextCardData[] = Array(100)
   .fill(1)
   .map((element, index) => {
     const id = `u-${element + index}-br`;

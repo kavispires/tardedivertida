@@ -2,7 +2,7 @@
 import { Divider, Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
@@ -23,7 +23,7 @@ import { SpeechBubble } from '@components/text/SpeechBubble';
 import { StepTitle } from '@components/text/StepTitle';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
-import type { Concept, NewNameEntry, SubmitGuessesPayload } from './utils/types';
+import type { ConceptData, NewNameEntry, SubmitGuessesPayload } from './utils/types';
 import { useSpriteWidth } from './utils/useSpriteWidth';
 import { mockGuesses } from './utils/mock';
 import { ConceptsCollapse } from './components/ConceptsCollapse';
@@ -31,11 +31,11 @@ import { ConceptsCollapse } from './components/ConceptsCollapse';
 type StepGuessProps = {
   players: GamePlayers;
   user: GamePlayer;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
   round: GameRound;
-  items: Dictionary<Item>;
-  pool: Item[];
+  items: Dictionary<ItemData>;
+  pool: ItemData[];
   newNames: NewNameEntry[];
   onSubmitGuesses: (payload: SubmitGuessesPayload) => void;
 } & Pick<StepProps, 'announcement'>;

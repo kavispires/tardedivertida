@@ -1,4 +1,4 @@
-import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../types/tdr';
+import type { ArteRuimCardData, ArteRuimGroupData, ArteRuimPairData } from '../../types/tdr';
 import type { ARTE_RUIM_ACTIONS } from './constants';
 
 export type ArteRuimGameOptions = {
@@ -24,30 +24,30 @@ export type ArteRuimGameOptions = {
   specialLevels: boolean;
 };
 
-export type CardsByLevel = Record<string, ArteRuimCard[]>;
+export type CardsByLevel = Record<string, ArteRuimCardData[]>;
 
 export type Level4Type = 'pairs' | 'contenders' | 'movies' | 'adjectives';
 
 export type ResourceData = {
-  allCards: Dictionary<ArteRuimCard>;
+  allCards: Dictionary<ArteRuimCardData>;
   availableCards: CardsByLevel;
-  cardsPairs: ArteRuimPair[];
-  cardsGroups: ArteRuimGroup[];
+  cardsPairs: ArteRuimPairData[];
+  cardsGroups: ArteRuimGroupData[];
   specialLevels: {
-    cards: ArteRuimCard[];
+    cards: ArteRuimCardData[];
     types: Level4Type[];
   } | null;
 };
 
-export interface ArteRuimDrawing extends ArteRuimCard {
+export interface ArteRuimDrawing extends ArteRuimCardData {
   playerId: UID | null;
   drawing: string | null;
   successRate: number;
 }
 
 export interface ArteRuimStore extends DefaultStore {
-  deck: ArteRuimCard[];
-  currentCards: ArteRuimCard[] | ArteRuimDrawing[];
+  deck: ArteRuimCardData[];
+  currentCards: ArteRuimCardData[] | ArteRuimDrawing[];
   pastDrawings: ArteRuimDrawing[];
 }
 

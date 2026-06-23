@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { MovieCard, MovieReviewCard } from 'types/tdr';
+import type { MovieCardData, MovieReviewCardData } from 'types/tdr';
 // Utils
 import { getAnimationClass } from '@utils/helpers';
 // Icons
@@ -23,9 +23,9 @@ import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 type StepEliminateMovieProps = {
   players: GamePlayers;
   user: GamePlayer;
-  goodReview: MovieReviewCard;
-  badReview: MovieReviewCard;
-  movies: MovieCard[];
+  goodReview: MovieReviewCardData;
+  badReview: MovieReviewCardData;
+  movies: MovieCardData[];
   onEliminateMovie: (payload: SubmitMovieEliminationPayload) => void;
   activePlayer: GamePlayer;
   isActivePlayer: boolean;

@@ -9,7 +9,7 @@ import {
 import { GAME_NAMES } from '../../utils/constants';
 import { orderBy, sampleSize } from 'lodash';
 // Types
-import type { SpyLocation } from '../../types/tdr';
+import type { SpyLocationData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -68,7 +68,7 @@ export const prepareAssignmentPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
-  const availableLocations: SpyLocation[] = sampleSize(store.allLocations, LOCATIONS_USED_IN_A_ROUND);
+  const availableLocations: SpyLocationData[] = sampleSize(store.allLocations, LOCATIONS_USED_IN_A_ROUND);
 
   const locations = orderBy(
     availableLocations.map((location) => ({

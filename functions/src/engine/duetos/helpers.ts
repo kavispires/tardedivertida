@@ -1,5 +1,5 @@
 // Types
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { DUETOS_PHASES } from './constants';
@@ -30,7 +30,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @param quantity - The number of items to add
  * @param receiver - The array to receive the items
  */
-export const addItems = (pool: Item[], quantity: number, receiver: any[]) => {
+export const addItems = (pool: ItemData[], quantity: number, receiver: any[]) => {
   for (let i = 0; i < quantity; i++) {
     const item = pool.pop();
     if (item) {

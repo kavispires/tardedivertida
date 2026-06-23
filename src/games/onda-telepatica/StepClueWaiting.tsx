@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -15,7 +15,7 @@ import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 type StepClueWaitingProps = {
   players: GamePlayers;
   psychic: GamePlayer;
-  currentCategories: SpectrumCard[];
+  currentCategories: SpectrumCardData[];
   currentCategoryId?: string;
 } & Pick<StepProps, 'announcement'>;
 

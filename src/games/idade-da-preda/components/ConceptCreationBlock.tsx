@@ -5,7 +5,7 @@ import { DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-design/icons';
 import { Button, Card, Flex, Input, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useCache } from '@hooks/useCache';
 import { useLanguage } from '@hooks/useLanguage';
@@ -18,15 +18,15 @@ import { Popconfirm } from '@components/general/Popconfirm';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
-import type { Concept } from '../utils/types';
+import type { ConceptData } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 
 type ConceptCreationBlockProps = {
   players: GamePlayers;
   user?: GamePlayer;
-  items: Dictionary<Item>;
-  concept: Concept;
-  onChange?: (concept: Concept) => void;
+  items: Dictionary<ItemData>;
+  concept: ConceptData;
+  onChange?: (concept: ConceptData) => void;
   showMeaning?: boolean;
   isEditing?: boolean;
   toggleEditing?: (conceptId: string | null) => void;
@@ -176,7 +176,7 @@ export function ConceptCreationBlock({
               </Button>
             </>
           ) : (
-            <Tooltip title={translate({ en: 'Edit Concept', pt: 'Editar Conceito' })}>
+            <Tooltip title={translate({ en: 'Edit ConceptData', pt: 'Editar Conceito' })}>
               <Button
                 type="dashed"
                 size="small"
@@ -199,7 +199,7 @@ export function ConceptCreationBlock({
 }
 
 type NoteProps = {
-  concept: Concept;
+  concept: ConceptData;
   userId?: UID;
 };
 

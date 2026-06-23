@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { Button, Collapse, type CollapseProps, Flex, Input, Slider, Tag } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
@@ -28,7 +28,7 @@ import { WordLengths } from './components/WordLengths';
 type StepCreateWordProps = {
   players: GamePlayers;
   user: GamePlayer;
-  items: Item[];
+  items: ItemData[];
   beginsWith: string;
   endsWith: string;
   wordLengths: WordLength[];

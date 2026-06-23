@@ -13,7 +13,7 @@ import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, Resource
 import { difference, orderBy, sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { CityLocation } from '../../types/tdr';
+import type { CityLocationData } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
     origin: 'center',
   });
 
-  const usedCityLocations: Dictionary<CityLocation> = {};
+  const usedCityLocations: Dictionary<CityLocationData> = {};
 
   // Set up city hall on the center
   const originId = utils.toolKits.gridMapUtils.getOriginId(city);
@@ -381,7 +381,7 @@ export const prepareResolutionPhase = async (
     }
   });
 
-  const cityLocationsDict: Dictionary<CityLocation> = state.cityLocationsDict;
+  const cityLocationsDict: Dictionary<CityLocationData> = state.cityLocationsDict;
   const sortedGallery = orderBy(
     gallery,
     [(g) => cityLocationsDict[g.locationId].name[store.language ?? 'en']],

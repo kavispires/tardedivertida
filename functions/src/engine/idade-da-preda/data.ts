@@ -1,6 +1,6 @@
 import type { IdadeDaPredaOptions, ResourceData } from './types';
 import utils from '../../utils';
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 import { AGE_1_ITEMS_COUNT, ITEMS_PER_PLAYER_PER_AGE, NEW_AGES_COUNT, PLAYER_COUNTS } from './constants';
 import { sampleSize } from 'lodash';
 
@@ -21,11 +21,11 @@ export const getResourceData = async (options: IdadeDaPredaOptions): Promise<Res
     // cleanUp: utils.tdr.itemUtils.cleanupDecks,
   });
 
-  const allAge1: Item[] = [];
-  const allAge2: Item[] = [];
-  const allAge3: Item[] = [];
-  const allAge4: Item[] = [];
-  const allAge5: Item[] = [];
+  const allAge1: ItemData[] = [];
+  const allAge2: ItemData[] = [];
+  const allAge3: ItemData[] = [];
+  const allAge4: ItemData[] = [];
+  const allAge5: ItemData[] = [];
 
   allItems.forEach((item) => {
     if (item.decks?.includes('age1')) {
@@ -60,7 +60,7 @@ export const getResourceData = async (options: IdadeDaPredaOptions): Promise<Res
   };
 };
 
-const cleanUpItem = (item: Item, age: string): Item => {
+const cleanUpItem = (item: ItemData, age: string): ItemData => {
   return {
     id: item.id,
     name: item.name,

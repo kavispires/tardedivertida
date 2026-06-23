@@ -1,5 +1,5 @@
 // Types
-import type { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
@@ -18,7 +18,7 @@ import { sampleSize } from 'lodash';
  */
 export const getResourceData = async (language: string, options: TaNaCaraOptions): Promise<ResourceData> => {
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCard>>(
+  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCardData>>(
     TDR_RESOURCES.TESTIMONY_QUESTIONS,
     language,
   );

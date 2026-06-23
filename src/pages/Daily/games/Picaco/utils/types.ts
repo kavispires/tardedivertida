@@ -1,5 +1,5 @@
 // Types
-import type { ArteRuimCard } from 'types/tdr';
+import type { ArteRuimCardData } from 'types/tdr';
 // Pages
 import type { DateKey } from '@pages/Daily/utils/types';
 
@@ -10,7 +10,7 @@ export type GameState = {
 };
 
 export type SessionState = {
-  cards: ArteRuimCard[];
+  cards: ArteRuimCardData[];
   drawings: string[];
   cardIndex: number;
   screen: 'idle' | 'playing' | 'saving';
@@ -20,7 +20,7 @@ export type DailyPicacoEntry = {
   id: DateKey;
   number: number;
   type: 'artista' | 'picaco';
-  cards: ArteRuimCard[];
+  cards: ArteRuimCardData[];
 };
 
 export type DrawingToSave = {

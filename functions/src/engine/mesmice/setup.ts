@@ -3,7 +3,7 @@ import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } f
 import { GAME_NAMES } from '../../utils/constants';
 import { keyBy, sampleSize } from 'lodash';
 // Types
-import type { Item, ObjectFeatureCard } from '../../types/tdr';
+import type { ItemData, ObjectFeatureCardData } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -80,7 +80,9 @@ export const prepareClueWritingPhase = async (
       },
       state: {
         phase: MESMICE_PHASES.CLUE_WRITING,
-        features: keyBy(features.map((feature: ObjectFeatureCard) => ({ ...feature, eliminated: false }))),
+        features: keyBy(
+          features.map((feature: ObjectFeatureCardData) => ({ ...feature, eliminated: false })),
+        ),
         players,
         outcome: OUTCOME.NEW,
         groupScore: 0,
@@ -118,7 +120,7 @@ export const prepareObjectFeatureEliminationPhase = async (
     const activePlayer = players[activePlayerId];
     stateUpdate.activePlayerId = activePlayerId;
     stateUpdate.item = activePlayer.items.find(
-      (item: Partial<Item>) => item.id === activePlayer.selectedItemId,
+      (item: Partial<ItemData>) => item.id === activePlayer.selectedItemId,
     );
     stateUpdate.clue = activePlayer.clue;
     stateUpdate.target = activePlayer.target;

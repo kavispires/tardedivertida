@@ -4,7 +4,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
 import type { ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import type { CityLocation } from '../../types/tdr';
+import type { CityLocationData } from '../../types/tdr';
 
 /**
  * Get city locations resource based on the game's language
@@ -12,7 +12,7 @@ import type { CityLocation } from '../../types/tdr';
  */
 export const getLocations = async (): Promise<ResourceData> => {
   // Get full deck
-  const allCityLocations = await resourceUtils.fetchResource<Dictionary<CityLocation>>(
+  const allCityLocations = await resourceUtils.fetchResource<Dictionary<CityLocationData>>(
     TDR_RESOURCES.CITY_LOCATIONS,
   );
 

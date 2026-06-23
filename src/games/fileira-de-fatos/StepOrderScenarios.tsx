@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -15,7 +15,7 @@ import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 
 type StepOrderScenariosProps = {
   activePlayer: GamePlayer;
-  scenarios: TextCard[];
+  scenarios: TextCardData[];
   roundType: string;
   onSubmitOrder: (payload: SubmitScenarioOrderPayload) => void;
 } & Pick<StepProps, 'announcement'>;

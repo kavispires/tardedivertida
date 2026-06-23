@@ -4,7 +4,7 @@ import { RedoOutlined } from '@ant-design/icons';
 import { Badge, Button } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -30,7 +30,7 @@ import { PlayersHandsCounts } from './components/PlayersHandsCounts';
 type StepSelectThingsProps = {
   players: GamePlayers;
   user: GamePlayer;
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   category: string;
   onSubmitCards: (payload: SubmitCardsPayload) => void;
   isTheCreator: boolean;

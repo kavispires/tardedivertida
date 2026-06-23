@@ -9,7 +9,7 @@ import {
 import { GAME_NAMES } from '../../utils/constants';
 import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
 // Types
-import type { DrawingEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { DrawingEntryData, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 import { dealCardsToPlayers, evaluateAnswers } from './helpers';
@@ -115,7 +115,7 @@ export const prepareEvaluationPhase = async (
 
   // Gather all drawings
   const drawings = utils.players.getListOfPlayers(players).map((player) => {
-    const entry: DrawingEntry = {
+    const entry: DrawingEntryData = {
       playerId: player.id,
       subjectId: player.currentSubjectId,
       descriptorId: player.currentDescriptorId,

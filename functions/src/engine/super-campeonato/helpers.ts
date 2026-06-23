@@ -1,7 +1,7 @@
 import utils from '../../utils';
 import { sample, shuffle } from 'lodash';
 import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
-import type { ContenderCard, TextCard } from '../../types/tdr';
+import type { ContenderCardData, TextCardData } from '../../types/tdr';
 import type { Bracket, BracketTier, FightingContender, ContendersDeck, FirebaseStoreData } from './types';
 import { increaseAchievement } from './achievements';
 
@@ -68,11 +68,11 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
     return [];
   }
 
-  const usedContenders: ContenderCard[] = utils.players
+  const usedContenders: ContenderCardData[] = utils.players
     .getListOfPlayers(players)
     .flatMap((player) => player.contenders);
 
-  const selectedContenders = utils.game.getRandomUniqueObjects<ContenderCard>(
+  const selectedContenders = utils.game.getRandomUniqueObjects<ContenderCardData>(
     contendersDeck,
     usedContenders,
     quantityNeeded,
@@ -92,7 +92,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
  * @param players - The collection of players in the game
  * @param challenges - The array of challenge cards
  */
-export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) => {
+export const getMostVotedChallenge = (players: Players, challenges: TextCardData[]) => {
   const votes: Dictionary<number> = {};
 
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -335,7 +335,7 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
  * @param challenge - The challenge card for the past battles.
  * @return An object containing the challenge card and an array of contenders sorted by number of wins.
  */
-export const getPastBattle = (brackets: Bracket[], challenge: TextCard) => {
+export const getPastBattle = (brackets: Bracket[], challenge: TextCardData) => {
   const winsByContender: Dictionary<number> = {};
 
   brackets.forEach((bracket) => {

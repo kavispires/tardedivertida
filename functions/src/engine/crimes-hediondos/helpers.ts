@@ -19,7 +19,7 @@ import type {
   WrongGroups,
   WrongItems,
 } from './types';
-import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
+import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import { orderBy, sampleSize, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
@@ -48,21 +48,21 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 };
 
 type ParsedTiles = {
-  causeOfDeathTile?: CrimeSceneTile;
-  reasonForEvidenceTile?: CrimeSceneTile;
-  locationTile?: CrimeSceneTile;
-  victimTile?: CrimeSceneTile;
-  victimsTiles: CrimeSceneTile[];
-  sceneTiles: CrimeSceneTile[];
+  causeOfDeathTile?: CrimeSceneTileData;
+  reasonForEvidenceTile?: CrimeSceneTileData;
+  locationTile?: CrimeSceneTileData;
+  victimTile?: CrimeSceneTileData;
+  victimsTiles: CrimeSceneTileData[];
+  sceneTiles: CrimeSceneTileData[];
 };
 
 /**
  * Parses scene tiles into categorized groups for crime construction
  * @param sceneTiles - The array of crime scene tiles to parse
  */
-export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
+export const parseTiles = (sceneTiles: CrimeSceneTileData[]): ParsedTiles => {
   const result = sceneTiles.reduce(
-    (acc: ParsedTiles, tile: CrimeSceneTile) => {
+    (acc: ParsedTiles, tile: CrimeSceneTileData) => {
       if (tile.type === 'cause') {
         acc.causeOfDeathTile = tile;
       } else if (tile.type === 'evidence') {
@@ -102,10 +102,10 @@ export const parseTiles = (sceneTiles: CrimeSceneTile[]): ParsedTiles => {
  * @param scenesIds - The array of scene IDs to keep in likelihood data
  */
 export const cleanupItemsLikelihood = (
-  weapons: CrimesHediondosCard[],
-  evidence: CrimesHediondosCard[],
-  victims: CrimesHediondosCard[],
-  locations: CrimesHediondosCard[],
+  weapons: CrimesHediondosCardData[],
+  evidence: CrimesHediondosCardData[],
+  victims: CrimesHediondosCardData[],
+  locations: CrimesHediondosCardData[],
   scenesIds: string[],
 ) => {
   const allItems = [...weapons, ...evidence, ...victims, ...locations];
@@ -123,7 +123,7 @@ export const cleanupItemsLikelihood = (
 };
 
 type GroupItems = {
-  items: Dictionary<CrimesHediondosCard>;
+  items: Dictionary<CrimesHediondosCardData>;
   groupedItems: GroupedItems;
 };
 
@@ -135,10 +135,10 @@ type GroupItems = {
  * @param locations - The array of location cards
  */
 export const groupItems = (
-  weapons: CrimesHediondosCard[],
-  evidence: CrimesHediondosCard[],
-  victims: CrimesHediondosCard[],
-  locations: CrimesHediondosCard[],
+  weapons: CrimesHediondosCardData[],
+  evidence: CrimesHediondosCardData[],
+  victims: CrimesHediondosCardData[],
+  locations: CrimesHediondosCardData[],
 ): GroupItems => {
   // Divide things into 4 groups
   const groupedWeapons = utils.helpers.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
@@ -157,7 +157,7 @@ export const groupItems = (
   });
 
   const itemsDict = [...weapons, ...evidence, ...victims, ...locations].reduce(
-    (acc: PlainObject, item: CrimesHediondosCard) => {
+    (acc: PlainObject, item: CrimesHediondosCardData) => {
       acc[item.id] = item;
       return acc;
     },
@@ -190,10 +190,10 @@ export const dealItemGroups = (players: Players) => {
  */
 export const buildCrimes = (
   players: Players,
-  causeOfDeathTile: CrimeSceneTile,
-  reasonForEvidenceTile: CrimeSceneTile,
-  locationTile: CrimeSceneTile,
-  victimTile: CrimeSceneTile,
+  causeOfDeathTile: CrimeSceneTileData,
+  reasonForEvidenceTile: CrimeSceneTileData,
+  locationTile: CrimeSceneTileData,
+  victimTile: CrimeSceneTileData,
 ): Crime[] => {
   return utils.players.getListOfPlayers(players, true).map((player) => {
     return {
@@ -215,7 +215,7 @@ export const buildCrimes = (
 
 type BuiltScenes = {
   scenes: {
-    [key: string]: CrimeSceneTile;
+    [key: string]: CrimeSceneTileData;
   };
   order: string[];
 };
@@ -228,10 +228,10 @@ type BuiltScenes = {
  * @param locationTile - The selected location scene tile
  */
 export const buildScenes = (
-  causeOfDeathTile: CrimeSceneTile,
-  reasonForEvidenceTile: CrimeSceneTile,
-  victimTile: CrimeSceneTile,
-  locationTile: CrimeSceneTile,
+  causeOfDeathTile: CrimeSceneTileData,
+  reasonForEvidenceTile: CrimeSceneTileData,
+  victimTile: CrimeSceneTileData,
+  locationTile: CrimeSceneTileData,
 ): BuiltScenes => {
   const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, victimTile.id, locationTile.id];
 
@@ -251,7 +251,7 @@ export const buildScenes = (
  * @param players - The collection of players in the game
  * @param currentScene - The current scene tile being marked
  */
-export const updateCrime = (crimes: Crime[], players: Players, currentScene: CrimeSceneTile): Crime[] => {
+export const updateCrime = (crimes: Crime[], players: Players, currentScene: CrimeSceneTileData): Crime[] => {
   return crimes.map((crime) => {
     crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
     return crime;
@@ -545,11 +545,11 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
 export const mockCrimeForBots = (
   players: Players,
   groupedItems: GroupedItems,
-  items: Record<string, CrimesHediondosCard>,
-  causeOfDeathTile: CrimeSceneTile,
-  reasonForEvidenceTile: CrimeSceneTile,
-  locationTile: CrimeSceneTile,
-  victimTile: CrimeSceneTile,
+  items: Record<string, CrimesHediondosCardData>,
+  causeOfDeathTile: CrimeSceneTileData,
+  reasonForEvidenceTile: CrimeSceneTileData,
+  locationTile: CrimeSceneTileData,
+  victimTile: CrimeSceneTileData,
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     const itemsGroup = groupedItems[bot.itemGroupIndex];
@@ -616,8 +616,8 @@ export const mockGuessingForBots = (players: Players) => {
  */
 export const mockSceneMarkForBots = (
   players: Players,
-  scene: CrimeSceneTile,
-  items: Record<string, CrimesHediondosCard>,
+  scene: CrimeSceneTileData,
+  items: Record<string, CrimesHediondosCardData>,
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     bot.sceneIndex = botSmartSceneMarking(
@@ -632,12 +632,12 @@ export const mockSceneMarkForBots = (
 
 const getPrioritizedCards = (
   likelihoodPriority: string[],
-  weapon?: CrimesHediondosCard,
-  evidence?: CrimesHediondosCard,
-  location?: CrimesHediondosCard,
-  victim?: CrimesHediondosCard,
+  weapon?: CrimesHediondosCardData,
+  evidence?: CrimesHediondosCardData,
+  location?: CrimesHediondosCardData,
+  victim?: CrimesHediondosCardData,
 ) => {
-  const prioritizedCards: CrimesHediondosCard[] = [];
+  const prioritizedCards: CrimesHediondosCardData[] = [];
   likelihoodPriority.forEach((cardType) => {
     if (cardType === 'weapon' && weapon) {
       prioritizedCards.push(weapon);
@@ -658,7 +658,7 @@ const getPrioritizedCards = (
 
 const getTheMostLikelySceneValue = (
   sceneId: string,
-  prioritizedCards: CrimesHediondosCard[],
+  prioritizedCards: CrimesHediondosCardData[],
   weights: number[] = [],
 ) => {
   // If prioritizedCards is empty, return 0
@@ -719,11 +719,11 @@ const getTheMostLikelySceneValue = (
 };
 
 const botSmartSceneMarking = (
-  scene: CrimeSceneTile,
-  weapon: CrimesHediondosCard,
-  evidence: CrimesHediondosCard,
-  location?: CrimesHediondosCard,
-  victim?: CrimesHediondosCard,
+  scene: CrimeSceneTileData,
+  weapon: CrimesHediondosCardData,
+  evidence: CrimesHediondosCardData,
+  location?: CrimesHediondosCardData,
+  victim?: CrimesHediondosCardData,
 ): number => {
   // Case 1: If the scene has an `specific` property, but not the `likelihoodPriority` property, focus only on the `specific` property
   if (scene?.specific && !scene?.likelihoodPriority) {

@@ -1,4 +1,4 @@
-import type { ContenderCard, TextCard } from '../../types/tdr';
+import type { ContenderCardData, TextCardData } from '../../types/tdr';
 import type { SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export type SuperCampeonatoOptions = {
@@ -13,20 +13,20 @@ export type SuperCampeonatoOptions = {
 } & ContendersDecksOptions;
 
 export interface ResourceData {
-  contenders: ContenderCard[];
-  challenges: TextCard[];
+  contenders: ContenderCardData[];
+  challenges: TextCardData[];
 }
 
-export type ContendersDeck = ContenderCard[];
+export type ContendersDeck = ContenderCardData[];
 
-export type ChallengesDeck = TextCard[];
+export type ChallengesDeck = TextCardData[];
 
 export type FightingContender = {
   playerId: UID | 'CPU';
-} & Pick<ContenderCard, 'id' | 'name' | 'description'>;
+} & Pick<ContenderCardData, 'id' | 'name' | 'description'>;
 
 export type PastBattles = {
-  challenge: TextCard;
+  challenge: TextCardData;
   contenders: FightingContender[];
 }[];
 

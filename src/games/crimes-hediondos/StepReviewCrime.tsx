@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers } from 'types/game';
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTileData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -20,10 +20,10 @@ type StepReviewCrimeProps = {
   items: ItemsDict;
   selections: SubmitCrimePayload;
   onSubmitCrime: () => void;
-  causeOfDeathTile: CrimeSceneTile;
-  reasonForEvidenceTile: CrimeSceneTile;
-  victimTile: CrimeSceneTile;
-  locationTile: CrimeSceneTile;
+  causeOfDeathTile: CrimeSceneTileData;
+  reasonForEvidenceTile: CrimeSceneTileData;
+  victimTile: CrimeSceneTileData;
+  locationTile: CrimeSceneTileData;
   updateSelection: (payload: SubmitCrimePayload) => void;
   players: GamePlayers;
 } & Pick<StepProps, 'announcement'>;

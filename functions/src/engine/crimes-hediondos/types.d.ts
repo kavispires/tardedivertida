@@ -1,4 +1,4 @@
-import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
+import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import type { CRIMES_HEDIONDOS_ACTIONS } from './constants';
 
 export type CrimesHediondosOptions = {
@@ -61,20 +61,20 @@ export type WrongGroups = Dictionary<number[]>;
 export type WrongItems = Dictionary<string[]>;
 
 export interface ResourceData {
-  weapons: CrimesHediondosCard[];
-  evidence: CrimesHediondosCard[];
-  locations?: CrimesHediondosCard[];
-  victims?: CrimesHediondosCard[];
-  allScenes: CrimeSceneTile[];
+  weapons: CrimesHediondosCardData[];
+  evidence: CrimesHediondosCardData[];
+  locations?: CrimesHediondosCardData[];
+  victims?: CrimesHediondosCardData[];
+  allScenes: CrimeSceneTileData[];
 }
 
 export interface CrimesHediondosStore extends DefaultStore {
-  scenes: CrimeSceneTile[];
+  scenes: CrimeSceneTileData[];
 }
 
 export interface CrimesHediondosState extends DefaultState {
   scenes?: {
-    [key: string]: CrimeSceneTile;
+    [key: string]: CrimeSceneTileData;
   };
 }
 

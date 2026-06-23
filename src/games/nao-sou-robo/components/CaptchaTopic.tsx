@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { Card } from '@components/cards/Card';
 import { EmojiCard } from '@components/cards/EmojiCard';
@@ -53,7 +53,7 @@ export function CaptchaTopic({ captcha }: CaptchaTopicProps) {
     );
   }
 
-  const values = captcha.values as TextCard;
+  const values = captcha.values as TextCardData;
 
   return <Card hideHeader>{values.text}</Card>;
 }

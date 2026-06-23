@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { NAO_SOU_ROBO_ACTIONS } from './constants';
 
 export interface NaoSouRoboOptions {
@@ -9,9 +9,9 @@ export interface ResourceData {
   images: UID[];
   botCards: UID[];
   emojis: number[];
-  words: TextCard[];
-  colors: TextCard[];
-  emotions: TextCard[];
+  words: TextCardData[];
+  colors: TextCardData[];
+  emotions: TextCardData[];
   glyphs: number[];
 }
 
@@ -25,7 +25,7 @@ export interface Robot {
 export interface Captcha {
   round: number;
   roundType: string;
-  values: TextCard | number | number[];
+  values: TextCardData | number | number[];
 }
 
 export interface CaptchaCard {

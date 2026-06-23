@@ -1,5 +1,5 @@
 // Types
-import type { CrimeReason, TestimonyQuestionCard } from '../../types/tdr';
+import type { CrimeReasonData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOptions } from './types';
 import { set } from 'lodash';
 // Constants
@@ -21,7 +21,7 @@ export const getQuestionsAndSuspects = async (
   language: string,
   options: TestemunhaOcularOptions,
 ): Promise<ResourceData> => {
-  const availableCards = await utils.tdr.getUnusedResources<TestimonyQuestionCard>(
+  const availableCards = await utils.tdr.getUnusedResources<TestimonyQuestionCardData>(
     TDR_RESOURCES.TESTIMONY_QUESTIONS,
     GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS,
     language as Language,
@@ -36,7 +36,7 @@ export const getQuestionsAndSuspects = async (
     decks: ['adult'],
   });
 
-  const crimeReasons = await resourceUtils.fetchResource<Dictionary<CrimeReason>>(
+  const crimeReasons = await resourceUtils.fetchResource<Dictionary<CrimeReasonData>>(
     TDR_RESOURCES.CRIME_REASONS,
   );
 

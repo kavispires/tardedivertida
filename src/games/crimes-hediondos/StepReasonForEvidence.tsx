@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Types
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTileData } from 'types/tdr';
 // Components
 import { SceneTile } from '@components/game/SceneTile';
 import { Translate } from '@components/language/Translate';
@@ -19,7 +19,7 @@ type StepReasonForEvidenceProps = {
   items: ItemsDict;
   selections: SubmitCrimePayload;
   updateSelections: (payload: SubmitCrimePayload) => void;
-  reasonForEvidenceTile: CrimeSceneTile;
+  reasonForEvidenceTile: CrimeSceneTileData;
   goToStep: (step: number) => void;
 } & Pick<StepProps, 'announcement'>;
 

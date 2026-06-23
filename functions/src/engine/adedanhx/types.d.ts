@@ -1,4 +1,4 @@
-import type { TopicCard } from '../../types/tdr';
+import type { TopicCardData } from '../../types/tdr';
 import type { ADEDANHX_ACTIONS } from './constants';
 
 export type AdedanhxOptions = {
@@ -27,7 +27,7 @@ export type LetterEntry = {
 };
 
 export type ResourceData = {
-  allTopics: TopicCard[];
+  allTopics: TopicCardData[];
   allLetters: LetterEntry[];
 };
 
@@ -50,7 +50,7 @@ export type AnswerEvaluationEntry = {
 
 export type GroupAnswerEvaluationEntry = {
   id: string;
-  topic: TopicCard;
+  topic: TopicCardData;
   letter: LetterEntry;
   answers: AnswerEvaluationEntry[];
   points: number;
@@ -69,7 +69,7 @@ export type AnswerGridEntry = {
 
 export type GalleryEntry = {
   id: string;
-  topic: TopicCard;
+  topic: TopicCardData;
   letter: LetterEntry;
   topAnswer?: AnswerGridEntry['main'];
 };

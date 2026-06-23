@@ -2,7 +2,7 @@
 import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useMock } from '@hooks/useMock';
 // Components
@@ -13,16 +13,16 @@ import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { Concept } from './utils/types';
+import type { ConceptData } from './utils/types';
 import { ConceptCreationBlock } from './components/ConceptCreationBlock';
 
 type StepNewConceptsProps = {
   players: GamePlayers;
   user: GamePlayer;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
   round: GameRound;
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   onMakeMeReady: () => void;
 } & Pick<StepProps, 'announcement'>;
 

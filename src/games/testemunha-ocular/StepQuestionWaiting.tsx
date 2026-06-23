@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayer } from 'types/game';
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -15,7 +15,7 @@ import { Suspects } from './components/Suspects';
 import { Summary } from './components/Summary';
 
 type StepQuestionWaitingProps = {
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   suspectsIds: UID[];
   previouslyEliminatedSuspects: string[];
   perpetratorId: UID;

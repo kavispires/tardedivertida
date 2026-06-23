@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Utils
@@ -16,7 +16,7 @@ import { ItemCard } from '@components/cards/ItemCard';
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 
 type ItemsBoardProps = {
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   selectedItems?: string[];
   onSelectItem: (itemId: string) => void;
   currentAge: number;

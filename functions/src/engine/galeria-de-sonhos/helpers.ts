@@ -1,5 +1,5 @@
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { AllWords, FirebaseStoreData, ImageCard, PlayerCard } from './types';
 import { sampleSize } from 'lodash';
 // Constants
@@ -71,7 +71,7 @@ export const buildTable = (
  * Builds a deck from all available words by sampling
  * @param allWords - The dictionary of all available words
  */
-export const buildDeck = (allWords: AllWords): TextCard[] => {
+export const buildDeck = (allWords: AllWords): TextCardData[] => {
   return sampleSize(Object.values(allWords), WORD_DECK_TOTAL);
 };
 
@@ -79,7 +79,7 @@ export const buildDeck = (allWords: AllWords): TextCard[] => {
  * Gets words for the current round by drawing from the deck
  * @param wordsDeck - The deck of word cards
  */
-export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] => {
+export const getRoundWords = (wordsDeck: TextCardData[]): [TextCardData[], TextCardData[]] => {
   const selectedWords = wordsDeck.splice(0, 3);
   return [wordsDeck, selectedWords];
 };
@@ -176,7 +176,7 @@ export const getPlayersWithMaxDreams = (players: Players) => {
  * @param table - The array of image cards on the table
  * @param word - The word card being matched
  */
-export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard[] => {
+export const getMostVotedCards = (table: ImageCard[], word: TextCardData): ImageCard[] => {
   const mostNumberOfMatches = Math.max(...table.map((entry) => entry?.matchedPlayers?.length ?? 0));
 
   return table

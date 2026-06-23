@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
 // Types
-import type { MovieCard, MovieReviewCard } from '../../types/tdr';
+import type { MovieCardData, MovieReviewCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
@@ -16,11 +16,11 @@ import utils from '../../utils';
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
   // Get full movies deck
-  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCard>>(
+  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCardData>>(
     `${TDR_RESOURCES.MOVIES}-${language}`,
   );
   // Get full movies deck
-  const allReviews = await resourceUtils.fetchResource<Dictionary<MovieReviewCard>>(
+  const allReviews = await resourceUtils.fetchResource<Dictionary<MovieReviewCardData>>(
     `${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`,
   );
 
@@ -56,9 +56,9 @@ export const getCards = async (language: string): Promise<ResourceData> => {
  * @param badReviews - Array of bad review cards used
  */
 export const saveData = async (
-  movies: MovieCard[],
-  goodReviews: MovieReviewCard[],
-  badReviews: MovieReviewCard[],
+  movies: MovieCardData[],
+  goodReviews: MovieReviewCardData[],
+  badReviews: MovieReviewCardData[],
 ): Promise<void> => {
   const usedMovies = utils.helpers.buildBooleanDictionary(movies);
   const usedGoodReviews = utils.helpers.buildBooleanDictionary(goodReviews);

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
 // Types
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLanguage } from '@hooks/useLanguage';
@@ -14,7 +14,7 @@ import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 
 type SuspectsProps = {
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   suspectsIds: UID[];
   perpetratorId?: UID;
   onCardClick?: (suspectId: string) => void;

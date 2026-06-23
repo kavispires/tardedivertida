@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { SINAIS_DE_ALERTA_ACTIONS } from './constants';
 
 export type SinaisDeAlertaOptions = {
@@ -9,11 +9,11 @@ export type SinaisDeAlertaOptions = {
 };
 
 export type ResourceData = {
-  allDescriptors: TextCard[];
-  allSubjects: TextCard[];
+  allDescriptors: TextCardData[];
+  allSubjects: TextCardData[];
 };
 
-export type DrawingEntry = {
+export type DrawingEntryData = {
   playerId: UID;
   subjectId: UID;
   descriptorId: UID;
@@ -49,8 +49,8 @@ export type FinalGalleryEntry = {
 };
 
 export interface SinaisDeAlertaStore extends DefaultStore {
-  subjectsDeck: TextCard[];
-  descriptorsDeck: TextCard[];
+  subjectsDeck: TextCardData[];
+  descriptorsDeck: TextCardData[];
 }
 
 export interface SinaisDeAlertaState extends DefaultState {

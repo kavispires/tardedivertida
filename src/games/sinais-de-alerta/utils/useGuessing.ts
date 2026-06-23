@@ -1,7 +1,7 @@
 import { shuffle } from 'lodash';
 import { useMemo, useState } from 'react';
 // Internal
-import type { DrawingEntry } from './types';
+import type { DrawingEntryData } from './types';
 
 const checkIsSubject = (cardId: string) => cardId.includes('wss');
 const checkIsDescriptor = (cardId: string) => cardId.includes('wsd');
@@ -24,7 +24,7 @@ export function useGuessing({
   subjectsIds,
   descriptorsIds,
 }: {
-  drawings: DrawingEntry[];
+  drawings: DrawingEntryData[];
   userId: UID;
   subjectsIds: UID[];
   descriptorsIds: UID[];

@@ -11,7 +11,7 @@ import { SlideShow } from '@components/slide-show/SlideShow';
 import { Step } from '@components/steps/Step';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { Concept, GalleryEntry } from './utils/types';
+import type { ConceptData, GalleryEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 import { DefinitionPage } from './components/DefinitionPage';
 import { CreditsPage } from './components/CreditsPage';
@@ -20,8 +20,8 @@ type StepGalleryProps = {
   gallery: GalleryEntry[];
   players: GamePlayers;
   slideShowConfig: SlideShowConfig;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
 };
 
 export function StepGallery({

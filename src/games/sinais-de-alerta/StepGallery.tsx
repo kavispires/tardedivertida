@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import type { SlideShowConfig } from '@hooks/useSlideShow';
@@ -23,7 +23,7 @@ import { WarningDrawing } from './components/WarningDrawing';
 type StepGalleryProps = {
   gallery: GalleryEntry[];
   players: GamePlayers;
-  cards: Dictionary<TextCard>;
+  cards: Dictionary<TextCardData>;
   slideShowConfig: SlideShowConfig;
   gameLanguage: Language;
 };

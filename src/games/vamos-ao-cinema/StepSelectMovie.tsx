@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { MovieCard, MovieReviewCard } from 'types/tdr';
+import type { MovieCardData, MovieReviewCardData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -14,9 +14,9 @@ import { Movies } from './components/Movies';
 type StepSelectMovieProps = {
   players: GamePlayers;
   user: GamePlayer;
-  goodReview: MovieReviewCard;
-  badReview: MovieReviewCard;
-  movies: MovieCard[];
+  goodReview: MovieReviewCardData;
+  badReview: MovieReviewCardData;
+  movies: MovieCardData[];
   onSelectMovie: (payload: SubmitMovieSelectionPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 

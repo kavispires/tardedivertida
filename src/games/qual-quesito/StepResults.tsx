@@ -3,7 +3,7 @@ import { TrophyOutlined } from '@ant-design/icons';
 import { Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Icons
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
@@ -26,7 +26,7 @@ import { PlayersHandsCounts } from './components/PlayersHandsCounts';
 type StepResultsProps = {
   players: GamePlayers;
   user: GamePlayer;
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   creator: GamePlayer;
   goToNextStep: () => void;
   table: TableEntry[];

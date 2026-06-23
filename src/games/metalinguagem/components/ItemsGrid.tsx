@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Components
 import { DivButton } from '@components/buttons/DivButton';
 import { ItemCard } from '@components/cards/ItemCard';
 import { AvatarGroup } from '@components/players/PlayerAvatarGroup';
 
 type ItemsGridProps = {
-  items: Item[];
+  items: ItemData[];
   targets?: string[];
   onItemSelect?: (item: string) => void;
   selectedItems?: string[];

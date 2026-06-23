@@ -1,5 +1,5 @@
 // Types
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
@@ -16,7 +16,7 @@ import type { SubmitCategoryPayload } from './utils/types';
 import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 
 type StepCategorySelectionProps = {
-  currentCategories: SpectrumCard[];
+  currentCategories: SpectrumCardData[];
   onSendChosenSide: (payload: SubmitCategoryPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 

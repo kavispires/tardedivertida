@@ -2,7 +2,7 @@
 import type { StepsProps } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
-import type { MovieCard } from 'types/tdr';
+import type { MovieCardData } from 'types/tdr';
 // Internal
 import type { SeedEntry } from './types';
 
@@ -80,7 +80,7 @@ export const showDJPruPruPruStep = (round: GameRound) => {
   return 1; // false
 };
 
-export const getMovieTitles = (movies: MovieCard[]) => {
+export const getMovieTitles = (movies: MovieCardData[]) => {
   return {
     A: `${movies[0].prefix} ${movies[1].suffix}`,
     B: `${movies[1].prefix} ${movies[2].suffix}`,

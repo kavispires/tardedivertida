@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { Button, App } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 // Components
@@ -17,8 +17,8 @@ import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
 
 type StepSecretWordSelectionProps = {
-  words: TextCard[];
-  categories: TextCard[];
+  words: TextCardData[];
+  categories: TextCardData[];
   onSubmitSecretWord: GenericFunction;
 };
 

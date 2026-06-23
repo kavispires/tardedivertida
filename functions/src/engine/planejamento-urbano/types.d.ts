@@ -1,4 +1,4 @@
-import type { CityLocation } from '../../types/tdr';
+import type { CityLocationData } from '../../types/tdr';
 import type { GridMapType } from '../../utils/tool-kits/grid-map';
 import type { PLANEJAMENTO_URBANO_ACTIONS } from './constants';
 
@@ -10,7 +10,7 @@ export type PlanejamentoUrbanoOptions = {
 };
 
 export type ResourceData = {
-  allCityLocations: Dictionary<CityLocation>;
+  allCityLocations: Dictionary<CityLocationData>;
 };
 
 export type GalleryEntry = {
@@ -44,7 +44,7 @@ export type City = GridMapType<Construction | Cone | null>;
 
 export interface PlanejamentoUrbanoState extends DefaultState {
   // placements?: number;
-  // cityLocationsDict?: Dictionary<CityLocation>;
+  // cityLocationsDict?: Dictionary<CityLocationData>;
   // city?: Site[];
   // gameOrder?: UID[];
   [key: string]: AnyOrUnknownPlaceholder;

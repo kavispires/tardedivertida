@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.339",
+	"version": "50.13.342",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -54,6 +54,8 @@
 		"commit": "node scripts/commit-assist.cjs",
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
 		"revert-versions": "node scripts/revert-game-versions.cjs",
+		"sync:types": "curl -s https://raw.githubusercontent.com/kavispires/td-resources/main/types/tdr.ts | tee src/types/tdr.ts functions/src/types/tdr.ts > /dev/null",
+		"predev": "npm run sync:types",
 		"clean": "rm -rf node_modules & yarn cache clean"
 	},
 	"browserslist": {

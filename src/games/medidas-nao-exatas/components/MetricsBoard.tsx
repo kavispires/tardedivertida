@@ -1,11 +1,11 @@
 import { motion } from 'motion/react';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Internal
 import { Pip } from './Pip';
 
 type MetricsBoardProps = {
-  metricsDescriptors: Record<string, TextCard[]>;
+  metricsDescriptors: Record<string, TextCardData[]>;
   evaluations: Record<string, number>;
   level: number;
 };
@@ -31,7 +31,7 @@ export function MetricsBoard({ metricsDescriptors, evaluations, level }: Metrics
 }
 
 type MetricProps = {
-  descriptors: TextCard[];
+  descriptors: TextCardData[];
   evaluation: number;
   visible: boolean;
 };

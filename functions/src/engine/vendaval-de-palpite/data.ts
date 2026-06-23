@@ -1,7 +1,7 @@
 // Types
 import { TDR_RESOURCES } from '../../utils/constants';
 import type { ResourceData } from './types';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import { orderBy } from 'lodash';
 // Helpers
 import utils from '../../utils';
@@ -17,7 +17,7 @@ export const getData = async (language: Language): Promise<ResourceData> => {
   const words = await utils.tdr.getSingleWords(language, TOTAL_WORDS_NEEDED);
 
   const categoriesResourceName = `${TDR_RESOURCES.CATEGORIES}-${language}`;
-  const categories = await resourceUtils.fetchResource<Dictionary<TextCard>>(categoriesResourceName);
+  const categories = await resourceUtils.fetchResource<Dictionary<TextCardData>>(categoriesResourceName);
 
   return {
     categories: orderBy(Object.values(categories), ['text'], ['asc']),

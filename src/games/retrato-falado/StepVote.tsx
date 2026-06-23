@@ -4,7 +4,7 @@ import { CheckSquareOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { MonsterImage } from 'types/tdr';
+import type { MonsterImageData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
@@ -25,7 +25,7 @@ import type { Sketch, SubmitVotePayload } from './utils/types';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   onSubmitVote: (payload: SubmitVotePayload) => void;
   sketches: Sketch[];
   user: GamePlayer;

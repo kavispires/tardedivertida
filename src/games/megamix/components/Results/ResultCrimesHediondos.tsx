@@ -1,5 +1,5 @@
 // Types
-import type { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
@@ -35,7 +35,7 @@ export function ResultCrimesHediondos({ track, winningValues, containerWidth }: 
       </Instruction>
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => {
-          const item = track.data.cards.find((card: CrimesHediondosCard) => card.id === cardId);
+          const item = track.data.cards.find((card: CrimesHediondosCardData) => card.id === cardId);
 
           if (!item) {
             return null;

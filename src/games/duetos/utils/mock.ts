@@ -1,13 +1,13 @@
 // Utils
 import { shuffle } from '@utils/helpers';
 // Internal
-import type { Item } from './types';
+import type { ItemData } from './types';
 
 /**
  * Generates pairs from a pool of items.
  * Has a 70% chance of returning pairs in original order vs 30% chance to shuffle.
  */
-export const mockPairs = (pool: Item[]) => {
+export const mockPairs = (pool: ItemData[]) => {
   // 70% chance to return original order, 30% chance to shuffle
   const shouldShuffle = Math.random() >= 0.7;
 

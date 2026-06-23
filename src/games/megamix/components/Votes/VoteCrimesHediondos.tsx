@@ -1,5 +1,5 @@
 // Types
-import type { CrimesHediondosCard } from 'types/tdr';
+import type { CrimesHediondosCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
@@ -27,7 +27,7 @@ export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) 
     >
       <div className="vote-groups">
         {groupedVotes.map(([cardId, voters]) => {
-          const item = track.data.cards.find((card: CrimesHediondosCard) => card.id === cardId);
+          const item = track.data.cards.find((card: CrimesHediondosCardData) => card.id === cardId);
 
           if (!item) {
             return null;

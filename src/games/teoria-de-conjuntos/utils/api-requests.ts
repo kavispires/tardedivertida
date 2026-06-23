@@ -40,7 +40,10 @@ export function useOnSubmitItemPlacementAPIRequest(setStep: UseStep['setStep']) 
     actionName: 'submit-item-placement',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate({ pt: 'Item submetido com sucesso', en: 'Item submitted successfully' }),
+    successMessage: translate({
+      pt: 'ItemData submetido com sucesso',
+      en: 'ItemData submitted successfully',
+    }),
     errorMessage: translate({
       pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
       en: 'Oops, the application found an error while trying to submit your action',

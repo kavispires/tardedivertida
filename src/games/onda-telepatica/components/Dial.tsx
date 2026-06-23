@@ -1,13 +1,13 @@
 /** biome-ignore-all lint/a11y/noStaticElementInteractions: interactive svg */
 import clsx from 'clsx';
 // Types
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Internal
 import { getBracketClass } from '../utils/helpers';
 import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type DialProps = {
-  card: SpectrumCard;
+  card: SpectrumCardData;
   needle?: number;
   showNeedle?: boolean;
   target?: number;

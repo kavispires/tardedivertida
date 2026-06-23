@@ -1,7 +1,7 @@
 // Types
-import type { GroupQuestionCard as GroupQuestionCardType } from 'types/tdr';
+import type { GroupQuestionCardData as GroupQuestionCardType } from 'types/tdr';
 // Sass
-import styles from './GroupQuestionCard.module.scss';
+import styles from './GroupQuestionCardData.module.scss';
 
 type GroupQuestionCardProps = {
   /**

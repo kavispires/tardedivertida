@@ -1,4 +1,4 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { GALERIA_DE_SONHOS_ACTIONS } from './constants';
 
 export type GaleriaDeSonhosOptions = {
@@ -13,7 +13,7 @@ export type GaleriaDeSonhosOptions = {
 };
 
 export type AllWords = {
-  [key: string]: TextCard;
+  [key: string]: TextCardData;
 };
 
 export type ResourceData = {
@@ -44,7 +44,7 @@ export type ImageCardMatch = {
 
 export interface GaleriaDeSonhosStore extends DefaultStore {
   tableDeck: ImageCard[];
-  deck: TextCard[];
+  deck: TextCardData[];
   gameOrder: GameOrder;
   withBots?: boolean;
 }

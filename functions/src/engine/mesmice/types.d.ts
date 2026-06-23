@@ -1,4 +1,4 @@
-import type { Item, ObjectFeatureCard } from '../../types/tdr';
+import type { ItemData, ObjectFeatureCardData } from '../../types/tdr';
 import type { MESMICE_ACTIONS, OUTCOME } from './constants';
 
 export type MesmiceOptions = {
@@ -17,11 +17,11 @@ export type MesmiceOptions = {
 };
 
 export type ResourceData = {
-  features: ObjectFeatureCard[];
-  items: Partial<Item>[];
+  features: ObjectFeatureCardData[];
+  items: Partial<ItemData>[];
 };
 
-export type ObjectCardObj = Pick<Item, 'id' | 'name'>;
+export type ObjectCardObj = Pick<ItemData, 'id' | 'name'>;
 
 export type HistoryEntry = {
   featureId: UID;
@@ -40,7 +40,7 @@ export type MesmiceGalleryEntry = {
 
 export type Outcome = keyof typeof OUTCOME;
 
-export type ExtendedObjectFeatureCard = ObjectFeatureCard & { eliminated?: boolean };
+export type ExtendedObjectFeatureCard = ObjectFeatureCardData & { eliminated?: boolean };
 
 export interface MesmiceStore extends DefaultStore {
   [key: string]: AnyOrUnknownPlaceholder;

@@ -1,5 +1,5 @@
 // Types
-import type { TopicCard } from '../../types/tdr';
+import type { TopicCardData } from '../../types/tdr';
 import { orderBy, shuffle } from 'lodash';
 import type {
   AnswerEvaluationEntry,
@@ -45,7 +45,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @param allowNSFW - Whether to allow NSFW content
  */
 export const buildGrid = (
-  allTopics: TopicCard[],
+  allTopics: TopicCardData[],
   allLetters: LetterEntry[],
   topicsQuantity: number,
   lettersQuantity: number,
@@ -53,9 +53,9 @@ export const buildGrid = (
   allowNSFW: boolean,
 ) => {
   const shuffledTopics = shuffle(allTopics).filter((topic) => allowNSFW || !topic.nsfw);
-  const easyTopics: TopicCard[] = [];
-  const mediumTopics: TopicCard[] = [];
-  const hardTopics: TopicCard[] = [];
+  const easyTopics: TopicCardData[] = [];
+  const mediumTopics: TopicCardData[] = [];
+  const hardTopics: TopicCardData[] = [];
   const easyTopicsQuantity = topicsQuantity * 2;
   const mediumTopicsQuantity = topicsQuantity * 2;
   const hardTopicsQuantity = topicsQuantity;
@@ -101,11 +101,11 @@ export const buildGrid = (
   }
 
   // Distribute topics
-  const topics: TopicCard[] = utils.helpers
+  const topics: TopicCardData[] = utils.helpers
     .makeArray(topicsQuantity * roundsCount)
     .map((_, index: number) => {
       const position = index % topicsQuantity;
-      let topic: TopicCard | undefined;
+      let topic: TopicCardData | undefined;
       if (position === 0 || position === 1) {
         topic = easyTopics.pop();
       }
@@ -119,7 +119,7 @@ export const buildGrid = (
       if (topic) {
         return topic;
       }
-      return shuffledTopics.pop() as TopicCard;
+      return shuffledTopics.pop() as TopicCardData;
     });
 
   // Distribute letters
@@ -192,7 +192,7 @@ export const buildGrid = (
  * @param lettersQuantity - Number of letters per round
  */
 export const getCurrentGrid = (
-  topics: TopicCard[],
+  topics: TopicCardData[],
   letters: LetterEntry[],
   currentRound: number,
   topicsQuantity: number,
@@ -222,7 +222,7 @@ export const getCurrentGrid = (
  */
 export const groupAnswers = (
   players: Players,
-  topics: TopicCard[],
+  topics: TopicCardData[],
   letters: LetterEntry[],
   store: FirebaseStoreData,
 ) => {
@@ -436,7 +436,7 @@ export const evaluateAnswers = (
  */
 export const storeGalleryData = (
   store: FirebaseStoreData,
-  topics: TopicCard[],
+  topics: TopicCardData[],
   letters: LetterEntry[],
   answersGrid: Record<string, AnswerGridEntry>,
 ) => {

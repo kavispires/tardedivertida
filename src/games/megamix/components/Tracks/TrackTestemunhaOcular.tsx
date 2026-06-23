@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, Image, Space } from 'antd';
 // Types
-import type { SuspectCard as SuspectCardType } from 'types/tdr';
+import type { SuspectCardData as SuspectCardType } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLanguage } from '@hooks/useLanguage';

@@ -14,7 +14,12 @@ import {
   WINNING_CONDITION,
 } from './constants';
 import type { AvailableTrack, FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
-import type { CrimeSceneTile, DatingCandidateCard, MovieReviewCard, TextCard } from '../../types/tdr';
+import type {
+  CrimeSceneTileData,
+  DatingCandidateCardData,
+  MovieReviewCardData,
+  TextCardData,
+} from '../../types/tdr';
 import { increaseAchievement, pushAchievement } from './achievements';
 
 /**
@@ -409,7 +414,7 @@ export const handleSeedingData = (
   return distributeTracksEvenly(tracks, TOTAL_ROUNDS, playerCount);
 };
 
-export const parseCrimeTiles = (sceneTiles: CrimeSceneTile[]) => {
+export const parseCrimeTiles = (sceneTiles: CrimeSceneTileData[]) => {
   const result = sceneTiles.reduce(
     (acc: PlainObject, tile) => {
       if (tile.type === 'cause') {
@@ -655,10 +660,10 @@ export const getRanking = (players: Players, scoring: MostScoring, currentRound:
   return scores.rank(players);
 };
 
-export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
-  const interests: DatingCandidateCard[] = [];
-  const needs: DatingCandidateCard[] = [];
-  const funFacts: DatingCandidateCard[] = [];
+export const getCandidatePersonality = (cards: DatingCandidateCardData[]) => {
+  const interests: DatingCandidateCardData[] = [];
+  const needs: DatingCandidateCardData[] = [];
+  const funFacts: DatingCandidateCardData[] = [];
 
   cards.forEach((card) => {
     if (card.type === 'fun-fact') {
@@ -771,7 +776,7 @@ const buildUeSoIssoOptions = (players: Players) => {
  * @returns
  */
 const buildArteRuimCardOptions = (players: Players, track: Track) => {
-  const cardIds: UID[] = track.data.cards.map((card: TextCard) => card.id);
+  const cardIds: UID[] = track.data.cards.map((card: TextCardData) => card.id);
   const drawing = {
     drawing: '[]',
     playerId: 'Bug!',
@@ -795,7 +800,7 @@ const buildArteRuimCardOptions = (players: Players, track: Track) => {
  * @returns
  */
 const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
-  const cardIds: UID[] = track.data.cards.map((card: TextCard) => card.id);
+  const cardIds: UID[] = track.data.cards.map((card: TextCardData) => card.id);
   const drawings: PlainObject[] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -819,7 +824,7 @@ const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
  * @returns
  */
 const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
-  const treeIds: UID[] = track.data.trees.map((tree: TextCard) => tree.id);
+  const treeIds: UID[] = track.data.trees.map((tree: TextCardData) => tree.id);
 
   const clues: PlainObject[] = [];
   utils.players.getListOfPlayers(players).forEach((player) => {
@@ -1024,9 +1029,9 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
   };
 };
 
-export const getMovieReviews = (reviews: MovieReviewCard[]) => {
+export const getMovieReviews = (reviews: MovieReviewCardData[]) => {
   const [good, bad] = reviews.reduce(
-    (acc: [MovieReviewCard[], MovieReviewCard[]], entry) => {
+    (acc: [MovieReviewCardData[], MovieReviewCardData[]], entry) => {
       acc[entry.type === 'good' ? 0 : 1].push(entry);
 
       return acc;

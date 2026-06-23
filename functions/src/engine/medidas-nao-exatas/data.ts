@@ -2,7 +2,7 @@
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
 import type { ResourceData } from './types';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 import * as resourceUtils from '../resource';
@@ -16,7 +16,7 @@ export const getResourceData = async (language: Language): Promise<ResourceData>
   // Text cards to make the pool
   const allWords = await utils.tdr.getSingleWords(language);
   // Descriptors to make the metrics
-  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.DESCRIPTORS,
     language,
   );

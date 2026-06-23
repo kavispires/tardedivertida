@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer } from 'types/game';
-import type { CrimeReason, SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { CrimeReasonData, SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
 // Internal
 import type { OUTCOME } from './constants';
 
@@ -156,7 +156,7 @@ export type PhaseWitnessSelectionState = {
   /**
    * Dictionary of all suspects
    */
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   /**
    * Array of all suspect IDs
    */
@@ -182,7 +182,7 @@ export type PhaseQuestionSelectionState = {
   /**
    * Dictionary of all suspects
    */
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   /**
    * Array of all suspect IDs
    */
@@ -228,7 +228,7 @@ export type PhaseQuestioningState = {
   /**
    * Dictionary of all suspects
    */
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   /**
    * Array of all suspect IDs
    */
@@ -248,7 +248,7 @@ export type PhaseQuestioningState = {
   /**
    * The selected question card
    */
-  question: TestimonyQuestionCard;
+  question: TestimonyQuestionCardData;
   /**
    * Current game outcome
    */
@@ -274,7 +274,7 @@ export type PhaseTrialState = {
   /**
    * Dictionary of all suspects
    */
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   /**
    * Array of all suspect IDs
    */
@@ -294,7 +294,7 @@ export type PhaseTrialState = {
   /**
    * The selected question card
    */
-  question: TestimonyQuestionCard;
+  question: TestimonyQuestionCardData;
   /**
    * Whether the testimony was true or false
    */
@@ -344,7 +344,7 @@ export type PhaseGameOverState = {
   /**
    * Dictionary of all suspects
    */
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   /**
    * Array of all suspect IDs
    */
@@ -360,5 +360,5 @@ export type PhaseGameOverState = {
   /**
    * The crime reason/motive
    */
-  reason: CrimeReason;
+  reason: CrimeReasonData;
 };

@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { ContenderCard, TextCard } from 'types/tdr';
+import type { ContenderCardData, TextCardData } from 'types/tdr';
 
 /**
  * Fighting contender in the championship
@@ -14,7 +14,7 @@ export type FightingContender = {
    * Array of player IDs who voted for this contender
    */
   votes?: UID[];
-} & Pick<ContenderCard, 'id' | 'name' | 'description'>;
+} & Pick<ContenderCardData, 'id' | 'name' | 'description'>;
 
 /**
  * Tier level in the championship bracket
@@ -50,7 +50,7 @@ export type PastBattles = {
   /**
    * Challenge for this battle
    */
-  challenge: TextCard;
+  challenge: TextCardData;
   /**
    * Contenders who competed in this battle
    */
@@ -122,7 +122,7 @@ export type PhaseChallengeSelectionState = {
   /**
    * Available challenge options to vote on
    */
-  challenges: TextCard[];
+  challenges: TextCardData[];
   /**
    * Optional brackets (set for final round or auto-contender games)
    */
@@ -140,7 +140,7 @@ export type PhaseContendersSelectionState = {
   /**
    * The selected challenge for this round
    */
-  challenge: TextCard;
+  challenge: TextCardData;
   /**
    * Optional brackets (carried from previous phase if set)
    */
@@ -158,7 +158,7 @@ export type PhaseBetsState = {
   /**
    * The challenge for this round
    */
-  challenge: TextCard;
+  challenge: TextCardData;
   /**
    * Championship brackets with all contenders
    */
@@ -172,7 +172,7 @@ export type PhaseBattleState = {
   /**
    * The challenge for this round
    */
-  challenge: TextCard;
+  challenge: TextCardData;
   /**
    * Championship brackets with all contenders
    */
@@ -190,7 +190,7 @@ export type PhaseResultsState = {
   /**
    * The challenge for this round
    */
-  challenge: TextCard;
+  challenge: TextCardData;
   /**
    * Championship brackets with voting results
    */

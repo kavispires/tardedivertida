@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Image card object in the game
@@ -135,7 +135,7 @@ export type PhaseWordSelectionState = {
   /**
    * Available word options for selection
    */
-  words: TextCard[];
+  words: TextCardData[];
   /**
    * Minimum number of cards that must be selected
    */
@@ -161,7 +161,7 @@ export type PhaseDreamsSelectionState = {
   /**
    * The selected word for this round
    */
-  word: TextCard;
+  word: TextCardData;
 };
 
 /**
@@ -183,7 +183,7 @@ export type PhaseCardPlayState = {
   /**
    * The selected word for this round
    */
-  word: TextCard;
+  word: TextCardData;
   /**
    * ID of the currently active player
    */
@@ -229,7 +229,7 @@ export type PhaseResolutionState = {
   /**
    * The selected word for this round
    */
-  word: TextCard;
+  word: TextCardData;
   /**
    * ID of the player in nightmare (if any)
    */

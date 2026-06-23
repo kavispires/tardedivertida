@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking } from 'types/game';
-import type { BossIdeaCard } from 'types/tdr';
+import type { BossIdeaCardData } from 'types/tdr';
 // Internal
 import type { EVENT_TYPE, OUTCOME } from './constants';
 
@@ -124,8 +124,8 @@ export type PhaseTheWarehouseState = {
 
 export type PhaseGoodPlacementState = {
   availableGoods: UID[];
-  bossIdea: BossIdeaCard;
-  previousBossIdea: BossIdeaCard | null;
+  bossIdea: BossIdeaCardData;
+  previousBossIdea: BossIdeaCardData | null;
   supervisorId: UID;
   previousSupervisorId: UID | null;
   currentGoodId: UID;
@@ -146,7 +146,7 @@ export type PhaseFulfillmentState = {
   selectedWarehouseSlot?: number;
   status: Status;
   event: Event;
-  lastBossIdea: BossIdeaCard;
+  lastBossIdea: BossIdeaCardData;
   currentGoodId: UID;
 };
 

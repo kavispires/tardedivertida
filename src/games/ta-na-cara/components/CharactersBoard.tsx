@@ -5,7 +5,7 @@ import { ClearOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Flex, Image, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCardData } from 'types/tdr';
 // Hooks
 import { useCache } from '@hooks/useCache';
 import { useCardWidth } from '@hooks/useCardWidth';
@@ -27,7 +27,7 @@ import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 
 type CharactersBoardProps = {
-  characters: SuspectCard[];
+  characters: SuspectCardData[];
   players: GamePlayers;
   user: GamePlayer;
   revealCharacters?: boolean;
@@ -179,7 +179,7 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
   );
 }
 
-function DeckType({ deck }: Pick<SuspectCard, 'deck'>) {
+function DeckType({ deck }: Pick<SuspectCardData, 'deck'>) {
   const iconMap: Dictionary<{ icon: JSX.Element; title: DualLanguageValue }> = {
     kid: {
       icon: <AgeChildIcon />,

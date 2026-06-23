@@ -3,7 +3,7 @@ import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_C
 import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
 // Type
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { GalleryEntry, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
@@ -28,11 +28,14 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
   // Colors
-  const allColors = await resourceUtils.fetchResource<Dictionary<TextCard>>(TDR_RESOURCES.COLORS, language);
+  const allColors = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
+    TDR_RESOURCES.COLORS,
+    language,
+  );
   const colors = sampleSize(Object.values(allColors), quantityNeeded);
 
   // Emotions
-  const allEmotions = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allEmotions = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.EMOTIONS,
     language,
   );
@@ -79,12 +82,12 @@ export const saveData = async (language: Language, gallery: GalleryEntry[]): Pro
 
   gallery.forEach((entry) => {
     if (entry.roundType === 'adjectives') {
-      const card = entry.values as TextCard;
+      const card = entry.values as TextCardData;
       usedAdjectives[card.id] = true;
     }
     let text = '';
     if (entry.roundType === 'words') {
-      const card = entry.values as TextCard;
+      const card = entry.values as TextCardData;
       text = card.text;
     }
     entry.options.forEach((card) => {

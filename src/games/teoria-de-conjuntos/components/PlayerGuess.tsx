@@ -2,7 +2,7 @@
 import { Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Icons
 import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
@@ -15,7 +15,7 @@ import type { Guess } from '../utils/types';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 
 type PlayerGuessProps = {
-  item: Item;
+  item: ItemData;
   currentGuess: Guess;
   activePlayer: GamePlayer;
 };

@@ -4,7 +4,7 @@ import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 import { sample, sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -68,7 +68,7 @@ export const prepareScenarioOrderingPhase = async (
 
   const round = utils.game.increaseRound(state.round);
   const activePlayerId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
-  const deck: TextCard[] = store.deck;
+  const deck: TextCardData[] = store.deck;
   const scenarios = deck.splice(0, SCENARIOS_PER_ROUND);
 
   const roundType = round.current === 1 ? ROUND_TYPES[0] : sample(ROUND_TYPES);

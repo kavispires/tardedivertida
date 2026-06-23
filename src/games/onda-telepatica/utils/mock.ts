@@ -1,5 +1,5 @@
 // Types
-import type { SpectrumCard } from 'types/tdr';
+import type { SpectrumCardData } from 'types/tdr';
 // Utils
 import { getRandomItem } from '@utils/helpers';
 
@@ -15,7 +15,7 @@ export const mockGuess = (target: number): number => {
   ]);
 };
 
-export const mockHint = (card: SpectrumCard, target: number): string => {
+export const mockHint = (card: SpectrumCardData, target: number): string => {
   if (target < 0) {
     return `${card.left}:${Math.abs(target)}`;
   }

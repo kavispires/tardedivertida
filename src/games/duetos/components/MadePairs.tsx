@@ -2,11 +2,11 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Space } from 'antd';
 // Internal
-import type { Item } from '../utils/types';
+import type { ItemData } from '../utils/types';
 import { Pair } from './Pair';
 
 type MadePairsProps = {
-  pool: Item[];
+  pool: ItemData[];
   pairs: string[];
   size?: 'small';
 };

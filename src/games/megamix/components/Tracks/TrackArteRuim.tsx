@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button } from 'antd';
 // Types
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
@@ -81,7 +81,7 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
         </SpaceContainer>
 
         <SpaceContainer>
-          {track.data.cards.map((card: TextCard, index: number) => (
+          {track.data.cards.map((card: TextCardData, index: number) => (
             <TransparentButton
               key={card.id}
               disabled={isLoading || user.ready}

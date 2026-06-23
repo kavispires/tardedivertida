@@ -2,7 +2,7 @@
 import { RETRATO_FALADO_PHASES } from './constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
-import type { MonsterImage } from '../../types/tdr';
+import type { MonsterImageData } from '../../types/tdr';
 import type { AllMonsters, FirebaseStoreData, MonsterSketch } from './types';
 // Helpers
 import utils from '../../utils';
@@ -42,7 +42,7 @@ export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
  */
 export const gatherSketches = (
   players: Players,
-  currentMonster: MonsterImage,
+  currentMonster: MonsterImageData,
   witnessId: UID,
 ): MonsterSketch[] => {
   const gathering = utils.players.getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {

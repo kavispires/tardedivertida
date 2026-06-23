@@ -2,7 +2,7 @@
 import { AimOutlined } from '@ant-design/icons';
 import { Button, Tag } from 'antd';
 // Types
-import type { TeenageMotivation } from 'types/tdr';
+import type { TeenageMotivationData } from 'types/tdr';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
@@ -16,7 +16,7 @@ type GossiperGoalsProps = {
   students: FofocaQuenteDefaultState['students'];
   gossiperId: string;
   bestFriendId?: string;
-  motivation: TeenageMotivation;
+  motivation: TeenageMotivationData;
   associatedSocialGroup: SocialGroup | null;
 };
 

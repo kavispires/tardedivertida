@@ -12,7 +12,7 @@ import {
   calculateAchievements,
   pushAchievement,
 } from './achievements';
-import type { Item } from '../../types/tdr';
+import type { ItemData } from '../../types/tdr';
 
 /**
  * Setup
@@ -72,7 +72,7 @@ export const prepareWordCreationPhase = async (
   const round = utils.game.increaseRound(state.round);
   const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
 
-  const storeItems: Item[] = store.items;
+  const storeItems: ItemData[] = store.items;
 
   const currentRound = round.current;
 

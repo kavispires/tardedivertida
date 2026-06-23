@@ -1,9 +1,9 @@
 // Types
 import type { GameRanking } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 
 export type SubmitConceptsPayload = {
-  proposedConcepts: Pick<Concept, 'itemsIds' | 'meaning'>[];
+  proposedConcepts: Pick<ConceptData, 'itemsIds' | 'meaning'>[];
 };
 
 export type SubmitDownvoteConceptsPayload = {
@@ -20,7 +20,7 @@ export type SubmitGuessesPayload = {
   guesses: Dictionary<string>;
 };
 
-export type Concept = {
+export type ConceptData = {
   id: string;
   key: string;
   type: 'basic' | 'custom';
@@ -46,37 +46,37 @@ export type GalleryEntry = NewNameEntry & {
 };
 
 export type PhaseCreatingConceptsState = {
-  basicConcepts: Concept[];
-  concepts: Concept[];
-  items: Dictionary<Item>;
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
+  items: Dictionary<ItemData>;
   maxProposals: number;
 };
 
 export type PhaseConceptsRevealState = {
-  items: Dictionary<Item>;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  items: Dictionary<ItemData>;
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
 };
 
 export type PhaseCommunicatingThingsState = {
-  basicConcepts: Concept[];
-  concepts: Concept[];
-  items: Dictionary<Item>;
-  pool: Item[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
+  items: Dictionary<ItemData>;
+  pool: ItemData[];
 };
 
 export type PhaseGuessingState = {
-  basicConcepts: Concept[];
-  concepts: Concept[];
-  items: Dictionary<Item>;
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
+  items: Dictionary<ItemData>;
   newNames: NewNameEntry[];
-  pool: Item[];
+  pool: ItemData[];
 };
 
 export type PhaseResultsState = {
-  basicConcepts: Concept[];
-  concepts: Concept[];
-  items: Dictionary<Item>;
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
+  items: Dictionary<ItemData>;
   newNames: NewNameEntry[];
   gallery: GalleryEntry[];
   ranking: GameRanking;

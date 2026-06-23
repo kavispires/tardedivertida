@@ -5,7 +5,7 @@ import { RollbackOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
@@ -20,7 +20,7 @@ import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
-import type { Concept, SubmitNamePayload } from './utils/types';
+import type { ConceptData, SubmitNamePayload } from './utils/types';
 import { useSpriteWidth } from './utils/useSpriteWidth';
 import { mockName } from './utils/mock';
 import { ConceptsCollapse } from './components/ConceptsCollapse';
@@ -28,11 +28,11 @@ import { ConceptsCollapse } from './components/ConceptsCollapse';
 type StepNameAThingProps = {
   players: GamePlayers;
   user: GamePlayer;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
   round: GameRound;
-  items: Dictionary<Item>;
-  pool: Item[];
+  items: Dictionary<ItemData>;
+  pool: ItemData[];
   onSubmitName: (payload: SubmitNamePayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
@@ -47,9 +47,9 @@ export function StepNameAThing({
   onSubmitName,
 }: StepNameAThingProps) {
   const { language, translate } = useLanguage();
-  const hand: Item[] = user.hand ?? [];
+  const hand: ItemData[] = user.hand ?? [];
   const itemWidth = useSpriteWidth();
-  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+  const [selectedItem, setSelectedItem] = useState<ItemData | null>(null);
   const [newName, setNewName] = useState<string[]>([]);
 
   const addSyllableToName = (conceptId: string) => {
@@ -82,8 +82,8 @@ export function StepNameAThing({
     >
       <StepTitle>
         <Translate
-          pt={<>Nomeie um Item</>}
-          en={<>Name an Item</>}
+          pt={<>Nomeie um ItemData</>}
+          en={<>Name an ItemData</>}
         />
       </StepTitle>
 
@@ -184,8 +184,8 @@ export function StepNameAThing({
 }
 
 type ItemNameProps = {
-  concepts: Concept[];
-  basicConcepts: Concept[];
+  concepts: ConceptData[];
+  basicConcepts: ConceptData[];
   name: string[];
 };
 function ItemName({ concepts, basicConcepts, name }: ItemNameProps) {
@@ -198,7 +198,12 @@ function ItemName({ concepts, basicConcepts, name }: ItemNameProps) {
   return <>{result}</>;
 }
 
-const getName = (concepts: Concept[], basicConcepts: Concept[], name: string[], language: Language) => {
+const getName = (
+  concepts: ConceptData[],
+  basicConcepts: ConceptData[],
+  name: string[],
+  language: Language,
+) => {
   return name
     .map(
       (id) =>

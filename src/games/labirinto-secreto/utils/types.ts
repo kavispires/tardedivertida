@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Payload for submitting the player's map with clue cards
@@ -9,7 +9,7 @@ export type SubmitMapPayload = {
   /**
    * Array of text cards or null values representing the new map segments
    */
-  newMap: (TextCard | null)[];
+  newMap: (TextCardData | null)[];
   /**
    * Whether the player is using their one-time mulligan to discard hand and get 7 new cards
    */
@@ -62,7 +62,7 @@ export type ExtendedTextCard = {
    * Whether the card's meaning is negated
    */
   negate?: boolean;
-} & TextCard;
+} & TextCardData;
 
 export interface Tree {
   /**
@@ -76,7 +76,7 @@ export interface Tree {
   /**
    * Text card
    */
-  card: TextCard;
+  card: TextCardData;
   /**
    * Position in the forest
    */

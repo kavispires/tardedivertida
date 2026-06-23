@@ -20,13 +20,13 @@ import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { Item, SubmitPairsPayload } from './utils/types';
+import type { ItemData, SubmitPairsPayload } from './utils/types';
 import { mockPairs } from './utils/mock';
 import { ItemEntry } from './components/ItemEntry';
 
 type StepTemplateProps = {
   user: GamePlayer;
-  pool: Item[];
+  pool: ItemData[];
   onSubmitPairs: (payload: SubmitPairsPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 

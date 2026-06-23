@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Input } from 'antd';
 // Types
 import type { GameRound } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -17,8 +17,8 @@ import type { SubmitTweetPayload } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
 
 type StepTweetSelectionProps = {
-  currentTweets: TextCard[];
-  currentCustomTweet: TextCard;
+  currentTweets: TextCardData[];
+  currentCustomTweet: TextCardData;
   onSubmitTweet: (payload: SubmitTweetPayload) => void;
   round: GameRound;
   isFixedRounds: boolean;

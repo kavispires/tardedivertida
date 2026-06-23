@@ -13,7 +13,7 @@ import type {
   Student,
 } from './types';
 import { determineStudentsThatCanBeRumored } from './helpers';
-import type { TeenageRumor } from '../../types/tdr';
+import type { TeenageRumorData } from '../../types/tdr';
 
 /**
  * Setup phase - initializes game state and resources
@@ -295,7 +295,7 @@ export const prepareResponsePhase = async (
       maySkipRumor = false;
     }
   } else {
-    const possibleRumors: TeenageRumor[] = state.possibleRumors || [];
+    const possibleRumors: TeenageRumorData[] = state.possibleRumors || [];
     const rumoredStudentId: string = gossiper.rumoredStudentId || '';
     const rumoredStudent = students[rumoredStudentId];
 

@@ -2,7 +2,7 @@
 import { TrophyOutlined } from '@ant-design/icons';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { MonsterImage } from 'types/tdr';
+import type { MonsterImageData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
@@ -22,7 +22,7 @@ import type { Sketch } from './utils/types';
 import { MonsterSketches } from './components/MonsterSketches';
 
 type StepResultsProps = {
-  currentMonster: MonsterImage;
+  currentMonster: MonsterImageData;
   goToNextStep: UseStep['goToNextStep'];
   sketches: Sketch[];
   user: GamePlayer;

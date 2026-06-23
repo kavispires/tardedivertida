@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { Select } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCard, TestimonyQuestionCard } from 'types/tdr';
+import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
 // Hooks
 import { useCache } from '@hooks/useCache';
 // Components
@@ -23,8 +23,8 @@ type StepGuessPlayerProps = {
   players: GamePlayers;
   user: GamePlayer;
   turnOrder: TurnOrder;
-  characters: SuspectCard[];
-  questionsHistory: TestimonyQuestionCard[];
+  characters: SuspectCardData[];
+  questionsHistory: TestimonyQuestionCardData[];
   onSubmitGuess: (payload: SubmitGuessPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 

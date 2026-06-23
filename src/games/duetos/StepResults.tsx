@@ -17,14 +17,14 @@ import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
 // Internal
-import type { DuetosGalleryEntry, Item, LeftOutEntry } from './utils/types';
+import type { DuetosGalleryEntry, ItemData, LeftOutEntry } from './utils/types';
 import { Pair } from './components/Pair';
 
 type StepResultProps = {
   players: GamePlayers;
   gallery: DuetosGalleryEntry[];
   leftOut: LeftOutEntry[];
-  pool: Item[];
+  pool: ItemData[];
   goToNextStep: UseStep['goToNextStep'];
 } & Pick<StepProps, 'announcement'>;
 

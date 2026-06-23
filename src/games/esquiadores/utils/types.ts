@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GameRanking, GamePlayer } from 'types/game';
-import type { DilemmaCard } from 'types/tdr';
+import type { DilemmaCardData } from 'types/tdr';
 
 export type SubmitChoicesPayload = {
   choices: string[];
@@ -14,7 +14,7 @@ export type SubmitBetsPayload = {
 export type MountainDilemma = {
   id: number;
   spriteId: string;
-  dilemma: DilemmaCard;
+  dilemma: DilemmaCardData;
   direction: 'left' | 'right' | null;
   selected: boolean;
   players?: string[];

@@ -4,7 +4,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
 import type { FileiraDeFatosOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 
 /**
  * Get scenarios resource based on the game's language
@@ -17,7 +17,7 @@ export const getScenarios = async (
   options: FileiraDeFatosOptions,
 ): Promise<ResourceData> => {
   // Get full deck
-  const allScenarios = await resourceUtils.fetchResource<Dictionary<TextCard>>(
+  const allScenarios = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.SCENARIOS,
     language,
   );

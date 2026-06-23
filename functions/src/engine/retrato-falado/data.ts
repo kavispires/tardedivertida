@@ -2,7 +2,7 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
-import type { MonsterImage } from '../../types/tdr';
+import type { MonsterImageData } from '../../types/tdr';
 import type { MonsterSketch, ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
@@ -16,7 +16,7 @@ import * as dataUtils from '../collections';
  */
 export const getMonsterCards = async (): Promise<ResourceData> => {
   // Get images info
-  const allMonsters = await resourceUtils.fetchResource<Dictionary<MonsterImage>>(
+  const allMonsters = await resourceUtils.fetchResource<Dictionary<MonsterImageData>>(
     TDR_RESOURCES.MONSTER_ORIENTATION,
   );
   // Get used deck

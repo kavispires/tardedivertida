@@ -2,7 +2,7 @@
 import { TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Types
-import type { CrimeSceneTile, CrimesHediondosCard } from '../../types/tdr';
+import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
@@ -14,22 +14,24 @@ import { CARDS_PER_GAME } from './constants';
  */
 export const getData = async (options: CrimesHediondosOptions): Promise<ResourceData> => {
   // Get weapon cards
-  const allWeapons = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(
+  const allWeapons = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCardData>>(
     TDR_RESOURCES.CRIME_WEAPONS,
   );
 
   // Get evidence cards
-  const allEvidence = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(
+  const allEvidence = await resourceUtils.fetchResource<Dictionary<CrimesHediondosCardData>>(
     TDR_RESOURCES.CRIME_EVIDENCE,
   );
 
   // Get locations
-  const locations: CrimesHediondosCard[] = [];
+  const locations: CrimesHediondosCardData[] = [];
   if (options.withLocations) {
     locations.push(
       ...sampleSize(
         Object.values(
-          await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_LOCATIONS),
+          await resourceUtils.fetchResource<Dictionary<CrimesHediondosCardData>>(
+            TDR_RESOURCES.CRIME_LOCATIONS,
+          ),
         ),
         CARDS_PER_GAME,
       ),
@@ -37,12 +39,12 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   }
 
   // Get victims
-  const victims: CrimesHediondosCard[] = [];
+  const victims: CrimesHediondosCardData[] = [];
   if (options.withVictims) {
     victims.push(
       ...sampleSize(
         Object.values(
-          await resourceUtils.fetchResource<Dictionary<CrimesHediondosCard>>(TDR_RESOURCES.CRIME_VICTIMS),
+          await resourceUtils.fetchResource<Dictionary<CrimesHediondosCardData>>(TDR_RESOURCES.CRIME_VICTIMS),
         ),
         CARDS_PER_GAME,
       ),
@@ -50,7 +52,9 @@ export const getData = async (options: CrimesHediondosOptions): Promise<Resource
   }
 
   // Get scene tiles
-  const allScenes = await resourceUtils.fetchResource<Dictionary<CrimeSceneTile>>(TDR_RESOURCES.CRIME_SCENES);
+  const allScenes = await resourceUtils.fetchResource<Dictionary<CrimeSceneTileData>>(
+    TDR_RESOURCES.CRIME_SCENES,
+  );
 
   // Filter weapons and evidence
   const listOfWeapons = Object.values(allWeapons).filter((weapon) => {

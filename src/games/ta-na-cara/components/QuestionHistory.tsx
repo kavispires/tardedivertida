@@ -3,7 +3,7 @@ import { Fragment } from 'react/jsx-runtime';
 import { Flex } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TestimonyQuestionCard } from 'types/tdr';
+import type { TestimonyQuestionCardData } from 'types/tdr';
 // Hooks
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
@@ -18,7 +18,7 @@ import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
 type QuestionHistoryProps = {
   players: GamePlayers;
-  questionsHistory: TestimonyQuestionCard[];
+  questionsHistory: TestimonyQuestionCardData[];
 };
 
 export function QuestionHistory({ players, questionsHistory }: QuestionHistoryProps) {

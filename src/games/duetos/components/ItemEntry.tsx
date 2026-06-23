@@ -14,10 +14,10 @@ import { SuspectCard } from '@components/cards/SuspectCard';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
-import type { Item } from '../utils/types';
+import type { ItemData } from '../utils/types';
 
 type ItemEntryProps = {
-  itemEntry: Item;
+  itemEntry: ItemData;
   className?: string;
   size?: 'small';
   looseItem?: boolean;

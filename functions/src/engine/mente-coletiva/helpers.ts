@@ -7,7 +7,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
-import type { GroupQuestionCard } from '../../types/tdr';
+import type { GroupQuestionCardData } from '../../types/tdr';
 import { orderBy, sample, shuffle } from 'lodash';
 import type {
   AllQuestions,
@@ -422,7 +422,7 @@ export function isLevelDifferenceGreaterThanOne(players: Players): boolean {
 
 export function getMostFrequentAnswers(
   answersList: AnswerGroupEntry[],
-  question: GroupQuestionCard,
+  question: GroupQuestionCardData,
 ): GalleryEntry {
   const result: GalleryEntry = {
     question,

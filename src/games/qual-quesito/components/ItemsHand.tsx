@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Badge, Button, Flex } from 'antd';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Utils
 import { pluralize } from '@utils/helpers';
 // Components
@@ -14,7 +14,7 @@ import { ThingHighlight } from './Highlights';
 
 type ItemHandProps = {
   hand: string[];
-  cardsDict: Dictionary<Item>;
+  cardsDict: Dictionary<ItemData>;
   onSelectItem?: (itemId: string) => void;
   selectedItemsIds?: string[];
   hideCount?: boolean;

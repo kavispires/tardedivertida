@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 
 /**
  * Payload for submitting selected words
@@ -174,7 +174,7 @@ export type PhaseWordsSelectionState = {
   /**
    * Pool of available word cards to choose from
    */
-  pool: TextCard[];
+  pool: TextCardData[];
   /**
    * Number of words required to be selected
    */

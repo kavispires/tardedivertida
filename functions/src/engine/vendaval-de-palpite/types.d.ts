@@ -1,9 +1,9 @@
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
 
 export type ResourceData = {
-  words: TextCard[];
-  categories: TextCard[];
+  words: TextCardData[];
+  categories: TextCardData[];
 };
 
 export type ClueId = string;
@@ -38,8 +38,8 @@ export type BoardEntry = {
 export type Board = Record<CurrentRound, BoardEntry>;
 
 export interface VendavalDePalpiteStore extends DefaultStore {
-  categories: TextCard[];
-  words: TextCard[];
+  categories: TextCardData[];
+  words: TextCardData[];
   [key: string]: AnyOrUnknownPlaceholder;
 }
 

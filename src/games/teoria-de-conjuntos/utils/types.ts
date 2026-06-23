@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer } from 'types/game';
-import type { DiagramTopic, Item } from 'types/tdr';
+import type { DiagramTopicData, ItemData } from 'types/tdr';
 // Internal
 import type { OUTCOME } from './constants';
 
@@ -63,15 +63,15 @@ export type Solutions = {
   /**
    * Attribute circle topic
    */
-  attribute: DiagramTopic;
+  attribute: DiagramTopicData;
   /**
    * Word circle topic
    */
-  word: DiagramTopic;
+  word: DiagramTopicData;
   /**
    * Context circle topic (optional, not present in easy mode)
    */
-  context?: DiagramTopic;
+  context?: DiagramTopicData;
 };
 
 /**
@@ -81,15 +81,15 @@ export type DiagramExamples = {
   /**
    * Example topics for the attribute circle
    */
-  attribute: DiagramTopic[];
+  attribute: DiagramTopicData[];
   /**
    * Example topics for the word circle
    */
-  word: DiagramTopic[];
+  word: DiagramTopicData[];
   /**
    * Example topics for the context circle (optional, not present in easy mode)
    */
-  context?: DiagramTopic[];
+  context?: DiagramTopicData[];
 };
 
 /**
@@ -159,7 +159,7 @@ export type PhaseJudgeSelectionState = {
   /**
    * Dictionary of all items in play
    */
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   /**
    * Dictionary of diagram areas (attribute, word, context, outside)
    */
@@ -186,7 +186,7 @@ export type PhaseItemPlacementState = {
   /**
    * Dictionary of all items in play
    */
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   /**
    * Dictionary of diagram areas (attribute, word, context, outside)
    */
@@ -237,7 +237,7 @@ export type PhaseEvaluationState = {
   /**
    * Dictionary of all items in play
    */
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   /**
    * Dictionary of diagram areas (attribute, word, context, outside)
    */
@@ -300,7 +300,7 @@ export type PhaseGameOverState = {
   /**
    * Dictionary of all items that were in play
    */
-  items: Dictionary<Item>;
+  items: Dictionary<ItemData>;
   /**
    * Dictionary of final diagram areas with placed items
    */

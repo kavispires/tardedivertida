@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 // Ant Design Resources
 import { Button, Popover } from 'antd';
 // Types
-import type { DiagramTopic } from 'types/tdr';
+import type { DiagramTopicData } from 'types/tdr';
 // Components
 import { Translate } from '@components/language/Translate';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -12,7 +12,7 @@ import type { DiagramExamples } from '../utils/types';
 import { CircleHighlight } from './Highlights';
 
 type ExamplesProps = {
-  examples: DiagramTopic[];
+  examples: DiagramTopicData[];
   title: ReactNode;
 };
 

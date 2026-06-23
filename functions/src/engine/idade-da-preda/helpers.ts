@@ -3,7 +3,7 @@ import { IDADE_DA_PREDA_PHASES, SOUNDS } from './constants';
 import { orderBy, shuffle } from 'lodash';
 // Helpers
 import utils from '../../utils';
-import type { Concept, FirebaseStoreData, GalleryEntry, NewNameEntry } from './types';
+import type { ConceptData, FirebaseStoreData, GalleryEntry, NewNameEntry } from './types';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -38,8 +38,8 @@ export const determineNextPhase = (
  * @param players - The collection of players in the game
  * @param store - The Firebase store data for tracking achievements
  */
-export const gatherConcepts = (players: Players, store: FirebaseStoreData): Concept[] => {
-  const allConcepts: Concept[] = [];
+export const gatherConcepts = (players: Players, store: FirebaseStoreData): ConceptData[] => {
+  const allConcepts: ConceptData[] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.proposedConcepts) {

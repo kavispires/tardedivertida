@@ -1,7 +1,7 @@
 // Types
-import type { TestimonyQuestionCard } from 'types/tdr';
+import type { TestimonyQuestionCardData } from 'types/tdr';
 
-export const buildAnswer = (question: TestimonyQuestionCard, testimony: boolean, language: string) => {
+export const buildAnswer = (question: TestimonyQuestionCardData, testimony: boolean, language: string) => {
   if (language === 'pt') {
     if (testimony) {
       return question.answer;

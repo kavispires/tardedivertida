@@ -1,5 +1,5 @@
 // Types
-import type { TeenageMotivation, TeenageRumor, TeenageStudent } from 'types/tdr';
+import type { TeenageMotivationData, TeenageRumorData, TeenageStudentData } from 'types/tdr';
 // Internal
 import type { FOFOCA_QUENTE_PHASES } from './constants';
 
@@ -39,7 +39,7 @@ export type StaffMember = {
   locationId: string;
 };
 
-export type Student = TeenageStudent & {
+export type Student = TeenageStudentData & {
   id: UID;
   // Fixed properties
   isGossiper: boolean;
@@ -82,7 +82,7 @@ export type FofocaQuenteDefaultState = {
   schoolBoard: SchoolLocation[];
   students: Dictionary<Student>;
   staff: Dictionary<StaffMember>;
-  motivations: TeenageMotivation[];
+  motivations: TeenageMotivationData[];
   socialGroups: Dictionary<SocialGroup>;
   detectivePlayerId: UID;
   gossiperPlayerId: UID;
@@ -99,7 +99,7 @@ export type FofocaQuenteDefaultState = {
   /**
    * Available rumors during the rumor phase
    */
-  possibleRumors?: TeenageRumor[];
+  possibleRumors?: TeenageRumorData[];
   // detectivePosition?: number;
   // detectivePossibleMovements?: number[];
   // associatedSocialGroup?: string;

@@ -1,5 +1,5 @@
 // Types
-import type { SuspectCard } from 'types/tdr';
+import type { SuspectCardData } from 'types/tdr';
 // Hooks
 import { useMock } from '@hooks/useMock';
 // Utils
@@ -24,7 +24,7 @@ type StepSelectQuestionProps = {
   questions: Question[];
   onSelectQuestion: (payload: SelectQuestionPayload) => void;
   isLoading: boolean;
-  suspectsDict: Dictionary<SuspectCard>;
+  suspectsDict: Dictionary<SuspectCardData>;
   suspectsIds: UID[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];

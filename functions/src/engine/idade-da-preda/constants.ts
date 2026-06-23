@@ -1,4 +1,4 @@
-import type { Concept } from './types';
+import type { ConceptData } from './types';
 
 export const IDADE_DA_PREDA_PHASES = {
   SETUP: 'SETUP',
@@ -35,7 +35,7 @@ export const ITEMS_PER_PLAYER_PER_AGE = 3;
 export const CONCEPTS_FOR_FIRST_ROUND = 13;
 export const CONCEPTS_FOR_NEW_AGES = 6;
 
-export const BASIC_CONCEPTS: Concept[] = [
+export const BASIC_CONCEPTS: ConceptData[] = [
   {
     id: 'c-0-yes',
     key: 'yes',

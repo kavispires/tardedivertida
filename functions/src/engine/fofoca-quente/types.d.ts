@@ -1,4 +1,4 @@
-import type { TeenageRumor, TeenageStudent, TeenageMotivation } from '../../types/tdr';
+import type { TeenageRumorData, TeenageStudentData, TeenageMotivationData } from '../../types/tdr';
 import type { FOFOCA_QUENTE_ACHIEVEMENTS, FOFOCA_QUENTE_PHASES, FOFOCA_QUENTE_ACTIONS } from './constants';
 
 export type FofocaQuenteOptions = {
@@ -13,9 +13,9 @@ export type FofocaQuenteOptions = {
 };
 
 export type ResourceData = {
-  teenagers: TeenageStudent[];
-  rumors: TeenageRumor[];
-  motivations: TeenageMotivation[];
+  teenagers: TeenageStudentData[];
+  rumors: TeenageRumorData[];
+  motivations: TeenageMotivationData[];
   socialGroups: Dictionary<SocialGroup>;
   locations: SchoolLocationBase[];
   staff: Dictionary<StaffMember>;
@@ -24,7 +24,7 @@ export type ResourceData = {
 export type FofocaQuenteAchievement = keyof typeof FOFOCA_QUENTE_ACHIEVEMENTS;
 
 export interface FofocaQuenteStore extends DefaultStore<FofocaQuenteOptions> {
-  rumors?: TeenageRumor[];
+  rumors?: TeenageRumorData[];
   [key: string]: AnyOrUnknownPlaceholder;
 }
 
@@ -33,7 +33,7 @@ export interface FofocaQuenteState extends DefaultState {
   schoolBoard?: SchoolLocation[];
   students?: Dictionary<Student>;
   staff?: Dictionary<StaffMember>;
-  motivations?: TeenageMotivation[];
+  motivations?: TeenageMotivationData[];
   socialGroups?: string[];
   detectivePlayerId?: UID;
   detectivePosition?: number;
@@ -48,7 +48,7 @@ export interface FofocaQuenteState extends DefaultState {
   // Intimidation phase
   maxIntimidations?: number;
   // Rumor phase
-  possibleRumors?: TeenageRumor[];
+  possibleRumors?: TeenageRumorData[];
   // Response phase
 }
 
@@ -73,7 +73,7 @@ export type StaffMember = {
   adjacentLocations?: string[];
 };
 
-export type Student = TeenageStudent & {
+export type Student = TeenageStudentData & {
   id: UID;
   // Fixed properties
   isGossiper: boolean;

@@ -2,7 +2,6 @@
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
-import type { ItemId } from '../comunicacao-alienigena/types';
 import type { DiagramArea, FirebaseStateData, Guess } from './types';
 import { OUTCOME } from './constants';
 
@@ -39,7 +38,7 @@ export const handleSubmitItemDiagram = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
-  itemId: ItemId,
+  itemId: UID,
   position: string,
 ) => {
   const currentGuess: Guess = {
@@ -99,7 +98,7 @@ export const handleSubmitEvaluationFix = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
-  itemId: ItemId,
+  itemId: UID,
   currentArea: string,
   newEvaluation: string,
 ) => {

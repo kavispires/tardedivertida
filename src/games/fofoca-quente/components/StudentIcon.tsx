@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, type AvatarProps, Tooltip } from 'antd';
 // Types
-import type { TeenageStudent } from 'types/tdr';
+import type { TeenageStudentData } from 'types/tdr';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
@@ -54,7 +54,7 @@ export function SocialGroupIcon({ socialGroup, size }: SocialGroupIconProps) {
 }
 
 type GenderIconProps = {
-  gender: TeenageStudent['gender'];
+  gender: TeenageStudentData['gender'];
   size?: AvatarProps['size'];
 };
 
@@ -72,7 +72,7 @@ export function GenderIcon({ gender, size }: GenderIconProps) {
 }
 
 type AgeIconProps = {
-  age: TeenageStudent['age'];
+  age: TeenageStudentData['age'];
   size?: AvatarProps['size'];
 };
 
@@ -100,7 +100,7 @@ export function AgeIcon({ age, size }: AgeIconProps) {
 }
 
 type BuildIconProps = {
-  build: TeenageStudent['build'];
+  build: TeenageStudentData['build'];
   size?: AvatarProps['size'];
 };
 
@@ -119,7 +119,7 @@ export function BuildIcon({ build, size }: BuildIconProps) {
 }
 
 type HeightIconProps = {
-  height: TeenageStudent['height'];
+  height: TeenageStudentData['height'];
   size?: AvatarProps['size'];
 };
 

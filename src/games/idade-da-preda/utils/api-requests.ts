@@ -19,7 +19,10 @@ export function useOnSubmitConceptsAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-concept',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate({ pt: 'Conceito submetido com sucesso', en: 'Concept submitted successfully' }),
+    successMessage: translate({
+      pt: 'Conceito submetido com sucesso',
+      en: 'ConceptData submitted successfully',
+    }),
     errorMessage: translate({
       pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu conceito',
       en: 'Oops, the application found an error while trying to submit your concept',
@@ -57,7 +60,10 @@ export function useOnSubmitDownvoteConceptsAPIRequest(setStep: UseStep['setStep'
     actionName: 'downvote-concept',
     onSuccess: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: translate({ pt: 'Conceito votado com sucesso', en: 'Concept downvoted successfully' }),
+    successMessage: translate({
+      pt: 'Conceito votado com sucesso',
+      en: 'ConceptData downvoted successfully',
+    }),
     errorMessage: translate({
       pt: 'Vixi, o aplicativo encontrou um erro ao tentar votar no conceito',
       en: 'Oops, the application found an error while trying to downvote the concept',

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Tooltip } from 'antd';
 // Types
-import type { ContenderCard } from 'types/tdr';
+import type { ContenderCardData } from 'types/tdr';
 // Hooks
 import { useBlurCards } from '@hooks/useBlurCards';
 import { useLanguage } from '@hooks/useLanguage';
@@ -27,7 +27,7 @@ type CharacterCardProps = {
   /**
    * The character object
    */
-  character: ContenderCard;
+  character: ContenderCardData;
   /**
    * The class name to be appended to the container
    */

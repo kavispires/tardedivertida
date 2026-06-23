@@ -13,7 +13,7 @@ export function useOnSubmitTweetAPIRequest(setStep: UseStep['setStep']) {
     actionName: 'submit-tweet',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(2),
-    successMessage: translate({ pt: 'Assunto enviada com sucesso!', en: 'Tweet send successfully!' }),
+    successMessage: translate({ pt: 'Assunto enviada com sucesso!', en: 'TweetCardData send successfully!' }),
     errorMessage: translate({
       pt: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu assunto',
       en: 'Oops, the application failed to submit the tweet',

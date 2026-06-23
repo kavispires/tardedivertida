@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 // Types
-import type { ItemAttribute } from 'types/tdr';
+import type { ItemAttributeData } from 'types/tdr';
 // Hooks
 import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 
 export function useAlienAttributes(enabled: boolean) {
   const baseUrl = useTDBaseUrl('resources');
-  return useQuery<Dictionary<ItemAttribute>, ResponseError>({
+  return useQuery<Dictionary<ItemAttributeData>, ResponseError>({
     queryKey: ['items-attributes'],
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/items-attributes.json`);

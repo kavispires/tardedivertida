@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Components
 import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -15,7 +15,7 @@ import { BetsFloatingHand } from './components/BetsFloatingHand';
 
 type StepBattleProps = {
   onSubmitVotes: (payload: SubmitBattleVotesPayload) => void;
-  challenge: TextCard;
+  challenge: TextCardData;
   brackets: Bracket[];
   tier: BracketTier;
   bets: Bet;

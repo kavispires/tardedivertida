@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Types
-import type { BossIdeaCard } from 'types/tdr';
+import type { BossIdeaCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
@@ -45,7 +45,7 @@ export const useGoodComponentAndClass = ({
   goodWidth,
   step,
 }: {
-  bossIdea: BossIdeaCard;
+  bossIdea: BossIdeaCardData;
   currentGood: Good;
   isUserTheSupervisor: boolean;
   goodWidth: number;

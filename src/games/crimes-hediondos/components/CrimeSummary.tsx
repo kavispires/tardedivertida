@@ -14,7 +14,7 @@ import {
 import { Button, Tooltip } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { CrimeSceneTile } from 'types/tdr';
+import type { CrimeSceneTileData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Utils
@@ -224,7 +224,7 @@ export function CrimeSummary({
 }
 
 type CrimeSceneProps = {
-  scene: CrimeSceneTile;
+  scene: CrimeSceneTileData;
   playerIndex: number;
 };
 

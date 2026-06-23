@@ -1,7 +1,7 @@
 import { mockClue } from '@mock/clues';
 import { sample } from 'lodash';
 // Types
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Utils
 import { getRandomItem } from '@utils/helpers';
 // Internal
@@ -35,7 +35,7 @@ export function mockNewWord(wordLengths: WordLength[]): SubmitWordPayload {
   };
 }
 
-export function mockGuess(itemsIds: Item[], beginsWith: string, endsWith: string): string[] {
+export function mockGuess(itemsIds: ItemData[], beginsWith: string, endsWith: string): string[] {
   const options = [
     ...itemsIds.map((item) => item.id),
     beginsWith,

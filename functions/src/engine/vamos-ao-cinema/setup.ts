@@ -3,7 +3,7 @@ import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from 
 import { GAME_NAMES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
-import type { MovieReviewCard } from '../../types/tdr';
+import type { MovieReviewCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -39,7 +39,7 @@ export const prepareSetupPhase = async (
   const movieDeck = sampleSize(Object.values(additionalData.movies), TOTAL_ROUNDS * MOVIES_PER_ROUND);
 
   const [good, bad] = shuffle(Object.values(additionalData.reviews)).reduce(
-    (acc: [MovieReviewCard[], MovieReviewCard[]], card) => {
+    (acc: [MovieReviewCardData[], MovieReviewCardData[]], card) => {
       acc[card.type === 'good' ? 0 : 1].push(card);
 
       return acc;

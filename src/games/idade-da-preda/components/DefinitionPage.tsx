@@ -10,14 +10,14 @@ import { Translate } from '@components/language/Translate';
 import { SlideShowLabel } from '@components/slide-show/SlideShowComposableComponents';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
-import type { Concept, GalleryEntry } from '../utils/types';
+import type { ConceptData, GalleryEntry } from '../utils/types';
 import { useSpriteWidth } from '../utils/useSpriteWidth';
 import { BASIC_CONCEPTS_TRANSLATIONS } from '../utils/constants';
 
 type DefinitionPageProps = {
   entry: GalleryEntry;
-  basicConcepts: Concept[];
-  concepts: Concept[];
+  basicConcepts: ConceptData[];
+  concepts: ConceptData[];
 };
 
 export function DefinitionPage({ entry, basicConcepts, concepts }: DefinitionPageProps) {
@@ -26,7 +26,7 @@ export function DefinitionPage({ entry, basicConcepts, concepts }: DefinitionPag
       .map((id) => {
         return basicConcepts.find((c) => c.id === id) || concepts.find((c) => c.id === id);
       })
-      .filter(Boolean) as Concept[];
+      .filter(Boolean) as ConceptData[];
   }, [entry.conceptsIds, basicConcepts, concepts]);
 
   return (
@@ -87,7 +87,7 @@ export function DefinitionPage({ entry, basicConcepts, concepts }: DefinitionPag
 }
 
 type SimplifiedConceptProps = {
-  concept: Concept;
+  concept: ConceptData;
 };
 
 function SimplifiedConcept({ concept }: SimplifiedConceptProps) {

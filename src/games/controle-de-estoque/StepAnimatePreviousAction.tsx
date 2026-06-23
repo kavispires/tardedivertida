@@ -1,6 +1,6 @@
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { BossIdeaCard } from 'types/tdr';
+import type { BossIdeaCardData } from 'types/tdr';
 // Icons
 import { BossIdeaIcon } from '@icons/BossIdeaIcon';
 // Components
@@ -22,7 +22,7 @@ import { Warehouse } from './components/Warehouse';
 type StepAnimatePreviousActionProps = {
   players: GamePlayers;
   user: GamePlayer;
-  bossIdea: BossIdeaCard;
+  bossIdea: BossIdeaCardData;
   goodsDict: Dictionary<Good>;
   warehouse: WarehouseSlot[];
   previousSupervisor?: GamePlayer;

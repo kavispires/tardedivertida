@@ -19,7 +19,7 @@ import type {
   Status,
   WarehouseSlot,
 } from './types';
-import type { BossIdeaCard } from '../../types/tdr';
+import type { BossIdeaCardData } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -106,9 +106,9 @@ export const prepareSetupPhase = async (
   const totalRounds = MIN_ROUNDS;
 
   // Determine boss ideas making the First day always the first idea
-  const bossIdeas: BossIdeaCard[] = [resourceData.allBossIdeas.FIRST_DAY];
+  const bossIdeas: BossIdeaCardData[] = [resourceData.allBossIdeas.FIRST_DAY];
   // Except for the type default, separate the boss ideas by type (excluding any disabled ones), then randomly choose of of each type. After this pre-selection, use sampleSize to randomly get the remaining boss ideas from the pool until reaching the total rounds needed.
-  const bossIdeasByType: Dictionary<BossIdeaCard[]> = {};
+  const bossIdeasByType: Dictionary<BossIdeaCardData[]> = {};
   Object.values(resourceData.allBossIdeas).forEach((idea) => {
     if (idea.type !== 'default' && !idea.disabled) {
       if (!bossIdeasByType[idea.type]) {
@@ -118,7 +118,7 @@ export const prepareSetupPhase = async (
     }
   });
 
-  const preSelection: BossIdeaCard[] = [];
+  const preSelection: BossIdeaCardData[] = [];
 
   Object.values(bossIdeasByType).forEach((ideas) => {
     const randomIdea = sample(ideas);
@@ -316,7 +316,7 @@ export const prepareGoodPlacementPhase = async (
     };
   }
 
-  const bossIdea: BossIdeaCard = state.bossIdea;
+  const bossIdea: BossIdeaCardData = state.bossIdea;
 
   // Update warehouse with available slots
   updateAvailableSlotsInWarehouse(warehouseGrid, bossIdea.id, status);

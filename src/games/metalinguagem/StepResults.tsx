@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { Badge, Flex, Tooltip } from 'antd';
 // Types
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
-import type { Item } from 'types/tdr';
+import type { ItemData } from 'types/tdr';
 // Icons
 import { SkullIcon } from '@icons/SkullIcon';
 import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
@@ -30,7 +30,7 @@ type StepResultsProps = {
   players: GamePlayers;
   creator: GamePlayer;
   turnOrder: UID[];
-  items: Item[];
+  items: ItemData[];
   wordLengths: WordLength[];
   newWord: string;
   guessPlayersPerItem: Record<string, UID[]>;

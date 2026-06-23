@@ -4,7 +4,7 @@ import { TDR_RESOURCES } from '../../utils/constants';
 import type { EsquiadoresOptions, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
-import type { DilemmaCard } from '../../types/tdr';
+import type { DilemmaCardData } from '../../types/tdr';
 
 /**
  * Get dilemmas resource based on the game's language
@@ -14,7 +14,7 @@ import type { DilemmaCard } from '../../types/tdr';
  */
 export const getDilemmas = async (language: string, options: EsquiadoresOptions): Promise<ResourceData> => {
   // Get full deck
-  const allDilemmas = await resourceUtils.fetchResource<Dictionary<DilemmaCard>>(
+  const allDilemmas = await resourceUtils.fetchResource<Dictionary<DilemmaCardData>>(
     TDR_RESOURCES.DILEMMAS,
     language,
   );

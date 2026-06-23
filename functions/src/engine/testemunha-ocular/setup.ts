@@ -1,5 +1,5 @@
 // Types
-import type { TestimonyQuestionCard } from '../../types/tdr';
+import type { TestimonyQuestionCardData } from '../../types/tdr';
 import { difference, keyBy, sampleSize } from 'lodash';
 import type {
   FirebaseStateData,
@@ -202,8 +202,10 @@ export const prepareQuestionSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const question = store.deck.find((card: TestimonyQuestionCard) => card.id === state.questionId);
-  const questions = (state.questions || []).filter((q: TestimonyQuestionCard) => q.id !== state.questionId);
+  const question = store.deck.find((card: TestimonyQuestionCardData) => card.id === state.questionId);
+  const questions = (state.questions || []).filter(
+    (q: TestimonyQuestionCardData) => q.id !== state.questionId,
+  );
 
   utils.players.readyPlayers(players, state.witnessId);
 

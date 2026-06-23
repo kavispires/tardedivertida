@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer, GameRanking } from 'types/game';
-import type { GroupQuestionCard } from 'types/tdr';
+import type { GroupQuestionCardData } from 'types/tdr';
 
 /**
  * A group question with customizable parts
@@ -140,7 +140,7 @@ export type GalleryEntry = {
   /**
    * The question that was asked
    */
-  question: GroupQuestionCard;
+  question: GroupQuestionCardData;
   /**
    * The most frequent answers and who gave them
    */
@@ -180,7 +180,7 @@ export type PhaseQuestionSelectionState = {
   /**
    * Array of questions to choose from
    */
-  currentQuestions: GroupQuestionCard[];
+  currentQuestions: GroupQuestionCardData[];
 };
 
 /**
@@ -207,7 +207,7 @@ export type PhaseEverybodyWritesState = {
   /**
    * The current question everyone is answering
    */
-  currentQuestion: GroupQuestionCard;
+  currentQuestion: GroupQuestionCardData;
 };
 
 /**
@@ -234,7 +234,7 @@ export type PhaseCompareState = {
   /**
    * The current question being answered
    */
-  currentQuestion: GroupQuestionCard;
+  currentQuestion: GroupQuestionCardData;
   /**
    * Grouped list of answers showing matches
    */

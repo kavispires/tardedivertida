@@ -3,7 +3,7 @@ import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './cons
 import { GAME_NAMES } from '../../utils/constants';
 import { sample, sampleSize } from 'lodash';
 // Types
-import type { TextCard } from '../../types/tdr';
+import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
@@ -144,8 +144,8 @@ export const prepareDreamsSelectionPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.addPropertiesToPlayers(players, { cards: {} });
 
-  const word = state.words.find((w: TextCard) => w.id === store.wordId);
-  const leftoverWord = state.words.find((w: TextCard) => w.id !== store.wordId);
+  const word = state.words.find((w: TextCardData) => w.id === store.wordId);
+  const leftoverWord = state.words.find((w: TextCardData) => w.id !== store.wordId);
   const wordsDeck = [leftoverWord, ...store.wordsDeck];
 
   // Save

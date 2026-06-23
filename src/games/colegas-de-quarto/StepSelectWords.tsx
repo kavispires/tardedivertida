@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import { Badge, Button } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { TextCard } from 'types/tdr';
+import type { TextCardData } from 'types/tdr';
 // Hooks
 import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 import { useMock } from '@hooks/useMock';
@@ -21,7 +21,7 @@ import type { SubmitWordsPayload } from './utils/types';
 
 type StepSelectWordsProps = {
   user: GamePlayer;
-  pool: TextCard[];
+  pool: TextCardData[];
   requiredWords: number;
   onSubmitWords: (payload: SubmitWordsPayload) => void;
 } & Pick<StepProps, 'announcement'>;
