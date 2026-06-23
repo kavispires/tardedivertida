@@ -14,7 +14,7 @@ import { PhaseNaming } from './PhaseNaming';
 import { PhasePresentation } from './PhasePresentation';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import 'assets/fonts/architects-daughter.scss';
+import '@assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {

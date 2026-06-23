@@ -14,7 +14,7 @@ import { PhaseGuessing } from './PhaseGuessing';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
-import 'assets/fonts/architects-daughter.scss';
+import '@assets/fonts/architects-daughter.scss';
 
 function getActiveComponent(state: GameState) {
   switch (state.phase) {

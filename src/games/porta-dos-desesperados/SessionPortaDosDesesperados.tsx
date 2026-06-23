@@ -13,7 +13,7 @@ import { PhaseDoorChoice } from './PhaseDoorChoice';
 import { PhaseResolution } from './PhaseResolution';
 import { PhaseGameOver } from './PhaseGameOver';
 // Sass
-import 'assets/fonts/dancing-script.scss';
+import '@assets/fonts/dancing-script.scss';
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {

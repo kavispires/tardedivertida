@@ -16,7 +16,7 @@ import { PhaseResult } from './PhaseResult';
 import { PhaseGameOver } from './PhaseGameOver';
 import { PhaseVerifyGuess } from './PhaseVerifyGuess';
 // Sass
-import 'assets/fonts/architects-daughter.scss';
+import '@assets/fonts/architects-daughter.scss';
 import './utils/styles.scss';
 
 function getActiveComponent(state: GameState) {
