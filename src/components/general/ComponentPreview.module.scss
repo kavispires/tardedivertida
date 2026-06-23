@@ -1,0 +1,32 @@
+@use "styles/sass" as *;
+
+.previewWrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  max-width: max-content;
+  border-radius: inherit; // Inherit border radius if the child has one
+}
+
+.previewMask {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.previewText {
+  font-size: 14px;
+}

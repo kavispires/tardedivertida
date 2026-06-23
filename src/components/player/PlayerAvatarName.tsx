@@ -6,6 +6,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { AVATARS } from 'utils/avatars';
+import { getAvatarColorById } from 'utils/helpers';
 // Internal
 import { PlayerAvatar } from './PlayerAvatar';
 // Sass
@@ -40,6 +41,10 @@ export type PlayerAvatarNameProps = {
    * Change the name direction to upright
    */
   upright?: boolean;
+  /**
+   * If true, the text color will be set to contrast with the background (white)
+   */
+  contrastText?: boolean;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
 /**
@@ -53,6 +58,8 @@ export const PlayerAvatarName = ({
   uppercase = false,
   addressUser = false,
   upright = false,
+  contrastText = false,
+  style,
   ...rest
 }: PlayerAvatarNameProps) => {
   const [userId] = useGlobalState('userId');
@@ -65,6 +72,10 @@ export const PlayerAvatarName = ({
     <span
       {...rest}
       className={clsx(styles.avatarName, uppercase && styles.uppercase, upright && styles.upright, className)}
+      style={{
+        ...style,
+        color: contrastText ? `contrast-color(${getAvatarColorById(player.avatarId)})` : style?.color,
+      }}
     >
       <PlayerAvatar
         avatarId={player.avatarId}
@@ -90,6 +101,7 @@ export const NPCPlayerAvatarName = ({
   botId,
   botName = 'Bot',
   upright = false,
+  contrastText = false,
   ...rest
 }: Omit<PlayerAvatarNameProps, 'player'> & { botId: string; botName?: string }) => {
   const { language } = useLanguage();
@@ -98,6 +110,10 @@ export const NPCPlayerAvatarName = ({
     <span
       {...rest}
       className={clsx(styles.avatarName, uppercase && styles.uppercase, upright && styles.upright, className)}
+      style={{
+        ...rest.style,
+        color: contrastText ? `contrast-color(${getAvatarColorById(botId)})` : rest.style?.color,
+      }}
     >
       <PlayerAvatar
         avatarId={botId}

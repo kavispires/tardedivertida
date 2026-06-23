@@ -20,8 +20,8 @@ type ModalOverlayProps = {
 };
 
 /**
-/**
  * Modal overlay component with transformation controls for scaling, rotating, and flipping content
+ * Used when the component is not being displayed by default on the page. If you need to mimic Ant Design's Image Preview behavior, wrap the content in a ComponentPreview instead, which uses this ModalOverlay internally.
  */
 export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, open }) => {
   const [scale, setScale] = useState(1);
