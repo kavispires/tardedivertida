@@ -1,5 +1,5 @@
 // Internal
-import * as icons from './collection';
+import * as icons from './iconsCollection';
 
 export const collectionByCategory: Record<string, string[]> = {
   interface: [
@@ -38,6 +38,7 @@ export const collectionByCategory: Record<string, string[]> = {
     'SkipIcon',
     'VictoryCoinIcon',
     'SwapIcon',
+    'TrashIcon',
   ],
   gameTags: [
     'CompetitiveGameIcon',

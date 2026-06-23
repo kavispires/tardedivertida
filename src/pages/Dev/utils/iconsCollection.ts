@@ -3,12 +3,12 @@
  *
  * This barrel export creates large bundle sizes. Import icons directly instead:
  *
- * ❌ BAD:  import { MyIcon } from 'pages/Dev/utils/collection';
+ * ❌ BAD:  import { MyIcon } from 'pages/Dev/utils/iconsCollection';
  * ✅ GOOD: import { MyIcon } from 'icons/MyIcon';
  *
  * Only use this file in:
  * - src/pages/Dev/
- * - src/pages/Dev/utils/collectionByGame.tsx
+ * - src/pages/Dev/utils/iconsCollectionByGame.tsx
  */
 export * from 'icons/ActionAlertIcon';
 export * from 'icons/AgeAdultIcon';
@@ -311,6 +311,7 @@ export * from 'icons/TogetherGameIcon';
 export * from 'icons/TomatoIcon';
 export * from 'icons/TournamentIcon';
 export * from 'icons/TraitorIcon';
+export * from 'icons/TrashIcon';
 export * from 'icons/TreeIcon';
 export * from 'icons/TreeOneIcon';
 export * from 'icons/TreeThreeIcon';

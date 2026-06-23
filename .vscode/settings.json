@@ -44,11 +44,11 @@
     "vixi"
   ],
   "typescript.preferences.autoImportFileExcludePatterns": [
-    "**/pages/Dev/utils/collection*",
-    "**/icons/collection*"
+    "**/pages/Dev/utils/iconsCollection*",
+    "**/icons/iconsCollection*"
   ],
   "javascript.preferences.autoImportFileExcludePatterns": [
-    "**/pages/Dev/utils/collection*",
-    "**/icons/collection*"
+    "**/pages/Dev/utils/iconsCollection*",
+    "**/icons/iconsCollection*"
   ]
 }

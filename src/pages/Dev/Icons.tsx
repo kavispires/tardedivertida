@@ -7,8 +7,8 @@ import { Layout, App, Switch, Divider, Input, Space } from 'antd';
 import { TransparentButton } from 'components/buttons/TransparentButton';
 import { PageLayout } from 'components/layout/PageLayout';
 // Internal
-import * as icons from './utils/collection';
-import { collectionByCategory, collectionByGame, collectionUnassigned } from './utils/collectionByGame';
+import * as icons from './utils/iconsCollection';
+import { collectionByCategory, collectionByGame, collectionUnassigned } from './utils/iconsCollectionByGame';
 import { DevHeader } from './DevHeader';
 
 type IconEntry = [string, (props: React.SVGProps<SVGSVGElement>) => ReactElement];
