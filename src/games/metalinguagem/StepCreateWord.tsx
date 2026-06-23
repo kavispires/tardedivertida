@@ -10,8 +10,8 @@ import { useMock } from '@hooks/useMock';
 import { useStep } from '@hooks/useStep';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { Card } from '@components/cards/Card';
 import { ItemCard } from '@components/cards/ItemCard';
+import { TextCard } from '@components/cards/TextCard';
 import { DevButton } from '@components/debug/DevButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -237,14 +237,14 @@ export function StepCreateWord({
           )}
 
           <SpaceContainer orientation="vertical">
-            <Card
+            <TextCard
               header={translate({
                 en: `Your new word (${newWord.length} letters)`,
                 pt: `Sua nova palavra (${newWord.length} letras)`,
               })}
             >
               {newWord}
-            </Card>
+            </TextCard>
           </SpaceContainer>
 
           <WordLengths

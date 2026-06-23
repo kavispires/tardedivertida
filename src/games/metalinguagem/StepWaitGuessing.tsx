@@ -2,7 +2,7 @@
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { ItemData } from 'types/tdr';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
@@ -48,12 +48,7 @@ export function StepWaitGuessing({
       </StepTitle>
 
       <SpaceContainer>
-        <Card
-          size="large"
-          hideHeader
-        >
-          {newWord}
-        </Card>
+        <TextCard size="large">{newWord}</TextCard>
       </SpaceContainer>
 
       <ItemsGrid

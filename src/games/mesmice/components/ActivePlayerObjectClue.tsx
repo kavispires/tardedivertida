@@ -3,7 +3,7 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
@@ -31,7 +31,7 @@ export function ActivePlayerObjectClue({ activePlayer, item, clue }: ActivePlaye
             size="small"
           />
         </div>
-        <Card hideHeader>{clue}</Card>
+        <TextCard>{clue}</TextCard>
       </div>
     </div>
   );

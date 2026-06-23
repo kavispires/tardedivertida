@@ -7,8 +7,8 @@ import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
 import { SpeakButton } from '@components/audio/SpeakButton';
-import { Card } from '@components/cards/Card';
 import { ItemCard } from '@components/cards/ItemCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { Instruction } from '@components/text/Instruction';
@@ -50,7 +50,7 @@ export function Portmanteau({ word, itemsIds, names, correct }: PortmanteauProps
           icon={<BoxEqualIcon />}
           size="small"
         />
-        <Card hideHeader>{word}</Card>
+        <TextCard>{word}</TextCard>
         {correct && (
           <Icon
             icon={<BoxCheckMarkIcon />}

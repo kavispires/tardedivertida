@@ -14,7 +14,7 @@ import { getColorFromIndex } from '@utils/helpers';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -140,12 +140,12 @@ export function StepBuildMetrics({
                   onClick={() => setSelectedCardId(card.id)}
                   active={selectedCardId === card.id}
                 >
-                  <Card
+                  <TextCard
                     header={LETTERS[index]}
                     color={getColorFromIndex(index + 2)}
                   >
                     {card.text}
-                  </Card>
+                  </TextCard>
                 </TransparentButton>
               );
             })}
@@ -194,12 +194,12 @@ export function StepBuildMetrics({
               }
             />
           </RuleInstruction>
-          <Card
+          <TextCard
             header={translate({ en: 'Keyword', pt: 'Palavra-chave' })}
             color={getColorFromIndex(selectedCardIndex + 2)}
           >
             {selectedCard.text}
-          </Card>
+          </TextCard>
           <SpaceContainer wrap>
             {availablePoolCardsIds.map((cardId) => {
               const card = wordsDict[cardId];
@@ -209,7 +209,7 @@ export function StepBuildMetrics({
                   onClick={() => onSelectWord(card.id)}
                   active={selectedWords.includes(card.id)}
                 >
-                  <Card hideHeader>{card.text}</Card>
+                  <TextCard>{card.text}</TextCard>
                 </TransparentButton>
               );
             })}
@@ -268,12 +268,12 @@ export function StepBuildMetrics({
             />
           </RuleInstruction>
 
-          <Card
+          <TextCard
             header={translate({ en: 'Keyword', pt: 'Palavra-chave' })}
             color={getColorFromIndex(selectedCardIndex + 3)}
           >
             {selectedCard.text}
-          </Card>
+          </TextCard>
 
           <EditableMetricsBoard
             metricsDescriptors={metricsDescriptors}
@@ -302,13 +302,12 @@ export function StepBuildMetrics({
               {poolIds.map((cardId) => {
                 const card = wordsDict[cardId];
                 return (
-                  <Card
+                  <TextCard
                     key={card.id}
-                    hideHeader
                     size="small"
                   >
                     {card.text}
-                  </Card>
+                  </TextCard>
                 );
               })}
             </Flex>

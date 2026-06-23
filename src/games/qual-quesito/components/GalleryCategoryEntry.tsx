@@ -4,7 +4,7 @@ import { Flex } from 'antd';
 import type { GamePlayers } from 'types/game';
 import type { ItemData } from 'types/tdr';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
@@ -25,13 +25,13 @@ export function GalleryCategoryEntry({ entry, cardsDict, players }: GalleryCateg
       className="contained"
     >
       <Flex justify="center">
-        <Card hideHeader>
+        <TextCard>
           <PlayerAvatar
             avatarId={players[entry.creatorId].avatarId}
             size="small"
           />{' '}
           {entry.category}
-        </Card>
+        </TextCard>
       </Flex>
       <Flex
         justify="center"

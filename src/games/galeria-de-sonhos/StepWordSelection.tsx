@@ -4,7 +4,7 @@ import type { TextCardData } from 'types/tdr';
 import { LETTERS } from '@utils/constants';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step } from '@components/steps/Step';
@@ -53,12 +53,12 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
               key={word.id}
               onClick={() => onSubmitWord({ wordId: word.id })}
             >
-              <Card
+              <TextCard
                 header={LETTERS[index]}
                 color="purple"
               >
                 {word.text}
-              </Card>
+              </TextCard>
             </TransparentButton>
           );
         })}

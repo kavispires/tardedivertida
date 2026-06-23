@@ -10,8 +10,8 @@ import { useLanguage } from '@hooks/useLanguage';
 // Utils
 import { getAnimationClass } from '@utils/helpers';
 // Components
-import { Card } from '@components/cards/Card';
 import { GroupQuestionCard } from '@components/cards/GroupQuestionCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -49,14 +49,14 @@ export function AnswerGroup({
           en="Compare Answers"
         />
       </Title>
-      <Card
+      <TextCard
         header={translate({ pt: 'Pergunta', en: 'Question' })}
         color={['yellow', 'orange', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
         className="m-question-card"
         footer={Array(remainingGroupsCount).fill('•').join('')}
       >
         <GroupQuestionCard question={currentQuestion} />
-      </Card>
+      </TextCard>
 
       <RuleInstruction type="rule">
         <Translate

@@ -6,8 +6,8 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -46,7 +46,7 @@ export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps)
           />
         </RuleInstruction>
 
-        <Card
+        <TextCard
           header={translate({ pt: 'Dica', en: 'Clue' })}
           color="red"
         >
@@ -55,7 +55,7 @@ export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps)
             className="grayscale"
             size={200}
           />
-        </Card>
+        </TextCard>
 
         <SpaceContainer
           className="k-palette"

@@ -7,8 +7,8 @@ import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
+import { TextCard } from '@components/cards/TextCard';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Achievements } from '@components/general/Achievements';
 import { Translate } from '@components/language/Translate';
@@ -75,7 +75,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
               align="center"
               className="final-gallery"
             >
-              <Card
+              <TextCard
                 header={
                   <>
                     <Translate
@@ -89,7 +89,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                 className="final-gallery__card"
               >
                 {battle.challenge.text}
-              </Card>
+              </TextCard>
               {battle.contenders.map((contender, index) =>
                 contender.playerId === 'CPU' ? (
                   <CharacterCard

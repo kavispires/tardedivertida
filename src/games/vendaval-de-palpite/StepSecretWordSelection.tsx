@@ -8,7 +8,7 @@ import type { TextCardData } from 'types/tdr';
 import { useLoading } from '@hooks/useLoading';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step } from '@components/steps/Step';
@@ -80,7 +80,16 @@ export function StepSecretWordSelection({
               onClick={() => setSecretWord(word.text)}
               active={secretWord === word.text}
             >
-              <Card>{word.text}</Card>
+              <TextCard
+                header={
+                  <Translate
+                    pt="Carta"
+                    en="Card"
+                  />
+                }
+              >
+                {word.text}
+              </TextCard>
             </TransparentButton>
           );
         })}

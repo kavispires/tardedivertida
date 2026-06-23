@@ -10,8 +10,8 @@ import { useMock } from '@hooks/useMock';
 import { LETTERS } from '@utils/constants';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -134,13 +134,13 @@ export function StepSelectChallenge({
               onClick={() => onSubmitChallenge({ challengeId: challenge.id })}
               style={{ height: '100%' }}
             >
-              <Card
+              <TextCard
                 header={LETTERS[index]}
                 randomColor
                 style={{ height: '100%' }}
               >
                 {challenge.text}
-              </Card>
+              </TextCard>
             </TransparentButton>
           );
         })}

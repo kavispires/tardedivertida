@@ -9,8 +9,8 @@ import { SkullIcon } from '@icons/SkullIcon';
 import { SpeechBubbleThumbsDownIcon } from '@icons/SpeechBubbleThumbsDownIcon';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
-import { Card } from '@components/cards/Card';
 import { ItemCard } from '@components/cards/ItemCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
@@ -127,13 +127,10 @@ export function StepResults({
           <ItemCard itemId={beginsWith} />
           <TextHighlight className="center">{names[0]}</TextHighlight>
         </Flex>
-        <Card
-          size="large"
-          hideHeader
-        >
+        <TextCard size="large">
           <span className="created-word-begin">{newWord.slice(0, namesIndexes[0] + 1)}</span>
           <span className="created-word-end">{newWord.slice(namesIndexes[0] + 1)}</span>
-        </Card>
+        </TextCard>
         <Flex
           vertical
           align="center"

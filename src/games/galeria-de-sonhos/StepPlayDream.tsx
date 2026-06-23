@@ -11,7 +11,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { getAnimationClass } from '@utils/helpers';
 // Components
 import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -94,12 +94,12 @@ export function StepPlayDream({
           en="Dream Bingo"
         />
       </StepTitle>
-      <Card
+      <TextCard
         header={translate({ pt: 'Tema', en: 'Theme' })}
         color="purple"
       >
         {word.text}
-      </Card>
+      </TextCard>
 
       <PlayersDreamsCount
         players={players}

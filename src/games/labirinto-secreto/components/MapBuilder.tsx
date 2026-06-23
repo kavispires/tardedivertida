@@ -14,7 +14,7 @@ import { NoIcon } from '@icons/NoIcon';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -244,7 +244,7 @@ export function MapBuilder({ user, forest, onSubmitMap }: MapBuilderProps) {
               disabled={usedCards.includes(card.id) || currentIndex >= map.length}
               className="map-builder__card-button"
             >
-              <Card hideHeader>{card.text}</Card>
+              <TextCard>{card.text}</TextCard>
             </TransparentButton>
           ))}
         </Flex>

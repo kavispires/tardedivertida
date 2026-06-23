@@ -4,7 +4,7 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Instruction } from '@components/text/Instruction';
@@ -55,13 +55,13 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
           />
         </Instruction>
 
-        <Card
+        <TextCard
           header={translate({ pt: 'Tarefa', en: 'Homework' })}
           color="purple"
         >
           {/* TODO: Verify */}
           {String(seed.card)}
-        </Card>
+        </TextCard>
 
         <Input
           onChange={(e) => setValue(e.target.value)}

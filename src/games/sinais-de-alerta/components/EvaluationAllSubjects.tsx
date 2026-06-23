@@ -4,7 +4,7 @@ import type { TextCardData } from 'types/tdr';
 import { CheckMarkIcon } from '@icons/CheckMarkIcon';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 
@@ -41,7 +41,7 @@ export function EvaluationAllSubjects({
               className="sda-word-button__matched"
             />
           )}
-          <Card hideHeader>{cards[subjectId].text}</Card>
+          <TextCard>{cards[subjectId].text}</TextCard>
         </TransparentButton>
       ))}
     </SpaceContainer>

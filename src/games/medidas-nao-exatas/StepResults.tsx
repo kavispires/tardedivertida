@@ -7,7 +7,7 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useCountdown } from '@hooks/useCountdown';
 // Components
 import { TimedButton } from '@components/buttons/TimedButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -83,12 +83,7 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card
-          hideHeader
-          size="large"
-        >
-          {result.cards[result.secretWordId].text}
-        </Card>
+        <TextCard size="large">{result.cards[result.secretWordId].text}</TextCard>
       </SpaceContainer>
 
       <div className="m-guessing-board">

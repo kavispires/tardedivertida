@@ -4,10 +4,10 @@ import type { ContenderCardData, SuspectCardData as SuspectCardType } from 'type
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
 import { ItemCard } from '@components/cards/ItemCard';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { TextCard } from '@components/cards/TextCard';
 import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import { SIDES } from '../utils/constants';
@@ -101,7 +101,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         key={`cd-board-entry-${wordData.id}`}
         className={clsx('cd-board-entry', `cd-board-entry--${entry.affiliation[sideIndex]}`)}
       >
-        <Card hideHeader>{translate(wordData.text)}</Card>
+        <TextCard>{translate(wordData.text)}</TextCard>
       </div>
     );
   }

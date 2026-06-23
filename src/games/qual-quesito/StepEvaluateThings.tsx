@@ -9,7 +9,7 @@ import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { TripleStateButton } from '@components/buttons/TripleStateButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -84,7 +84,7 @@ export function StepEvaluateThings({
       </StepTitle>
 
       <SpaceContainer>
-        <Card hideHeader>{category}</Card>
+        <TextCard>{category}</TextCard>
       </SpaceContainer>
 
       <RuleInstruction type="action">

@@ -8,7 +8,7 @@ import { shuffle } from '@utils/helpers';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step } from '@components/steps/Step';
@@ -55,7 +55,16 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
               onClick={() => onSubmitPrompt({ promptId: prompt.id })}
               disabled={isLoading}
             >
-              <Card>{prompt.text}</Card>
+              <TextCard
+                header={
+                  <Translate
+                    pt="Carta"
+                    en="Card"
+                  />
+                }
+              >
+                {prompt.text}
+              </TextCard>
             </TransparentButton>
           );
         })}

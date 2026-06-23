@@ -4,10 +4,10 @@ import type { ContenderCardData, SuspectCardData as SuspectCardType, TextCardDat
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { Card } from '@components/cards/Card';
 import { CharacterCard } from '@components/cards/CharacterCard';
 import { ItemCard } from '@components/cards/ItemCard';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { TextCard } from '@components/cards/TextCard';
 import { ImageCard } from '@components/image-cards/ImageCard';
 // Internal
 import type { DeckEntry } from '../utils/types';
@@ -102,7 +102,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
         key={`cd-history-entry-${deliverable.data.id}`}
         className={clsx('cd-history-entry', `cd-history-entry--${deliverable.affiliation[sideIndex]}`)}
       >
-        <Card hideHeader>{(deliverable.data as unknown as TextCardData).text}</Card>
+        <TextCard>{(deliverable.data as unknown as TextCardData).text}</TextCard>
       </div>
     );
   }

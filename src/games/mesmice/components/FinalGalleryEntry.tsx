@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/game';
 import { BoxEqualIcon } from '@icons/BoxEqualIcon';
 import { BoxPlusIcon } from '@icons/BoxPlusIcon';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 // Internal
@@ -35,7 +35,7 @@ export function FinalGalleryEntry({ entry, features, players }: FinalGalleryEntr
           />
         </div>
         <div>
-          <Card hideHeader>{entry.clue}</Card>
+          <TextCard>{entry.clue}</TextCard>
         </div>
         <div>
           <Icon

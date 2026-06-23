@@ -12,7 +12,7 @@ import { getColorFromIndex } from '@utils/helpers';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -91,12 +91,12 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
                 })
               }
             >
-              <Card
+              <TextCard
                 header={LETTERS[index]}
                 color={getColorFromIndex(index)}
               >
                 {card.text}
-              </Card>
+              </TextCard>
             </TransparentButton>
           ))}
         </SpaceContainer>
@@ -131,12 +131,12 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card
+        <TextCard
           header="A"
           color={getColorFromIndex(0)}
         >
           {track.data.cards[1].text}
-        </Card>
+        </TextCard>
       </SpaceContainer>
 
       <div className="a-drawings">

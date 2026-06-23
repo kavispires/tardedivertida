@@ -6,7 +6,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -59,7 +59,16 @@ export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps)
       </RuleInstruction>
 
       <SpaceContainer>
-        <Card>{track.data.question}</Card>
+        <TextCard
+          header={
+            <Translate
+              pt="Carta"
+              en="Card"
+            />
+          }
+        >
+          {track.data.question}
+        </TextCard>
       </SpaceContainer>
 
       <RuleInstruction type="action">

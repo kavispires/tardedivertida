@@ -10,7 +10,7 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -104,9 +104,8 @@ export function StepSelectThings({
       </StepTitle>
 
       <SpaceContainer>
-        <Card
+        <TextCard
           size="large"
-          hideHeader
           footer={
             <Translate
               pt={<>Categoria criada por {creator.name}</>}
@@ -115,7 +114,7 @@ export function StepSelectThings({
           }
         >
           {category}
-        </Card>
+        </TextCard>
       </SpaceContainer>
 
       <RuleInstruction type="action">

@@ -4,8 +4,8 @@ import { Button } from 'antd';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { Card } from '@components/cards/Card';
 import { GroupQuestionCard } from '@components/cards/GroupQuestionCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -44,7 +44,7 @@ export const TrackMenteColetiva = ({ track, onSubmitAnswer }: TrackProps) => {
         </RuleInstruction>
 
         <SpaceContainer>
-          <Card
+          <TextCard
             className="m-question-wrapper"
             color="yellow"
           >
@@ -52,7 +52,7 @@ export const TrackMenteColetiva = ({ track, onSubmitAnswer }: TrackProps) => {
               question={track.data.question}
               overrideNumber={2}
             />
-          </Card>
+          </TextCard>
         </SpaceContainer>
 
         <SpaceContainer wrap>

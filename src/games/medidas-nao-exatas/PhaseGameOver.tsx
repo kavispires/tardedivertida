@@ -5,7 +5,7 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Achievements } from '@components/general/Achievements';
 import { Translate } from '@components/language/Translate';
@@ -45,7 +45,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             align="center"
             justify="center"
           >
-            <Card hideHeader>{entry.cards[entry.secretWordId]?.text || '???'}</Card>
+            <TextCard>{entry.cards[entry.secretWordId]?.text || '???'}</TextCard>
             <MetricsBoard
               metricsDescriptors={entry.metricsDescriptors}
               evaluations={entry.metrics}

@@ -20,8 +20,8 @@ import { getAnimation } from '@utils/animations';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
-import { Card } from '@components/cards/Card';
 import { SuspectCard } from '@components/cards/SuspectCard';
+import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
@@ -115,13 +115,14 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
               current={questionIndex}
               total={totalQuestions}
             />
-            <Card
-              hideHeader={!question.nsfw}
-              header={translate({ pt: 'Conteúdo Sensível', en: 'Sensitive Content' })}
+            <TextCard
+              header={
+                question.nsfw ? translate({ pt: 'Conteúdo Sensível', en: 'Sensitive Content' }) : undefined
+              }
               color="#ff69b4"
             >
               {question.question}
-            </Card>
+            </TextCard>
             <Flex
               gap={8}
               wrap="wrap"

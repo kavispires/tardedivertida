@@ -10,7 +10,7 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
@@ -157,12 +157,7 @@ export function StepGuess({
               disabled={isLoading || user.ready || isThePresenter || guesses.length === 2}
               active={guesses.some((g) => g.cardId === cardId)}
             >
-              <Card
-                key={cardId}
-                hideHeader
-              >
-                {wordsDict[cardId].text}
-              </Card>
+              <TextCard key={cardId}>{wordsDict[cardId].text}</TextCard>
             </TransparentButton>
           );
         })}

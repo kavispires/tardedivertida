@@ -6,7 +6,7 @@ import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -71,12 +71,7 @@ export function StepGuessItems({
       </StepTitle>
 
       <SpaceContainer>
-        <Card
-          size="large"
-          hideHeader
-        >
-          {newWord}
-        </Card>
+        <TextCard size="large">{newWord}</TextCard>
       </SpaceContainer>
 
       <RuleInstruction type="rule">

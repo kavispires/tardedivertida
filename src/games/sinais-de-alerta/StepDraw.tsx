@@ -12,7 +12,7 @@ import { PanicIcon } from '@icons/PanicIcon';
 // Components
 import { SinaisDeAlertaTimerSound } from '@components/audio/SinaisDeAlertaSound';
 import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { DevButton } from '@components/debug/DevButton';
 import { Step, type StepProps } from '@components/steps/Step';
 // Internal
@@ -75,7 +75,7 @@ export function StepDraw({
 
   return (
     <Step announcement={announcement}>
-      <Card
+      <TextCard
         size="large"
         header={translate({ pt: 'Desenhe', en: 'Draw' })}
         className="sda-card"
@@ -87,7 +87,7 @@ export function StepDraw({
             <span className="sda-card__timer">{seconds > 1 ? seconds - 2 : 0}</span>
           </>
         )}
-      </Card>
+      </TextCard>
       {isRunning && <SinaisDeAlertaTimerSound />}
 
       <DevButton onClick={onMockDrawing}>Mock Drawing</DevButton>

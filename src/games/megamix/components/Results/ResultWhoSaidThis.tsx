@@ -1,5 +1,5 @@
 // Components
-import { Card } from '@components/cards/Card';
+import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { Instruction } from '@components/text/Instruction';
@@ -36,12 +36,7 @@ export function ResultWhoSaidThis({ track, winningValues, players }: ResultCompo
         ))}
       </div>
       <div className="track-result-values__cards">
-        <Card
-          size="small"
-          hideHeader
-        >
-          "{track.data.card.text}"
-        </Card>
+        <TextCard size="small">"{track.data.card.text}"</TextCard>
       </div>
     </>
   );
