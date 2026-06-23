@@ -36,6 +36,14 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
     updateLocalStorage(state);
   }, [state]);
 
+  const hasFoundAllLetters = useMemo(() => {
+    const guessedLetters = new Set(state.guesses.join('').toUpperCase().split(''));
+    const targetLocation = stringRemoveAccents(data.location).toUpperCase();
+    const uniqueLetters = new Set(targetLocation.split('').filter((char) => /[A-Z0-9]/.test(char)));
+
+    return Array.from(uniqueLetters).every((letter) => guessedLetters.has(letter));
+  }, [state.guesses, data.location]);
+
   const locationFragments = useMemo(
     () => getCommonalityFragments(data.location, state.guesses),
     [state.guesses, data.location],
@@ -44,8 +52,9 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
   // ACTIONS
   const submitLocation = (location: string): boolean => {
     // Verify if it's using all words in the locationFragments, if not alert
-    const fragmentLettersSet = new Set(locationFragments.join('').replace(/_/g, '').split(''));
-    const locationLettersSet = new Set(location.toUpperCase().split(''));
+    const fragmentLetters = locationFragments.join('').replace(/_/g, '');
+    const fragmentLettersSet = new Set(stringRemoveAccents(fragmentLetters).split(''));
+    const locationLettersSet = new Set(stringRemoveAccents(location.toUpperCase()).split(''));
     for (const letter of fragmentLettersSet) {
       if (!locationLettersSet.has(letter)) {
         playSFX('wrong');
@@ -146,6 +155,7 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
     isComplete,
     submitLocation,
     keyboardMapping,
+    hasFoundAllLetters,
   };
 }
 
@@ -153,20 +163,20 @@ function getCommonalityFragments(location: string, guesses: string[]): string[] 
   // Combine all guesses into a single set.
   // If they guess a multi-word location, the space (' ') gets added to this Set naturally!
   const guessedLetters = new Set(guesses.join('').toUpperCase().split(''));
-  const targetLocation = stringRemoveAccents(location).toUpperCase();
+  const targetLocation = location.toUpperCase(); // Keep accents
+  const normalizedTarget = stringRemoveAccents(targetLocation); // For comparison
 
   const fragments: string[] = [];
   let inGap = false;
 
   for (let i = 0; i < targetLocation.length; i++) {
-    const char = targetLocation[i];
+    const char = targetLocation[i]; // Original with accent
+    const normalizedChar = normalizedTarget[i]; // Without accent for comparison
 
-    if (guessedLetters.has(char)) {
-      // The player has guessed this character (whether it's a letter OR a space)
-      fragments.push(char);
+    if (guessedLetters.has(char) || guessedLetters.has(normalizedChar)) {
+      fragments.push(char); // Show original character with accent
       inGap = false;
     } else {
-      // The player hasn't guessed this character yet
       if (!inGap) {
         fragments.push('_');
         inGap = true;
