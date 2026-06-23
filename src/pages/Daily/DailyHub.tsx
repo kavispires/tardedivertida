@@ -404,10 +404,7 @@ function GameButton({
           onClick={handleClick}
         >
           <div className="hub-link">
-            <Icon
-              icon={<IconComponent />}
-              style={{ width: width / 2 }}
-            />
+            <IconComponent style={{ width: width / 2 }} />
             <DualTranslate>{name}</DualTranslate>
           </div>
         </motion.button>
