@@ -17,8 +17,8 @@ import { ImageCard } from '@components/image-cards/ImageCard';
 import { ImageCardHand } from '@components/image-cards/ImageCardHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
@@ -157,7 +157,7 @@ export function StepSelectPages({
         </SendButton>
       )}
 
-      <Instruction contained>
+      <Surface contained>
         <Title size="xx-small">
           <Translate
             pt="Páginas selecionadas"
@@ -215,7 +215,7 @@ export function StepSelectPages({
             },
           }}
         />
-      </Instruction>
+      </Surface>
 
       <FloatingHand
         title={

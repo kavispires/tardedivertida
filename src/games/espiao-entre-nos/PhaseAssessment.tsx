@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { AlertIcon } from '@icons/AlertIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
@@ -50,7 +50,7 @@ export function PhaseAssessment({ state, players, user }: PhaseProps) {
           duration={5}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -67,7 +67,7 @@ export function PhaseAssessment({ state, players, user }: PhaseProps) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

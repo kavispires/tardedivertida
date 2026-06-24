@@ -5,7 +5,7 @@ import { CanvasResizer } from '@components/canvas/CanvasResizer';
 import { ImageCardBack } from '@components/image-cards/ImageCardBack';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -29,12 +29,12 @@ export function ResizingTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="O botão no canto superior esquerdo é o botão de redimensionar. Clique nele e tente redimensionar a imagem."
           en="The button in the top left corner is the resize button. Click it and try to resize the image."
         />
-      </Instruction>
+      </Surface>
 
       <CanvasResizer />
       <SpaceContainer

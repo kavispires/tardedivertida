@@ -9,10 +9,10 @@ import { DJIcon } from '@icons/DJIcon';
 // Components
 import { DJPruPruPruSound } from '@components/audio/DJPruPruPruSound';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitTrackAnswerAPIRequest } from './utils/api-requests';
 import { useColorizeBackground } from './utils/useColorizeBackground';
@@ -49,9 +49,9 @@ export function PhaseTrack({ state, players, user }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <TrackInstructions track={state.track} />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

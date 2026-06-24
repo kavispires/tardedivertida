@@ -6,9 +6,9 @@ import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Components
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PopoverRule } from '@components/rules/PopoverRule';
-import { Instruction } from '@components/text/Instruction';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
@@ -44,7 +44,7 @@ export function StepRanking({ players, ranking, isGameOver, round, onGoBack, thr
       <PopoverRule content={<ScoringRules />} />
 
       {threshold > 0 && (
-        <Instruction contained>
+        <Surface contained>
           <Translate
             pt={
               <>
@@ -59,7 +59,7 @@ export function StepRanking({ players, ranking, isGameOver, round, onGoBack, thr
               </>
             }
           />
-        </Instruction>
+        </Surface>
       )}
 
       {!isGameOver && <RoundsLeftInstruction round={round} />}

@@ -14,12 +14,12 @@ import { getMeanDuration } from '@utils/helpers';
 import { TimedButton } from '@components/buttons/TimedButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { StarPoints } from '@components/points/StarPoints';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { CurrentCategory } from './utils/types';
@@ -103,7 +103,7 @@ export function StepReveal({
         animate
       />
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={
             <>
@@ -118,7 +118,7 @@ export function StepReveal({
             </>
           }
         />
-      </Instruction>
+      </Surface>
       <ul className="o-player-guesses">
         {regularPlayers.map((player) => {
           return (

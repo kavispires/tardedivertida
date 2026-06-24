@@ -8,10 +8,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { WritingIcon } from '@icons/WritingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
@@ -40,19 +40,19 @@ export function PhaseSuggest({ state, players, user }: PhaseProps<PhaseSuggestSt
       type="overlay"
     >
       {isUserTheGuesser ? (
-        <Instruction>
+        <Surface>
           <Translate
             pt="Já que você é o adivinhador, relaxe e aguarde..."
             en="Since you're the guesser, just relax and wait..."
           />
-        </Instruction>
+        </Surface>
       ) : (
-        <Instruction>
+        <Surface>
           <Translate
             pt="Hora de escrever uma dica para a palavra secreta!"
             en="Time to write a clue for the secret word!"
           />
-        </Instruction>
+        </Surface>
       )}
     </PhaseAnnouncement>
   );

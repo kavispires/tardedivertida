@@ -12,7 +12,7 @@ import { PHASES } from '@utils/phases';
 import { AnimatedGearIcon } from '@icons/AnimatedGearIcon';
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
@@ -85,7 +85,7 @@ export function PhaseSetup({ state }: PhaseProps) {
 
         <AnimatedGearIcon className={styles.phaseAnnouncementIcon} />
 
-        <Instruction style={{ color: 'white' }}>{translate(SETUP_PHRASES[currentPhraseIndex])}</Instruction>
+        <Surface style={{ color: 'white' }}>{translate(SETUP_PHRASES[currentPhraseIndex])}</Surface>
       </div>
       <VideoBackground />
 

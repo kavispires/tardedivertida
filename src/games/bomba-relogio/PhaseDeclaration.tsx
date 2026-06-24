@@ -8,11 +8,11 @@ import { WalkieTalkieIcon } from '@icons/WalkieTalkieIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseDeclarationState } from './utils/types';
 import { BOMBA_RELOGIO_PHASES } from './utils/constants';
@@ -39,13 +39,13 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Icon icon={<WalkieTalkieIcon />} />
         <Translate
           pt={<>"Todos em seus postos! O que você tem ai?"</>}
           en={<>"Everyone to your posts! What do you have there?"</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -66,7 +66,7 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
           time={state?.round?.current === 1 ? 10 : 5}
           unskippable
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt={
                 <>
@@ -81,7 +81,7 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 0 */}

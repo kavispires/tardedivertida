@@ -26,7 +26,7 @@ import { Icon } from '@components/general/Icon';
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Pages
 import { DailyContent } from '@pages/Daily/components/DailyContent';
 import { GameHeader } from '@pages/Daily/components/Header';
@@ -91,7 +91,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             rules={<Rules date={data.id} />}
           />
           {alreadyPlayed && (
-            <Instruction className="info-screen">
+            <Surface className="info-screen">
               <Icon icon={<ThumbsUpIcon />} />
               <Translate
                 pt="Você já jogou hoje!"
@@ -103,7 +103,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
               />
               <Divider />
               <NextGameSuggestion />
-            </Instruction>
+            </Surface>
           )}
         </div>
         {isPlaying && question && (
@@ -217,12 +217,12 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
             {(questionIndex > 4 || questionIndex === totalQuestions - 1) && (
               <>
                 {questionIndex !== totalQuestions - 1 && (
-                  <Instruction contained>
+                  <Surface contained>
                     <Translate
                       pt="Você já respondeu ao mínimo de perguntas suficientes, se quiser parar, aperte salvar."
                       en="You've already answered the minimum amount of questions, if you want to stop, press save."
                     />
-                  </Instruction>
+                  </Surface>
                 )}
 
                 <Button
@@ -250,17 +250,17 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
           </SpaceContainer>
         )}
         {isSaving && (
-          <Instruction className="info-screen">
+          <Surface className="info-screen">
             <Icon icon={<AnimatedProcessingIcon />} />
             <Translate
               pt="Salvando"
               en="Saving"
             />
-          </Instruction>
+          </Surface>
         )}
         {isIdle && !alreadyPlayed && (
           <Region>
-            <Instruction contained>
+            <Surface contained>
               <Translate
                 pt={
                   <>
@@ -281,7 +281,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   </>
                 }
               />
-            </Instruction>
+            </Surface>
 
             <Switch
               checkedChildren="Incluir conteúdo sensível"

@@ -7,10 +7,10 @@ import { MovieGenreIcon } from '@icons/MovieGenreIcon';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { Icons } from './utils/helpers';
 import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
@@ -40,12 +40,12 @@ export function PhaseResult({ state, players }: PhaseProps) {
       type="overlay"
       duration={4}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>E o papel foi escolhido?</>}
           en={<>So was the role cast?</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

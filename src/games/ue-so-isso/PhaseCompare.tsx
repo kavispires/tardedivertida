@@ -8,11 +8,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { VerifyListIcon } from '@icons/VerifyListIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { WaitingRoom } from '@components/players/WaitingRoom';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
@@ -45,12 +45,12 @@ export function PhaseCompare({ state, players }: PhaseProps<PhaseCompareState>) 
     >
       <ComparisonRules />
       {isUserTheGuesser && (
-        <Instruction contained>
+        <Surface contained>
           <Translate
             pt="Já que você é o adivinhador, relaxe e aguarde... novamente"
             en="Since you're the guesser, just relax and wait... again"
           />
-        </Instruction>
+        </Surface>
       )}
     </PhaseAnnouncement>
   );

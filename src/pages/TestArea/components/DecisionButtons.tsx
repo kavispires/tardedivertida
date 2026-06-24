@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 
 type DecisionButtonsProps = {
   step: number;
@@ -15,9 +15,9 @@ type DecisionButtonsProps = {
 export function DecisionButtons({ step, onClick, prompt }: DecisionButtonsProps) {
   return (
     <div className="container">
-      <Instruction>
+      <Surface>
         <DualTranslate>{prompt}</DualTranslate>
-      </Instruction>
+      </Surface>
       <SpaceContainer wrap>
         <Button
           type="primary"

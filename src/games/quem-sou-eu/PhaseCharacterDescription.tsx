@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { PlayerIconsIcon } from '@icons/PlayerIconsIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';
@@ -39,12 +39,12 @@ export function PhaseCharacterDescription({
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Selecione até 6 ícones que ajudem os outros jogadores a adivinhar o seu personagem</>}
           en={<>Select up to 6 glyphs that would help other players to guess who your character is</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

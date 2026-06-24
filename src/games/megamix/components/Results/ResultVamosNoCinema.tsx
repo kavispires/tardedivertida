@@ -1,6 +1,6 @@
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 import { getMovieTitles } from '../../utils/helpers';
@@ -15,13 +15,13 @@ export function ResultVamosAoCinema({
 
   return (
     <>
-      <Instruction>
+      <Surface>
         <Translate
           pt="A filme mais votado foi"
           en="The most popular movie was"
         />
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => {
           return (

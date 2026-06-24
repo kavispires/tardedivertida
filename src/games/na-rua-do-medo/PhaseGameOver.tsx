@@ -11,7 +11,7 @@ import { PoopIcon } from '@icons/PoopIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
@@ -37,15 +37,15 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
       announcementIcon={<PoopIcon />}
       announcementDuration={6}
       announcementContent={
-        <Instruction>
+        <Surface>
           <Translate
             pt="O jogador que comeu mais doces, teve uma caganeira horrível, mas é o campeão é..."
             en="The player who ate candy the most, had a terrible diarrhea, but it's the winner is..."
           />
-        </Instruction>
+        </Surface>
       }
     >
-      <Instruction contained>
+      <Surface contained>
         <p>
           <Translate
             pt="com"
@@ -74,7 +74,7 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
             );
           })}
         </ul>
-      </Instruction>
+      </Surface>
 
       <ul
         className="n-game-over-players"

@@ -7,11 +7,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { LawIcon } from '@icons/LawIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
@@ -39,7 +39,7 @@ export function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
       type="overlay"
       duration={state?.round?.current === 1 ? 15 : 3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -64,7 +64,7 @@ export function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

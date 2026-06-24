@@ -8,11 +8,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { SheepIcon } from '@icons/SheepIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } from './utils/api-requests';
@@ -62,12 +62,12 @@ export function PhaseQuestionSelection({ state, players, user }: PhaseProps<Phas
           onPressButton={goToNextStep}
           time={3}
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"
               en="We are sheep and our pasture is overcrowded!"
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}

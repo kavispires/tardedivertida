@@ -8,11 +8,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { DirectionsIcon } from '@icons/DirectionsIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitPathAPIRequest } from './utils/api-requests';
@@ -40,7 +40,7 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Vamos analisar e tentar seguir o mapa de cada jogador"
           en="Let's analise and try to follow the each player's map"
@@ -51,7 +51,7 @@ export function PhasePathFollowing({ state, players, user }: PhaseProps<PhasePat
           order={state.turnOrder}
           activePlayerId={state.activePlayerId}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

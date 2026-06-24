@@ -5,7 +5,7 @@ import { Button, Input, App } from 'antd';
 // Components
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import type { TestStepProps } from '../TestArea';
@@ -37,12 +37,12 @@ export function CompleteTest({ results }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Compartilhe com quem te pediu para fazer o teste o resultado abaixo caso você tenha tipo algum resultado negativo."
           en="Share the result below with whoever asked you to take this test if you had any negative results."
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

@@ -2,8 +2,8 @@
 import { Alert, Button, Divider } from 'antd';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
-import { Instruction } from '@components/text/Instruction';
 
 type OutcomeOptionsProps = {
   outcome?: string;
@@ -16,7 +16,7 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
     <>
       <Divider />
 
-      <Instruction contained>
+      <Surface contained>
         {outcome && outcome !== 'CONTINUE' ? (
           <Alert
             type="warning"
@@ -40,16 +40,16 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
             en="If any of the cases below trigger, click the appropriate button"
           />
         )}
-      </Instruction>
+      </Surface>
 
       <div className="v-case-container">
         <div className="v-case">
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Alguém escreveu a resposta numa carta VERMELHA"
               en="Someone wrote the answer in a RED card"
             />
-          </Instruction>
+          </Surface>
           <Button
             type="primary"
             ghost
@@ -66,12 +66,12 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
           </Button>
         </div>
         <div className="v-case">
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Alguém escreveu a resposta numa carta BRANCA"
               en="Someone wrote the answer in a WHITE card"
             />
-          </Instruction>
+          </Surface>
           <Button
             danger
             ghost
@@ -88,13 +88,13 @@ export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: O
           </Button>
         </div>
         <div className="v-case">
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Jogadores usaram mais respostas do que tinham"
               en="Players wrote more Guesses than they had available"
             />{' '}
             ({finalAnswersLeft})
-          </Instruction>
+          </Surface>
           <Button
             type="primary"
             danger

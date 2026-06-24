@@ -19,7 +19,7 @@ import { DevButton } from '@components/debug/DevButton';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { Title } from '@components/text/Title';
 import { alienAttributesUtils } from '@components/toolKits/AlienAttributes';
@@ -201,12 +201,12 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
           })}
         </Flex>
 
-        <Instruction>
+        <Surface>
           <Translate
             pt="Se nenhum item combina com a característica, apenas vá para o próximo."
             en="If no item matches the attribute, just go to the next one."
           />
-        </Instruction>
+        </Surface>
 
         <SpaceContainer>
           <DevButton

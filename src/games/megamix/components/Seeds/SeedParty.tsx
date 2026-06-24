@@ -7,7 +7,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { Title } from '@components/text/Title';
 // Internal
@@ -66,7 +66,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
           />
         </RuleInstruction>
 
-        <Instruction contained>
+        <Surface contained>
           <Space orientation="vertical">
             {seed.cards.map((card) => {
               return (
@@ -88,7 +88,7 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
               );
             })}
           </Space>
-        </Instruction>
+        </Surface>
 
         <Button
           block

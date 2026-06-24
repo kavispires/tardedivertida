@@ -2,13 +2,13 @@
 import type { GameRound } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { Instruction } from '@components/text/Instruction';
 
 export function DJInstructions({ round }: { round: GameRound }) {
   if (round.current <= 1) {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={
             <>
@@ -40,13 +40,13 @@ export function DJInstructions({ round }: { round: GameRound }) {
             </>
           }
         />
-      </Instruction>
+      </Surface>
     );
   }
 
   if (round.current === Math.round(round.total / 2)) {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={
             <>
@@ -63,12 +63,12 @@ export function DJInstructions({ round }: { round: GameRound }) {
             </>
           }
         />
-      </Instruction>
+      </Surface>
     );
   }
 
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -85,6 +85,6 @@ export function DJInstructions({ round }: { round: GameRound }) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

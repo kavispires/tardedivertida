@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { ChoiceIcon } from '@icons/ChoiceIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { RETRATO_FALADO_PHASES } from './utils/constants';
@@ -35,12 +35,12 @@ export function PhaseEvaluation({ state, players, user }: PhaseProps<PhaseEvalua
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Vote no desenho que você acha que mais parece com o monstro meliante.</>}
           en={<>Vote for the sketch that best represents the monster.</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

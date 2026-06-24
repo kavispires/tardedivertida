@@ -2,8 +2,8 @@
 import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { RulesList } from '@components/rules/RulesList';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import { CandyHighlight } from './Highlights';
@@ -57,7 +57,7 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
 
 export function CardCountExplanation() {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <RulesList>
@@ -93,6 +93,6 @@ export function CardCountExplanation() {
           </RulesList>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

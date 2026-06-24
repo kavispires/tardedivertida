@@ -8,12 +8,12 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { MapBlueprintIcon } from '@icons/MapBlueprintIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitPlanningAPIRequest } from './utils/api-requests';
@@ -41,7 +41,7 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <PlanningRules />
         <br />
         <Translate
@@ -66,7 +66,7 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -85,12 +85,12 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
           onPressButton={goToNextStep}
           time={3}
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Somos arquitetos e urbanistas, e estamos planejando a cidade!"
               en="We are architects and urban planners, and we are planning a city!"
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}

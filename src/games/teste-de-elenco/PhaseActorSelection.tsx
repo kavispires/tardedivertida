@@ -7,10 +7,10 @@ import { SofaIcon } from '@icons/SofaIcon';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { useOnSubmitMovieActorAPIRequest } from './utils/api-requests';
@@ -39,7 +39,7 @@ export function PhaseActorSelection({ state, players, user }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Quem vai ser o</>}
           en={<>Who is the best choice for</>}
@@ -47,7 +47,7 @@ export function PhaseActorSelection({ state, players, user }: PhaseProps) {
         <TextHighlight>
           <DualTranslate>{activeRole.description}</DualTranslate>
         </TextHighlight>
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

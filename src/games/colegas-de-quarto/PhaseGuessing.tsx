@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { EvaluateIcon } from '@icons/EvaluateIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseGuessingState } from './utils/types';
 import { COLEGAS_DE_QUARTO_PHASES } from './utils/constants';
@@ -32,12 +32,12 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Adivinhe todos grupos de uma dica com seu par de objetos.</>}
           en={<>Guess all groups from a clue with your pair of things.</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

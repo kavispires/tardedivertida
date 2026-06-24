@@ -8,10 +8,10 @@ import { VoteIcon } from '@icons/VoteIcon';
 // Components
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { CONTADORES_HISTORIAS_PHASES } from './utils/constants';
@@ -37,9 +37,9 @@ export function PhaseVoting({ state, players, user }: PhaseProps<PhaseVotingStat
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <VotingRules isUserTheStoryTeller={isUserTheStoryTeller} />
-      </Instruction>
+      </Surface>
       <ImageCardPreloadHand hand={state.table.map((entry: PlainObject) => entry.cardId)} />
     </PhaseAnnouncement>
   );

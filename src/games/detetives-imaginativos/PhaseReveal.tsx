@@ -7,11 +7,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { RankIcon } from '@icons/RankIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
 import type { PhaseRevealState } from './utils/types';
@@ -34,7 +34,7 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -57,7 +57,7 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

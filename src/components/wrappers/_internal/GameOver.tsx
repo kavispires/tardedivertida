@@ -16,10 +16,10 @@ import { GameStrip } from '@components/general/GameBanner';
 import { HostButton } from '@components/host/HostButton';
 import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { useGameInfoContext } from '@components/session/GameInfoContext';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { RateGameWidget } from './RateGameWidget';
 // Images
@@ -102,7 +102,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
       </div>
 
       {hasWinnerContent && state?.group?.outcome !== 'NON_WINNABLE_GAME' && (
-        <Instruction contained>
+        <Surface contained>
           {Boolean(state.winners) && state.winners.length > 0 && (
             <div className={styles.gameOver__winnerContainer}>
               <div className={styles.gameOver__text}>
@@ -214,7 +214,7 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
               <GameOverText />
             </div>
           )}
-        </Instruction>
+        </Surface>
       )}
 
       <RateGameWidget customText={rateWidgetCustomText} />

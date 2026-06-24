@@ -7,11 +7,11 @@ import { useStep } from '@hooks/useStep';
 import { ReviewIcon } from '@icons/ReviewIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
 import { mockMovieSelection } from './utils/mock';
@@ -42,12 +42,12 @@ export function PhaseMovieSelection({ state, players, user }: PhaseProps<PhaseMo
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Selecione um filme que caiba a crítica boa e com a crítica ruim</>}
           en={<>You now will select a movie that fits both good and bad reviews</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -75,14 +75,14 @@ export function PhaseMovieSelection({ state, players, user }: PhaseProps<PhaseMo
           onPressButton={goToNextStep}
           buttonText=" "
         >
-          <Instruction contained>
+          <Surface contained>
             {state.round.current}
             <Translate
               pt={<> de </>}
               en={<> of </>}
             />
             {state.round.total}
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}

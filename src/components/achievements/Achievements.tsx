@@ -12,9 +12,9 @@ import { getAnimationClass } from '@utils/helpers';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { Medal } from './Medal';
 // Sass
@@ -58,7 +58,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
       className={clsx(styles.achievements, getAnimationClass('fadeIn'))}
     >
       {achievements.length === 0 && (
-        <Instruction contained>
+        <Surface contained>
           <Translate
             pt={
               <>
@@ -75,7 +75,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
               </>
             }
           />
-        </Instruction>
+        </Surface>
       )}
       <ul className={styles.achievementsList}>
         {achievements.map((achievement, index) => {

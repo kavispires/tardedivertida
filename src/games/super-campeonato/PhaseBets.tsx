@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { GamblingChipIcon } from '@icons/GamblingChipIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
 import type { PhaseBetsState } from './utils/type';
@@ -35,12 +35,12 @@ export function PhaseBets({ state, players, user }: PhaseProps<PhaseBetsState>) 
       currentRound={state?.round?.current}
       duration={5}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Selecione quem você acha que ganha as quartas de final, semi final e final"
           en="Place bet on who you think will win the quarter-finals, semifinals, and finals"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

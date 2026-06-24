@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { StoreIcon } from '@icons/StoreIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseClueWritingState } from './utils/types';
 import { COLEGAS_DE_QUARTO_PHASES } from './utils/constants';
@@ -34,12 +34,12 @@ export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueW
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Escreva pistas para os novos itens da loja.</>}
           en={<>Write clues for the new store items.</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

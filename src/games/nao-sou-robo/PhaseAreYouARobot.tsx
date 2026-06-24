@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { CaptchaIcon } from '@icons/CaptchaIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
@@ -34,12 +34,12 @@ export function PhaseAreYouARobot({ state, players, user }: PhaseProps<PhaseAreY
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Prove que você não é um robô!</>}
           en={<>Prove you are not a robot!</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

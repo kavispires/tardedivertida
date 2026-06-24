@@ -7,10 +7,10 @@ import { useStep } from '@hooks/useStep';
 import { TournamentIcon } from '@icons/TournamentIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { SUPER_CAMPEONATO_PHASES } from './utils/constants';
 import { StepRanking } from './StepRanking';
@@ -40,12 +40,12 @@ export function PhaseResults({ state, players, user }: PhaseProps) {
       currentRound={state?.round?.current}
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Só pode haver um..."
           en="There's only one..."
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

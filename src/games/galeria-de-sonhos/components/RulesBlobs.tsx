@@ -3,13 +3,13 @@ import type { GameRound, GamePlayer } from 'types/game';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { BotHighlight } from '@components/metrics/BotHighlight';
 import { CardHighlight } from '@components/metrics/CardHighlight';
 import { PlayerHighlight } from '@components/metrics/PlayerHighlight';
 import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 
 type WordSelectionRulesProps = {
@@ -18,7 +18,7 @@ type WordSelectionRulesProps = {
 
 export function WordSelectionRules({ scout }: WordSelectionRulesProps) {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -47,13 +47,13 @@ export function WordSelectionRules({ scout }: WordSelectionRulesProps) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function GeneralRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -80,7 +80,7 @@ export function GeneralRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
@@ -127,12 +127,12 @@ export function DreamSelectionRules({ contained = false, minimumSelection = 1 })
     return <RuleInstruction type="action">{rules}</RuleInstruction>;
   }
 
-  return <Instruction>{rules}</Instruction>;
+  return <Surface>{rules}</Surface>;
 }
 
 export function DreamSelectionExtendedRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -157,13 +157,13 @@ export function DreamSelectionExtendedRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function CardPlayRules() {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -197,13 +197,13 @@ export function CardPlayRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function BotsRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -232,7 +232,7 @@ export function BotsRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 

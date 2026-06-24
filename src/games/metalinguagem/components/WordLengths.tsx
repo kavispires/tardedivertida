@@ -3,8 +3,8 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Flex, Popover, Tag } from 'antd';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { WordLength } from '../utils/types';
 import { WORD_LENGTH_STATUS } from '../utils/constants';
@@ -28,7 +28,7 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
   const hasEndangered = lengths.some((wl) => wl.status === WORD_LENGTH_STATUS.ENDANGERED);
 
   return (
-    <Instruction contained>
+    <Surface contained>
       <TitledContainer
         title={
           <>
@@ -87,15 +87,15 @@ export function WordLengths({ wordLengths, highlightLength, phase }: WordLengthP
           )}
         </Flex>
         {hasEndangered && (
-          <Instruction contained>
+          <Surface contained>
             <InfoCircleOutlined />{' '}
             <Translate
               pt="Comprimentos em vermelho, se não forem adivinhados corretamente encerram o jogo."
               en="Red lengths, if not guessed correctly, end the game."
             />
-          </Instruction>
+          </Surface>
         )}
       </TitledContainer>
-    </Instruction>
+    </Surface>
   );
 }

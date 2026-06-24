@@ -7,11 +7,11 @@ import { useStep } from '@hooks/useStep';
 import { DrawingIcon } from '@icons/DrawingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { SINAIS_DE_ALERTA_PHASES } from './utils/constants';
@@ -46,12 +46,12 @@ export function PhaseDrawing({ state, players, meta, user }: PhaseProps<PhaseDra
       withoutTimer
       onClose={() => setStartDrawingTimer(true)}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Você tem {timeLimit} segundos para ler e desenhar sua carta</>}
           en={<>You have {timeLimit} seconds to read and draw your card</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

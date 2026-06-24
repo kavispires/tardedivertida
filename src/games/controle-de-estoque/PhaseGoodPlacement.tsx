@@ -11,12 +11,12 @@ import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES, DAYS_OF_THE_WEEK, OUTCOME } from './utils/constants';
 import { useOnConfirmGoodPlacementAPIRequest, useOnPlaceGoodAPIRequest } from './utils/api-requests';
@@ -57,12 +57,12 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
         type="overlay"
         duration={2}
       >
-        <Instruction>
+        <Surface>
           <Translate
             en="Remember where they are!"
             pt="Lembre-se de onde eles estão!"
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     [state?.round?.current],
@@ -77,7 +77,7 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
         type="overlay"
         duration={15}
       >
-        <Instruction>
+        <Surface>
           {state.round.current === 1 ? (
             <>
               "
@@ -96,7 +96,7 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
           )}
           <br />
           <RoundStockingProgress status={state.status} />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     [bossIdea.subtitle, bossIdea.description, state?.round?.current, supervisor, state.status],
@@ -116,7 +116,7 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
         type="overlay"
         duration={2}
       >
-        <Instruction>
+        <Surface>
           <Translate
             en="Now it's"
             pt="Agora é a vez de"
@@ -130,7 +130,7 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
             status={state.status}
             hideTitles
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     [state?.round?.current, supervisor, state.status],
@@ -175,9 +175,9 @@ export function PhaseGoodPlacement({ players, state, user }: PhaseProps<PhaseGoo
           onPressButton={goToNextStep}
           time={4}
         >
-          <Instruction contained>
+          <Surface contained>
             <DualTranslate>{DAYS_OF_THE_WEEK[state.round.current - 1]}</DualTranslate>
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 2 */}

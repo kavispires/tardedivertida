@@ -7,8 +7,8 @@ import type { GamePlayers } from 'types/game';
 // Components
 import { AlienText } from '@components/alien/AlienText';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { DeckEntry, HistoryEntry } from '../utils/types';
 import { HistoryDeliverableEntry } from './HistoryDeliverableEntry';
@@ -117,8 +117,8 @@ export function History({ history, players, deck, deckType, clueInputType, userS
   ];
 
   return (
-    <Instruction contained>
+    <Surface contained>
       <Collapse items={panels} />
-    </Instruction>
+    </Surface>
   );
 }

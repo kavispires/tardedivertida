@@ -9,11 +9,11 @@ import { BooksIcon } from '@icons/BooksIcon';
 // Components
 import { BookPatternCard } from '@components/cards/BookPatternCard';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { PhasePatternCreationState } from './utils/types';
@@ -45,12 +45,12 @@ export function PhasePatternCreation({ players, state, user }: PhaseProps<PhaseP
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Use seu senso comum para desvendar qual a livro obedece a sequência</>}
           en={<>Use your common sense to figure out which book follows the sequence</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

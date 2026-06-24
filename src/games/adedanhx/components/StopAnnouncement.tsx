@@ -4,10 +4,10 @@ import type { GamePlayer } from 'types/game';
 import { StopIcon } from '@icons/StopIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 import { TimedTimerBar } from '@components/timers/TimedTimerBar';
 
 type StopAnnouncementProps = {
@@ -25,7 +25,7 @@ export function StopAnnouncement({ stopper, onSubmit }: StopAnnouncementProps) {
         type="overlay"
         duration={4}
       >
-        <Instruction>
+        <Surface>
           <Translate
             pt={
               <>
@@ -42,7 +42,7 @@ export function StopAnnouncement({ stopper, onSubmit }: StopAnnouncementProps) {
               </>
             }
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
       <TimedTimerBar
         duration={12}

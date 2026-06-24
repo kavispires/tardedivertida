@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { TDIcon } from '@icons/TDIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { QUEM_NAO_MATA_PHASES } from './utils/constants';
 
@@ -38,12 +38,12 @@ export function PhaseDuel({ state, players, user }: PhaseProps) {
           currentRound={state?.round?.current}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="Pega tudo? Divide irmãmente? Garante um?"
               en="Take one? Share equally? Or garante one?"
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

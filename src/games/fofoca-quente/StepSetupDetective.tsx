@@ -10,8 +10,8 @@ import { SendButton } from '@components/buttons/SendButton';
 import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
@@ -73,7 +73,7 @@ export function StepSetupDetective({
         staff={staff}
       />
 
-      <Instruction contained>
+      <Surface contained>
         <Flex justify="center">
           <BoardSummary
             students={students}
@@ -154,7 +154,7 @@ export function StepSetupDetective({
             </RuleInstruction>
           </div>
         </Flex>
-      </Instruction>
+      </Surface>
     </Step>
   );
 }

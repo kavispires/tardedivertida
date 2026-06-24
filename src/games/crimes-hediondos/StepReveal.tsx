@@ -10,10 +10,10 @@ import { getAnimationClass, getLastItem } from '@utils/helpers';
 import { TimedButton } from '@components/buttons/TimedButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
@@ -100,7 +100,7 @@ export function StepReveal({
         />
       </RuleInstruction>
 
-      <Instruction contained>
+      <Surface contained>
         <ResultsTable
           players={players}
           results={results}
@@ -120,10 +120,10 @@ export function StepReveal({
             </>
           }
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer>
-        <Instruction contained>
+        <Surface contained>
           <Collapse
             items={[
               {
@@ -145,7 +145,7 @@ export function StepReveal({
               },
             ]}
           />
-        </Instruction>
+        </Surface>
       </SpaceContainer>
 
       <PlayersCards
@@ -156,15 +156,15 @@ export function StepReveal({
         history={user.history}
       >
         {!activePlayerId && (
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Clique em um jogador para ver o resultado do seu crime"
               en="Click a player to see their crime"
             />
-          </Instruction>
+          </Surface>
         )}
         {Boolean(activePlayerId) && (
-          <Instruction
+          <Surface
             contained
             className={!isLocked && !isOwnCrime ? getAnimationClass('tada') : ''}
             key={`instruction-status-${activePlayerId}`}
@@ -182,7 +182,7 @@ export function StepReveal({
             ) : (
               ''
             )}
-          </Instruction>
+          </Surface>
         )}
 
         {activeCrime && (

@@ -8,20 +8,20 @@ import { MapIcon } from '@icons/MapIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultLabirintoSecreto({ track, winningValues }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         <Translate
           pt="O caminho mais votado foi"
           en="The most popular path was"
         />
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => {
           const index = Number(value);

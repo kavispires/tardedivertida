@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { QuestionIcon } from '@icons/QuestionIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { COMUNICACAO_DUO_PHASES, STATUS } from './utils/constants';
 import { useOnSubmitRequestAPIRequest } from './utils/api-requests';
@@ -46,12 +46,12 @@ export function PhaseAskingForSomething({ players, state, user }: PhaseProps<Pha
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Cada alienígena deve dar dicar para todos os itens marcados com sua cor</>}
           en={<>Each alien must give clues for all items marked with their color</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

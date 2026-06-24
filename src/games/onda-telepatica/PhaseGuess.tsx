@@ -8,10 +8,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { SoundWaveIcon } from '@icons/SoundWaveIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
@@ -41,12 +41,12 @@ export function PhaseGuess({ state, players, user }: PhaseProps<PhaseGuessState>
       duration={7}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Você está sincronizado telepaticamente?"
           en="Are you telepathically in sync?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

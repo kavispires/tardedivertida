@@ -8,11 +8,11 @@ import { LoupeIcon } from '@icons/LoupeIcon';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
@@ -44,7 +44,7 @@ export function PhaseSceneMarking({ players, state, user }: PhaseProps<PhaseScen
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Compartilhe mais uma pista sobre seu crime:"
           en="Share one more piece of information about your crime:"
@@ -53,7 +53,7 @@ export function PhaseSceneMarking({ players, state, user }: PhaseProps<PhaseScen
         <TextHighlight>
           <DualTranslate>{state.currentScene.description}</DualTranslate>
         </TextHighlight>
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

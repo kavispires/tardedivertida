@@ -1,15 +1,15 @@
 // Components
 import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultWhoSaidThis({ track, winningValues, players }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="O(a)s mais votado(a)s foram"
@@ -22,7 +22,7 @@ export function ResultWhoSaidThis({ track, winningValues, players }: ResultCompo
           />
         )}
         :
-      </Instruction>
+      </Surface>
 
       <div className="track-result-values__cards">
         {winningValues.map((value) => (

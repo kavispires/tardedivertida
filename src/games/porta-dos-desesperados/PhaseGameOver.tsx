@@ -15,7 +15,7 @@ import { Achievements } from '@components/achievements/Achievements';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { Title } from '@components/text/Title';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
@@ -53,7 +53,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
           en="The journey has come to an end!"
         />
       }
-      announcementContent={<Instruction>...</Instruction>}
+      announcementContent={<Surface>...</Surface>}
     >
       <Title>
         {isVictory ? (

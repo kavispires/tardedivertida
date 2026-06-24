@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { BookshelfIcon } from '@icons/BookshelfIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseResultState } from './utils/types';
 import { SENSO_LITERARIO_PHASES } from './utils/constants';
@@ -31,12 +31,12 @@ export function PhaseResult({ players, state, user }: PhaseProps<PhaseResultStat
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Não há resposta correta! Mas você tem o mesmo senso literário que outros jogadores?</>}
           en={<>There is no correct answer! But do you have the same literary sense as other players?</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

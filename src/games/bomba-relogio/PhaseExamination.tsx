@@ -12,11 +12,11 @@ import { WireIcon } from '@icons/WireIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseDeclarationState, PhaseExaminationState } from './utils/types';
 import { BOMBA_RELOGIO_PHASES } from './utils/constants';
@@ -103,7 +103,7 @@ function getAnnouncement({
         unskippable
         duration={5}
       >
-        <Instruction>
+        <Surface>
           <Icon icon={<WalkieTalkieIcon />} />
           <Translate
             pt={
@@ -120,7 +120,7 @@ function getAnnouncement({
               </>
             }
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     );
   }
@@ -189,10 +189,10 @@ function getAnnouncement({
         unskippable
         duration={4}
       >
-        <Instruction>
+        <Surface>
           <Icon icon={<WalkieTalkieIcon />} />
           {nextMessage}
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     );
   }

@@ -16,9 +16,9 @@ import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButto
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
@@ -161,7 +161,7 @@ export function StepSelectDoor({
       </RuleInstruction>
 
       {trap === TRAPS.SECRET_CHOICE && (
-        <Instruction
+        <Surface
           contained
           className={getAnimationClass('pulse', {
             speed: 'slower',
@@ -175,7 +175,7 @@ export function StepSelectDoor({
               en="Absolute Silence!"
             />
           </strong>
-        </Instruction>
+        </Surface>
       )}
 
       <RuleInstruction type="action">

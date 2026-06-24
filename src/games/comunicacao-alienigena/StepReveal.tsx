@@ -13,11 +13,11 @@ import { DebugOnly } from '@components/debug/DebugOnly';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { MetricHighlight } from '@components/metrics/MetricHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { ViewIf } from '@components/views/ViewIf';
@@ -125,7 +125,7 @@ export function StepReveal({
         />
       </RuleInstruction>
 
-      <Instruction contained>
+      <Surface contained>
         <SpaceContainer wrap>
           {Boolean(latestRequest) &&
             latestRequest.offers.map((entry) => {
@@ -148,7 +148,7 @@ export function StepReveal({
               );
             })}
         </SpaceContainer>
-      </Instruction>
+      </Surface>
 
       <HostNextPhaseButton
         round={round}

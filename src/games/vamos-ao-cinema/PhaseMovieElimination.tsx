@@ -8,11 +8,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { PopcornIcon } from '@icons/PopcornIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitMovieEliminationAPIRequest } from './utils/api-requests';
 import { mockMovieElimination } from './utils/mock';
@@ -47,7 +47,7 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps<Phase
         type="overlay"
         duration={state?.round?.current === 1 ? 12 : 7}
       >
-        <Instruction>
+        <Surface>
           <Translate
             pt={
               <>
@@ -78,7 +78,7 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps<Phase
               </>
             }
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     active: (
@@ -94,12 +94,12 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps<Phase
         type="overlay"
         duration={3}
       >
-        <Instruction>
+        <Surface>
           <Translate
             pt={<>Selecione um filme que você acha que ninguém escolheu.</>}
             en={<>Select a movie you think nobody has selected.</>}
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     normal: <></>,

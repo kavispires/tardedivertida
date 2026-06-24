@@ -10,7 +10,7 @@ import { NoIcon } from '@icons/NoIcon';
 import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { TextHighlight } from '@components/text/TextHighlight';
 import { Title } from '@components/text/Title';
 // Internal
@@ -75,11 +75,11 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
         >
           <DualTranslate>{activeRole.title}</DualTranslate>
         </Title>
-        <Instruction className="role__description">
+        <Surface className="role__description">
           "<DualTranslate>{activeRole.description}</DualTranslate>"
-        </Instruction>
+        </Surface>
 
-        <Instruction className="role__instructions">
+        <Surface className="role__instructions">
           {instruction === 'SELECT' && (
             <Translate
               pt={
@@ -108,9 +108,9 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
               />
             </div>
           )}
-        </Instruction>
+        </Surface>
 
-        <Instruction className="role__traits">
+        <Surface className="role__traits">
           <ul>
             {activeRole.traits.map((trait, index) => {
               if (index === traitCount - 1 && instruction === 'RESULT' && outcome === 'CONTINUE') {
@@ -123,7 +123,7 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
               );
             })}
           </ul>
-        </Instruction>
+        </Surface>
       </Space>
     </Space>
   );

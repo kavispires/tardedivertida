@@ -13,9 +13,9 @@ import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction, type RuleInstructionProps } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 
@@ -64,7 +64,7 @@ export function StepSelectPlayer({
 
       <RuleInstruction {...ruleInstructionProps} />
 
-      <Instruction contained>
+      <Surface contained>
         <Flex
           className="div-container"
           wrap="wrap"
@@ -100,7 +100,7 @@ export function StepSelectPlayer({
             );
           })}
         </Flex>
-      </Instruction>
+      </Surface>
 
       {isHost && (
         <SpaceContainer>

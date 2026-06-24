@@ -4,7 +4,7 @@ import { FloatingHand } from '@components/general/FloatingHand';
 import { ImageCardHand } from '@components/image-cards/ImageCardHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -29,12 +29,12 @@ export function FloatingHandTest({ onResult, step }: TestStepProps) {
           en="Hand of Cards"
         />
       </Title>
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Durante alguns jogos, você terá uma mão de cartas. Em um computador, as cartas são minimizadas na parte inferior e você pode arrastar o mouse para vê-las. Em um dispositivo móvel, elas são exibidas diretamente na parte inferior da tela"
           en="During some games, you will have a hand of cards. In a computer, you may hover the minimized cards at the bottom to see them. In a mobile device, they are displayed directly at the bottom of the screen."
         />
-      </Instruction>
+      </Surface>
 
       <DecisionButtons
         step={step}

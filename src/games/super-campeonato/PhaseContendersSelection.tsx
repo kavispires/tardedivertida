@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { AnonymousIcon } from '@icons/AnonymousIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 import type { PhaseContendersSelectionState } from './utils/type';
@@ -35,12 +35,12 @@ export function PhaseContenderSelection({ state, players, user }: PhaseProps<Pha
       currentRound={state?.round?.current}
       duration={5}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Quem tem chance de ganhar?"
           en="Who has what it takes?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

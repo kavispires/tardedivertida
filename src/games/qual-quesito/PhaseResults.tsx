@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { RankIcon } from '@icons/RankIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseResultsState } from './utils/types';
 import { QUAL_QUESITO_PHASES } from './utils/constants';
@@ -34,12 +34,12 @@ export function PhaseResults({ players, state, user }: PhaseProps<PhaseResultsSt
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Cada coisa cabe ao quesito ou não? Avalie honestamente!"
           en="Does each thing fit the category or not? Evaluate honestly!"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

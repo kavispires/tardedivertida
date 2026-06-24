@@ -5,7 +5,7 @@ import { FilmReelIcon } from '@icons/FilmReelIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { getMovieTitle } from '../utils/helpers';
@@ -17,7 +17,7 @@ type YourMovieProps = {
 export function YourMovie({ movies, movieId }: YourMovieProps) {
   if (movieId) {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Seu Filme"
           en="Your Movie"
@@ -26,7 +26,7 @@ export function YourMovie({ movies, movieId }: YourMovieProps) {
         <TextHighlight>
           <Icon icon={<FilmReelIcon />} /> {getMovieTitle(movies, movieId)}
         </TextHighlight>
-      </Instruction>
+      </Surface>
     );
   }
   return null;

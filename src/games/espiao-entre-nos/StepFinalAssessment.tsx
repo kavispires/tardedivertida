@@ -7,8 +7,8 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { useLanguage } from '@hooks/useLanguage';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { FinalAssessment, Location, Outcome } from './utils/types';
@@ -78,10 +78,10 @@ export function StepFinalAssessment({
         role={user.role}
       />
 
-      <Instruction className="e-lists">
+      <Surface className="e-lists">
         <SuspectsList players={players} />
         <LocationsList locations={locations} />
-      </Instruction>
+      </Surface>
 
       <Notes />
     </Step>

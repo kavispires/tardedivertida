@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { FeedbackIcon } from '@icons/FeedbackIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseVerificationState } from './utils/types';
 import { QUAL_QUESITO_PHASES } from './utils/constants';
@@ -33,12 +33,12 @@ export function PhaseVerification({ players, state, user }: PhaseProps<PhaseVeri
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Cada coisa cabe ao quesito ou não? Avalie honestamente!"
           en="Does each thing fit the category or not? Evaluate honestly!"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

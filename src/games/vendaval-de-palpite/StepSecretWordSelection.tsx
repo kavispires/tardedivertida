@@ -11,8 +11,8 @@ import { TransparentButton } from '@components/buttons/TransparentButton';
 import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
 
@@ -64,12 +64,12 @@ export function StepSecretWordSelection({
           en="The Secret Word"
         />
       </StepTitle>
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Escolha a palavra secreta para os outros jogadores tentarem adivinhar e então selecione uma ou duas categorias que melhor se encaixam com a palavra escolhida"
           en="Select a secret word so the other players can guess, then select up to 2 categories that best match the clue"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer wrap>
         {words.map((word) => {
@@ -105,7 +105,7 @@ export function StepSecretWordSelection({
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <SpaceContainer wrap>
           {categories.map((category) => {
             return (
@@ -120,7 +120,7 @@ export function StepSecretWordSelection({
             );
           })}
         </SpaceContainer>
-      </Instruction>
+      </Surface>
 
       <Button
         type="primary"

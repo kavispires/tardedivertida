@@ -5,8 +5,8 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { ViewIf } from '@components/views/ViewIf';
@@ -70,7 +70,7 @@ export function StepRumor({
       />
 
       <ViewIf condition={isTheGossiperPlayer}>
-        <Instruction contained>
+        <Surface contained>
           <Flex justify="center">
             <BoardSummary
               students={students}
@@ -157,11 +157,11 @@ export function StepRumor({
               </RuleInstruction>
             </div>
           </Flex>
-        </Instruction>
+        </Surface>
       </ViewIf>
 
       <ViewIf condition={isTheDetectivePlayer}>
-        <Instruction contained>
+        <Surface contained>
           <Flex justify="center">
             <BoardSummary
               students={students}
@@ -200,7 +200,7 @@ export function StepRumor({
               </RuleInstruction>
             </div>
           </Flex>
-        </Instruction>
+        </Surface>
       </ViewIf>
     </Step>
   );

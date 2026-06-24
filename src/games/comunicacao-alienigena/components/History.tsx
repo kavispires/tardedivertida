@@ -4,7 +4,7 @@ import { Collapse, type CollapseProps } from 'antd';
 import type { GamePlayers } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { InquiryHistoryEntry, PhaseBasicState, RequestHistoryEntry } from '../utils/types';
 import { InquiryHistory } from './InquiryHistory';
@@ -88,8 +88,8 @@ export function History({
   ];
 
   return (
-    <Instruction contained>
+    <Surface contained>
       <Collapse items={panels} />
-    </Instruction>
+    </Surface>
   );
 }

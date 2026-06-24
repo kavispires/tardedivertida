@@ -1,7 +1,7 @@
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { Instruction } from '@components/text/Instruction';
 
 export function RulesPt() {
   return (
@@ -34,7 +34,7 @@ export function RulesEn() {
 
 export function ScoringRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -63,6 +63,6 @@ export function ScoringRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

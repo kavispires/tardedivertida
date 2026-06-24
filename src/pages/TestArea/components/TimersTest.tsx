@@ -2,7 +2,7 @@
 import { TimedButton } from '@components/buttons/TimedButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 import { TimedTimerBar } from '@components/timers/TimedTimerBar';
 import { TimedTimerClock } from '@components/timers/TimedTimerClock';
@@ -26,12 +26,12 @@ export function TimersTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Vários jogos tem cronômetros:"
           en="Many games have timers in different types:"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

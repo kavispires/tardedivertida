@@ -2,7 +2,7 @@
 import { LanguageSwitch } from '@components/language/LanguageSwitch';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -24,11 +24,11 @@ export function LanguageTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <span>This is the test area. To begin, choose your language:</span>
         <br />
         <span>Essa é a área de teste. Para começar, selecione seu idioma:</span>
-      </Instruction>
+      </Surface>
 
       <LanguageSwitch />
 

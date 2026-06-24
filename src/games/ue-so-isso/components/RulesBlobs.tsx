@@ -2,8 +2,8 @@
 import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 
 export function WritingRules() {
@@ -37,7 +37,7 @@ export function WritingRules() {
 
 export function ComparisonRules() {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -54,13 +54,13 @@ export function ComparisonRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function ComparisonDetailedRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -85,7 +85,7 @@ export function ComparisonDetailedRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 export function ComparisonPhaseRules({ controller }: { controller: GamePlayer }) {

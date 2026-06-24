@@ -8,9 +8,9 @@ import { useLoading } from '@hooks/useLoading';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 
@@ -32,7 +32,7 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
         />
       </StepTitle>
 
-      <Instruction contained>
+      <Surface contained>
         <Space>
           {Object.values(players).map((player) => {
             if (isHost) {
@@ -62,7 +62,7 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
             );
           })}
         </Space>
-      </Instruction>
+      </Surface>
 
       <RuleInstruction type="wait">
         <Translate

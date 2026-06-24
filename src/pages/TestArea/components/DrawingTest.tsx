@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -27,12 +27,12 @@ export function DrawingTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Desenhe um quadrado, um triângulo e um circulo no espaço abaixo"
           en="Draw a square, a triangle, and a circle in the canvas below"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

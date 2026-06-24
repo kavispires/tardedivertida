@@ -6,7 +6,7 @@ import { HeartIcon } from '@icons/HeartIcon';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -28,12 +28,12 @@ export function IconsTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Há 3 ícones abaixo"
           en="There are 3 icons below"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

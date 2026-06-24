@@ -7,8 +7,8 @@ import { TransparentButton } from '@components/buttons/TransparentButton';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { RibbonGroup } from '@components/ribbons/RibbonGroup';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -38,12 +38,12 @@ export function RibbonsTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Em vários de jogos de achar os pares, você verá bandeirinhas no canto de uma carta indicando que você selecionou a carta. Clique nas cartas abaixo para adicionar bandeirinhas."
           en="In many games you will have to pair cards and images, you will see a ribbon on the corner of the card you selected. Click on the cards below to add ribbons"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

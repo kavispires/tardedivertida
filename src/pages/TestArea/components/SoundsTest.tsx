@@ -13,7 +13,7 @@ import { DJPruPruPruSound } from '@components/audio/DJPruPruPruSound';
 import { Speak } from '@components/audio/Speak';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -50,12 +50,12 @@ export function SoundsTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Aperte os botões abaixo para ouvir sons de diferentes jogos"
           en="Press the buttons below to hear sounds from different games"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

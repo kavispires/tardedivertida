@@ -5,8 +5,8 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
-import { Instruction } from '@components/text/Instruction';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import achievementsReference from './utils/achievements';
@@ -23,12 +23,12 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       announcementIcon={<TrophyIcon />}
     >
       {state.winners?.length === 0 && (
-        <Instruction contained>
+        <Surface contained>
           <Translate
             pt="Vocês perderam!"
             en="Y'all lost!"
           />
-        </Instruction>
+        </Surface>
       )}
       <Achievements
         players={players}

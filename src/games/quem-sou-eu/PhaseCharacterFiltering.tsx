@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { FilterIcon } from '@icons/FilterIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 import { QUEM_SOU_EU_PHASES } from './utils/constants';
@@ -33,12 +33,12 @@ export function PhaseCharacterFiltering({ state, players, user }: PhaseProps<Pha
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Selecione personagens/pessoas que você conhece</>}
           en={<>Select characters/people you know</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

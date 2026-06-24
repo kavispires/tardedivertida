@@ -1,14 +1,14 @@
 // Components
 import { ItemCard } from '@components/cards/ItemCard';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultComunicacaoAlienigena({ winningValues }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="Os objetos mais votados foram"
@@ -21,7 +21,7 @@ export function ResultComunicacaoAlienigena({ winningValues }: ResultComponentPr
           />
         )}
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => (
           <ItemCard

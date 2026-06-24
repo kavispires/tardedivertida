@@ -5,7 +5,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 // Components
 import { CrimeItemCard } from '@components/cards/CrimeItemCard';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
@@ -19,7 +19,7 @@ export function ResultCrimesHediondos({ track, winningValues, containerWidth }: 
 
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="As cartas mais votadas foram"
@@ -32,7 +32,7 @@ export function ResultCrimesHediondos({ track, winningValues, containerWidth }: 
           />
         )}
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => {
           const item = track.data.cards.find((card: CrimesHediondosCardData) => card.id === cardId);

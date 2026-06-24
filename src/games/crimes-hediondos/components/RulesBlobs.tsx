@@ -2,12 +2,12 @@
 import type { GameRound } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { Instruction } from '@components/text/Instruction';
 
 export function WelcomeMessage() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -34,13 +34,13 @@ export function WelcomeMessage() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function GuessMessage() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -63,14 +63,14 @@ export function GuessMessage() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function ScoringMessage({ round }: { round: GameRound }) {
   const points = round.total - round.current + 1;
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -98,13 +98,13 @@ export function ScoringMessage({ round }: { round: GameRound }) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function GenericMessage() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -121,6 +121,6 @@ export function GenericMessage() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

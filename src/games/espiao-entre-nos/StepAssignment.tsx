@@ -3,8 +3,8 @@ import type { GamePlayer } from 'types/game';
 // Components
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Location } from './utils/types';
@@ -43,7 +43,7 @@ export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignment
         />
       </HostNextPhaseButton>
 
-      <Instruction className="e-phase-instruction">
+      <Surface className="e-phase-instruction">
         {isUserTheSpy ? (
           <Translate
             pt="Você terá 10 minutos para descobrir onde os outros agentes estão! Pronto?"
@@ -55,11 +55,11 @@ export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignment
             en="You have 10 minutes to find out who is the spy! Ready?"
           />
         )}
-      </Instruction>
+      </Surface>
 
-      <Instruction className="e-lists">
+      <Surface className="e-lists">
         <LocationsList locations={locations} />
-      </Instruction>
+      </Surface>
       <Notes />
     </Step>
   );

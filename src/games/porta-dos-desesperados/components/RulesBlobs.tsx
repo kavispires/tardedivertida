@@ -8,8 +8,8 @@ import { useSortedPlayers } from '@hooks/useSortedPlayers';
 import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import { TOTAL_DOORS } from '../utils/constants';
@@ -25,7 +25,7 @@ type RoundOneRuleProps = {
 
 export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -66,7 +66,7 @@ export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
         level={difficulty}
         count={5}
       />
-    </Instruction>
+    </Surface>
   );
 }
 
@@ -77,7 +77,7 @@ type RoundRuleProps = {
 
 export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -106,7 +106,7 @@ export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
@@ -121,7 +121,7 @@ export function TrapRule({ trapEntry, showTitle = false }: TrapRuleProps) {
   const TrapIcon = getTrapIcon(trapEntry?.icon);
 
   return (
-    <Instruction
+    <Surface
       contained
       style={{ maxWidth: 512 }}
     >
@@ -147,7 +147,7 @@ export function TrapRule({ trapEntry, showTitle = false }: TrapRuleProps) {
           count={3}
         />
       </div>
-    </Instruction>
+    </Surface>
   );
 }
 
@@ -194,7 +194,7 @@ export function LoseGameText({ players }: { players: GamePlayers }) {
 
 export function BotsRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -217,7 +217,7 @@ export function BotsRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 

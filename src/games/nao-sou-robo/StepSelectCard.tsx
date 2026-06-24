@@ -16,9 +16,9 @@ import { ImageCardHand } from '@components/image-cards/ImageCardHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Surface } from '@components/layout/Surface';
 import { CardHighlight } from '@components/metrics/CardHighlight';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
@@ -152,7 +152,7 @@ export function StepSelectCard({
             vertical
             contained
           >
-            <Instruction className="my-1">
+            <Surface className="my-1">
               <Translate
                 pt={
                   <>
@@ -167,7 +167,7 @@ export function StepSelectCard({
                   </>
                 }
               />
-            </Instruction>
+            </Surface>
 
             <Flex justify="center">
               <CaptchaTopic captcha={captcha} />

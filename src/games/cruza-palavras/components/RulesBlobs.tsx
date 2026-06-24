@@ -1,11 +1,11 @@
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { Instruction } from '@components/text/Instruction';
 
 export function WritingCluesRule({ playerCount }: { playerCount: number }) {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -30,13 +30,13 @@ export function WritingCluesRule({ playerCount }: { playerCount: number }) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function ScoringRule({ playerCount }: { playerCount: number }) {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -66,6 +66,6 @@ export function ScoringRule({ playerCount }: { playerCount: number }) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

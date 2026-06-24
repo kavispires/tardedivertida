@@ -2,8 +2,8 @@
 import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Tree } from './utils/types';
@@ -27,12 +27,12 @@ export function StepBuildWait({ user, announcement, forest }: StepBuildWaitProps
         />
       </StepTitle>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={<>Aguarde pacientemente, você ainda vai participar na hora de adivinhar.</>}
           en={<>Sit and wait patiently, you will still participate when it's time to guess.</>}
         />
-      </Instruction>
+      </Surface>
 
       <Forest
         forest={forest}

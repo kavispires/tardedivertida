@@ -18,7 +18,7 @@ import { ImageCard } from '@components/image-cards/ImageCard';
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Pages
 import { DailyContent } from '@pages/Daily/components/DailyContent';
 import { GameHeader } from '@pages/Daily/components/Header';
@@ -80,7 +80,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
             rules={<Rules date={data.id} />}
           />
           {alreadyPlayed && (
-            <Instruction className="info-screen">
+            <Surface className="info-screen">
               <Icon icon={<ThumbsUpIcon />} />
               <Translate
                 pt="Você já jogou hoje!"
@@ -92,7 +92,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
               />
               <Divider />
               <NextGameSuggestion />
-            </Instruction>
+            </Surface>
           )}
         </div>
 
@@ -191,7 +191,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
 
         {isIdle && !alreadyPlayed && (
           <Region>
-            <Instruction contained>
+            <Surface contained>
               <Translate
                 pt={
                   <>
@@ -220,7 +220,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
                   </>
                 }
               />
-            </Instruction>
+            </Surface>
             <Button
               type="primary"
               size="large"

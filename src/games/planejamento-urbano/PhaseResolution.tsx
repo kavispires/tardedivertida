@@ -8,11 +8,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { MapCityIcon } from '@icons/MapCityIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { PLANEJAMENTO_URBANO_PHASES, SLIDE_DURATION } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';
@@ -58,7 +58,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
           duration={[10, 5, 3]?.[state.round.current - 1] ?? 3}
           onClose={goToNextStep}
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -85,7 +85,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
