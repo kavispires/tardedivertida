@@ -1,3 +1,4 @@
+// Types
 import type { MEGAMIX_ACTIONS } from './constants';
 
 export type MegamixGameOptions = {

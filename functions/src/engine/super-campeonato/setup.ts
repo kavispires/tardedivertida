@@ -1,4 +1,8 @@
+import { sampleSize } from 'lodash';
+// Types
+import type { Bracket, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   CHALLENGES_PER_GAME,
   CHALLENGES_PER_ROUND,
@@ -6,12 +10,14 @@ import {
   SUPER_CAMPEONATO_PHASES,
   TOTAL_ROUNDS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { sampleSize } from 'lodash';
-// Types
-import type { Bracket, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Services
+import * as firestoreValueUtils from '../../services/firestore-core';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
+import { setupAchievements, calculateAchievements } from './achievements';
+import { saveData } from './data';
 import {
   buildRanking,
   getChampionshipTier,
@@ -24,10 +30,7 @@ import {
   updateAchievements,
   updateBracketsWithVotes,
 } from './helpers';
-import { setupAchievements, calculateAchievements } from './achievements';
-import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-import * as firestoreValueUtils from '../../services/firestore-core';
+
 /**
  * Setup
  * Build the card deck

@@ -1,11 +1,11 @@
+import { shuffle } from 'lodash';
 // Types
+import type { ArteRuimCardData, TextCardData } from '../../types/tdr';
 import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
-import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { ArteRuimCardData, TextCardData } from '../../types/tdr';
 
 /**
  * Determines the next phase based on the current phase and round

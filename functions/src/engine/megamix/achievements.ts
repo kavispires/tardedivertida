@@ -1,10 +1,12 @@
+// Constants
+import { SIDES } from './constants';
+// Tool Kits
+import { achievementBuilder } from '../../utils/tool-kits';
+
 /**
  * MEGAMIX ACHIEVEMENTS
  * Type-safe achievement definitions using the achievements toolkit
  */
-
-import { achievementBuilder } from '../../utils/tool-kits';
-import { SIDES } from './constants';
 
 /**
  * Build achievement utilities for Megamix game

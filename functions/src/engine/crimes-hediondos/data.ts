@@ -1,12 +1,13 @@
-// Constants
-import { TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Types
 import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
-// Helpers
-import * as resourceUtils from '../resource';
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 import { CARDS_PER_GAME } from './constants';
+// Internal
+import * as resourceUtils from '../resource';
+
 /**
  * Get question resource based on the game's language
  * @param options - Game options including location and victim settings

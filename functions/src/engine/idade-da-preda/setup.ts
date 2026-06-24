@@ -1,7 +1,9 @@
-// Utils
-import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
 import { keyBy, orderBy, shuffle } from 'lodash';
+// Types
+import type { ItemData } from '../../types/tdr';
+import type { ConceptData, FirebaseStateData, FirebaseStoreData, NewNameEntry, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   BASIC_CONCEPTS,
   CONCEPTS_FOR_FIRST_ROUND,
@@ -11,10 +13,12 @@ import {
   PLAYER_COUNTS,
   TOTAL_ROUNDS,
 } from './constants';
-import type { ConceptData, FirebaseStateData, FirebaseStoreData, NewNameEntry, ResourceData } from './types';
-import { buildGalleryAndRanking, gatherConcepts } from './helpers';
-import type { ItemData } from '../../types/tdr';
+// Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Utils
+import utils from '../../utils';
+// Internal
+import { buildGalleryAndRanking, gatherConcepts } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

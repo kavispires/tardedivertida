@@ -1,13 +1,15 @@
-// Types
-import type { ColegasDeQuartoOptions, PastClues, ResourceData } from './types';
-import type { TextCardData } from '../../types/tdr';
 import { sampleSize } from 'lodash';
-// Utils
-import * as dataUtils from '../collections';
-import utils from '../../utils';
-import * as resourceUtils from '../resource';
+// Types
+import type { TextCardData } from '../../types/tdr';
+import type { ColegasDeQuartoOptions, PastClues, ResourceData } from './types';
+// Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { TOTAL_ROUNDS, WORDS_IN_POOL } from './constants';
+// Utils
+import utils from '../../utils';
+// Internal
+import * as dataUtils from '../collections';
+import * as resourceUtils from '../resource';
 
 /**
  * Get words resource based on the game's language

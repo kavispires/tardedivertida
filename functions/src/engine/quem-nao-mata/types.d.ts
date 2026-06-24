@@ -1,3 +1,4 @@
+// Types
 import type { QUEM_NAO_MATA_ACTIONS } from './constants';
 
 export interface QuemNaoMataStore extends DefaultStore {

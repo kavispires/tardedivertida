@@ -1,3 +1,6 @@
+import { sampleSize, shuffle } from 'lodash';
+// Types
+import type { CandyStatus, HouseCard, Decks, FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Constants
 import {
   CANDY_VALUES,
@@ -10,11 +13,8 @@ import {
   OUTCOME_STATUS,
   SHORT_GAME_ROUNDS,
 } from './constants';
-// Types
-import type { CandyStatus, HouseCard, Decks, FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
 import utils from '../../utils';
-import { sampleSize, shuffle } from 'lodash';
 // Internal
 import { increaseAchievement } from './achievements';
 

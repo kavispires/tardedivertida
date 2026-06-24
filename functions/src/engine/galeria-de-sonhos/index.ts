@@ -1,11 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import {
-  GALERIA_DE_SONHOS_ACTIONS,
-  GALERIA_DE_SONHOS_PHASES,
-  PLAYER_COUNTS,
-  TOTAL_ROUNDS,
-} from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -14,10 +6,27 @@ import type {
   GaleriaDeSonhosOptions,
   GaleriaDeSonhosSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import {
+  GALERIA_DE_SONHOS_ACTIONS,
+  GALERIA_DE_SONHOS_PHASES,
+  PLAYER_COUNTS,
+  TOTAL_ROUNDS,
+} from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
+import { handlePlayCard, handleSubmitCards, handleSubmitWord } from './actions';
+import { getWords } from './data';
 import { determineNextPhase } from './helpers';
-// Internal Functions
 import {
   prepareCardPlayPhase,
   prepareDreamsSelectionPhase,
@@ -26,14 +35,6 @@ import {
   prepareSetupPhase,
   prepareWordSelectionPhase,
 } from './setup';
-import { handlePlayCard, handleSubmitCards, handleSubmitWord } from './actions';
-import { getWords } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

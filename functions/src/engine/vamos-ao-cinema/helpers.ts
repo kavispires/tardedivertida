@@ -1,5 +1,9 @@
-import type { MovieCardData } from '../../types/tdr';
 import { sampleSize } from 'lodash';
+// Types
+import type { MovieCardData } from '../../types/tdr';
+import type { FirebaseStateData, FirebaseStoreData, VamosAoCinemaAchievement } from './types';
+// Constants
+import { LETTERS } from '../../utils/constants';
 import {
   MAX_MISTAKES,
   MOVIE_POSTERS_COUNT,
@@ -8,10 +12,9 @@ import {
   VAMOS_AO_CINEMA_ACHIEVEMENTS,
   VAMOS_AO_CINEMA_PHASES,
 } from './constants';
-import type { FirebaseStateData, FirebaseStoreData, VamosAoCinemaAchievement } from './types';
-import { LETTERS } from '../../utils/constants';
-import { makeArray } from '../../utils/helpers';
+// Utils
 import utils from '../../utils';
+import { makeArray } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one

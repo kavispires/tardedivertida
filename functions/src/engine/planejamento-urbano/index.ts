@@ -1,11 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import {
-  PLANEJAMENTO_URBANO_ACTIONS,
-  PLANEJAMENTO_URBANO_PHASES,
-  PLAYER_COUNTS,
-  TOTAL_ROUNDS,
-} from './constants';
 // Types
 import type {
   PlanejamentoUrbanoInitialState,
@@ -14,9 +6,26 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import {
+  PLANEJAMENTO_URBANO_ACTIONS,
+  PLANEJAMENTO_URBANO_PHASES,
+  PLAYER_COUNTS,
+  TOTAL_ROUNDS,
+} from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitPlanning, handleSubmitPlacements } from './actions';
+import { getLocations } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -25,14 +34,6 @@ import {
   prepareResolutionPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getLocations } from './data';
-import { handleSubmitPlanning, handleSubmitPlacements } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

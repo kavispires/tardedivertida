@@ -1,9 +1,9 @@
-// Constants
 // Types
 import type { QualQuesitoOptions, ResourceData } from './types';
+// Constants
+import { CARDS_PER_PLAYER, DECK_PER_PLAYER } from './constants';
 // Utils
 import utils from '../../utils';
-import { CARDS_PER_PLAYER, DECK_PER_PLAYER } from './constants';
 
 /**
  * Get resource data for the game

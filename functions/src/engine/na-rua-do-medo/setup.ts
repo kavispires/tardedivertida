@@ -1,8 +1,10 @@
-// Constants
-import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
+// Constants
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -18,7 +20,6 @@ import {
   sendPlayersHome,
   tallyCandyAsScore,
 } from './helpers';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup

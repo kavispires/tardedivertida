@@ -1,14 +1,19 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { ArteRuimCardData, ArteRuimGroupData, ArteRuimPairData, TextCardData } from '../../types/tdr';
 import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level4Type } from './types';
-// Helpers
-import * as globalUtils from '../global';
-import * as dataUtils from '../collections';
-import * as resourceUtils from '../resource';
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { SPECIAL_LEVELS_LIBRARIES } from './constants';
+// Services
+import { getDailyCollectionRef } from '../../services/firestore-core';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
+// Utils
 import utils from '../../utils';
+// Internal
+import * as dataUtils from '../collections';
+import * as globalUtils from '../global';
+import * as resourceUtils from '../resource';
 import {
   determineNumberOfCards,
   distributeCardsByLevel,
@@ -16,9 +21,6 @@ import {
   getEnoughLevel4Cards,
   getGameSettings,
 } from './helpers';
-import { SPECIAL_LEVELS_LIBRARIES } from './constants';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
-import { getDailyCollectionRef } from '../../services/firestore-core';
 
 const getPairsLevel = async (language: string, playerCount: number, options: ArteRuimGameOptions) => {
   const cardsPerRound = determineNumberOfCards(playerCount);

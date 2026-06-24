@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { FILEIRA_DE_FATOS_ACTIONS, FILEIRA_DE_FATOS_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import type {
   FileiraDeFatosInitialState,
@@ -9,9 +6,21 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { FILEIRA_DE_FATOS_ACTIONS, FILEIRA_DE_FATOS_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitScenarioOrder } from './actions';
+import { getScenarios } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,
@@ -19,14 +28,6 @@ import {
   prepareScenarioOrderingPhase,
   prepareSetupPhase,
 } from './setup';
-import { getScenarios } from './data';
-import { handleSubmitScenarioOrder } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

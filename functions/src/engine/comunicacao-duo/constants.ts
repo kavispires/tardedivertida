@@ -1,3 +1,4 @@
+// Types
 import type { DeckEntry } from './types';
 
 export const COMUNICACAO_DUO_PHASES = {

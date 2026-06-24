@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import type * as functions from 'firebase-functions/v2';
 
 export type FirebaseAuth = functions.https.CallableRequest['auth'];

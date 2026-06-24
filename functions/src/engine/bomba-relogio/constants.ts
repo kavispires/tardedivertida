@@ -1,3 +1,4 @@
+// Types
 import type { DataCounts } from './types';
 
 export const BOMBA_RELOGIO_PHASES = {

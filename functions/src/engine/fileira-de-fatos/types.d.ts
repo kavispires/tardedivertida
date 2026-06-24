@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { FILEIRA_DE_FATOS_ACTIONS } from './constants';
 

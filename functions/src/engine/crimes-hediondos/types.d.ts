@@ -1,3 +1,4 @@
+// Types
 import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import type { CRIMES_HEDIONDOS_ACTIONS } from './constants';
 

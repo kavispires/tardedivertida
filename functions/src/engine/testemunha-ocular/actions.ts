@@ -1,9 +1,12 @@
-// Utils
-import { getStateReferences, updatePlayer, updateState, saveGame } from '../../services/game-session';
-import { OUTCOME } from './constants';
-import { getNextPhase } from './index';
+// Types
 import type { FirebaseStateData } from './types';
+// Constants
+import { OUTCOME } from './constants';
+// Services
 import { throwHttpsError } from '../../services/firebase-core';
+import { getStateReferences, updatePlayer, updateState, saveGame } from '../../services/game-session';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Selects the witness player for questioning

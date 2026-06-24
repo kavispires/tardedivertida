@@ -1,9 +1,10 @@
+// Tool Kits
+import { achievementBuilder } from '../../utils/tool-kits';
+
 /**
  * TEORIA_DE_CONJUNTOS ACHIEVEMENTS
  * Type-safe achievement definitions using the achievements toolkit
  */
-
-import { achievementBuilder } from '../../utils/tool-kits';
 
 /**
  * Build achievement utilities for Teoria De Conjuntos game

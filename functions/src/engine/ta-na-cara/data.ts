@@ -1,15 +1,17 @@
+import { sampleSize } from 'lodash';
 // Types
 import type { TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS, PLAYER_SUGGESTED_QUESTIONS_COUNT } from './constants';
-// Helpers
+// Services
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
+// Utils
 import utils from '../../utils';
+// Internal
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import { sampleSize } from 'lodash';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get question resource based on the game's language

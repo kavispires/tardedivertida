@@ -1,4 +1,4 @@
-// Utils
+// Services
 import { updatePlayer } from '../../services/game-session';
 // Internal
 import { getNextPhase } from './index';

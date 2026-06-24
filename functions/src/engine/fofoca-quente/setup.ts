@@ -1,8 +1,6 @@
-// Utils
-import utils from '../../utils';
 import { random, sampleSize } from 'lodash';
-// Internal
-import { FOFOCA_QUENTE_PHASES, MAX_ROUNDS, STARTING_STUDENT_POSITIONS, TOTAL_MOTIVATIONS } from './constants';
+// Types
+import type { TeenageRumorData } from '../../types/tdr';
 import type {
   FirebaseStateData,
   FirebaseStoreData,
@@ -12,9 +10,14 @@ import type {
   SchoolLocation,
   Student,
 } from './types';
-import { determineStudentsThatCanBeRumored } from './helpers';
-import type { TeenageRumorData } from '../../types/tdr';
+// Constants
+import { FOFOCA_QUENTE_PHASES, MAX_ROUNDS, STARTING_STUDENT_POSITIONS, TOTAL_MOTIVATIONS } from './constants';
+// Services
 import * as firestoreValueUtils from '../../services/firestore-core';
+// Utils
+import utils from '../../utils';
+// Internal
+import { determineStudentsThatCanBeRumored } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

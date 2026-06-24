@@ -1,3 +1,4 @@
+// Types
 import type { ContenderCardData, TextCardData } from '../../types/tdr';
 import type { SUPER_CAMPEONATO_ACTIONS } from './constants';
 

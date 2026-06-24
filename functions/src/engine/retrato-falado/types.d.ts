@@ -1,3 +1,4 @@
+// Types
 import type { MonsterImageData } from '../../types/tdr';
 import type { RETRATO_FALADO_ACTIONS } from './constants';
 

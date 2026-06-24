@@ -1,4 +1,8 @@
+import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
+// Types
+import type { DrawingEntryData, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   LONGER_TIME_LIMIT,
   NORMAL_TIME_LIMIT,
@@ -6,16 +10,14 @@ import {
   TABLE_CARDS,
   TOTAL_ROUNDS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
-// Types
-import type { DrawingEntryData, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { dealCardsToPlayers, evaluateAnswers } from './helpers';
+// Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveDrawings } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { dealCardsToPlayers, evaluateAnswers } from './helpers';
 
 /**
  * Setup

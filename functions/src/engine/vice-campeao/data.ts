@@ -1,7 +1,7 @@
-// Type
-import type { RunnerCard, ResourceData } from './types';
 import { shuffle } from 'lodash';
-// Helpers
+// Types
+import type { RunnerCard, ResourceData } from './types';
+// Constants
 import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS } from './constants';
 
 /**

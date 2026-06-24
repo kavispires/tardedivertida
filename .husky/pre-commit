@@ -136,8 +136,18 @@ lint_staged_files() {
   local staged_files=$(git diff --name-only --cached | grep -E '.*\.(ts|tsx)$')
 
   if [ -n "$staged_files" ]; then
-    yarn biome check --staged --write $staged_files
-    git add $staged_files
+    yarn biome check --staged --write --no-errors-on-unmatched $staged_files
+
+    # Only add files that still exist (filter out deleted files)
+    for file in $staged_files; do
+      if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+        git add "$file"
+        echo "   ➕ Re-added $file to staging."
+      else
+        echo "   ➖ Skipping deleted file: $file"
+      fi
+    done
+
     echo "   ✨ Biome formatting applied to all staged files"
   else
     echo "   ➖ No staged .ts or .tsx files to lint."

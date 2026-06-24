@@ -1,10 +1,11 @@
+import { shuffle } from 'lodash';
+// Types
+import type { FestaJuninaCard } from './types';
 // Constants
+import { SEPARATOR } from '../../utils/constants';
 import { CORREIO_DO_AMOR_PHASES, DECK_INFO_BY_PLAYER_COUNT } from './constants';
 // Utils
 import utils from '../../utils';
-import type { FestaJuninaCard } from './types';
-import { SEPARATOR } from '../../utils/constants';
-import { shuffle } from 'lodash';
 
 /**
  * Determines the next phase based on the current phase and round

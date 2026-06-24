@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { OUTCOME, UE_SO_ISSO_ACTIONS } from './constants';
 

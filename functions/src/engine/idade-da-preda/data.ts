@@ -1,8 +1,11 @@
-import type { IdadeDaPredaOptions, ResourceData } from './types';
-import utils from '../../utils';
-import type { ItemData } from '../../types/tdr';
-import { AGE_1_ITEMS_COUNT, ITEMS_PER_PLAYER_PER_AGE, NEW_AGES_COUNT, PLAYER_COUNTS } from './constants';
 import { sampleSize } from 'lodash';
+// Types
+import type { ItemData } from '../../types/tdr';
+import type { IdadeDaPredaOptions, ResourceData } from './types';
+// Constants
+import { AGE_1_ITEMS_COUNT, ITEMS_PER_PLAYER_PER_AGE, NEW_AGES_COUNT, PLAYER_COUNTS } from './constants';
+// Utils
+import utils from '../../utils';
 
 /**
  * Example data structure for game data

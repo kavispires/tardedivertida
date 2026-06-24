@@ -1,11 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import {
-  CONTADORES_HISTORIAS_ACTIONS,
-  CONTADORES_HISTORIAS_PHASES,
-  MAX_ROUNDS,
-  PLAYER_COUNTS,
-} from './constants';
 // Types
 import type {
   ContadoresHistoriasInitialState,
@@ -14,9 +6,26 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import {
+  CONTADORES_HISTORIAS_ACTIONS,
+  CONTADORES_HISTORIAS_PHASES,
+  MAX_ROUNDS,
+  PLAYER_COUNTS,
+} from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
+import { getData } from './data';
 import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareCardPlayPhase,
@@ -26,14 +35,6 @@ import {
   prepareStoryPhase,
   prepareVotingPhase,
 } from './setup';
-import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
-import { getData } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

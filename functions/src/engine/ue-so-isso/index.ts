@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,11 +6,29 @@ import type {
   UeSoIssoInitialState,
   UeSoIssoSubmitAction,
 } from './types';
-// Utilities
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
+// Internal
+import {
+  handleConfirmGuess,
+  handleSendGuess,
+  handleSubmitSuggestions,
+  handleSubmitValidation,
+  handleSubmitWordSelectionVotes,
+  handleUpdateValidSuggestions,
+} from './actions';
 import { getWords } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareComparePhase,
   prepareGuessPhase,
@@ -24,20 +39,6 @@ import {
   prepareResultPhase,
   prepareVerifyGuessPhase,
 } from './setup';
-import {
-  handleConfirmGuess,
-  handleSendGuess,
-  handleSubmitSuggestions,
-  handleSubmitValidation,
-  handleSubmitWordSelectionVotes,
-  handleUpdateValidSuggestions,
-} from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

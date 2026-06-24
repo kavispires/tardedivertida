@@ -1,3 +1,4 @@
+// Types
 import type { TeenageRumorData, TeenageStudentData, TeenageMotivationData } from '../../types/tdr';
 import type { FOFOCA_QUENTE_ACHIEVEMENTS, FOFOCA_QUENTE_PHASES, FOFOCA_QUENTE_ACTIONS } from './constants';
 

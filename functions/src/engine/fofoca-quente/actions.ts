@@ -1,8 +1,7 @@
-// Utils
-import { updatePlayer, updateState } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Services
 import * as firestoreValueUtils from '../../services/firestore-core';
+import { updatePlayer, updateState } from '../../services/game-session';
 
 /**
  * Submits the gossiper and detective player roles

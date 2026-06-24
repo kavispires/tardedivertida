@@ -1,5 +1,6 @@
-import type { Dictionary } from 'lodash';
+// Types
 import type { BOMBA_RELOGIO_ACTIONS, CARD_TYPES, OUTCOME } from './constants';
+import type { Dictionary } from 'lodash';
 
 export type DataCounts = {
   agents: number;

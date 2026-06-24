@@ -1,9 +1,11 @@
-import { GLOBAL_USED_DOCUMENTS, DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
-import { HAND_LIMIT } from './constants';
 // Types
 import type { ResourceData, UsedCards } from './types';
-// Helpers
+// Constants
+import { GLOBAL_USED_DOCUMENTS, DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { HAND_LIMIT } from './constants';
+// Utils
 import utils from '../../utils';
+// Internal
 import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
 

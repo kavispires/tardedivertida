@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { ESPIAO_ENTRE_NOS_ACTIONS, ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type {
   EspiaoEntreNosInitialState,
@@ -8,8 +5,22 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { ESPIAO_ENTRE_NOS_ACTIONS, ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
+import { handleLastQuestioner, handleGuessLocation, handleMakeAccusation, handleSubmitVote } from './actions';
+import { getLocations } from './data';
+import { checkOutcome, determineNextPhase } from './helpers';
 import {
   prepareAssessmentPhase,
   prepareAssignmentPhase,
@@ -19,15 +30,6 @@ import {
   prepareResolutionPhase,
   prepareSetupPhase,
 } from './setup';
-import { handleLastQuestioner, handleGuessLocation, handleMakeAccusation, handleSubmitVote } from './actions';
-import { checkOutcome, determineNextPhase } from './helpers';
-import { getLocations } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

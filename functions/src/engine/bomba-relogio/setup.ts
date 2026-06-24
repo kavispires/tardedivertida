@@ -1,16 +1,17 @@
-// Constants
-import { BOMBA_RELOGIO_PHASES, CARD_TYPES, DATA_COUNTS, OUTCOME, ROLES, TOTAL_ROUNDS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { shuffle, sortBy } from 'lodash';
 // Types
 import type { DataCounts, FirebaseStateData, FirebaseStoreData, Status, TimeBombCard } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { BOMBA_RELOGIO_PHASES, CARD_TYPES, DATA_COUNTS, OUTCOME, ROLES, TOTAL_ROUNDS } from './constants';
+// Services
+import * as firestoreValueUtils from '../../services/firestore-core';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildDeck, determineRoles, getStartingStatus } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-import * as firestoreValueUtils from '../../services/firestore-core';
+import { buildDeck, determineRoles, getStartingStatus } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

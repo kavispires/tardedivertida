@@ -3,9 +3,10 @@ import * as functions from 'firebase-functions/v2';
 import { isEmpty } from 'lodash';
 // Utils
 import utils from '../utils';
-import { throwHttpsError } from './firebase-core';
-import { print } from '../utils/helpers';
 import { isEmulatingEnvironment } from '../utils/environment';
+import { print } from '../utils/helpers';
+// Internal
+import { throwHttpsError } from './firebase-core';
 import { getMetaCollectionRef, getSessionRef } from './firestore-core';
 import * as firestoreValueUtils from './firestore-core';
 

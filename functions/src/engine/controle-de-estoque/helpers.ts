@@ -1,3 +1,4 @@
+import { orderBy, shuffle } from 'lodash';
 // Types
 import type {
   ControleDeEstoqueState,
@@ -9,13 +10,13 @@ import type {
   WarehouseSlot,
 } from './types';
 // Constants
-import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 import { LETTERS } from '../../utils/constants';
+import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 // Utils
 import utils from '../../utils';
-import { BOSS_IDEAS } from './data';
-import { orderBy, shuffle } from 'lodash';
+// Internal
 import { increaseAchievement, pushAchievement } from './achievements';
+import { BOSS_IDEAS } from './data';
 
 /**
  * Determines the next phase based on the current phase and game state

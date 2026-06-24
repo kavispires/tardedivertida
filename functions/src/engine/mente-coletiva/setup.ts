@@ -2,15 +2,20 @@
 import type { GroupQuestionCardData } from '../../types/tdr';
 import type { ExtendedPlayerAnswerEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import {
   MENTE_COLETIVA_PHASES,
   PASTURE_GAME_OVER_THRESHOLD,
   QUESTIONS_PER_ROUND,
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { saveData } from './data';
 import {
   buildDeck,
   buildListOfAnswers,
@@ -28,9 +33,6 @@ import {
   calculateSheepTravelDistance,
   getMostFrequentAnswers,
 } from './helpers';
-import { saveData } from './data';
-import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup

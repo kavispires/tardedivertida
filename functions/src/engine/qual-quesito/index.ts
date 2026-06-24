@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { QUAL_QUESITO_ACTIONS, QUAL_QUESITO_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   QualQuesitoInitialState,
@@ -10,11 +7,22 @@ import type {
   FirebaseStoreData,
   QualQuesitoPhase,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { QUAL_QUESITO_ACTIONS, QUAL_QUESITO_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
+// Internal
+import { handleEvaluations, handleSkipTurn, handleSubmitCards, handleSubmitCategory } from './actions';
 import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareCardPlayPhase,
   prepareCategoryCreationPhase,
@@ -24,13 +32,6 @@ import {
   prepareSkipAnnouncementPhase,
   prepareVerificationPhase,
 } from './setup';
-import { handleEvaluations, handleSkipTurn, handleSubmitCards, handleSubmitCategory } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

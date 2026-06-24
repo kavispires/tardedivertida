@@ -1,4 +1,6 @@
+import { random, sample, shuffle } from 'lodash';
 // Types
+import type { TextCardData } from '../../types/tdr';
 import type { Direction, FirebaseStoreData, MapSegment, Point, Tree } from './types';
 // Constants
 import {
@@ -16,8 +18,6 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import type { TextCardData } from '../../types/tdr';
-import { random, sample, shuffle } from 'lodash';
 // Internal
 import { increaseAchievement } from './achievements';
 

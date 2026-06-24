@@ -1,9 +1,8 @@
+// Types
+import type { FirebaseUserDB } from '../user';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constants';
-// Utils
-import alienItemsMock from './alien-items.json';
-import type { FirebaseUserDB } from '../user';
-import { isDevelopmentEnvironment, isEmulatingFirestore } from '../environment';
+// Services
 import {
   getDailyCollectionRef,
   getDataCollectionRef,
@@ -11,6 +10,9 @@ import {
   getPublicCollectionRef,
   getUserCollectionRef,
 } from '../../services/firestore-core';
+// Internal
+import { isDevelopmentEnvironment, isEmulatingFirestore } from '../environment';
+import alienItemsMock from './alien-items.json';
 
 const sample = {};
 

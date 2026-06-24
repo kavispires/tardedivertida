@@ -1,7 +1,8 @@
+import { keyBy, sampleSize } from 'lodash';
 // Types
 import type { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
-import { keyBy, sampleSize } from 'lodash';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   CARD_SELECTION_PER_PLAYER_COUNT,
   GOODS_LIBRARY_COUNT,
@@ -12,12 +13,13 @@ import {
   ROBOT_GOAL_BY_PLAYER_COUNT,
   ROUND_TYPES,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { calculateResults, distributeCards } from './helpers';
+// Internal
 import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { calculateResults, distributeCards } from './helpers';
 
 /**
  * Setup

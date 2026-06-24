@@ -1,4 +1,9 @@
+import { difference, orderBy, sampleSize, shuffle } from 'lodash';
+// Types
+import type { CityLocationData } from '../../types/tdr';
+import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Constants
+import { GAME_NAMES, LETTERS } from '../../utils/constants';
 import {
   ARCHITECT_MATCH_POINTS,
   ARCHITECT_PASSIVE_POINTS,
@@ -8,15 +13,12 @@ import {
   PLANEJAMENTO_URBANO_PHASES,
   PLAYER_MATCH_POINTS,
 } from './constants';
-// Types
-import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
-import { difference, orderBy, sampleSize, shuffle } from 'lodash';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import type { CityLocationData } from '../../types/tdr';
-import { GAME_NAMES, LETTERS } from '../../utils/constants';
+// Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Prepares the setup phase for the urban planning game.

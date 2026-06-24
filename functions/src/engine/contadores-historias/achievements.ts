@@ -1,9 +1,10 @@
+// Tool Kits
+import { achievementBuilder } from '../../utils/tool-kits';
+
 /**
  * CONTADORES DE HISTÓRIAS ACHIEVEMENTS
  * Type-safe achievement definitions using the achievements toolkit
  */
-
-import { achievementBuilder } from '../../utils/tool-kits';
 
 /**
  * Build achievement utilities for Contadores de Histórias game

@@ -1,3 +1,4 @@
+// Types
 import type { COMUNICACAO_DUO_ACTIONS } from './constants';
 
 export type ComunicacaoDuoOptions = {

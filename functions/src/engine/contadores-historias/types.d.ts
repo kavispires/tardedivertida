@@ -1,3 +1,4 @@
+// Types
 import type { CONTADORES_HISTORIAS_ACTIONS } from './constants';
 
 export type ContadoresHistoriasOptions = {

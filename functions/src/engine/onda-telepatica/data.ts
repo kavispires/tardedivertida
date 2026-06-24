@@ -1,14 +1,16 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { PLAYER_COUNTS } from './constants';
 // Types
 import type { SpectrumCardData } from '../../types/tdr';
 import type { PastCategories, ResourceData } from './types';
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { PLAYER_COUNTS } from './constants';
+// Services
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 // Utils
+import utils from '../../utils';
+// Internal
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import utils from '../../utils';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get question resource based on the game's language

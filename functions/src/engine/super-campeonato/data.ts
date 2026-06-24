@@ -1,14 +1,16 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-// Type
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { PastBattles, ResourceData, SuperCampeonatoOptions } from './types';
-// Helpers
-import * as resourceUtils from '../resource';
-import * as globalUtils from '../global';
-import utils from '../../utils';
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from './constants';
+// Services
 import { resetGlobalUsedDocument } from '../../services/global-tracker';
+// Utils
+import utils from '../../utils';
+// Internal
+import * as globalUtils from '../global';
+import * as resourceUtils from '../resource';
 
 /**
  * Get challenges and contenders  based on the game's language

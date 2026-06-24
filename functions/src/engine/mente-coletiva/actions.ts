@@ -1,12 +1,14 @@
-import type { GroupQuestionCardData } from '../../types/tdr';
-// Utils
-import { getStateReferences, saveGame, updatePlayer, updateStore } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
-import { buildListOfAnswers } from './helpers';
+// Types
+import type { GroupQuestionCardData } from '../../types/tdr';
 import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
+// Services
 import { throwHttpsError } from '../../services/firebase-core';
+import { getStateReferences, saveGame, updatePlayer, updateStore } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
+// Internal
+import { buildListOfAnswers } from './helpers';
 
 /**
  * Submits the active player's chosen question for the round

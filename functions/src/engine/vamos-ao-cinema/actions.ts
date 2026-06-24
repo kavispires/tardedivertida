@@ -1,7 +1,6 @@
-// Utils
-import { updatePlayer, updateStore } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Services
+import { updatePlayer, updateStore } from '../../services/game-session';
 
 /**
  * Submits each player's movie choice for the round

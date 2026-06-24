@@ -1,3 +1,4 @@
+// Types
 import type { NA_FILA_DO_BANCO_ACTIONS } from './constants';
 
 export interface ClientCard {

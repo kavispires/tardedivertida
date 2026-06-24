@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { VICE_CAMPEAO_ACTIONS, VICE_CAMPEAO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,19 +6,23 @@ import type {
   ViceCampeaoOptions,
   ViceCampeaoSubmitAction,
 } from './types';
-// Utils
-import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
-import { getResourceData } from './data';
-import { prepareSetupPhase, prepareCardSelectionPhase, prepareRunPhase, prepareGameOverPhase } from './setup';
-import { handleSubmitCard } from './actions';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { VICE_CAMPEAO_ACTIONS, VICE_CAMPEAO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+// Services
 import {
   validateSubmitActionPayload,
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
+import utils from '../../utils';
+// Internal
+import { handleSubmitCard } from './actions';
+import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
+import { prepareSetupPhase, prepareCardSelectionPhase, prepareRunPhase, prepareGameOverPhase } from './setup';
 
 /**
  * Gets the initial state for a new game session

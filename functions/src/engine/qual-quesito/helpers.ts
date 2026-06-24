@@ -1,10 +1,11 @@
+import { keyBy } from 'lodash';
+// Types
+import type { ItemData } from '../../types/tdr';
+import type { QualQuesitoPhase } from './types';
 // Constants
 import { QUAL_QUESITO_PHASES } from './constants';
-import { keyBy } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { QualQuesitoPhase } from './types';
-import type { ItemData } from '../../types/tdr';
 
 /**
  * Determines the next phase based on the current phase and skip status

@@ -1,3 +1,6 @@
+import { sample, sampleSize, shuffle } from 'lodash';
+// Types
+import type { Trap } from './types';
 // Constants
 import {
   DOOR_LEVELS,
@@ -11,8 +14,6 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import type { Trap } from './types';
-import { sample, sampleSize, shuffle } from 'lodash';
 
 /**
  * Determines the next phase based on the current phase and game state

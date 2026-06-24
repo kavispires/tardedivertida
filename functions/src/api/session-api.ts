@@ -1,6 +1,6 @@
-import * as delegatorUtils from '../utils/delegators';
-import utils from '../utils';
+// Types
 import type { FirebaseAuth } from '../types/reference';
+// Services
 import { verifyPayload, throwHttpsError } from '../services/firebase-core';
 import {
   getMetaCollectionRef,
@@ -8,6 +8,9 @@ import {
   getUserCollectionRef,
 } from '../services/firestore-core';
 import { fetchGameMetaDoc, getStateReferences } from '../services/game-session';
+// Utils
+import utils from '../utils';
+import * as delegatorUtils from '../utils/delegators';
 
 type LoadGamePayload = {
   gameId: UID;

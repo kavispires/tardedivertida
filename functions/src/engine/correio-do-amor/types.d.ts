@@ -1,3 +1,4 @@
+// Types
 import type { CORREIO_DO_AMOR_ACTIONS } from './constants';
 
 /**

@@ -1,11 +1,12 @@
 // Types
 import type { FirebaseStateData, ImageCard, PlayerCard } from './types';
-// Helpers
-import { getStateReferences, updatePlayer, updateStore, updateState } from '../../services/game-session';
-// Internal functions
-import { getNextPhase } from './index';
+// Services
 import { throwHttpsError } from '../../services/firebase-core';
+import { getStateReferences, updatePlayer, updateStore, updateState } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Submits the player's chosen word for the round

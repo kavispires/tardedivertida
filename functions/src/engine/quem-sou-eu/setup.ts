@@ -1,4 +1,9 @@
+import { shuffle } from 'lodash';
+// Types
+import type { ContenderCardData } from '../../types/tdr';
+import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   CHARACTERS_PER_PLAYER,
   CHARACTERS_VISIBILITY_PER_ROUND,
@@ -9,18 +14,14 @@ import {
   TOTAL_GLYPHS,
   TOTAL_ROUNDS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { shuffle } from 'lodash';
-// Types
-import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildGallery, buildRanking } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import type { ContenderCardData } from '../../types/tdr';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildGallery, buildRanking } from './helpers';
 
 /**
  * Setup

@@ -1,3 +1,4 @@
+// Types
 import type { NA_RUA_DO_MEDO_ACTIONS } from './constants';
 
 export type NoRuaDoMedoOptions = {

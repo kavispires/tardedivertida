@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { VAMOS_AO_CINEMA_ACTIONS, VAMOS_AO_CINEMA_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,9 +6,21 @@ import type {
   VamosAoCinemaOptions,
   VamosAoCinemaSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { VAMOS_AO_CINEMA_ACTIONS, VAMOS_AO_CINEMA_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSelectMovie, handleEliminateMovie, handleVoteForPoster } from './actions';
+import { getCards } from './data';
 import { determineOutcome, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -20,14 +29,6 @@ import {
   prepareRevealPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getCards } from './data';
-import { handleSelectMovie, handleEliminateMovie, handleVoteForPoster } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

@@ -1,8 +1,8 @@
-// Utils
-import { updatePlayer, updateState } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Types
 import type { ClueId } from './types';
+// Services
+import { updatePlayer, updateState } from '../../services/game-session';
 
 /**
  * Submits the boss player ID for the round

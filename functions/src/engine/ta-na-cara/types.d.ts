@@ -1,3 +1,4 @@
+// Types
 import type { SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { TA_NA_CARA_ACTIONS } from './constants';
 

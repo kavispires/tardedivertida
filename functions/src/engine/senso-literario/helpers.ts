@@ -1,3 +1,7 @@
+import { orderBy, shuffle } from 'lodash';
+// Types
+import type { FirebaseStoreData, GalleryEntry } from './types';
+// Constants
 import {
   BONUS_POINT_FOR_SET,
   COLORS,
@@ -8,9 +12,9 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import type { FirebaseStoreData, GalleryEntry } from './types';
-import { orderBy, shuffle } from 'lodash';
+// Internal
 import { increaseAchievement } from './achievements';
+
 /**
  * Determines the next phase based on the current phase and round
  * @param currentPhase - The current phase of the game

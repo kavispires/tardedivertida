@@ -1,5 +1,8 @@
-import { MESMICE_PHASES, OUTCOME } from './constants';
+// Types
 import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry, Outcome } from './types';
+// Constants
+import { MESMICE_PHASES, OUTCOME } from './constants';
+// Utils
 import utils from '../../utils';
 
 /**

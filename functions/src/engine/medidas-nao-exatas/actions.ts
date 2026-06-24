@@ -1,8 +1,9 @@
-// Helpers
-import { updatePlayer, updateState } from '../../services/game-session';
-// Internal functions
-import { getNextPhase } from './index';
+// Types
 import type { Guess } from './types';
+// Services
+import { updatePlayer, updateState } from '../../services/game-session';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Submits the pool of items and secret word for the round

@@ -1,11 +1,11 @@
+// Types
+import type { TopicCardData } from '../../types/tdr';
+import type { ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Types
-import type { ResourceData } from './types';
-import type { TopicCardData } from '../../types/tdr';
-// Utils
-import * as resourceUtils from '../resource';
 import { LETTERS_ENTRIES_BY_LANGUAGE } from './constants';
+// Internal
+import * as resourceUtils from '../resource';
 
 /**
  * Get topics resource based on the game's language

@@ -1,3 +1,4 @@
+// Types
 import type { ESCAPE_ROOM_ACHIEVEMENTS, ESCAPE_ROOM_ACTIONS, OUTCOME } from './constants';
 
 export type EscapeRoomOptions = {

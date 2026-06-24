@@ -1,13 +1,14 @@
-// Constants
-import { MAX_ROUNDS, PLAYER_SUGGESTED_QUESTIONS_COUNT, TA_NA_CARA_PHASES } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { shuffle } from 'lodash';
 // Types
+import type { TestimonyQuestionCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_SUGGESTED_QUESTIONS_COUNT, TA_NA_CARA_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import type { TestimonyQuestionCardData } from '../../types/tdr';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup

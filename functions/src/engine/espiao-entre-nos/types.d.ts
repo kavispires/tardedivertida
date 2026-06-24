@@ -1,3 +1,4 @@
+// Types
 import type { ESPIAO_ENTRE_NOS_ACTIONS } from './constants';
 
 export type TimerAction = 'START' | 'STOP' | 'RESUME' | 'PAUSE';

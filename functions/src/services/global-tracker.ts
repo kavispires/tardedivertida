@@ -1,3 +1,4 @@
+// Internal
 import { getGlobalCollectionRef } from './firestore-core';
 
 /**

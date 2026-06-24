@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "3.0.32",
+  "version": "3.0.33",
   "release": "stable",
   "releaseDate": "2023-11-12",
   "available": true,

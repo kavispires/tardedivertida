@@ -1,19 +1,21 @@
-// Constants
-import { ITEMS_PER_ROUND, MAX_ROUNDS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
 import { orderBy, sampleSize } from 'lodash';
 // Types
+import type { ItemData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData, WordLength } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { ITEMS_PER_ROUND, MAX_ROUNDS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
+// Internal
 import {
   setupAchievements,
   increaseAchievement,
   calculateAchievements,
   pushAchievement,
 } from './achievements';
-import type { ItemData } from '../../types/tdr';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup

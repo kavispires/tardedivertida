@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -8,9 +5,18 @@ import type {
   InstrumentosCodificadosInitialState,
   InstrumentosCodificadosSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+// Services
+import { validateSubmitActionPayload, throwHttpsError } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
+import { getThemes } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,
   prepareSetupPhase,
@@ -18,11 +24,6 @@ import {
   prepareHintReceivingPhase,
   prepareGuessTheCodePhase,
 } from './setup';
-import { getThemes } from './data';
-import { determineNextPhase } from './helpers';
-import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
-import { validateSubmitActionPayload, throwHttpsError } from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

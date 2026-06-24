@@ -1,10 +1,11 @@
+// Types
+import type { TextCardData } from '../../types/tdr';
+import type { ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Types
-import type { ResourceData } from './types';
-import type { TextCardData } from '../../types/tdr';
 // Utils
 import utils from '../../utils';
+// Internal
 import * as resourceUtils from '../resource';
 
 /**

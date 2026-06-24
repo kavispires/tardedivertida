@@ -1,9 +1,10 @@
+// Tool Kits
+import { achievementBuilder } from '../../utils/tool-kits';
+
 /**
  * ARTE RUIM ACHIEVEMENTS
  * Type-safe achievement definitions using the achievements toolkit
  */
-
-import { achievementBuilder } from '../../utils/tool-kits';
 
 /**
  * Build achievement utilities for Arte Ruim game

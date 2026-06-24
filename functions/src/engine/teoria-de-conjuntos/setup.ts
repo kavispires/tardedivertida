@@ -1,4 +1,9 @@
+import { cloneDeep, shuffle } from 'lodash';
+// Types
+import type { ItemData } from '../../types/tdr';
+import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   JUDGE_HAND_QUANTITY,
   OUTCOME,
@@ -6,16 +11,13 @@ import {
   STARTING_ITEMS_PER_PLAYER_COUNT,
   TEORIA_DE_CONJUNTOS_PHASES,
 } from './constants';
-// Types
-import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from './types';
-import { cloneDeep, shuffle } from 'lodash';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
-import type { ItemData } from '../../types/tdr';
-import { createVennDiagram } from './helpers';
+// Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { createVennDiagram } from './helpers';
 
 /**
  * Setup

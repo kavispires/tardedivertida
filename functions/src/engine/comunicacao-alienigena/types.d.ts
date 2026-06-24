@@ -1,3 +1,4 @@
+// Types
 import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
 import type { COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
 

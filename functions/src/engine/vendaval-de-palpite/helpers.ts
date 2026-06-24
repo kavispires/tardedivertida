@@ -1,9 +1,9 @@
+import { orderBy } from 'lodash';
 // Types
 import type { Board, BoardEntry, Clue, Clues } from './types';
-import { orderBy } from 'lodash';
 // Constants
 import { VENDAVAL_DE_PALPITE_PHASES } from './constants';
-// Utilities
+// Utils
 import utils from '../../utils';
 
 /**

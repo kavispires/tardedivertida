@@ -1,15 +1,16 @@
+import { set } from 'lodash';
 // Types
 import type { CrimeReasonData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOptions } from './types';
-import { set } from 'lodash';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
-// Helpers
+// Utils
 import utils from '../../utils';
+// Internal
+import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import * as dataUtils from '../collections';
 
 /**
  * Get question resource based on the game's language

@@ -1,11 +1,11 @@
-// Constants
-import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
-import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
 import { isEmpty, sample, sampleSize } from 'lodash';
-// Type
+// Types
 import type { ContenderCardData, SuspectCardData, TextCardData } from '../../types/tdr';
 import type { DuetosOptions, Gallery, ResourceData } from './types';
-// Helpers
+// Constants
+import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
+import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
+// Utils
 import utils from '../../utils';
 
 /**

@@ -1,7 +1,9 @@
-import utils from '../../utils';
+// Types
+import type { SchoolLocation, Student } from './types';
 // Constants
 import { FOFOCA_QUENTE_PHASES } from './constants';
-import type { SchoolLocation, Student } from './types';
+// Utils
+import utils from '../../utils';
 
 /**
  * Determines the next phase based on the current phase and game state

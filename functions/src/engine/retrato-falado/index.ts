@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASES } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -8,9 +5,21 @@ import type {
   RetratoFaladoInitialState,
   RetratoFaladoSubmitAction,
 } from './types';
-// Utilities
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASES } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitOrientation, handleSubmitSketch, handleSubmitVote } from './actions';
+import { getMonsterCards } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -19,14 +28,6 @@ import {
   prepareRevealPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getMonsterCards } from './data';
-import { handleSubmitOrientation, handleSubmitSketch, handleSubmitVote } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

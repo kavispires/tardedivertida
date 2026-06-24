@@ -1,5 +1,5 @@
-// Types
 import { keyBy, shuffle } from 'lodash';
+// Types
 import type { ResourceData, FestaJuninaDatabaseEntry, CorreioDoAmorOptions, FestaJuninaCard } from './types';
 
 const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {

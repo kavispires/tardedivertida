@@ -1,14 +1,16 @@
-// Constants
-import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from './constants';
 import { keyBy } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
-import { buildRun } from './helpers';
+// Internal
 import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildRun } from './helpers';
 
 /**
  * Setup

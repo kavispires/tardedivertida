@@ -1,7 +1,10 @@
-// Constants
-import utils from '../../utils';
-import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+// Types
 import type { FirebaseStoreData } from './types';
+// Constants
+import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+// Utils
+import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

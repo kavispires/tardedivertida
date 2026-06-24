@@ -1,6 +1,6 @@
-// Utils
-import { getListOfPlayersIds } from './players-utils';
 import { shuffle } from 'lodash';
+// Internal
+import { getListOfPlayersIds } from './players-utils';
 
 /**
  * Randomizes player ids

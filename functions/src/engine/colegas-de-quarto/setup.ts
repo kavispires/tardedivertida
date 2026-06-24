@@ -1,4 +1,9 @@
+import { shuffle, uniq } from 'lodash';
+// Types
+import type { TextCardData } from '../../types/tdr';
+import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, ResourceData } from './types';
 // Constants
+import { GAME_NAMES, SEPARATOR } from '../../utils/constants';
 import {
   COLEGAS_DE_QUARTO_PHASES,
   SETTINGS_PER_PLAYER_COUNT,
@@ -6,18 +11,14 @@ import {
   TOTAL_ROUNDS,
   WORDS_IN_POOL,
 } from './constants';
-import { GAME_NAMES, SEPARATOR } from '../../utils/constants';
-import { shuffle, uniq } from 'lodash';
-// Types
-import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildRanking } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import type { TextCardData } from '../../types/tdr';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildRanking } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

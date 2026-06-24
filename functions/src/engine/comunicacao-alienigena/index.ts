@@ -1,11 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import {
-  PLAYER_COUNTS,
-  COMUNICACAO_ALIENIGENA_PHASES,
-  COMUNICACAO_ALIENIGENA_ACTIONS,
-  MAX_ROUNDS,
-} from './constants';
 // Types
 import type {
   ComunicacaoAlienigenaInitialState,
@@ -16,10 +8,24 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import {
+  PLAYER_COUNTS,
+  COMUNICACAO_ALIENIGENA_PHASES,
+  COMUNICACAO_ALIENIGENA_ACTIONS,
+  MAX_ROUNDS,
+} from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
+// Internal
 import {
   handleConfirmNotes,
   handleSubmitAlien,
@@ -29,6 +35,8 @@ import {
   handleSubmitOfferings,
   handleSubmitSeeds,
 } from './actions';
+import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -40,13 +48,6 @@ import {
   prepareRevealPhase,
   prepareAlienSeedingPhase,
 } from './setup';
-import { getResourceData } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

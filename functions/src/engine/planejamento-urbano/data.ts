@@ -1,10 +1,10 @@
+// Types
+import type { CityLocationData } from '../../types/tdr';
+import type { ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Types
-import type { ResourceData } from './types';
-// Utils
+// Internal
 import * as resourceUtils from '../resource';
-import type { CityLocationData } from '../../types/tdr';
 
 /**
  * Get city locations resource based on the game's language

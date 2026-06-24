@@ -1,3 +1,4 @@
+// Types
 import type { VICE_CAMPEAO_ACTIONS } from './constants';
 
 export type ViceCampeaoOptions = {

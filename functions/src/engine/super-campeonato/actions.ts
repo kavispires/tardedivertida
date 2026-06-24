@@ -1,7 +1,6 @@
-// Utils
-import { updatePlayer } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Services
+import { updatePlayer } from '../../services/game-session';
 
 /**
  * Submits the player's challenge choice between two options

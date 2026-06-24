@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { PLAYER_COUNTS, DUETOS_PHASES, DUETOS_ACTIONS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   DuetosInitialState,
@@ -9,19 +6,23 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
-// Utils
-import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
-import { handleSubmitPairs } from './actions';
-import { prepareSetupPhase, prepareGameOverPhase, preparePairPhase, prepareResultsPhase } from './setup';
-import { getResourceData } from './data';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { PLAYER_COUNTS, DUETOS_PHASES, DUETOS_ACTIONS, TOTAL_ROUNDS } from './constants';
+// Services
 import {
   validateSubmitActionPayload,
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
+import utils from '../../utils';
+// Internal
+import { handleSubmitPairs } from './actions';
+import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
+import { prepareSetupPhase, prepareGameOverPhase, preparePairPhase, prepareResultsPhase } from './setup';
 
 /**
  * Gets the initial state for a new game session

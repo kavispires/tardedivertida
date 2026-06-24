@@ -1,8 +1,12 @@
-import utils from '../../utils';
 import { sample, shuffle } from 'lodash';
-import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
+// Types
 import type { ContenderCardData, TextCardData } from '../../types/tdr';
 import type { Bracket, BracketTier, FightingContender, ContendersDeck, FirebaseStoreData } from './types';
+// Constants
+import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
+// Utils
+import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

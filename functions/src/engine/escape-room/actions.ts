@@ -1,8 +1,8 @@
-// Helpers
-import { updateState } from '../../services/game-session';
-// Internal functions
-import { getNextPhase } from './index';
+// Services
 import * as firestoreValueUtils from '../../services/firestore-core';
+import { updateState } from '../../services/game-session';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Handles card submission for playing help or mission completion cards

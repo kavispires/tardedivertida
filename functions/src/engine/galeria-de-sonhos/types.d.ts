@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { GALERIA_DE_SONHOS_ACTIONS } from './constants';
 

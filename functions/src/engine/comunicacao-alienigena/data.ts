@@ -1,16 +1,18 @@
-// Constants
-import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
 import { orderBy, shuffle } from 'lodash';
-// Type
+// Types
 import type { ItemData, ItemAttributeData, ItemAttributesValuesData } from '../../types/tdr';
-import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
-// Helpers
-import utils from '../../utils';
-import * as resourceUtils from '../resource';
-import { TDR_RESOURCES } from '../../utils/constants';
-import { alienAttributesUtils } from '../../utils/tool-kits';
-import { makeArray } from '../../utils/helpers';
 import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
+import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
+import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
+// Tool Kits
+import { alienAttributesUtils } from '../../utils/tool-kits';
+// Utils
+import utils from '../../utils';
+import { makeArray } from '../../utils/helpers';
+// Internal
+import * as resourceUtils from '../resource';
 
 /**
  * Get characters based on the game's language

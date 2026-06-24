@@ -1,11 +1,12 @@
-// Constants
-import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * [Setup Phase] - Initialize game and reset player properties

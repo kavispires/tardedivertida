@@ -1,7 +1,8 @@
+import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
-import { sampleSize, shuffle } from 'lodash';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   DIGITS,
   INSTRUMENTOS_CODIFICADOS_PHASES,
@@ -9,12 +10,12 @@ import {
   TOTAL_IMAGE_CARDS,
   TOTAL_ROUNDS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

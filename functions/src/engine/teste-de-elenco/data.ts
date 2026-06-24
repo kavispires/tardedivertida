@@ -1,11 +1,12 @@
+import { sampleSize } from 'lodash';
 // Types
 import type { MovieCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
-import { sampleSize } from 'lodash';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Helpers
+// Utils
 import utils from '../../utils';
+// Internal
 import * as resourceUtils from '../resource';
 
 /**

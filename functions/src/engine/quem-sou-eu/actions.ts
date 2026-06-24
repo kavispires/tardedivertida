@@ -1,7 +1,7 @@
-// Helpers
-import { updatePlayer } from '../../services/game-session';
 import { shuffle } from 'lodash';
-// Internal functions
+// Services
+import { updatePlayer } from '../../services/game-session';
+// Internal
 import { getNextPhase } from './index';
 
 /**

@@ -1,14 +1,16 @@
-// Constants
-import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES, TOTAL_ACTORS, TOTAL_TRAITS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { sampleSize, uniq } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Movie, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES, TOTAL_ACTORS, TOTAL_TRAITS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { buildMovie, determineCast, getNextRoleId } from './helpers';
+// Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildMovie, determineCast, getNextRoleId } from './helpers';
 
 /**
  * Setup

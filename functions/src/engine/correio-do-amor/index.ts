@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { CORREIO_DO_AMOR_ACTIONS, CORREIO_DO_AMOR_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import type {
   CorreioDoAmorInitialState,
@@ -9,9 +6,21 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { CORREIO_DO_AMOR_ACTIONS, CORREIO_DO_AMOR_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleCard, handleSelections } from './actions';
+import { getData } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -20,14 +29,6 @@ import {
   prepareCardResolutionPhase,
   prepareGameOverPhase,
 } from './setup';
-import { handleCard, handleSelections } from './actions';
-import { getData } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

@@ -1,13 +1,6 @@
-// Constants
-import {
-  CRIMES_HEDIONDOS_PHASES,
-  GUESS_STATUS,
-  ITEMS_GROUP_COUNT,
-  ITEMS_PER_GROUP,
-  SCENE_TILES_COUNT,
-  TOTAL_ROUNDS,
-} from './constants';
+import { orderBy, sampleSize, shuffle } from 'lodash';
 // Types
+import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import type {
   Crime,
   FirebaseStoreData,
@@ -19,10 +12,18 @@ import type {
   WrongGroups,
   WrongItems,
 } from './types';
-import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
-import { orderBy, sampleSize, shuffle } from 'lodash';
+// Constants
+import {
+  CRIMES_HEDIONDOS_PHASES,
+  GUESS_STATUS,
+  ITEMS_GROUP_COUNT,
+  ITEMS_PER_GROUP,
+  SCENE_TILES_COUNT,
+  TOTAL_ROUNDS,
+} from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement, insertAchievement, pushAchievement } from './achievements';
 
 /**

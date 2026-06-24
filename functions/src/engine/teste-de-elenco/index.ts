@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, TESTE_DE_ELENCO_ACTIONS, TESTE_DE_ELENCO_PHASES } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,9 +6,21 @@ import type {
   TesteDeElencoOptions,
   TesteDeElencoSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, TESTE_DE_ELENCO_ACTIONS, TESTE_DE_ELENCO_PHASES } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitActor, handleSubmitGenre } from './actions';
+import { getData } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,
@@ -20,14 +29,6 @@ import {
   prepareActorSelectionPhase,
   prepareResultPhase,
 } from './setup';
-import { handleSubmitActor, handleSubmitGenre } from './actions';
-import { getData } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

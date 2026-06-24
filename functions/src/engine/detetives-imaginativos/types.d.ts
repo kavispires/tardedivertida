@@ -1,3 +1,4 @@
+// Types
 import type { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
 export interface ResourceData {

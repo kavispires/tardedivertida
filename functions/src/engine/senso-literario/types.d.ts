@@ -1,3 +1,4 @@
+// Types
 import type { SENSO_LITERARIO_ACTIONS } from './constants';
 
 export type Pattern = {

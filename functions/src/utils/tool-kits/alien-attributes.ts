@@ -1,5 +1,6 @@
-import type { ItemData, ItemAttributeData, ItemAttributesValuesData, UID } from '../../types/tdr';
 import { keyBy, keys, orderBy, sampleSize, shuffle, sortBy } from 'lodash';
+// Types
+import type { ItemData, ItemAttributeData, ItemAttributesValuesData, UID } from '../../types/tdr';
 
 /**
  * TD ALIEN ATTRIBUTES TOOLKIT FUNCTIONS

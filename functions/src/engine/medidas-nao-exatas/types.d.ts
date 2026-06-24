@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { MEDIDAS_NAO_EXATAS_ACTIONS } from './constants';
 

@@ -1,7 +1,15 @@
-import utils from '../../utils';
+import { keyBy, shuffle } from 'lodash';
+// Types
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
 import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import { MEGAMIX_PHASES, SIDES } from './constants';
-import { keyBy, shuffle } from 'lodash';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Utils
+import utils from '../../utils';
+// Internal
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import {
   calculateAllAchievements,
   distributeSeeds,
@@ -9,9 +17,6 @@ import {
   getRanking,
   handleSeedingData,
 } from './helpers';
-import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup

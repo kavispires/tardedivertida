@@ -1,9 +1,10 @@
+// Tool Kits
+import { achievementBuilder } from '../../utils/tool-kits';
+
 /**
  * CRUZA PALAVRAS ACHIEVEMENTS
  * Type-safe achievement definitions using the achievements toolkit
  */
-
-import { achievementBuilder } from '../../utils/tool-kits';
 
 /**
  * Build achievement utilities for Cruza Palavras game

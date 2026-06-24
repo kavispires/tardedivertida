@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MAX_ROUNDS, ONDA_TELEPATICA_ACTIONS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,9 +6,21 @@ import type {
   OndaTelepaticaOptions,
   OndaTelepaticaSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, ONDA_TELEPATICA_ACTIONS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
+import { getCategories } from './data';
 import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareDialCluePhase,
@@ -20,14 +29,6 @@ import {
   prepareRevealPhase,
   prepareSetupPhase,
 } from './setup';
-import { getCategories } from './data';
-import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

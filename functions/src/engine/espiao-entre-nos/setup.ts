@@ -1,4 +1,9 @@
+import { orderBy, sampleSize } from 'lodash';
+// Types
+import type { SpyLocationData } from '../../types/tdr';
+import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   ESPIAO_ENTRE_NOS_PHASES,
   GAME_DURATION,
@@ -6,13 +11,11 @@ import {
   RESOLUTIONS,
   TIMER_STATUS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { orderBy, sampleSize } from 'lodash';
-// Types
-import type { SpyLocationData } from '../../types/tdr';
-import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
 import {
   calculateScore,
   calculateTimeRemaining,
@@ -20,7 +23,6 @@ import {
   determineFinalAssessmentPlayerOrder,
   distributeRoles,
 } from './helpers';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

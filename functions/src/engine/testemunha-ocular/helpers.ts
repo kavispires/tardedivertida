@@ -1,5 +1,6 @@
-import type { SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import { orderBy, random, sampleSize, shuffle } from 'lodash';
+// Types
+import type { SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
 // Constants
 import {
   HARD_MODE_EXTRA_SUSPECT_COUNT,

@@ -1,10 +1,10 @@
+// Types
+import type { DilemmaCardData } from '../../types/tdr';
+import type { EsquiadoresOptions, ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Types
-import type { EsquiadoresOptions, ResourceData } from './types';
-// Utils
+// Internal
 import * as resourceUtils from '../resource';
-import type { DilemmaCardData } from '../../types/tdr';
 
 /**
  * Get dilemmas resource based on the game's language

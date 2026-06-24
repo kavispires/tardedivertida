@@ -1,7 +1,9 @@
+// Types
+import type { WordLength } from './types';
+// Constants
+import { METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
 // Utils
 import utils from '../../utils';
-import { METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
-import type { WordLength } from './types';
 
 /**
  * Determines the next phase based on the current phase and word lengths

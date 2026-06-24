@@ -1,7 +1,6 @@
-// Utils
-import { updatePlayer, updateState, updateStore } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Services
+import { updatePlayer, updateState, updateStore } from '../../services/game-session';
 
 /**
  * Submits the category for the round

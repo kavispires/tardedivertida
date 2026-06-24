@@ -1,13 +1,17 @@
-// Constants
-import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { MovieReviewCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
+// Services
+import * as firestoreValueUtils from '../../services/firestore-core';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { saveData } from './data';
 import {
   getAchievements,
   getFinalMovieId,
@@ -16,9 +20,7 @@ import {
   getMovieTitle,
   getPhaseOutcome,
 } from './helpers';
-import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-import * as firestoreValueUtils from '../../services/firestore-core';
+
 /**
  * Setup
  * Build the card deck
