@@ -1,5 +1,5 @@
 // Components
-import { LanguageButtons } from '@components/language/LanguageButtons';
+import { LanguageSwitch } from '@components/language/LanguageSwitch';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Instruction } from '@components/text/Instruction';
@@ -30,7 +30,7 @@ export function LanguageTest({ onResult, step }: TestStepProps) {
         <span>Essa é a área de teste. Para começar, selecione seu idioma:</span>
       </Instruction>
 
-      <LanguageButtons />
+      <LanguageSwitch />
 
       <DecisionButtons
         step={step}
