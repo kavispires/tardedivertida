@@ -5,8 +5,9 @@ import { isEmpty } from 'lodash';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '.';
-import { isEmulatingEnvironment, throwException } from './firebase';
+import { throwException } from './firebase';
 import { print } from './helpers';
+import { isEmulatingEnvironment } from './environment';
 
 /**
  * Get Firebase session for the data collection (used to save bot/seed data)

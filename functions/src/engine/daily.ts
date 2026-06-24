@@ -4,6 +4,7 @@ import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
 import { apiDelegator } from '../utils/firebase';
 import { DATA_DOCUMENTS } from '../utils/constants';
+import { isEmulatingEnvironment } from '../utils/environment';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -16,7 +17,7 @@ type DailyGetterPayload = {
  * @param auth - The Firebase authentication object
  */
 const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
-  if (utils.firebase.isEmulatingEnvironment()) {
+  if (isEmulatingEnvironment()) {
     await feedEmulatorDaily();
   }
 

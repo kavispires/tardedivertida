@@ -4,13 +4,15 @@ import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constan
 import utils from '..';
 import alienItemsMock from './alien-items.json';
 import type { FirebaseUserDB } from '../user';
+import { isEmulatingFirestore } from '../environment';
+
 const sample = {};
 
 /**
  * Feeds basic data to the emulator DB
  */
 export const feedEmulatorDB = async () => {
-  if (!utils.firebase.isEmulatingFirestore()) {
+  if (!isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
@@ -54,7 +56,7 @@ export const feedEmulatorDB = async () => {
  * Feeds user data to the emulator DB for testing
  */
 export const feedEmulatorUser = async () => {
-  if (!utils.firebase.isEmulatingFirestore()) {
+  if (!isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }
@@ -85,7 +87,7 @@ export const feedEmulatorUser = async () => {
  * Feeds daily challenge data to the emulator DB for testing
  */
 export const feedEmulatorDaily = async () => {
-  if (!utils.firebase.isEmulatingFirestore()) {
+  if (!isEmulatingFirestore()) {
     console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
     return;
   }

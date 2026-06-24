@@ -28,6 +28,7 @@ import {
 import { getData } from './data';
 import { handleConfirmGood, handleFulfillOrders, handlePlaceGood } from './actions';
 import { FULFILLMENT_MOCK } from './mock';
+import { isEmulatingEnvironment } from '../../utils/environment';
 
 /**
  * Gets the initial state for a new game session
@@ -84,7 +85,7 @@ export const getNextPhase = async (
     await utils.firestore.triggerSetupPhase(sessionRef);
 
     // TODO: Remove temporary
-    if (utils.firebase.isEmulatingEnvironment()) {
+    if (isEmulatingEnvironment()) {
       const MOCK_PLAYERS = FULFILLMENT_MOCK.players as unknown as Players;
 
       const achievements = utils.achievements.setup(MOCK_PLAYERS, {

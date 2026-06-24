@@ -8,6 +8,7 @@ import utils from '../utils';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import { retireGamesFromUsers } from '../utils/admin-cleanup';
+import { isEmulatingEnvironment } from '../utils/environment';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -23,7 +24,7 @@ export type CreateGamePayload = {
  * @param auth - The Firebase authentication object
  */
 const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
-  if (utils.firebase.isEmulatingEnvironment()) {
+  if (isEmulatingEnvironment()) {
     feedEmulatorDB();
   }
 
@@ -64,7 +65,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
     );
   }
 
-  if (utils.firebase.isEmulatingEnvironment()) {
+  if (isEmulatingEnvironment()) {
     gameId = Array(4).fill(gameCode).join('');
   }
 

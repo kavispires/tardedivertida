@@ -12,11 +12,11 @@
  * see game-utils.ts instead.
  */
 
-import { isEmulatingEnvironment } from './firebase';
 import { mean } from 'lodash';
+import { isEmulatingEnvironment } from './environment';
 
 /**
- * Prints content to console in JSON format when running in emulation environment.
+ * Prints content to console in JSON format when running in emulation
  * Used for debugging during local development.
  * @param content - The content to print to console
  */
@@ -160,7 +160,7 @@ export const buildBooleanDictionary = <T>(list: T[], key = 'id'): Dictionary<boo
 };
 
 /**
- * Simulates a delay during development when running in emulation environment.
+ * Simulates a delay during development when running in emulation
  * Useful for testing loading states and async behavior.
  * @param duration - The delay duration in milliseconds
  */

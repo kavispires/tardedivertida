@@ -1,6 +1,7 @@
 import { merge, uniq } from 'lodash';
 import utils from '../utils';
 import { DATA_DOCUMENTS } from '../utils/constants';
+import { isEmulatingEnvironment } from '../utils/environment';
 
 /**
  * Gets document from data in firestore
@@ -13,7 +14,7 @@ export const getDataFirebaseDocData = async <T = PlainObject>(
 ): Promise<T> => {
   let response: T;
 
-  if (utils.firebase.isEmulatingEnvironment()) {
+  if (isEmulatingEnvironment()) {
     return fallback;
   }
 

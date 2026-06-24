@@ -7,7 +7,7 @@ import { userEngine } from './engine/user';
 import { hostEngine } from './engine/host';
 import { feedEmulatorUser } from './utils/mocks/emulator';
 import { gameEngine } from './gameEngine';
-import { isEmulatingEnvironment } from './utils/firebase';
+import { isEmulatingEnvironment } from './utils/environment';
 
 initializeApp();
 
