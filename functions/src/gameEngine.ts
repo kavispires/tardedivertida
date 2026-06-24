@@ -1,7 +1,7 @@
 import { COMMON_ACTIONS } from './engine/common';
 import type { CallableRequest } from './types/reference';
-import utils from './utils';
 import { getEngine } from './utils/delegators';
+import { throwHttpsError } from './services/firebase-core';
 
 /**
  * Executes the game engine.
@@ -12,7 +12,7 @@ export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   // Verify action
   const action = request.data?.action;
   if (!action) {
-    return utils.firebase.throwException('Action not provided', 'perform request');
+    return throwHttpsError('Action not provided', 'perform request');
   }
 
   // Special case: Load Game cannot require gameName because it only has the ID
@@ -23,13 +23,13 @@ export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   // Verify auth
   const uid = request.auth?.uid;
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', action);
+    return throwHttpsError('User not authenticated', action);
   }
 
   // Verify gameName
   const gameName = request.data?.gameName;
   if (!gameName) {
-    return utils.firebase.throwException('Game name not provided', action);
+    return throwHttpsError('Game name not provided', action);
   }
 
   // Delegate global actions
@@ -40,7 +40,7 @@ export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   // Delegate game first, then action
   const engine = getEngine(gameName);
   if (!engine) {
-    return utils.firebase.throwException('Invalid game name', action);
+    return throwHttpsError('Invalid game name', action);
   }
 
   const basicActions = {

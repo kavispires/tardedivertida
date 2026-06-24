@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getCards } from './data';
 import { handleSelectMovie, handleEliminateMovie, handleVoteForPoster } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -126,20 +131,20 @@ export const getNextPhase = async (
 export const submitAction = async (data: VamosAoCinemaSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case VAMOS_AO_CINEMA_ACTIONS.SELECT_MOVIE:
-      utils.firebase.validateSubmitActionProperties(data, ['movieId'], 'select movie');
+      validateSubmitActionProperties(data, ['movieId'], 'select movie');
       return handleSelectMovie(gameName, gameId, playerId, data.movieId);
     case VAMOS_AO_CINEMA_ACTIONS.ELIMINATE_MOVIE:
-      utils.firebase.validateSubmitActionProperties(data, ['movieId'], 'submit movie elimination');
+      validateSubmitActionProperties(data, ['movieId'], 'submit movie elimination');
       return handleEliminateMovie(gameName, gameId, playerId, data.movieId);
     case VAMOS_AO_CINEMA_ACTIONS.VOTE_FOR_POSTER:
-      utils.firebase.validateSubmitActionProperties(data, ['movieId', 'posterId'], 'submit poster');
+      validateSubmitActionProperties(data, ['movieId', 'posterId'], 'submit poster');
       return handleVoteForPoster(gameName, gameId, playerId, data.movieId, data.posterId);
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

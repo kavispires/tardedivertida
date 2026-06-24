@@ -21,6 +21,11 @@ import {
   prepareGameOverPhase,
 } from './setup';
 import { handleSubmitDecision } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -122,13 +127,13 @@ export const getNextPhase = async (
 export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case NA_RUA_DO_MEDO_ACTIONS.SUBMIT_DECISION:
-      utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
+      validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

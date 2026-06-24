@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { handleCard, handleSelections } from './actions';
 import { getData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -121,16 +126,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: CorreioDoAmorSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case CORREIO_DO_AMOR_ACTIONS.SUBMIT_CARD:
-      utils.firebase.validateSubmitActionProperties(data, ['payload'], 'card play submission');
+      validateSubmitActionProperties(data, ['payload'], 'card play submission');
       return handleCard(gameName, gameId, playerId, data.payload);
     case CORREIO_DO_AMOR_ACTIONS.SUBMIT_SELECTIONS:
-      utils.firebase.validateSubmitActionProperties(data, ['selections'], 'selections submission');
+      validateSubmitActionProperties(data, ['selections'], 'selections submission');
       return handleSelections(gameName, gameId, playerId, data.selections);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

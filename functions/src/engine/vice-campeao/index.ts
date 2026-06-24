@@ -16,6 +16,11 @@ import { determineNextPhase } from './helpers';
 import { getResourceData } from './data';
 import { prepareSetupPhase, prepareCardSelectionPhase, prepareRunPhase, prepareGameOverPhase } from './setup';
 import { handleSubmitCard } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -108,13 +113,13 @@ export const getNextPhase = async (
 export const submitAction = async (data: ViceCampeaoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case VICE_CAMPEAO_ACTIONS.SUBMIT_CARD:
-      utils.firebase.validateSubmitActionProperties(data, ['cardId', 'targetId'], 'submit card');
+      validateSubmitActionProperties(data, ['cardId', 'targetId'], 'submit card');
       return handleSubmitCard(gameName, gameId, playerId, data.cardId, data.targetId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

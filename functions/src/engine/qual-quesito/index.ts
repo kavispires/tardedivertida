@@ -25,6 +25,11 @@ import {
   prepareVerificationPhase,
 } from './setup';
 import { handleEvaluations, handleSkipTurn, handleSubmitCards, handleSubmitCategory } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -140,21 +145,21 @@ export const getNextPhase = async (
 export const submitAction = async (data: QualQuesitoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case QUAL_QUESITO_ACTIONS.SUBMIT_CATEGORY:
-      utils.firebase.validateSubmitActionProperties(data, ['category'], 'submit category');
+      validateSubmitActionProperties(data, ['category'], 'submit category');
       return handleSubmitCategory(gameName, gameId, playerId, data.category);
     case QUAL_QUESITO_ACTIONS.SKIP_TURN:
       return handleSkipTurn(gameName, gameId, playerId);
     case QUAL_QUESITO_ACTIONS.SUBMIT_CARDS:
-      utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
+      validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
       return handleSubmitCards(gameName, gameId, playerId, data.cardsIds);
     case QUAL_QUESITO_ACTIONS.SUBMIT_EVALUATIONS:
-      utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
+      validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleEvaluations(gameName, gameId, playerId, data.evaluations);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

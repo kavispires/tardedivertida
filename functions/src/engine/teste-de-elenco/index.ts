@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { handleSubmitActor, handleSubmitGenre } from './actions';
 import { getData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -121,22 +126,22 @@ export const getNextPhase = async (
 export const submitAction = async (data: TesteDeElencoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   let actionText = 'submit action';
 
   switch (action) {
     case TESTE_DE_ELENCO_ACTIONS.SELECT_MOVIE_GENRE:
       actionText = 'select genre';
-      utils.firebase.validateSubmitActionProperties(data, ['genre', 'movieTitle', 'propsIds'], actionText);
+      validateSubmitActionProperties(data, ['genre', 'movieTitle', 'propsIds'], actionText);
       return handleSubmitGenre(gameName, gameId, playerId, data.genre, data.movieTitle, data.propsIds);
 
     case TESTE_DE_ELENCO_ACTIONS.SELECT_ACTOR:
       actionText = 'select actor';
-      utils.firebase.validateSubmitActionProperties(data, ['actorId'], actionText);
+      validateSubmitActionProperties(data, ['actorId'], actionText);
       return handleSubmitActor(gameName, gameId, playerId, data.actorId);
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

@@ -21,6 +21,7 @@ import {
 import { getThemes } from './data';
 import { determineNextPhase } from './helpers';
 import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
+import { validateSubmitActionPayload, throwHttpsError } from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -119,31 +120,31 @@ export const getNextPhase = async (
 export const submitAction = async (data: InstrumentosCodificadosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_HINT':
       if (!data.hint) {
-        utils.firebase.throwException('Missing `hint` value', 'submit hint');
+        throwHttpsError('Missing `hint` value', 'submit hint');
       }
       if (!data.targetId) {
-        utils.firebase.throwException('Missing `targetId` value', 'submit targetId');
+        throwHttpsError('Missing `targetId` value', 'submit targetId');
       }
       if (!data.position) {
-        utils.firebase.throwException('Missing `position` value', 'submit position');
+        throwHttpsError('Missing `position` value', 'submit position');
       }
       return handleSubmitHint(gameName, gameId, playerId, data.hint, data.targetId, data.position);
     case 'SUBMIT_CONCLUSIONS':
       if (!data.conclusions) {
-        utils.firebase.throwException('Missing `conclusions` value', 'submit conclusions');
+        throwHttpsError('Missing `conclusions` value', 'submit conclusions');
       }
       return handleSubmitConclusions(gameName, gameId, playerId, data.conclusions);
     case 'SUBMIT_CODE':
       if (!data.code) {
-        utils.firebase.throwException('Missing `code` value', 'submit code');
+        throwHttpsError('Missing `code` value', 'submit code');
       }
       return handleSubmitCode(gameName, gameId, playerId, data.code);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

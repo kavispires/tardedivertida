@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import { getFirestore } from 'firebase-admin/firestore';
-import { throwException } from './firebase';
+import { throwHttpsError } from '../services/firebase-core';
 
 /* eslint-disable no-console */
 
@@ -137,7 +137,7 @@ export const retireGamesFromUsers = async (gameNames: string[]): Promise<RetireG
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     console.error('Error during cleanup:', errorMessage);
-    throwException(errorMessage, 'retireGamesFromUsers');
+    throwHttpsError(errorMessage, 'retireGamesFromUsers');
     return {
       success: false,
       processedUsers,

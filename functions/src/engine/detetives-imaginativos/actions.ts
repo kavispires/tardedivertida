@@ -4,6 +4,7 @@ import { HAND_LIMIT } from './constants';
 import utils from '../../utils';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
+import { throwHttpsError } from '../../services/firebase-core';
 
 /**
  * Submits a clue for the current player
@@ -42,7 +43,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
   );
 
   if (state.currentPlayerId !== playerId) {
-    utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
+    throwHttpsError('You are not the current player!', 'Failed to play card.');
   }
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
@@ -87,7 +88,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
       });
     }
   } catch (error) {
-    utils.firebase.throwException(error, 'Failed to update table with new card');
+    throwHttpsError(error, 'Failed to update table with new card');
   }
 
   return true;
@@ -103,7 +104,7 @@ export const handleDefend = async (gameName: string, gameId: UID, playerId: UID,
   );
 
   if (state.currentPlayerId !== playerId) {
-    utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
+    throwHttpsError('You are not the current player!', 'Failed to play card.');
   }
 
   // Add card to table
@@ -121,7 +122,7 @@ export const handleDefend = async (gameName: string, gameId: UID, playerId: UID,
       });
     }
   } catch (error) {
-    utils.firebase.throwException(error, 'Failed to conclude your defense');
+    throwHttpsError(error, 'Failed to conclude your defense');
   }
 
   return true;

@@ -32,6 +32,11 @@ import {
   handleSubmitWordSelectionVotes,
   handleUpdateValidSuggestions,
 } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -160,28 +165,28 @@ export const getNextPhase = async (
 export const submitAction = async (data: UeSoIssoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case UE_SO_ISSO_ACTIONS.SUBMIT_VOTES:
-      utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
+      validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitWordSelectionVotes(gameName, gameId, playerId, data.votes);
     case UE_SO_ISSO_ACTIONS.SUBMIT_SUGGESTIONS:
-      utils.firebase.validateSubmitActionProperties(data, ['suggestions'], 'submit suggestions');
+      validateSubmitActionProperties(data, ['suggestions'], 'submit suggestions');
       return handleSubmitSuggestions(gameName, gameId, playerId, data.suggestions);
     case UE_SO_ISSO_ACTIONS.SUBMIT_VALIDATION:
-      utils.firebase.validateSubmitActionProperties(data, ['validSuggestions'], 'submit valid suggestions');
+      validateSubmitActionProperties(data, ['validSuggestions'], 'submit valid suggestions');
       return handleSubmitValidation(gameName, gameId, playerId, data.validSuggestions);
     case UE_SO_ISSO_ACTIONS.SUBMIT_OUTCOME:
-      utils.firebase.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
+      validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleConfirmGuess(gameName, gameId, playerId, data.outcome);
     case UE_SO_ISSO_ACTIONS.VALIDATE_SUGGESTION:
-      utils.firebase.validateSubmitActionProperties(data, ['suggestions'], 'validate suggestions');
+      validateSubmitActionProperties(data, ['suggestions'], 'validate suggestions');
       return handleUpdateValidSuggestions(gameName, gameId, playerId, data.suggestions);
     case UE_SO_ISSO_ACTIONS.SEND_GUESS:
-      utils.firebase.validateSubmitActionProperties(data, ['guess'], 'send guess');
+      validateSubmitActionProperties(data, ['guess'], 'send guess');
       return handleSendGuess(gameName, gameId, playerId, data.guess);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

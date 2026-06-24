@@ -28,6 +28,11 @@ import {
 } from './setup';
 import { getWords } from './data';
 import { handleSubmitClues, handleSubmitGuesses, handleSubmitWords } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -134,19 +139,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: ColegasDeQuartoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case COLEGAS_DE_QUARTO_ACTIONS.SUBMIT_WORDS:
-      utils.firebase.validateSubmitActionProperties(data, ['selectedWordsIds'], 'submit words');
+      validateSubmitActionProperties(data, ['selectedWordsIds'], 'submit words');
       return handleSubmitWords(gameName, gameId, playerId, data.selectedWordsIds);
     case COLEGAS_DE_QUARTO_ACTIONS.SUBMIT_CLUES:
-      utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
+      validateSubmitActionProperties(data, ['clues'], 'submit clues');
       return handleSubmitClues(gameName, gameId, playerId, data.clues);
     case COLEGAS_DE_QUARTO_ACTIONS.SUBMIT_GUESSES:
-      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
+      validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
       return handleSubmitGuesses(gameName, gameId, playerId, data.guesses);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

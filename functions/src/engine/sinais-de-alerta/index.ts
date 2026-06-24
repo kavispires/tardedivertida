@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getCards } from './data';
 import { handleSubmitDrawing, handleSubmitEvaluation } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -126,16 +131,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: SinaisDeAlertaSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case SINAIS_DE_ALERTA_ACTIONS.SUBMIT_DRAWING:
-      utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
+      validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case SINAIS_DE_ALERTA_ACTIONS.SUBMIT_EVALUATION:
-      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit evaluation');
+      validateSubmitActionProperties(data, ['guesses'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.guesses, data.choseRandomly);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getData } from './data';
 import { handleSubmitFeature, handleSubmitObject } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -127,16 +132,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: MesmiceSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case MESMICE_ACTIONS.SUBMIT_OBJECT:
-      utils.firebase.validateSubmitActionProperties(data, ['itemId', 'clue'], 'submit object');
+      validateSubmitActionProperties(data, ['itemId', 'clue'], 'submit object');
       return handleSubmitObject(gameName, gameId, playerId, data.itemId, data.clue);
     case MESMICE_ACTIONS.SUBMIT_OBJECT_FEATURE:
-      utils.firebase.validateSubmitActionProperties(data, ['featureId'], 'submit featureId');
+      validateSubmitActionProperties(data, ['featureId'], 'submit featureId');
       return handleSubmitFeature(gameName, gameId, playerId, data.featureId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

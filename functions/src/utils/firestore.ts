@@ -5,7 +5,7 @@ import { isEmpty } from 'lodash';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '.';
-import { throwException } from './firebase';
+import { throwHttpsError } from '../services/firebase-core';
 import { print } from './helpers';
 import { isEmulatingEnvironment } from './environment';
 
@@ -258,7 +258,7 @@ export const saveGame = async (
       await sessionRef.doc('state').set({ ...(saveContent?.set?.state ?? {}), updatedAt: Date.now() });
     }
   } catch (error) {
-    throwException(error, 'set game state');
+    throwHttpsError(error, 'set game state');
   }
   try {
     if (hasStoreUpdate || saveContent?.update?.storeCleanup?.length) {
@@ -271,7 +271,7 @@ export const saveGame = async (
       await sessionRef.doc('store').update({ ...(saveContent?.update?.store ?? {}), ...cleanup });
     }
   } catch (error) {
-    throwException(error, 'update game store');
+    throwHttpsError(error, 'update game store');
   }
 
   try {
@@ -288,7 +288,7 @@ export const saveGame = async (
         .update({ ...(saveContent?.update?.state ?? {}), ...cleanup, updatedAt: Date.now() });
     }
   } catch (error) {
-    throwException(error, 'update game state');
+    throwHttpsError(error, 'update game state');
   }
 
   if (hasStateSet || hasStateUpdate) {
@@ -373,7 +373,7 @@ export const updatePlayer = async ({
     await sessionRef.doc('state').update({ ...playerChange });
   } catch (error) {
     // TODO: log error
-    return throwException(error, actionText);
+    return throwHttpsError(error, actionText);
   }
   if ((shouldReady || shouldGoToNextPhase) && nextPhaseFunction) {
     const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
@@ -409,7 +409,7 @@ export const updateStore = async ({
   try {
     await sessionRef.doc('store').update({ ...change });
   } catch (error) {
-    return throwException(error, actionText);
+    return throwHttpsError(error, actionText);
   }
 
   if (nextPhaseFunction) {
@@ -441,7 +441,7 @@ export const updateState = async ({
   try {
     await sessionRef.doc('state').update({ ...change });
   } catch (error) {
-    return throwException(error, actionText);
+    return throwHttpsError(error, actionText);
   }
 
   if (nextPhaseFunction) {

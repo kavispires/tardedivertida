@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getDeck } from './data';
 import { handleSubmitRequest, handleSubmitDelivery, handleStopDelivering } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -120,18 +125,18 @@ export const getNextPhase = async (
 export const submitAction = async (data: ComunicacaoDuoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case COMUNICACAO_DUO_ACTIONS.SUBMIT_REQUEST:
-      utils.firebase.validateSubmitActionProperties(data, ['clue', 'clueQuantity'], 'submit clue');
+      validateSubmitActionProperties(data, ['clue', 'clueQuantity'], 'submit clue');
       return handleSubmitRequest(gameName, gameId, playerId, data.clue, data.clueQuantity);
     case COMUNICACAO_DUO_ACTIONS.SUBMIT_DELIVERY:
-      utils.firebase.validateSubmitActionProperties(data, ['delivery'], 'submit delivery');
+      validateSubmitActionProperties(data, ['delivery'], 'submit delivery');
       return handleSubmitDelivery(gameName, gameId, playerId, data.delivery);
     case COMUNICACAO_DUO_ACTIONS.STOP_DELIVERY:
       return handleStopDelivering(gameName, gameId, playerId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

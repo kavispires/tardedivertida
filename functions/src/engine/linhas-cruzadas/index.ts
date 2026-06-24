@@ -23,6 +23,11 @@ import {
 } from './setup';
 import { getData } from './data';
 import { handleSubmitDrawing, handleSubmitGuess, handleSubmitPrompt } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -127,19 +132,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: LinhasCruzadasSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_PROMPT:
-      utils.firebase.validateSubmitActionProperties(data, ['promptId'], 'submit prompt');
+      validateSubmitActionProperties(data, ['promptId'], 'submit prompt');
       return handleSubmitPrompt(gameName, gameId, playerId, data.promptId, data.randomSelection);
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_DRAWING:
-      utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
+      validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_GUESS:
-      utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
+      validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(gameName, gameId, playerId, data.guess);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

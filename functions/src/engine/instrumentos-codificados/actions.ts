@@ -2,6 +2,7 @@
 import utils from '../../utils';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
+import { throwHttpsError } from '../../services/firebase-core';
 
 /**
  * Submits a hint for a target instrument
@@ -97,7 +98,7 @@ export const handleSubmitCode = async (gameName: string, gameId: UID, playerId: 
   try {
     await sessionRef.doc('state').update({ [`players.${playerId}`]: players[playerId] });
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   // If all players are ready, trigger next phase

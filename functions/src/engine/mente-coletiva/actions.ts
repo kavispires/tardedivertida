@@ -5,6 +5,7 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
 import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
+import { throwHttpsError } from '../../services/firebase-core';
 
 /**
  * Submits the active player's chosen question for the round
@@ -146,7 +147,7 @@ export const handleNextAnswers = async (
       },
     });
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return true;
@@ -179,7 +180,7 @@ export const handleAddAnswer = async (gameName: string, gameId: UID, _playerId: 
   try {
     await sessionRef.doc('state').update({ answersList });
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return true;

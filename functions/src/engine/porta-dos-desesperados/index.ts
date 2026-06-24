@@ -27,6 +27,11 @@ import {
 } from './setup';
 import { handleSubmitDoor, handleSubmitPages } from './actions';
 import { getData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -147,16 +152,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: PortaDosDesesperadosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_PAGES:
-      utils.firebase.validateSubmitActionProperties(data, ['pageIds'], 'submit pages');
+      validateSubmitActionProperties(data, ['pageIds'], 'submit pages');
       return handleSubmitPages(gameName, gameId, playerId, data.pageIds);
     case PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_DOOR:
-      utils.firebase.validateSubmitActionProperties(data, ['doorId'], 'submit door');
+      validateSubmitActionProperties(data, ['doorId'], 'submit door');
       return handleSubmitDoor(gameName, gameId, playerId, data.doorId, data.ready);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

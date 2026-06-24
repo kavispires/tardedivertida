@@ -27,6 +27,11 @@ import {
 } from './setup';
 import { getLocations } from './data';
 import { handleSubmitPlanning, handleSubmitPlacements } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -121,16 +126,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: PlanejamentoUrbanoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case PLANEJAMENTO_URBANO_ACTIONS.SUBMIT_PLANNING:
-      utils.firebase.validateSubmitActionProperties(data, ['planning'], 'submit planning');
+      validateSubmitActionProperties(data, ['planning'], 'submit planning');
       return handleSubmitPlanning(gameName, gameId, playerId, data.planning);
     case PLANEJAMENTO_URBANO_ACTIONS.SUBMIT_PLACEMENTS:
-      utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
+      validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleSubmitPlacements(gameName, gameId, playerId, data.evaluations);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

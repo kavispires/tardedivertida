@@ -26,6 +26,11 @@ import {
   prepareSetupPhase,
 } from './setup';
 import { handleSubmitGuess, handleSubmitMetrics, handleSubmitPool } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -124,23 +129,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: MedidasNaoExatasSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case MEDIDAS_NAO_EXATAS_ACTIONS.SUBMIT_POOL:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['poolIds', 'secretWordId'],
-        'submit pool of words',
-      );
+      validateSubmitActionProperties(data, ['poolIds', 'secretWordId'], 'submit pool of words');
       return handleSubmitPool(gameName, gameId, playerId, data.poolIds, data.secretWordId);
     case MEDIDAS_NAO_EXATAS_ACTIONS.SUBMIT_METRICS:
-      utils.firebase.validateSubmitActionProperties(data, ['metrics'], 'submit metrics');
+      validateSubmitActionProperties(data, ['metrics'], 'submit metrics');
       return handleSubmitMetrics(gameName, gameId, playerId, data.metrics);
     case MEDIDAS_NAO_EXATAS_ACTIONS.SUBMIT_GUESS:
-      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
+      validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
       return handleSubmitGuess(gameName, gameId, playerId, data.guesses);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

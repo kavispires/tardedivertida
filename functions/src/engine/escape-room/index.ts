@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getEpisode } from './data';
 import { handleSubmitCard } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -122,13 +127,13 @@ export const getNextPhase = async (
 export const submitAction = async (data: EscapeRoomSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case ESCAPE_ROOM_ACTIONS.SUBMIT_CARD_PLAY:
-      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'submit card play');
+      validateSubmitActionProperties(data, ['cardId'], 'submit card play');
       return handleSubmitCard(gameName, gameId, playerId, data.cardId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

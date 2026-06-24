@@ -22,6 +22,11 @@ import {
 import { handleDefend, handlePlayCard, handleSubmitClue, handleSubmitVote } from './actions';
 import { determineNextPhase } from './helpers';
 import { getData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -136,22 +141,22 @@ export const getNextPhase = async (
 export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_CLUE:
-      utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit clue');
+      validateSubmitActionProperties(data, ['clue'], 'submit clue');
       return handleSubmitClue(gameName, gameId, playerId, data.clue);
     case DETETIVES_IMAGINATIVOS_ACTIONS.PLAY_CARD:
-      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
+      validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(gameName, gameId, playerId, data.cardId);
     case DETETIVES_IMAGINATIVOS_ACTIONS.DEFEND:
-      utils.firebase.validateSubmitActionProperties(data, ['defenseTime'], 'defend');
+      validateSubmitActionProperties(data, ['defenseTime'], 'defend');
       return handleDefend(gameName, gameId, playerId, data.defenseTime);
     case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_VOTE:
-      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

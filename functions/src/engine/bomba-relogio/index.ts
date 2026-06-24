@@ -19,6 +19,11 @@ import {
   prepareGameOverPhase,
 } from './setup';
 import { handleSubmitDeclarations, handleSubmitTarget, handleUpdateTargetPlayer } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -110,19 +115,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: BombaRelogioSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case BOMBA_RELOGIO_ACTIONS.SUBMIT_DECLARATION:
-      utils.firebase.validateSubmitActionProperties(data, ['declarations'], 'submit declarations');
+      validateSubmitActionProperties(data, ['declarations'], 'submit declarations');
       return handleSubmitDeclarations(gameName, gameId, playerId, data.declarations);
     case BOMBA_RELOGIO_ACTIONS.UPDATE_TARGET_PLAYER:
-      utils.firebase.validateSubmitActionProperties(data, ['targetPlayerId'], 'update target player');
+      validateSubmitActionProperties(data, ['targetPlayerId'], 'update target player');
       return handleUpdateTargetPlayer(gameName, gameId, playerId, data.targetPlayerId);
     case BOMBA_RELOGIO_ACTIONS.SUBMIT_TARGET:
-      utils.firebase.validateSubmitActionProperties(data, ['target'], 'submit target');
+      validateSubmitActionProperties(data, ['target'], 'submit target');
       return handleSubmitTarget(gameName, gameId, playerId, data.target);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

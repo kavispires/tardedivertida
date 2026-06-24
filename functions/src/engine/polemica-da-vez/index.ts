@@ -22,6 +22,11 @@ import {
   prepareTweetSelectionPhase,
 } from './setup';
 import { handleSubmitReaction, handleSubmitTweet } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -125,16 +130,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case POLEMICA_DA_VEZ_ACTIONS.SUBMIT_TOPIC:
-      utils.firebase.validateSubmitActionProperties(data, ['tweetId'], 'submit tweet');
+      validateSubmitActionProperties(data, ['tweetId'], 'submit tweet');
       return handleSubmitTweet(gameName, gameId, playerId, data.tweetId, data?.customTweet);
     case POLEMICA_DA_VEZ_ACTIONS.SUBMIT_REACTION:
-      utils.firebase.validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
+      validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
       return handleSubmitReaction(gameName, gameId, playerId, data.reaction, data.likesGuess);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

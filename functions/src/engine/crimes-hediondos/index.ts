@@ -23,6 +23,11 @@ import {
 } from './setup';
 import { getData } from './data';
 import { handleSubmitCrime, handleSubmitMark, handleSubmitGuesses } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -138,11 +143,11 @@ export const getNextPhase = async (
 export const submitAction = async (data: CrimesHediondosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_CRIME:
-      utils.firebase.validateSubmitActionProperties(
+      validateSubmitActionProperties(
         data,
         [
           'weaponId',
@@ -165,12 +170,12 @@ export const submitAction = async (data: CrimesHediondosSubmitAction) => {
         locationIndex: data.locationIndex,
       });
     case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_MARK:
-      utils.firebase.validateSubmitActionProperties(data, ['sceneIndex'], 'submit scene mark');
+      validateSubmitActionProperties(data, ['sceneIndex'], 'submit scene mark');
       return handleSubmitMark(gameName, gameId, playerId, data.sceneIndex);
     case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_GUESSES:
-      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
+      validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(gameName, gameId, playerId, data.guesses);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

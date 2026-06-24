@@ -29,6 +29,11 @@ import {
   handleSelectWitness,
 } from './actions';
 import { getQuestionsAndSuspects } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -138,39 +143,39 @@ export const getNextPhase = async (
 export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   let actionText = 'submit action';
 
   switch (action) {
     case TESTEMUNHA_OCULAR_ACTIONS.SELECT_WITNESS:
       actionText = 'select witness';
-      utils.firebase.validateSubmitActionProperties(data, ['witnessId'], actionText);
+      validateSubmitActionProperties(data, ['witnessId'], actionText);
       return handleSelectWitness(gameName, gameId, playerId, data.witnessId);
 
     case TESTEMUNHA_OCULAR_ACTIONS.SELECT_QUESTION:
       actionText = 'select question';
-      utils.firebase.validateSubmitActionProperties(data, ['questionId'], actionText);
+      validateSubmitActionProperties(data, ['questionId'], actionText);
       return handleSelectQuestion(gameName, gameId, playerId, data.questionId);
 
     case TESTEMUNHA_OCULAR_ACTIONS.GIVE_TESTIMONY:
       actionText = 'give testimony';
-      utils.firebase.validateSubmitActionProperties(data, ['testimony'], actionText);
+      validateSubmitActionProperties(data, ['testimony'], actionText);
       return handleGiveTestimony(gameName, gameId, playerId, data.testimony);
 
     case TESTEMUNHA_OCULAR_ACTIONS.ELIMINATE_SUSPECT:
       actionText = 'eliminate suspect';
-      utils.firebase.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
+      validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
       return handleElimination(gameName, gameId, actionText, {
         suspectId: data?.suspectId,
         pass: data?.pass,
       });
     case TESTEMUNHA_OCULAR_ACTIONS.FINAL_ELIMINATION:
       actionText = 'final elimination';
-      utils.firebase.validateSubmitActionProperties(data, ['suspectId'], actionText);
+      validateSubmitActionProperties(data, ['suspectId'], actionText);
       return handleFinalElimination(gameName, gameId, playerId, data.suspectId);
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

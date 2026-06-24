@@ -4,6 +4,7 @@ import type { FirebaseStateData, ImageCard, PlayerCard } from './types';
 import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
+import { throwHttpsError } from '../../services/firebase-core';
 
 /**
  * Submits the player's chosen word for the round
@@ -199,7 +200,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
   try {
     await sessionRef.doc('state').update({ players });
   } catch (error) {
-    utils.firebase.throwException(error, 'Failed to update players');
+    throwHttpsError(error, 'Failed to update players');
   }
 
   return await utils.firestore.updateState({

@@ -23,6 +23,11 @@ import {
   prepareAnsweringPhase,
   prepareGuessingPhase,
 } from './setup';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -121,26 +126,26 @@ export const getNextPhase = async (
 export const submitAction = async (data: TaNaCaraSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case TA_NA_CARA_ACTIONS.SUBMIT_PROMPT:
       if (!('questionId' in data) && !('question' in data)) {
-        utils.firebase.throwException(
+        throwHttpsError(
           `Missing required property 'questionId' or 'question' for action ${action}`,
           'submit prompt',
         );
       }
       return handleSubmitPrompt(gameName, gameId, playerId, data.questionId, data.question);
     case TA_NA_CARA_ACTIONS.SUBMIT_ANSWER:
-      utils.firebase.validateSubmitActionProperties(data, ['answer'], 'submit answer');
+      validateSubmitActionProperties(data, ['answer'], 'submit answer');
       return handleSubmitAnswer(gameName, gameId, playerId, data.answer);
     case TA_NA_CARA_ACTIONS.TRIGGER_GUESSING:
       return handleTriggerGuessing(gameName, gameId, playerId);
     case TA_NA_CARA_ACTIONS.SUBMIT_GUESS:
-      utils.firebase.validateSubmitActionProperties(data, ['characterId'], 'submit character');
+      validateSubmitActionProperties(data, ['characterId'], 'submit character');
       return handleSubmitGuess(gameName, gameId, playerId, data.characterId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

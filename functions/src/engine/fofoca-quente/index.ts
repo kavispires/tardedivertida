@@ -29,6 +29,11 @@ import {
   handleSubmitIntimidation,
   handleSubmitRumor,
 } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -157,15 +162,11 @@ export const getNextPhase = async (
 export const submitAction = async (data: FofocaQuenteSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case FOFOCA_QUENTE_ACTIONS.SUBMIT_PLAYERS_ROLES:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['gossiperPlayerId', 'detectivePlayerId'],
-        'submit players roles',
-      );
+      validateSubmitActionProperties(data, ['gossiperPlayerId', 'detectivePlayerId'], 'submit players roles');
       return handleSubmitPlayersRoles(
         gameName,
         gameId,
@@ -174,17 +175,13 @@ export const submitAction = async (data: FofocaQuenteSubmitAction) => {
         data.detectivePlayerId,
       );
     case FOFOCA_QUENTE_ACTIONS.SUBMIT_SOCIAL_GROUP:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['associatedSocialGroupId'],
-        'submit associated Social Group',
-      );
+      validateSubmitActionProperties(data, ['associatedSocialGroupId'], 'submit associated Social Group');
       return handleSubmitAssociatedSocialGroup(gameName, gameId, playerId, data.associatedSocialGroupId);
     case FOFOCA_QUENTE_ACTIONS.UPDATE_DETECTIVE_POSITION:
-      utils.firebase.validateSubmitActionProperties(data, ['locationIndex'], 'submit detective position');
+      validateSubmitActionProperties(data, ['locationIndex'], 'submit detective position');
       return handleSubmitDetectiveLocation(gameName, gameId, playerId, data.locationIndex, data.shouldReady);
     case FOFOCA_QUENTE_ACTIONS.SUBMIT_INTIMIDATION:
-      utils.firebase.validateSubmitActionProperties(data, ['intimidatedStudentId'], 'submit intimidation');
+      validateSubmitActionProperties(data, ['intimidatedStudentId'], 'submit intimidation');
       return handleSubmitIntimidation(
         gameName,
         gameId,
@@ -194,7 +191,7 @@ export const submitAction = async (data: FofocaQuenteSubmitAction) => {
         data.shouldGoToTheNextPhase,
       );
     case FOFOCA_QUENTE_ACTIONS.SUBMIT_RUMOR:
-      utils.firebase.validateSubmitActionProperties(data, ['skipRumor'], 'submit rumor');
+      validateSubmitActionProperties(data, ['skipRumor'], 'submit rumor');
       return handleSubmitRumor(
         gameName,
         gameId,
@@ -205,6 +202,6 @@ export const submitAction = async (data: FofocaQuenteSubmitAction) => {
       );
 
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

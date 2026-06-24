@@ -29,6 +29,11 @@ import { getData } from './data';
 import { handleConfirmGood, handleFulfillOrders, handlePlaceGood } from './actions';
 import { FULFILLMENT_MOCK } from './mock';
 import { isEmulatingEnvironment } from '../../utils/environment';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -156,19 +161,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: ControleDeEstoqueSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case CONTROLE_DE_ESTOQUE_ACTIONS.PLACE_GOOD:
-      utils.firebase.validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'submit place good');
+      validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'submit place good');
       return handlePlaceGood(gameName, gameId, playerId, data.selectedWarehouseSlot);
     case CONTROLE_DE_ESTOQUE_ACTIONS.CONFIRM_PLACEMENT:
-      utils.firebase.validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'confirm placement');
+      validateSubmitActionProperties(data, ['selectedWarehouseSlot'], 'confirm placement');
       return handleConfirmGood(gameName, gameId, playerId, data.selectedWarehouseSlot);
     case CONTROLE_DE_ESTOQUE_ACTIONS.SUBMIT_FULFILL_ORDERS:
-      utils.firebase.validateSubmitActionProperties(data, ['fulfillments'], 'submit fulfill order');
+      validateSubmitActionProperties(data, ['fulfillments'], 'submit fulfill order');
       return handleFulfillOrders(gameName, gameId, playerId, data.fulfillments);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

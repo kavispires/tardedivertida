@@ -2,6 +2,7 @@
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import type { FirebaseAuth } from '../types/reference';
+import { verifyPayload, throwHttpsError } from '../services/firebase-core';
 
 type LoadGamePayload = {
   gameId: UID;
@@ -15,18 +16,18 @@ const loadGame = async (data: LoadGamePayload) => {
   const { gameId } = data;
 
   const actionText = 'load game';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
 
   const metaRef = utils.firestore.getMetaRef();
   const gameMeta = await metaRef.doc(gameId).get();
 
   if (!gameMeta.exists) {
-    return utils.firebase.throwException(`game ${gameId} does not exist`, actionText);
+    return throwHttpsError(`game ${gameId} does not exist`, actionText);
   }
 
   const gameMetaData = gameMeta.data();
 
-  utils.firebase.verifyPayload(gameMetaData?.gameName, 'gameName', actionText);
+  verifyPayload(gameMetaData?.gameName, 'gameName', actionText);
 
   return gameMetaData;
 };
@@ -48,9 +49,9 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const { gameId, gameName, playerName, playerAvatarId, isGuest } = data;
 
   const actionText = 'add player';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
-  utils.firebase.verifyPayload(playerName, 'playerName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'state.players' from given game session
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
@@ -77,7 +78,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const numPlayers = utils.players.getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
-    utils.firebase.throwException(
+    throwHttpsError(
       `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCounts.MIN}`,
       actionText,
     );
@@ -88,7 +89,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
-    utils.firebase.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
+    throwHttpsError(`This game ${gameId} is locked and cannot accept new players`, actionText);
   }
 
   try {
@@ -105,7 +106,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
     });
     return newPlayer;
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 };
 
@@ -117,9 +118,9 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   const { gameId, gameName, playerId, onlyReady } = data;
 
   const actionText = 'make you ready';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
-  utils.firebase.verifyPayload(playerId, 'playerId', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(playerId, 'playerId', actionText);
 
   // Get 'state.players' from given game session
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
@@ -137,7 +138,7 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
       await sessionRef.doc('state').update({ [path]: true });
       return true;
     } catch (error) {
-      utils.firebase.throwException(error, actionText);
+      throwHttpsError(error, actionText);
     }
   }
 
@@ -151,7 +152,7 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   try {
     return getNextPhase(gameName, gameId);
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 };
 
@@ -203,7 +204,7 @@ const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
           [gameId]: data.ratings,
         });
     } catch (error) {
-      utils.firebase.throwException(error, actionText);
+      throwHttpsError(error, actionText);
     }
   }
   return true;

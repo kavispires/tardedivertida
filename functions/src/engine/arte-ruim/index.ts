@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getCards } from './data';
 import { handleSubmitDrawing, handleSubmitVoting } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -131,16 +136,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: ArteRuimSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case ARTE_RUIM_ACTIONS.SUBMIT_DRAWING:
-      utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
+      validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case ARTE_RUIM_ACTIONS.SUBMIT_VOTING:
-      utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
+      validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(gameName, gameId, playerId, data.votes, data.choseRandomly);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

@@ -22,6 +22,11 @@ import {
   prepareWordCreationPhase,
 } from './setup';
 import { handleSubmitGuess, handleSubmitWord } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -120,16 +125,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: MetalinguagemSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case METALINGUAGEM_ACTIONS.SUBMIT_WORD:
-      utils.firebase.validateSubmitActionProperties(data, ['names', 'indexes', 'newWord'], 'submit new word');
+      validateSubmitActionProperties(data, ['names', 'indexes', 'newWord'], 'submit new word');
       return handleSubmitWord(gameName, gameId, playerId, data.names, data.indexes, data.newWord);
     case METALINGUAGEM_ACTIONS.SUBMIT_GUESS:
-      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
+      validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
       return handleSubmitGuess(gameName, gameId, playerId, data.guesses);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

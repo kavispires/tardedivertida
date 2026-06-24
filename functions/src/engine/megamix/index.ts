@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getData } from './data';
 import { handleSubmitSeeds, handleSubmitTrackAnswer } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -127,16 +132,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: MegamixSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case MEGAMIX_ACTIONS.SUBMIT_SEEDS:
-      utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit seeds');
+      validateSubmitActionProperties(data, ['data'], 'submit seeds');
       return handleSubmitSeeds(gameName, gameId, playerId, data.data);
     case MEGAMIX_ACTIONS.SUBMIT_TRACK_ANSWER:
-      utils.firebase.validateSubmitActionProperties(data, ['data'], 'submit data');
+      validateSubmitActionProperties(data, ['data'], 'submit data');
       return handleSubmitTrackAnswer(gameName, gameId, playerId, data.data);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

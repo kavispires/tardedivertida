@@ -34,6 +34,11 @@ import {
   handleSubmitSecretWord,
 } from './actions';
 import { getData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -136,32 +141,28 @@ export const getNextPhase = async (
 export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_BOSS:
-      utils.firebase.validateSubmitActionProperties(data, ['bossId'], 'submit boss player id');
+      validateSubmitActionProperties(data, ['bossId'], 'submit boss player id');
       return handleSubmitBossPlayer(gameName, gameId, playerId, data.bossId);
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_SECRET_WORD:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['secretWord', 'categories'],
-        'submit secret word and categories',
-      );
+      validateSubmitActionProperties(data, ['secretWord', 'categories'], 'submit secret word and categories');
       return handleSubmitSecretWord(gameName, gameId, playerId, data.secretWord, data.categories);
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_CLUES:
-      utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
+      validateSubmitActionProperties(data, ['clues'], 'submit clues');
       return handleSubmitPlayerClues(gameName, gameId, playerId, data.clues, data.guesses);
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_EVALUATION:
-      utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
+      validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.evaluation);
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_OUTCOME:
-      utils.firebase.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
+      validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleSubmitOutcome(gameName, gameId, playerId, data.outcome);
     case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_HELP:
-      utils.firebase.validateSubmitActionProperties(data, ['clueId'], 'submit help');
+      validateSubmitActionProperties(data, ['clueId'], 'submit help');
       return handleSubmitHelp(gameName, gameId, playerId, data.clueId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };
