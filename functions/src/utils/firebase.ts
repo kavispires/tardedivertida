@@ -1,38 +1,14 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
 import type { GenericCallableFunction } from '../types/reference';
-
-/**
- * Checks if Firebase Functions are running in emulation mode
- * @returns True if running in Functions emulator
- */
-export const isEmulatingFunctions = () => !!process.env.FUNCTIONS_EMULATOR;
-
-/**
- * Checks if Firestore is running in emulation mode
- * @returns True if running in Firestore emulator
- */
-export const isEmulatingFirestore = () => !!process.env.FIRESTORE_EMULATOR_HOST;
-
-/**
- * Checks if either Functions or Firestore are running in emulation mode
- * @returns True if running in any emulation environment
- */
-export const isEmulatingEnvironment = () => isEmulatingFunctions() || isEmulatingFirestore();
-
-if (isEmulatingFunctions()) {
-  console.log('🤡 EMULATING FUNCTIONS:', process.env.FUNCTIONS_EMULATOR);
-}
-if (isEmulatingFirestore()) {
-  console.log('🤡 EMULATING FIRESTORE:', process.env.FIRESTORE_EMULATOR_HOST);
-}
+import * as environment from './environment';
 
 /**
  * CLOUD FUNCTIONS V2 MIGRATION
  */
 
 export const throwException = (error: unknown, action: string) => {
-  if (isEmulatingEnvironment()) {
+  if (environment.isEmulatingEnvironment()) {
     // biome-ignore lint/suspicious/noConsole: Only for debugging purposes on dev
     console.error(`Failed to ${action}`, error);
   }
@@ -45,7 +21,9 @@ export const apiDelegator = (
 ) => {
   const uid = request.auth?.uid;
   const action = request.data?.action;
-  console.log(`Received request for action: ${action} from user: ${uid}`);
+  if (environment.isEmulatingEnvironment()) {
+    console.log(`Received request for action: ${action} from user: ${uid}`);
+  }
 
   if (!action) {
     return throwException('Action not provided', 'perform request');

@@ -1,4 +1,5 @@
 import utils from '../utils';
+import { isEmulatingEnvironment } from '../utils/environment';
 
 /**
  * Gets document from public in firestore
@@ -8,7 +9,7 @@ import utils from '../utils';
 export const getPublicFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
   let response: Promise<any>;
 
-  if (utils.firebase.isEmulatingEnvironment()) {
+  if (isEmulatingEnvironment()) {
     return fallback;
   }
 
