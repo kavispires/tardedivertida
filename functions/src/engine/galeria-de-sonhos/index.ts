@@ -28,6 +28,11 @@ import {
 } from './setup';
 import { handlePlayCard, handleSubmitCards, handleSubmitWord } from './actions';
 import { getWords } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -146,19 +151,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: GaleriaDeSonhosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case GALERIA_DE_SONHOS_ACTIONS.SUBMIT_WORD:
-      utils.firebase.validateSubmitActionProperties(data, ['wordId'], 'submit word');
+      validateSubmitActionProperties(data, ['wordId'], 'submit word');
       return handleSubmitWord(gameName, gameId, playerId, data.wordId);
     case GALERIA_DE_SONHOS_ACTIONS.SUBMIT_CARDS:
-      utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
+      validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
       return handleSubmitCards(gameName, gameId, playerId, data.cardsIds);
     case GALERIA_DE_SONHOS_ACTIONS.PLAY_CARD:
-      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
+      validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(gameName, gameId, playerId, data.cardId);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

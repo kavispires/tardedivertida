@@ -1,6 +1,6 @@
-import { throwException } from './firebase';
 import { fetchResource } from '../engine/resource';
 import { shuffle } from 'lodash';
+import { throwHttpsError } from '../services/firebase-core';
 
 const deckCache = {};
 
@@ -22,7 +22,7 @@ export const getImageCards = async (quantity: number): Promise<UID[]> => {
   const decks = Object.keys(cardInfo);
   const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
-    throwException(
+    throwHttpsError(
       `${quantity} image cards were requested but the game only has ${totalCards} available`,
       'get image cards',
     );
@@ -61,7 +61,7 @@ export const getImageCardsDecks = async (quantity: number): Promise<UID[][]> => 
   const decks = Object.keys(cardInfo);
   const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
-    throwException(
+    throwHttpsError(
       `${quantity} image cards were requested but the game only has ${totalCards} available`,
       'get image cards decks',
     );

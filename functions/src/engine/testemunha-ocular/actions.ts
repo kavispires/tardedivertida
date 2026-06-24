@@ -3,6 +3,7 @@ import utils from '../../utils';
 import { OUTCOME } from './constants';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
+import { throwHttpsError } from '../../services/firebase-core';
 
 /**
  * Selects the witness player for questioning
@@ -144,7 +145,7 @@ export const handleElimination = async (
     try {
       return getNextPhase(gameName, gameId, state);
     } catch (error) {
-      utils.firebase.throwException(error, `Failed to ${actionText}`);
+      throwHttpsError(error, `Failed to ${actionText}`);
     }
   }
 

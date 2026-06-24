@@ -32,6 +32,11 @@ import {
   prepareEvaluationPhase,
 } from './setup';
 import { getResourceData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -143,20 +148,20 @@ export const getNextPhase = async (
 export const submitAction = async (data: TeoriaDeConjuntosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_JUDGE:
-      utils.firebase.validateSubmitActionProperties(data, ['judgeId'], 'submit pairs');
+      validateSubmitActionProperties(data, ['judgeId'], 'submit pairs');
       return handleSubmitJudge(gameName, gameId, playerId, data.judgeId);
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_ITEM_PLACEMENT:
-      utils.firebase.validateSubmitActionProperties(data, ['itemId', 'position'], 'submit item diagram');
+      validateSubmitActionProperties(data, ['itemId', 'position'], 'submit item diagram');
       return handleSubmitItemDiagram(gameName, gameId, playerId, data.itemId, data.position);
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION:
-      utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
+      validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(gameName, gameId, playerId, data.evaluation);
     case TEORIA_DE_CONJUNTOS_ACTIONS.SUBMIT_EVALUATION_FIX:
-      utils.firebase.validateSubmitActionProperties(
+      validateSubmitActionProperties(
         data,
         ['itemId', 'currentArea', 'newEvaluation'],
         'submit evaluation fix',
@@ -170,6 +175,6 @@ export const submitAction = async (data: TeoriaDeConjuntosSubmitAction) => {
         data.newEvaluation,
       );
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

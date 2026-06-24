@@ -22,6 +22,11 @@ import {
 } from './setup';
 import { getTopics } from './data';
 import { handleSubmitAnswers, handleSubmitEvaluationsAnswers } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -120,16 +125,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: AdedanhxSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case ADEDANHX_ACTIONS.SUBMIT_ANSWERS:
-      utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
+      validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(gameName, gameId, playerId, data.answers, data.stop);
     case ADEDANHX_ACTIONS.SUBMIT_EVALUATIONS:
-      utils.firebase.validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
+      validateSubmitActionProperties(data, ['evaluations'], 'submit evaluations');
       return handleSubmitEvaluationsAnswers(gameName, gameId, playerId, data.evaluations);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

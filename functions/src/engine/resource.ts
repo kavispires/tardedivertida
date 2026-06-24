@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 // Helpers
-import utils from '../utils';
+import { throwHttpsError } from '../services/firebase-core';
 
 /**
  * Queries a TDR resource file
@@ -14,6 +14,6 @@ export const fetchResource = async <T>(resourceName: string, language?: Language
     );
     return response.json();
   } catch (e) {
-    return utils.firebase.throwException(`${e}`, `Failed to get resource for ${resourceName}`);
+    return throwHttpsError(`${e}`, `Failed to get resource for ${resourceName}`);
   }
 };

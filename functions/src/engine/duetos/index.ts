@@ -16,6 +16,11 @@ import { determineNextPhase } from './helpers';
 import { handleSubmitPairs } from './actions';
 import { prepareSetupPhase, prepareGameOverPhase, preparePairPhase, prepareResultsPhase } from './setup';
 import { getResourceData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -109,13 +114,13 @@ export const getNextPhase = async (
 export const submitAction = async (data: DuetosSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case DUETOS_ACTIONS.SUBMIT_PAIRS:
-      utils.firebase.validateSubmitActionProperties(data, ['pairs'], 'submit pairs');
+      validateSubmitActionProperties(data, ['pairs'], 'submit pairs');
       return handleSubmitPairs(gameName, gameId, playerId, data.pairs);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

@@ -2,7 +2,7 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
-import { apiDelegator } from '../utils/firebase';
+import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import { DATA_DOCUMENTS } from '../utils/constants';
 import { isEmulatingEnvironment } from '../utils/environment';
 
@@ -25,19 +25,19 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return throwHttpsError('User not authenticated', actionText);
   }
 
   const { date } = data;
   if (!date) {
-    return utils.firebase.throwException('Date not provided', actionText);
+    return throwHttpsError('Date not provided', actionText);
   }
 
   const dailyRef = utils.firestore.getDailyRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
-    utils.firebase.throwException(`Daily ${date} does not exist`, actionText);
+    throwHttpsError(`Daily ${date} does not exist`, actionText);
   }
 
   const dailyData = dailyDoc.data();
@@ -69,12 +69,12 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return throwHttpsError('User not authenticated', actionText);
   }
 
   const { id, number, victory, hearts, letters } = data;
   if (!id) {
-    return utils.firebase.throwException('Payload is missing data', actionText);
+    return throwHttpsError('Payload is missing data', actionText);
   }
   const userRef = utils.firestore.getUserRef();
 
@@ -118,7 +118,7 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return throwHttpsError('User not authenticated', actionText);
   }
 
   await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);
@@ -153,7 +153,7 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return throwHttpsError('User not authenticated', actionText);
   }
 
   try {
@@ -201,7 +201,7 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
 
     await docRef.update({ [uid]: JSON.stringify(stringifiedData) });
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return true;
@@ -226,11 +226,11 @@ const saveConexoes = async (data: DailySaveConexoesPayload, auth: FirebaseAuth) 
   const uid = auth?.uid;
 
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', actionText);
+    return throwHttpsError('User not authenticated', actionText);
   }
 
   if (!data.pairs || !Array.isArray(data.pairs)) {
-    return utils.firebase.throwException('Pairs data is missing', actionText);
+    return throwHttpsError('Pairs data is missing', actionText);
   }
 
   try {
@@ -271,7 +271,7 @@ const saveConexoes = async (data: DailySaveConexoesPayload, auth: FirebaseAuth) 
     // Save back to Firestore
     await docRef.update({ [uid]: JSON.stringify(mergedRelationships) });
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return true;
@@ -289,4 +289,4 @@ const DAILY_API_ACTIONS = {
  * Executes the daily engine by delegating to the appropriate action
  * @param request - The callable request object
  */
-export const dailyEngine = (request: CallableRequest) => apiDelegator(request, DAILY_API_ACTIONS);
+export const dailyEngine = (request: CallableRequest) => delegateApiRequest(request, DAILY_API_ACTIONS);

@@ -9,6 +9,7 @@ import { feedEmulatorDB } from '../utils/mocks/emulator';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import { retireGamesFromUsers } from '../utils/admin-cleanup';
 import { isEmulatingEnvironment } from '../utils/environment';
+import { throwHttpsError, verifyPayload } from '../services/firebase-core';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -34,14 +35,14 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   const { gameName, language, version, options } = data;
 
   if (!gameName) {
-    return utils.firebase.throwException('a gameName is required', actionText);
+    return throwHttpsError('a gameName is required', actionText);
   }
 
   // Get gameCode
   const gameCode = GAME_CODES[gameName];
 
   if (!gameCode) {
-    return utils.firebase.throwException(`provided gameCode is invalid ${gameName}`, actionText);
+    return throwHttpsError(`provided gameCode is invalid ${gameName}`, actionText);
   }
 
   // Get list of used ids
@@ -59,10 +60,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await gameRef.collection(gameId).doc('state').get();
   if (tempGame.exists) {
-    return utils.firebase.throwException(
-      `the generated game id ${gameId} belongs to an existing session`,
-      actionText,
-    );
+    return throwHttpsError(`the generated game id ${gameId} belongs to an existing session`, actionText);
   }
 
   if (isEmulatingEnvironment()) {
@@ -86,7 +84,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
 
     response = meta;
   } catch (e) {
-    return utils.firebase.throwException(`${e}`, `${actionText} in the firestore database`);
+    return throwHttpsError(`${e}`, `${actionText} in the firestore database`);
   }
 
   try {
@@ -116,8 +114,8 @@ const lockGame = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
 
   const actionText = 'lock game';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
 
   const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
 
@@ -129,14 +127,14 @@ const lockGame = async (data: BasicGamePayload) => {
   const playerCounts = getPlayerCounts();
 
   if (numPlayers < playerCounts.MIN) {
-    utils.firebase.throwException(
+    throwHttpsError(
       `Game ${gameId} has an insufficient number of players: Minimum ${playerCounts.MIN} players, but has ${numPlayers}`,
       actionText,
     );
   }
 
   if (numPlayers > playerCounts.MAX) {
-    utils.firebase.throwException(
+    throwHttpsError(
       `Game ${gameId} has more players than it supports: Maximum ${playerCounts.MAX} players, but has ${numPlayers}`,
       actionText,
     );
@@ -155,7 +153,7 @@ const lockGame = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return false;
@@ -169,8 +167,8 @@ const unlockAndResetGame = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
 
   const actionText = 'reset game';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
 
   const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
 
@@ -190,7 +188,7 @@ const unlockAndResetGame = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return false;
@@ -204,8 +202,8 @@ const goToNextPhase = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
 
   const actionText = 'go to next phase';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
 
   const { getNextPhase } = delegatorUtils.getEngine(gameName);
 
@@ -220,15 +218,15 @@ const forceStateProperty = async (data: BasicGamePayload) => {
   const { gameId, gameName, state } = data;
 
   const actionText = 'force state property';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
 
   const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('state').update(state);
   } catch (error) {
-    return utils.firebase.throwException(error, actionText);
+    return throwHttpsError(error, actionText);
   }
 
   return true;
@@ -243,15 +241,15 @@ const forceLastRound = async (data: BasicGamePayload) => {
 
   const actionText = 'force last round';
 
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
 
   const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('state').update({ 'round.forceLastRound': true });
   } catch (error) {
-    return utils.firebase.throwException(error, actionText);
+    return throwHttpsError(error, actionText);
   }
 
   return true;
@@ -264,8 +262,8 @@ const forceLastRound = async (data: BasicGamePayload) => {
 const playAgain = async (data: BasicGamePayload) => {
   const { gameId, gameName } = data;
   const actionText = 'play game again';
-  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
 
   const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
     gameName,
@@ -304,7 +302,7 @@ const playAgain = async (data: BasicGamePayload) => {
 
     return true;
   } catch (error) {
-    utils.firebase.throwException(error, actionText);
+    throwHttpsError(error, actionText);
   }
 
   return false;
@@ -323,10 +321,10 @@ const retireGames = async (data: RetireGamesPayload) => {
   const { gameNames } = data;
 
   const actionText = 'retire games';
-  utils.firebase.verifyPayload(gameNames, 'gameNames', actionText);
+  verifyPayload(gameNames, 'gameNames', actionText);
 
   if (!Array.isArray(gameNames) || gameNames.length === 0) {
-    return utils.firebase.throwException('gameNames must be a non-empty array', actionText);
+    return throwHttpsError('gameNames must be a non-empty array', actionText);
   }
 
   try {
@@ -337,7 +335,7 @@ const retireGames = async (data: RetireGamesPayload) => {
     console.log('Game retirement completed:', result);
     return result;
   } catch (error) {
-    return utils.firebase.throwException(error, actionText);
+    return throwHttpsError(error, actionText);
   }
 };
 
@@ -362,18 +360,18 @@ export const hostEngine = (
   // Verify action
   const action = request.data?.action;
   if (!action) {
-    return utils.firebase.throwException('Action not provided', 'perform request');
+    return throwHttpsError('Action not provided', 'perform request');
   }
 
   // Verify auth
   const uid = request.auth?.uid;
   if (!uid) {
-    return utils.firebase.throwException('User not authenticated', action);
+    return throwHttpsError('User not authenticated', action);
   }
 
   if (HOST_API_ACTIONS[action]) {
     return HOST_API_ACTIONS[action](request.data, request.auth);
   }
 
-  return utils.firebase.throwException('Admin action does not exist', action);
+  return throwHttpsError('Admin action does not exist', action);
 };

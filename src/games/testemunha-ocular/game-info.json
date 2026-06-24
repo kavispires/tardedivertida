@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "6.1.42",
+  "version": "6.1.44",
   "release": "stable",
   "releaseDate": "2021-08-01",
   "available": true,

@@ -28,6 +28,11 @@ import {
 } from './setup';
 import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
 import { getData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -140,19 +145,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case CONTADORES_HISTORIAS_ACTIONS.SUBMIT_STORY:
-      utils.firebase.validateSubmitActionProperties(data, ['story', 'cardId'], 'submit story');
+      validateSubmitActionProperties(data, ['story', 'cardId'], 'submit story');
       return handleSubmitStory(gameName, gameId, playerId, data.story, data.cardId);
     case CONTADORES_HISTORIAS_ACTIONS.PLAY_CARD:
-      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
+      validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(gameName, gameId, playerId, data.cardId);
     case CONTADORES_HISTORIAS_ACTIONS.SUBMIT_VOTE:
-      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

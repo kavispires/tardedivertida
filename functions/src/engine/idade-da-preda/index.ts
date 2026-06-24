@@ -29,6 +29,11 @@ import {
   prepareResultsPhase,
   prepareSetupPhase,
 } from './setup';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -139,25 +144,25 @@ export const getNextPhase = async (
 export const submitAction = async (data: IdadeDaPredaSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case IDADE_DA_PREDA_ACTIONS.SUBMIT_CONCEPTS:
-      utils.firebase.validateSubmitActionProperties(data, ['proposedConcepts'], 'submit concepts');
+      validateSubmitActionProperties(data, ['proposedConcepts'], 'submit concepts');
       return handleSubmitConcepts(gameName, gameId, playerId, data.proposedConcepts);
 
     case IDADE_DA_PREDA_ACTIONS.DOWNVOTE_CONCEPTS:
-      utils.firebase.validateSubmitActionProperties(data, ['conceptIds'], 'downvote concepts');
+      validateSubmitActionProperties(data, ['conceptIds'], 'downvote concepts');
       return handleDownvoteConcepts(gameName, gameId, playerId, data.conceptIds);
 
     case IDADE_DA_PREDA_ACTIONS.SUBMIT_NAME:
-      utils.firebase.validateSubmitActionProperties(data, ['itemId', 'name', 'conceptsIds'], 'submit name');
+      validateSubmitActionProperties(data, ['itemId', 'name', 'conceptsIds'], 'submit name');
       return handleSubmitName(gameName, gameId, playerId, data.itemId, data.name, data.conceptsIds);
 
     case IDADE_DA_PREDA_ACTIONS.SUBMIT_GUESSES:
-      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
+      validateSubmitActionProperties(data, ['guesses'], 'submit guesses');
       return handleSubmitGuesses(gameName, gameId, playerId, data.guesses, data.choseRandomly);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

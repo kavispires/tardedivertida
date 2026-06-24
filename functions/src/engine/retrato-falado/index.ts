@@ -21,6 +21,11 @@ import {
 } from './setup';
 import { getMonsterCards } from './data';
 import { handleSubmitOrientation, handleSubmitSketch, handleSubmitVote } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -120,19 +125,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: RetratoFaladoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case RETRATO_FALADO_ACTIONS.SUBMIT_ORIENTATION:
-      utils.firebase.validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
+      validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
       return handleSubmitOrientation(gameName, gameId, playerId, data.orientation);
     case RETRATO_FALADO_ACTIONS.SUBMIT_SKETCH:
-      utils.firebase.validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
+      validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
       return handleSubmitSketch(gameName, gameId, playerId, data.sketch);
     case RETRATO_FALADO_ACTIONS.SUBMIT_VOTE:
-      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

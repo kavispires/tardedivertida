@@ -41,6 +41,11 @@ import {
   prepareAlienSeedingPhase,
 } from './setup';
 import { getResourceData } from './data';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -180,36 +185,32 @@ export const getNextPhase = async (
 export const submitAction = async (data: ComunicacaoAlienigenaSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN:
-      utils.firebase.validateSubmitActionProperties(data, ['alienId'], 'submit alienId');
+      validateSubmitActionProperties(data, ['alienId'], 'submit alienId');
       return handleSubmitAlien(gameName, gameId, playerId, data.alienId);
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_SEEDS:
-      utils.firebase.validateSubmitActionProperties(data, ['seeds'], 'submit seeds');
+      validateSubmitActionProperties(data, ['seeds'], 'submit seeds');
       return handleSubmitSeeds(gameName, gameId, playerId, data.seeds);
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_HUMAN_INQUIRY:
-      utils.firebase.validateSubmitActionProperties(data, ['objectsIds', 'intention'], 'submit objectsIds');
+      validateSubmitActionProperties(data, ['objectsIds', 'intention'], 'submit objectsIds');
       return handleSubmitHumanInquiry(gameName, gameId, playerId, data.objectsIds, data.intention);
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_RESPONSES:
-      utils.firebase.validateSubmitActionProperties(data, ['alienResponses'], 'submit alienResponses');
+      validateSubmitActionProperties(data, ['alienResponses'], 'submit alienResponses');
       return handleSubmitAlienResponses(gameName, gameId, playerId, data.alienResponses);
     case COMUNICACAO_ALIENIGENA_ACTIONS.CONFIRM_NOTES:
-      utils.firebase.validateSubmitActionProperties(data, ['notes'], 'submit notes');
+      validateSubmitActionProperties(data, ['notes'], 'submit notes');
       return handleConfirmNotes(gameName, gameId, playerId, data.notes);
 
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_ALIEN_REQUEST:
-      utils.firebase.validateSubmitActionProperties(
-        data,
-        ['alienRequest', 'intention'],
-        'submit alienRequest',
-      );
+      validateSubmitActionProperties(data, ['alienRequest', 'intention'], 'submit alienRequest');
       return handleSubmitAlienRequest(gameName, gameId, playerId, data.alienRequest, data.intention);
     case COMUNICACAO_ALIENIGENA_ACTIONS.SUBMIT_OFFERINGS:
-      utils.firebase.validateSubmitActionProperties(data, ['offeringsIds'], 'submit offeringsIds');
+      validateSubmitActionProperties(data, ['offeringsIds'], 'submit offeringsIds');
       return handleSubmitOfferings(gameName, gameId, playerId, data.offeringsIds);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

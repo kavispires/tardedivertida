@@ -29,6 +29,11 @@ import {
   handleSubmitCustomQuestion,
   handleSubmitQuestion,
 } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -140,25 +145,25 @@ export const getNextPhase = async (
 export const submitAction = async (data: MenteColetivaSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case MENTE_COLETIVA_ACTIONS.SUBMIT_QUESTION:
-      utils.firebase.validateSubmitActionProperties(data, ['questionId'], 'submit question');
+      validateSubmitActionProperties(data, ['questionId'], 'submit question');
       return handleSubmitQuestion(gameName, gameId, playerId, data.questionId);
     case MENTE_COLETIVA_ACTIONS.SUBMIT_CUSTOM_QUESTION:
-      utils.firebase.validateSubmitActionProperties(data, ['customQuestion'], 'submit question');
+      validateSubmitActionProperties(data, ['customQuestion'], 'submit question');
       return handleSubmitCustomQuestion(gameName, gameId, playerId, data.customQuestion);
     case MENTE_COLETIVA_ACTIONS.SUBMIT_ANSWERS:
-      utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
+      validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(gameName, gameId, playerId, data.answers);
     case MENTE_COLETIVA_ACTIONS.NEXT_ANSWERS:
-      utils.firebase.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
+      validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
       return handleNextAnswers(gameName, gameId, playerId, data.allowedList);
     case MENTE_COLETIVA_ACTIONS.ADD_ANSWER:
-      utils.firebase.validateSubmitActionProperties(data, ['answer'], 'add answer');
+      validateSubmitActionProperties(data, ['answer'], 'add answer');
       return handleAddAnswer(gameName, gameId, playerId, data.answer);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

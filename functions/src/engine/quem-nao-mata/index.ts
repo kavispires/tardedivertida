@@ -21,6 +21,11 @@ import {
   prepareTargetingPhase,
 } from './setup';
 import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from './actions';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -122,19 +127,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case QUEM_NAO_MATA_ACTIONS.SUBMIT_TARGET:
-      utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit target');
+      validateSubmitActionProperties(data, ['targetId'], 'submit target');
       return handleSubmitTarget(gameName, gameId, playerId, data.targetId);
     case QUEM_NAO_MATA_ACTIONS.SUBMIT_MESSAGE:
-      utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit message');
+      validateSubmitActionProperties(data, ['targetId'], 'submit message');
       return handleSubmitMessage(gameName, gameId, playerId, data.targetId, data.recipientId);
     case QUEM_NAO_MATA_ACTIONS.SUBMIT_DECISION:
-      utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
+      validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };

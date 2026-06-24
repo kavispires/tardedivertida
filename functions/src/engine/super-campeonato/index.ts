@@ -29,6 +29,11 @@ import {
   prepareResultsPhase,
   prepareSetupPhase,
 } from './setup';
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
 
 /**
  * Gets the initial state for a new game session
@@ -150,22 +155,22 @@ export const getNextPhase = async (
 export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CHALLENGE:
-      utils.firebase.validateSubmitActionProperties(data, ['challengeId'], 'submit challenge');
+      validateSubmitActionProperties(data, ['challengeId'], 'submit challenge');
       return handleSubmitChallenge(gameName, gameId, playerId, data.challengeId);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CONTENDERS:
-      utils.firebase.validateSubmitActionProperties(data, ['contendersIds'], 'submit contenders');
+      validateSubmitActionProperties(data, ['contendersIds'], 'submit contenders');
       return handleSubmitContenders(gameName, gameId, playerId, data.contendersIds);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_BETS:
-      utils.firebase.validateSubmitActionProperties(data, ['quarter', 'semi', 'final'], 'submit bets');
+      validateSubmitActionProperties(data, ['quarter', 'semi', 'final'], 'submit bets');
       return handleSubmitBets(gameName, gameId, playerId, data.quarter, data.semi, data.final);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_VOTES:
-      utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
+      validateSubmitActionProperties(data, ['votes'], 'submit bets');
       return handleSubmitVotes(gameName, gameId, playerId, data.votes);
     default:
-      utils.firebase.throwException(`Given action ${action} is not allowed`, action);
+      throwHttpsError(`Given action ${action} is not allowed`, action);
   }
 };
