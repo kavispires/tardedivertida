@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { CreateIcon } from '@icons/CreateIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { PhaseCreatingConceptsState } from './utils/types';
@@ -38,7 +38,7 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
           buttonText=" "
           time={5}
         >
-          <Instruction contained>{getAge(state?.round?.current)}</Instruction>
+          <Surface contained>{getAge(state?.round?.current)}</Surface>
         </RoundAnnouncement>
 
         <PhaseAnnouncement
@@ -53,7 +53,7 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
           type="block"
           onClose={goToNextStep}
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -66,7 +66,7 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

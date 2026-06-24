@@ -9,10 +9,10 @@ import { ScaredIcon } from '@icons/ScaredIcon';
 import { TomatoIcon } from '@icons/TomatoIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 import { getAnnouncementKey } from './utils/helpers';
@@ -69,7 +69,7 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
         type="overlay"
         duration={7}
       >
-        <Instruction>
+        <Surface>
           <Translate
             pt={<>E o filme é: </>}
             en={<>And the movie is: </>}
@@ -79,7 +79,7 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
             movies={state.movies}
             movieId={state.finalMovieId ?? ''}
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     normal: <></>,

@@ -10,9 +10,9 @@ import { EarthIcon } from '@icons/EarthIcon';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -55,12 +55,12 @@ export function MouseFollowingContentTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Mova o mouse ou dedo pela tela"
           en="Move the mouse or finger across the screen"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         vertical

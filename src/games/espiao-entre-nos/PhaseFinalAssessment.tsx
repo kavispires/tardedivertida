@@ -7,10 +7,10 @@ import { OpinionsIcon } from '@icons/OpinionsIcon';
 import { PeopleAssessmentIcon } from '@icons/PeopleAssessmentIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
@@ -67,12 +67,12 @@ export function PhaseFinalAssessment({ state, players, user }: PhaseProps) {
             duration={3}
             type="block"
           >
-            <Instruction>
+            <Surface>
               <Translate
                 pt="A votação não foi unanime"
                 en="The vote wasn't unanimous"
               />
-            </Instruction>
+            </Surface>
           </PhaseAnnouncement>
         )}
 

@@ -6,7 +6,7 @@ import { PHASES } from '@utils/phases';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
@@ -33,12 +33,12 @@ export function PhaseWait({ state }: PhaseProps) {
 
         <AnimatedProcessingIcon className={styles.phaseAnnouncementIcon} />
 
-        <Instruction>
+        <Surface>
           <Translate
             pt="Aguarde um momento"
             en="Just a moment"
           />
-        </Instruction>
+        </Surface>
       </div>
     </PhaseContainer>
   );

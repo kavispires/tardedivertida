@@ -2,9 +2,9 @@
 import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
-import { Instruction } from '@components/text/Instruction';
 
 type VotingRulesProps = {
   isUserTheStoryTeller: boolean;
@@ -55,7 +55,7 @@ type ScoringRulesProps = {
 
 export function ScoringRules({ storyteller }: ScoringRulesProps) {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -115,6 +115,6 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

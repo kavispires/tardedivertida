@@ -12,12 +12,12 @@ import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { ListOfPlayers } from '@components/players/ListOfPlayers';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
@@ -249,7 +249,7 @@ export function StepReveal({
               />
             )}
           </Title>
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Vote no poster do filme"
               en="Vote for the movie poster"
@@ -276,7 +276,7 @@ export function StepReveal({
                 </TransparentButton>
               ))}
             </SpaceContainer>
-          </Instruction>
+          </Surface>
         </div>
       </ViewIf>
 

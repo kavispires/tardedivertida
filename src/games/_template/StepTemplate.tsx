@@ -4,8 +4,8 @@ import type { GamePlayers, GamePlayer } from 'types/game';
 import { useLoading } from '@hooks/useLoading';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 
 type StepTemplateProps = {
@@ -29,12 +29,12 @@ export function StepTemplate({ announcement }: StepTemplateProps) {
       </StepTitle>
 
       {isLoading}
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={<>?</>}
           en={<>?</>}
         />
-      </Instruction>
+      </Surface>
     </Step>
   );
 }

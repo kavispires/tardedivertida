@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { MysteryBoxIcon } from '@icons/MysteryBoxIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCardPlayState } from './utils/types';
 import { QUAL_QUESITO_PHASES } from './utils/constants';
@@ -36,7 +36,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         {isTheCreator ? (
           <Translate
             pt="Adicione pelo menos duas coisas a sua categoria!"
@@ -48,7 +48,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
             en="Examine the category and see if you can add things to it!"
           />
         )}
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -69,12 +69,12 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
                 hideCount
               />
             ) : (
-              <Instruction contained>
+              <Surface contained>
                 <Translate
                   pt="Você não adicionou nada à essa categoria."
                   en="You didn't add anything to this category."
                 />
-              </Instruction>
+              </Surface>
             ),
         }}
       >

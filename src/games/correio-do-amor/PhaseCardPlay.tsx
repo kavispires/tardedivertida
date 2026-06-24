@@ -7,11 +7,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { TDIcon } from '@icons/TDIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCardPlayState } from './utils/types';
 import { CORREIO_DO_AMOR_PHASES } from './utils/constants';
@@ -37,12 +37,12 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>?</>}
           en={<>?</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -62,12 +62,12 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
           buttonText=" "
           time={5}
         >
-          <Instruction>
+          <Surface>
             <Translate
               en="Chegue mais perto do seu par ideal!"
               pt="Chegue mais perto do seu par ideal!"
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}

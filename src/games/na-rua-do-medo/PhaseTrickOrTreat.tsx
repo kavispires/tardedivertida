@@ -7,11 +7,11 @@ import { StreetIcon } from '@icons/StreetIcon';
 // Components
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
 import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
@@ -42,12 +42,12 @@ export function PhaseTrickOrTreat({ state, players, user }: PhaseProps<PhaseTric
           onPressButton={goToNextStep}
           time={5}
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt={`Vamos pegar doces na Rua do Medo ${state.round.current} de ${state.round.total}`}
               en={`Let's get candy on Fear Street ${state.round.current} of ${state.round.total}`}
             />
-          </Instruction>
+          </Surface>
           <ImageCardPreloadHand hand={[state.currentCard.key]} />
         </RoundAnnouncement>
 
@@ -65,7 +65,7 @@ export function PhaseTrickOrTreat({ state, players, user }: PhaseProps<PhaseTric
           duration={5}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -81,7 +81,7 @@ export function PhaseTrickOrTreat({ state, players, user }: PhaseProps<PhaseTric
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 2 */}

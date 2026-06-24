@@ -8,13 +8,13 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { SleepIcon } from '@icons/SleepIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { WaitingRoom } from '@components/players/WaitingRoom';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
@@ -47,12 +47,12 @@ export function PhaseWordSelection({ state, players }: PhaseProps<PhaseWordSelec
           buttonText=" "
           time={5}
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Somos caçadores de sonhos tentando encontrar uns aos outros..."
               en="We're dream scouts trying to find each other..."
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}

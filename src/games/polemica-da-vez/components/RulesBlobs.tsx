@@ -2,10 +2,10 @@
 import type { GameRound, GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { TargetHighlight } from '@components/metrics/TargetHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 
 type ScoringRulesProps = {
   round: GameRound;
@@ -35,13 +35,13 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
           )}
           <br />
           {!!activePlayer && (
-            <Instruction contained>
+            <Surface contained>
               <PlayerAvatarName
                 player={activePlayer}
                 addressUser
               />{' '}
               escolherá o assunto para essa rodada.
-            </Instruction>
+            </Surface>
           )}
         </>
       }
@@ -65,13 +65,13 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
           )}
           <br />
           {!!activePlayer && (
-            <Instruction contained>
+            <Surface contained>
               <PlayerAvatarName
                 player={activePlayer}
                 addressUser
               />{' '}
               will choose the tweet for this round.
-            </Instruction>
+            </Surface>
           )}
         </>
       }

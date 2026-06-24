@@ -5,7 +5,7 @@ import { Button, Switch } from 'antd';
 // Components
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { Clues, BoardEntry } from '../utils/types';
 
@@ -29,7 +29,7 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
 
   return (
     <>
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={
             <>
@@ -44,7 +44,7 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
             </>
           }
         />
-      </Instruction>
+      </Surface>
 
       <ul className="v-boss-evaluation">
         {Object.keys(evaluation).map((clueId) => {

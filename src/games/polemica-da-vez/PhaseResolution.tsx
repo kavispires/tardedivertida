@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { ReviewIcon } from '@icons/ReviewIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { POLEMICA_DA_VEZ_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';
@@ -32,7 +32,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -54,7 +54,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

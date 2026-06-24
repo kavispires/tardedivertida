@@ -15,8 +15,8 @@ import { SendButton } from '@components/buttons/SendButton';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { Bracket, FightingContender, SubmitBetsPayload } from '../utils/type';
 import { getSmartBetContenderOptions } from '../utils/helpers';
@@ -55,7 +55,7 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
   return (
     <div className="w-bet-form">
       {step === 0 && (
-        <Instruction
+        <Surface
           contained
           className={clsx(
             'w-bet-form__container',
@@ -106,10 +106,10 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
               />
             </Button>
           </SpaceContainer>
-        </Instruction>
+        </Surface>
       )}
       {step === 1 && (
-        <Instruction
+        <Surface
           contained
           className={clsx(
             'w-bet-form__container',
@@ -160,10 +160,10 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
               />
             </Button>
           </SpaceContainer>
-        </Instruction>
+        </Surface>
       )}
       {step === 2 && (
-        <Instruction
+        <Surface
           contained
           className={clsx(
             'w-bet-form__container',
@@ -213,7 +213,7 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
               />
             </SendButton>
           </SpaceContainer>
-        </Instruction>
+        </Surface>
       )}
     </div>
   );

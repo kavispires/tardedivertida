@@ -7,10 +7,10 @@ import { useStep } from '@hooks/useStep';
 import { BouncerIcon } from '@icons/BouncerIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { MEGAMIX_PHASES } from './utils/constants';
 import { StepResult } from './StepResult';
@@ -40,12 +40,12 @@ export function PhaseResult({ state, players, user }: PhaseProps) {
       type="overlay"
       duration={4}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Quem vai pra área VIP?"
           en="So who goes to the VIP area?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

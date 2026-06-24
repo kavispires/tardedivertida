@@ -3,7 +3,7 @@ import { HouseCard } from '@games/na-rua-do-medo/components/HouseCard';
 import { LETTERS } from '@utils/constants';
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps, StreetCard } from '../../utils/types';
 
@@ -15,13 +15,13 @@ export function ResultNaRuaDoMedo({ track, winningValues, winningTeam, playersLi
 
     return (
       <>
-        <Instruction>
+        <Surface>
           <Translate
             pt="A escolha mais popular foi"
             en="The most popular choice was"
           />
           :
-        </Instruction>
+        </Surface>
         <div className="track-result-values__cards">
           {winningCards.map((card) => (
             <div
@@ -42,13 +42,13 @@ export function ResultNaRuaDoMedo({ track, winningValues, winningTeam, playersLi
 
   return (
     <>
-      <Instruction>
+      <Surface>
         <Translate
           pt="A rua mais votada foi"
           en="The most voted street was"
         />
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div

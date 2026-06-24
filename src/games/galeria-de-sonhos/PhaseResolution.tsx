@@ -7,10 +7,10 @@ import { RankIcon } from '@icons/RankIcon';
 // Components
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
@@ -45,12 +45,12 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
           type="block"
           duration={3}
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="E quem deu mais matches foi..."
               en="And who matched the most was..."
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

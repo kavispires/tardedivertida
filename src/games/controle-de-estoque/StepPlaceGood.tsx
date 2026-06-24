@@ -17,10 +17,10 @@ import { WarehouseGoodCard } from '@components/cards/WarehouseGoodCard';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
@@ -136,7 +136,7 @@ export function StepPlaceGood({
           <StockingProgress status={status} />
         </RuleInstruction>
 
-        <Instruction contained>
+        <Surface contained>
           {goodComponent ?? (
             <WarehouseGoodCard
               goodId={currentGood.id}
@@ -146,7 +146,7 @@ export function StepPlaceGood({
               })}
             />
           )}
-        </Instruction>
+        </Surface>
 
         <Warehouse
           goodsDict={goodsDict}
@@ -221,7 +221,7 @@ export function StepPlaceGood({
         <StockingProgress status={status} />
       </RuleInstruction>
 
-      <Instruction contained>
+      <Surface contained>
         {goodComponent ?? (
           <WarehouseGoodCard
             goodId={currentGood.id}
@@ -231,7 +231,7 @@ export function StepPlaceGood({
             })}
           />
         )}
-      </Instruction>
+      </Surface>
 
       <Warehouse
         goodsDict={goodsDict}

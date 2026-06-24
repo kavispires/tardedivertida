@@ -12,7 +12,7 @@ import { UserStatsIcon } from '@icons/UserStatsIcon';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { SignUpForm } from './SignUp';
@@ -99,7 +99,7 @@ export function ConvertGuestToAccountModal() {
         <ConvertGuestToAccount onSuccess={invalidateUser} />
       </Modal>
 
-      <Instruction
+      <Surface
         contained
         className={styles.convertGuestInstruction}
       >
@@ -134,7 +134,7 @@ export function ConvertGuestToAccountModal() {
             />
           </Button>
         </SpaceContainer>
-      </Instruction>
+      </Surface>
     </div>
   );
 }

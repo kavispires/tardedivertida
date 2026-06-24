@@ -7,11 +7,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { DiscussionIcon } from '@icons/DiscussionIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
@@ -69,7 +69,7 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
           duration={5}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -80,7 +80,7 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
               }
               en={<>TODO</>}
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

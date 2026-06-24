@@ -10,13 +10,13 @@ import { OnlineOrderIcon } from '@icons/OnlineOrderIcon';
 import { ShippingBoxIcon } from '@icons/ShippingBoxIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { useOnSubmitFulfillmentAPIRequest } from './utils/api-requests';
@@ -42,12 +42,12 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
         type="overlay"
         duration={2}
       >
-        <Instruction>
+        <Surface>
           <Translate
             en="Remember where they are!"
             pt="Lembre-se de onde eles estão!"
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     ),
     [state?.round?.current],
@@ -93,7 +93,7 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
           onClose={goToNextStep}
           unskippable
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -130,7 +130,7 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
@@ -139,7 +139,7 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
           onPressButton={goToNextStep}
           time={4}
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Os pedidos estão chegando em até 3 rodadas."
               en="The orders are coming in up to 3 rounds."
@@ -159,7 +159,7 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 2 */}

@@ -14,8 +14,8 @@ import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
-import { Instruction } from '@components/text/Instruction';
 // Pages
 import { DailyContent } from '@pages/Daily/components/DailyContent';
 import { GameHeader } from '@pages/Daily/components/Header';
@@ -63,7 +63,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
       <DailyContent ref={contentRef}>
         <div ref={headerRef}>
           {alreadyPlayed && (
-            <Instruction className="info-screen">
+            <Surface className="info-screen">
               <Icon icon={<ThumbsUpIcon />} />
               <Translate
                 pt="Você já jogou hoje!"
@@ -75,7 +75,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
               />
               <Divider />
               <NextGameSuggestion />
-            </Instruction>
+            </Surface>
           )}
 
           {!alreadyPlayed && !isSaving && (
@@ -105,19 +105,19 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
         )}
 
         {isSaving && (
-          <Instruction className="info-screen">
+          <Surface className="info-screen">
             <Icon icon={<AnimatedProcessingIcon />} />
             <Translate
               pt="Salvando"
               en="Saving"
             />
-          </Instruction>
+          </Surface>
         )}
 
         {isIdle && !alreadyPlayed && (
           <SpaceContainer>
             <SpaceContainer vertical>
-              <Instruction contained>
+              <Surface contained>
                 <Translate
                   pt={
                     <>
@@ -139,7 +139,7 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
                     </>
                   }
                 />
-              </Instruction>
+              </Surface>
               <Button
                 type="primary"
                 size="large"

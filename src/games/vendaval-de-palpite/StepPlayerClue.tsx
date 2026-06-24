@@ -13,8 +13,8 @@ import { getAnimationClass } from '@utils/helpers';
 // Components
 import { ControlledInputWriting } from '@components/input/ControlledInputWriting';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { TimerBar } from '@components/timers/TimerBar';
 // Internal
@@ -113,12 +113,12 @@ export function StepPlayerClue({
         players={players}
       />
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Escreva pistas para ajudar a afunilar as possibilidades. Vocês tem 3 minutos"
           en="Write clues that will have narrow down the possibilities. You have 3 minutes"
         />
-      </Instruction>
+      </Surface>
 
       <TimerBar
         value={timeLeft}
@@ -166,7 +166,7 @@ export function StepPlayerClue({
       />
 
       {guessesIds.length > 0 && (
-        <Instruction className={getAnimationClass('zoomIn')}>
+        <Surface className={getAnimationClass('zoomIn')}>
           <Alert
             type="warning"
             showIcon
@@ -187,10 +187,10 @@ export function StepPlayerClue({
               />
             }
           />
-        </Instruction>
+        </Surface>
       )}
 
-      <Instruction>
+      <Surface>
         <Alert
           type="info"
           showIcon
@@ -234,7 +234,7 @@ export function StepPlayerClue({
             )
           }
         />
-      </Instruction>
+      </Surface>
     </Step>
   );
 }

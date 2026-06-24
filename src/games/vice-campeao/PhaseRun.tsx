@@ -8,10 +8,10 @@ import { WalkIcon } from '@icons/WalkIcon';
 // Components
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseRunState } from './utils/types';
 import { VICE_CAMPEAO_PHASES } from './utils/constants';
@@ -54,7 +54,7 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
           duration={4}
           unskippable
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -71,7 +71,7 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
           <ImageCardPreloadHand hand={imagesIds} />
         </PhaseAnnouncement>
 

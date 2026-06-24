@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { SocksIcon } from '@icons/SocksIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitPairsAPIRequest } from './utils/api-requests';
 import { DUETOS_PHASES } from './utils/constants';
@@ -35,12 +35,12 @@ export function PhasePairing({ players, state, user }: PhaseProps<PhasePairingSt
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Faça pares com os itens e ganhe pontos por cada par igual a de outros jogadores.</>}
           en={<>Pair the items and get points for each pair you match with other players </>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

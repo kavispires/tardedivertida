@@ -7,10 +7,10 @@ import { useStep } from '@hooks/useStep';
 import { BoxingGlovesIcon } from '@icons/BoxingGlovesIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import type { PhaseBattleState } from './utils/type';
@@ -43,12 +43,12 @@ export function PhaseBattle({ state, players, user }: PhaseProps<PhaseBattleStat
       currentRound={state?.round?.current}
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Vote em quem você acha que melhor se encaixa no desafio"
           en="Vote on who you think best fit the challenge"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

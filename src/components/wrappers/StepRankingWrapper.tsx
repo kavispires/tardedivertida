@@ -5,9 +5,9 @@ import { CaretUpOutlined } from '@ant-design/icons';
 import type { GameRanking, GamePlayers } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { useGameAppearance } from '@components/session/GameInfoContext';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { RankingBoard } from './RankingBoard';
@@ -84,7 +84,7 @@ export function StepRankingWrapper({
         victoryIndex={victoryIndex}
         delay={delay}
       />
-      <Instruction
+      <Surface
         className={styles.stepRankingWrapperGainedPointsInstruction}
         colorScheme={scheme}
       >
@@ -94,7 +94,7 @@ export function StepRankingWrapper({
           en="Hover over the scores to learn how they were granted"
         />
         <CaretUpOutlined />
-      </Instruction>
+      </Surface>
 
       {children}
     </Step>

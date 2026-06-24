@@ -1,14 +1,14 @@
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultQuemNaoMata({ winningValues, players }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="Os jogadores mais foram"
@@ -21,7 +21,7 @@ export function ResultQuemNaoMata({ winningValues, players }: ResultComponentPro
           />
         )}
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div

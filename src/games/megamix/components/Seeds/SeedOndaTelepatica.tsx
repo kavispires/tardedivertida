@@ -7,7 +7,7 @@ import { useLanguage } from '@hooks/useLanguage';
 import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryOndaTelepatica } from '../../utils/types';
@@ -34,7 +34,7 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
       </Title>
 
       <SpaceContainer vertical>
-        <Instruction className="seed-instruction">
+        <Surface className="seed-instruction">
           <Translate
             pt={
               <>
@@ -53,7 +53,7 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
               </>
             }
           />
-        </Instruction>
+        </Surface>
 
         <TextCard
           header={translate({ pt: 'Tarefa', en: 'Homework' })}

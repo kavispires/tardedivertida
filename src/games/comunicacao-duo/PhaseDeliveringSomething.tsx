@@ -8,10 +8,10 @@ import { MysteryBoxIcon } from '@icons/MysteryBoxIcon';
 // Components
 import { AlienText } from '@components/alien/AlienText';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
@@ -54,14 +54,14 @@ export function PhaseDeliveringSomething({
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <ViewIf condition={state.clueInputType === 'alien-keyboard'}>
           <AlienText value={state.clue ?? ''} />
         </ViewIf>
         <ViewIf condition={state.clueInputType !== 'alien-keyboard'}>
           <TextHighlight style={{ fontSize: '1.5rem' }}>{state.clue}</TextHighlight>
         </ViewIf>
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

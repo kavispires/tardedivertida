@@ -1,7 +1,7 @@
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 
 type LevelInstructionProps = {
   level: number;
@@ -15,18 +15,18 @@ export function LevelInstruction({ level, levelType }: LevelInstructionProps) {
 
   if (level === 4 && levelType === 'pairs') {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="No nível 4, só existem duas cartas para todos"
           en="On level 4, players draw one of two things only"
         />
-      </Instruction>
+      </Surface>
     );
   }
 
   if (level === 4) {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={
             <>
@@ -36,18 +36,18 @@ export function LevelInstruction({ level, levelType }: LevelInstructionProps) {
           }
           en={<>Special Round: {}</>}
         />
-      </Instruction>
+      </Surface>
     );
   }
 
   if (level === 5) {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="No nível 5, as cartas tem um ou dois temas comuns, então preste atenção nos detalhes"
           en="On level 5, the cards have one or two common themes, so pay attention to details"
         />
-      </Instruction>
+      </Surface>
     );
   }
 

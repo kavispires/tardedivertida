@@ -1,6 +1,6 @@
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 import { SplatterSVG } from '../Tracks/TrackPalhetaDeFores';
@@ -8,7 +8,7 @@ import { SplatterSVG } from '../Tracks/TrackPalhetaDeFores';
 export function ResultPalhetaDeCores({ winningValues }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="As amostras mais selecionadas foram"
@@ -21,7 +21,7 @@ export function ResultPalhetaDeCores({ winningValues }: ResultComponentProps) {
           />
         )}
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div

@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { CustomerReviewIcon } from '@icons/CustomerReviewIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { MENTE_COLETIVA_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';
@@ -31,7 +31,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
       duration={3}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -48,7 +48,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

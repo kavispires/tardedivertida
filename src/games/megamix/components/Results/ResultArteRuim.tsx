@@ -3,7 +3,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 // Components
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
@@ -22,13 +22,13 @@ export function ResultArteRuim({ track, winningValues, containerWidth }: ResultC
 
     return (
       <>
-        <Instruction>
+        <Surface>
           <Translate
             pt="A arte mais votada foi"
             en="The most popular art was"
           />
           :
-        </Instruction>
+        </Surface>
         <div className="track-result-values__cards">
           {winningArtworks.map((value) => (
             <div
@@ -53,13 +53,13 @@ export function ResultArteRuim({ track, winningValues, containerWidth }: ResultC
 
   return (
     <>
-      <Instruction>
+      <Surface>
         <Translate
           pt="O mais votado foi"
           en="The most popular was"
         />
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningCards.map((value) => (
           <div

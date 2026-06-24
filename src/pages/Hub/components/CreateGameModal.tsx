@@ -20,8 +20,8 @@ import { Popconfirm } from '@components/general/Popconfirm';
 import { LanguageSwitch } from '@components/language/LanguageSwitch';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { Loading } from '@components/loaders/Loading';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import { GameCustomizations } from './GameCustomizations';
@@ -217,13 +217,13 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
       />
 
       {!gameId && (
-        <Instruction>
+        <Surface>
           <Translate
             pt="Você está criando um jogo em:"
             en="You are creating a game in:"
           />{' '}
           <LanguageSwitch />
-        </Instruction>
+        </Surface>
       )}
 
       <GameCustomizations
@@ -237,12 +237,12 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
 
       {isLoading && (
         <>
-          <Instruction>
+          <Surface>
             <Translate
               pt="O jogo está sendo criado..."
               en="The game session is being created"
             />
-          </Instruction>
+          </Surface>
           <Loading
             message={translate({ pt: 'Gerando...', en: 'Generating...' })}
             margin

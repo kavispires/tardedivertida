@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { QualitySealIcon } from '@icons/QualitySealIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { MEDIDAS_NAO_EXATAS_PHASES } from './utils/constants';
 import type { PhaseResultsState } from './utils/types';
@@ -34,12 +34,12 @@ export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) 
       type="overlay"
       duration={4}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Quantos pontos você ganhou?</>}
           en={<>How many points did you get?</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

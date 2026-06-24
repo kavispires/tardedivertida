@@ -9,8 +9,8 @@ import type { UseStep } from '@hooks/useStep';
 // Components
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import type { Location, Outcome, TimerType } from './utils/types';
@@ -120,20 +120,20 @@ export function StepInvestigation({
               onSend={onMakeAccusation}
             />
           ) : (
-            <Instruction className="e-phase-instruction">
+            <Surface className="e-phase-instruction">
               <Translate
                 pt="Você já usou sua chance de acusar"
                 en="You already used your accusation"
               />
-            </Instruction>
+            </Surface>
           )}
         </SpaceContainer>
       )}
 
-      <Instruction className="e-lists">
+      <Surface className="e-lists">
         <SuspectsList players={players} />
         <LocationsList locations={locations} />
-      </Instruction>
+      </Surface>
 
       <Notes />
     </Step>

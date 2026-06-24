@@ -1,13 +1,13 @@
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultDefault({ winningValues }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="As votadas foram"
@@ -20,7 +20,7 @@ export function ResultDefault({ winningValues }: ResultComponentProps) {
           />
         )}
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div

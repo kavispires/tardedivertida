@@ -8,10 +8,10 @@ import { BullyingIcon } from '@icons/BullyingIcon';
 import { PigeonIcon } from '@icons/PigeonIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
@@ -33,12 +33,12 @@ export function PhaseResponse({ state, players, user }: PhaseProps<FofocaQuenteD
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           en="The gossiper have skipped this turn and did not spread any new rumors"
           pt="O fofoqueiro pulou esta vez e não espalhou nenhum boato novo"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   ) : (
     <PhaseAnnouncement
@@ -52,12 +52,12 @@ export function PhaseResponse({ state, players, user }: PhaseProps<FofocaQuenteD
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           en="The gossiper have spread a rumor, everybody is shocked!"
           pt="O fofoqueiro espalhou um boato, todo mundo ficou chocado!"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

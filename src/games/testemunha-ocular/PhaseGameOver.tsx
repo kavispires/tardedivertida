@@ -9,8 +9,8 @@ import { ImageCard } from '@components/image-cards/ImageCard';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
-import { Instruction } from '@components/text/Instruction';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import achievementsReference from './utils/achievements';
@@ -45,7 +45,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       }
       announcementContent={<AnnouncementContent didUserWin={didUserWin} />}
     >
-      <Instruction colorScheme="dark">
+      <Surface colorScheme="dark">
         <Translate
           pt={
             <>
@@ -63,7 +63,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
           pt="O criminoso era:"
           en="The perpetrator was:"
         />
-      </Instruction>
+      </Surface>
       <SpaceContainer>
         <div className="t-suspects-table__suspect">
           <ImageCard
@@ -76,13 +76,13 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
           </div>
         </div>
       </SpaceContainer>
-      <Instruction colorScheme="dark">
+      <Surface colorScheme="dark">
         <Translate
           pt="Crime:"
           en="Crime:"
         />{' '}
         <DualTranslate>{state.reason.title}</DualTranslate>
-      </Instruction>
+      </Surface>
 
       <Achievements
         achievements={state.achievements}

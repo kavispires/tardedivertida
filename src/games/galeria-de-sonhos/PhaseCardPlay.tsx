@@ -10,6 +10,7 @@ import { DoorSignIcon } from '@icons/DoorSignIcon';
 import { NightmareIcon } from '@icons/NightmareIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { CardHighlight } from '@components/metrics/CardHighlight';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
@@ -17,7 +18,6 @@ import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PhaseTimerReset } from '@components/phases/PhaseTimerReset';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import {
@@ -125,7 +125,7 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
           unskippable
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -159,7 +159,7 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 3 */}

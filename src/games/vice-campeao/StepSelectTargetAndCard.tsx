@@ -10,9 +10,9 @@ import { useMock } from '@hooks/useMock';
 import { SendButton } from '@components/buttons/SendButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
+import { Surface } from '@components/layout/Surface';
 import { PlayersSelect } from '@components/players/PlayersSelect';
 import { Step, type StepProps } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { TextHighlight } from '@components/text/TextHighlight';
@@ -87,7 +87,7 @@ export function StepSelectTargetAndCard({
         </strong>
       </RuleInstruction>
 
-      <Instruction contained>
+      <Surface contained>
         <Flex
           align="center"
           gap={8}
@@ -150,7 +150,7 @@ export function StepSelectTargetAndCard({
             />
           </SendButton>
         </SpaceFloat>
-      </Instruction>
+      </Surface>
     </Step>
   );
 }

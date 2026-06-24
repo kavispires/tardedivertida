@@ -4,7 +4,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { CharacterCard } from '@components/cards/CharacterCard';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
@@ -18,7 +18,7 @@ export function ResultCharacter({ winningValues, containerWidth }: ResultCompone
 
   return (
     <>
-      <Instruction>
+      <Surface>
         {winningValues.length > 1 ? (
           <Translate
             pt="As personagens mais votadas foram"
@@ -31,7 +31,7 @@ export function ResultCharacter({ winningValues, containerWidth }: ResultCompone
           />
         )}
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((cardId) => (
           <ImageBlurButtonContainer

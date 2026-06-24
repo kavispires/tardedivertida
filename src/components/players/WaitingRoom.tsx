@@ -7,8 +7,8 @@ import { useTemporarilyHidePlayersBar } from '@hooks/useTemporarilyHidePlayersBa
 import { WaitingRoomIcon } from '@icons/WaitingRoomIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Sass
 import styles from './WaitingRoom.module.scss';
@@ -53,7 +53,7 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
       </Title>
       {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}
       <div className={styles.waitingRoomContent}>
-        <Instruction>
+        <Surface>
           {instruction ? (
             instruction
           ) : (
@@ -62,7 +62,7 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
               en="Please wait for the other players!"
             />
           )}
-        </Instruction>
+        </Surface>
         {children}
       </div>
       <ReadyPlayersBar players={players} />

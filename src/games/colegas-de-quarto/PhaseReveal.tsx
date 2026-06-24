@@ -7,11 +7,11 @@ import { useStep } from '@hooks/useStep';
 import { CashRegisterIcon } from '@icons/CashRegisterIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseRevealState } from './utils/types';
 import { COLEGAS_DE_QUARTO_PHASES } from './utils/constants';
@@ -58,7 +58,7 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
           duration={[10, 5, 3]?.[state.round.current - 1] ?? 3}
           onClose={goToNextStep}
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -81,7 +81,7 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         <StepGallery

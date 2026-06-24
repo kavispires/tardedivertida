@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { ListIcon } from '@icons/ListIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 import type { PhaseChallengeSelectionState } from './utils/type';
@@ -35,12 +35,12 @@ export function PhaseChallengeSelection({ state, players, user }: PhaseProps<Pha
       duration={5}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Qual o desafio da rodada?"
           en="What's the round's challenge?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -59,7 +59,7 @@ export function PhaseChallengeSelection({ state, players, user }: PhaseProps<Pha
           onPressButton={goToNextStep}
           time={4}
         >
-          <Instruction contained>
+          <Surface contained>
             {state.round.current === state.round.total ? (
               <Translate
                 pt="Rodada final: Somente os finalistas!"
@@ -71,7 +71,7 @@ export function PhaseChallengeSelection({ state, players, user }: PhaseProps<Pha
                 en="Who's gonna get the gold medal?"
               />
             )}
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}

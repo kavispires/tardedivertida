@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { DictionaryIcon } from '@icons/DictionaryIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { PhaseResultsState } from './utils/types';
@@ -34,7 +34,7 @@ export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) 
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -47,7 +47,7 @@ export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) 
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

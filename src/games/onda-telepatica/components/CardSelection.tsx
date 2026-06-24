@@ -1,7 +1,7 @@
 // Types
 import type { SpectrumCardData } from 'types/tdr';
 // Components
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import { OpposingIdeasCard } from './OpposingIdeasCard';
@@ -15,7 +15,7 @@ export function CardSelection({ onSendChosenSide, cards }: CardSelectionProps) {
   return (
     <div className="o-card-selection">
       <Title>Selecione a carta que será usada nessa rodada!</Title>
-      <Instruction contained>Escolha uma carta que você acredita que conseguirá criar uma dica.</Instruction>
+      <Surface contained>Escolha uma carta que você acredita que conseguirá criar uma dica.</Surface>
       <div className="o-card-selection__container">
         {cards.map((card) => (
           <button

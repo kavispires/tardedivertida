@@ -8,7 +8,7 @@ import { TheEndIcon } from '@icons/TheEndIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
@@ -35,12 +35,12 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
                 en="You won!"
               />
             </Title>
-            <Instruction contained>
+            <Surface contained>
               <Translate
                 pt="Vocês comunicaram todos os items"
                 en="You communicated all items"
               />
-            </Instruction>
+            </Surface>
           </>
         )}
         {state.status === STATUS.LOSE && (
@@ -51,12 +51,12 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
                 en="You lost!"
               />
             </Title>
-            <Instruction contained>
+            <Surface contained>
               <Translate
                 pt="Alguém clicou em  um tabu"
                 en="Someone selected a taboo"
               />
-            </Instruction>
+            </Surface>
           </>
         )}
         {state.status === STATUS.CONTINUE && (
@@ -67,12 +67,12 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
                 en="You lost!"
               />
             </Title>
-            <Instruction contained>
+            <Surface contained>
               <Translate
                 pt="As rodadas acabaram antes que vocês comunicassem todos os itens"
                 en="The rounds ended before you communicated all items"
               />
-            </Instruction>
+            </Surface>
           </>
         )}
       </SpaceContainer>

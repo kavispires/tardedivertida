@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { LodgeIcon } from '@icons/LodgeIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseFinalResultsState } from './utils/types';
 import { ESQUIADORES_PHASES } from './utils/constants';
@@ -36,7 +36,7 @@ export function PhaseFinalResults({ players, state, user }: PhaseProps<PhaseFina
       type="overlay"
       duration={3}
     >
-      <Instruction>...</Instruction>
+      <Surface>...</Surface>
     </PhaseAnnouncement>
   );
 

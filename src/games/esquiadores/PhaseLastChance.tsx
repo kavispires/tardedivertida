@@ -8,10 +8,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { GamblingChipIcon } from '@icons/GamblingChipIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { PhaseBetsState } from './utils/types';
@@ -54,12 +54,12 @@ export function PhaseLastChance({ players, state, user }: PhaseProps<PhaseBetsSt
       type="overlay"
       duration={5}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Escolha sua cabana final"
           en="Choose your final lodge"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

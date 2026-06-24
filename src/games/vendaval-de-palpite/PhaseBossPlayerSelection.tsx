@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { BossIcon } from '@icons/BossIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitBossPlayerAPIRequest } from './utils/api-requests';
 import { VENDAVAL_DE_PALPITE_PHASES } from './utils/constants';
@@ -43,7 +43,7 @@ export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
           duration={10}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -58,7 +58,7 @@ export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

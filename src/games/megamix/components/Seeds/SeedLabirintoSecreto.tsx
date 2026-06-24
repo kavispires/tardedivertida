@@ -10,7 +10,7 @@ import { BikiniModelIcon } from '@icons/BikiniModelIcon';
 import { SocialProfile } from '@components/game/SocialProfile';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { TextHighlight } from '@components/text/TextHighlight';
 import { Title } from '@components/text/Title';
 // Internal
@@ -36,7 +36,7 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
       </Title>
 
       <Space orientation="vertical">
-        <Instruction className="seed-instruction">
+        <Surface className="seed-instruction">
           <Translate
             pt={
               <>
@@ -52,7 +52,7 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
               </>
             }
           />
-        </Instruction>
+        </Surface>
 
         <div className="cm-instagram">
           <SocialProfile

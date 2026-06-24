@@ -11,7 +11,7 @@ import { getAnimationClass } from '@utils/helpers';
 import { ItemCard } from '@components/cards/ItemCard';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import type { DiagramArea, Reevaluation } from '../utils/types';
@@ -24,7 +24,7 @@ import { DoubleDiagram } from './DoubleDiagram/DoubleDiagram';
 import { DoubleDiagramClickableAreas } from './DoubleDiagram/DoubleDiagramClickableAreas';
 import { DoubleAreaPlacedItems, doubleHelpers } from './DoubleDiagram/DoubleAreaPlacedItems';
 
-const MotionInstruction = motion.create(Instruction);
+const MotionInstruction = motion.create(Surface);
 
 type DiagramSectionProps = {
   width: number;
@@ -103,7 +103,7 @@ export function DiagramSection({
         )}
       </MotionInstruction>
 
-      <Instruction
+      <Surface
         contained
         className="diagram-section__world"
         style={{ width: width + 12 }}
@@ -150,7 +150,7 @@ export function DiagramSection({
             doubleDiagram={doubleDiagram}
           />
         )}
-      </Instruction>
+      </Surface>
     </div>
   );
 }

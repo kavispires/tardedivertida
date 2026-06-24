@@ -9,12 +9,12 @@ import { TimedWritingIcon } from '@icons/TimedWritingIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
@@ -44,7 +44,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
           time={state?.round?.current === 1 ? 10 : 5}
           unskippable
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt={
                 <>
@@ -72,7 +72,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}
@@ -90,7 +90,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
           duration={state.grid.xHeaders.length * 4}
           unskippable
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -125,7 +125,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 2 */}

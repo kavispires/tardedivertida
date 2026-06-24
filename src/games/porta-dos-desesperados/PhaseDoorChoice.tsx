@@ -9,11 +9,11 @@ import { MagicDoorIcon } from '@icons/MagicDoorIcon';
 // Components
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PhaseTimerReset } from '@components/phases/PhaseTimerReset';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -59,12 +59,12 @@ export function PhaseDoorChoice({ state, players, meta, user }: PhaseProps<Phase
           unskippable
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="Selecione a porta que os deixa mais próximos da saída"
               en="Select the door which could lead you closer to the exit"
             />
-          </Instruction>
+          </Surface>
           <ImageCardPreloadHand hand={state?.doors ?? []} />
           <ImageCardPreloadHand hand={state?.selectedPagesIds ?? []} />
         </PhaseAnnouncement>

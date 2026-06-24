@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { PhotoAlbumIcon } from '@icons/PhotoAlbumIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
 import type { PhasePresentationState } from './utils/types';
@@ -43,7 +43,7 @@ export function PhasePresentation({ state, players }: PhaseProps<PhasePresentati
           duration={7}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="A ordem dos albums será:"
               en="The albums' order will be:"
@@ -52,7 +52,7 @@ export function PhasePresentation({ state, players }: PhaseProps<PhasePresentati
               players={players}
               order={state.gameOrder}
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

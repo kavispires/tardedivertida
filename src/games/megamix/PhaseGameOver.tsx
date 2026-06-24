@@ -9,9 +9,9 @@ import { CrownIcon } from '@icons/CrownIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
-import { Instruction } from '@components/text/Instruction';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
@@ -32,7 +32,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
             />
           }
         >
-          <Instruction contained>
+          <Surface contained>
             <ul className="game-over__winners">
               {state.fairWinners.map((winner: GamePlayer) => {
                 return (
@@ -52,7 +52,7 @@ export function PhaseGameOver({ state, players }: PhaseProps) {
                 );
               })}
             </ul>
-          </Instruction>
+          </Surface>
         </TitledContainer>
       )}
 

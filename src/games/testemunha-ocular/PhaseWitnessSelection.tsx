@@ -6,12 +6,12 @@ import { useStep } from '@hooks/useStep';
 import { CrimeSceneIcon } from '@icons/CrimeSceneIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSelectPlayer } from '@components/steps/StepSelectPlayer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 import { TESTEMUNHA_OCULAR_PHASES } from './utils/constants';
@@ -35,7 +35,7 @@ export function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnes
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -52,7 +52,7 @@ export function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnes
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

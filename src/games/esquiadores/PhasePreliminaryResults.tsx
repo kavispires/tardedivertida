@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { SkiingIcon } from '@icons/SkiingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhasePreliminaryResultsState } from './utils/types';
 import { ESQUIADORES_PHASES } from './utils/constants';
@@ -34,7 +34,7 @@ export function PhasePreliminaryResults({ players, state, user }: PhaseProps<Pha
       type="overlay"
       duration={3}
     >
-      <Instruction>...</Instruction>
+      <Surface>...</Surface>
     </PhaseAnnouncement>
   );
 

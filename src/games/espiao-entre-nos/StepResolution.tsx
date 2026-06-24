@@ -7,8 +7,8 @@ import { useLoading } from '@hooks/useLoading';
 import { HostButton } from '@components/host/HostButton';
 import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { ResolutionStatus } from './utils/types';
@@ -52,7 +52,7 @@ export function StepResolution({
       </StepTitle>
 
       {resolutionStatus.wasAnAccusationAttempt && target && (
-        <Instruction className="e-phase-instruction">
+        <Surface className="e-phase-instruction">
           <Translate
             pt={
               <>
@@ -80,11 +80,11 @@ export function StepResolution({
               </>
             }
           />
-        </Instruction>
+        </Surface>
       )}
 
       {resolutionStatus.didSpyGuess && resolutionStatus.currentLocation && (
-        <Instruction className="e-phase-instruction">
+        <Surface className="e-phase-instruction">
           <Translate
             pt={
               <>
@@ -111,10 +111,10 @@ export function StepResolution({
               </>
             }
           />
-        </Instruction>
+        </Surface>
       )}
 
-      <Instruction className="e-phase-instruction">
+      <Surface className="e-phase-instruction">
         <h4>{resolutionStatus.currentLocation?.name}</h4>
         <Translate
           pt="Disfarces dos infiltrados:"
@@ -137,7 +137,7 @@ export function StepResolution({
             )}
           </li>
         ))}
-      </Instruction>
+      </Surface>
 
       {
         <HostOnlyContainer>

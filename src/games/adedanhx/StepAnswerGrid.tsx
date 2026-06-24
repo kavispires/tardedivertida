@@ -17,9 +17,9 @@ import { DevButton } from '@components/debug/DevButton';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { TimerClock } from '@components/timers/TimerClock';
@@ -147,7 +147,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
         toggleLock={toggleLock}
       />
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Se você acabar todas as células antes do tempo você pode apertar stop para finalizar a rodada."
           en="If you finish all the cells before the time you can press stop to end the round."
@@ -185,7 +185,7 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
             />
           </Button>
         </SpaceContainer>
-      </Instruction>
+      </Surface>
     </Step>
   );
 }

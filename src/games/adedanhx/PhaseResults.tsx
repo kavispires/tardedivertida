@@ -7,10 +7,10 @@ import { useStep } from '@hooks/useStep';
 import { RankIcon } from '@icons/RankIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { ADEDANHX_PHASES } from './utils/constants';
 import type { PhaseResultsState } from './utils/types';
@@ -41,9 +41,9 @@ export function PhaseResults({ players, state, user }: PhaseProps<PhaseResultsSt
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <ScoringRule />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

@@ -15,7 +15,7 @@ import { DrawingCanvas } from '@components/canvas/DrawingCanvas';
 import { MonsterCard } from '@components/cards/MonsterCard';
 import { ImageCardPreloadHand } from '@components/image-cards/ImageCardPreloadHand';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryRetratoFalado } from '../../utils/types';
@@ -71,7 +71,7 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
       </Title>
 
       <Space orientation="vertical">
-        <Instruction className="seed-instruction">
+        <Surface className="seed-instruction">
           <Translate
             pt={
               <>
@@ -88,7 +88,7 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
               </>
             }
           />
-        </Instruction>
+        </Surface>
         <Button
           onClick={start}
           type="primary"

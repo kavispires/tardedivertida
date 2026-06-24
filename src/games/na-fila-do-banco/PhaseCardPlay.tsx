@@ -8,12 +8,12 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCardPlayState } from './utils/types';
 import { NA_FILA_DO_BANCO_PHASES } from './utils/constants';
@@ -56,7 +56,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
       type="overlay"
       duration={3}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -70,7 +70,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -91,12 +91,12 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
           onPressButton={goToNextStep}
           unskippable
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="Um dia normal na fila do banco..."
               en="A normal day in the bank line..."
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         <StepAnimatePreviousAction

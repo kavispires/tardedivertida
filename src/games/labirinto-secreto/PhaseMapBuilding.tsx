@@ -7,10 +7,10 @@ import { useStep } from '@hooks/useStep';
 import { MapIcon } from '@icons/MapIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { CustomPlayerProps, MapSegment, PhaseMapBuildingState } from './utils/types';
@@ -44,12 +44,12 @@ export function PhaseMapBuilding({ state, players, user }: PhaseProps<PhaseMapBu
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Você consegue mapear as árvores usando apenas adjetivos?"
           en="Can you map the tree path using only adjectives?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

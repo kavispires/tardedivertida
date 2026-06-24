@@ -1,19 +1,19 @@
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { ResultComponentProps } from '../../utils/types';
 
 export function ResultMegamix({ track, winningValues, winningTeam, playersList }: ResultComponentProps) {
   return (
     <>
-      <Instruction>
+      <Surface>
         <Translate
           pt="O mais votado foi"
           en="The most popular was"
         />
         :
-      </Instruction>
+      </Surface>
       <div className="track-result-values__cards">
         {winningValues.map((value) => (
           <div

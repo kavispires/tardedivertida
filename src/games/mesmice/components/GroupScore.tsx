@@ -4,8 +4,8 @@ import { Divider } from 'antd';
 // Components
 import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { Instruction } from '@components/text/Instruction';
 
 type GroupScoreProps = {
   groupScore: number;
@@ -19,7 +19,7 @@ export function GroupScore({ groupScore, playerScore }: GroupScoreProps) {
       position={0}
       icon={<StarFilled />}
       content={
-        <Instruction>
+        <Surface>
           <Translate
             pt="Pontuação do Grupo"
             en="Group Score"
@@ -33,7 +33,7 @@ export function GroupScore({ groupScore, playerScore }: GroupScoreProps) {
           />
           <br />
           <PointsHighlight>{playerScore}</PointsHighlight>
-        </Instruction>
+        </Surface>
       }
       label={
         <Translate

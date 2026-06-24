@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { GuessIcon } from '@icons/GuessIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { CRUZA_PALAVRAS_PHASES } from './utils/constants';
@@ -33,7 +33,7 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -50,7 +50,7 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

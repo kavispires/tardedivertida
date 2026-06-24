@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { WriteIdeaIcon } from '@icons/WriteIdeaIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { LINHAS_CRUZADAS_PHASES } from './utils/constants';
@@ -44,7 +44,7 @@ export function PhaseNaming({ state, players, user }: PhaseProps<PhaseNamingStat
           currentRound={state?.round?.current}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="Tente adivinhar o que é a obra"
               en="Try to guess what the artwork is"
@@ -57,7 +57,7 @@ export function PhaseNaming({ state, players, user }: PhaseProps<PhaseNamingStat
               activePlayerId={user.currentPrompt?.id}
               reorderByUser={user.id}
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

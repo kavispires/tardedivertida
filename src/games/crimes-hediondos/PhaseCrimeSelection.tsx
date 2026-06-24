@@ -14,11 +14,11 @@ import { SkullIcon } from '@icons/SkullIcon';
 // Components
 import { DevButton } from '@components/debug/DevButton';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCrimeSelectionState, SubmitCrimePayload } from './utils/types';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
@@ -93,12 +93,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
       duration={3}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Como a vítima morreu?"
           en="How did the victim die?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -114,12 +114,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
       duration={3}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Conte-nos sobre o objeto que você escolheu."
           en="Tell us about the object you selected."
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -135,12 +135,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
       duration={3}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Quem foi a vítima?"
           en="Who was the victim?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -156,12 +156,12 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
       duration={3}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Onde que foi?"
           en="Where was it?"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

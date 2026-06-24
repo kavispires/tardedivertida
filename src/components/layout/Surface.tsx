@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 // Sass
-import styles from './Instruction.module.scss';
+import styles from './Surface.module.scss';
 
-type InstructionsProps = {
+type SurfaceProps = {
   /**
    * The content to display
    */
@@ -23,19 +23,18 @@ type InstructionsProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 /**
- * Flexible content container for displaying instructional text, game information,
- * status updates, and other secondary UI content with optional styling variants
+ * Flexible content container for displaying surface content with optional styling variants
  */
-export const Instruction = ({ children, className, contained, colorScheme, ...rest }: InstructionsProps) => {
+export const Surface = ({ children, className, contained, colorScheme, ...rest }: SurfaceProps) => {
   return (
     <div
       className={clsx(
-        styles.instruction,
-        contained && styles.instructionContained,
-        colorScheme === 'dark' && styles.instructionDark,
+        styles.surface,
+        { [styles.surfaceContained]: contained },
+        { [styles.surfaceDark]: colorScheme === 'dark' },
         className,
       )}
-      data-testid="instruction"
+      data-testid="surface"
       {...rest}
     >
       {children}

@@ -4,7 +4,7 @@ import { Slider, type SliderSingleProps } from 'antd';
 import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { CurrentCategory } from '../utils/types';
 
@@ -17,7 +17,7 @@ type NeedleChoiceProps = {
 export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceProps) {
   if (isPsychic) {
     return (
-      <Instruction contained>
+      <Surface contained>
         <Translate
           en={
             <>
@@ -32,7 +32,7 @@ export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceP
             </>
           }
         />
-      </Instruction>
+      </Surface>
     );
   }
 
@@ -43,7 +43,7 @@ export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceP
   };
 
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         en="You chose:"
         pt="Você escolheu"
@@ -57,6 +57,6 @@ export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceP
         tooltip={{ open: true }}
         value={user.guess}
       />
-    </Instruction>
+    </Surface>
   );
 }

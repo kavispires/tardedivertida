@@ -9,6 +9,7 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { TrendingIcon } from '@icons/TrendingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
@@ -16,7 +17,6 @@ import { WaitingRoom } from '@components/players/WaitingRoom';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { Step } from '@components/steps/Step';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitTweetAPIRequest } from './utils/api-requests';
@@ -52,7 +52,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
       duration={state?.round?.current < 3 ? 30 : undefined}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <ScoringRules
           round={state.round}
           activePlayer={activePlayer}
@@ -63,7 +63,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
           players={players}
           activePlayerId={state.activePlayerId}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -82,12 +82,12 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
           onPressButton={goToNextStep}
           time={4}
         >
-          <Instruction contained>
+          <Surface contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."
               en="Every round a new tweet, your opinion and everybody else's."
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}
@@ -116,13 +116,13 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
                 }
                 instruction={
                   <>
-                    <Instruction>
+                    <Surface>
                       <ScoringRules
                         round={state.round}
                         activePlayer={activePlayer}
                         isFixedRounds={isFixedRounds}
                       />
-                    </Instruction>
+                    </Surface>
                     <PlayersTurnOrder
                       order={state.gameOrder}
                       players={players}

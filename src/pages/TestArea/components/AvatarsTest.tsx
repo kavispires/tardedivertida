@@ -8,10 +8,10 @@ import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from '@components/avatars/SuperHeroAvatar';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import { DecisionButtons } from './DecisionButtons';
@@ -43,12 +43,12 @@ export function AvatarsTest({ onResult, step }: TestStepProps) {
         />
       </Title>
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt="Alguns jogos usarão avatares customizados"
           en="Many games have timers in different types:"
         />
-      </Instruction>
+      </Surface>
 
       <SpaceContainer
         wrap

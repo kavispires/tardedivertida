@@ -4,9 +4,9 @@ import { Badge } from 'antd';
 import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { MetricHighlight } from '@components/metrics/MetricHighlight';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { OfferingsStatus } from '../utils/types';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';
@@ -17,7 +17,7 @@ type StatusProps = {
 
 export function Status({ status }: StatusProps) {
   return (
-    <Instruction>
+    <Surface>
       <ul>
         <li>
           <Translate
@@ -63,6 +63,6 @@ export function Status({ status }: StatusProps) {
           pt="Os números nos círculos laranjas na grade de itens indicam quantas vezes o objeto foi usado em uma pergunta."
         />
       </p>
-    </Instruction>
+    </Surface>
   );
 }

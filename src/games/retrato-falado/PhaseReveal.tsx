@@ -7,10 +7,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { QualitySealIcon } from '@icons/QualitySealIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { RETRATO_FALADO_PHASES } from './utils/constants';
 import type { PhaseRevealState } from './utils/types';
@@ -35,12 +35,12 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
       duration={5}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>E o mais votado é...</>}
           en={<>And the one who got the most votes is...</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

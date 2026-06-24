@@ -10,10 +10,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { DefenseIcon } from '@icons/DefenseIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnFinishDefenseRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
@@ -51,12 +51,12 @@ export function PhaseDefense({ state, players, user }: PhaseProps<PhaseDefenseSt
         <RevealedClueTitle clue={state.clue} />
       </Flex>
 
-      <Instruction>
+      <Surface>
         <Translate
           pt="Agora, cada jogador em ordem deve defender porque escolheu as castas que escolheu."
           en="Now, in turn-order, each player must present the reason they chose their cards."
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

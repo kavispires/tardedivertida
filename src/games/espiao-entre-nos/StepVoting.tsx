@@ -7,9 +7,9 @@ import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { View } from '@components/views/View';
 import { ViewSwitch } from '@components/views/ViewSwitch';
@@ -55,21 +55,21 @@ export function StepVoting({
 
       <ViewSwitch cases={[isUserTheAccuser, isUserTheTarget, true]}>
         <View key="accuser">
-          <Instruction className="e-phase-instruction">
+          <Surface className="e-phase-instruction">
             <Translate
               pt="Você não participa dessa votação, afinal, você quem acusou!"
               en="You do not join the voting, after all, you triggered it!"
             />
-          </Instruction>
+          </Surface>
         </View>
 
         <View key="target">
-          <Instruction className="e-phase-instruction">
+          <Surface className="e-phase-instruction">
             <Translate
               pt="Você não participa dessa votação, afinal, é você quem está no paredão!"
               en="You do not joint the voting, after all, you are the target"
             />
-          </Instruction>
+          </Surface>
         </View>
 
         <View key="others">
@@ -97,12 +97,12 @@ export function StepVoting({
               </Button>
             </Space>
           ) : (
-            <Instruction className="e-phase-instruction">
+            <Surface className="e-phase-instruction">
               <Translate
                 pt="Voto computado"
                 en="Vote accepted"
               />
-            </Instruction>
+            </Surface>
           )}
         </View>
       </ViewSwitch>
@@ -119,10 +119,10 @@ export function StepVoting({
         hideNames
       />
 
-      <Instruction className="e-lists">
+      <Surface className="e-lists">
         <SuspectsList players={players} />
         <LocationsList locations={locations} />
-      </Instruction>
+      </Surface>
 
       <Notes />
     </Step>

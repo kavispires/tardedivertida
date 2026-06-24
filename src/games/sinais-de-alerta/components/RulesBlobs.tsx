@@ -3,15 +3,15 @@ import clsx from 'clsx';
 import { getAnimationClass } from '@utils/helpers';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
-import { Instruction } from '@components/text/Instruction';
 
 type DrawInstructionProps = {
   timeLimit: number;
 };
 export const DrawInstruction = ({ timeLimit }: DrawInstructionProps) => (
-  <Instruction>
+  <Surface>
     <Translate
       pt={
         <>
@@ -40,11 +40,11 @@ export const DrawInstruction = ({ timeLimit }: DrawInstructionProps) => (
         </>
       }
     />
-  </Instruction>
+  </Surface>
 );
 
 export const EvaluationRules = () => (
-  <Instruction>
+  <Surface>
     <Translate
       pt={
         <>
@@ -61,11 +61,11 @@ export const EvaluationRules = () => (
         </>
       }
     />
-  </Instruction>
+  </Surface>
 );
 
 export const GalleryRules = () => (
-  <Instruction>
+  <Surface>
     <Translate
       pt={
         <>
@@ -90,11 +90,11 @@ export const GalleryRules = () => (
         </>
       }
     />
-  </Instruction>
+  </Surface>
 );
 
 export const ScoringRules = () => (
-  <Instruction>
+  <Surface>
     <Translate
       pt={
         <>
@@ -115,5 +115,5 @@ export const ScoringRules = () => (
         </>
       }
     />
-  </Instruction>
+  </Surface>
 );

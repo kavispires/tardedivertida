@@ -3,11 +3,11 @@ import { RobotOutlined } from '@ant-design/icons';
 // Components
 import { FixedMenuButton } from '@components/buttons/FixedMenuButton';
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 
 export function BotsRules() {
   return (
-    <Instruction contained>
+    <Surface contained>
       <Translate
         pt={
           <>
@@ -56,7 +56,7 @@ export function BotsRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 

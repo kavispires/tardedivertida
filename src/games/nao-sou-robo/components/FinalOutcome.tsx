@@ -7,9 +7,9 @@ import { UnderConstructionIcon } from '@icons/UnderConstructionIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { ListOfPlayers } from '@components/players/ListOfPlayers';
-import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
@@ -59,9 +59,9 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
           </>
         }
       >
-        <Instruction
+        <Surface
           contained
-          noMargin
+          style={{ margin: 0 }}
         >
           <Translate
             en={
@@ -79,7 +79,7 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
               </>
             }
           />
-        </Instruction>
+        </Surface>
       </TitledContainer>
     );
   }

@@ -14,9 +14,9 @@ import { Achievements } from '@components/achievements/Achievements';
 import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
-import { Instruction } from '@components/text/Instruction';
 import { ConfettiEffect } from '@components/visual-effects/ConfettiEffect';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
@@ -62,7 +62,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
               cardId={ROLE_IMAGES_NAMES?.[player.role ?? 'agent']}
               type="square"
             />
-            <Instruction>
+            <Surface>
               {player.role === 'terrorist' ? (
                 <TerroristHighlight>
                   <Translate
@@ -78,7 +78,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                   />
                 </AgentHighlight>
               )}
-            </Instruction>
+            </Surface>
             <Switch
               value={notes[player.id] === 'terrorist'}
               styles={{
@@ -109,7 +109,7 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
   switch (status.outcome) {
     case OUTCOME.AGENTS_WIN: {
       return (
-        <Instruction contained>
+        <Surface contained>
           <Icon
             icon={<SecurityIcon />}
             size={64}
@@ -134,12 +134,12 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
             />
           </strong>
           <ConfettiEffect />
-        </Instruction>
+        </Surface>
       );
     }
     case OUTCOME.TERRORISTS_WIN: {
       return (
-        <Instruction contained>
+        <Surface contained>
           <Icon
             icon={<TraitorIcon />}
             size={64}
@@ -164,12 +164,12 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
               }
             />
           </strong>
-        </Instruction>
+        </Surface>
       );
     }
     case OUTCOME.BOMB: {
       return (
-        <Instruction contained>
+        <Surface contained>
           <Icon
             icon={<BombIcon />}
             size={64}
@@ -194,7 +194,7 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
             />
           </strong>
           <ConfettiEffect />
-        </Instruction>
+        </Surface>
       );
     }
     default: {

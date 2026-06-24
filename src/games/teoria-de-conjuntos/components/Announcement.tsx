@@ -16,9 +16,9 @@ import { SkullIcon } from '@icons/SkullIcon';
 import { ItemCard } from '@components/cards/ItemCard';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { OUTCOME } from '../utils/constants';
 import type { Guess } from '../utils/types';
@@ -57,7 +57,7 @@ export function Announcement({
         type="overlay"
         duration={20}
       >
-        <Instruction>
+        <Surface>
           <Translate
             en={
               <>
@@ -97,7 +97,7 @@ export function Announcement({
               </>
             }
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     );
   }
@@ -138,12 +138,12 @@ export function Announcement({
         type="overlay"
         duration={7}
       >
-        <Instruction>
+        <Surface>
           <Translate
             en={<>So, does it help?</>}
             pt={<>E ai, ajuda?</>}
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     );
   }
@@ -190,7 +190,7 @@ export function Announcement({
         type="overlay"
         duration={7}
       >
-        <Instruction>
+        <Surface>
           <Translate
             en={
               <>
@@ -211,7 +211,7 @@ export function Announcement({
               </>
             }
           />
-        </Instruction>
+        </Surface>
       </PhaseAnnouncement>
     );
   }
@@ -294,7 +294,7 @@ export function Announcement({
       type="overlay"
       duration={7}
     >
-      <Instruction>
+      <Surface>
         <Translate
           en={
             <>
@@ -308,7 +308,7 @@ export function Announcement({
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 }

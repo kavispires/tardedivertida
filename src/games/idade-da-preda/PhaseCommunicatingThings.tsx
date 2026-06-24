@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { PencilIcon } from '@icons/PencilIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { PhaseCommunicatingThingsState } from './utils/types';
 import { IDADE_DA_PREDA_PHASES } from './utils/constants';
@@ -36,12 +36,12 @@ export function PhaseCommunicatingThings({
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Vamos expandir nosso dicionário.</>}
           en={<>Let's expand our dictionary.</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

@@ -14,8 +14,8 @@ import { TransparentButton } from '@components/buttons/TransparentButton';
 import { CharacterCard, type OverlayColor } from '@components/cards/CharacterCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from '../utils/type';
 import { useBracketVoting } from '../utils/useBracketVoting';
@@ -67,7 +67,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
       players={players}
     >
       {/* Step 0 */}
-      <Instruction contained>
+      <Surface contained>
         <p>
           {tier === 'quarter' ? (
             <Translate
@@ -88,7 +88,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
             en={<>Voting starting in {seconds}</>}
           />
         </p>
-      </Instruction>
+      </Surface>
 
       {/* Step 1 */}
       <div>

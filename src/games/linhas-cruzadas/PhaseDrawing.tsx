@@ -6,12 +6,12 @@ import { useStep } from '@hooks/useStep';
 import { DrawingIcon } from '@icons/DrawingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 import { DRAWING_TIME_IN_SECONDS, LINHAS_CRUZADAS_PHASES } from './utils/constants';
@@ -52,7 +52,7 @@ export function PhaseDrawing({ state, players, user }: PhaseProps<PhaseDrawingSt
           withoutTimer
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -85,7 +85,7 @@ export function PhaseDrawing({ state, players, user }: PhaseProps<PhaseDrawingSt
               activePlayerId={user.currentPrompt?.id}
               reorderByUser={user.id}
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

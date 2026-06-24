@@ -9,8 +9,8 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 import { ImageCardButton } from '@components/image-cards/ImageCardButton';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { ClientCard } from '../utils/types';
@@ -54,7 +54,7 @@ export function MyHand({
   }, [players, user]);
 
   return (
-    <Instruction contained>
+    <Surface contained>
       <Flex
         className="full-width mb-2"
         justify="space-between"
@@ -165,6 +165,6 @@ export function MyHand({
           </Fragment>
         ))}
       </Flex>
-    </Instruction>
+    </Surface>
   );
 }

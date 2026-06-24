@@ -4,9 +4,9 @@ import type { PhaseProps } from 'types/game';
 import { WarehouseIcon } from '@icons/WarehouseIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { CONTROLE_DE_ESTOQUE_PHASES } from './utils/constants';
 import { useOnMakeReady } from './utils/api-requests';
@@ -33,12 +33,12 @@ export function PhaseTheWarehouse({ players, state, user }: PhaseProps<PhaseTheW
       type="overlay"
       unskippable
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt="Esses itens já estão no galpão. Memorize suas posições antes de começarmos!"
           en="These items are already in the warehouse. Memorize their positions before we start!"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

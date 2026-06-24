@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { CyberBullyingIcon } from '@icons/CyberBullyingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
 import { FOFOCA_QUENTE_PHASES } from './utils/constants';
@@ -30,12 +30,12 @@ export function PhaseRumor({ state, players, user }: PhaseProps<FofocaQuenteDefa
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           en="The gossiper must spread a rumor about a student following their motivation"
           pt="O fofoqueiro tem que espalhar um boato sobre um estudante seguindo sua motivação"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

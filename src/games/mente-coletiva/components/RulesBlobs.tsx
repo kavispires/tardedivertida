@@ -2,9 +2,9 @@
 import type { GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Instruction } from '@components/text/Instruction';
 
 type GamePremiseRulesProps = {
   activePlayer: GamePlayer;
@@ -12,7 +12,7 @@ type GamePremiseRulesProps = {
 
 export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -23,13 +23,13 @@ export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
             Se você já está no último pasto e tiver que mover pra direita, você cai no precipício e morre. O
             pasto fica menos lotado e todos mais felizes.
             <br />
-            <Instruction contained>
+            <Surface contained>
               <PlayerAvatarName
                 player={activePlayer}
                 addressUser
               />{' '}
               escolherá uma pergunta para essa rodada.
-            </Instruction>
+            </Surface>
           </>
         }
         en={
@@ -43,23 +43,23 @@ export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
             If you are already in the last pasture and have to move to the right, you fall off the cliff and
             die. The pasture is less crowded and everyone is happier.
             <br />
-            <Instruction contained>
+            <Surface contained>
               <PlayerAvatarName
                 player={activePlayer}
                 addressUser
               />{' '}
               will choose a question for this round.
-            </Instruction>
+            </Surface>
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function AnsweringRules() {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -89,13 +89,13 @@ export function AnsweringRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }
 
 export function ComparingRules() {
   return (
-    <Instruction>
+    <Surface>
       <Translate
         pt={
           <>
@@ -119,6 +119,6 @@ export function ComparingRules() {
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

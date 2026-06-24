@@ -8,10 +8,10 @@ import { LocationIcon } from '@icons/LocationIcon';
 import { PeopleAssessmentIcon } from '@icons/PeopleAssessmentIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { FofocaQuenteDefaultState } from './utils/types';
@@ -42,12 +42,12 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuent
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           en="After looking what character you are, select one of 3 social groups to be your allies and eventually lie for you"
           pt="Depois de ver qual personagem você é, selecione um dos 3 grupos sociais para serem seus aliados e eventualmente mentirem por você"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 
@@ -63,12 +63,12 @@ export function PhaseBoardSetup({ players, state, user }: PhaseProps<FofocaQuent
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           en="Select one location as your starting position"
           pt="Selecione uma localização como sua posição inicial"
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

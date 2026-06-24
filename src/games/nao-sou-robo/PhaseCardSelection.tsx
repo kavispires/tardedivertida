@@ -6,11 +6,11 @@ import { useStep } from '@hooks/useStep';
 import { TicketsIcon } from '@icons/TicketsIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitCardAPIRequest } from './utils/api-requests';
 import { NAO_SOU_ROBO_PHASES } from './utils/constants';
@@ -35,12 +35,12 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
       type="overlay"
       duration={5}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={<>Será que vamos conseguir ir no evento?</>}
           en={<>Will we be able to go to the event?</>}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

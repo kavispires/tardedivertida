@@ -9,12 +9,12 @@ import { SecretIcon } from '@icons/SecretIcon';
 import { SpyNewspaperIcon } from '@icons/SpyNewspaperIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PhaseTimerReset } from '@components/phases/PhaseTimerReset';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { ESPIAO_ENTRE_NOS_PHASES } from './utils/constants';
 import { StepAssignment } from './StepAssignment';
@@ -41,12 +41,12 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
           time={5}
           className="e-round-announcement"
         >
-          <Instruction className="e-phase-instruction">
+          <Surface className="e-phase-instruction">
             <Translate
               pt="Há um espião entre nós!"
               en="There's a spy among us!"
             />
-          </Instruction>
+          </Surface>
         </RoundAnnouncement>
 
         {/* Step 1 */}
@@ -65,7 +65,7 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
           duration={15}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -84,7 +84,7 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 2 */}
@@ -106,7 +106,7 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
           duration={10}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -123,7 +123,7 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 4 */}
@@ -145,7 +145,7 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
           duration={30}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={
                 <>
@@ -175,7 +175,7 @@ export function PhaseAssignment({ state, players, user }: PhaseProps) {
                 </>
               }
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 6 */}

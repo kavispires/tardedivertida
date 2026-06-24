@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { AnonymousIcon } from '@icons/AnonymousIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
@@ -33,12 +33,12 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
       type="overlay"
       duration={4}
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={'Quem você acha que seu adversário é? Lembre-se que você só pode errar uma vez!'}
           en={'Who do you think your opponent is? Remember, you can only make one mistake!'}
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

@@ -4,10 +4,10 @@ import { Alert } from 'antd';
 import type { GamePlayers, GamePlayer } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { Step } from '@components/steps/Step';
-import { Instruction } from '@components/text/Instruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { Clues, BoardObject } from './utils/types';
@@ -42,7 +42,7 @@ export function StepPlayersWaitEvaluation({
 
       <CategoryCard categories={categories} />
 
-      <Instruction contained>
+      <Surface contained>
         <Translate
           pt={
             <>
@@ -57,7 +57,7 @@ export function StepPlayersWaitEvaluation({
             </>
           }
         />
-      </Instruction>
+      </Surface>
 
       <Alert
         type="warning"

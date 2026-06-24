@@ -6,10 +6,10 @@ import { useStep } from '@hooks/useStep';
 import { MovieGenreIcon } from '@icons/MovieGenreIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitMovieGenreAPIRequest } from './utils/api-requests';
 import { TESTE_DE_ELENCO_PHASES } from './utils/constants';
@@ -33,9 +33,9 @@ export function PhaseMovieGenreSelection({ state, players, user }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <MovieGenreRules />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

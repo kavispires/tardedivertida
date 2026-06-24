@@ -8,11 +8,11 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { VoteIcon } from '@icons/VoteIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './utils/constants';
@@ -39,7 +39,7 @@ export function PhaseVoting({ state, players, user }: PhaseProps<PhaseVotingStat
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <Instruction>
+      <Surface>
         <Translate
           pt={
             <>
@@ -56,7 +56,7 @@ export function PhaseVoting({ state, players, user }: PhaseProps<PhaseVotingStat
             </>
           }
         />
-      </Instruction>
+      </Surface>
     </PhaseAnnouncement>
   );
 

@@ -13,10 +13,10 @@ import { OpinionsIcon } from '@icons/OpinionsIcon';
 import { TimerIcon } from '@icons/TimerIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import {
   useOnGuessLocationAPIRequest,
@@ -97,12 +97,12 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
             duration={3}
             type="block"
           >
-            <Instruction>
+            <Surface>
               <Translate
                 pt="A votação não foi unanime"
                 en="The vote wasn't unanimous"
               />
-            </Instruction>
+            </Surface>
           </PhaseAnnouncement>
         )}
 
@@ -137,12 +137,12 @@ export function PhaseInvestigation({ state, players, user }: PhaseProps) {
           className="e-phase-announcement"
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt="Preparado para a avaliação final?"
               en="Are you ready for the final assessment?"
             />
-          </Instruction>
+          </Surface>
           <FinalAssessmentPreparationModal
             onSendLastQuestioner={onSendLastQuestioner}
             players={players}

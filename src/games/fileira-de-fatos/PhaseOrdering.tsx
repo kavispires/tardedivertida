@@ -8,12 +8,12 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { BarChartIcon } from '@icons/BarChartIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
@@ -43,7 +43,7 @@ export function PhaseOrdering({ state, players }: PhaseProps<PhaseOrderingState>
       type="overlay"
       duration={isFirstRound ? 12 : undefined}
     >
-      <Instruction>
+      <Surface>
         <FirstRoundIntroduction />
         <Translate
           pt={
@@ -65,7 +65,7 @@ export function PhaseOrdering({ state, players }: PhaseProps<PhaseOrderingState>
             </>
           }
         />
-      </Instruction>
+      </Surface>
 
       <PlayersTurnOrder
         players={players}

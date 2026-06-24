@@ -4,7 +4,7 @@ import type { GamePlayers } from 'types/game';
 import { getPlayerNamesFromIds } from '@utils/helpers';
 // Components
 import { Translate } from '@components/language/Translate';
-import { Instruction } from '@components/text/Instruction';
+import { Surface } from '@components/layout/Surface';
 // Internal
 import type { FinalAssessment } from '../utils/types';
 
@@ -20,7 +20,7 @@ export function FinalAssessmentInstruction({ finalAssessment, players }: FinalAs
   const playerOrderNames = getPlayerNamesFromIds(playerOrder, players).join(', ');
 
   return (
-    <Instruction className="e-phase-instruction">
+    <Surface className="e-phase-instruction">
       <Translate
         pt={
           <>
@@ -55,6 +55,6 @@ export function FinalAssessmentInstruction({ finalAssessment, players }: FinalAs
           </>
         }
       />
-    </Instruction>
+    </Surface>
   );
 }

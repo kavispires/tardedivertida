@@ -8,10 +8,10 @@ import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 import { LoupeIcon } from '@icons/LoupeIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { Instruction } from '@components/text/Instruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitEvaluationAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
@@ -49,12 +49,12 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
           duration={5}
           type="block"
         >
-          <Instruction>
+          <Surface>
             <Translate
               pt={<>Os jogadores agora escrevem dicas para tentar adivinhar a palavra secreta.</>}
               en={<>Players now write clues to try to guess the secret word.</>}
             />
-          </Instruction>
+          </Surface>
         </PhaseAnnouncement>
 
         {/* Step 1 */}

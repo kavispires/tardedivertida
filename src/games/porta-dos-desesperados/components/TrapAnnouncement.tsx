@@ -4,8 +4,8 @@ import { Flex } from 'antd';
 import type { UseStep } from '@hooks/useStep';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
+import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
-import { Instruction } from '@components/text/Instruction';
 // Internal
 import type { TrapEntry } from '../utils/types';
 import { getTrapIcon } from '../utils/helpers';
@@ -30,9 +30,9 @@ export function TrapAnnouncement({ trapEntry, goToNextStep }: TrapAnnouncementPr
       unskippable
       type="block"
     >
-      <Instruction className="i-trap-description">
+      <Surface className="i-trap-description">
         <DualTranslate>{trapEntry.description}</DualTranslate>
-      </Instruction>
+      </Surface>
       <Flex justify="center">
         <TrapLevel
           level={trapEntry.level}

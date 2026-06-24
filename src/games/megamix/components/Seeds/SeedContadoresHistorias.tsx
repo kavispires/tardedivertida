@@ -5,8 +5,8 @@ import { Button } from 'antd';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { Surface } from '@components/layout/Surface';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
-import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
 // Internal
 import type { SeedEntryContadoresHistorias } from '../../utils/types';
@@ -76,12 +76,12 @@ export function SeedContadoresHistorias({ seed, updateData }: SeedContadoresHist
           </div>
         </SVGPhone>
 
-        <Instruction>
+        <Surface>
           <Translate
             pt="Você pode clicar na imagem para ampliá-la."
             en="You can click on the image to enlarge it."
           />
-        </Instruction>
+        </Surface>
 
         <SpaceContainer wrap>
           {seed.prompts.map((prompt) => (
