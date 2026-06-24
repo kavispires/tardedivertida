@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateState, updateStore } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 
@@ -16,7 +16,7 @@ export const handleSubmitCategory = async (
   playerId: UID,
   categoryId: string,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -35,7 +35,7 @@ export const handleSubmitCategory = async (
  * @param clue - The clue text
  */
 export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: UID, clue: string) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -60,7 +60,7 @@ export const handleSubmitGuess = async (
   playerId: UID,
   guess: number | boolean,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

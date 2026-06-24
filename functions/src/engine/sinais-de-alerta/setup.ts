@@ -15,6 +15,7 @@ import utils from '../../utils';
 import { dealCardsToPlayers, evaluateAnswers } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveDrawings } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -194,7 +195,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.SINAIS_DE_ALERTA,
@@ -213,7 +214,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

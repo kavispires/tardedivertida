@@ -1,7 +1,8 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateState, updateStore } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
+import * as firestoreValueUtils from '../../services/firestore-core';
 
 /**
  * Submits the selected alien player ID for a given game
@@ -11,7 +12,7 @@ import { getNextPhase } from '.';
  * @param alienId - The ID of the selected alien player
  */
 export const handleSubmitAlien = async (gameName: string, gameId: UID, playerId: UID, alienId: UID) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -37,7 +38,7 @@ export const handleSubmitSeeds = async (
   playerId: UID,
   seeds: Dictionary<number>,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -65,7 +66,7 @@ export const handleSubmitHumanInquiry = async (
   objectsIds: UID[],
   intention: UID,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -90,14 +91,14 @@ export const handleSubmitAlienResponses = async (
   playerId: UID,
   alienResponses: Record<string, string>,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
     actionText: 'submit alien responses',
     change: {
       alienResponses,
-      knownSpriteIds: utils.firestore.pushValue(...Object.values(alienResponses)),
+      knownSpriteIds: firestoreValueUtils.pushValue(...Object.values(alienResponses)),
     },
   });
 };
@@ -108,7 +109,7 @@ export const handleConfirmNotes = async (
   playerId: UID,
   notes: Dictionary<string>,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -137,7 +138,7 @@ export const handleSubmitAlienRequest = async (
   alienRequest: string,
   intention: UID,
 ) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -164,7 +165,7 @@ export const handleSubmitOfferings = async (
   playerId: UID,
   offeringsIds: UID[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

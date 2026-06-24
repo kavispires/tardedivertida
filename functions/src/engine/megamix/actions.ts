@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -11,7 +11,7 @@ import { getNextPhase } from './index';
  * @param data - The seeds data object
  */
 export const handleSubmitSeeds = async (gameName: string, gameId: UID, playerId: UID, data: PlainObject) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -35,7 +35,7 @@ export const handleSubmitTrackAnswer = async (
   playerId: UID,
   data: PlainObject,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

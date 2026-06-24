@@ -20,6 +20,7 @@ import {
   determineFinalAssessmentPlayerOrder,
   distributeRoles,
 } from './helpers';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -305,7 +306,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ESPIAO_ENTRE_NOS,
@@ -318,6 +319,9 @@ export const prepareGameOverPhase = async (
   });
 
   return {
+    update: {
+      storeCleanup: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.GAME_OVER,

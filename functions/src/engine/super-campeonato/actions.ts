@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 
@@ -16,7 +16,7 @@ export const handleSubmitChallenge = async (
   playerId: UID,
   challengeId: UID,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -40,7 +40,7 @@ export const handleSubmitContenders = async (
   playerId: UID,
   contendersIds: UID[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -68,7 +68,7 @@ export const handleSubmitBets = async (
   semi: string,
   final: string,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -92,7 +92,7 @@ export const handleSubmitVotes = async (
   playerId: UID,
   votes: Dictionary<number>,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

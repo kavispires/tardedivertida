@@ -26,7 +26,8 @@ import {
 } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
-
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import * as firestoreValueUtils from '../../services/firestore-core';
 /**
  * Setup
  * Build the card deck
@@ -107,7 +108,7 @@ export const prepareChallengeSelectionPhase = async (
   const round = utils.game.increaseRound(state.round);
 
   // If round 5, build brackets with store.finalBrackets
-  let brackets: unknown = utils.firestore.deleteValue();
+  let brackets: unknown = firestoreValueUtils.deleteValue();
 
   if (isFinalRound(round)) {
     brackets = makeFinalBrackets(store.finalBrackets) as Bracket[];
@@ -329,7 +330,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   const pastBattles = store.pastBattles;
 
@@ -352,7 +353,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

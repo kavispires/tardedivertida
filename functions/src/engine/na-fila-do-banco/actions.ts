@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -20,7 +20,7 @@ export const handleSubmitCard = async (
   tellerId: UID,
   newCardId: UID,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

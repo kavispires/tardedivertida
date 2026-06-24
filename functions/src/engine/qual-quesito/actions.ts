@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -16,7 +16,7 @@ export const handleSubmitCategory = async (
   playerId: UID,
   category: string,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -33,7 +33,7 @@ export const handleSubmitCategory = async (
  * @param playerId - The player ID skipping the turn
  */
 export const handleSkipTurn = async (gameName: string, gameId: UID, playerId: UID) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -53,7 +53,7 @@ export const handleSkipTurn = async (gameName: string, gameId: UID, playerId: UI
  * @param cardsIds - Array of selected card IDs
  */
 export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardsIds: UID[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -77,7 +77,7 @@ export const handleEvaluations = async (
   playerId: UID,
   evaluations: Dictionary<boolean>,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

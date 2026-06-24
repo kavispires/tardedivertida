@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -16,7 +16,7 @@ export const handleSubmitOrientation = async (
   playerId: UID,
   orientation: string,
 ) => {
-  return await utils.firestore.updateStore({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -33,7 +33,7 @@ export const handleSubmitOrientation = async (
  * @param sketch - The sketch data string
  */
 export const handleSubmitSketch = async (gameName: string, gameId: UID, playerId: UID, sketch: string) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -52,7 +52,7 @@ export const handleSubmitSketch = async (gameName: string, gameId: UID, playerId
  * @param vote - The player ID being voted for
  */
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

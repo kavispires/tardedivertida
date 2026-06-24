@@ -5,7 +5,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
-// Internal
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -151,7 +151,7 @@ export const prepareGameOverPhase = async (
   // const achievements = getAchievements(store);
   const achievements = []; // TODO: implement achievements
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ESCAPE_ROOM,
@@ -167,7 +167,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

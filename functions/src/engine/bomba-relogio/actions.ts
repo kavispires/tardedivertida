@@ -1,4 +1,4 @@
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 import type { Declaration, Target } from './types';
@@ -16,7 +16,7 @@ export const handleSubmitDeclarations = async (
   playerId: UID,
   declarations: Declaration,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -40,7 +40,7 @@ export const handleUpdateTargetPlayer = async (
   playerId: UID,
   targetPlayerId: UID,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -59,7 +59,7 @@ export const handleUpdateTargetPlayer = async (
  * @param target - The target object containing card and player information
  */
 export const handleSubmitTarget = async (gameName: string, gameId: UID, playerId: UID, target: Target) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,

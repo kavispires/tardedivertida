@@ -37,6 +37,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -93,7 +94,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -104,55 +105,55 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === UE_SO_ISSO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP/* -> WORD_SELECTION
   if (nextPhase === UE_SO_ISSO_PHASES.WORD_SELECTION) {
     const newPhase = await prepareWordSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // WORD_SELECTION -> SUGGEST
   if (nextPhase === UE_SO_ISSO_PHASES.SUGGEST) {
     const newPhase = await prepareSuggestPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // SUGGEST -> COMPARE
   if (nextPhase === UE_SO_ISSO_PHASES.COMPARE) {
     const newPhase = await prepareComparePhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // COMPARE -> GUESS
   if (nextPhase === UE_SO_ISSO_PHASES.GUESS) {
     const newPhase = await prepareGuessPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // GUESS -> VERIFY_GUESS
   if (nextPhase === UE_SO_ISSO_PHASES.VERIFY_GUESS) {
     const newPhase = await prepareVerifyGuessPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // GUESS/VERIFY_GUESS -> GUESS
   if (nextPhase === UE_SO_ISSO_PHASES.RESULT) {
     const newPhase = await prepareResultPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // GUESS -> GAME_OVER
   if (nextPhase === UE_SO_ISSO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

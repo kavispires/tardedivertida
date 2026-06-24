@@ -14,6 +14,7 @@ import type {
 } from './types';
 import { determineStudentsThatCanBeRumored } from './helpers';
 import type { TeenageRumorData } from '../../types/tdr';
+import * as firestoreValueUtils from '../../services/firestore-core';
 
 /**
  * Setup phase - initializes game state and resources
@@ -105,7 +106,7 @@ export const prepareSetupPhase = async (
         gossiperMotivationIndex: random(0, TOTAL_MOTIVATIONS - 1),
         socialGroups: resourceData.socialGroups,
         gossiperId: gossiper.id,
-        bestFriendId: options.includeBestFriend ? bestFriend.id : utils.firestore.deleteValue(),
+        bestFriendId: options.includeBestFriend ? bestFriend.id : firestoreValueUtils.deleteValue(),
         maySkipRumor: true,
         rumorTracker: [],
       },

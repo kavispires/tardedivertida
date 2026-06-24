@@ -9,6 +9,7 @@ import utils from '../../utils';
 import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -254,7 +255,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.LINHAS_CRUZADAS,
@@ -267,6 +268,9 @@ export const prepareGameOverPhase = async (
   });
 
   return {
+    update: {
+      storeCleanup: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: LINHAS_CRUZADAS_PHASES.GAME_OVER,

@@ -1,7 +1,8 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
+import * as firestoreValueUtils from '../../services/firestore-core';
 
 /**
  * Submits the gossiper and detective player roles
@@ -18,7 +19,7 @@ export const handleSubmitPlayersRoles = async (
   gossiperPlayerId: UID,
   detectivePlayerId: UID,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -46,7 +47,7 @@ export const handleSubmitAssociatedSocialGroup = async (
   playerId: UID,
   associatedSocialGroupId: string,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -74,13 +75,13 @@ export const handleSubmitDetectiveLocation = async (
   locationIndex: number,
   shouldReady = false,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
     actionText: 'moved the detective',
     change: {
-      locationIndexes: utils.firestore.pushValue(locationIndex),
+      locationIndexes: firestoreValueUtils.pushValue(locationIndex),
     },
     shouldReady,
     nextPhaseFunction: getNextPhase,
@@ -106,7 +107,7 @@ export const handleSubmitIntimidation = async (
 ) => {
   const update = intimidatedStudentsIds ? { intimidatedStudentsIds } : {};
 
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -145,7 +146,7 @@ export const handleSubmitRumor = async (
     update.skipRumor = skipRumor;
   }
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

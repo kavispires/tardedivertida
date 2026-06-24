@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 import type { Guesses } from './types';
@@ -42,7 +42,7 @@ export const handleSubmitCrime = async (
     change.locationId = data.locationId;
   }
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -61,7 +61,7 @@ export const handleSubmitCrime = async (
  * @param sceneIndex - The scene index being marked
  */
 export const handleSubmitMark = async (gameName: string, gameId: UID, playerId: UID, sceneIndex: number) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -73,7 +73,7 @@ export const handleSubmitMark = async (gameName: string, gameId: UID, playerId: 
 };
 
 export const handleSubmitGuesses = async (gameName: string, gameId: UID, playerId: UID, guesses: Guesses) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

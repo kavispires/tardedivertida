@@ -17,6 +17,8 @@ import {
   getGameSettings,
 } from './helpers';
 import { SPECIAL_LEVELS_LIBRARIES } from './constants';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import { getDailyCollectionRef } from '../../services/firestore-core';
 
 const getPairsLevel = async (language: string, playerCount: number, options: ArteRuimGameOptions) => {
   const cardsPerRound = determineNumberOfCards(playerCount);
@@ -94,7 +96,7 @@ export const getCards = async (
 
   if (options.useAllCards) {
     // Check daily history
-    const dailyRef = utils.firestore.getDailyRef(language === 'pt' ? 'diario' : 'daily');
+    const dailyRef = getDailyCollectionRef(language === 'pt' ? 'diario' : 'daily');
     const historyDoc = await dailyRef.doc('history').get();
     const history = historyDoc.data() || { used: [] };
     const usedCards: string[] = history.used;
@@ -155,7 +157,7 @@ export const getCards = async (
   );
 
   if (resetUsedCards) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
   }
 
   return {

@@ -1,10 +1,16 @@
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constants';
 // Utils
-import utils from '..';
 import alienItemsMock from './alien-items.json';
 import type { FirebaseUserDB } from '../user';
-import { isEmulatingFirestore } from '../environment';
+import { isDevelopmentEnvironment, isEmulatingFirestore } from '../environment';
+import {
+  getDailyCollectionRef,
+  getDataCollectionRef,
+  getGlobalCollectionRef,
+  getPublicCollectionRef,
+  getUserCollectionRef,
+} from '../../services/firestore-core';
 
 const sample = {};
 
@@ -13,7 +19,10 @@ const sample = {};
  */
 export const feedEmulatorDB = async () => {
   if (!isEmulatingFirestore()) {
-    console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
+    // Only log if it's development environment, otherwise it will be too noisy in production
+    if (isDevelopmentEnvironment()) {
+      console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
+    }
     return;
   }
 
@@ -23,31 +32,28 @@ export const feedEmulatorDB = async () => {
   const dataEntries: Promise<FirebaseFirestore.WriteResult>[] = [];
 
   Object.values(DATA_DOCUMENTS).forEach((usedEntryName) => {
-    dataEntries.push(utils.firestore.getDataRef().doc(usedEntryName).set(sample));
+    dataEntries.push(getDataCollectionRef().doc(usedEntryName).set(sample));
 
-    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}PT`).set(sample));
-    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}EN`).set(sample));
+    dataEntries.push(getDataCollectionRef().doc(`${usedEntryName}PT`).set(sample));
+    dataEntries.push(getDataCollectionRef().doc(`${usedEntryName}EN`).set(sample));
   });
 
   await Promise.all(dataEntries);
-  await utils.firestore
-    .getDataRef()
-    .doc(DATA_DOCUMENTS.SUFFIX_COUNTS)
-    .set({ drawings: 0, monsterDrawings: 0 });
-  await utils.firestore.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(alienItemsMock);
+  await getDataCollectionRef().doc(DATA_DOCUMENTS.SUFFIX_COUNTS).set({ drawings: 0, monsterDrawings: 0 });
+  await getDataCollectionRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(alienItemsMock);
 
   // GLOBAL
-  await utils.firestore.getGlobalRef().doc(USED_GAME_IDS).set(sample);
+  await getGlobalCollectionRef().doc(USED_GAME_IDS).set(sample);
 
   // PUBLIC
-  await utils.firestore.getPublicRef().doc('ratings').set(sample);
+  await getPublicCollectionRef().doc('ratings').set(sample);
 
   // DAILY
-  await utils.firestore.getPublicRef().doc('daily').set({ '2023-10-31': true });
-  await utils.firestore.getPublicRef().doc('diario').set({ '2023-10-31': true });
+  await getPublicCollectionRef().doc('daily').set({ '2023-10-31': true });
+  await getPublicCollectionRef().doc('diario').set({ '2023-10-31': true });
 
   const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
-    utils.firestore.getGlobalRef().doc(usedEntryName).set(sample),
+    getGlobalCollectionRef().doc(usedEntryName).set(sample),
   );
   await Promise.all(usedEntries);
 };
@@ -57,7 +63,10 @@ export const feedEmulatorDB = async () => {
  */
 export const feedEmulatorUser = async () => {
   if (!isEmulatingFirestore()) {
-    console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
+    // Only log if it's development environment, otherwise it will be too noisy in production
+    if (isDevelopmentEnvironment()) {
+      console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
+    }
     return;
   }
 
@@ -80,7 +89,7 @@ export const feedEmulatorUser = async () => {
     ratings: {},
   };
 
-  await utils.firestore.getUserRef().doc(emulateUid).set(emulateUser);
+  await getUserCollectionRef().doc(emulateUid).set(emulateUser);
 };
 
 /**
@@ -88,17 +97,20 @@ export const feedEmulatorUser = async () => {
  */
 export const feedEmulatorDaily = async () => {
   if (!isEmulatingFirestore()) {
-    console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
+    // Only log if it's development environment, otherwise it will be too noisy in production
+    if (isDevelopmentEnvironment()) {
+      console.log('\x1b[33m%s\x1b[0m', '📛 Skipping Emulator seeding: Not Emulating Firestore');
+    }
     return;
   }
 
   const dataEntries: Promise<FirebaseFirestore.WriteResult>[] = [];
 
   Object.values(DATA_DOCUMENTS).forEach((usedEntryName) => {
-    dataEntries.push(utils.firestore.getDataRef().doc(usedEntryName).set(sample));
+    dataEntries.push(getDataCollectionRef().doc(usedEntryName).set(sample));
 
-    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}PT`).set(sample));
-    dataEntries.push(utils.firestore.getDataRef().doc(`${usedEntryName}EN`).set(sample));
+    dataEntries.push(getDataCollectionRef().doc(`${usedEntryName}PT`).set(sample));
+    dataEntries.push(getDataCollectionRef().doc(`${usedEntryName}EN`).set(sample));
   });
 
   await Promise.all(dataEntries);
@@ -214,23 +226,23 @@ export const feedEmulatorDaily = async () => {
     },
   };
 
-  await utils.firestore.getDailyRef('daily').doc('2023-10-31').set(dailyMock);
+  await getDailyCollectionRef('daily').doc('2023-10-31').set(dailyMock);
 
-  await utils.firestore.getDailyRef('diario').doc('2023-10-31').set(dailyMock);
+  await getDailyCollectionRef('diario').doc('2023-10-31').set(dailyMock);
 
   const history = {
     latestDate: '2023-10-31',
     latestNumber: 0,
     used: [],
   };
-  await utils.firestore.getDailyRef('daily').doc('history').set(history);
-  await utils.firestore.getDailyRef('diario').doc('history').set(history);
+  await getDailyCollectionRef('daily').doc('history').set(history);
+  await getDailyCollectionRef('diario').doc('history').set(history);
 
   // Suffix counts
-  await utils.firestore.getDailyRef('data').doc('suffixCounts').set({
+  await getDailyCollectionRef('data').doc('suffixCounts').set({
     drawingsPT: 2,
     drawingsEN: 3,
   });
 
-  await utils.firestore.getDailyRef('data').doc('testimonies').set({});
+  await getDailyCollectionRef('data').doc('testimonies').set({});
 };

@@ -14,6 +14,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import utils from '../../utils';
 // Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -184,7 +185,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.INSTRUMENTOS_CODIFICADOS,
@@ -197,6 +198,9 @@ export const prepareGameOverPhase = async (
   });
 
   return {
+    update: {
+      storeCleanup: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER,

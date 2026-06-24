@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 import type { AnswerValue } from './types';
@@ -19,7 +19,7 @@ export const handleSubmitPrompt = async (
   questionId?: UID,
   question?: string,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -43,7 +43,7 @@ export const handleSubmitAnswer = async (
   playerId: UID,
   answer: AnswerValue,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -61,7 +61,7 @@ export const handleSubmitAnswer = async (
  * @param playerId - The player ID submitting the guess
  */
 export const handleTriggerGuessing = async (gameName: string, gameId: UID, playerId: UID) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -81,7 +81,7 @@ export const handleTriggerGuessing = async (gameName: string, gameId: UID, playe
  * @param characterId - The guessed character ID
  */
 export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, characterId: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

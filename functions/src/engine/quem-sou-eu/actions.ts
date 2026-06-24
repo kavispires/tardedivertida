@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 import { shuffle } from 'lodash';
 // Internal functions
 import { getNextPhase } from './index';
@@ -17,7 +17,7 @@ export const handleSubmitCharacters = async (
   playerId: UID,
   characters: UID[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -41,7 +41,7 @@ export const handleSubmitGlyphs = async (
   playerId: UID,
   glyphs: Dictionary<boolean>,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -67,7 +67,7 @@ export const handleSubmitGuesses = async (
   guesses: Record<UID, UID>,
   choseRandomly: boolean,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

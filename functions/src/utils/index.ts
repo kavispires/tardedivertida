@@ -1,5 +1,4 @@
 import * as achievements from './achievement-utils';
-import * as firestore from './firestore';
 import * as deck from './deck';
 import * as game from './game-utils';
 import * as helpers from './helpers';
@@ -14,7 +13,6 @@ import * as toolKits from './tool-kits';
 export default {
   achievements,
   deck,
-  firestore,
   game,
   helpers,
   imageCards,

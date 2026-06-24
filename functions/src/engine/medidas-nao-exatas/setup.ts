@@ -10,6 +10,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import { determineResults } from './helpers';
 import { makeArray } from '../../utils/helpers';
 import { calculateAchievements, setupAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -223,7 +224,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.MEDIDAS_NAO_EXATAS,
@@ -240,7 +241,7 @@ export const prepareGameOverPhase = async (
   // Save
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

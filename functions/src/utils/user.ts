@@ -1,6 +1,6 @@
 import { uniq } from 'lodash';
-import { getUserRef } from './firestore';
 import { getListOfPlayers } from './players-utils';
+import { getUserCollectionRef } from '../services/firestore-core';
 
 /**
  * A single game play entry for a user's game history
@@ -718,7 +718,7 @@ function getPlayersPlacement(players: Player[]): Dictionary<number> {
  * @returns The user data or null if user doesn't exist
  */
 async function fetchUser(id: string) {
-  const user = await getUserRef().doc(id).get();
+  const user = await getUserCollectionRef().doc(id).get();
 
   // If the user object doesn't exist, ignore it
   if (!user.exists) {
@@ -735,6 +735,6 @@ async function fetchUser(id: string) {
  * @param data - The user data to save
  */
 async function saveNewUserData(id: string, data: FirebaseUserDB) {
-  const userRef = getUserRef().doc(id);
+  const userRef = getUserCollectionRef().doc(id);
   await userRef.update({ ...data });
 }

@@ -29,6 +29,7 @@ import {
 } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -372,7 +373,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.UE_SO_ISSO,
@@ -395,7 +396,7 @@ export const prepareGameOverPhase = async (
   // Save
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

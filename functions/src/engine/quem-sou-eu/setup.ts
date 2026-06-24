@@ -20,6 +20,7 @@ import { buildGallery, buildRanking } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import type { ContenderCardData } from '../../types/tdr';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -314,7 +315,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.QUEM_SOU_EU,
@@ -336,7 +337,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

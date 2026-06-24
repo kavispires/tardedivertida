@@ -13,7 +13,7 @@
  */
 
 import { mean } from 'lodash';
-import { isEmulatingEnvironment } from './environment';
+import { isDevelopmentEnvironment } from './environment';
 
 /**
  * Prints content to console in JSON format when running in emulation
@@ -21,7 +21,7 @@ import { isEmulatingEnvironment } from './environment';
  * @param content - The content to print to console
  */
 export const print = (content: unknown) => {
-  if (isEmulatingEnvironment()) {
+  if (isDevelopmentEnvironment()) {
     // biome-ignore lint/suspicious/noConsole: on purpose
     console.log(JSON.stringify(content, null, 2));
   }
@@ -165,7 +165,7 @@ export const buildBooleanDictionary = <T>(list: T[], key = 'id'): Dictionary<boo
  * @param duration - The delay duration in milliseconds
  */
 export const devSimulateWait = async (duration = 3000) => {
-  if (isEmulatingEnvironment()) {
+  if (isDevelopmentEnvironment()) {
     await new Promise((resolve) => setTimeout(resolve, duration));
   }
 };

@@ -5,6 +5,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * [Setup Phase] - Initialize game and reset player properties
@@ -149,7 +150,7 @@ export const prepareGameOverPhase = async (
   // Save
   const winners = utils.players.determineWinners(players);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.QUEM_NAO_MATA,
@@ -162,6 +163,9 @@ export const prepareGameOverPhase = async (
   });
 
   return {
+    update: {
+      store: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: QUEM_NAO_MATA_PHASES.GAME_OVER,

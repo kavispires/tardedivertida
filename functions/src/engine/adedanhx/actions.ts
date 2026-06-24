@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -19,7 +19,7 @@ export const handleSubmitAnswers = async (
   stop?: boolean,
 ) => {
   if (stop) {
-    await utils.firestore.updateState({
+    await updateState({
       gameName,
       gameId,
       playerId,
@@ -28,7 +28,7 @@ export const handleSubmitAnswers = async (
     });
   }
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -57,7 +57,7 @@ export const handleSubmitEvaluationsAnswers = async (
     return acc;
   }, {});
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

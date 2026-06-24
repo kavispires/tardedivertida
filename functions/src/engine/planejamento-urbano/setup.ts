@@ -16,6 +16,7 @@ import utils from '../../utils';
 import type { CityLocationData } from '../../types/tdr';
 import { GAME_NAMES, LETTERS } from '../../utils/constants';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Prepares the setup phase for the urban planning game.
@@ -429,7 +430,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.PLANEJAMENTO_URBANO,
@@ -445,7 +446,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

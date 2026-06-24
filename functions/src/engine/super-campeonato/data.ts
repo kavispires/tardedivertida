@@ -8,6 +8,7 @@ import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
 import utils from '../../utils';
 import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from './constants';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get challenges and contenders  based on the game's language
@@ -34,7 +35,7 @@ export const getResourceData = async (
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableChallenges).length < CHALLENGES_PER_GAME) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
     availableChallenges = challengesResponse;
   }
 

@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -11,7 +11,7 @@ import { getNextPhase } from './index';
  * @param pairs - Array of paired item IDs
  */
 export const handleSubmitPairs = async (gameName: string, gameId: UID, playerId: UID, pairs: UID[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

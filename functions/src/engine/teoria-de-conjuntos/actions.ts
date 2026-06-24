@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { getStateReferences, updateState } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 import type { DiagramArea, FirebaseStateData, Guess } from './types';
@@ -13,7 +13,7 @@ import { OUTCOME } from './constants';
  * @param judgeId - The ID of the selected judge player
  */
 export const handleSubmitJudge = async (gameName: string, gameId: UID, playerId: UID, judgeId: UID) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -48,7 +48,7 @@ export const handleSubmitItemDiagram = async (
     correctArea: null,
     outcome: OUTCOME.PENDING,
   };
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -73,7 +73,7 @@ export const handleSubmitEvaluation = async (
   playerId: UID,
   evaluation: string,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -104,7 +104,7 @@ export const handleSubmitEvaluationFix = async (
 ) => {
   const actionText = 'fix evaluation';
 
-  const { state } = await utils.firestore.getStateReferences<FirebaseStateData>(gameName, gameId, actionText);
+  const { state } = await getStateReferences<FirebaseStateData>(gameName, gameId, actionText);
 
   const diagrams: Dictionary<DiagramArea> = state.diagrams;
   // Remove thing from diagram
@@ -113,7 +113,7 @@ export const handleSubmitEvaluationFix = async (
   // Re-add thing to diagram
   diagrams[newEvaluation].itemsIds.push(itemId);
 
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,

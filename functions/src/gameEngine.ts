@@ -1,7 +1,7 @@
-import { COMMON_ACTIONS } from './engine/common';
 import type { CallableRequest } from './types/reference';
 import { getEngine } from './utils/delegators';
 import { throwHttpsError } from './services/firebase-core';
+import { gameSessionActions } from './api/session-api';
 
 /**
  * Executes the game engine.
@@ -16,8 +16,8 @@ export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   }
 
   // Special case: Load Game cannot require gameName because it only has the ID
-  if (action === 'LOAD_GAME' && COMMON_ACTIONS[action]) {
-    return COMMON_ACTIONS[action](request.data);
+  if (action === 'LOAD_GAME' && gameSessionActions[action]) {
+    return gameSessionActions[action](request.data);
   }
 
   // Verify auth
@@ -33,8 +33,8 @@ export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   }
 
   // Delegate global actions
-  if (COMMON_ACTIONS[action]) {
-    return COMMON_ACTIONS[action](request.data, request.auth);
+  if (gameSessionActions[action]) {
+    return gameSessionActions[action](request.data, request.auth);
   }
 
   // Delegate game first, then action

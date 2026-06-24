@@ -27,6 +27,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -72,7 +73,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -83,37 +84,37 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === CORREIO_DO_AMOR_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data and prepare setup phase
     const additionalData = await getData(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> CARD_PLAY
   if (nextPhase === CORREIO_DO_AMOR_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> CARD_EFFECTS
   if (nextPhase === CORREIO_DO_AMOR_PHASES.CARD_EFFECTS) {
     const newPhase = await prepareCardEffectsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CARD_EFFECTS -> CARD_RESOLUTION
   if (nextPhase === CORREIO_DO_AMOR_PHASES.CARD_RESOLUTION) {
     const newPhase = await prepareCardResolutionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CARD_RESOLUTION -> GAME_OVER
   if (nextPhase === CORREIO_DO_AMOR_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

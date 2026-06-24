@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateStore } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 
@@ -11,7 +11,7 @@ import { getNextPhase } from '.';
  * @param movieId - The selected movie ID
  */
 export const handleSelectMovie = async (gameName: string, gameId: UID, playerId: UID, movieId: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -30,7 +30,7 @@ export const handleSelectMovie = async (gameName: string, gameId: UID, playerId:
  * @param movieId - The movie ID to eliminate
  */
 export const handleEliminateMovie = async (gameName: string, gameId: UID, playerId: UID, movieId: UID) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -57,7 +57,7 @@ export const handleVoteForPoster = async (
   movieId: UID,
   posterId: UID,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

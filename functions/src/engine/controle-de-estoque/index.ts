@@ -34,6 +34,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -76,7 +77,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -87,7 +88,7 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // TODO: Remove temporary
     if (isEmulatingEnvironment()) {
@@ -101,7 +102,7 @@ export const getNextPhase = async (
         outOfStockFulfillment: 0,
       });
 
-      await utils.firestore.saveGame(sessionRef, {
+      await saveGame(sessionRef, {
         update: {
           store: {
             achievements,
@@ -117,38 +118,38 @@ export const getNextPhase = async (
     // Request data
     const additionalData = await getData();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> THE_WAREHOUSE
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.THE_WAREHOUSE) {
     const newPhase = await prepareTheWarehousePhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // THE_WAREHOUSE -> GOOD_PLACEMENT
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.GOOD_PLACEMENT) {
     const newPhase = await prepareGoodPlacementPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // PLACEMENT_CONFIRMATION / RESULTS -> FULFILLMENT
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT) {
     const newPhase = await prepareFulfillmentPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // FULFILLMENT -> RESULTS
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // RESULTS -> GAME_OVER
   if (nextPhase === CONTROLE_DE_ESTOQUE_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

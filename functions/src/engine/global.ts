@@ -1,4 +1,4 @@
-import utils from '../utils';
+import { getGlobalCollectionRef } from '../services/firestore-core';
 
 /**
  * Gets document from global in firestore
@@ -9,7 +9,7 @@ export const getGlobalFirebaseDocData = async (documentName: string, fallback: a
   let response: Promise<any>;
 
   try {
-    response = (await utils.firestore.getGlobalRef().doc(documentName)?.get())?.data() ?? fallback;
+    response = (await getGlobalCollectionRef().doc(documentName)?.get())?.data() ?? fallback;
   } catch (e) {
     console.error(e);
     response = fallback;
@@ -49,7 +49,7 @@ export const updateGlobalFirebaseDoc = async (documentName: string, data: any): 
   }
 
   if (newData) {
-    await utils.firestore.getGlobalRef().doc(documentName).update(newData);
+    await getGlobalCollectionRef().doc(documentName).update(newData);
   }
 
   return true;

@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 import type { Guess } from './types';
@@ -19,7 +19,7 @@ export const handleSubmitPool = async (
   poolIds: UID[],
   secretWordId: UID,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -41,7 +41,7 @@ export const handleSubmitMetrics = async (
   playerId: UID,
   metrics: Record<string, number>,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -59,7 +59,7 @@ export const handleSubmitMetrics = async (
  * @param guesses - Array of guess objects
  */
 export const handleSubmitGuess = async (gameName: string, gameId: UID, playerId: UID, guesses: Guess[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

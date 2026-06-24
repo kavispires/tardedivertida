@@ -19,6 +19,7 @@ import {
 } from './helpers';
 import { saveUsedCards } from './data';
 import { setupAchievements, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - builds the card deck and initializes game settings
@@ -211,7 +212,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ARTE_RUIM,
@@ -230,7 +231,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

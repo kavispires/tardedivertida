@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -11,7 +11,7 @@ import { getNextPhase } from './index';
  * @param words - Array of selected word IDs
  */
 export const handleSubmitWords = async (gameName: string, gameId: UID, playerId: UID, words: UID[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -30,7 +30,7 @@ export const handleSubmitWords = async (gameName: string, gameId: UID, playerId:
  * @param clues - Array of clue strings
  */
 export const handleSubmitClues = async (gameName: string, gameId: UID, playerId: UID, clues: string[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -54,7 +54,7 @@ export const handleSubmitGuesses = async (
   playerId: UID,
   guesses: Record<string, string[]>, // clueEntryId -> things ids[]
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

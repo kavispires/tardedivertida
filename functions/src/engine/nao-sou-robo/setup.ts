@@ -17,6 +17,7 @@ import { GAME_NAMES } from '../../utils/constants';
 import utils from '../../utils';
 import { calculateResults, distributeCards } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -265,7 +266,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.NAO_SOU_ROBO,
@@ -286,7 +287,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

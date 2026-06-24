@@ -9,6 +9,7 @@ import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import * as dataUtils from '../collections';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get monster cards ids
@@ -27,7 +28,7 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MONSTERS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MONSTERS);
     return { allMonsters };
   }
 

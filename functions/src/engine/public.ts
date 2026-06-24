@@ -1,4 +1,4 @@
-import utils from '../utils';
+import { getPublicCollectionRef } from '../services/firestore-core';
 import { isEmulatingEnvironment } from '../utils/environment';
 
 /**
@@ -14,7 +14,7 @@ export const getPublicFirebaseDocData = async (documentName: string, fallback: a
   }
 
   try {
-    response = (await utils.firestore.getPublicRef().doc(documentName)?.get())?.data() ?? fallback;
+    response = (await getPublicCollectionRef().doc(documentName)?.get())?.data() ?? fallback;
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: on purpose
     console.error(e);
@@ -55,7 +55,7 @@ export const updatePublicFirebaseDoc = async (documentName: string, data: any): 
   }
 
   if (newData) {
-    await utils.firestore.getPublicRef().doc(documentName).update(newData);
+    await getPublicCollectionRef().doc(documentName).update(newData);
   }
 
   return true;

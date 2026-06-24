@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -16,7 +16,7 @@ export const handlePlaceGood = async (
   playerId: UID,
   selectedWarehouseSlot: number,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -40,7 +40,7 @@ export const handleConfirmGood = async (
   playerId: UID,
   selectedWarehouseSlot: number,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -65,7 +65,7 @@ export const handleFulfillOrders = async (
   playerId: UID,
   fulfillments: Record<string, number>, // goodId: slotId
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

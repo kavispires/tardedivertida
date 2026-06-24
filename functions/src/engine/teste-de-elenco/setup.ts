@@ -8,6 +8,7 @@ import type { FirebaseStateData, FirebaseStoreData, Movie, ResourceData } from '
 import utils from '../../utils';
 import { buildMovie, determineCast, getNextRoleId } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -207,7 +208,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TESTE_DE_ELENCO,
@@ -220,6 +221,9 @@ export const prepareGameOverPhase = async (
   });
 
   return {
+    update: {
+      store: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: TESTE_DE_ELENCO_PHASES.GAME_OVER,

@@ -27,6 +27,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -71,7 +72,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -82,38 +83,38 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === NAO_SOU_ROBO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getResourceData(store.language, utils.players.getPlayerCount(players));
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> CARD_SELECTION
   if (nextPhase === NAO_SOU_ROBO_PHASES.CARD_SELECTION) {
     const newPhase = await prepareCardSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CARD_SELECTION -> ARE_YOU_A_ROBOT
   if (nextPhase === NAO_SOU_ROBO_PHASES.ARE_YOU_A_ROBOT) {
     const newPhase = await prepareAreYouARobotPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // ARE_YOU_A_ROBOT -> RESULTS
   if (nextPhase === NAO_SOU_ROBO_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // RESULTS --> GAME_OVER
   if (nextPhase === NAO_SOU_ROBO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

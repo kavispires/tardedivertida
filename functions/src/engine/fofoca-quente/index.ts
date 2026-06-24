@@ -34,6 +34,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -78,7 +79,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -89,67 +90,67 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === FOFOCA_QUENTE_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getData();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> GOSSIPER_SELECTION
   if (nextPhase === FOFOCA_QUENTE_PHASES.ROLES_SELECTION) {
     const newPhase = await prepareGossiperSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // * -> BOARD_SETUP
   if (nextPhase === FOFOCA_QUENTE_PHASES.BOARD_SETUP) {
     const newPhase = await prepareBoardSetupPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // * -> INTIMIDATION
   if (nextPhase === FOFOCA_QUENTE_PHASES.INTIMIDATION) {
     const newPhase = await prepareIntimidationPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // INTIMIDATION -> RUMOR
   if (nextPhase === FOFOCA_QUENTE_PHASES.RUMOR) {
     const newPhase = await prepareRumorPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // RUMOR -> RESPONSE
   if (nextPhase === FOFOCA_QUENTE_PHASES.RESPONSE) {
     const newPhase = await prepareResponsePhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // // RESPONSE -> INVESTIGATION
   // if (nextPhase === FOFOCA_QUENTE_PHASES.INVESTIGATION) {
   //   const newPhase = await preparePhase(store, state, players);
-  //   return utils.firestore.saveGame(sessionRef, newPhase);
+  //   return saveGame(sessionRef, newPhase);
   // }
 
   // // * -> SCHOOL
   // if (nextPhase === FOFOCA_QUENTE_PHASES.SCHOOL) {
   //   const newPhase = await preparePhase(store, state, players);
-  //   return utils.firestore.saveGame(sessionRef, newPhase);
+  //   return saveGame(sessionRef, newPhase);
   // }
 
   // // * -> RESOLUTION
   // if (nextPhase === FOFOCA_QUENTE_PHASES.RESOLUTION) {
   //   const newPhase = await preparePhase(store, state, players);
-  //   return utils.firestore.saveGame(sessionRef, newPhase);
+  //   return saveGame(sessionRef, newPhase);
   // }
 
   // // * -> GAME_OVER
   // if (nextPhase === FOFOCA_QUENTE_PHASES.GAME_OVER) {
   //   const newPhase = await preparePhase(store, state, players);
-  //   return utils.firestore.saveGame(sessionRef, newPhase);
+  //   return saveGame(sessionRef, newPhase);
   // }
 
   return true;

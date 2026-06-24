@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateState, updateStore } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 import type { PlayerSuggestion } from './types';
@@ -17,7 +17,7 @@ export const handleSubmitWordSelectionVotes = async (
   playerId: UID,
   votes: string[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -41,7 +41,7 @@ export const handleSubmitSuggestions = async (
   playerId: UID,
   suggestions: string[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -65,7 +65,7 @@ export const handleUpdateValidSuggestions = async (
   playerId: UID,
   suggestions: PlainObject,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -89,7 +89,7 @@ export const handleSubmitValidation = async (
   playerId: UID,
   validSuggestions: PlayerSuggestion[],
 ) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -109,7 +109,7 @@ export const handleSubmitValidation = async (
  * @param guess - The guess string
  */
 export const handleSendGuess = async (gameName: string, gameId: UID, playerId: UID, guess: string) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -129,7 +129,7 @@ export const handleSendGuess = async (gameName: string, gameId: UID, playerId: U
  * @param outcome - The outcome string (correct/incorrect)
  */
 export const handleConfirmGuess = async (gameName: string, gameId: UID, playerId: UID, outcome: string) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,

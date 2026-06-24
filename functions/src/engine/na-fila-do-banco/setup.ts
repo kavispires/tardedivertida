@@ -16,6 +16,7 @@ import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from '.
 import { buildDeck, buildTellers } from './helpers';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * [Setup Phase] - Initialize game, create deck, and setup achievements
@@ -442,7 +443,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
@@ -461,7 +462,7 @@ export const prepareGameOverPhase = async (
   // Save
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

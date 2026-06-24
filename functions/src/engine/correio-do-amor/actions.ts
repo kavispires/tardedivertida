@@ -1,8 +1,8 @@
 // Helpers
-import utils from '../../utils';
-import { pushValue } from '../../utils/firestore';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
+import * as firestoreValueUtils from '../../services/firestore-core';
 
 /**
  * Handles player card submission
@@ -21,7 +21,7 @@ export const handleCard = async (
     playedEffect: string;
   },
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -29,7 +29,7 @@ export const handleCard = async (
     change: {
       activeCardId: payload.playedCardId,
       activeEffectKeyword: payload.playedEffect,
-      discardPile: pushValue(payload.playedCardId),
+      discardPile: firestoreValueUtils.pushValue(payload.playedCardId),
       [`players.${playerId}.hand`]: [payload.keptCardId],
     },
     nextPhaseFunction: getNextPhase,
@@ -44,7 +44,7 @@ export const handleCard = async (
  * @param selections - The selections data
  */
 export const handleSelections = async (gameName: string, gameId: UID, playerId: UID, selections: unknown) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

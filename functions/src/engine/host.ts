@@ -10,6 +10,8 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import { retireGamesFromUsers } from '../utils/admin-cleanup';
 import { isEmulatingEnvironment } from '../utils/environment';
 import { throwHttpsError, verifyPayload } from '../services/firebase-core';
+import { getGlobalCollectionRef, getMetaCollectionRef, getSessionRef } from '../services/firestore-core';
+import { fetchGameSessionDoc, getStateReferences } from '../services/game-session';
 
 export type CreateGamePayload = {
   gameName: string;
@@ -46,7 +48,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   }
 
   // Get list of used ids
-  const globalRef = utils.firestore.getGlobalRef();
+  const globalRef = getGlobalCollectionRef();
   const usedGameIdsDocs = await globalRef.doc(USED_GAME_IDS).get();
   const usedGameIdsData = usedGameIdsDocs.data();
   const usedGameIds = Object.keys(usedGameIdsData ?? {});
@@ -70,7 +72,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   // Create game entry in database
   let response = {};
   try {
-    const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
+    const sessionRef = getSessionRef(gameName, gameId);
     const { getInitialState } = delegatorUtils.getEngine(gameName);
 
     const uid = auth?.uid ?? 'admin?';
@@ -79,7 +81,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
 
-    const metaRef = utils.firestore.getMetaRef();
+    const metaRef = getMetaCollectionRef();
     await metaRef.doc(gameId).set(meta);
 
     response = meta;
@@ -117,7 +119,7 @@ const lockGame = async (data: BasicGamePayload) => {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
 
-  const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
+  const { state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
 
   const players = state?.players ?? {};
 
@@ -147,7 +149,7 @@ const lockGame = async (data: BasicGamePayload) => {
 
   try {
     // Set info with players object and isLocked
-    await utils.firestore.getMetaRef().doc(gameId).update({ isLocked: true, playersIds: listOfPlayers });
+    await getMetaCollectionRef().doc(gameId).update({ isLocked: true, playersIds: listOfPlayers });
     // Starts setup phase
     await getNextPhase(gameName, gameId);
 
@@ -170,11 +172,11 @@ const unlockAndResetGame = async (data: BasicGamePayload) => {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
 
-  const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
 
   try {
     // Unlock game
-    await utils.firestore.getMetaRef().doc(gameId).update({ isLocked: false });
+    await getMetaCollectionRef().doc(gameId).update({ isLocked: false });
     // Set state with new Phase: Lobby
     await sessionRef.doc('state').set({
       phase: 'LOBBY',
@@ -221,7 +223,7 @@ const forceStateProperty = async (data: BasicGamePayload) => {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
 
-  const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('state').update(state);
@@ -244,7 +246,7 @@ const forceLastRound = async (data: BasicGamePayload) => {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
 
-  const sessionRef = utils.firestore.getSessionRef(gameName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('state').update({ 'round.forceLastRound': true });
@@ -265,11 +267,7 @@ const playAgain = async (data: BasicGamePayload) => {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
 
-  const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { sessionRef, state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
 
   const players = state?.players ?? {};
   // Reset players
@@ -279,7 +277,7 @@ const playAgain = async (data: BasicGamePayload) => {
   });
 
   // Update meta
-  const metaDoc = await utils.firestore.getSessionDoc(gameName, gameId, 'meta', actionText);
+  const metaDoc = await fetchGameSessionDoc(sessionRef, gameName, gameId, 'meta', actionText);
   const meta = metaDoc.data() ?? {};
 
   try {
