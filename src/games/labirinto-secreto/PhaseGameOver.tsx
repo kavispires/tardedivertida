@@ -9,11 +9,11 @@ import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { MapSegment, PhaseGameOverState, Tree } from './utils/types';
 import { achievementsReference } from './utils/achievements';

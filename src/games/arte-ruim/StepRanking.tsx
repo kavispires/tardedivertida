@@ -7,10 +7,10 @@ import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
-import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Instruction } from '@components/text/Instruction';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
+import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import { ScoringRules } from './components/TextBlobs';
 

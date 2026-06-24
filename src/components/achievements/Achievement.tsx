@@ -4,6 +4,8 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popover, Tag } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/game';
+// Utils
+import { UNKNOWN_TEXT } from '@utils/constants';
 // Components
 import { DebugOnly } from '@components/debug/DebugOnly';
 import { DualTranslate } from '@components/language/DualTranslate';
@@ -23,8 +25,6 @@ type AchievementProps = {
   value?: number;
 };
 
-const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
-
 /**
  * Component that displays a single achievement with medal icon and description
  */
@@ -38,7 +38,7 @@ export function Achievement({ achievement, value }: AchievementProps) {
         />
       </div>
       <h4 className={styles.achievementTitle}>
-        <DualTranslate>{achievement.title ?? unknownText}</DualTranslate>
+        <DualTranslate>{achievement.title ?? UNKNOWN_TEXT}</DualTranslate>
       </h4>
 
       {Boolean(achievement.description) && (
@@ -46,7 +46,7 @@ export function Achievement({ achievement, value }: AchievementProps) {
           <Popover
             content={
               <>
-                <DualTranslate>{achievement.description ?? unknownText}</DualTranslate> ({value ?? 0})
+                <DualTranslate>{achievement.description ?? UNKNOWN_TEXT}</DualTranslate> ({value ?? 0})
               </>
             }
           >

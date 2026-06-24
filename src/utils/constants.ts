@@ -306,3 +306,5 @@ export const PLACEHOLDER_PLAYER: GamePlayer = {
 };
 
 export const VIEWER_ID = '$viewer$';
+
+export const UNKNOWN_TEXT = { pt: 'Desconhecido', en: 'Unknown' };

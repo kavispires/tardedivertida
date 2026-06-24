@@ -4,9 +4,11 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Popover } from 'antd';
 // Types
 import type { AchievementInfo } from 'types/game';
+// Utils
+import { UNKNOWN_TEXT } from '@utils/constants';
 // Components
+import { Medal } from '@components/achievements/Medal';
 import { GameBanner } from '@components/general/GameBanner';
-import { Medal } from '@components/general/Medal';
 import { DualTranslate } from '@components/language/DualTranslate';
 
 type AchievementProps = {
@@ -16,8 +18,6 @@ type AchievementProps = {
   value?: number;
   width: number;
 };
-
-const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 export function AchievementCard({ gameName, gameTitle, achievement, value, width }: AchievementProps) {
   return (
@@ -44,7 +44,7 @@ export function AchievementCard({ gameName, gameTitle, achievement, value, width
           />
         </div>
         <h4 className="achievement-card__title">
-          <DualTranslate>{achievement.title ?? unknownText}</DualTranslate>
+          <DualTranslate>{achievement.title ?? UNKNOWN_TEXT}</DualTranslate>
         </h4>
 
         {Boolean(achievement.description) && (
@@ -52,7 +52,7 @@ export function AchievementCard({ gameName, gameTitle, achievement, value, width
             <Popover
               content={
                 <>
-                  <DualTranslate>{achievement.description ?? unknownText}</DualTranslate> ({value ?? 0})
+                  <DualTranslate>{achievement.description ?? UNKNOWN_TEXT}</DualTranslate> ({value ?? 0})
                 </>
               }
             >

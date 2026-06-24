@@ -3,10 +3,10 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { CrownIcon } from '@icons/CrownIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { MesmiceGalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';

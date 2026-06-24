@@ -8,12 +8,12 @@ import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

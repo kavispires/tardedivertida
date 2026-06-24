@@ -11,14 +11,14 @@ import { MagicCandlesIcon } from '@icons/MagicCandlesIcon';
 import { MagicCultLeaderIcon } from '@icons/MagicCultLeaderIcon';
 import { MagicSkullIcon } from '@icons/MagicSkullIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Instruction } from '@components/text/Instruction';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { Title } from '@components/text/Title';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

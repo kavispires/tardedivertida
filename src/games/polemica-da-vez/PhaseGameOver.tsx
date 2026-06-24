@@ -8,10 +8,10 @@ import type { PhaseProps } from 'types/game';
 import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { PastTweet, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

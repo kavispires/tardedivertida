@@ -3,8 +3,8 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { FlagIcon } from '@icons/FlagIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { PhaseGameOverState } from './utils/types';
 import { CharactersBoard } from './components/CharactersBoard';

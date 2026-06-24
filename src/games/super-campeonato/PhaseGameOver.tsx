@@ -7,14 +7,14 @@ import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
+import { Achievements } from '@components/achievements/Achievements';
 import { CharacterCard } from '@components/cards/CharacterCard';
 import { TextCard } from '@components/cards/TextCard';
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { Title } from '@components/text/Title';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';
