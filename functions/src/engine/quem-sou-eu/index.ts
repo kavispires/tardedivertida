@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { TOTAL_ROUNDS, PLAYER_COUNTS, QUEM_SOU_EU_PHASES, QUEM_SOU_EU_ACTIONS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,12 +6,22 @@ import type {
   QuemSouEuOptions,
   QuemSouEuSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { TOTAL_ROUNDS, PLAYER_COUNTS, QUEM_SOU_EU_PHASES, QUEM_SOU_EU_ACTIONS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
-import { getResourceData } from './data';
+// Internal
 import { handleSubmitCharacters, handleSubmitGlyphs, handleSubmitGuesses } from './actions';
+import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareCharacterFilteringPhase,
@@ -23,12 +30,6 @@ import {
   prepareResultsPhase,
   prepareGameOverPhase,
 } from './setup';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

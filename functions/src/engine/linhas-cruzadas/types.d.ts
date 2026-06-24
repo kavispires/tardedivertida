@@ -1,3 +1,4 @@
+// Types
 import type { ArteRuimCardData, TextCardData } from '../../types/tdr';
 import type { LINHAS_CRUZADAS_ACTIONS } from './constants';
 

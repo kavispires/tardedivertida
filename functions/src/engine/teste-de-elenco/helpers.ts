@@ -1,10 +1,12 @@
+import { keyBy, sampleSize, uniq } from 'lodash';
+// Types
+import type { ItemData } from '../../types/tdr';
+import type { ActingRole, FirebaseStateData, FirebaseStoreData, Movie, MovieGenre } from './types';
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES } from './constants';
-import { keyBy, sampleSize, uniq } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { ActingRole, FirebaseStateData, FirebaseStoreData, Movie, MovieGenre } from './types';
-import type { ItemData } from '../../types/tdr';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

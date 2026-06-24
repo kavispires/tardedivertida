@@ -1,6 +1,6 @@
+import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { ArteRuimCardData, ArteRuimGroupData, ArteRuimPairData } from '../../types/tdr';
-import { sampleSize, shuffle } from 'lodash';
 import type {
   ArteRuimDrawing,
   FirebaseStoreData,
@@ -10,8 +10,9 @@ import type {
 } from './types';
 // Constants
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD, DEFAULT_LEVELS, BASIC_LEVELS } from './constants';
-// Helpers
+// Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

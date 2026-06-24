@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS, MENTE_COLETIVA_ACTIONS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,9 +6,27 @@ import type {
   MenteColetivaOptions,
   MenteColetivaSubmitAction,
 } from './types';
-// Utilities
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS, MENTE_COLETIVA_ACTIONS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import {
+  handleAddAnswer,
+  handleNextAnswers,
+  handleSubmitAnswers,
+  handleSubmitCustomQuestion,
+  handleSubmitQuestion,
+} from './actions';
+import { getQuestions } from './data';
 import { determineNextPhase, determineGameOver } from './helpers';
 import {
   prepareSetupPhase,
@@ -21,20 +36,6 @@ import {
   prepareComparePhase,
   prepareResolutionPhase,
 } from './setup';
-import { getQuestions } from './data';
-import {
-  handleAddAnswer,
-  handleNextAnswers,
-  handleSubmitAnswers,
-  handleSubmitCustomQuestion,
-  handleSubmitQuestion,
-} from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

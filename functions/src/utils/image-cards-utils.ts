@@ -1,6 +1,8 @@
-import { fetchResource } from '../engine/resource';
 import { shuffle } from 'lodash';
+// Services
 import { throwHttpsError } from '../services/firebase-core';
+// Internal
+import { fetchResource } from '../engine/resource';
 
 const deckCache = {};
 

@@ -1,16 +1,17 @@
-// Constants
-import { CATEGORIES_PER_ROUND, MAX_ROUNDS, ONDA_TELEPATICA_PHASES } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 import { random } from 'lodash';
 // Types
 import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { CATEGORIES_PER_ROUND, MAX_ROUNDS, ONDA_TELEPATICA_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildDeck, buildRanking } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildDeck, buildRanking } from './helpers';
 
 /**
  * Setup

@@ -1,6 +1,6 @@
+import { orderBy, shuffle } from 'lodash';
 // Types
 import type { TopicCardData } from '../../types/tdr';
-import { orderBy, shuffle } from 'lodash';
 import type {
   AnswerEvaluationEntry,
   AnswerGridEntry,
@@ -9,8 +9,8 @@ import type {
   LetterEntry,
 } from './types';
 // Constants
-import { ADEDANHX_PHASES } from './constants';
 import { SEPARATOR } from '../../utils/constants';
+import { ADEDANHX_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
 // Internal

@@ -1,14 +1,15 @@
-// Constants
-import { SENSO_LITERARIO_PHASES, TOTAL_ROUNDS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { SENSO_LITERARIO_PHASES, TOTAL_ROUNDS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildDeck, buildRanking, buildSequence } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildDeck, buildRanking, buildSequence } from './helpers';
 
 /**
  * Setup

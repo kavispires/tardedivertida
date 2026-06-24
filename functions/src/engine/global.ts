@@ -1,3 +1,4 @@
+// Services
 import { getGlobalCollectionRef } from '../services/firestore-core';
 
 /**

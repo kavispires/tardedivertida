@@ -1,6 +1,8 @@
-import { TA_NA_CARA_PHASES } from './constants';
+// Types
 import type { TaNaCaraState } from './types';
-// Helpers
+// Constants
+import { TA_NA_CARA_PHASES } from './constants';
+// Utils
 import utils from '../../utils';
 
 /**

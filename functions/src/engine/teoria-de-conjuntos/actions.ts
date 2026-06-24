@@ -1,9 +1,10 @@
-// Utils
-import { getStateReferences, updateState } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Types
 import type { DiagramArea, FirebaseStateData, Guess } from './types';
+// Constants
 import { OUTCOME } from './constants';
+// Services
+import { getStateReferences, updateState } from '../../services/game-session';
 
 /**
  * Submits the selected judge player ID for the game

@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
 import { isEmpty, shuffle, uniq } from 'lodash';
 // Types
 import type {
@@ -12,22 +9,28 @@ import type {
   ResourceData,
   Seed,
 } from './types';
-// Utils
-import utils from '../../utils';
-import { applySeedsToAlienItemKnowledge, checkIsBot, cleanupKnownSpriteIds } from './helpers';
-import { saveUsedItems } from './data';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Tool Kits
 import {
   type AlienAttribute,
   alienAttributesUtils,
   type AlienItem,
 } from '../../utils/tool-kits/alien-attributes';
+// Utils
+import utils from '../../utils';
+// Internal
 import {
   increaseAchievement,
   setTruthyAchievement,
   setupAchievements,
   calculateAchievements,
 } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveUsedItems } from './data';
+import { applySeedsToAlienItemKnowledge, checkIsBot, cleanupKnownSpriteIds } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

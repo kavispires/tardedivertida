@@ -1,6 +1,6 @@
+import { difference, keyBy, sampleSize } from 'lodash';
 // Types
 import type { TestimonyQuestionCardData } from '../../types/tdr';
-import { difference, keyBy, sampleSize } from 'lodash';
 import type {
   FirebaseStateData,
   FirebaseStoreData,
@@ -8,19 +8,21 @@ import type {
   TestemunhaOcularHistoryEntry,
 } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './constants';
-// Helpers
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-import { buildQuestionsDeck, calculateScore, getNewQuestions, getPoolOfSuspects } from './helpers';
+// Internal
 import {
   setupAchievements,
   calculateAchievements,
   pushAchievement,
   setTruthyAchievement,
 } from './achievements';
-import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildQuestionsDeck, calculateScore, getNewQuestions, getPoolOfSuspects } from './helpers';
 
 /**
  * Setup

@@ -1,3 +1,4 @@
+// Types
 import type { ItemData } from '../../types/tdr';
 import type { METALINGUAGEM_ACTIONS, WORD_LENGTH_STATUS } from './constants';
 

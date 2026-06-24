@@ -1,4 +1,16 @@
+import { keyBy, sample, sampleSize } from 'lodash';
+// Types
+import type { BossIdeaCardData } from '../../types/tdr';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  Good,
+  ResourceData,
+  Status,
+  WarehouseSlot,
+} from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   CONTROLE_DE_ESTOQUE_PHASES,
   MIN_ROUNDS,
@@ -8,21 +20,12 @@ import {
   OUTCOME,
   EVENT_TYPE,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { keyBy, sample, sampleSize } from 'lodash';
-// Types
-import type {
-  FirebaseStateData,
-  FirebaseStoreData,
-  Good,
-  ResourceData,
-  Status,
-  WarehouseSlot,
-} from './types';
-import type { BossIdeaCardData } from '../../types/tdr';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { calculateAchievements, setupAchievements } from './achievements';
 import {
   buildRanking,
   concealAllGoods,
@@ -30,8 +33,6 @@ import {
   distributeOrders,
   updateAvailableSlotsInWarehouse,
 } from './helpers';
-import { calculateAchievements, setupAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

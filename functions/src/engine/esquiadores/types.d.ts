@@ -1,3 +1,4 @@
+// Types
 import type { DilemmaCardData } from '../../types/tdr';
 import type { ESQUIADORES_ACTIONS } from './constants';
 

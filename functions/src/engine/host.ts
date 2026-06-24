@@ -1,17 +1,20 @@
+// eslint-disable-next-line
 import * as admin from 'firebase-admin';
 import { orderBy } from 'lodash';
+// Types
+import type { CallableRequest, FirebaseAuth } from '../types/reference';
 // Constants
 import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
-// Utils
-import * as delegatorUtils from '../utils/delegators';
-import utils from '../utils';
-import { feedEmulatorDB } from '../utils/mocks/emulator';
-import type { CallableRequest, FirebaseAuth } from '../types/reference';
-import { retireGamesFromUsers } from '../utils/admin-cleanup';
-import { isEmulatingEnvironment } from '../utils/environment';
+// Services
 import { throwHttpsError, verifyPayload } from '../services/firebase-core';
 import { getGlobalCollectionRef, getMetaCollectionRef, getSessionRef } from '../services/firestore-core';
 import { fetchGameSessionDoc, getStateReferences } from '../services/game-session';
+// Utils
+import utils from '../utils';
+import { retireGamesFromUsers } from '../utils/admin-cleanup';
+import * as delegatorUtils from '../utils/delegators';
+import { isEmulatingEnvironment } from '../utils/environment';
+import { feedEmulatorDB } from '../utils/mocks/emulator';
 
 export type CreateGamePayload = {
   gameName: string;

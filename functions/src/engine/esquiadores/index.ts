@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { ESQUIADORES_ACTIONS, ESQUIADORES_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import type {
   EsquiadoresInitialState,
@@ -9,9 +6,21 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { ESQUIADORES_ACTIONS, ESQUIADORES_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitChoices, handleSubmitBets } from './actions';
+import { getDilemmas } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,
@@ -23,14 +32,6 @@ import {
   prepareLastChangePhase,
   prepareSetupPhase,
 } from './setup';
-import { getDilemmas } from './data';
-import { handleSubmitChoices, handleSubmitBets } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

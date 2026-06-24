@@ -1,13 +1,14 @@
-// Constants
-import { AFFILIATIONS, COMUNICACAO_DUO_PHASES, MAX_ROUNDS, SIDES, STATUS } from './constants';
 // Types
 import type { DeckEntry, FirebaseStateData, FirebaseStoreData, HistoryEntry, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { AFFILIATIONS, COMUNICACAO_DUO_PHASES, MAX_ROUNDS, SIDES, STATUS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal
-import { countDeliverablesLeft } from './helpers';
-import { GAME_NAMES } from '../../utils/constants';
 import { print } from '../../utils/helpers';
+// Internal
 import {
   addToLastAchievement,
   calculateAchievements,
@@ -16,7 +17,7 @@ import {
   setTruthyAchievement,
   setupAchievements,
 } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { countDeliverablesLeft } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

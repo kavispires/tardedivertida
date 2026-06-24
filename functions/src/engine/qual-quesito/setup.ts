@@ -1,4 +1,8 @@
+import { keyBy, orderBy, shuffle } from 'lodash';
+// Types
+import type { FirebaseStateData, FirebaseStoreData, TableEntry, ResourceData, GalleryEntry } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   CARDS_PER_PLAYER,
   CONSECUTIVE_REJECTION_PENALTY,
@@ -9,15 +13,13 @@ import {
   QUAL_QUESITO_PHASES,
   TOTAL_ROUNDS,
 } from './constants';
-// Types
-import type { FirebaseStateData, FirebaseStoreData, TableEntry, ResourceData, GalleryEntry } from './types';
-import { keyBy, orderBy, shuffle } from 'lodash';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { GAME_NAMES } from '../../utils/constants';
-import { buildCardsDictFromPlayersHands } from './helpers';
+// Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildCardsDictFromPlayersHands } from './helpers';
 
 /**
  * Setup

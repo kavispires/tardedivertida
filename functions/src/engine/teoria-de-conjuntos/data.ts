@@ -1,12 +1,13 @@
-// Constants
-import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
-import { TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
-// Type
+// Types
 import type { DiagramTopicData, ItemData } from '../../types/tdr';
 import type { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
-// Helpers
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
+import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
+// Utils
 import utils from '../../utils';
+// Internal
 import * as resourceUtils from '../resource';
 
 /**

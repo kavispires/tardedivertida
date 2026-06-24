@@ -1,7 +1,10 @@
 import { merge, uniq } from 'lodash';
+// Constants
 import { DATA_DOCUMENTS } from '../utils/constants';
-import { isEmulatingEnvironment } from '../utils/environment';
+// Services
 import { getDataCollectionRef } from '../services/firestore-core';
+// Utils
+import { isEmulatingEnvironment } from '../utils/environment';
 
 /**
  * Gets document from data in firestore

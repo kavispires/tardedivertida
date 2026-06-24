@@ -1,16 +1,17 @@
-// Constants
-import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { setupAchievements, calculateAchievements } from './achievements';
 // Internal
-import { addItems, addSpecial, calculateResults } from './helpers';
+import { setupAchievements, calculateAchievements } from './achievements';
 import { savedData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { addItems, addSpecial, calculateResults } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

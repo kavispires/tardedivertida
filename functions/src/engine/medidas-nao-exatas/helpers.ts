@@ -1,10 +1,12 @@
-// Constants
-import { MEDIDAS_NAO_EXATAS_PHASES } from './constants';
 import { orderBy, uniq } from 'lodash';
-// Utils
-import utils from '../../utils';
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess } from './types';
+// Constants
+import { MEDIDAS_NAO_EXATAS_PHASES } from './constants';
+// Utils
+import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

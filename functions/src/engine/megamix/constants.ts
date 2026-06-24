@@ -1,5 +1,7 @@
-import { GAME_NAMES } from '../../utils/constants';
+// Types
 import type { PartyTrackCandidate, TrackCandidate } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
 
 export const MEGAMIX_PHASES = {
   SETUP: 'SETUP',

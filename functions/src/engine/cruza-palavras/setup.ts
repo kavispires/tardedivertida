@@ -1,13 +1,16 @@
-// Constants
-import { CRUZA_PALAVRAS_PHASES, WORDS_PER_COORDINATE } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Types
 import type { Deck, FirebaseStateData, FirebaseStoreData, GridCell, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { CRUZA_PALAVRAS_PHASES, WORDS_PER_COORDINATE } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 // Internal
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
+import { saveData } from './data';
 import {
   buildGrid,
   buildRanking,
@@ -16,8 +19,6 @@ import {
   updateGridWithPlayersClues,
   updatePastClues,
 } from './helpers';
-import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

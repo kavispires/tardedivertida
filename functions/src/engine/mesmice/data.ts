@@ -1,13 +1,14 @@
-// Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { sampleSize } from 'lodash';
 // Types
 import type { ObjectFeatureCardData } from '../../types/tdr';
 import type { MesmiceOptions, ResourceData } from './types';
-// Utils
-import * as resourceUtils from '../resource';
-import utils from '../../utils';
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
-import { sampleSize } from 'lodash';
+// Utils
+import utils from '../../utils';
+// Internal
+import * as resourceUtils from '../resource';
 
 /**
  * Get object features and items

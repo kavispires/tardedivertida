@@ -1,3 +1,4 @@
+// Types
 import type { ConceptData } from './types';
 
 export const IDADE_DA_PREDA_PHASES = {

@@ -1,13 +1,15 @@
-// Constants
-import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
 import type { CustomDeck, FirebaseStateData, FirebaseStoreData } from './types';
+// Constants
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { buildDeck, countLikes, getRanking } from './helpers';
+// Internal
 import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildDeck, countLikes, getRanking } from './helpers';
 
 /**
  * Setup

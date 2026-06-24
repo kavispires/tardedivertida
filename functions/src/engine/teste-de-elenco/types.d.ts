@@ -1,3 +1,4 @@
+// Types
 import type { ItemData, MovieCardData, SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { TESTE_DE_ELENCO_ACTIONS } from './constants';
 

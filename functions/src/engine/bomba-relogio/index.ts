@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { BOMBA_RELOGIO_ACTIONS, BOMBA_RELOGIO_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   BombaRelogioInitialState,
@@ -8,9 +5,20 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { BOMBA_RELOGIO_ACTIONS, BOMBA_RELOGIO_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitDeclarations, handleSubmitTarget, handleUpdateTargetPlayer } from './actions';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -18,13 +26,6 @@ import {
   prepareExaminationPhase,
   prepareGameOverPhase,
 } from './setup';
-import { handleSubmitDeclarations, handleSubmitTarget, handleUpdateTargetPlayer } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

@@ -1,4 +1,8 @@
+import { sample, sampleSize, shuffle } from 'lodash';
+// Types
+import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   DOOR_LEVELS,
   DOOR_OPTIONS_PER_ROUND,
@@ -11,12 +15,13 @@ import {
   TRAPS_ENTRIES,
   WIN_CONDITION,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { sample, sampleSize, shuffle } from 'lodash';
-// Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
+import { saveData } from './data';
 import {
   botDoorSelection,
   calculateDifficulty,
@@ -25,9 +30,6 @@ import {
   getDoorSet,
   mergeVisitedDoorsRelationships,
 } from './helpers';
-import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup

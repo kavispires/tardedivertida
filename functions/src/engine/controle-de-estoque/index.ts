@@ -1,3 +1,10 @@
+// Types
+import type {
+  ControleDeEstoqueInitialState,
+  ControleDeEstoqueSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
+} from './types';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import {
@@ -6,17 +13,21 @@ import {
   PLAYER_COUNTS,
   MIN_ROUNDS,
 } from './constants';
-// Types
-import type {
-  ControleDeEstoqueInitialState,
-  ControleDeEstoqueSubmitAction,
-  FirebaseStateData,
-  FirebaseStoreData,
-} from './types';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+import { isEmulatingEnvironment } from '../../utils/environment';
+// Internal
+import { handleConfirmGood, handleFulfillOrders, handlePlaceGood } from './actions';
+import { getData } from './data';
 import { determineNextPhase } from './helpers';
+import { FULFILLMENT_MOCK } from './mock';
 import {
   prepareSetupPhase,
   prepareTheWarehousePhase,
@@ -25,16 +36,6 @@ import {
   prepareFulfillmentPhase,
   prepareResultsPhase,
 } from './setup';
-import { getData } from './data';
-import { handleConfirmGood, handleFulfillOrders, handlePlaceGood } from './actions';
-import { FULFILLMENT_MOCK } from './mock';
-import { isEmulatingEnvironment } from '../../utils/environment';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

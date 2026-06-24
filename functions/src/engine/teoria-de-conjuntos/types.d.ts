@@ -1,3 +1,4 @@
+// Types
 import type { DiagramTopicData, ItemData } from '../../types/tdr';
 import type { OUTCOME, TEORIA_DE_CONJUNTOS_ACTIONS } from './constants';
 

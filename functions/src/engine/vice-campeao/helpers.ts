@@ -1,9 +1,12 @@
+import { cloneDeep, groupBy, orderBy, sampleSize, uniq } from 'lodash';
+// Types
+import type { FirebaseStoreData, RunActivity, RunnerCard } from './types';
+// Constants
+import { VICE_CAMPEAO_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
-import { VICE_CAMPEAO_PHASES } from './constants';
-import type { FirebaseStoreData, RunActivity, RunnerCard } from './types';
-import { cloneDeep, groupBy, orderBy, sampleSize, uniq } from 'lodash';
 
 /**
  * Determines the next phase based on the current phase and round

@@ -1,3 +1,4 @@
+// Types
 import type { TopicCardData } from '../../types/tdr';
 import type { ADEDANHX_ACTIONS } from './constants';
 

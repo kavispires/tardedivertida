@@ -1,9 +1,11 @@
-import type { DeckEntry, Summary } from './types';
-import utils from '../../utils';
 import { shuffle } from 'lodash';
+// Types
+import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../../types/tdr';
+import type { DeckEntry, Summary } from './types';
 // Constants
 import { COMUNICACAO_DUO_PHASES, AFFILIATIONS, DECK, DECK_ENTRY_STATUS } from './constants';
-import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../../types/tdr';
+// Utils
+import utils from '../../utils';
 
 /**
  * Determines the next phase based on the current phase and round

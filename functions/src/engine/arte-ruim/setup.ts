@@ -1,12 +1,17 @@
-// Types
-import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
-import type { ArteRuimCardData } from '../../types/tdr';
 import { cloneDeep, orderBy, shuffle } from 'lodash';
+// Types
+import type { ArteRuimCardData } from '../../types/tdr';
+import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';
-// Helpers
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
+// Internal
+import { setupAchievements, calculateAchievements } from './achievements';
+import { saveUsedCards } from './data';
 import {
   buildDeck,
   buildGallery,
@@ -17,9 +22,6 @@ import {
   getNewPastDrawings,
   getTwoUniquePairCards,
 } from './helpers';
-import { saveUsedCards } from './data';
-import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - builds the card deck and initializes game settings

@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
 // Types
 import type {
   NoRuaDoMedoInitialState,
@@ -9,9 +6,20 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
-// Utilities
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitDecision } from './actions';
 import { determineOutcome, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -20,13 +28,6 @@ import {
   prepareStreetEndPhase,
   prepareGameOverPhase,
 } from './setup';
-import { handleSubmitDecision } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

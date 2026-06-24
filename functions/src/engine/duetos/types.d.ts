@@ -1,3 +1,4 @@
+// Types
 import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../../types/tdr';
 import type { DUETOS_ACTIONS } from './constants';
 

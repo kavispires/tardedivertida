@@ -1,9 +1,16 @@
-import stringSimilarity from 'string-similarity';
-import utils from '../../utils';
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
-import { buildDecks } from '../na-rua-do-medo/helpers';
-import type { HouseCard } from '../na-rua-do-medo/types';
 import { cloneDeep, orderBy, random, sample, sampleSize, shuffle, uniq } from 'lodash';
+import stringSimilarity from 'string-similarity';
+// Types
+import type {
+  CrimeSceneTileData,
+  DatingCandidateCardData,
+  MovieReviewCardData,
+  TextCardData,
+} from '../../types/tdr';
+import type { HouseCard } from '../na-rua-do-medo/types';
+import type { AvailableTrack, FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
+// Constants
+import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
 import {
   MEGAMIX_PHASES,
   PARTY_GAMES,
@@ -13,13 +20,10 @@ import {
   TOTAL_ROUNDS,
   WINNING_CONDITION,
 } from './constants';
-import type { AvailableTrack, FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
-import type {
-  CrimeSceneTileData,
-  DatingCandidateCardData,
-  MovieReviewCardData,
-  TextCardData,
-} from '../../types/tdr';
+// Utils
+import utils from '../../utils';
+// Internal
+import { buildDecks } from '../na-rua-do-medo/helpers';
 import { increaseAchievement, pushAchievement } from './achievements';
 
 /**
@@ -533,7 +537,6 @@ export const getMostVotes = (players: Players, property = 'cardId'): MostScoring
     scoringType: scoringType as MostScoring['scoringType'],
   };
 };
-
 
 export const getRanking = (players: Players, scoring: MostScoring, currentRound: number): NewScore[] => {
   // Gained points: [already on Winning team, joining Winning team]

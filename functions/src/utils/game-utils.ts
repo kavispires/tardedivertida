@@ -1,5 +1,7 @@
 import { sampleSize } from 'lodash';
+// Constants
 import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
+// Internal
 import { buildBooleanDictionary } from './helpers';
 import { getListOfPlayers } from './players-utils';
 

@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { LABIRINTO_SECRETO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, LABIRINTO_SECRETO_ACTIONS } from './constants';
 // Types
 import type {
   LabirintoSecretoGameOptions,
@@ -9,19 +6,10 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
-// Utilities
-import utils from '../../utils';
-// Internal Functions
-import { determineGameOver, determineNextPhase } from './helpers';
-import {
-  prepareSetupPhase,
-  prepareGameOverPhase,
-  prepareMapBuildingPhase,
-  preparePathFollowingPhase,
-  prepareResultsPhase,
-} from './setup';
-import { getData } from './data';
-import { handleSubmitMap, handleSubmitPath } from './actions';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { LABIRINTO_SECRETO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, LABIRINTO_SECRETO_ACTIONS } from './constants';
+// Services
 import {
   validateSubmitActionPayload,
   validateSubmitActionProperties,
@@ -33,6 +21,19 @@ import {
   triggerSetupPhase,
   triggerWaitPhase,
 } from '../../services/game-session';
+// Utils
+import utils from '../../utils';
+// Internal
+import { handleSubmitMap, handleSubmitPath } from './actions';
+import { getData } from './data';
+import { determineGameOver, determineNextPhase } from './helpers';
+import {
+  prepareSetupPhase,
+  prepareGameOverPhase,
+  prepareMapBuildingPhase,
+  preparePathFollowingPhase,
+  prepareResultsPhase,
+} from './setup';
 
 /**
  * Gets the initial state for a new game session

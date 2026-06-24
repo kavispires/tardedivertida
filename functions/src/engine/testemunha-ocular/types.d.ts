@@ -1,3 +1,4 @@
+// Types
 import type { CrimeReasonData, SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { OUTCOME, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 

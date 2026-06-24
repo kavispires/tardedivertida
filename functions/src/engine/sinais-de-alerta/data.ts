@@ -1,11 +1,11 @@
+// Types
+import type { TextCardData } from '../../types/tdr';
+import type { FinalGalleryEntry, ResourceData } from './types';
 // Constants
 import { DATA_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-// Types
-import type { FinalGalleryEntry, ResourceData } from './types';
-// Utils
-import * as resourceUtils from '../resource';
-import type { TextCardData } from '../../types/tdr';
+// Internal
 import * as globalUtils from '../global';
+import * as resourceUtils from '../resource';
 
 /**
  * Retrieves the warning sign cards for a given language.

@@ -1,8 +1,8 @@
-// Utils
-import { updatePlayer, updateState, updateStore } from '../../services/game-session';
-// Internal
 import { getNextPhase } from '.';
+// Types
 import type { PlayerSuggestion } from './types';
+// Services
+import { updatePlayer, updateState, updateStore } from '../../services/game-session';
 
 /**
  * Submits the chosen words for the round voting

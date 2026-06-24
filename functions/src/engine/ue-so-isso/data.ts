@@ -1,8 +1,9 @@
 // Types
 import type { PastSuggestion } from './types';
-// Helpers
-import * as dataUtils from '../collections';
+// Utils
 import utils from '../../utils';
+// Internal
+import * as dataUtils from '../collections';
 import { findDuplicateSuggestions } from './helpers';
 
 /**

@@ -1,14 +1,16 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Types
 import type { GroupQuestionCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
-// Helpers
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
+// Services
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
+// Utils
+import utils from '../../utils';
+// Internal
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import utils from '../../utils';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get question cards resource based on the game's language

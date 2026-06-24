@@ -1,6 +1,6 @@
+import { shuffle } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
-import { shuffle } from 'lodash';
 import type {
   CurrentSuggestions,
   FirebaseStoreData,
@@ -12,8 +12,9 @@ import type {
 } from './types';
 // Constants
 import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_PHASES } from './constants';
-// Utilities
+// Utils
 import utils from '../../utils';
+// Internal
 import { pushAchievement, increaseAchievement } from './achievements';
 
 /**

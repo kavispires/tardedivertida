@@ -1,3 +1,4 @@
+// Types
 import type { ArteRuimCardData, ArteRuimGroupData, ArteRuimPairData } from '../../types/tdr';
 import type { ARTE_RUIM_ACTIONS } from './constants';
 

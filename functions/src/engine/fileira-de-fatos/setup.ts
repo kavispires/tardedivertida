@@ -1,16 +1,17 @@
-// Constants
-import { SCENARIOS_PER_ROUND, FILEIRA_DE_FATOS_PHASES, ROUND_TYPES } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 import { sample, sampleSize } from 'lodash';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import type { TextCardData } from '../../types/tdr';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { SCENARIOS_PER_ROUND, FILEIRA_DE_FATOS_PHASES, ROUND_TYPES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildRanking } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildRanking } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

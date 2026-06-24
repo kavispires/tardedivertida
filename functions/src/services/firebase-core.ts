@@ -1,6 +1,8 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
+// Types
 import type { GenericCallableFunction } from '../types/reference';
+// Utils
 import { isEmulatingEnvironment } from '../utils/environment';
 
 /**

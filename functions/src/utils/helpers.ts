@@ -1,3 +1,7 @@
+import { mean } from 'lodash';
+// Internal
+import { isDevelopmentEnvironment } from './environment';
+
 /**
  * Generic utility functions for common operations.
  *
@@ -11,9 +15,6 @@
  * For game-specific utilities like game flow, scoring, rounds, and randomization,
  * see game-utils.ts instead.
  */
-
-import { mean } from 'lodash';
-import { isDevelopmentEnvironment } from './environment';
 
 /**
  * Prints content to console in JSON format when running in emulation

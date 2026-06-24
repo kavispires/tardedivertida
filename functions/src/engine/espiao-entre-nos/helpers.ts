@@ -1,8 +1,8 @@
-// Constants
-import { ESPIAO_ENTRE_NOS_PHASES, GAME_DURATION, OUTCOMES, SPY } from './constants';
 import { shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
+// Constants
+import { ESPIAO_ENTRE_NOS_PHASES, GAME_DURATION, OUTCOMES, SPY } from './constants';
 // Utils
 import utils from '../../utils';
 

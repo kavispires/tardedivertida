@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES, SUPER_CAMPEONATO_ACTIONS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,17 +6,27 @@ import type {
   SuperCampeonatoOptions,
   SuperCampeonatoSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES, SUPER_CAMPEONATO_ACTIONS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
-import { getResourceData } from './data';
+// Internal
 import {
   handleSubmitBets,
   handleSubmitChallenge,
   handleSubmitContenders,
   handleSubmitVotes,
 } from './actions';
+import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareBattlePhase,
   prepareBetsPhase,
@@ -29,12 +36,6 @@ import {
   prepareResultsPhase,
   prepareSetupPhase,
 } from './setup';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

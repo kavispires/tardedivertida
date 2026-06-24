@@ -1,16 +1,17 @@
+import { shuffle } from 'lodash';
 // Types
 import type { CategoryCard, Deck, OndaTelepaticaOptions, ResourceData } from './types';
 // Constants
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import {
   ONDA_TELEPATICA_PHASES,
   CATEGORIES_PER_ROUND,
   GAME_OVER_SCORE_THRESHOLD,
   MAX_ROUNDS,
 } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
-import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

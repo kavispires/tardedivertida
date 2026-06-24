@@ -1,3 +1,4 @@
+// Types
 import type { ContenderCardData } from '../../types/tdr';
 import type { QUEM_SOU_EU_ACTIONS } from './constants';
 

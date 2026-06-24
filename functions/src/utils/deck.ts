@@ -1,5 +1,6 @@
-import utils from './index';
 import { shuffle } from 'lodash';
+// Internal
+import utils from './index';
 
 /**
  * Sets up the game by distributing cards to players.

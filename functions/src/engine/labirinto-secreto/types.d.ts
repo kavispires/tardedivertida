@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { DIRECTIONS, LABIRINTO_SECRETO_ACTIONS } from './constants';
 

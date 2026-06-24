@@ -1,13 +1,14 @@
+// Types
+import type { ContenderCardData } from '../../types/tdr';
+import type { QuemSouEuOptions, ResourceData } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../../utils/constants';
 import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './constants';
-// Type
-import type { QuemSouEuOptions, ResourceData } from './types';
-// Helpers
-import * as globalUtils from '../global';
-import * as collectionUtils from '../collections';
+// Utils
 import utils from '../../utils';
-import type { ContenderCardData } from '../../types/tdr';
+// Internal
+import * as collectionUtils from '../collections';
+import * as globalUtils from '../global';
 
 /**
  * Get characters based on the game's language

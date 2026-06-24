@@ -1,16 +1,17 @@
-// Constants
-import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT, TOTAL_ROUNDS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { cloneDeep, sample } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT, TOTAL_ROUNDS } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 // Internal
-import { calculateRanking, countImpostorVotes } from './helpers';
+import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { calculateRanking, countImpostorVotes } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

@@ -1,14 +1,6 @@
-// Constants
-import {
-  MAX_ROUNDS,
-  MENTE_COLETIVA_PHASES,
-  PASTURE_GAME_OVER_THRESHOLD,
-  QUESTIONS_PER_ROUND,
-  SHORT_PASTURE_GAME_OVER_THRESHOLD,
-} from './constants';
+import { orderBy, sample, shuffle } from 'lodash';
 // Types
 import type { GroupQuestionCardData } from '../../types/tdr';
-import { orderBy, sample, shuffle } from 'lodash';
 import type {
   AllQuestions,
   AnswerEntry,
@@ -18,8 +10,17 @@ import type {
   PastureChangeEntry,
   SheepAnimation,
 } from './types';
+// Constants
+import {
+  MAX_ROUNDS,
+  MENTE_COLETIVA_PHASES,
+  PASTURE_GAME_OVER_THRESHOLD,
+  QUESTIONS_PER_ROUND,
+  SHORT_PASTURE_GAME_OVER_THRESHOLD,
+} from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

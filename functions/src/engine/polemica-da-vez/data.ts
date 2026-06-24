@@ -1,8 +1,9 @@
+// Types
+import type { CustomDeck } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Helpers
+// Internal
 import * as resourceUtils from '../resource';
-import type { CustomDeck } from './types';
 
 /**
  * Get tweet cards resource based on the game's language

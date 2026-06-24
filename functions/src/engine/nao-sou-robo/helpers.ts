@@ -1,3 +1,7 @@
+import { orderBy } from 'lodash';
+// Types
+import type { Captcha, CaptchaCard, FirebaseStoreData, GalleryEntry, Robot } from './types';
+// Constants
 import {
   BEAT_THRESHOLD,
   CARD_SELECTION_PER_PLAYER_COUNT,
@@ -9,8 +13,7 @@ import {
 } from './constants';
 // Utils
 import utils from '../../utils';
-import { orderBy } from 'lodash';
-import type { Captcha, CaptchaCard, FirebaseStoreData, GalleryEntry, Robot } from './types';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

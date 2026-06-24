@@ -1,16 +1,17 @@
-// Constants
-import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { keyBy, sampleSize } from 'lodash';
 // Types
 import type { ItemData, ObjectFeatureCardData } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { calculateFinalGroupScore, determineOutcome } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { calculateFinalGroupScore, determineOutcome } from './helpers';
 
 /**
  * Setup

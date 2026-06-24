@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_ACTIONS, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -9,11 +6,22 @@ import type {
   PolemicaDaVezOptions,
   PolemicaDaVezSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_ACTIONS, POLEMICA_DA_VEZ_PHASES } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineGameOver, determineNextPhase } from './helpers';
+// Internal
+import { handleSubmitReaction, handleSubmitTweet } from './actions';
 import { getTweets } from './data';
+import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -21,13 +29,6 @@ import {
   prepareResolutionPhase,
   prepareTweetSelectionPhase,
 } from './setup';
-import { handleSubmitReaction, handleSubmitTweet } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

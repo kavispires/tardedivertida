@@ -1,12 +1,13 @@
-// Constants
-import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_COUNT } from './constants';
-import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize, shuffle } from 'lodash';
-// Type
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { GalleryEntry, ResourceData } from './types';
-// Helpers
+// Constants
+import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_COUNT } from './constants';
+// Utils
 import utils from '../../utils';
+// Internal
 import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';

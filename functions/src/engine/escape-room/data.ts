@@ -1,6 +1,6 @@
 // Types
 import type { EscapeRoomOptions, ResourceData } from './types';
-// Utils
+
 // import * as dataUtils from '../collections';
 // import utils from '../../utils';
 // import * as resourceUtils from '../resource';

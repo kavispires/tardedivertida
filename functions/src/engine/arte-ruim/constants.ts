@@ -1,3 +1,4 @@
+// Types
 import type { Level4Type } from './types';
 
 export const ARTE_RUIM_PHASES = {

@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { METALINGUAGEM_ACTIONS, METALINGUAGEM_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import type {
   MetalinguagemInitialState,
@@ -9,11 +6,22 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { METALINGUAGEM_ACTIONS, METALINGUAGEM_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
+// Internal
+import { handleSubmitGuess, handleSubmitWord } from './actions';
 import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,
   prepareGuessingPhase,
@@ -21,13 +29,6 @@ import {
   prepareSetupPhase,
   prepareWordCreationPhase,
 } from './setup';
-import { handleSubmitGuess, handleSubmitWord } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

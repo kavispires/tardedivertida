@@ -1,6 +1,8 @@
 import { uniq } from 'lodash';
-import { getListOfPlayers } from './players-utils';
+// Services
 import { getUserCollectionRef } from '../services/firestore-core';
+// Internal
+import { getListOfPlayers } from './players-utils';
 
 /**
  * A single game play entry for a user's game history

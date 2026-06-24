@@ -1,3 +1,4 @@
+// Types
 import type { MovieRole, MovieGenre } from './types';
 
 export const TESTE_DE_ELENCO_PHASES = {

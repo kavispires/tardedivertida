@@ -1,12 +1,16 @@
+import { every, orderBy, sample, sampleSize, shuffle, some } from 'lodash';
+// Types
+import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../types/tdr';
+// Constants
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
+// Services
+import { resetGlobalUsedDocument } from '../services/global-tracker';
+// Internal
+import { updateDataFirebaseDoc } from '../engine/collections';
 import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
 import { fetchResource } from '../engine/resource';
-import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../types/tdr';
-import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 import * as gameUtils from './game-utils';
 import { buildBooleanDictionary } from './helpers';
-import { updateDataFirebaseDoc } from '../engine/collections';
-import { every, orderBy, sample, sampleSize, shuffle, some } from 'lodash';
-import { resetGlobalUsedDocument } from '../services/global-tracker';
 
 /**
  * Retrieves items with optional filtering and NSFW handling

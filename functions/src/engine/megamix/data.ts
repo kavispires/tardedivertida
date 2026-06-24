@@ -1,5 +1,3 @@
-// Constants
-import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 import { sample, sampleSize, shuffle } from 'lodash';
 // Types
 import type {
@@ -21,9 +19,8 @@ import type {
   TextCardData,
 } from '../../types/tdr';
 import type { MegamixGameOptions, ResourceData, Track, TrackCandidate } from './types';
-// Helpers
-import * as resourceUtils from '../resource';
-import utils from '../../utils';
+// Constants
+import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 import {
   CHARACTERS_TRACKS,
   DRAWING_TRACKS,
@@ -35,6 +32,10 @@ import {
   UNPOPULAR_TRACKS,
   WORDS_TRACKS,
 } from './constants';
+// Utils
+import utils from '../../utils';
+// Internal
+import * as resourceUtils from '../resource';
 import {
   getCandidateOnList,
   getCandidatePersonality,

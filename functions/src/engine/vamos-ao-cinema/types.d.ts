@@ -1,3 +1,4 @@
+// Types
 import type { MovieCardData, MovieReviewCardData } from '../../types/tdr';
 import type { VAMOS_AO_CINEMA_ACHIEVEMENTS, VAMOS_AO_CINEMA_ACTIONS } from './constants';
 

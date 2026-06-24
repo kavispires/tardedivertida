@@ -1,14 +1,15 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { TABLE_DECK_TOTAL } from './constants';
 // Types
 import type { TextCardData } from '../../types/tdr';
 import type { ImageCardMatch, ResourceData } from './types';
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { TABLE_DECK_TOTAL } from './constants';
 // Utils
-import * as resourceUtils from '../resource';
+import utils from '../../utils';
+// Internal
 import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
-import utils from '../../utils';
+import * as resourceUtils from '../resource';
 
 /**
  * Get words resource based on the game's language

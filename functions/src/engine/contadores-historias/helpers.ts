@@ -1,11 +1,12 @@
-// Constants
-import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD, NPC } from '../../utils/constants';
 import { shuffle } from 'lodash';
-// Type
+// Types
 import type { ContadoresHistoriasOptions, FirebaseStoreData, Table } from './types';
+// Constants
+import { DOUBLE_ROUNDS_THRESHOLD, NPC } from '../../utils/constants';
+import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

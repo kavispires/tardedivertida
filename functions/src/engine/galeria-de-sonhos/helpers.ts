@@ -1,7 +1,7 @@
+import { sampleSize } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
 import type { AllWords, FirebaseStoreData, ImageCard, PlayerCard } from './types';
-import { sampleSize } from 'lodash';
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils

@@ -1,8 +1,9 @@
-// Helpers
-import { updatePlayer } from '../../services/game-session';
-// Internal functions
-import { getNextPhase } from './index';
+// Types
 import type { Guesses } from './types';
+// Services
+import { updatePlayer } from '../../services/game-session';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Handles crime scene submission with all crime details

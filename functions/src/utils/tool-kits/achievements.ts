@@ -1,3 +1,5 @@
+import { cloneDeep, mean, uniq } from 'lodash';
+
 /**
  * TD ACHIEVEMENTS TOOLKIT
  * Version 1.2.0
@@ -7,8 +9,6 @@
  *
  * This toolkit is self-contained and only requires lodash as an external dependency.
  */
-
-import { cloneDeep, mean, uniq } from 'lodash';
 
 // ========================================
 // SELF-CONTAINED TYPES

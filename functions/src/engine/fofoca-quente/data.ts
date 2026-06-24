@@ -1,12 +1,12 @@
-// Constants
-import { TDR_RESOURCES } from '../../utils/constants';
 import { sampleSize } from 'lodash';
 // Types
-import type { ResourceData, SocialGroup, StaffMember } from './types';
-// Utils
-import * as resourceUtils from '../resource';
 import type { TeenageMotivationData, TeenageRumorData, TeenageStudentData } from '../../types/tdr';
+import type { ResourceData, SocialGroup, StaffMember } from './types';
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 import { TOTAL_RUMORS, TOTAL_STUDENTS } from './constants';
+// Internal
+import * as resourceUtils from '../resource';
 
 /**
  * Get teenage students, rumors, motivations, and social groups

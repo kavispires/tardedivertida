@@ -1,14 +1,19 @@
+// Types
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
-import { feedEmulatorDaily } from '../utils/mocks/emulator';
-import * as dataUtils from './collections';
-import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
+// Constants
 import { DATA_DOCUMENTS } from '../utils/constants';
-import { isEmulatingEnvironment } from '../utils/environment';
+// Services
+import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import {
   getDailyCollectionRef,
   getDataCollectionRef,
   getUserCollectionRef,
 } from '../services/firestore-core';
+// Utils
+import { isEmulatingEnvironment } from '../utils/environment';
+import { feedEmulatorDaily } from '../utils/mocks/emulator';
+// Internal
+import * as dataUtils from './collections';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD

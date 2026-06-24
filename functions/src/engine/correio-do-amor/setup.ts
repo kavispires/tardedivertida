@@ -1,4 +1,7 @@
+// Types
+import type { FestaJuninaCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   CORREIO_DO_AMOR_PHASES,
   DECK_INFO_BY_PLAYER_COUNT,
@@ -6,14 +9,13 @@ import {
   OUTCOME,
   PLAYER_STATUS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-// Types
-import type { FestaJuninaCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
+// Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildRoundDeck } from './helpers';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

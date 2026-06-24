@@ -1,8 +1,8 @@
 // Types
 import type { ExtendedTextCard } from './types';
-// Helpers
+// Services
 import { updatePlayer } from '../../services/game-session';
-// Internal functions
+// Internal
 import { getNextPhase } from './index';
 
 /**

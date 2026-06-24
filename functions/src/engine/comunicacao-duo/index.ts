@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { COMUNICACAO_DUO_ACTIONS, COMUNICACAO_DUO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import type {
   ComunicacaoDuoInitialState,
@@ -9,9 +6,21 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { COMUNICACAO_DUO_ACTIONS, COMUNICACAO_DUO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitRequest, handleSubmitDelivery, handleStopDelivering } from './actions';
+import { getDeck } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -20,15 +29,6 @@ import {
   prepareVerificationPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getDeck } from './data';
-import { handleSubmitRequest, handleSubmitDelivery, handleStopDelivering } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

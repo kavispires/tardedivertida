@@ -1,9 +1,9 @@
-// Types
-import type { FirebaseStateData, FirebaseStoreData, Lodge, MountainDilemma, ResourceData } from './types';
-import type { DilemmaCardData } from '../../types/tdr';
 import { sampleSize, shuffle } from 'lodash';
-// Utils
-import utils from '../../utils';
+// Types
+import type { DilemmaCardData } from '../../types/tdr';
+import type { FirebaseStateData, FirebaseStoreData, Lodge, MountainDilemma, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   BET_TYPES,
   BETTING_CHIPS,
@@ -15,11 +15,14 @@ import {
   SKIER_BET_TYPES,
   SKIERS_BETTING_CHIPS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { aggregateBets, applyBetsToLodges, calculateScores } from './helpers';
-import { makeArray } from '../../utils/helpers';
-import { calculateAchievements, setupAchievements } from './achievements';
+// Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Utils
+import utils from '../../utils';
+import { makeArray } from '../../utils/helpers';
+// Internal
+import { calculateAchievements, setupAchievements } from './achievements';
+import { aggregateBets, applyBetsToLodges, calculateScores } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

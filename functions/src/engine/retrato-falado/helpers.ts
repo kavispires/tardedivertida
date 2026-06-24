@@ -1,10 +1,10 @@
-// Constants
-import { RETRATO_FALADO_PHASES } from './constants';
 import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { MonsterImageData } from '../../types/tdr';
 import type { AllMonsters, FirebaseStoreData, MonsterSketch } from './types';
-// Helpers
+// Constants
+import { RETRATO_FALADO_PHASES } from './constants';
+// Utils
 import utils from '../../utils';
 
 /**

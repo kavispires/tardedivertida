@@ -1,6 +1,3 @@
-// Constants
-import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES, MULLIGAN_HAND } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { orderBy } from 'lodash';
 // Types
 import type {
@@ -10,9 +7,15 @@ import type {
   MapSegment,
   ResourceData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES, MULLIGAN_HAND } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import {
   buildForest,
   buildPaths,
@@ -23,8 +26,6 @@ import {
   getRankingAndProcessScoring,
   updateMaps,
 } from './helpers';
-import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

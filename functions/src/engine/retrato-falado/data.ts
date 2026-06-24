@@ -1,15 +1,17 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { PLAYER_COUNTS } from './constants';
 // Types
 import type { MonsterImageData } from '../../types/tdr';
 import type { MonsterSketch, ResourceData } from './types';
-// Helpers
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { PLAYER_COUNTS } from './constants';
+// Services
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
+// Utils
 import utils from '../../utils';
+// Internal
+import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import * as dataUtils from '../collections';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get monster cards ids

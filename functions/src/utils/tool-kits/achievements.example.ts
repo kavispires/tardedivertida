@@ -1,12 +1,13 @@
+import utils from '..';
+// Internal
+import { achievementBuilder } from './achievements';
+
 /**
  * EXAMPLE: Adedanhx Achievements using the Tool-Kit
  *
  * This demonstrates how to use the achievements tool-kit for a real game.
  * Compare this to the old system in functions/src/engine/adedanhx/
  */
-
-import utils from '..';
-import { achievementBuilder } from './achievements';
 
 // ========================================
 // DEFINITION (replaces constants.ts + setup pattern)

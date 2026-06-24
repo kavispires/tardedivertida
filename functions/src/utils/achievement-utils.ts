@@ -1,3 +1,8 @@
+import { cloneDeep, uniq } from 'lodash';
+// Internal
+import { calculateAverage } from './helpers';
+import { getListOfPlayers } from './players-utils';
+
 /**
  * @deprecated This file is deprecated. Use the new achievements tool-kit instead.
  * See: functions/src/utils/tool-kits/achievements.ts
@@ -8,10 +13,6 @@
  * const achievements = achievementBuilder('GAME_NAME').counter(...).build();
  * ```
  */
-
-import { calculateAverage } from './helpers';
-import { getListOfPlayers } from './players-utils';
-import { cloneDeep, uniq } from 'lodash';
 
 interface StoreAchievement {
   playerId: UID;

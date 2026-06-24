@@ -1,4 +1,6 @@
+// Services
 import { getPublicCollectionRef } from '../services/firestore-core';
+// Utils
 import { isEmulatingEnvironment } from '../utils/environment';
 
 /**

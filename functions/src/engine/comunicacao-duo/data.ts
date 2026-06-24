@@ -1,6 +1,10 @@
+// Types
 import type { ComunicacaoDuoOptions, ResourceData } from './types';
-import utils from '../../utils';
+// Constants
 import { TOTAL_ITEMS } from './constants';
+// Utils
+import utils from '../../utils';
+// Internal
 import { applyDataToDeck } from './helpers';
 
 /**

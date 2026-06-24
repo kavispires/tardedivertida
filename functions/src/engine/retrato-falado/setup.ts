@@ -1,8 +1,9 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, MonsterSketch, ResourceData } from './types';
 // Constants
-import { RETRATO_FALADO_PHASES } from './constants';
 import { GAME_NAMES } from '../../utils/constants';
+import { RETRATO_FALADO_PHASES } from './constants';
+
 // Helpers1
 import utils from '../../utils';
 import { buildDeck, buildRanking, gatherSketches } from './helpers';

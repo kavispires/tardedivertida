@@ -1,4 +1,8 @@
+import { cloneDeep } from 'lodash';
+// Types
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import {
   ADEDANHX_PHASES,
   LETTERS_PER_ROUND,
@@ -6,16 +10,13 @@ import {
   TOPICS_PER_ROUND,
   TOTAL_ROUNDS,
 } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
-import { cloneDeep } from 'lodash';
-// Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers, storeGalleryData } from './helpers';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers, storeGalleryData } from './helpers';
 
 /**
  * Setup phase - builds the card deck and resets previous changes to the store

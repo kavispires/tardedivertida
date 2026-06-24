@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { COLEGAS_DE_QUARTO_ACTIONS } from './constants';
 

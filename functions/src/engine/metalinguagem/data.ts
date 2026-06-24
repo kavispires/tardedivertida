@@ -1,7 +1,10 @@
-import type { MetalinguagemOptions, ResourceData } from './types';
-import utils from '../../utils';
-import { ITEMS_PER_ROUND, MAX_ROUNDS } from './constants';
 import { sampleSize } from 'lodash';
+// Types
+import type { MetalinguagemOptions, ResourceData } from './types';
+// Constants
+import { ITEMS_PER_ROUND, MAX_ROUNDS } from './constants';
+// Utils
+import utils from '../../utils';
 
 /**
  * Get items for the game

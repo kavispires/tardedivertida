@@ -1,13 +1,18 @@
-// Constants
-import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 import { sample, sampleSize } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './constants';
+// Services
+import * as firestoreValueUtils from '../../services/firestore-core';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { calculateAchievements, setupAchievements } from './achievements';
+import { saveData } from './data';
 import {
   buildDeck,
   buildRanking,
@@ -17,10 +22,7 @@ import {
   getRoundWords,
   simulateBotCards,
 } from './helpers';
-import { calculateAchievements, setupAchievements } from './achievements';
-import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-import * as firestoreValueUtils from '../../services/firestore-core';
+
 /**
  * Setup phase - initializes game state and resources
  * @param _store - The Firebase store data

@@ -1,11 +1,12 @@
+import { uniq } from 'lodash';
+// Types
+import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
+import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseStoreData } from './types';
 // Constants
+import { SEPARATOR } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
-import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseStoreData } from './types';
-import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
-import { SEPARATOR } from '../../utils/constants';
-import { uniq } from 'lodash';
 
 /**
  * Determines the next phase based on the current state and game configuration

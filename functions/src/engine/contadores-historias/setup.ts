@@ -1,4 +1,7 @@
+// Types
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 import {
   CARDS_PER_PLAYER,
   CONTADORES_HISTORIAS_PHASES,
@@ -6,16 +9,14 @@ import {
   MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
-// Type
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources

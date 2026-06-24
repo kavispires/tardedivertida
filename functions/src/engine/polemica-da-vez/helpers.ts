@@ -1,4 +1,8 @@
+import { sampleSize } from 'lodash';
+// Types
+import type { CustomTweet, Decks, FirebaseStoreData, PolemicaDaVezOptions } from './types';
 // Constants
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import {
   CUSTOM_TOPICS_PER_ROUND,
   MAX_ROUNDS,
@@ -6,12 +10,9 @@ import {
   SCORE_GOAL,
   TOPICS_PER_ROUND,
 } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
-import { sampleSize } from 'lodash';
-// Types
-import type { CustomTweet, Decks, FirebaseStoreData, PolemicaDaVezOptions } from './types';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

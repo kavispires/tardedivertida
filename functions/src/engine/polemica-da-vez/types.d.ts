@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { POLEMICA_DA_VEZ_ACTIONS } from './constants';
 

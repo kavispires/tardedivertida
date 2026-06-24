@@ -1,6 +1,6 @@
-// Helpers
+// Services
 import { updatePlayer, updateStore } from '../../services/game-session';
-// Internal functions
+// Internal
 import { getNextPhase } from './index';
 
 /**

@@ -1,14 +1,16 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
 // Types
 import type { MovieCardData, MovieReviewCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
+// Constants
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
+// Services
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 // Utils
+import utils from '../../utils';
+// Internal
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import utils from '../../utils';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get movie titles and reviews based on game's language

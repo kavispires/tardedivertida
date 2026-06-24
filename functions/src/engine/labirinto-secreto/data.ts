@@ -1,13 +1,14 @@
-// Constants
-import { TDR_RESOURCES } from '../../utils/constants';
-import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 import { sampleSize } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
 import type { LabirintoSecretoGameOptions, ResourceData } from './types';
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
+import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Utils
-import * as resourceUtils from '../resource';
 import utils from '../../utils';
+// Internal
+import * as resourceUtils from '../resource';
 
 /**
  * Get cards resources based on the game's language

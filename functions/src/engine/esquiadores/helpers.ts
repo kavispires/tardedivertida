@@ -1,8 +1,10 @@
+import { cloneDeep, uniq } from 'lodash';
+// Types
+import type { FirebaseStoreData, Lodge } from './types';
+// Constants
+import { BET_TYPES, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
 // Utils
 import utils from '../../utils';
-import { BET_TYPES, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
-import type { FirebaseStoreData, Lodge } from './types';
-import { cloneDeep, uniq } from 'lodash';
 // Internal
 import { increaseAchievement, pushAchievement } from './achievements';
 

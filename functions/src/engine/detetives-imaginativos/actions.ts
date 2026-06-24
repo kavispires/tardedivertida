@@ -1,11 +1,14 @@
+// Types
+import type { FirebaseStateData } from './types';
 // Constants
 import { HAND_LIMIT } from './constants';
-// Utils
-import { getStateReferences, updatePlayer } from '../../services/game-session';
-import { getNextPhase } from './index';
-import type { FirebaseStateData } from './types';
+// Services
 import { throwHttpsError } from '../../services/firebase-core';
+import { getStateReferences, updatePlayer } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Submits a clue for the current player

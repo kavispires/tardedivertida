@@ -1,11 +1,12 @@
-// Constants
-import { ESCAPE_ROOM_PHASES, MISSIONS_COUNT } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { ESCAPE_ROOM_PHASES, MISSIONS_COUNT } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

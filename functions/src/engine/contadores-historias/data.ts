@@ -1,11 +1,12 @@
-// Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
-import { CARDS_PER_PLAYER } from './constants';
 import { shuffle } from 'lodash';
 // Types
 import type { ResourceData } from './types';
-// Helpers
+// Constants
+import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { CARDS_PER_PLAYER } from './constants';
+// Utils
 import utils from '../../utils';
+// Internal
 import * as dataUtils from '../collections';
 import * as globalUtils from '../global';
 

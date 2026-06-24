@@ -1,12 +1,13 @@
+import { shuffle } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
-import { shuffle } from 'lodash';
 import type { ClueEntry, CruzaPalavrasOptions, Deck, FirebaseStoreData, GridCell, PastClues } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

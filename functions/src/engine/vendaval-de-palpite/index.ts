@@ -1,3 +1,10 @@
+// Types
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  VendavalDePalpiteInitialState,
+  VendavalDePalpiteSubmitAction,
+} from './types';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import {
@@ -6,25 +13,16 @@ import {
   MAX_ROUNDS,
   VENDAVAL_DE_PALPITE_ACTIONS,
 } from './constants';
-// Types
-import type {
-  FirebaseStateData,
-  FirebaseStoreData,
-  VendavalDePalpiteInitialState,
-  VendavalDePalpiteSubmitAction,
-} from './types';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import { determineNextPhase } from './helpers';
-// Internal Functions
-import {
-  prepareClueEvaluations,
-  prepareGameOverPhase,
-  prepareBossPlayerSelection,
-  preparePlayersClues,
-  prepareSecretWordSelection,
-  prepareSetupPhase,
-} from './setup';
+// Internal
 import {
   handleSubmitEvaluation,
   handleSubmitHelp,
@@ -34,12 +32,15 @@ import {
   handleSubmitSecretWord,
 } from './actions';
 import { getData } from './data';
+import { determineNextPhase } from './helpers';
 import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+  prepareClueEvaluations,
+  prepareGameOverPhase,
+  prepareBossPlayerSelection,
+  preparePlayersClues,
+  prepareSecretWordSelection,
+  prepareSetupPhase,
+} from './setup';
 
 /**
  * Gets the initial state for a new game session

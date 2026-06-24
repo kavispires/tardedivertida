@@ -1,9 +1,12 @@
-// Helpers
-import { getStateReferences, updatePlayer } from '../../services/game-session';
-import { getNextPhase } from './index';
+// Types
 import type { FirebaseStateData } from './types';
+// Services
 import { throwHttpsError } from '../../services/firebase-core';
+import { getStateReferences, updatePlayer } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
+// Internal
+import { getNextPhase } from './index';
 
 /**
  * Submits a hint for a target instrument

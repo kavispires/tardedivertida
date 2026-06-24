@@ -1,11 +1,12 @@
 // Types
 import type { ItemData } from '../../types/tdr';
+import type { FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { DUETOS_PHASES } from './constants';
-import type { FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

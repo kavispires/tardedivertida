@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, TA_NA_CARA_PHASES, TA_NA_CARA_ACTIONS } from './constants';
 // Types
 import type {
   FirebaseStateData,
@@ -10,12 +7,22 @@ import type {
   TaNaCaraState,
   TaNaCaraSubmitAction,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, TA_NA_CARA_PHASES, TA_NA_CARA_ACTIONS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
-import { determineNextPhase } from './helpers';
-import { getResourceData } from './data';
+// Internal
 import { handleSubmitAnswer, handleSubmitGuess, handleSubmitPrompt, handleTriggerGuessing } from './actions';
+import { getResourceData } from './data';
+import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -23,12 +30,6 @@ import {
   prepareAnsweringPhase,
   prepareGuessingPhase,
 } from './setup';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

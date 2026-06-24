@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { CRUZA_PALAVRAS_ACTIONS } from './constants';
 

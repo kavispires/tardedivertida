@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { ESCAPE_ROOM_ACTIONS, ESCAPE_ROOM_PHASES, OUTCOME, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   EscapeRoomInitialState,
@@ -9,9 +6,21 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { ESCAPE_ROOM_ACTIONS, ESCAPE_ROOM_PHASES, OUTCOME, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitCard } from './actions';
+import { getEpisode } from './data';
 import { determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -20,14 +29,6 @@ import {
   prepareMissionEvaluationPhase,
   prepareResultsPhase,
 } from './setup';
-import { getEpisode } from './data';
-import { handleSubmitCard } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

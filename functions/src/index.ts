@@ -1,13 +1,15 @@
 // eslint-disable-next-line
-import { onCall } from 'firebase-functions/v2/https';
-// eslint-disable-next-line
 import { initializeApp } from 'firebase-admin/app';
-import { dailyEngine } from './engine/daily';
-import { userEngine } from './engine/user';
-import { hostEngine } from './engine/host';
-import { feedEmulatorUser } from './utils/mocks/emulator';
-import { gameEngine } from './gameEngine';
+// eslint-disable-next-line
+import { onCall } from 'firebase-functions/v2/https';
+// Utils
 import { isEmulatingEnvironment } from './utils/environment';
+import { feedEmulatorUser } from './utils/mocks/emulator';
+// Internal
+import { dailyEngine } from './engine/daily';
+import { hostEngine } from './engine/host';
+import { userEngine } from './engine/user';
+import { gameEngine } from './gameEngine';
 
 initializeApp();
 

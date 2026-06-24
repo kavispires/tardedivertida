@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-// Helpers
+// Services
 import { throwHttpsError } from '../services/firebase-core';
 
 /**

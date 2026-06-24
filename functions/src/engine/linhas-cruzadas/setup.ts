@@ -1,15 +1,16 @@
-// Constants
-import { LINHAS_CRUZADAS_PHASES } from './constants';
 import { sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { LINHAS_CRUZADAS_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
-import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
-import { GAME_NAMES } from '../../utils/constants';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
 
 /**
  * Setup

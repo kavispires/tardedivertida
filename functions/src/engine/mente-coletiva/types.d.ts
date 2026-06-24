@@ -1,3 +1,4 @@
+// Types
 import type { GroupQuestionCardData } from '../../types/tdr';
 import type { MENTE_COLETIVA_ACTIONS } from './constants';
 

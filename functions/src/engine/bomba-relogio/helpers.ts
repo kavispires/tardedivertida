@@ -1,9 +1,11 @@
+import { sample, shuffle } from 'lodash';
+// Types
+import type { DataCounts, FirebaseStoreData, Status, TimeBombCard } from './types';
 // Constants
 import { BOMBA_RELOGIO_PHASES, CARD_TYPES, OUTCOME, ROLES } from './constants';
-import { sample, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import type { DataCounts, FirebaseStoreData, Status, TimeBombCard } from './types';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

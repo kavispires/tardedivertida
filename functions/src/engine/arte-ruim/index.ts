@@ -1,6 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS, ARTE_RUIM_ACTIONS } from './constants';
 // Types
 import type {
   ArteRuimGameOptions,
@@ -9,9 +6,21 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
-// Utilities
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS, ARTE_RUIM_ACTIONS } from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitDrawing, handleSubmitVoting } from './actions';
+import { getCards } from './data';
 import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -20,14 +29,6 @@ import {
   prepareGalleryPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getCards } from './data';
-import { handleSubmitDrawing, handleSubmitVoting } from './actions';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session

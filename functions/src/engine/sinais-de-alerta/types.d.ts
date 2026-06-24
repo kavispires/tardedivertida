@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { SINAIS_DE_ALERTA_ACTIONS } from './constants';
 

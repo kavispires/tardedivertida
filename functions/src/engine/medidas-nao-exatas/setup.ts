@@ -1,16 +1,18 @@
-// Constants
-import { DESCRIPTORS_PER_PLAYER, MEDIDAS_NAO_EXATAS_PHASES, WORDS_PER_PLAYER } from './constants';
 import { keyBy, sampleSize } from 'lodash';
 // Types
+import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { DESCRIPTORS_PER_PLAYER, MEDIDAS_NAO_EXATAS_PHASES, WORDS_PER_PLAYER } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
-import type { TextCardData } from '../../types/tdr';
-import { GAME_NAMES } from '../../utils/constants';
-import { determineResults } from './helpers';
 import { makeArray } from '../../utils/helpers';
+// Internal
 import { calculateAchievements, setupAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { determineResults } from './helpers';
 
 /**
  * Setup

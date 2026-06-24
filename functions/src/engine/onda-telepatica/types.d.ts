@@ -1,3 +1,4 @@
+// Types
 import type { SpectrumCardData } from '../../types/tdr';
 import type { ONDA_TELEPATICA_ACTIONS } from './constants';
 

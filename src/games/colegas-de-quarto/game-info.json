@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "release": "stable",
   "releaseDate": "2026-01-07",
   "available": true,

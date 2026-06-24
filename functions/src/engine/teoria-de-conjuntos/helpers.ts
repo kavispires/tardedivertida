@@ -1,5 +1,7 @@
-import { OUTCOME, TEORIA_DE_CONJUNTOS_PHASES } from './constants';
+// Types
 import type { DiagramArea, Guess } from './types';
+// Constants
+import { OUTCOME, TEORIA_DE_CONJUNTOS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
 

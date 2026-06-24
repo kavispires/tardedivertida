@@ -1,3 +1,4 @@
+// Types
 import type { TextCardData } from '../../types/tdr';
 import type { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
 

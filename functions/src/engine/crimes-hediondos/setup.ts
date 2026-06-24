@@ -1,11 +1,14 @@
-// Constants
-import { CRIMES_HEDIONDOS_PHASES } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import { CRIMES_HEDIONDOS_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { setupAchievements, calculateAchievements } from './achievements';
 import {
   buildCrimes,
   buildRanking,
@@ -20,8 +23,6 @@ import {
   updateCrime,
   updateOrCreateGuessHistory,
 } from './helpers';
-import { setupAchievements, calculateAchievements } from './achievements';
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources

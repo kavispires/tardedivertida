@@ -1,6 +1,5 @@
 // Types
-// Constants
-import { SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
+import type { TextCardData } from '../../types/tdr';
 import type {
   DrawingEntryData,
   FinalGalleryEntry,
@@ -8,9 +7,11 @@ import type {
   GalleryEntry,
   PlayersSay,
 } from './types';
-// Helpers
+// Constants
+import { SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
+// Utils
 import utils from '../../utils';
-import type { TextCardData } from '../../types/tdr';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

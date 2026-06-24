@@ -1,9 +1,11 @@
+// Types
+import type { FirebaseStoreData } from './types';
+// Constants
+import { FILEIRA_DE_FATOS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
 // Internal
 import { increaseAchievement } from './achievements';
-import { FILEIRA_DE_FATOS_PHASES } from './constants';
-import type { FirebaseStoreData } from './types';
 
 /**
  * Determines the next phase based on the current phase and round

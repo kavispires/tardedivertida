@@ -1,3 +1,4 @@
+// Types
 import type { ItemData } from '../../types/tdr';
 import type { IDADE_DA_PREDA_ACHIEVEMENTS, IDADE_DA_PREDA_ACTIONS, IDADE_DA_PREDA_PHASES } from './constants';
 

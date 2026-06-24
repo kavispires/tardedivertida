@@ -11,6 +11,7 @@ import { SEPARATOR } from '../../utils/constants';
 import { COLEGAS_DE_QUARTO_PHASES, POINTS, TARGET_ID } from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
 import { increaseAchievement } from './achievements';
 
 /**

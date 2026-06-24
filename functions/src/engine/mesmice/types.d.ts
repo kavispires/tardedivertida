@@ -1,3 +1,4 @@
+// Types
 import type { ItemData, ObjectFeatureCardData } from '../../types/tdr';
 import type { MESMICE_ACTIONS, OUTCOME } from './constants';
 

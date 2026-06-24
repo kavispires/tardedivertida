@@ -1,11 +1,3 @@
-// Constants
-import { GAME_NAMES } from '../../utils/constants';
-import {
-  PORTA_DOS_DESESPERADOS_PHASES,
-  PLAYER_COUNTS,
-  MAX_ROUNDS,
-  PORTA_DOS_DESESPERADOS_ACTIONS,
-} from './constants';
 // Types
 import type {
   PortaDosDesesperadosInitialState,
@@ -14,9 +6,26 @@ import type {
   FirebaseStoreData,
   PortaDosDesesperadosOptions,
 } from './types';
-// Utilities
+// Constants
+import { GAME_NAMES } from '../../utils/constants';
+import {
+  PORTA_DOS_DESESPERADOS_PHASES,
+  PLAYER_COUNTS,
+  MAX_ROUNDS,
+  PORTA_DOS_DESESPERADOS_ACTIONS,
+} from './constants';
+// Services
+import {
+  validateSubmitActionPayload,
+  validateSubmitActionProperties,
+  throwHttpsError,
+} from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Utils
 import utils from '../../utils';
-// Internal Functions
+// Internal
+import { handleSubmitDoor, handleSubmitPages } from './actions';
+import { getData } from './data';
 import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
@@ -25,14 +34,6 @@ import {
   prepareDoorChoicePhase,
   prepareResolutionPhase,
 } from './setup';
-import { handleSubmitDoor, handleSubmitPages } from './actions';
-import { getData } from './data';
-import {
-  validateSubmitActionPayload,
-  validateSubmitActionProperties,
-  throwHttpsError,
-} from '../../services/firebase-core';
-import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
