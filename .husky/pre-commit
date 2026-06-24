@@ -93,7 +93,7 @@ check_game_versions() {
 }
 
 sort_imports() {
-  echo "♻️ Sorting imports"
+  echo "♻️ Sorting ui imports"
   local files_to_format=""
   # Find and sort the imports in .ts and .tsx files, then re-add them to the staging area
   local staged_files=$(git diff --name-only --cached | grep -E '^src/.*\.(ts|tsx)$')
@@ -109,15 +109,44 @@ sort_imports() {
     fi
   done
 
-  # Run biome on all files after sorting imports
-  if [ -n "$files_to_format" ]; then
-    yarn biome check --staged --write $files_to_format
-    git add $files_to_format
-    echo "   ✨ Biome formatting applied to all files"
+  echo "✅ Done"
+}
+
+sort_functions_imports() {
+  echo "♻️ Sorting functions imports"
+  # Find and sort the imports in .ts and .tsx files in functions/src, then re-add them to the staging area
+  local staged_files=$(git diff --name-only --cached | grep -E '^functions/src/.*\.(ts|tsx)$')
+
+  for file in $staged_files; do
+    if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+      node ./scripts/sort-functions-imports.cjs "$file"
+      git add "$file"
+      echo "   ➕ Sorted and re-added $file to staging."
+    else
+      echo "   ➖ Skipping deleted file: $file"
+    fi
+  done
+
+  echo "✅ Done"
+}
+
+lint_staged_files() {
+  echo "🔎 Linting staged files"
+  # Run biome on all staged files
+  local staged_files=$(git diff --name-only --cached | grep -E '.*\.(ts|tsx)$')
+
+  if [ -n "$staged_files" ]; then
+    yarn biome check --staged --write $staged_files
+    git add $staged_files
+    echo "   ✨ Biome formatting applied to all staged files"
+  else
+    echo "   ➖ No staged .ts or .tsx files to lint."
   fi
 
   echo "✅ Done"
 }
 
+sort_functions_imports
 sort_imports
+lint_staged_files
 check_game_versions
