@@ -1,10 +1,14 @@
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
-import utils from '../utils';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 import * as dataUtils from './collections';
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import { DATA_DOCUMENTS } from '../utils/constants';
 import { isEmulatingEnvironment } from '../utils/environment';
+import {
+  getDailyCollectionRef,
+  getDataCollectionRef,
+  getUserCollectionRef,
+} from '../services/firestore-core';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -33,7 +37,7 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
     return throwHttpsError('Date not provided', actionText);
   }
 
-  const dailyRef = utils.firestore.getDailyRef(data.document);
+  const dailyRef = getDailyCollectionRef(data.document);
   const dailyDoc = await dailyRef.doc(date).get();
 
   if (!dailyDoc.exists) {
@@ -76,7 +80,7 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   if (!id) {
     return throwHttpsError('Payload is missing data', actionText);
   }
-  const userRef = utils.firestore.getUserRef();
+  const userRef = getUserCollectionRef();
 
   let isError = false;
 
@@ -157,7 +161,7 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
   }
 
   try {
-    const docRef = utils.firestore.getDataRef().doc(DATA_DOCUMENTS.TESTIMONIES);
+    const docRef = getDataCollectionRef().doc(DATA_DOCUMENTS.TESTIMONIES);
     const doc = await docRef.get();
     const docData = doc.data() as FirestoreTestimonyData;
     const previousUserData = JSON.parse(docData?.[uid] || '{}') as FirestoreTestimonyData;
@@ -234,7 +238,7 @@ const saveConexoes = async (data: DailySaveConexoesPayload, auth: FirebaseAuth) 
   }
 
   try {
-    const docRef = utils.firestore.getDataRef().doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS_DAILY);
+    const docRef = getDataCollectionRef().doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS_DAILY);
     const doc = await docRef.get();
     const docData = (doc.data() as Record<string, string>) || {};
 

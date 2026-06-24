@@ -1,8 +1,9 @@
 // Helpers
-import utils from '../../utils';
+import { getStateReferences, updatePlayer } from '../../services/game-session';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 import { throwHttpsError } from '../../services/firebase-core';
+import utils from '../../utils';
 
 /**
  * Submits a hint for a target instrument
@@ -27,7 +28,7 @@ export const handleSubmitHint = async (
     position,
   };
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -53,18 +54,14 @@ export const handleSubmitConclusions = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const { players } = await utils.firestore.getStateReferences<FirebaseStateData>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { players } = await getStateReferences<FirebaseStateData>(gameName, gameId, actionText);
 
   const updatedConclusions = {
     ...players[playerId].conclusions,
     ...conclusions,
   };
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -85,7 +82,7 @@ export const handleSubmitConclusions = async (
 export const handleSubmitCode = async (gameName: string, gameId: UID, playerId: UID, code: string) => {
   const actionText = 'submit conclusions';
 
-  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText,

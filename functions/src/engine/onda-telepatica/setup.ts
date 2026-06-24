@@ -10,6 +10,7 @@ import utils from '../../utils';
 import { buildDeck, buildRanking } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -191,7 +192,7 @@ export const prepareGameOverPhase = async (
   // Get achievements
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ONDA_TELEPATICA,
@@ -211,7 +212,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

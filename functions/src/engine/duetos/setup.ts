@@ -10,6 +10,7 @@ import { setupAchievements, calculateAchievements } from './achievements';
 // Internal
 import { addItems, addSpecial, calculateResults } from './helpers';
 import { savedData } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -180,7 +181,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.DUETOS,
@@ -201,7 +202,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

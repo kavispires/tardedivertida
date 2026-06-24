@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { getStateReferences, updatePlayer, updateState, saveGame } from '../../services/game-session';
 import { OUTCOME } from './constants';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
@@ -13,7 +13,7 @@ import { throwHttpsError } from '../../services/firebase-core';
  * @param witnessId - The selected witness player ID
  */
 export const handleSelectWitness = async (gameName: string, gameId: UID, playerId: UID, witnessId: UID) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -33,7 +33,7 @@ export const handleSelectWitness = async (gameName: string, gameId: UID, playerI
  * @param questionId - The selected question ID
  */
 export const handleSelectQuestion = async (gameName: string, gameId: UID, playerId: UID, questionId: UID) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -58,7 +58,7 @@ export const handleGiveTestimony = async (
   playerId: UID,
   testimony: boolean,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -86,11 +86,7 @@ export const handleElimination = async (
     suspectId?: UID;
   },
 ) => {
-  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { sessionRef, state } = await getStateReferences<FirebaseStateData>(gameName, gameId, actionText);
 
   let shouldGoToNextPhase = false;
   state.outcome = OUTCOME.CONTINUE;
@@ -109,7 +105,7 @@ export const handleElimination = async (
     } else {
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
-      await utils.firestore.saveGame(sessionRef, {
+      await saveGame(sessionRef, {
         update: {
           state: {
             eliminatedSuspects,
@@ -165,7 +161,7 @@ export const handleFinalElimination = async (
   playerId: UID,
   suspectId: boolean,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

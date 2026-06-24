@@ -34,6 +34,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -80,7 +81,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -96,7 +97,7 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === SUPER_CAMPEONATO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getResourceData(
@@ -105,44 +106,44 @@ export const getNextPhase = async (
       store.options,
     );
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> CHALLENGE_SELECTION
   if (nextPhase === SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION) {
     const newPhase = await prepareChallengeSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CHALLENGE_SELECTION -> CONTENDER_SELECTION
   if (nextPhase === SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION) {
     const newPhase = await prepareContenderSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CONTENDER_SELECTION -> BETS
   if (nextPhase === SUPER_CAMPEONATO_PHASES.BETS) {
     const newPhase = await prepareBetsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // * -> BATTLE
   if (nextPhase === SUPER_CAMPEONATO_PHASES.BATTLE) {
     const newPhase = await prepareBattlePhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // * -> RESULTS
   if (nextPhase === SUPER_CAMPEONATO_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // RESULTS --> GAME_OVER
   if (nextPhase === SUPER_CAMPEONATO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

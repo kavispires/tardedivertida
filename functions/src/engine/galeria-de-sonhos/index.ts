@@ -33,6 +33,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -90,10 +91,12 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firestore.getStateAndStoreReferences<
-    FirebaseStateData,
-    FirebaseStoreData
-  >(gameName, gameId, 'prepare next phase', currentState);
+  const { sessionRef, state, store } = await getStateAndStoreReferences<FirebaseStateData, FirebaseStoreData>(
+    gameName,
+    gameId,
+    'prepare next phase',
+    currentState,
+  );
   const players = state.players;
 
   // Determine next phase
@@ -102,43 +105,43 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> WORD_SELECTION
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.WORD_SELECTION) {
     const newPhase = await prepareWordSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // WORD_SELECTION -> DREAMS_SELECTION
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION) {
     const newPhase = await prepareDreamsSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // DREAMS_SELECTION -> CARD_PLAY
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> RESOLUTION
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal
 import { getNextPhase } from './index';
 
@@ -18,7 +18,7 @@ export const handleSubmitStory = async (
   story: string,
   cardId: string,
 ) => {
-  await utils.firestore.updatePlayer({
+  await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -43,7 +43,7 @@ export const handleSubmitStory = async (
 export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -65,7 +65,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
  * @returns
  */
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

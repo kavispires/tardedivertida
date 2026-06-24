@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -20,7 +20,7 @@ export const handleSubmitGenre = async (
   movieTitle: string,
   propsIds: UID[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -43,7 +43,7 @@ export const handleSubmitGenre = async (
  * @param actorId - The selected actor ID
  */
 export const handleSubmitActor = async (gameName: string, gameId: UID, playerId: UID, actorId: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

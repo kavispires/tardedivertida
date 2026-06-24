@@ -9,6 +9,7 @@ import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import { sampleSize } from 'lodash';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get question resource based on the game's language
@@ -42,7 +43,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < questionsQuantity) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
     return {
       questions: sampleSize(
         options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),

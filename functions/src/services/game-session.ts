@@ -1,112 +1,25 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
 import { isEmpty } from 'lodash';
-// eslint-disable-next-line
-import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
-import utils from '.';
-import { throwHttpsError } from '../services/firebase-core';
-import { print } from './helpers';
-import { isEmulatingEnvironment } from './environment';
+import utils from '../utils';
+import { throwHttpsError } from './firebase-core';
+import { print } from '../utils/helpers';
+import { isEmulatingEnvironment } from '../utils/environment';
+import { getMetaCollectionRef, getSessionRef } from './firestore-core';
+import * as firestoreValueUtils from './firestore-core';
 
 /**
- * Get Firebase session for the data collection (used to save bot/seed data)
- * @returns firebase data reference
+ * Retrieves the meta document for a game and throws an error if it doesn't exist
+ * @param gameId - The unique identifier for the game
+ * @param actionText - Description of the action being performed, used in error messages
+ * @returns The game's meta document snapshot
  */
-export function getDataRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('data');
-}
-
-/**
- * Get Firebase session for the global collection
- * @returns firebase global reference
- */
-export function getGlobalRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('global');
-}
-
-/**
- * Get Firebase session for the meta collection
- * @returns firebase meta reference
- */
-export function getMetaRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('meta');
-}
-
-/**
- * Get Firebase session for the public collection
- * @returns firebase public reference
- */
-export function getPublicRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('public');
-}
-
-/**
- * Get Firebase session for the user collection
- * @returns firebase public reference
- */
-export function getUserRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('users');
-}
-
-/**
- * Get Firebase session for the daily collection
- * @param documentName = daily or diario
- * @returns firebase public reference
- */
-export function getDailyRef(
-  documentName: string,
-): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection(documentName);
-}
-
-/**
- * Get Firebase session for gameId in collection
- * @param gameName
- * @param gameId
- * @returns firebase session reference
- */
-export function getSessionRef(
-  gameName: string,
-  gameId: string,
-): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return getFirestore().collection('games').doc(gameName).collection(gameId);
-}
-
-/**
- * Aids deleting a value of a document on an update
- */
-export function deleteValue() {
-  return FieldValue.delete();
-}
-
-/**
- * Aids increasing a numerical value of a document on an update
- * @param value number
- */
-export function incrementValue(value = 1) {
-  return FieldValue.increment(value);
-}
-
-/**
- * Aids pushing a value to an array on an update
- * @param value any
- */
-export function pushValue(...value: unknown[]) {
-  return FieldValue.arrayUnion(...value);
-}
-
-/**
- * Get firebase doc verifying its existence
- * @param gameId
- * @param actionText
- * @returns
- */
-export async function getMetaDoc(
+export async function fetchGameMetaDoc(
   gameId: string,
   actionText: string,
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
-  const metaRef = getMetaRef();
+  const metaRef = getMetaCollectionRef();
   const gameDoc = await metaRef.doc(gameId).get();
 
   if (!gameDoc.exists) {
@@ -120,20 +33,21 @@ export async function getMetaDoc(
 }
 
 /**
- * Get firebase doc verifying its existence
- * @param gameName
- * @param gameId
- * @param docName
- * @param actionText
- * @returns
+ * Retrieves a specific document from a game session and throws an error if it doesn't exist
+ * @param sessionRef - The Firestore collection reference for the game session
+ * @param gameName - The name of the game
+ * @param gameId - The unique identifier for the game session
+ * @param docName - The name of the document to retrieve (e.g., 'state', 'store')
+ * @param actionText - Description of the action being performed, used in error messages
+ * @returns The requested session document snapshot
  */
-export async function getSessionDoc(
+export async function fetchGameSessionDoc(
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
   gameName: string,
   gameId: string,
   docName: string,
   actionText: string,
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
-  const sessionRef = getSessionRef(gameName, gameId);
   const gameDoc = await sessionRef.doc(docName).get();
 
   if (!gameDoc.exists) {
@@ -147,11 +61,11 @@ export async function getSessionDoc(
 }
 
 /**
- * Gather docs and references needed in every nextPhase function
- * @param gameName
- * @param gameId
- * @param actionText
- * @returns
+ * Gathers all necessary document references and data for game state management
+ * @param gameName - The name of the game
+ * @param gameId - The unique identifier for the game session
+ * @param actionText - Description of the action being performed, used in error messages
+ * @returns Object containing session reference, state document, parsed state data, and players
  */
 export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
   gameName: string,
@@ -164,7 +78,7 @@ export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
   players: Players;
 }> => {
   const sessionRef = getSessionRef(gameName, gameId);
-  const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
+  const stateDoc = await fetchGameSessionDoc(sessionRef, gameName, gameId, 'state', actionText);
   const state = (stateDoc.data() ?? {}) as A;
   const players = ((state as PlainObject)?.players ?? {}) as Players;
 
@@ -177,11 +91,12 @@ export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
 };
 
 /**
- * Gather docs and references needed in every nextPhase function
- * @param gameName
- * @param gameId
- * @param actionText
- * @returns
+ * Gathers all necessary document references and data including both state and store for game management
+ * @param gameName - The name of the game
+ * @param gameId - The unique identifier for the game session
+ * @param actionText - Description of the action being performed, used in error messages
+ * @param previousState - Optional previously fetched state to avoid re-fetching
+ * @returns Object containing session reference, state/store documents, parsed state/store data, and players
  */
 export const getStateAndStoreReferences = async <
   A = FirebaseFirestore.DocumentData,
@@ -200,8 +115,8 @@ export const getStateAndStoreReferences = async <
   players: Players;
 }> => {
   const sessionRef = getSessionRef(gameName, gameId);
-  const storeDoc = await getSessionDoc(gameName, gameId, 'store', actionText);
-  const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
+  const storeDoc = await fetchGameSessionDoc(sessionRef, gameName, gameId, 'store', actionText);
+  const stateDoc = await fetchGameSessionDoc(sessionRef, gameName, gameId, 'state', actionText);
   const store = (storeDoc.data() ?? {}) as O;
   const state = previousState ?? ((stateDoc.data() ?? {}) as A);
   const players = ((state as PlainObject)?.players ?? {}) as Players;
@@ -216,10 +131,10 @@ export const getStateAndStoreReferences = async <
 };
 
 /**
- * Saves (setting or updating) the game's session
- * @param sessionRef
- * @param saveContent
- * @returns
+ * Saves or updates game session data to Firestore, handling both state and store updates with cleanup
+ * @param sessionRef - The Firestore collection reference for the game session
+ * @param saveContent - Payload containing state/store updates, sets, and cleanup instructions
+ * @returns True when save operation completes successfully
  */
 export const saveGame = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
@@ -264,7 +179,7 @@ export const saveGame = async (
     if (hasStoreUpdate || saveContent?.update?.storeCleanup?.length) {
       const cleanup = (saveContent?.update?.storeCleanup ?? []).reduce((acc, key) => {
         if (key) {
-          acc[key] = deleteValue();
+          acc[key] = firestoreValueUtils.deleteValue();
         }
         return acc;
       }, {});
@@ -278,7 +193,7 @@ export const saveGame = async (
     if (hasStateUpdate || saveContent?.update?.stateCleanup?.length) {
       const cleanup = (saveContent?.update?.stateCleanup ?? []).reduce((acc, key) => {
         if (key) {
-          acc[key] = deleteValue();
+          acc[key] = firestoreValueUtils.deleteValue();
         }
         return acc;
       }, {});
@@ -298,25 +213,30 @@ export const saveGame = async (
     if (phase && phase === 'SETUP' && Date.now() - now < 7000) {
       await utils.helpers.forceWait(7000 - (Date.now() - now));
     }
+
+    // TODO: Needs to figure out how to get the gameId, too risky to check the payload and not have it
+    // if (phase && phase === 'GAME_OVER') {
+    //   await getMetaRef().doc(gameId).update({ isComplete: true });
+    // }
   }
 
   return true;
 };
 
 /**
- * Mark game as complete on its meta data doc
- * @param gameId
- * @returns
+ * Marks a game as complete in its metadata document
+ * @param gameId - The unique identifier for the game
+ * @returns True when the update completes successfully
  */
 export const markGameAsComplete = async (gameId: UID) => {
-  await getMetaRef().doc(gameId).update({ isComplete: true });
+  await getMetaCollectionRef().doc(gameId).update({ isComplete: true });
   return true;
 };
 
 /**
- * Triggers setup phase so game ui stops in the setup window while stuff gets set up
- * @param sessionRef
- * @returns
+ * Transitions the game to the SETUP phase, showing the setup UI to players during initialization
+ * @param sessionRef - The Firestore collection reference for the game session
+ * @returns True when the phase transition completes successfully
  */
 export const triggerSetupPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
@@ -326,6 +246,11 @@ export const triggerSetupPhase = async (
   return true;
 };
 
+/**
+ * Transitions the game to the WAIT phase, typically used during processing between phases
+ * @param sessionRef - The Firestore collection reference for the game session
+ * @returns True when the phase transition completes successfully
+ */
 export const triggerWaitPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
@@ -335,16 +260,16 @@ export const triggerWaitPhase = async (
 };
 
 /**
- * Aides updating player properties on submit actions
- * @param args.gameName
- * @param args.gameId
- * @param args.playerId
- * @param args.actionText
- * @param args.shouldReady
- * @param args.change
- * @param args.nextPhaseFunction
- * @param args.shouldGoToNextPhase
- * @returns
+ * Updates player properties in the game state and optionally triggers phase progression
+ * @param args.gameName - The name of the game
+ * @param args.gameId - The unique identifier for the game session
+ * @param args.playerId - The unique identifier for the player being updated
+ * @param args.actionText - Description of the action being performed, used in error messages
+ * @param args.shouldReady - Whether to mark the player as ready after the update
+ * @param args.change - Object containing player properties to update
+ * @param args.nextPhaseFunction - Optional function to call for phase progression
+ * @param args.shouldGoToNextPhase - Whether to force progression regardless of ready status
+ * @returns True when the update completes, or the result of nextPhaseFunction if triggered
  */
 export const updatePlayer = async ({
   gameName,
@@ -376,7 +301,7 @@ export const updatePlayer = async ({
     return throwHttpsError(error, actionText);
   }
   if ((shouldReady || shouldGoToNextPhase) && nextPhaseFunction) {
-    const { state } = await utils.firestore.getStateReferences<DefaultState>(gameName, gameId, actionText);
+    const { state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
     const players = state?.players ?? {};
     // If all players are ready, trigger next phase
     if (shouldGoToNextPhase || utils.players.isEverybodyReady(players)) {
@@ -388,14 +313,13 @@ export const updatePlayer = async ({
 };
 
 /**
- * Aides updating simple store properties on submit actions
- * @param args.gameName
- * @param args.gameId
- * @param args.playerId
- * @param args.actionText
- * @param args.change
- * @param args.nextPhaseFunction
- * @returns
+ * Updates store properties in the game session and optionally triggers a callback
+ * @param args.gameName - The name of the game
+ * @param args.gameId - The unique identifier for the game session
+ * @param args.actionText - Description of the action being performed, used in error messages
+ * @param args.change - Object containing store properties to update
+ * @param args.nextPhaseFunction - Optional function to call after the update
+ * @returns True when the update completes, or the result of nextPhaseFunction if provided
  */
 export const updateStore = async ({
   gameName,
@@ -420,14 +344,13 @@ export const updateStore = async ({
 };
 
 /**
- * Aides updating simple state properties on submit actions
- * @param args.gameName - Game name
- * @param args.gameId - Game id
- * @param args.playerId - Player id who trigger the action
- * @param args.actionText - Action text to be used on error messages
- * @param args.change - Object with properties to be updated
- * @param args.nextPhaseFunction - Function to be triggered after update
- * @returns
+ * Updates state properties in the game session and optionally triggers a callback
+ * @param args.gameName - The name of the game
+ * @param args.gameId - The unique identifier for the game session
+ * @param args.actionText - Description of the action being performed, used in error messages
+ * @param args.change - Object containing state properties to update
+ * @param args.nextPhaseFunction - Optional function to call after the update
+ * @returns True when the update completes, or the result of nextPhaseFunction if provided
  */
 export const updateState = async ({
   gameName,
@@ -452,18 +375,10 @@ export const updateState = async ({
 };
 
 /**
- * Resets to default any given global used document
- * @param documentName
- */
-export const resetGlobalUsedDocument = async (documentName: string) => {
-  await utils.firestore.getGlobalRef().doc(documentName).set({ 'a-a-a': true });
-};
-
-/**
- * Remove all properties from store except for default props and any specified on keepKeys
- * @param o
- * @param keepKeys
- * @returns
+ * Identifies store properties to be removed, excluding default properties and specified keys
+ * @param store - The store object to analyze for cleanup
+ * @param keepKeys - Additional property keys that should be preserved
+ * @returns Array of property keys to be deleted from the store
  */
 export const cleanupStore = (store: PlainObject, keepKeys: string[]): string[] => {
   const keys = ['language', 'options', 'turnOrder', 'gameOrder', 'createdAt', 'achievements', ...keepKeys];
@@ -482,7 +397,7 @@ export const cleanupStore = (store: PlainObject, keepKeys: string[]): string[] =
  * const obj = { a: 1, b: undefined, c: { d: undefined, e: 2 } };
  * verifyUndefinedValues(obj); // Returns ["b", "c.d"]
  */
-export function verifyUndefinedValues<T extends object>(obj: T, parentKey = ''): string[] | null {
+function verifyUndefinedValues<T extends object>(obj: T, parentKey = ''): string[] | null {
   const result: string[] = [];
 
   for (const [key, value] of Object.entries(obj) as [keyof T, T[keyof T]][]) {

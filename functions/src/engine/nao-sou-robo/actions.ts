@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -11,7 +11,7 @@ import { getNextPhase } from './index';
  * @param cardIds - Array of selected card IDs
  */
 export const handleSubmitCards = async (gameName: string, gameId: UID, playerId: UID, cardIds: UID[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -32,7 +32,7 @@ export const handleSubmitCards = async (gameName: string, gameId: UID, playerId:
  * @param guess - Array of card IDs guessed as non-robot
  */
 export const handleSubmitCardGuess = async (gameName: string, gameId: UID, playerId: UID, guess: UID[]) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

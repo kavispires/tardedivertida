@@ -14,6 +14,7 @@ import {
 import type { ConceptData, FirebaseStateData, FirebaseStoreData, NewNameEntry, ResourceData } from './types';
 import { buildGalleryAndRanking, gatherConcepts } from './helpers';
 import type { ItemData } from '../../types/tdr';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -260,7 +261,7 @@ export const prepareGameOverPhase = async (
   // const achievements = getAchievements(store);
   const achievements = [];
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.IDADE_DA_PREDA,
@@ -278,7 +279,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

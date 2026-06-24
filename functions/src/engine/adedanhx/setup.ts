@@ -15,6 +15,7 @@ import utils from '../../utils';
 // Internal
 import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers, storeGalleryData } from './helpers';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - builds the card deck and resets previous changes to the store
@@ -199,7 +200,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ADEDANHX,
@@ -221,7 +222,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

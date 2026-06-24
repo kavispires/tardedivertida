@@ -27,6 +27,7 @@ import {
 } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -364,7 +365,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.PORTA_DOS_DESESPERADOS,
@@ -384,7 +385,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, ['traps']),
+      storeCleanup: cleanupStore(store, ['traps']),
     },
     set: {
       state: {

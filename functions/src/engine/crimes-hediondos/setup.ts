@@ -21,6 +21,7 @@ import {
   updateOrCreateGuessHistory,
 } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -314,7 +315,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.CRIMES_HEDIONDOS,
@@ -329,6 +330,9 @@ export const prepareGameOverPhase = async (
   // TODO: Save data
 
   return {
+    update: {
+      storeCleanup: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.GAME_OVER,

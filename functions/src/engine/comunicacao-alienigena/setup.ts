@@ -27,6 +27,7 @@ import {
   setupAchievements,
   calculateAchievements,
 } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -605,7 +606,7 @@ export const prepareGameOverPhase = async (
     cursed: hasMoreThanOneHuman ? [] : nonAlienPlayersIds,
   });
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
@@ -624,7 +625,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

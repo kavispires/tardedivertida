@@ -1,10 +1,11 @@
 // Constants
 import { HAND_LIMIT } from './constants';
 // Utils
-import utils from '../../utils';
+import { getStateReferences, updatePlayer } from '../../services/game-session';
 import { getNextPhase } from './index';
 import type { FirebaseStateData } from './types';
 import { throwHttpsError } from '../../services/firebase-core';
+import utils from '../../utils';
 
 /**
  * Submits a clue for the current player
@@ -14,7 +15,7 @@ import { throwHttpsError } from '../../services/firebase-core';
  * @param clue - The clue text
  */
 export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: UID, clue: string) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -36,7 +37,7 @@ export const handleSubmitClue = async (gameName: string, gameId: UID, playerId: 
 export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UID, cardId: string) => {
   const actionText = 'play a card';
 
-  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText,
@@ -48,7 +49,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  await utils.firestore.updatePlayer({
+  await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -97,11 +98,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
 export const handleDefend = async (gameName: string, gameId: UID, playerId: UID, defenseTime: number) => {
   const actionText = 'defend';
 
-  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { sessionRef, state } = await getStateReferences<FirebaseStateData>(gameName, gameId, actionText);
 
   if (state.currentPlayerId !== playerId) {
     throwHttpsError('You are not the current player!', 'Failed to play card.');
@@ -129,7 +126,7 @@ export const handleDefend = async (gameName: string, gameId: UID, playerId: UID,
 };
 
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

@@ -46,6 +46,7 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -99,7 +100,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -113,7 +114,7 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getResourceData(
@@ -123,56 +124,56 @@ export const getNextPhase = async (
     );
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> ALIEN_SELECTION
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION) {
     const newPhase = await prepareAlienSelectionPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // SETUP -> ALIEN_SELECTION
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SEEDING) {
     const newPhase = await prepareAlienSeedingPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // * -> HUMANS_SASK
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.HUMANS_ASKS) {
     const newPhase = await prepareHumanAskPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // HUMANS_SASK -> ALIEN_ANSWER
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER) {
     const newPhase = await prepareAlienAnswerPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // ALIEN_ANSWER -> ALIEN_REQUEST
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST) {
     const newPhase = await prepareAlienRequestPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // ALIEN_REQUEST -> OFFERINGS
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS) {
     const newPhase = await prepareOfferingsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // OFFERINGS -> REVEAL
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // RESULTS --> GAME_OVER
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

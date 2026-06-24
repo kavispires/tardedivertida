@@ -8,6 +8,7 @@ import type { ResourceData } from './types';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get movie titles and reviews based on game's language
@@ -36,7 +37,7 @@ export const getCards = async (language: string): Promise<ResourceData> => {
     Object.keys(movies).length < MOVIES_PER_ROUND * TOTAL_ROUNDS ||
     Object.keys(reviews).length < TOTAL_REVIEW_CARDS
   ) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MOVIES);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MOVIES);
     return {
       movies: allMovies,
       reviews: allReviews,

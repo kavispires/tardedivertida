@@ -28,6 +28,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+
 /**
  * Gets the initial state for a new game session
  * @param gameId - The game session ID
@@ -71,7 +73,7 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -82,37 +84,37 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === COMUNICACAO_DUO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getDeck(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // * -> ASKING_FOR_SOMETHING
   if (nextPhase === COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING) {
     const newPhase = await prepareAskingForSomething(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // ASKING_FOR_SOMETHING -> DELIVER_SOMETHING
   if (nextPhase === COMUNICACAO_DUO_PHASES.DELIVER_SOMETHING) {
     const newPhase = await prepareDeliveringSomethingPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // DELIVER_SOMETHING -> VERIFICATION
   if (nextPhase === COMUNICACAO_DUO_PHASES.VERIFICATION) {
     const newPhase = await prepareVerificationPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // VERIFICATION -> GAME_OVER
   if (nextPhase === COMUNICACAO_DUO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

@@ -1,5 +1,6 @@
 // Utils
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
+import { getUserCollectionRef } from '../services/firestore-core';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import utils from '../utils';
 import type { FirebaseUserDB } from '../utils/user';
@@ -16,7 +17,7 @@ const getUser = async (_: unknown, auth: FirebaseAuth) => {
     return throwHttpsError('You are not authenticated', 'get user');
   }
 
-  const userRef = utils.firestore.getUserRef();
+  const userRef = getUserCollectionRef();
   const user = await userRef.doc(uid).get();
 
   // If the user object doesn't exist, just create one
@@ -43,7 +44,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
     return throwHttpsError('You are not authenticated', 'getUserById');
   }
 
-  const userRef = utils.firestore.getUserRef();
+  const userRef = getUserCollectionRef();
   const user = await userRef.doc(userUid).get();
 
   // If the user object doesn't exist, just create one
@@ -67,7 +68,7 @@ const getUsers = async (_: unknown, auth: FirebaseAuth) => {
     return throwHttpsError('You are not authenticated', 'getUsers');
   }
 
-  const usersRef = utils.firestore.getUserRef();
+  const usersRef = getUserCollectionRef();
   return (await usersRef.get()).docs;
 };
 
@@ -87,7 +88,7 @@ const updateUserDB = async (data: FirebaseUserDB, auth: FirebaseAuth) => {
     return throwHttpsError('Payload is missing data', 'updateUserDB');
   }
 
-  const userRef = utils.firestore.getUserRef();
+  const userRef = getUserCollectionRef();
   await userRef.doc(data.id).update({ ...data });
 
   return true;

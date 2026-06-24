@@ -9,6 +9,8 @@ import utils from '../../utils';
 // Internal
 import { buildDeck, determineRoles, getStartingStatus } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import * as firestoreValueUtils from '../../services/firestore-core';
 
 /**
  * Setup phase - initializes game state and resources
@@ -235,7 +237,7 @@ export const prepareExaminationPhase = async (
         phase: BOMBA_RELOGIO_PHASES.EXAMINATION,
         players,
         status,
-        currentTargetPlayerId: utils.firestore.deleteValue(),
+        currentTargetPlayerId: firestoreValueUtils.deleteValue(),
       },
     },
   };
@@ -262,7 +264,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.BOMBA_RELOGIO,
@@ -278,7 +280,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

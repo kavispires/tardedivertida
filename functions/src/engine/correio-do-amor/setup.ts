@@ -13,6 +13,7 @@ import type { FestaJuninaCard, FirebaseStateData, FirebaseStoreData, ResourceDat
 import utils from '../../utils';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildRoundDeck } from './helpers';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -244,7 +245,7 @@ export const prepareGameOverPhase = async (
   const achievements = calculateAchievements(store.achievements);
 
   // Mark game meta as complete
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   // Save game to each user's profile
   await utils.user.saveGameToUsers({
@@ -265,7 +266,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

@@ -1,10 +1,11 @@
 // Types
 import type { FirebaseStateData, ImageCard, PlayerCard } from './types';
 // Helpers
-import utils from '../../utils';
+import { getStateReferences, updatePlayer, updateStore, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 import { throwHttpsError } from '../../services/firebase-core';
+import utils from '../../utils';
 
 /**
  * Submits the player's chosen word for the round
@@ -14,7 +15,7 @@ import { throwHttpsError } from '../../services/firebase-core';
  * @param wordId - The selected word ID
  */
 export const handleSubmitWord = async (gameName: string, gameId: UID, playerId: UID, wordId: string) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -42,7 +43,7 @@ export const handleSubmitCards = async (gameName: string, gameId: UID, playerId:
     return acc;
   }, {});
 
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -64,7 +65,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
   const actionText = 'play a card';
 
   // Get 'players' from given game session
-  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText,
@@ -203,7 +204,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
     throwHttpsError(error, 'Failed to update players');
   }
 
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,

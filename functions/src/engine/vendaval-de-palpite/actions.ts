@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 import type { ClueId } from './types';
@@ -17,7 +17,7 @@ export const handleSubmitBossPlayer = async (
   playerId: UID,
   bossId: string,
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -44,7 +44,7 @@ export const handleSubmitSecretWord = async (
   secretWord: string,
   categories: string[],
 ) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -72,7 +72,7 @@ export const handleSubmitPlayerClues = async (
   clues: string[],
   guesses?: string[],
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -99,7 +99,7 @@ export const handleSubmitEvaluation = async (
   // Count trues
   const trues = Object.values(evaluation).filter((result) => result).length;
 
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -120,7 +120,7 @@ export const handleSubmitEvaluation = async (
  * @param outcome - The outcome string
  */
 export const handleSubmitOutcome = async (gameName: string, gameId: UID, playerId: UID, outcome: string) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -140,7 +140,7 @@ export const handleSubmitOutcome = async (gameName: string, gameId: UID, playerI
  * @param clueId - The clue ID to resolve with help
  */
 export const handleSubmitHelp = async (gameName: string, gameId: UID, playerId: UID, clueId: ClueId) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,

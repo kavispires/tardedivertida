@@ -8,6 +8,7 @@ import type { ResourceData } from './types';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get question cards resource based on the game's language
@@ -31,7 +32,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableQuestions).length < QUESTIONS_PER_ROUND * MAX_ROUNDS) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
     return { allQuestions };
   }
 

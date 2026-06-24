@@ -2,11 +2,11 @@ import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/glo
 import { fetchResource } from '../engine/resource';
 import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../types/tdr';
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
-import * as firestoreUtils from './firestore';
 import * as gameUtils from './game-utils';
 import { buildBooleanDictionary } from './helpers';
 import { updateDataFirebaseDoc } from '../engine/collections';
 import { every, orderBy, sample, sampleSize, shuffle, some } from 'lodash';
+import { resetGlobalUsedDocument } from '../services/global-tracker';
 
 /**
  * Retrieves items with optional filtering and NSFW handling
@@ -82,7 +82,7 @@ export const getItems = async (
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableAlienItems).length < quantity) {
-    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
     availableAlienItems = itemsObj;
   }
 
@@ -94,7 +94,7 @@ export const getItems = async (
   }
 
   // If not the minimum items needed, reset and use all safe
-  await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+  await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
 
   list = Object.values(itemsObj);
   return sampleSize(list, quantity).map(options.cleanUp ?? ((item) => item));
@@ -251,7 +251,7 @@ export const getContenders = async (
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableContendersDict).length < cardQuantity) {
-    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableContendersDict = languageContenders;
   }
 
@@ -259,7 +259,7 @@ export const getContenders = async (
 
   // If not the minimum items needed, reset and use all safe
   if (availableContenders.length < cardQuantity) {
-    await firestoreUtils.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableContenders = Object.values(languageContenders);
   }
 
@@ -324,7 +324,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
 
   // If not the minimum resources needed, reset and use all
   if (Object.keys(availableResources).length < quantity) {
-    await firestoreUtils.resetGlobalUsedDocument(usedDocKey);
+    await resetGlobalUsedDocument(usedDocKey);
     availableResources = safeResources;
   }
 

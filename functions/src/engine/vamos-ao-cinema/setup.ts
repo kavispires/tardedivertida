@@ -17,7 +17,8 @@ import {
   getPhaseOutcome,
 } from './helpers';
 import { saveData } from './data';
-
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import * as firestoreValueUtils from '../../services/firestore-core';
 /**
  * Setup
  * Build the card deck
@@ -285,7 +286,7 @@ export const prepareRevealPhase = async (
         outcome,
         eliminatedMovies,
         votedForSelectedMovie,
-        finalMovieId: finalMovieId ?? utils.firestore.deleteValue(),
+        finalMovieId: finalMovieId ?? firestoreValueUtils.deleteValue(),
         score,
         groupScore: store.score,
         ...posterUpdate,
@@ -307,7 +308,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   const finalMovies = getFinalMovies(store.finalMovies, players, store.moviePosters);
 
@@ -329,7 +330,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

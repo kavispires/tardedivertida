@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -18,7 +18,7 @@ export const handleSubmitObject = async (
   itemId: UID,
   clue: string,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -37,7 +37,7 @@ export const handleSubmitObject = async (
  * @param featureId - The feature ID to eliminate
  */
 export const handleSubmitFeature = async (gameName: string, gameId: UID, playerId: UID, featureId: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

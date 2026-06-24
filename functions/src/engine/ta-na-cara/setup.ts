@@ -7,6 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 // Utils
 import utils from '../../utils';
 import type { TestimonyQuestionCardData } from '../../types/tdr';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -224,7 +225,7 @@ export const prepareGameOverPhase = async (
 
   utils.players.removePropertiesFromPlayers(players, ['suggestedQuestions', 'currentQuestionId']);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.TA_NA_CARA,
@@ -239,6 +240,9 @@ export const prepareGameOverPhase = async (
   utils.players.unReadyPlayers(players);
 
   return {
+    update: {
+      store: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: TA_NA_CARA_PHASES.GAME_OVER,

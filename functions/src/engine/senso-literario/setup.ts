@@ -8,6 +8,7 @@ import utils from '../../utils';
 // Internal
 import { buildDeck, buildRanking, buildSequence } from './helpers';
 import { setupAchievements, calculateAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -129,7 +130,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
@@ -148,7 +149,7 @@ export const prepareGameOverPhase = async (
   // Save
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

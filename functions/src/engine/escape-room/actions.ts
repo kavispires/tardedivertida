@@ -1,8 +1,8 @@
-import { arrayUnion } from 'firebase/firestore';
 // Helpers
-import utils from '../../utils';
+import { updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
+import * as firestoreValueUtils from '../../services/firestore-core';
 
 /**
  * Handles card submission for playing help or mission completion cards
@@ -21,12 +21,12 @@ export const handleSubmitCard = async (gameName: string, gameId: UID, playerId: 
   // If the played card is a help or complete mission card, we might want to trigger phase advancement
   const nextPhaseFunction = shouldAdvancePhase ? getNextPhase : undefined;
 
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
     actionText: 'submit play card',
-    change: { played: arrayUnion(cardId) },
+    change: { played: firestoreValueUtils.pushValue(cardId) },
     nextPhaseFunction,
   });
 };

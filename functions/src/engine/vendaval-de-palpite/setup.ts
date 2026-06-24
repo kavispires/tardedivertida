@@ -7,6 +7,7 @@ import type { Board, ClueId, Clues, FirebaseStateData, FirebaseStoreData, Resour
 import utils from '../../utils';
 // Internal
 import { gatherClues, verifyGuesses } from './helpers';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -178,7 +179,7 @@ export const prepareGameOverPhase = async (
    * - Did not guess within 7 rounds
    */
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,
@@ -191,6 +192,9 @@ export const prepareGameOverPhase = async (
   });
 
   return {
+    update: {
+      store: cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.GAME_OVER,

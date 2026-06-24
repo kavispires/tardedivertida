@@ -1,7 +1,7 @@
 // Types
 import type { Decisions } from './types';
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -18,7 +18,7 @@ export const handleSubmitDecision = async (
   playerId: UID,
   decision: Decisions,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

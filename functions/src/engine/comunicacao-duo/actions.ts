@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -18,7 +18,7 @@ export const handleSubmitRequest = async (
   clue: string,
   clueQuantity: number,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -43,7 +43,7 @@ export const handleSubmitDelivery = async (
   playerId: UID,
   delivery: string,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -62,7 +62,7 @@ export const handleSubmitDelivery = async (
  * @param playerId - The player ID stopping delivery
  */
 export const handleStopDelivering = async (gameName: string, gameId: UID, playerId: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

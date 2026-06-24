@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -11,7 +11,7 @@ import { getNextPhase } from './index';
  * @param targetId - The target player ID
  */
 export const handleSubmitTarget = async (gameName: string, gameId: UID, playerId: UID, targetId: UID) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -37,7 +37,7 @@ export const handleSubmitMessage = async (
   recipientId?: UID,
 ) => {
   // Handle player
-  await utils.firestore.updateState({
+  await updateState({
     gameName,
     gameId,
     playerId,
@@ -47,7 +47,7 @@ export const handleSubmitMessage = async (
   });
 
   // Handle state
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -71,7 +71,7 @@ export const handleSubmitDecision = async (
   playerId: UID,
   decision: string,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

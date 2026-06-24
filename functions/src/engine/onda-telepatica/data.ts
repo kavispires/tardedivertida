@@ -8,6 +8,7 @@ import type { PastCategories, ResourceData } from './types';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
+import { resetGlobalUsedDocument } from '../../services/global-tracker';
 
 /**
  * Get question resource based on the game's language
@@ -28,7 +29,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
-    await utils.firestore.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
+    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
     return { allCategories };
   }
 

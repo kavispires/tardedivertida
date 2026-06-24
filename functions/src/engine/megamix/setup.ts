@@ -11,6 +11,7 @@ import {
 } from './helpers';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -210,7 +211,7 @@ export const prepareGameOverPhase = async (
 
   calculateAllAchievements(players, store);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
@@ -228,7 +229,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, ['tracks']),
+      storeCleanup: cleanupStore(store, ['tracks']),
     },
     set: {
       state: {

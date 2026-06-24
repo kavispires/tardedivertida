@@ -19,7 +19,8 @@ import {
 } from './helpers';
 import { calculateAchievements, setupAchievements } from './achievements';
 import { saveData } from './data';
-
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import * as firestoreValueUtils from '../../services/firestore-core';
 /**
  * Setup phase - initializes game state and resources
  * @param _store - The Firebase store data
@@ -184,7 +185,7 @@ export const prepareCardPlayPhase = async (
   if (isOnePlayerInNightmare) {
     players[playersInMax[0]].inNightmare = true;
   }
-  const playerInNightmareId = isOnePlayerInNightmare ? playersInMax[0] : utils.firestore.deleteValue();
+  const playerInNightmareId = isOnePlayerInNightmare ? playersInMax[0] : firestoreValueUtils.deleteValue();
 
   // Simulate bots cards
   simulateBotCards(players, state.table);
@@ -259,7 +260,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
@@ -280,7 +281,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

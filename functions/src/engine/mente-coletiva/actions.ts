@@ -1,11 +1,12 @@
 import type { GroupQuestionCardData } from '../../types/tdr';
 // Utils
-import utils from '../../utils';
+import { getStateReferences, saveGame, updatePlayer, updateStore } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
 import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
 import { throwHttpsError } from '../../services/firebase-core';
+import utils from '../../utils';
 
 /**
  * Submits the active player's chosen question for the round
@@ -20,7 +21,7 @@ export const handleSubmitQuestion = async (
   playerId: UID,
   questionId: string,
 ) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -45,7 +46,7 @@ export const handleSubmitCustomQuestion = async (
   playerId: UID,
   customQuestion: GroupQuestionCardData,
 ) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -70,7 +71,7 @@ export const handleSubmitAnswers = async (
   playerId: UID,
   answers: Dictionary<string>,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,
@@ -96,7 +97,7 @@ export const handleNextAnswers = async (
 ) => {
   const actionText = 'advance answers';
 
-  const { sessionRef, state, players } = await utils.firestore.getStateReferences<FirebaseStateData>(
+  const { sessionRef, state, players } = await getStateReferences<FirebaseStateData>(
     gameName,
     gameId,
     actionText,
@@ -137,7 +138,7 @@ export const handleNextAnswers = async (
   }
 
   try {
-    await utils.firestore.saveGame(sessionRef, {
+    await saveGame(sessionRef, {
       update: {
         state: {
           players,
@@ -164,11 +165,7 @@ export const handleNextAnswers = async (
 export const handleAddAnswer = async (gameName: string, gameId: UID, _playerId: UID, answer: AnswerEntry) => {
   const actionText = 'add answer';
 
-  const { sessionRef, state } = await utils.firestore.getStateReferences<FirebaseStateData>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { sessionRef, state } = await getStateReferences<FirebaseStateData>(gameName, gameId, actionText);
 
   const answersList = [...(state.answersList as AnswerGroupEntry[])];
 

@@ -1,5 +1,5 @@
 // Helpers
-import utils from '../../utils';
+import { updatePlayer, updateState } from '../../services/game-session';
 import { shuffle } from 'lodash';
 // Internal functions
 import { getNextPhase } from './index';
@@ -12,7 +12,7 @@ import { getNextPhase } from './index';
  * @param pageIds - Array of selected page IDs
  */
 export const handleSubmitPages = async (gameName: string, gameId: UID, playerId: UID, pageIds: UID[]) => {
-  return await utils.firestore.updateState({
+  return await updateState({
     gameName,
     gameId,
     playerId,
@@ -37,7 +37,7 @@ export const handleSubmitDoor = async (
   doorId: UID,
   ready?: boolean,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

@@ -30,6 +30,7 @@ import {
 } from './helpers';
 import { saveData } from './data';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -335,7 +336,7 @@ export const prepareGameOverPhase = async (
   // Get achievements
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.MENTE_COLETIVA,
@@ -357,7 +358,7 @@ export const prepareGameOverPhase = async (
   // Save
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

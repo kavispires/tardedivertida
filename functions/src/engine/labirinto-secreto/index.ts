@@ -27,6 +27,12 @@ import {
   validateSubmitActionProperties,
   throwHttpsError,
 } from '../../services/firebase-core';
+import {
+  getStateAndStoreReferences,
+  saveGame,
+  triggerSetupPhase,
+  triggerWaitPhase,
+} from '../../services/game-session';
 
 /**
  * Gets the initial state for a new game session
@@ -71,7 +77,7 @@ export const getNextPhase = async (
   gameId: UID,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -90,38 +96,38 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === LABIRINTO_SECRETO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data
     const data = await getData(store.language, utils.players.getPlayerCount(players), store?.options ?? {});
     const newPhase = await prepareSetupPhase(store, state, players, data);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> DRAW
   if (nextPhase === LABIRINTO_SECRETO_PHASES.MAP_BUILDING) {
     const newPhase = await prepareMapBuildingPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // DRAW -> EVALUATION
   if (nextPhase === LABIRINTO_SECRETO_PHASES.PATH_FOLLOWING) {
-    await utils.firestore.triggerWaitPhase(sessionRef);
+    await triggerWaitPhase(sessionRef);
     const newPhase = await preparePathFollowingPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> GALLERY
   if (nextPhase === LABIRINTO_SECRETO_PHASES.RESULTS) {
     const newPhase = await prepareResultsPhase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   // GALLERY -> GAME_OVER
   if (nextPhase === LABIRINTO_SECRETO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;

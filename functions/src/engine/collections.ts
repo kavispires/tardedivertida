@@ -1,7 +1,7 @@
 import { merge, uniq } from 'lodash';
-import utils from '../utils';
 import { DATA_DOCUMENTS } from '../utils/constants';
 import { isEmulatingEnvironment } from '../utils/environment';
+import { getDataCollectionRef } from '../services/firestore-core';
 
 /**
  * Gets document from data in firestore
@@ -19,7 +19,7 @@ export const getDataFirebaseDocData = async <T = PlainObject>(
   }
 
   try {
-    response = ((await utils.firestore.getDataRef().doc(documentName)?.get())?.data() ?? fallback) as T;
+    response = ((await getDataCollectionRef().doc(documentName)?.get())?.data() ?? fallback) as T;
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Log error but don't error for the user
     console.error(e);
@@ -39,7 +39,7 @@ export const updateDataFirebaseDoc = async (documentName: string, data: PlainObj
   const newData: PlainObject = merge(currentData, data);
 
   if (newData) {
-    await utils.firestore.getDataRef().doc(documentName).update(newData);
+    await getDataCollectionRef().doc(documentName).update(newData);
   }
 
   return true;
@@ -67,15 +67,14 @@ export const updateDataCollectionRecursively = async (
     const documentFullName = `${documentPrefix}${suffix}`;
 
     try {
-      const docRef = utils.firestore.getDataRef().doc(documentFullName);
+      const docRef = getDataCollectionRef().doc(documentFullName);
       const doc = await docRef.get();
       if (doc.exists) {
         await docRef.update(data);
       } else {
         await docRef.set(data);
       }
-      await utils.firestore
-        .getDataRef()
+      await getDataCollectionRef()
         .doc('suffixCounts')
         .update({ [documentPrefix]: suffix });
       return true;
@@ -103,7 +102,7 @@ export const updateCardDataCollection = async (
   const documentName = `${type}Clues${language.toUpperCase()}`;
 
   // Get currentDoc
-  const docRef = utils.firestore.getDataRef().doc(documentName);
+  const docRef = getDataCollectionRef().doc(documentName);
   const doc = await docRef.get();
   if (doc.exists) {
     const currentData = doc.data() ?? {};
@@ -143,10 +142,7 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
   });
 
   // Save
-  await utils.firestore
-    .getDataRef()
-    .doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS)
-    .update(parsedRelationships);
+  await getDataCollectionRef().doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS).update(parsedRelationships);
 };
 
 /**

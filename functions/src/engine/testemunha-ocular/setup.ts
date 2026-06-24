@@ -20,6 +20,7 @@ import {
 } from './achievements';
 import { GAME_NAMES } from '../../utils/constants';
 import { saveData } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -384,9 +385,11 @@ export const prepareGameOverPhase = async (
 
   utils.players.cleanup(players, ['suspectId']);
 
+  markGameAsComplete(gameId);
+
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

@@ -1,4 +1,10 @@
 /**
+ * Checks if running in development environment
+ * @returns True if NODE_ENV is set to 'development'
+ */
+export const isDevelopmentEnvironment = () => process.env.NODE_ENV === 'development';
+
+/**
  * Checks if Firebase Functions are running in emulation mode
  * @returns True if running in Functions emulator
  */

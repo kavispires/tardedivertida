@@ -10,6 +10,7 @@ import { setupAchievements, increaseAchievement, calculateAchievements } from '.
 // Internal
 import { calculateRanking, countImpostorVotes } from './helpers';
 import { saveData } from './data';
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup phase - initializes game state and resources
@@ -257,7 +258,7 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
   const gallery = cloneDeep(store.usedCards);
 
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
@@ -278,7 +279,7 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {

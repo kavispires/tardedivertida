@@ -1,5 +1,5 @@
 // Utils
-import utils from '../../utils';
+import { updatePlayer, updateStore } from '../../services/game-session';
 // Internal
 import { getNextPhase } from '.';
 
@@ -18,7 +18,7 @@ export const handleSubmitTweet = async (
   tweetId: string,
   customTweet?: string,
 ) => {
-  return await utils.firestore.updateStore({
+  return await updateStore({
     gameName,
     gameId,
     playerId,
@@ -46,7 +46,7 @@ export const handleSubmitReaction = async (
   reaction: boolean,
   likesGuess: number,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

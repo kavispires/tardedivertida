@@ -1,8 +1,13 @@
-// Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import type { FirebaseAuth } from '../types/reference';
 import { verifyPayload, throwHttpsError } from '../services/firebase-core';
+import {
+  getMetaCollectionRef,
+  getPublicCollectionRef,
+  getUserCollectionRef,
+} from '../services/firestore-core';
+import { fetchGameMetaDoc, getStateReferences } from '../services/game-session';
 
 type LoadGamePayload = {
   gameId: UID;
@@ -18,7 +23,7 @@ const loadGame = async (data: LoadGamePayload) => {
   const actionText = 'load game';
   verifyPayload(gameId, 'gameId', actionText);
 
-  const metaRef = utils.firestore.getMetaRef();
+  const metaRef = getMetaCollectionRef();
   const gameMeta = await metaRef.doc(gameId).get();
 
   if (!gameMeta.exists) {
@@ -54,11 +59,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'state.players' from given game session
-  const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { sessionRef, state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
 
   const players = state?.players ?? {};
 
@@ -85,7 +86,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   }
 
   // Verify if game is locked
-  const metaDoc = await utils.firestore.getMetaDoc(gameId, actionText);
+  const metaDoc = await fetchGameMetaDoc(gameId, actionText);
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
@@ -123,11 +124,7 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   verifyPayload(playerId, 'playerId', actionText);
 
   // Get 'state.players' from given game session
-  const { sessionRef, state } = await utils.firestore.getStateReferences<DefaultState>(
-    gameName,
-    gameId,
-    actionText,
-  );
+  const { sessionRef, state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
 
   const players = state?.players ?? {};
   utils.players.readyPlayer(players, playerId);
@@ -171,32 +168,29 @@ const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
   if (uid) {
     try {
       const path = `games.${gameName}.[0]`;
-      await utils.firestore
-        .getUserRef()
+      await getUserCollectionRef()
         .doc(uid)
         .update({
           [`${path}.rating`]: data.ratings.rating,
           [`${path}.comments`]: data.ratings.comments,
         });
       return true;
-    } catch (_e) {
+    } catch {
       // do nothing, let it try save it to the ratings public doc
     }
   }
 
   try {
-    await utils.firestore
-      .getPublicRef()
+    await getPublicCollectionRef()
       .doc('ratings')
       .collection(gameName)
       .doc(playerId)
       .update({
         [gameId]: data.ratings,
       });
-  } catch (_e) {
+  } catch {
     try {
-      await utils.firestore
-        .getPublicRef()
+      await getPublicCollectionRef()
         .doc('ratings')
         .collection(gameName)
         .doc(playerId)
@@ -210,7 +204,7 @@ const rateGame = async (data: ExtendedPayload, auth: FirebaseAuth) => {
   return true;
 };
 
-export const COMMON_ACTIONS = {
+export const gameSessionActions = {
   LOAD_GAME: loadGame,
   JOIN_GAME: joinGame,
   MAKE_ME_READY: makeMeReady,
