@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 // Types
 import type { AchievementKey, AchievementReference } from 'types/game';
 // Components
-import { Achievement } from '@components/general/Achievement';
+import { Achievement } from '@components/achievements/Achievement';
 
 type UserAchievementsProps = {
   reference: AchievementReference;

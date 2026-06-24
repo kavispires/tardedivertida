@@ -6,10 +6,10 @@ import type { PhaseProps } from 'types/game';
 import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

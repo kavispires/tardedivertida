@@ -12,6 +12,9 @@ if (!folder) {
 
 const absoluteFolderPath = path.resolve(folder);
 
+// Paths to exclude from sorting (relative to project root)
+const EXCLUDED_PATHS = ['src/types/tdr.ts'];
+
 function sortImportsRecursive(folderPath) {
   fs.readdirSync(folderPath).forEach((fileOrDir) => {
     const fullPath = path.join(folderPath, fileOrDir);
@@ -19,6 +22,13 @@ function sortImportsRecursive(folderPath) {
     if (fs.statSync(fullPath).isDirectory()) {
       sortImportsRecursive(fullPath); // Recursively sort imports in subdirectories
     } else if (fileOrDir.endsWith('.ts') || fileOrDir.endsWith('.tsx')) {
+      // Check if path should be excluded
+      const relativePath = path.relative(process.cwd(), fullPath);
+      if (EXCLUDED_PATHS.some((pattern) => relativePath.includes(pattern))) {
+        console.log('⏭️  Skipping excluded file:', relativePath);
+        return;
+      }
+
       try {
         execSync(`node ${path.join(__dirname, 'sort-imports.cjs')} ${fullPath}`, {
           stdio: 'inherit',

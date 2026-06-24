@@ -12,7 +12,7 @@ import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { RankingBoard } from './RankingBoard';
 // Sass
-import styles from './ranking.module.scss';
+import styles from './RankingBoard.module.scss';
 
 type StepRankingWrapperProps = {
   /**

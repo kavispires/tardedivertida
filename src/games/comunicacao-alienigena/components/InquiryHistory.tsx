@@ -3,6 +3,8 @@ import type { ColumnsType } from 'antd/es/table';
 import { Space, Table } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
+// Utils
+import { UNKNOWN_TEXT } from '@utils/constants';
 // Components
 import { ItemCard } from '@components/cards/ItemCard';
 import { SignCard } from '@components/cards/SignCard';
@@ -151,10 +153,7 @@ function Intention({ attributes, intention }: IntentionProps) {
       {attribute ? (
         <DualTranslate>{attribute.name}</DualTranslate>
       ) : (
-        <Translate
-          pt="Desconhecido"
-          en="Unknown"
-        />
+        <DualTranslate>{UNKNOWN_TEXT}</DualTranslate>
       )}
     </Space>
   );

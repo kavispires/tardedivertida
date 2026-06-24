@@ -7,7 +7,7 @@ import type { UseStep } from '@hooks/useStep';
 // Components
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
-import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
+import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 
 type StepRankingProps = {
   players: GamePlayers;

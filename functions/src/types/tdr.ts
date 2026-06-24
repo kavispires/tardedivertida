@@ -199,7 +199,7 @@ export type CityLocationData = {
 };
 
 /**
- * ConceptData Card
+ * Concept Card
  * Used for: concepts
  */
 export type ConceptData = {
@@ -278,7 +278,7 @@ export type CrimesHediondosCardData = {
    */
   name: DualLanguageValue;
   /**
-   * ItemData Id for the illustration icon
+   * Item Id for the illustration icon
    */
   itemId?: string;
   /**
@@ -780,7 +780,7 @@ export type TopicCardData = {
 };
 
 /**
- * TweetCardData Card
+ * Tweet Card
  * Used for: tweets
  */
 export type TweetCardData = {
@@ -799,7 +799,7 @@ export type TweetCardData = {
 // ==========================================
 
 /**
- * ItemData Card
+ * Item Card
  * Used for: items
  */
 export type ItemData = {
@@ -830,7 +830,7 @@ export type ItemData = {
 };
 
 /**
- * ItemData Atributes Values
+ * Item Atributes Values
  */
 export type ItemAttributesValuesData = {
   /**
@@ -838,7 +838,7 @@ export type ItemAttributesValuesData = {
    */
   id: UID;
   /**
-   * The dictionary of ItemAttributeData id and their values
+   * The dictionary of ItemAttribute id and their values
    */
   attributes: Record<string, -10 | -3 | -1 | 5 | 10 | (number & NonNullable<unknown>)>;
   /**
@@ -865,7 +865,7 @@ export type ItemAttributesValuesData = {
 };
 
 /**
- * ItemData Attribute
+ * Item Attribute
  */
 export type ItemAttributeData = {
   /**
@@ -1029,7 +1029,7 @@ export type DailyPasscodeSet = {
    * List of synonyms for the passcodes
    */
   synonyms: string[];
-};
+}
 
 export type DailyQuartetSet = {
   /**
@@ -1146,11 +1146,11 @@ export type DrawingEntryData = {
  */
 export type DrawingData = {
   /**
-   * The unique identifier of the card. (same as ArteRuimCardData.id).
+   * The unique identifier of the card. (same as ArteRuimCard.id).
    */
   id: UID;
   /**
-   * The text of the card. (same as ArteRuimCardData.text).
+   * The text of the card. (same as ArteRuimCard.text).
    */
   text: string;
   /**
@@ -1351,7 +1351,7 @@ export type SuspectCardData = {
  */
 export type SuspectExtendedInfoData = {
   /**
-   * Unique identifier for the card that matches its SuspectCardData equivalent
+   * Unique identifier for the card that matches its SuspectCard equivalent
    */
   id: UID;
   /**

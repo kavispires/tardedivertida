@@ -6,10 +6,10 @@ import { QualitySealIcon } from '@icons/QualitySealIcon';
 import { TheEndIcon } from '@icons/TheEndIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';

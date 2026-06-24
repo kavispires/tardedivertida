@@ -15,7 +15,7 @@ import { getAnimationClass, removeDuplicates } from '@utils/helpers';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Sass
-import styles from './ranking.module.scss';
+import styles from './RankingBoard.module.scss';
 
 type GainedPointProps = {
   /**

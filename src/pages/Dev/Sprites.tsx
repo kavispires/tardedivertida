@@ -11,12 +11,12 @@ import { useQueryParams } from '@hooks/useQueryParams';
 import { AVAILABLE_AVATAR_IDS, AVATARS } from '@utils/avatars';
 import { makeArray } from '@utils/helpers';
 // Components
+import { Medal } from '@components/achievements/Medal';
 import { ClubberAvatar } from '@components/avatars/ClubberAvatar';
 import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
 import { SuperHeroAvatar } from '@components/avatars/SuperHeroAvatar';
 import { EmojiCard } from '@components/cards/EmojiCard';
 import { TreeCard } from '@components/cards/TreeCard';
-import { Medal } from '@components/general/Medal';
 import { PageLayout } from '@components/layout/PageLayout';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal

@@ -7,6 +7,7 @@ import { Button, Popover } from 'antd';
 import type { Achievement, AchievementReference, GamePlayers } from 'types/game';
 // Utils
 import { getAnimation } from '@utils/animations';
+import { UNKNOWN_TEXT } from '@utils/constants';
 import { getAnimationClass } from '@utils/helpers';
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
@@ -37,8 +38,6 @@ type AchievementsProps = {
    */
   colorScheme?: ColorScheme;
 };
-
-const unknownText = { pt: 'Desconhecido', en: 'Unknown' };
 
 /**
  * Component that displays a list of achievements for players with medal icons and descriptions
@@ -95,7 +94,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                 <Medal id={icon} />
               </div>
               <h4 className={styles.achievementTitle}>
-                <DualTranslate>{achievementObj.title ?? unknownText}</DualTranslate>
+                <DualTranslate>{achievementObj.title ?? UNKNOWN_TEXT}</DualTranslate>
               </h4>
               <div className={styles.achievementAvatar}>
                 <PlayerAvatar avatarId={player.avatarId} />
@@ -106,7 +105,7 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
                   <Popover
                     content={
                       <span>
-                        <DualTranslate>{achievementObj.description ?? unknownText}</DualTranslate> (
+                        <DualTranslate>{achievementObj.description ?? UNKNOWN_TEXT}</DualTranslate> (
                         {String(achievement.value)})
                       </span>
                     }

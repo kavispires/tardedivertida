@@ -10,8 +10,7 @@ import { CrownIcon } from '@icons/CrownIcon';
 import { SecurityIcon } from '@icons/SecurityIcon';
 import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Icon } from '@components/general/Icon';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
@@ -19,6 +18,7 @@ import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 import { Instruction } from '@components/text/Instruction';
 import { ConfettiEffect } from '@components/visual-effects/ConfettiEffect';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { DataCounts, PhaseGameOverState, Status } from './utils/types';

@@ -9,10 +9,10 @@ import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
-import { StepRankingWrapper } from '@components/ranking/StepRankingWrapper';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
 import { Instruction } from '@components/text/Instruction';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
+import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';

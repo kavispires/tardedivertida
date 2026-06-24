@@ -5,12 +5,12 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { TheEndIcon } from '@icons/TheEndIcon';
 // Components
-import { GameOverWrapper } from '@components/game-over/GameOverWrapper';
-import { Achievements } from '@components/general/Achievements';
+import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Instruction } from '@components/text/Instruction';
 import { Title } from '@components/text/Title';
+import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { STATUS } from './utils/constants';
 import achievementsReference from './utils/achievements';

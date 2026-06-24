@@ -9,6 +9,8 @@ import { useBooleanDictionary } from '@hooks/useBooleanDictionary';
 import { useCache } from '@hooks/useCache';
 import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
+// Utils
+import { UNKNOWN_TEXT } from '@utils/constants';
 // Icons
 import { ArrowIcon } from '@icons/ArrowIcon';
 // Components
@@ -234,7 +236,7 @@ export function HumanSelectedInquiry({ attributes, items, user }: HumanSelectedI
           backgroundColor: '#f0f0f0',
         }}
       >
-        <DualTranslate>{attribute ? attribute.name : { pt: 'Desconhecido', en: 'Unknown' }}</DualTranslate>?
+        <DualTranslate>{attribute ? attribute.name : UNKNOWN_TEXT}</DualTranslate>?
       </Flex>
     </PlayerFlex>
   );
