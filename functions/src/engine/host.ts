@@ -12,7 +12,6 @@ import { getGlobalCollectionRef, getMetaCollectionRef, getSessionRef } from '../
 import { fetchGameSessionDoc, getStateReferences } from '../services/game-session';
 // Utils
 import utils from '../utils';
-import { retireGamesFromUsers } from '../utils/admin-cleanup';
 import { isEmulatingEnvironment } from '../utils/environment';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
 // Internal
@@ -115,7 +114,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   try {
     // Update global ids. This is in a different block just for dev purposes
     await globalRef.doc(USED_GAME_IDS).update({ [gameId]: Date.now() });
-  } catch (_e) {
+  } catch {
     // Do nothing
   }
 
@@ -344,46 +343,6 @@ const playAgain = async (data: BasicGamePayload) => {
   return false;
 };
 
-/**
- * Payload for retiring games from user profiles
- */
-export type RetireGamesPayload = {
-  /**
-   * Array of game names to retire
-   */
-  gameNames: string[];
-  /**
-   * Action type identifier
-   */
-  action: string;
-};
-
-/**
- * Retires games from all user profiles by removing game data and updating statistics for deprecated or cancelled games
- * @param data - The payload containing the array of game names to retire
- */
-const retireGames = async (data: RetireGamesPayload) => {
-  const { gameNames } = data;
-
-  const actionText = 'retire games';
-  verifyPayload(gameNames, 'gameNames', actionText);
-
-  if (!Array.isArray(gameNames) || gameNames.length === 0) {
-    return throwHttpsError('gameNames must be a non-empty array', actionText);
-  }
-
-  try {
-    // biome-ignore lint/suspicious/noConsole: debug purposes
-    console.log(`Starting game retirement for: ${gameNames.join(', ')}`);
-    const result = await retireGamesFromUsers(gameNames);
-    // biome-ignore lint/suspicious/noConsole: debug purposes
-    console.log('Game retirement completed:', result);
-    return result;
-  } catch (error) {
-    return throwHttpsError(error, actionText);
-  }
-};
-
 const HOST_API_ACTIONS = {
   CREATE_GAME: createGame,
   LOCK_GAME: lockGame,
@@ -392,16 +351,13 @@ const HOST_API_ACTIONS = {
   PLAY_AGAIN: playAgain,
   FORCE_END_GAME: forceLastRound,
   RESET_GAME: unlockAndResetGame,
-  RETIRE_GAMES: retireGames,
 };
 
 /**
  * Executes the game host engine by delegating to the appropriate action
  * @param request - The callable request object
  */
-export const hostEngine = (
-  request: CallableRequest<CreateGamePayload | BasicGamePayload | RetireGamesPayload>,
-) => {
+export const hostEngine = (request: CallableRequest<CreateGamePayload | BasicGamePayload>) => {
   // Verify action
   const action = request.data?.action;
   if (!action) {
