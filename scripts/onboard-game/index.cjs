@@ -36,18 +36,18 @@ const { generateAchievements } = require('./generators/achievements.cjs');
 const { generateData } = require('./generators/data.cjs');
 
 /**
- * Updates the GAMES constant in functions/src/utils/constants.ts
+ * Updates the GAMES constant in functions/src/constants/games.ts
  */
 async function updateGamesConstant(gameName, gameCode) {
-  const constantsPath = path.resolve(__dirname, '../../functions/src/utils/constants.ts');
+  const constantsPath = path.resolve(__dirname, '../../functions/src/constants/games.ts');
 
   if (!fs.existsSync(constantsPath)) {
-    console.error(`❌ Error: constants.ts not found at ${constantsPath}`);
+    console.error(`❌ Error: games.ts not found at ${constantsPath}`);
     return false;
   }
 
   const fileContent = fs.readFileSync(constantsPath, 'utf-8');
-  const gamesArrayMatch = fileContent.match(/const GAMES = \[([\s\S]*?)\];/);
+  const gamesArrayMatch = fileContent.match(/export const GAMES = \[([\s\S]*?)\];/);
 
   if (!gamesArrayMatch) {
     console.error('❌ Error: Could not find GAMES array in constants.ts');

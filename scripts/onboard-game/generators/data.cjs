@@ -14,7 +14,7 @@ function generateData(metadata) {
   const pascalName = convertToPascalCase(gameName);
 
   return `// Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 // Types
 import type { ResourceData, ${pascalName}Options } from './types';
 // Utils

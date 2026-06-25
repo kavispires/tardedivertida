@@ -19,7 +19,7 @@ function generateSetup(metadata) {
 
   const imports = `// Constants
 import { ${gameKey}_PHASES${roundsImport} } from './constants';
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
