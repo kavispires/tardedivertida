@@ -4,11 +4,11 @@ import type { QuemSouEuOptions, ResourceData } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../../utils/constants';
 import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './constants';
+// Services
+import { updateFirestoreCommunityData } from '../../services/community-data';
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as collectionUtils from '../collections';
-import * as globalUtils from '../global';
 
 /**
  * Get characters based on the game's language
@@ -58,7 +58,7 @@ export const saveData = async (contendersGlyphs: Dictionary<Dictionary<boolean>>
     return acc;
   }, {});
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
 
-  return await collectionUtils.updateDataFirebaseDoc(DATA_DOCUMENTS.CONTENDERS_GLYPHS, contendersGlyphs);
+  return await updateFirestoreCommunityData(DATA_DOCUMENTS.CONTENDERS_GLYPHS, contendersGlyphs);
 };

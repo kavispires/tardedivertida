@@ -4,11 +4,14 @@ import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from 
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../services/global-tracker';
+import { updateFirestoreCommunityData } from '../services/community-data';
+import {
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+  fetchGlobalTrackerDocumentData,
+} from '../services/global-tracker';
+import { fetchResource } from '../services/resource';
 // Internal
-import { updateDataFirebaseDoc } from '../engine/collections';
-import { getGlobalFirebaseDocData, updateGlobalFirebaseDoc } from '../engine/global';
-import { fetchResource } from '../engine/resource';
 import * as gameUtils from './game-utils';
 import { buildBooleanDictionary } from './helpers';
 
@@ -79,14 +82,17 @@ export const getItems = async (
   }
 
   // Get used items deck
-  const usedItems: Dictionary<boolean> = await getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ITEMS, {});
+  const usedItems: Dictionary<boolean> = await fetchGlobalTrackerDocumentData(
+    GLOBAL_USED_DOCUMENTS.ITEMS,
+    {},
+  );
 
   // Filter out used items
   let availableAlienItems = gameUtils.filterOutByIds(itemsObj, usedItems);
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableAlienItems).length < quantity) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
     availableAlienItems = itemsObj;
   }
 
@@ -98,7 +104,7 @@ export const getItems = async (
   }
 
   // If not the minimum items needed, reset and use all safe
-  await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
+  await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS);
 
   list = Object.values(itemsObj);
   return sampleSize(list, quantity).map(options.cleanUp ?? ((item) => item));
@@ -150,7 +156,7 @@ export const itemUtils = {
  */
 export const saveUsedItems = async (items: ItemData[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
-  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ITEMS, itemsIdsDict);
+  return updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.ITEMS, itemsIdsDict);
 };
 
 /**
@@ -160,7 +166,7 @@ export const saveUsedItems = async (items: ItemData[]) => {
  */
 export const saveUsedAlienItems = async (items: ItemData[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
-  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
+  return updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
 };
 
 /**
@@ -185,7 +191,7 @@ export const getSingleWords = async (language: Language, quantity?: number): Pro
  * @returns
  */
 export const saveUsedSingleWords = async (usedWords: Dictionary<boolean>) => {
-  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedWords);
+  return updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedWords);
 };
 
 /**
@@ -243,7 +249,7 @@ export const getContenders = async (
   }
 
   // Get used items deck
-  const usedContenders: Dictionary<boolean> = await getGlobalFirebaseDocData(
+  const usedContenders: Dictionary<boolean> = await fetchGlobalTrackerDocumentData(
     GLOBAL_USED_DOCUMENTS.CONTENDERS,
     {},
   );
@@ -255,7 +261,7 @@ export const getContenders = async (
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableContendersDict).length < cardQuantity) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableContendersDict = languageContenders;
   }
 
@@ -263,7 +269,7 @@ export const getContenders = async (
 
   // If not the minimum items needed, reset and use all safe
   if (availableContenders.length < cardQuantity) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableContenders = Object.values(languageContenders);
   }
 
@@ -321,14 +327,14 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
   }
 
   // Get used resources
-  const usedResources: Dictionary<boolean> = await getGlobalFirebaseDocData(usedDocKey, {});
+  const usedResources: Dictionary<boolean> = await fetchGlobalTrackerDocumentData(usedDocKey, {});
 
   // Filter out used resources
   let availableResources = gameUtils.filterOutByIds(safeResources, usedResources);
 
   // If not the minimum resources needed, reset and use all
   if (Object.keys(availableResources).length < quantity) {
-    await resetGlobalUsedDocument(usedDocKey);
+    await resetGlobalTrackerDocument(usedDocKey);
     availableResources = safeResources;
   }
 
@@ -518,7 +524,7 @@ export const getSuspects = async ({
  * @returns Promise that resolves when the update is complete
  */
 export const saveUsedAdjectives = async (usedAdjectives: Dictionary<boolean>) => {
-  return updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ADJECTIVES, usedAdjectives);
+  return updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.ADJECTIVES, usedAdjectives);
 };
 
 /**
@@ -527,5 +533,5 @@ export const saveUsedAdjectives = async (usedAdjectives: Dictionary<boolean>) =>
  * @returns Promise that resolves when the update is complete
  */
 export const savePairs = async (pairs: Dictionary<boolean>) => {
-  return updateDataFirebaseDoc(DATA_DOCUMENTS.PAIRS, pairs);
+  return updateFirestoreCommunityData(DATA_DOCUMENTS.PAIRS, pairs);
 };

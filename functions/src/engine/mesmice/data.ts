@@ -5,10 +5,10 @@ import type { MesmiceOptions, ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
+// Services
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as resourceUtils from '../resource';
 
 /**
  * Get object features and items
@@ -36,7 +36,7 @@ export const getData = async (
   });
 
   // Get full deck of features
-  const allObjectFeatures = await resourceUtils.fetchResource<Dictionary<ObjectFeatureCardData>>(
+  const allObjectFeatures = await fetchResource<Dictionary<ObjectFeatureCardData>>(
     TDR_RESOURCES.OBJECT_FEATURES,
   );
 

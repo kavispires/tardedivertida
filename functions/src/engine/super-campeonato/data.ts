@@ -5,12 +5,14 @@ import type { PastBattles, ResourceData, SuperCampeonatoOptions } from './types'
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import {
+  fetchGlobalTrackerDocumentData,
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+} from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get challenges and contenders  based on the game's language
@@ -25,19 +27,19 @@ export const getResourceData = async (
   options: SuperCampeonatoOptions,
 ): Promise<ResourceData> => {
   // Get full challenges deck
-  const challengesResponse = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
+  const challengesResponse = await fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.CHALLENGES,
     language,
   );
   // Get used challenges deck
-  const usedChallenges = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
+  const usedChallenges = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 
   // Filter out used cards
   let availableChallenges = utils.game.filterOutByIds(challengesResponse, usedChallenges);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableChallenges).length < CHALLENGES_PER_GAME) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
     availableChallenges = challengesResponse;
   }
 
@@ -70,6 +72,6 @@ export const saveData = async (pastBattles: PastBattles) => {
     });
   });
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CHALLENGES, challengeIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.CHALLENGES, challengeIds);
 };

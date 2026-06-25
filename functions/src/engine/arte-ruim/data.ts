@@ -6,14 +6,17 @@ import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level4Type } f
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { SPECIAL_LEVELS_LIBRARIES } from './constants';
 // Services
+import { updateFirestoreCommunityDataRecursively } from '../../services/community-data';
 import { getDailyCollectionRef } from '../../services/firestore-core';
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import {
+  fetchGlobalTrackerDocumentData,
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+} from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
 // Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 import {
   determineNumberOfCards,
   distributeCardsByLevel,
@@ -28,7 +31,7 @@ const getPairsLevel = async (language: string, playerCount: number, options: Art
 
   // Regular level 4 uses pairs
   if (!options.specialLevels) {
-    const allCardPairsResponse = await resourceUtils.fetchResource<Dictionary<ArteRuimPairData>>(
+    const allCardPairsResponse = await fetchResource<Dictionary<ArteRuimPairData>>(
       TDR_RESOURCES.ARTE_RUIM_PAIRS,
       language,
     );
@@ -45,7 +48,7 @@ const getPairsLevel = async (language: string, playerCount: number, options: Art
 
   for (const library of types) {
     const document = library === 'contenders' ? library : `${library}-${language}`;
-    const response = await resourceUtils.fetchResource<Dictionary<TextCardData & PlainObject>>(document);
+    const response = await fetchResource<Dictionary<TextCardData & PlainObject>>(document);
 
     const cards = shuffle(Object.values(response)).filter((card) => {
       if (library === 'contenders' && card.exclusivity && card.exclusivity !== language) {
@@ -90,7 +93,7 @@ export const getCards = async (
   options: ArteRuimGameOptions,
 ): Promise<ResourceData> => {
   // Get regular cards
-  const allCardsResponse = await resourceUtils.fetchResource<Dictionary<ArteRuimCardData>>(
+  const allCardsResponse = await fetchResource<Dictionary<ArteRuimCardData>>(
     TDR_RESOURCES.ARTE_RUIM_CARDS,
     language,
   );
@@ -116,16 +119,13 @@ export const getCards = async (
 
   // Get level 4 cards - pairs (if not basic levels only)
   const allCardPairsResponse = needsLevel4
-    ? await resourceUtils.fetchResource<Dictionary<ArteRuimPairData>>(TDR_RESOURCES.ARTE_RUIM_PAIRS, language)
+    ? await fetchResource<Dictionary<ArteRuimPairData>>(TDR_RESOURCES.ARTE_RUIM_PAIRS, language)
     : {};
   const cardsPairs: ArteRuimPairData[] = Object.values(allCardPairsResponse);
 
   // Get level 5 cards - groups (if not basic levels only)
   const allCardsGroupResponse = needsLevel5
-    ? await resourceUtils.fetchResource<Dictionary<ArteRuimGroupData>>(
-        TDR_RESOURCES.ARTE_RUIM_GROUPS,
-        language,
-      )
+    ? await fetchResource<Dictionary<ArteRuimGroupData>>(TDR_RESOURCES.ARTE_RUIM_GROUPS, language)
     : {};
   const cardsGroups: ArteRuimGroupData[] = Object.values(allCardsGroupResponse);
 
@@ -144,7 +144,7 @@ export const getCards = async (
   }
 
   // Get used deck
-  const usedCardsIds: Dictionary<boolean> = await globalUtils.getGlobalFirebaseDocData(
+  const usedCardsIds: Dictionary<boolean> = await fetchGlobalTrackerDocumentData(
     GLOBAL_USED_DOCUMENTS.ARTE_RUIM,
     {},
   );
@@ -159,7 +159,7 @@ export const getCards = async (
   );
 
   if (resetUsedCards) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
   }
 
   return {
@@ -180,7 +180,7 @@ export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: L
   const onlyARPDEntries = pastDrawings.filter((entry) => entry.id.includes('a-'));
   // Save usedArteRuimCards to global
   const usedArteRuimCards = utils.helpers.buildBooleanDictionary(onlyARPDEntries);
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
 
   // Save drawings to public gallery
   const endedAt = Date.now();
@@ -189,5 +189,5 @@ export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: L
     return acc;
   }, {});
 
-  await dataUtils.updateDataCollectionRecursively('drawings', language, newArteRuimDrawings);
+  await updateFirestoreCommunityDataRecursively('drawings', language, newArteRuimDrawings);
 };

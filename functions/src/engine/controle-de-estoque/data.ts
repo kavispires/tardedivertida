@@ -1,12 +1,11 @@
-/* eslint-disable quotes */
-// Constants
-// import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { ResourceData } from './types';
 import type { BossIdeaCardData } from '../../types/tdr';
-// Utils
-// import * as resourceUtils from '../resource';
+import type { ResourceData } from './types';
+// Constants
 import { GOODS_LIBRARY_COUNT } from './constants';
+
+// import * as resourceUtils from '../resource';
+
 import utils from '../../utils';
 
 /**
@@ -15,7 +14,7 @@ import utils from '../../utils';
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get full deck
-  // const allBossIdeas = await resourceUtils.fetchResource<Dictionary<BossIdeaCardData>>(
+  // const allBossIdeas = await fetchResource<Dictionary<BossIdeaCardData>>(
   //   TDR_RESOURCES.WAREHOUSE_BOSS_IDEAS,
   // );
   const allBossIdeas = BOSS_IDEAS;

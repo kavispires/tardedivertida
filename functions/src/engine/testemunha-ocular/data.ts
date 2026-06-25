@@ -5,12 +5,12 @@ import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOption
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
+// Services
+import { updateFirestoreCommunityData } from '../../services/community-data';
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get question resource based on the game's language
@@ -37,9 +37,7 @@ export const getQuestionsAndSuspects = async (
     decks: ['adult'],
   });
 
-  const crimeReasons = await resourceUtils.fetchResource<Dictionary<CrimeReasonData>>(
-    TDR_RESOURCES.CRIME_REASONS,
-  );
+  const crimeReasons = await fetchResource<Dictionary<CrimeReasonData>>(TDR_RESOURCES.CRIME_REASONS);
 
   return {
     allCards: availableCards,
@@ -98,11 +96,11 @@ export const saveData = async (
     });
 
     // Save used questions
-    await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, usedQuestionsIds);
+    await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, usedQuestionsIds);
     // Save used suspects
-    await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SUSPECTS, usedSuspectsIds);
+    await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.SUSPECTS, usedSuspectsIds);
     // Save Suspect Answers
-    await dataUtils.updateDataFirebaseDoc(DATA_DOCUMENTS.SUSPECT_ANSWERS, {
+    await updateFirestoreCommunityData(DATA_DOCUMENTS.SUSPECT_ANSWERS, {
       [gameId]: JSON.stringify(testimonyAnswers),
     });
   } catch (error) {

@@ -4,11 +4,11 @@ import type { ResourceData } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { CARDS_PER_PLAYER } from './constants';
+// Services
+import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
 
 /**
  * Get image decks card
@@ -42,7 +42,7 @@ export const saveData = async (usedCards: PlainObject[], language: Language) => 
     return acc;
   }, {});
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
 
-  await dataUtils.updateCardDataCollection('imageCards', language, clues);
+  await updateFirestoreCommunityDataForCards('imageCards', language, clues);
 };

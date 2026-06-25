@@ -3,9 +3,9 @@ import type { TextCardData } from '../../types/tdr';
 import type { FinalGalleryEntry, ResourceData } from './types';
 // Constants
 import { DATA_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-// Internal
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
+// Services
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 
 /**
  * Retrieves the warning sign cards for a given language.
@@ -14,12 +14,12 @@ import * as resourceUtils from '../resource';
  * @returns A promise that resolves to an object containing all the warning sign descriptions and subjects.
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
-  const allDescriptors = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
+  const allDescriptors = await fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.WARNING_SIGNS_DESCRIPTORS,
     language,
   );
 
-  const allSubjects = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
+  const allSubjects = await fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.WARNING_SIGNS_SUBJECTS,
     language,
   );
@@ -38,7 +38,7 @@ export const saveDrawings = async (finalGallery: FinalGalleryEntry[], language: 
   const docName = `${DATA_DOCUMENTS.SIGNS}${language.toUpperCase()}`;
 
   try {
-    await globalUtils.updateGlobalFirebaseDoc(docName, finalGallery);
+    await updateGlobalTrackerDocumentData(docName, finalGallery);
   } catch (_e) {
     // Ignore
   }

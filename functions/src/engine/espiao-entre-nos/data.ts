@@ -2,8 +2,8 @@
 import type { ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Internal
-import * as resourceUtils from '../resource';
+// Services
+import { fetchResource } from '../../services/resource';
 
 /**
  * Get words resource based on the game's language
@@ -12,10 +12,7 @@ import * as resourceUtils from '../resource';
  */
 export const getLocations = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allLocations = await resourceUtils.fetchResource<Dictionary<Location>>(
-    TDR_RESOURCES.SPY_LOCATIONS,
-    language,
-  );
+  const allLocations = await fetchResource<Dictionary<Location>>(TDR_RESOURCES.SPY_LOCATIONS, language);
 
   return {
     allLocations: Object.values(allLocations),

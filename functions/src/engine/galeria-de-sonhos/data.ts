@@ -4,12 +4,12 @@ import type { ImageCardMatch, ResourceData } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { TABLE_DECK_TOTAL } from './constants';
+// Services
+import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get words resource based on the game's language
@@ -18,10 +18,7 @@ import * as resourceUtils from '../resource';
  */
 export const getWords = async (language: Language): Promise<ResourceData> => {
   // Get full deck
-  const allWords = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
-    TDR_RESOURCES.THEME_WORDS,
-    language,
-  );
+  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THEME_WORDS, language);
 
   const imageCardIds = await utils.imageCards.getImageCards(TABLE_DECK_TOTAL);
 
@@ -47,7 +44,7 @@ export const saveData = async (language: Language, bestMatches: ImageCardMatch[]
     return acc;
   }, {});
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
 
-  await dataUtils.updateCardDataCollection('imageCards', language, clues);
+  await updateFirestoreCommunityDataForCards('imageCards', language, clues);
 };

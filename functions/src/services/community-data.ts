@@ -1,17 +1,18 @@
 import { merge, uniq } from 'lodash';
 // Constants
 import { DATA_DOCUMENTS } from '../utils/constants';
-// Services
-import { getDataCollectionRef } from '../services/firestore-core';
 // Utils
 import { isEmulatingEnvironment } from '../utils/environment';
+// Internal
+import { getDataCollectionRef } from './firestore-core';
 
 /**
- * Gets document from data in firestore
+ * Retrieves a document from the community data Firestore collection
  * @param documentName - The name of the document to retrieve
- * @param fallback - The fallback value if the document doesn't exist
+ * @param fallback - Default value returned if the document doesn't exist or fetch fails
+ * @returns The document data or fallback value
  */
-export const getDataFirebaseDocData = async <T = PlainObject>(
+export const getFirestoreCommunityData = async <T = PlainObject>(
   documentName: string,
   fallback: T = {} as T,
 ): Promise<T> => {
@@ -32,12 +33,16 @@ export const getDataFirebaseDocData = async <T = PlainObject>(
 };
 
 /**
- * Saves data to data in firestore
+ * Updates a community data document in Firestore by merging new data with existing data
  * @param documentName - The name of the document to update
- * @param data - The data to save
+ * @param data - The data to merge with existing document data
+ * @returns True if the update was successful
  */
-export const updateDataFirebaseDoc = async (documentName: string, data: PlainObject): Promise<boolean> => {
-  const currentData = await getDataFirebaseDocData(documentName, {});
+export const updateFirestoreCommunityData = async (
+  documentName: string,
+  data: PlainObject,
+): Promise<boolean> => {
+  const currentData = await getFirestoreCommunityData(documentName, {});
 
   const newData: PlainObject = merge(currentData, data);
 
@@ -49,19 +54,20 @@ export const updateDataFirebaseDoc = async (documentName: string, data: PlainObj
 };
 
 /**
- * Recursively updates data collection for drawings or monster drawings with retry logic
- * @param prefix - The collection prefix type
- * @param language - The language code
- * @param data - The data to update
+ * Updates community data collection for drawings with retry logic and automatic suffix management
+ * @param prefix - The collection prefix type (drawings or monsterDrawings)
+ * @param language - The language code for the data
+ * @param data - The data to update or create in the collection
+ * @returns True if the update was successful after up to 5 retry attempts
  */
-export const updateDataCollectionRecursively = async (
+export const updateFirestoreCommunityDataRecursively = async (
   prefix: 'drawings' | 'monsterDrawings',
   language: Language,
   data: PlainObject,
 ): Promise<boolean> => {
   // Get suffix counts
   const documentPrefix = prefix === 'drawings' ? `${prefix}${language.toUpperCase()}` : `${prefix}`;
-  const suffixCounts = await getDataFirebaseDocData('suffixCounts', { [documentPrefix]: 1 });
+  const suffixCounts = await getFirestoreCommunityData('suffixCounts', { [documentPrefix]: 1 });
 
   let tries = 0;
 
@@ -92,12 +98,13 @@ export const updateDataCollectionRecursively = async (
 };
 
 /**
- * Updates card data collection by merging new clues with existing ones
- * @param type - The type of cards
- * @param language - The language code
- * @param data - The card clues data to merge
+ * Updates card clues collection by merging new clues with existing ones, removing duplicates
+ * @param type - The type of cards (cards or imageCards)
+ * @param language - The language code for the clues
+ * @param data - Object mapping card UIDs to arrays of clue strings to merge
+ * @returns True if the update was successful
  */
-export const updateCardDataCollection = async (
+export const updateFirestoreCommunityDataForCards = async (
   type: 'cards' | 'imageCards',
   language: Language,
   data: Record<UID | UID, string[]>,
@@ -126,12 +133,14 @@ export const updateCardDataCollection = async (
 };
 
 /**
- * Updates image cards relationships by merging new relationships with existing ones
- * @param relationships - The image card relationships to merge
+ * Updates image card relationships by creating bidirectional connections and removing duplicates
+ * @param relationships - Object mapping image card UIDs to arrays of related card UIDs
  */
-export const updateImageCardsRelationships = async (relationships: ImageCardRelationship) => {
+export const updateFirestoreCommunityDataForImageCardsRelationships = async (
+  relationships: ImageCardRelationship,
+): Promise<void> => {
   const previouslySavedRelationships: ImageCardRelationship =
-    await getDataFirebaseDocData<ImageCardRelationship>(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS);
+    await getFirestoreCommunityData<ImageCardRelationship>(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS);
 
   const parsedRelationships: ImageCardRelationship = {};
 
@@ -149,9 +158,9 @@ export const updateImageCardsRelationships = async (relationships: ImageCardRela
 };
 
 /**
- * Transpile relationships from source to result by creating bidirectional connections
- * @param source - The source relationships to transpile
- * @param result - The result object to populate with bidirectional relationships
+ * Transpiles relationships by creating bidirectional connections between image cards
+ * @param source - The source relationships object to process
+ * @param result - The result object to populate with bidirectional relationships (mutated)
  */
 function transpileRelationships(source: ImageCardRelationship, result: ImageCardRelationship) {
   Object.entries(source).forEach(([cardId, relatedIds]) => {

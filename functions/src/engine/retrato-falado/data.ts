@@ -5,13 +5,15 @@ import type { MonsterSketch, ResourceData } from './types';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import { updateFirestoreCommunityDataRecursively } from '../../services/community-data';
+import {
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+  fetchGlobalTrackerDocumentData,
+} from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get monster cards ids
@@ -19,18 +21,16 @@ import * as resourceUtils from '../resource';
  */
 export const getMonsterCards = async (): Promise<ResourceData> => {
   // Get images info
-  const allMonsters = await resourceUtils.fetchResource<Dictionary<MonsterImageData>>(
-    TDR_RESOURCES.MONSTER_ORIENTATION,
-  );
+  const allMonsters = await fetchResource<Dictionary<MonsterImageData>>(TDR_RESOURCES.MONSTER_ORIENTATION);
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
+  const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
 
   // Filter out used cards
   const availableMonsters = utils.game.filterOutByIds(allMonsters, usedCards);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MONSTERS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.MONSTERS);
     return { allMonsters };
   }
 
@@ -56,7 +56,7 @@ export const saveData = async (sketches: MonsterSketch[], language: Language): P
     };
     return acc;
   }, {});
-  await dataUtils.updateDataCollectionRecursively('monsterDrawings', language, drawings);
+  await updateFirestoreCommunityDataRecursively('monsterDrawings', language, drawings);
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.MONSTERS, usedIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MONSTERS, usedIds);
 };

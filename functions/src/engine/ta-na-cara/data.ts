@@ -6,12 +6,10 @@ import type { ResourceData, TaNaCaraOptions } from './types';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS, PLAYER_SUGGESTED_QUESTIONS_COUNT } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import { fetchGlobalTrackerDocumentData, resetGlobalTrackerDocument } from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get question resource based on the game's language
@@ -21,12 +19,12 @@ import * as resourceUtils from '../resource';
  */
 export const getResourceData = async (language: string, options: TaNaCaraOptions): Promise<ResourceData> => {
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCardData>>(
+  const allCards = await fetchResource<Dictionary<TestimonyQuestionCardData>>(
     TDR_RESOURCES.TESTIMONY_QUESTIONS,
     language,
   );
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
+  const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
   const allSuspects = await utils.tdr.getSuspects({
     styleVariant: options.styleVariant,
@@ -45,7 +43,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < questionsQuantity) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
     return {
       questions: sampleSize(
         options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),

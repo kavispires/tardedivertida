@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
-// Services
-import { throwHttpsError } from '../services/firebase-core';
+// Internal
+import { throwHttpsError } from './firebase-core';
 
 /**
  * Queries a TDR resource file
