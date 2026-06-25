@@ -1,11 +1,10 @@
 // Types
-import type { CallableRequest } from './types/reference';
+import type { CallableRequest } from '../types/reference';
 // Services
-import { throwHttpsError } from './services/firebase-core';
-// API
-import { gameSessionActions } from './api/session-api';
-// Utils
-import { getEngine } from './utils/delegators';
+import { throwHttpsError } from '../services/firebase-core';
+// Internal
+import { getEngine } from '../games/delegators';
+import { gameSessionActions } from './session';
 
 /**
  * Executes the game engine.
