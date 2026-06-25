@@ -4,10 +4,10 @@ import type { MovieCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
+// Services
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as resourceUtils from '../resource';
 
 /**
  * Get question resource based on the game's language
@@ -17,7 +17,7 @@ import * as resourceUtils from '../resource';
  */
 export const getData = async (language: string, options: TesteDeElencoOptions): Promise<ResourceData> => {
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<TestimonyQuestionCardData>>(
+  const allCards = await fetchResource<Dictionary<TestimonyQuestionCardData>>(
     TDR_RESOURCES.TESTIMONY_QUESTIONS,
     language,
   );
@@ -32,10 +32,7 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
   const availableCards = Object.values(allCards).filter((card) => (options.nsfw ? card : !card.nsfw));
 
   // Get full movies deck
-  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCardData>>(
-    TDR_RESOURCES.MOVIES,
-    language,
-  );
+  const allMovies = await fetchResource<Dictionary<MovieCardData>>(TDR_RESOURCES.MOVIES, language);
 
   const items = await utils.tdr.getItems(6, {
     allowNSFW: !!options.nsfw,

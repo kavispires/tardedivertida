@@ -5,8 +5,8 @@ import type { ResourceData, SocialGroup, StaffMember } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { TOTAL_RUMORS, TOTAL_STUDENTS } from './constants';
-// Internal
-import * as resourceUtils from '../resource';
+// Services
+import { fetchResource } from '../../services/resource';
 
 /**
  * Get teenage students, rumors, motivations, and social groups
@@ -14,19 +14,15 @@ import * as resourceUtils from '../resource';
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get all teenagers
-  const allTeenagers = await resourceUtils.fetchResource<Dictionary<TeenageStudentData>>(
-    TDR_RESOURCES.TEENAGE_STUDENTS,
-  );
+  const allTeenagers = await fetchResource<Dictionary<TeenageStudentData>>(TDR_RESOURCES.TEENAGE_STUDENTS);
   const teenagers = sampleSize(Object.values(allTeenagers), TOTAL_STUDENTS);
 
   // Get rumors
-  const allRumors = await resourceUtils.fetchResource<Dictionary<TeenageRumorData>>(
-    TDR_RESOURCES.TEENAGE_RUMORS,
-  );
+  const allRumors = await fetchResource<Dictionary<TeenageRumorData>>(TDR_RESOURCES.TEENAGE_RUMORS);
   const rumors = sampleSize(Object.values(allRumors), TOTAL_RUMORS);
 
   // Get motivations
-  const allMotivations = await resourceUtils.fetchResource<Dictionary<TeenageMotivationData>>(
+  const allMotivations = await fetchResource<Dictionary<TeenageMotivationData>>(
     TDR_RESOURCES.TEENAGE_MOTIVATIONS,
   );
   const motivations = Object.values(allMotivations);

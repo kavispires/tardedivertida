@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "3.0.31",
+  "version": "3.0.32",
   "release": "stable",
   "releaseDate": "2023-09-17",
   "available": true,

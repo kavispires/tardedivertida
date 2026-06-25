@@ -3,6 +3,7 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 // Constants
 import { DATA_DOCUMENTS } from '../utils/constants';
 // Services
+import { updateFirestoreCommunityDataRecursively } from '../services/community-data';
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import {
   getDailyCollectionRef,
@@ -12,8 +13,6 @@ import {
 // Utils
 import { isEmulatingEnvironment } from '../utils/environment';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
-// Internal
-import * as dataUtils from './collections';
 
 type DailyGetterPayload = {
   date: string; // Format YYYY-MM-DD
@@ -130,7 +129,7 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
     return throwHttpsError('User not authenticated', actionText);
   }
 
-  await dataUtils.updateDataCollectionRecursively('drawings', data.language, data.drawings);
+  await updateFirestoreCommunityDataRecursively('drawings', data.language, data.drawings);
 
   return true;
 };

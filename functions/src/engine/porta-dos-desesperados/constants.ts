@@ -1,4 +1,4 @@
-/* eslint-disable quotes */
+// Types
 import type { TrapEntry } from './types';
 
 export const PORTA_DOS_DESESPERADOS_PHASES = {

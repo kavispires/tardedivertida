@@ -1,9 +1,10 @@
 // Types
 import type { PastSuggestion } from './types';
+// Services
+import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 // Utils
 import utils from '../../utils';
 // Internal
-import * as dataUtils from '../collections';
 import { findDuplicateSuggestions } from './helpers';
 
 /**
@@ -31,5 +32,5 @@ export const saveData = async (pastSuggestions: PastSuggestion[], language: Lang
     acc[entry.id] = result;
     return acc;
   }, {});
-  await dataUtils.updateCardDataCollection('cards', language, toBeSaved);
+  await updateFirestoreCommunityDataForCards('cards', language, toBeSaved);
 };

@@ -5,10 +5,10 @@ import type { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
+// Services
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as resourceUtils from '../resource';
 
 /**
  * Get items and diagrams for the game
@@ -63,10 +63,7 @@ export const getResourceData = async (
   });
 
   // Get full deck
-  const allCards = await resourceUtils.fetchResource<Dictionary<DiagramTopicData>>(
-    TDR_RESOURCES.DIAGRAM_TOPICS,
-    language,
-  );
+  const allCards = await fetchResource<Dictionary<DiagramTopicData>>(TDR_RESOURCES.DIAGRAM_TOPICS, language);
 
   const { attribute, word, context } = Object.values(allCards).reduce(
     (acc: TopicsByDiagramType, card) => {

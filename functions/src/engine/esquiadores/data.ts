@@ -3,8 +3,8 @@ import type { DilemmaCardData } from '../../types/tdr';
 import type { EsquiadoresOptions, ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Internal
-import * as resourceUtils from '../resource';
+// Services
+import { fetchResource } from '../../services/resource';
 
 /**
  * Get dilemmas resource based on the game's language
@@ -14,10 +14,7 @@ import * as resourceUtils from '../resource';
  */
 export const getDilemmas = async (language: string, options: EsquiadoresOptions): Promise<ResourceData> => {
   // Get full deck
-  const allDilemmas = await resourceUtils.fetchResource<Dictionary<DilemmaCardData>>(
-    TDR_RESOURCES.DILEMMAS,
-    language,
-  );
+  const allDilemmas = await fetchResource<Dictionary<DilemmaCardData>>(TDR_RESOURCES.DILEMMAS, language);
 
   return {
     dilemmas: Object.values(allDilemmas).filter((scenario) => (options.nsfw ? true : !scenario.nsfw)),

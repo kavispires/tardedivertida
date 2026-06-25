@@ -3,8 +3,8 @@ import type { CityLocationData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Internal
-import * as resourceUtils from '../resource';
+// Services
+import { fetchResource } from '../../services/resource';
 
 /**
  * Get city locations resource based on the game's language
@@ -12,9 +12,7 @@ import * as resourceUtils from '../resource';
  */
 export const getLocations = async (): Promise<ResourceData> => {
   // Get full deck
-  const allCityLocations = await resourceUtils.fetchResource<Dictionary<CityLocationData>>(
-    TDR_RESOURCES.CITY_LOCATIONS,
-  );
+  const allCityLocations = await fetchResource<Dictionary<CityLocationData>>(TDR_RESOURCES.CITY_LOCATIONS);
 
   return { allCityLocations };
 };

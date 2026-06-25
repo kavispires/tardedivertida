@@ -5,10 +5,10 @@ import type { LabirintoSecretoGameOptions, ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
+// Services
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as resourceUtils from '../resource';
 
 /**
  * Get cards resources based on the game's language
@@ -44,10 +44,7 @@ export const getData = async (
   }
 
   // Get cards
-  const allWords = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
-    TDR_RESOURCES.TREE_WORDS,
-    language,
-  );
+  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.TREE_WORDS, language);
 
   const filtered = options.includePrivateTrees
     ? Object.values(allWords)

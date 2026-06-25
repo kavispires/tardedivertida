@@ -5,12 +5,14 @@ import type { ResourceData } from './types';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import {
+  fetchGlobalTrackerDocumentData,
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+} from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get movie titles and reviews based on game's language
@@ -19,16 +21,14 @@ import * as resourceUtils from '../resource';
  */
 export const getCards = async (language: string): Promise<ResourceData> => {
   // Get full movies deck
-  const allMovies = await resourceUtils.fetchResource<Dictionary<MovieCardData>>(
-    `${TDR_RESOURCES.MOVIES}-${language}`,
-  );
+  const allMovies = await fetchResource<Dictionary<MovieCardData>>(`${TDR_RESOURCES.MOVIES}-${language}`);
   // Get full movies deck
-  const allReviews = await resourceUtils.fetchResource<Dictionary<MovieReviewCardData>>(
+  const allReviews = await fetchResource<Dictionary<MovieReviewCardData>>(
     `${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`,
   );
 
   // Get used deck
-  const usedMoviesAndReviews = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MOVIES, {});
+  const usedMoviesAndReviews = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MOVIES, {});
 
   // Filter out used cards
   const movies = utils.game.filterOutByIds(allMovies, usedMoviesAndReviews);
@@ -39,7 +39,7 @@ export const getCards = async (language: string): Promise<ResourceData> => {
     Object.keys(movies).length < MOVIES_PER_ROUND * TOTAL_ROUNDS ||
     Object.keys(reviews).length < TOTAL_REVIEW_CARDS
   ) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.MOVIES);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.MOVIES);
     return {
       movies: allMovies,
       reviews: allReviews,
@@ -67,7 +67,7 @@ export const saveData = async (
   const usedGoodReviews = utils.helpers.buildBooleanDictionary(goodReviews);
   const usedBadReviews = utils.helpers.buildBooleanDictionary(badReviews);
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.MOVIES, {
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MOVIES, {
     ...usedMovies,
     ...usedGoodReviews,
     ...usedBadReviews,

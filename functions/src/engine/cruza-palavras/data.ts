@@ -4,11 +4,11 @@ import type { TextCardData } from '../../types/tdr';
 import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
+// Services
+import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as resourceUtils from '../resource';
 
 /**
  * Get words resource based on the game's language
@@ -21,10 +21,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 28;
 
   if (options?.gridType === 'properties') {
-    const allCards = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
-      TDR_RESOURCES.THINGS_QUALITIES,
-      language,
-    );
+    const allCards = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THINGS_QUALITIES, language);
     // Does not need type because it is just text
     return { deck: sampleSize(Object.values(allCards), quantityNeeded) };
   }
@@ -84,5 +81,5 @@ export const saveData = async (language: Language, pastClues: PastClues, isConte
   }
 
   // Save card clues data
-  await dataUtils.updateCardDataCollection('cards', language, pastClues);
+  await updateFirestoreCommunityDataForCards('cards', language, pastClues);
 };

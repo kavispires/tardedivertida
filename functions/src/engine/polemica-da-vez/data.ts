@@ -2,8 +2,8 @@
 import type { CustomDeck } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
-// Internal
-import * as resourceUtils from '../resource';
+// Services
+import { fetchResource } from '../../services/resource';
 
 /**
  * Get tweet cards resource based on the game's language
@@ -11,5 +11,5 @@ import * as resourceUtils from '../resource';
  * @returns Custom deck of tweet cards
  */
 export const getTweets = async (language: string) => {
-  return await resourceUtils.fetchResource<CustomDeck>(TDR_RESOURCES.TWEETS, language);
+  return await fetchResource<CustomDeck>(TDR_RESOURCES.TWEETS, language);
 };

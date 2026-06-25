@@ -5,12 +5,14 @@ import type { PastCategories, ResourceData } from './types';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import {
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+  fetchGlobalTrackerDocumentData,
+} from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get question resource based on the game's language
@@ -19,19 +21,16 @@ import * as resourceUtils from '../resource';
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allCategories = await resourceUtils.fetchResource<Dictionary<SpectrumCardData>>(
-    TDR_RESOURCES.SPECTRUMS,
-    language,
-  );
+  const allCategories = await fetchResource<Dictionary<SpectrumCardData>>(TDR_RESOURCES.SPECTRUMS, language);
   // Get used deck
-  const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
+  const usedCategories = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 
   // Filter out used cards
   const availableCategories = utils.game.filterOutByIds(allCategories, usedCategories);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
     return { allCategories };
   }
 
@@ -47,8 +46,5 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
 export const saveData = async (pastCategories: PastCategories): Promise<void> => {
   // Save usedTestemunhaOcularCards to global
   const usedOndaTelepaticaCategories = utils.helpers.buildBooleanDictionary(pastCategories);
-  await globalUtils.updateGlobalFirebaseDoc(
-    GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS,
-    usedOndaTelepaticaCategories,
-  );
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, usedOndaTelepaticaCategories);
 };

@@ -3,11 +3,11 @@ import type { ResourceData } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { TOTAL_IMAGE_CARDS } from './constants';
+// Services
+import { updateFirestoreCommunityDataForImageCardsRelationships } from '../../services/community-data';
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
 
 /**
  * Get image decks card
@@ -30,7 +30,7 @@ export const saveData = async (relationships: ImageCardRelationship): Promise<vo
   // Collect all ids
   const usedCardsIds: Dictionary<boolean> = utils.helpers.buildBooleanDictionary(Object.keys(relationships));
 
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
 
-  await dataUtils.updateImageCardsRelationships(relationships);
+  await updateFirestoreCommunityDataForImageCardsRelationships(relationships);
 };

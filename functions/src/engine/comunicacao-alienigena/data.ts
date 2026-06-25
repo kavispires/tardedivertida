@@ -6,13 +6,13 @@ import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
+// Services
+import { fetchResource } from '../../services/resource';
 // Tool Kits
 import { alienAttributesUtils } from '../../utils/tool-kits';
 // Utils
 import utils from '../../utils';
 import { makeArray } from '../../utils/helpers';
-// Internal
-import * as resourceUtils from '../resource';
 
 /**
  * Get characters based on the game's language
@@ -30,13 +30,13 @@ export const getResourceData = async (
   const botAlien = !!options.botAlien;
 
   // Fetch data
-  const itemsResource = await resourceUtils.fetchResource<Dictionary<ItemData>>(TDR_RESOURCES.ITEMS);
-  const itemsAttributesResource = await resourceUtils.fetchResource<Dictionary<ItemAttributeData>>(
+  const itemsResource = await fetchResource<Dictionary<ItemData>>(TDR_RESOURCES.ITEMS);
+  const itemsAttributesResource = await fetchResource<Dictionary<ItemAttributeData>>(
     TDR_RESOURCES.ITEMS_ATTRIBUTES,
   );
-  const itemsAttributesValuesResource = await resourceUtils.fetchResource<
-    Dictionary<ItemAttributesValuesData>
-  >(TDR_RESOURCES.ITEMS_ATTRIBUTE_VALUES);
+  const itemsAttributesValuesResource = await fetchResource<Dictionary<ItemAttributesValuesData>>(
+    TDR_RESOURCES.ITEMS_ATTRIBUTE_VALUES,
+  );
 
   const { items, attributes } = alienAttributesUtils.buildAlienGameGrids(
     itemsResource,

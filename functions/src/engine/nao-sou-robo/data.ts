@@ -5,12 +5,12 @@ import type { GalleryEntry, ResourceData } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
 import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_COUNT } from './constants';
+// Services
+import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
+import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as dataUtils from '../collections';
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get data
@@ -29,17 +29,11 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
   // Colors
-  const allColors = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
-    TDR_RESOURCES.COLORS,
-    language,
-  );
+  const allColors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.COLORS, language);
   const colors = sampleSize(Object.values(allColors), quantityNeeded);
 
   // Emotions
-  const allEmotions = await resourceUtils.fetchResource<Dictionary<TextCardData>>(
-    TDR_RESOURCES.EMOTIONS,
-    language,
-  );
+  const allEmotions = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.EMOTIONS, language);
   const emotions = sampleSize(Object.values(allEmotions), quantityNeeded);
 
   // Words
@@ -105,7 +99,7 @@ export const saveData = async (language: Language, gallery: GalleryEntry[]): Pro
   // Save adjectives
   await utils.tdr.saveUsedAdjectives(usedAdjectives);
   // Save imageCards
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedImageCards);
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedImageCards);
   // Save data relationship for card - clues
-  return await dataUtils.updateCardDataCollection('imageCards', language, clues);
+  return await updateFirestoreCommunityDataForCards('imageCards', language, clues);
 };

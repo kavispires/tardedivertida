@@ -5,12 +5,14 @@ import type { ResourceData } from './types';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Services
-import { resetGlobalUsedDocument } from '../../services/global-tracker';
+import {
+  resetGlobalTrackerDocument,
+  updateGlobalTrackerDocumentData,
+  fetchGlobalTrackerDocumentData,
+} from '../../services/global-tracker';
+import { fetchResource } from '../../services/resource';
 // Utils
 import utils from '../../utils';
-// Internal
-import * as globalUtils from '../global';
-import * as resourceUtils from '../resource';
 
 /**
  * Get question cards resource based on the game's language
@@ -19,12 +21,12 @@ import * as resourceUtils from '../resource';
  */
 export const getQuestions = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allQuestions = await resourceUtils.fetchResource<Dictionary<GroupQuestionCardData>>(
+  const allQuestions = await fetchResource<Dictionary<GroupQuestionCardData>>(
     TDR_RESOURCES.GROUP_QUESTIONS,
     language,
   );
   // Get used deck
-  const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
+  const usedQuestions = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
 
   // Filter out used cards
   const availableQuestions: Record<string, GroupQuestionCardData> = utils.game.filterOutByIds(
@@ -34,7 +36,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableQuestions).length < QUESTIONS_PER_ROUND * MAX_ROUNDS) {
-    await resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
     return { allQuestions };
   }
 
@@ -55,8 +57,5 @@ export const saveData = async (pastQuestions: string[]) => {
 
   // Save usedMenteColetivaQuestions to global
   const usedMenteColetivaQuestions = utils.helpers.buildBooleanDictionary(pastQuestionsObj);
-  await globalUtils.updateGlobalFirebaseDoc(
-    GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS,
-    usedMenteColetivaQuestions,
-  );
+  await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, usedMenteColetivaQuestions);
 };
