@@ -306,7 +306,7 @@ function generateFrontendContent(achievements, existing) {
   }
 
   let content = `// Types
-import type { AchievementReference } from '@types/game';
+import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {\n`;
 

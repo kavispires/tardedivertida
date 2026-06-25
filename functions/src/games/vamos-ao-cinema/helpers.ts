@@ -1,7 +1,7 @@
 import { sampleSize } from 'lodash';
 // Types
 import type { MovieCardData } from '../../types/tdr';
-import type { FirebaseStateData, FirebaseStoreData, VamosAoCinemaAchievement } from './types';
+import type { FirebaseStateData } from './types';
 // Constants
 import { LETTERS } from '../../constants/general';
 import {
@@ -9,7 +9,6 @@ import {
   MOVIE_POSTERS_COUNT,
   OUTCOME,
   TOTAL_MOVIE_OPTIONS,
-  VAMOS_AO_CINEMA_ACHIEVEMENTS,
   VAMOS_AO_CINEMA_PHASES,
 } from './constants';
 // Utils
@@ -182,69 +181,4 @@ export const getFinalMovies = (
  */
 export const getMoviePosterIds = () => {
   return makeArray(MOVIE_POSTERS_COUNT, 1).map((id) => `mv-${id}`);
-};
-
-/**
- * Calculates and returns player achievements based on game statistics
- * @param store - The Firebase store data containing achievement counters
- */
-export const getAchievements = (store: FirebaseStoreData) => {
-  const achievements: Achievement<VamosAoCinemaAchievement>[] = [];
-
-  // Most Group movies
-  const { most: mostGroupMovies } = utils.achievements.getMostAndLeastOf(store, 'group');
-
-  if (mostGroupMovies) {
-    achievements.push({
-      playerId: mostGroupMovies.playerId,
-      type: VAMOS_AO_CINEMA_ACHIEVEMENTS.MOST_GROUP_SELECTIONS,
-      value: mostGroupMovies.value,
-    });
-  }
-
-  // Most Solo movies
-  const { most: mostSoloMovies } = utils.achievements.getMostAndLeastOf(store, 'solo');
-
-  if (mostSoloMovies) {
-    achievements.push({
-      playerId: mostSoloMovies.playerId,
-      type: VAMOS_AO_CINEMA_ACHIEVEMENTS.MOST_SOLO_SELECTIONS,
-      value: mostSoloMovies.value,
-    });
-  }
-
-  // Most Couple movies
-  const { most: mostCoupleMovies } = utils.achievements.getMostAndLeastOf(store, 'couple');
-
-  if (mostCoupleMovies) {
-    achievements.push({
-      playerId: mostCoupleMovies.playerId,
-      type: VAMOS_AO_CINEMA_ACHIEVEMENTS.MOST_COUPLE_SELECTIONS,
-      value: mostCoupleMovies.value,
-    });
-  }
-
-  // Most bad eliminations
-  const { most: mostBadEliminations } = utils.achievements.getMostAndLeastOf(store, 'bad');
-
-  if (mostBadEliminations) {
-    achievements.push({
-      playerId: mostBadEliminations.playerId,
-      type: VAMOS_AO_CINEMA_ACHIEVEMENTS.MOST_BAD_ELIMINATIONS,
-      value: mostBadEliminations.value,
-    });
-  }
-
-  // Most eliminated movie
-  const { most: mostEliminatedMovie } = utils.achievements.getMostAndLeastOf(store, 'own');
-
-  if (mostEliminatedMovie) {
-    achievements.push({
-      playerId: mostEliminatedMovie.playerId,
-      type: VAMOS_AO_CINEMA_ACHIEVEMENTS.MOST_ELIMINATED_MOVIE,
-      value: mostEliminatedMovie.value,
-    });
-  }
-
-  return achievements;
 };
