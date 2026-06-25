@@ -36,13 +36,8 @@ export const prepareSetupPhase = async (
     player.history = {};
   });
 
-  const achievements = utils.achievements.setup(players, {
-    true: 0,
-    false: 0,
-    customQuestions: 0,
-    testimonyQuestions: 0,
-    eliminations: [],
-  });
+  // TODO: Implement achievements
+  const achievements = {};
 
   // Save
   return {

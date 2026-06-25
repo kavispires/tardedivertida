@@ -180,8 +180,8 @@ export const prepareItemPlacementPhase = async (
 
   const previousActivePlayerId = state.activePlayerId ?? null;
   if (previousActivePlayerId && isNotTheJudge) {
-    utils.achievements.increase(
-      store,
+    increaseAchievement(
+      store.achievements,
       state.activePlayerId,
       'wrong',
       currentGuess.outcome === OUTCOME.CONTINUE ? 0 : 1,
@@ -326,8 +326,8 @@ export const prepareGameOverPhase = async (
     const player = players[state.activePlayerId];
     player.score += 1;
   } else {
-    utils.achievements.increase(
-      store,
+    increaseAchievement(
+      store.achievements,
       state.activePlayerId,
       'wrong',
       currentGuess.outcome === OUTCOME.CONTINUE || currentGuess.outcome === OUTCOME.WIN ? 0 : 1,

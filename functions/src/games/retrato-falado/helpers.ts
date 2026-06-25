@@ -6,6 +6,8 @@ import type { AllMonsters, FirebaseStoreData, MonsterSketch } from './types';
 import { RETRATO_FALADO_PHASES } from './constants';
 // Utils
 import utils from '../../utils';
+// Internal
+import { increaseAchievement } from './achievements';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -78,10 +80,10 @@ export const buildRanking = (players: Players, witnessId: UID, store: FirebaseSt
       if (player.id !== witnessId) {
         if (acc[player.vote] === undefined) {
           scores.add(player.vote, 1, 1);
-          utils.achievements.increase(store, player.vote, 'votes', 1);
+          increaseAchievement(store.achievements, player.vote, 'votes', 1);
           acc[player.vote] = 1;
           votes[player.vote] = [player.id];
-          utils.achievements.increase(store, player.vote, 'votes', 1);
+          increaseAchievement(store.achievements, player.vote, 'votes', 1);
         } else {
           acc[player.vote] += 1;
           votes[player.vote].push(player.id);
@@ -101,13 +103,13 @@ export const buildRanking = (players: Players, witnessId: UID, store: FirebaseSt
   // Achievement: Group votes
   utils.players.getListOfPlayers(players).forEach((player: Player) => {
     if (mostVotes.includes(player.vote)) {
-      utils.achievements.increase(store, player.vote, 'groupVote', 1);
+      increaseAchievement(store.achievements, player.vote, 'groupVote', 1);
     }
   });
 
   // Get witness vote
   const witnessVote = players[witnessId].vote;
-  utils.achievements.increase(store, witnessVote, 'witnessPick', 1);
+  increaseAchievement(store.achievements, witnessVote, 'witnessPick', 1);
 
   // In case of a tie, the witness vote is the tie breaker
   if (mostVotes.length > 1) {

@@ -33,7 +33,8 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   const options: FofocaQuenteOptions = store.options;
-  const achievements = utils.achievements.setup(players, {});
+  // TODO: Setup achievements
+  const achievements = {};
 
   // Build school board
   const schoolBoard: SchoolLocation[] = resourceData.locations.map((location) => ({

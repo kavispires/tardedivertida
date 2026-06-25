@@ -36,20 +36,20 @@ export const prepareSetupPhase = async (
   // Build table and distribute cards to players
   const items = shuffle([...additionalData['0']]);
 
-  const achievements = utils.achievements.setup(players, {
-    concepts: 0,
-    conceptItems: 0,
-    nameLength: 0,
-    nameQuality: 0,
-    distinctNames: 0,
-    commonKnowledge: 0,
-  });
+  // TODO: Setup achievements
+  // const achievements = utils.achievements.setup(players, {
+  //   concepts: 0,
+  //   conceptItems: 0,
+  //   nameLength: 0,
+  //   nameQuality: 0,
+  //   distinctNames: 0,
+  //   commonKnowledge: 0,
+  // });
 
   // Save
   return {
     update: {
       store: {
-        achievements,
         items: additionalData,
         gallery: [],
         pool: [],
@@ -133,7 +133,7 @@ export const prepareConceptsRevealPhase = async (
   return {
     update: {
       store: {
-        achievements: store.achievements,
+        // achievements: store.achievements,
       },
       state: {
         phase: IDADE_DA_PREDA_PHASES.CONCEPTS_REVEAL,
@@ -231,7 +231,7 @@ export const prepareResultsPhase = async (
     update: {
       store: {
         gallery: [...store.gallery, ...gallery],
-        achievements: store.achievements,
+        // achievements: store.achievements,
       },
       state: {
         phase: IDADE_DA_PREDA_PHASES.RESULTS,

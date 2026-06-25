@@ -24,6 +24,7 @@ import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../s
 import utils from '../../utils';
 import { isEmulatingEnvironment } from '../../utils/environment';
 // Internal
+import { setupAchievements } from './achievements';
 import { handleConfirmGood, handleFulfillOrders, handlePlaceGood } from './actions';
 import { getData } from './data';
 import { determineNextPhase } from './helpers';
@@ -95,13 +96,7 @@ export const getNextPhase = async (
     if (isEmulatingEnvironment()) {
       const MOCK_PLAYERS = FULFILLMENT_MOCK.players as unknown as Players;
 
-      const achievements = utils.achievements.setup(MOCK_PLAYERS, {
-        attempts: 0,
-        correctAtOnce: 0,
-        skips: 0,
-        outOfStock: 0,
-        outOfStockFulfillment: 0,
-      });
+      const achievements = setupAchievements(utils.players.getListOfPlayersIds(MOCK_PLAYERS));
 
       await saveGame(sessionRef, {
         update: {
