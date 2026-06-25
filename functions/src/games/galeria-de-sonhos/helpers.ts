@@ -5,7 +5,7 @@ import type { AllWords, FirebaseStoreData, ImageCard, PlayerCard } from './types
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

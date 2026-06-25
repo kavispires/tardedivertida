@@ -5,7 +5,7 @@ import type { AllMonsters, FirebaseStoreData, MonsterSketch } from './types';
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

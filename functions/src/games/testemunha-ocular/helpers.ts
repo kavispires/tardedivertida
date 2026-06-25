@@ -11,7 +11,7 @@ import {
   TESTEMUNHA_OCULAR_PHASES,
 } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determine the next phase based on the current phase and outcome

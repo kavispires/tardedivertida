@@ -13,7 +13,7 @@ import {
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers, storeGalleryData } from './helpers';

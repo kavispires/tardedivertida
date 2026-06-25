@@ -3,7 +3,7 @@ import type { ComunicacaoDuoOptions, ResourceData } from './types';
 // Constants
 import { TOTAL_ITEMS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { applyDataToDeck } from './helpers';
 

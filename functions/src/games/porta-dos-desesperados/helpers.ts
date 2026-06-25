@@ -13,7 +13,7 @@ import {
   WIN_CONDITION,
 } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and game state

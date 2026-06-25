@@ -19,7 +19,7 @@ import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Tool Kits
 import { gridMapUtils } from '../../tool-kits/grid-map';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 

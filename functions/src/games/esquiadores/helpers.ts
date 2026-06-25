@@ -4,7 +4,7 @@ import type { FirebaseStoreData, Lodge } from './types';
 // Constants
 import { BET_TYPES, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement, pushAchievement } from './achievements';
 

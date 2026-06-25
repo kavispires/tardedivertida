@@ -8,7 +8,7 @@ import { ITEMS_PER_ROUND, MAX_ROUNDS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS }
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import {
   setupAchievements,

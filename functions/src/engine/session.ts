@@ -9,7 +9,7 @@ import {
 } from '../services/firestore-core';
 import { fetchGameMetaDoc, getStateReferences } from '../services/game-session';
 // Utils
-import utils from '../utils';
+import utils from '../utils_LEGACY';
 // Internal
 import * as delegatorUtils from '../games/delegators';
 

@@ -1,5 +1,5 @@
 // Utils
-import utils from '../utils';
+import utils from '../utils_LEGACY';
 // Internal
 import { achievementBuilder } from './achievements';
 

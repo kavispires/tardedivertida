@@ -5,7 +5,7 @@ import type { ActingRole, FirebaseStateData, FirebaseStoreData, Movie, MovieGenr
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

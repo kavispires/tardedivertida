@@ -11,7 +11,7 @@ import {
   SENSO_LITERARIO_PHASES,
 } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

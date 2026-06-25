@@ -16,7 +16,7 @@ import {
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { calculateResults, distributeCards } from './helpers';

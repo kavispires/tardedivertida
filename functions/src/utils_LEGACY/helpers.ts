@@ -1,6 +1,6 @@
 import { mean } from 'lodash';
-// Internal
-import { isDevelopmentEnvironment } from './environment';
+// Utils
+import { isDevelopmentEnvironment } from '../utils/environment';
 
 /**
  * Generic utility functions for common operations.

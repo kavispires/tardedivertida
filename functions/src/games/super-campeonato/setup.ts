@@ -14,7 +14,7 @@ import {
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';

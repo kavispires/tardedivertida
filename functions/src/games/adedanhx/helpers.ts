@@ -12,7 +12,7 @@ import type {
 import { SEPARATOR } from '../../constants/general';
 import { ADEDANHX_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

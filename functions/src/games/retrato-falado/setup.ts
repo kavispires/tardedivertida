@@ -8,7 +8,7 @@ import { saveData } from './data';
 import { buildDeck, buildRanking, gatherSketches } from './helpers';
 
 // Helpers1
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 import { setupAchievements, calculateAchievements } from './achievements';
 

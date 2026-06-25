@@ -5,7 +5,7 @@ import type { FestaJuninaCard } from './types';
 import { SEPARATOR } from '../../constants/general';
 import { CORREIO_DO_AMOR_PHASES, DECK_INFO_BY_PLAYER_COUNT } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and round

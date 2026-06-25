@@ -11,7 +11,7 @@ import type {
 // Constants
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD, DEFAULT_LEVELS, BASIC_LEVELS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

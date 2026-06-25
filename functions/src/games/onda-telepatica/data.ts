@@ -13,7 +13,7 @@ import {
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get question resource based on the game's language

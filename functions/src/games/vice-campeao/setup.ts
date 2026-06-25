@@ -7,7 +7,7 @@ import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from 
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildRun } from './helpers';

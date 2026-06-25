@@ -4,7 +4,7 @@ import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Constants
 import { ESPIAO_ENTRE_NOS_PHASES, GAME_DURATION, OUTCOMES, SPY } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and outcome

@@ -4,7 +4,7 @@ import type { DataCounts, FirebaseStoreData, Status, TimeBombCard } from './type
 // Constants
 import { BOMBA_RELOGIO_PHASES, CARD_TYPES, OUTCOME, ROLES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

@@ -7,7 +7,7 @@ import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES, TOTAL_ACTORS, TOTAL_TRAITS 
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { buildMovie, determineCast, getNextRoleId } from './helpers';

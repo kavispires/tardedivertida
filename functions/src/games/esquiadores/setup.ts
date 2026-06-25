@@ -18,8 +18,8 @@ import {
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
-import { makeArray } from '../../utils/helpers';
+import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils_LEGACY/helpers';
 // Internal
 import { calculateAchievements, setupAchievements } from './achievements';
 import { aggregateBets, applyBetsToLodges, calculateScores } from './helpers';

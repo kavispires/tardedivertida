@@ -5,7 +5,7 @@ import type { FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types
 import { SEPARATOR } from '../../constants/general';
 import { DUETOS_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

@@ -11,8 +11,8 @@ import { fetchResource } from '../../services/resource';
 // Tool Kits
 import { alienAttributesUtils } from '../../tool-kits/alien-attributes';
 // Utils
-import utils from '../../utils';
-import { makeArray } from '../../utils/helpers';
+import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils_LEGACY/helpers';
 
 /**
  * Get characters based on the game's language

@@ -12,7 +12,7 @@ import { updateFirestoreCommunityDataForCards } from '../../services/community-d
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get data

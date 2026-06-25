@@ -4,7 +4,7 @@ import type { FirebaseStoreData, RunActivity, RunnerCard } from './types';
 // Constants
 import { VICE_CAMPEAO_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

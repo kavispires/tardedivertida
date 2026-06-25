@@ -4,7 +4,7 @@ import type { ConceptData, FirebaseStoreData, GalleryEntry, NewNameEntry } from 
 // Constants
 import { IDADE_DA_PREDA_PHASES, SOUNDS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and round

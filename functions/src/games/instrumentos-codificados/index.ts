@@ -12,7 +12,7 @@ import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './
 import { validateSubmitActionPayload, throwHttpsError } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
 import { getThemes } from './data';

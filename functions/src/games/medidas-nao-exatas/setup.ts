@@ -8,8 +8,8 @@ import { DESCRIPTORS_PER_PLAYER, MEDIDAS_NAO_EXATAS_PHASES, WORDS_PER_PLAYER } f
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
-import { makeArray } from '../../utils/helpers';
+import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils_LEGACY/helpers';
 // Internal
 import { calculateAchievements, setupAchievements } from './achievements';
 import { determineResults } from './helpers';

@@ -7,7 +7,7 @@ import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import {

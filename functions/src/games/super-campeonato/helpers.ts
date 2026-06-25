@@ -6,7 +6,7 @@ import type { Bracket, BracketTier, FightingContender, ContendersDeck, FirebaseS
 import { NPC } from '../../constants/general';
 import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

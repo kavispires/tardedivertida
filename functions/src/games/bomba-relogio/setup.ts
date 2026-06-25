@@ -8,7 +8,7 @@ import { BOMBA_RELOGIO_PHASES, CARD_TYPES, DATA_COUNTS, OUTCOME, ROLES, TOTAL_RO
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { buildDeck, determineRoles, getStartingStatus } from './helpers';

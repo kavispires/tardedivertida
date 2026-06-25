@@ -5,7 +5,7 @@ import type { FirebaseStoreData, GalleryEntry, Guess } from './types';
 // Constants
 import { MEDIDAS_NAO_EXATAS_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

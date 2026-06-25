@@ -8,7 +8,7 @@ import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get cards resources based on the game's language

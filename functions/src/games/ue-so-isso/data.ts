@@ -3,7 +3,7 @@ import type { PastSuggestion } from './types';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { findDuplicateSuggestions } from './helpers';
 

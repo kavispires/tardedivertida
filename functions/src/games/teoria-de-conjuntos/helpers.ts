@@ -3,7 +3,7 @@ import type { DiagramArea, Guess } from './types';
 // Constants
 import { OUTCOME, TEORIA_DE_CONJUNTOS_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and guess state

@@ -9,7 +9,7 @@ import { TOTAL_ROUNDS, WORDS_IN_POOL } from './constants';
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get words resource based on the game's language

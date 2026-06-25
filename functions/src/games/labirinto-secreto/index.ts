@@ -22,7 +22,7 @@ import {
   triggerWaitPhase,
 } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { handleSubmitMap, handleSubmitPath } from './actions';
 import { getData } from './data';

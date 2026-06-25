@@ -6,7 +6,7 @@ import type { DuetosOptions, Gallery, ResourceData } from './types';
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../constants/sprites';
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get characters based on the game's language

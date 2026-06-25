@@ -8,7 +8,7 @@ import { CARDS_PER_PLAYER } from './constants';
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get image decks card
