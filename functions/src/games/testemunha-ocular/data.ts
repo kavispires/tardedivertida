@@ -3,7 +3,8 @@ import { set } from 'lodash';
 import type { CrimeReasonData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOptions } from './types';
 // Constants
-import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { QUESTION_COUNT } from './constants';
 // Services
 import { updateFirestoreCommunityData } from '../../services/community-data';

@@ -7,7 +7,7 @@ import type {
   QuemSouEuSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { TOTAL_ROUNDS, PLAYER_COUNTS, QUEM_SOU_EU_PHASES, QUEM_SOU_EU_ACTIONS } from './constants';
 // Services
 import {

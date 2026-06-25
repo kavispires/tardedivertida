@@ -18,7 +18,7 @@ export const TOTAL_ROUNDS = 5;
 
 export const GENRES = ['childrens', 'romance', 'technical'];
 export const COLORS = ['red', 'blue', 'yellow'];
-export const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+export const BOOK_INITIALS = ['A', 'B', 'C', 'D', 'E'];
 
 export const POINTS_PER_GUESS = 1;
 export const BONUS_POINT_FOR_SET = 1;

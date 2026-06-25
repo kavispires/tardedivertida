@@ -7,7 +7,7 @@ import type {
   LinhasCruzadasSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { LINHAS_CRUZADAS_ACTIONS, LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Services
 import {

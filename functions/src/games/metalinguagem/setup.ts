@@ -3,7 +3,7 @@ import { orderBy, sampleSize } from 'lodash';
 import type { ItemData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData, WordLength } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { ITEMS_PER_ROUND, MAX_ROUNDS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

@@ -3,7 +3,7 @@ import { isEmpty, sample, sampleSize } from 'lodash';
 import type { ContenderCardData, SuspectCardData, TextCardData } from '../../types/tdr';
 import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Constants
-import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../utils/constants';
+import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../constants/sprites';
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
 // Utils
 import utils from '../../utils';

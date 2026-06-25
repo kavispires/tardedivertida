@@ -4,7 +4,7 @@ import type { ClientCard, Teller } from './types';
 import { shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
-import { AVATARS_COLORS } from '../../utils/constants';
+import { AVATARS_COLORS } from '../../constants/avatars';
 
 /**
  * Determines the next phase based on the current phase and outcome

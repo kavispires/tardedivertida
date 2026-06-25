@@ -7,7 +7,7 @@ import type {
   TestemunhaOcularSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_ACTIONS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Services
 import {

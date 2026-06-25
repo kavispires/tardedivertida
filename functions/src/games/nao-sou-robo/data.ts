@@ -3,7 +3,9 @@ import { sampleSize, shuffle } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { GalleryEntry, ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
+import { SPRITE_LIBRARIES } from '../../constants/sprites';
 import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_COUNT } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';

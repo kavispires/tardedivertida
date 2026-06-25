@@ -2,7 +2,8 @@
 import type { TextCardData } from '../../types/tdr';
 import type { FinalGalleryEntry, ResourceData } from './types';
 // Constants
-import { DATA_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { DATA_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';

@@ -1,7 +1,8 @@
 // Types
 import type { CustomDeck, FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

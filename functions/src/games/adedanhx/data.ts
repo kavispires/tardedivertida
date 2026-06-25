@@ -2,7 +2,7 @@
 import type { TopicCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { LETTERS_ENTRIES_BY_LANGUAGE } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

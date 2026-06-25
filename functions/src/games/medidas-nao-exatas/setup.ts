@@ -3,7 +3,7 @@ import { keyBy, sampleSize } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { DESCRIPTORS_PER_PLAYER, MEDIDAS_NAO_EXATAS_PHASES, WORDS_PER_PLAYER } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

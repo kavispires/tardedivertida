@@ -3,6 +3,7 @@ import { sample, shuffle } from 'lodash';
 import type { ContenderCardData, TextCardData } from '../../types/tdr';
 import type { Bracket, BracketTier, FightingContender, ContendersDeck, FirebaseStoreData } from './types';
 // Constants
+import { NPC } from '../../constants/general';
 import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
 // Utils
 import utils from '../../utils';
@@ -87,7 +88,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
     id: contender.id,
     name: contender.name,
     description: contender.description ?? { pt: '', en: '' },
-    playerId: 'CPU',
+    playerId: NPC,
   }));
 };
 

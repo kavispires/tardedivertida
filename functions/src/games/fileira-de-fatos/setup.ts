@@ -3,7 +3,8 @@ import { sample, sampleSize } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { SCENARIOS_PER_ROUND, FILEIRA_DE_FATOS_PHASES, ROUND_TYPES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

@@ -3,7 +3,7 @@ import { uniq } from 'lodash';
 import type { AlienAttribute, AlienItem } from '../../tool-kits/alien-attributes';
 import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseStoreData } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from '../../constants/general';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './constants';
 // Utils
 import utils from '../../utils';

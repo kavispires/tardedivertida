@@ -1,4 +1,5 @@
-// functions/src/engine/na-fila-do-banco/setup.ts
+// Constants
+import { GAME_NAMES } from '../../constants/games';
 import {
   CHARACTER_TYPES,
   CUT_IN_HIERARCHY,
@@ -9,13 +10,17 @@ import {
   TELLER_EFFECT_TYPE,
   TOTAL_ROUNDS,
 } from './constants';
+// Internal
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
+
+// functions/src/engine/na-fila-do-banco/setup.ts
+
 import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
 import utils from '../../utils';
 import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
 import { buildDeck, buildTellers } from './helpers';
-import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
-import { GAME_NAMES } from '../../utils/constants';
+
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**

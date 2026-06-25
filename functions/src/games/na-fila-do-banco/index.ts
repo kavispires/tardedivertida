@@ -6,7 +6,7 @@ import type {
   NaFilaDoBancoSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { NA_FILA_DO_BANCO_ACTIONS, NA_FILA_DO_BANCO_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Services
 import {

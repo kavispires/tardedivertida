@@ -7,7 +7,7 @@ import type {
   GaleriaDeSonhosSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   GALERIA_DE_SONHOS_ACTIONS,
   GALERIA_DE_SONHOS_PHASES,

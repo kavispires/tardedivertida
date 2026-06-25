@@ -1,7 +1,8 @@
 // Types
 import type { FirebaseUserDB } from '../user';
 // Constants
-import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constants';
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { USED_GAME_IDS } from '../../constants/general';
 // Services
 import {
   getDailyCollectionRef,

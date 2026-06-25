@@ -2,7 +2,8 @@ import { every, orderBy, sample, sampleSize, shuffle, some } from 'lodash';
 // Types
 import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from '../types/tdr';
 // Constants
-import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from './constants';
+import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../constants/collections';
+import { TDR_RESOURCES } from '../constants/resources';
 // Services
 import { updateFirestoreCommunityData } from '../services/community-data';
 import {

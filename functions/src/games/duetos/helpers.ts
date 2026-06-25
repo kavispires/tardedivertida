@@ -2,7 +2,7 @@
 import type { ItemData } from '../../types/tdr';
 import type { FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from '../../constants/general';
 import { DUETOS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';

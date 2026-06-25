@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { ColegasDeQuartoOptions, PastClues, ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { TOTAL_ROUNDS, WORDS_IN_POOL } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';

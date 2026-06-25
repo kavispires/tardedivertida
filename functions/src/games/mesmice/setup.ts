@@ -3,7 +3,7 @@ import { keyBy, sampleSize } from 'lodash';
 import type { ItemData, ObjectFeatureCardData } from '../../types/tdr';
 import type { ExtendedObjectFeatureCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

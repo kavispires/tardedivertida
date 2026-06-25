@@ -6,7 +6,7 @@ import type {
   FirebaseStoreData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { ESPIAO_ENTRE_NOS_ACTIONS, ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 // Services
 import {

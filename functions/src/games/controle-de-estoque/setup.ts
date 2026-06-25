@@ -10,7 +10,7 @@ import type {
   WarehouseSlot,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   CONTROLE_DE_ESTOQUE_PHASES,
   MIN_ROUNDS,

@@ -2,7 +2,7 @@ import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   DIGITS,
   INSTRUMENTOS_CODIFICADOS_PHASES,

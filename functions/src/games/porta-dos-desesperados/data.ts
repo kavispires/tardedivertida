@@ -1,7 +1,7 @@
 // Types
 import type { ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
 import { TOTAL_IMAGE_CARDS } from './constants';
 // Services
 import { updateFirestoreCommunityDataForImageCardsRelationships } from '../../services/community-data';

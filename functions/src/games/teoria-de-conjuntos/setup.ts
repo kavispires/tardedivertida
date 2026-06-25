@@ -3,7 +3,7 @@ import { cloneDeep, shuffle } from 'lodash';
 import type { ItemData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Guess, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   JUDGE_HAND_QUANTITY,
   OUTCOME,

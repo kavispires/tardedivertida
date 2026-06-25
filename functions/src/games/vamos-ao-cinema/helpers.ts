@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { MovieCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, VamosAoCinemaAchievement } from './types';
 // Constants
-import { LETTERS } from '../../utils/constants';
+import { LETTERS } from '../../constants/general';
 import {
   MAX_MISTAKES,
   MOVIE_POSTERS_COUNT,

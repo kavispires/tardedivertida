@@ -7,7 +7,7 @@ import type {
   PortaDosDesesperadosOptions,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   PORTA_DOS_DESESPERADOS_PHASES,
   PLAYER_COUNTS,

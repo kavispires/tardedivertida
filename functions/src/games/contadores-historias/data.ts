@@ -2,7 +2,7 @@ import { shuffle } from 'lodash';
 // Types
 import type { ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
 import { CARDS_PER_PLAYER } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';

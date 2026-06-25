@@ -2,7 +2,7 @@ import { sample, sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   DOOR_LEVELS,
   DOOR_OPTIONS_PER_ROUND,

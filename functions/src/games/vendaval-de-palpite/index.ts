@@ -6,7 +6,7 @@ import type {
   VendavalDePalpiteSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   VENDAVAL_DE_PALPITE_PHASES,
   PLAYER_COUNTS,

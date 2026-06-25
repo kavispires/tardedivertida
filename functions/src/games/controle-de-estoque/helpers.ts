@@ -10,7 +10,7 @@ import type {
   WarehouseSlot,
 } from './types';
 // Constants
-import { LETTERS } from '../../utils/constants';
+import { LETTERS } from '../../constants/general';
 import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 // Utils
 import utils from '../../utils';

@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { CrimeSceneTileData, CrimesHediondosCardData } from '../../types/tdr';
 import type { CrimesHediondosOptions, ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { CARDS_PER_GAME } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

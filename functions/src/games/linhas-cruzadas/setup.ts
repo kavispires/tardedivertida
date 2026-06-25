@@ -2,7 +2,7 @@ import { sampleSize } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

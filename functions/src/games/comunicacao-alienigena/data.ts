@@ -4,7 +4,7 @@ import type { AlienItem } from '../../tool-kits/alien-attributes';
 import type { ItemData, ItemAttributeData, ItemAttributesValuesData } from '../../types/tdr';
 import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

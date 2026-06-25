@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { MovieCardData, TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { fetchResource } from '../../services/resource';
 // Utils

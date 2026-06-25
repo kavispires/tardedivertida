@@ -8,7 +8,7 @@ import type {
   ResourceData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES, MULLIGAN_HAND } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

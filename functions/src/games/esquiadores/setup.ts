@@ -3,7 +3,7 @@ import { sampleSize, shuffle } from 'lodash';
 import type { DilemmaCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Lodge, MountainDilemma, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   BET_TYPES,
   BETTING_CHIPS,

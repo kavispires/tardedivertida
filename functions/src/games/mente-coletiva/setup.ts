@@ -2,7 +2,8 @@
 import type { GroupQuestionCardData } from '../../types/tdr';
 import type { ExtendedPlayerAnswerEntry, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
 import {
   MENTE_COLETIVA_PHASES,
   PASTURE_GAME_OVER_THRESHOLD,

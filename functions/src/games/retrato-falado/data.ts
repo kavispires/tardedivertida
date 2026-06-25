@@ -2,7 +2,8 @@
 import type { MonsterImageData } from '../../types/tdr';
 import type { MonsterSketch, ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { PLAYER_COUNTS } from './constants';
 // Services
 import { updateFirestoreCommunityDataRecursively } from '../../services/community-data';

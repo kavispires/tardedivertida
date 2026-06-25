@@ -2,7 +2,7 @@ import { shuffle } from 'lodash';
 // Types
 import type { FestaJuninaCard } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from '../../constants/general';
 import { CORREIO_DO_AMOR_PHASES, DECK_INFO_BY_PLAYER_COUNT } from './constants';
 // Utils
 import utils from '../../utils';

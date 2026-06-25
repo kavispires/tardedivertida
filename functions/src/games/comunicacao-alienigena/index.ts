@@ -9,7 +9,7 @@ import type {
   FirebaseStoreData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   PLAYER_COUNTS,
   COMUNICACAO_ALIENIGENA_PHASES,

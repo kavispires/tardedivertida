@@ -7,7 +7,7 @@ import type {
   FirebaseStoreData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { LABIRINTO_SECRETO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, LABIRINTO_SECRETO_ACTIONS } from './constants';
 // Services
 import {

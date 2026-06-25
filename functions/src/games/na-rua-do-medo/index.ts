@@ -7,7 +7,7 @@ import type {
   FirebaseStoreData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
 // Services
 import {

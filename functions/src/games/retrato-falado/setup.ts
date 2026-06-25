@@ -1,14 +1,17 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, MonsterSketch, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { RETRATO_FALADO_PHASES } from './constants';
+// Internal
+import { saveData } from './data';
+import { buildDeck, buildRanking, gatherSketches } from './helpers';
 
 // Helpers1
 import utils from '../../utils';
-import { buildDeck, buildRanking, gatherSketches } from './helpers';
+
 import { setupAchievements, calculateAchievements } from './achievements';
-import { saveData } from './data';
+
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**

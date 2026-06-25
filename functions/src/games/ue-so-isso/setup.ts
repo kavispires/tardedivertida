@@ -3,7 +3,7 @@ import { orderBy, shuffle } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   ALLOWED_MISTAKES,
   CORRECT_GUESS_SCORE,

@@ -3,7 +3,7 @@ import { shuffle } from 'lodash';
 import type { ContenderCardData } from '../../types/tdr';
 import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   CHARACTERS_PER_PLAYER,
   CHARACTERS_VISIBILITY_PER_ROUND,

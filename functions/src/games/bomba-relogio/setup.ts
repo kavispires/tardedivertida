@@ -2,7 +2,7 @@ import { shuffle, sortBy } from 'lodash';
 // Types
 import type { DataCounts, FirebaseStateData, FirebaseStoreData, Status, TimeBombCard } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { BOMBA_RELOGIO_PHASES, CARD_TYPES, DATA_COUNTS, OUTCOME, ROLES, TOTAL_ROUNDS } from './constants';
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';

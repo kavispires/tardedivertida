@@ -1,10 +1,12 @@
 // Types
 import type { EscapeRoomOptions, ResourceData } from './types';
+// Constants
+import { TDR_RESOURCES } from '../../constants/resources';
 
 //
 // import utils from '../../utils';
 // import * as resourceUtils from '../resource';
-import { TDR_RESOURCES } from '../../utils/constants';
+
 import { MISSIONS_COUNT } from './constants';
 
 /**

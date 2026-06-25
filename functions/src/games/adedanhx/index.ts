@@ -7,7 +7,7 @@ import type {
   FirebaseStoreData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { ADEDANHX_ACTIONS, ADEDANHX_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Services
 import {

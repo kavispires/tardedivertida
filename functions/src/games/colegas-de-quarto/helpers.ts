@@ -7,7 +7,7 @@ import type {
   PlayerAssignedPair,
 } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from '../../constants/general';
 import { COLEGAS_DE_QUARTO_PHASES, POINTS, TARGET_ID } from './constants';
 // Utils
 import utils from '../../utils';

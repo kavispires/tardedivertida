@@ -3,7 +3,7 @@ import { shuffle } from 'lodash';
 import type { TestimonyQuestionCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, PLAYER_SUGGESTED_QUESTIONS_COUNT, TA_NA_CARA_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

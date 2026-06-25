@@ -2,7 +2,7 @@ import { keyBy } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

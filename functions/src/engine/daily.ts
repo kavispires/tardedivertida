@@ -1,7 +1,7 @@
 // Types
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 // Constants
-import { DATA_DOCUMENTS } from '../utils/constants';
+import { DATA_DOCUMENTS } from '../constants/collections';
 // Services
 import { updateFirestoreCommunityDataRecursively } from '../services/community-data';
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';

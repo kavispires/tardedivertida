@@ -2,7 +2,7 @@ import { sampleSize, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

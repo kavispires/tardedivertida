@@ -6,7 +6,7 @@ import type {
   RetratoFaladoSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASES } from './constants';
 // Services
 import {

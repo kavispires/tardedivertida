@@ -8,7 +8,7 @@ import type {
   TestemunhaOcularHistoryEntry,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

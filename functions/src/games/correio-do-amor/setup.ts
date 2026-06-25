@@ -1,7 +1,7 @@
 // Types
 import type { FestaJuninaCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   CORREIO_DO_AMOR_PHASES,
   DECK_INFO_BY_PLAYER_COUNT,

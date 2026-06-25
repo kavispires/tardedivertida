@@ -3,7 +3,7 @@ import { sampleSize, shuffle } from 'lodash';
 import type { MovieReviewCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';

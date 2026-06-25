@@ -2,7 +2,7 @@ import { keyBy, orderBy, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, TableEntry, ResourceData, GalleryEntry } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   CARDS_PER_PLAYER,
   CONSECUTIVE_REJECTION_PENALTY,

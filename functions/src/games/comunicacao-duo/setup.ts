@@ -1,7 +1,7 @@
 // Types
 import type { DeckEntry, FirebaseStateData, FirebaseStoreData, HistoryEntry, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { AFFILIATIONS, COMUNICACAO_DUO_PHASES, MAX_ROUNDS, SIDES, STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

@@ -3,7 +3,8 @@ import { shuffle, uniq } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { BoardEntry, FirebaseStateData, FirebaseStoreData, PastClues, ResourceData } from './types';
 // Constants
-import { GAME_NAMES, SEPARATOR } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { SEPARATOR } from '../../constants/general';
 import {
   COLEGAS_DE_QUARTO_PHASES,
   SETTINGS_PER_PLAYER_COUNT,

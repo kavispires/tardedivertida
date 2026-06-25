@@ -1,7 +1,8 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Constants
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
 import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

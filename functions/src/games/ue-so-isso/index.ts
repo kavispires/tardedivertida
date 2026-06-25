@@ -7,7 +7,7 @@ import type {
   UeSoIssoSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
 // Services
 import {

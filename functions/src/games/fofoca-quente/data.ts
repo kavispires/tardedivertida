@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { TeenageMotivationData, TeenageRumorData, TeenageStudentData } from '../../types/tdr';
 import type { ResourceData, SocialGroup, StaffMember } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { TOTAL_RUMORS, TOTAL_STUDENTS } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

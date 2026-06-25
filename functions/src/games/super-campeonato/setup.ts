@@ -2,7 +2,7 @@ import { sampleSize } from 'lodash';
 // Types
 import type { Bracket, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   CHALLENGES_PER_GAME,
   CHALLENGES_PER_ROUND,
