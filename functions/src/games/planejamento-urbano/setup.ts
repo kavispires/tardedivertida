@@ -15,6 +15,8 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+// Tool Kits
+import { gridMapUtils } from '../../tool-kits/grid-map';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -38,7 +40,7 @@ export const prepareSetupPhase = async (
   const allowNSFW = store.options.nsfw;
   const { allCityLocations } = resourceData;
 
-  const city = utils.toolKits.gridMapUtils.createGridMap(CITY_BOUNDS_SIZE, CITY_BOUNDS_SIZE, {
+  const city = gridMapUtils.createGridMap(CITY_BOUNDS_SIZE, CITY_BOUNDS_SIZE, {
     adjacency: 'surrounding',
     origin: 'center',
   });
@@ -46,9 +48,9 @@ export const prepareSetupPhase = async (
   const usedCityLocations: Dictionary<CityLocationData> = {};
 
   // Set up city hall on the center
-  const originId = utils.toolKits.gridMapUtils.getOriginId(city);
+  const originId = gridMapUtils.getOriginId(city);
   if (originId) {
-    utils.toolKits.gridMapUtils.updateCell(city, originId, { locationId: 'cl-1' });
+    gridMapUtils.updateCell(city, originId, { locationId: 'cl-1' });
     usedCityLocations['cl-1'] = allCityLocations['cl-1'];
   }
 
@@ -58,12 +60,12 @@ export const prepareSetupPhase = async (
   );
 
   // Get 4 locations around the city hall
-  const adjacentCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(city, 'orthogonal', 'available');
+  const adjacentCellsIds = gridMapUtils.getAllAdjacentIds(city, 'orthogonal', 'available');
   const surroundingLocations = allLocations.splice(-4);
   adjacentCellsIds.forEach((cellId, index) => {
     const location = surroundingLocations[index];
     if (location) {
-      utils.toolKits.gridMapUtils.updateCell(city, cellId, { locationId: location.id });
+      gridMapUtils.updateCell(city, cellId, { locationId: location.id });
       usedCityLocations[location.id] = location;
     }
   });
@@ -124,22 +126,17 @@ export const preparePlanningPhase = async (
   // If there are pending sites, resolve them
   const gallery: GalleryEntry[] = state.gallery || [];
   gallery.forEach((entry) => {
-    utils.toolKits.gridMapUtils.updateCell(city, entry.finalCellId, { locationId: entry.locationId }, 'used');
+    gridMapUtils.updateCell(city, entry.finalCellId, { locationId: entry.locationId }, 'used');
   });
   city.cells.forEach((cell) => {
     if (cell.data?.coneId) {
-      utils.toolKits.gridMapUtils.updateCell(city, cell.id, null, 'available');
+      gridMapUtils.updateCell(city, cell.id, null, 'available');
     }
   });
 
   // Make N new available sites
   // Any mistake prioritizes a diagonal site otherwise a orthogonal site
-  const availableOrthogonalCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(
-    city,
-    'orthogonal',
-    'available',
-    'used',
-  );
+  const availableOrthogonalCellsIds = gridMapUtils.getAllAdjacentIds(city, 'orthogonal', 'available', 'used');
 
   /**
    * Selects non-adjacent cells from available cells to ensure no two cones are placed orthogonally next to each other.
@@ -169,7 +166,7 @@ export const preparePlanningPhase = async (
       remainingPool.delete(cellId);
 
       // Remove all orthogonal neighbors from the remaining pool to prevent adjacent selection
-      const neighbors = utils.toolKits.gridMapUtils.getAdjacentIdsToCellId(city, cellId, 'orthogonal');
+      const neighbors = gridMapUtils.getAdjacentIdsToCellId(city, cellId, 'orthogonal');
       neighbors.forEach((neighborId) => {
         remainingPool.delete(neighborId);
       });
@@ -182,7 +179,7 @@ export const preparePlanningPhase = async (
   const coneCellIds: Record<string, string> = {};
   selectedIds.forEach((id, index) => {
     coneCellIds[LETTERS[index]] = id;
-    utils.toolKits.gridMapUtils.updateCell(city, id, { coneId: LETTERS[index] });
+    gridMapUtils.updateCell(city, id, { coneId: LETTERS[index] });
   });
 
   // Get N new locations from the deck
@@ -331,7 +328,7 @@ export const prepareResolutionPhase = async (
 
     if (isCorrect) {
       // For each cell that was correctly placed, set the city cell to 'reserved'
-      utils.toolKits.gridMapUtils.updateCellState(city, conesCellIds[correctConeId], 'reserved');
+      gridMapUtils.updateCellState(city, conesCellIds[correctConeId], 'reserved');
     } else {
       incorrect++;
     }
@@ -350,24 +347,9 @@ export const prepareResolutionPhase = async (
   });
 
   // Give diagonal sites to incorrect placements
-  const availableOrthogonalCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(
-    city,
-    'orthogonal',
-    'available',
-    'used',
-  );
-  const availableDiagonalCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(
-    city,
-    'diagonal',
-    'available',
-    'used',
-  );
-  const availableReservedCellsIds = utils.toolKits.gridMapUtils.getAllAdjacentIds(
-    city,
-    'diagonal',
-    'available',
-    'reserved',
-  );
+  const availableOrthogonalCellsIds = gridMapUtils.getAllAdjacentIds(city, 'orthogonal', 'available', 'used');
+  const availableDiagonalCellsIds = gridMapUtils.getAllAdjacentIds(city, 'diagonal', 'available', 'used');
+  const availableReservedCellsIds = gridMapUtils.getAllAdjacentIds(city, 'diagonal', 'available', 'reserved');
 
   const onlyDiagonal = [...availableDiagonalCellsIds, ...availableReservedCellsIds];
 
@@ -420,11 +402,11 @@ export const prepareGameOverPhase = async (
   // If there are pending sites, resolve them
   const gallery: GalleryEntry[] = state.gallery || [];
   gallery.forEach((entry) => {
-    utils.toolKits.gridMapUtils.updateCell(city, entry.finalCellId, { locationId: entry.locationId }, 'used');
+    gridMapUtils.updateCell(city, entry.finalCellId, { locationId: entry.locationId }, 'used');
   });
   city.cells.forEach((cell) => {
     if (cell.data?.coneId) {
-      utils.toolKits.gridMapUtils.updateCell(city, cell.id, null, 'available');
+      gridMapUtils.updateCell(city, cell.id, null, 'available');
     }
   });
 

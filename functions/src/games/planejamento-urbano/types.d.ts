@@ -1,6 +1,6 @@
 // Types
+import type { GridMapType } from '../../tool-kits/grid-map';
 import type { CityLocationData } from '../../types/tdr';
-import type { GridMapType } from '../../utils/tool-kits/grid-map';
 import type { PLANEJAMENTO_URBANO_ACTIONS } from './constants';
 
 export type PlanejamentoUrbanoOptions = {
