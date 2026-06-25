@@ -8,7 +8,7 @@
  * node scripts/generate-achievement-reference.cjs . (runs on all valid games)
  *
  * This script:
- * - Reads backend achievements.ts (functions/src/engine/{game}/achievements.ts)
+ * - Reads backend achievements.ts (functions/src/games/{game}/achievements.ts)
  * - Extracts achievement IDs and doc strings
  * - Generates/merges frontend achievements.ts (src/games/{game}/utils/achievements.ts)
  * - Preserves existing icons, titles, and descriptions
@@ -370,7 +370,7 @@ function getValidGames() {
 async function processGame(gameName, silent = false) {
   if (!silent) console.log(`\n================================\n🎮 Processing: ${gameName}\n================================`);
 
-  const backendPath = path.resolve(__dirname, `../functions/src/engine/${gameName}/achievements.ts`);
+  const backendPath = path.resolve(__dirname, `../functions/src/games/${gameName}/achievements.ts`);
   const frontendPath = path.resolve(__dirname, `../src/games/${gameName}/utils/achievements.ts`);
 
   if (!fs.existsSync(backendPath)) {

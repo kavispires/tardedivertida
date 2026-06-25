@@ -12,7 +12,7 @@ module.exports = {
 
     // --- Path Resolution ---
     // Assuming your script runs from /scripts/checks, we traverse up to the root to find the backend
-    const backendDir = path.resolve(__dirname, '../../functions/src/engine', gameDir);
+    const backendDir = path.resolve(__dirname, '../../functions/src/games', gameDir);
     const frontendDir = gameFolderPath; // This is already resolving to src/games/<game-name>
 
     // -------------------------------------------------------------------------

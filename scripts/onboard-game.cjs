@@ -243,8 +243,8 @@ async function runFrontendGameInfo() {
   }
   const gameInfo = JSON.parse(fs.readFileSync(templatePath, 'utf-8'));
 
-  // Resolve gameCode from constants.ts if possible
-  const constantsPath = path.resolve(__dirname, '../functions/src/utils/constants.ts');
+  // Resolve gameCode from constants/games.ts if possible
+  const constantsPath = path.resolve(__dirname, '../functions/src/constants/games.ts');
   let gameCode = null;
   if (fs.existsSync(constantsPath)) {
     const constantsContent = fs.readFileSync(constantsPath, 'utf-8');
@@ -252,12 +252,12 @@ async function runFrontendGameInfo() {
     const entryMatch = gameEntryRegex.exec(constantsContent);
     if (entryMatch) {
       gameCode = entryMatch[1];
-      console.log(`\n✅ Found game code '${gameCode}' in constants.ts`);
+      console.log(`\n✅ Found game code '${gameCode}' in games.ts`);
     }
   }
 
   if (!gameCode) {
-    console.log('\n⚠️  Game not found in constants.ts.');
+    console.log('\n⚠️  Game not found in games.ts.');
     while (!gameCode) {
       const input = await prompt('Enter the game code (single capital letter, e.g., "G"): ');
       if (validateGameCode(input)) {

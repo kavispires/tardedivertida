@@ -22,7 +22,7 @@ function generateIndex(metadata) {
   // Imports section
   const roundsImport = rounds ? `,\n  ${rounds.type === 'fixed' ? 'TOTAL_ROUNDS' : 'MAX_ROUNDS'}` : '';
   const imports = `// Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   ${gameKey}_ACTIONS,
   ${gameKey}_PHASES,
