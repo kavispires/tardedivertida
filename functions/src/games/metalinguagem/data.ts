@@ -4,7 +4,7 @@ import type { MetalinguagemOptions, ResourceData } from './types';
 // Constants
 import { ITEMS_PER_ROUND, MAX_ROUNDS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get items for the game

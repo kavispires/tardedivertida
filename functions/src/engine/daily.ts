@@ -4,6 +4,7 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import { DATA_DOCUMENTS } from '../constants/collections';
 // Services
 import { updateFirestoreCommunityDataRecursively } from '../services/community-data';
+import { feedEmulatorDaily } from '../services/emulator';
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import {
   getDailyCollectionRef,
@@ -12,7 +13,6 @@ import {
 } from '../services/firestore-core';
 // Utils
 import { isEmulatingEnvironment } from '../utils/environment';
-import { feedEmulatorDaily } from '../utils/mocks/emulator';
 
 /**
  * Payload for retrieving daily challenge data

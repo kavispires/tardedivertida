@@ -6,8 +6,8 @@ import { AFFILIATIONS, COMUNICACAO_DUO_PHASES, MAX_ROUNDS, SIDES, STATUS } from 
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
-import { print } from '../../utils/helpers';
+import utils from '../../utils_LEGACY';
+import { print } from '../../utils_LEGACY/helpers';
 // Internal
 import {
   addToLastAchievement,

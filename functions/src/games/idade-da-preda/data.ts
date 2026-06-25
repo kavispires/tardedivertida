@@ -5,7 +5,7 @@ import type { IdadeDaPredaOptions, ResourceData } from './types';
 // Constants
 import { AGE_1_ITEMS_COUNT, ITEMS_PER_PLAYER_PER_AGE, NEW_AGES_COUNT, PLAYER_COUNTS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Example data structure for game data

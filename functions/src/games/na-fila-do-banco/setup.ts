@@ -17,7 +17,7 @@ import { calculateAchievements, increaseAchievement, setupAchievements } from '.
 
 import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
 import { buildDeck, buildTellers } from './helpers';
 

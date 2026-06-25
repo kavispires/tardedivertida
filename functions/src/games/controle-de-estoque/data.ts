@@ -6,7 +6,7 @@ import { GOODS_LIBRARY_COUNT } from './constants';
 
 // import * as resourceUtils from '../resource';
 
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get warehouse boss ideas and goods IDs

@@ -8,7 +8,7 @@ import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './c
 import { updateFirestoreCommunityData } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get characters based on the game's language

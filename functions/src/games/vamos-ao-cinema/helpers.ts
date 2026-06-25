@@ -12,8 +12,8 @@ import {
   VAMOS_AO_CINEMA_PHASES,
 } from './constants';
 // Utils
-import utils from '../../utils';
-import { makeArray } from '../../utils/helpers';
+import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils_LEGACY/helpers';
 
 /**
  * Determine the next phase based on the current one

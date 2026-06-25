@@ -8,7 +8,7 @@ import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } f
 // Services
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get object features and items

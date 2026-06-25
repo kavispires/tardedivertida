@@ -2,9 +2,10 @@
 import { initializeApp } from 'firebase-admin/app';
 // eslint-disable-next-line
 import { onCall } from 'firebase-functions/v2/https';
+// Services
+import { feedEmulatorUser } from './services/emulator';
 // Utils
 import { isEmulatingEnvironment } from './utils/environment';
-import { feedEmulatorUser } from './utils/mocks/emulator';
 // Internal
 import { dailyEngine } from './engine/daily';
 import { gameEngine } from './engine/game';

@@ -6,7 +6,7 @@ import type { ClueEntry, CruzaPalavrasOptions, Deck, FirebaseStoreData, GridCell
 import { SEPARATOR } from '../../constants/general';
 import { CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

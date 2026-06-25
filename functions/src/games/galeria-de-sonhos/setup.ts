@@ -9,7 +9,7 @@ import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './cons
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { calculateAchievements, setupAchievements } from './achievements';
 import { saveData } from './data';

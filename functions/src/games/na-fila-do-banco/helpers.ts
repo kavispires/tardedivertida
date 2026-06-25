@@ -3,7 +3,7 @@ import { CARD_COLORS, CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TELLERS
 import type { ClientCard, Teller } from './types';
 import { shuffle } from 'lodash';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 import { AVATARS_COLORS } from '../../constants/avatars';
 
 /**

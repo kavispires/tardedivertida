@@ -11,7 +11,7 @@ import {
   TOPICS_PER_ROUND,
 } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

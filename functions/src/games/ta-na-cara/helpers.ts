@@ -3,7 +3,7 @@ import type { TaNaCaraState } from './types';
 // Constants
 import { TA_NA_CARA_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determine the next phase based on the current one

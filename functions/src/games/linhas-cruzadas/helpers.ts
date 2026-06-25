@@ -5,7 +5,7 @@ import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and round

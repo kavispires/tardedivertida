@@ -6,7 +6,7 @@ import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseSt
 import { SEPARATOR } from '../../constants/general';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current state and game configuration

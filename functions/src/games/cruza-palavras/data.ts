@@ -8,7 +8,7 @@ import { TDR_RESOURCES } from '../../constants/resources';
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get words resource based on the game's language

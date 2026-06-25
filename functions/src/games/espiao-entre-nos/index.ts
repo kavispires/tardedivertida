@@ -16,7 +16,7 @@ import {
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { handleLastQuestioner, handleGuessLocation, handleMakeAccusation, handleSubmitVote } from './actions';
 import { getLocations } from './data';

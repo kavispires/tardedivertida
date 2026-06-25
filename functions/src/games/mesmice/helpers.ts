@@ -3,7 +3,7 @@ import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry, Outcome } from './
 // Constants
 import { MESMICE_PHASES, OUTCOME } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and outcome

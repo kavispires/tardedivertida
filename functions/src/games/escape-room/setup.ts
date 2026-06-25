@@ -6,7 +6,7 @@ import { ESCAPE_ROOM_PHASES, MISSIONS_COUNT } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Setup phase - initializes game state and resources

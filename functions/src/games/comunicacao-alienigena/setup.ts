@@ -17,7 +17,7 @@ import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Tool Kits
 import { type AlienAttribute, alienAttributesUtils, type AlienItem } from '../../tool-kits/alien-attributes';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import {
   increaseAchievement,

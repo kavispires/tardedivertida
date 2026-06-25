@@ -1,11 +1,11 @@
 // Types
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
-import type { FirebaseUserDB } from '../utils/user';
+import type { FirebaseUserDB } from '../utils_LEGACY/user';
 // Services
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import { getUserCollectionRef } from '../services/firestore-core';
 // Utils
-import utils from '../utils';
+import utils from '../utils_LEGACY';
 
 /**
  * Retrieves the user data based on the provided parameters

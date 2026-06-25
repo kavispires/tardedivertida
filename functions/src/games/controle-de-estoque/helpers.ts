@@ -13,7 +13,7 @@ import type {
 import { LETTERS } from '../../constants/general';
 import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement, pushAchievement } from './achievements';
 import { BOSS_IDEAS } from './data';

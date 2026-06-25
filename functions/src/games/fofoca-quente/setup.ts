@@ -15,7 +15,7 @@ import { FOFOCA_QUENTE_PHASES, MAX_ROUNDS, STARTING_STUDENT_POSITIONS, TOTAL_MOT
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { determineStudentsThatCanBeRumored } from './helpers';
 

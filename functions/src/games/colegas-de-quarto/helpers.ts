@@ -10,7 +10,7 @@ import type {
 import { SEPARATOR } from '../../constants/general';
 import { COLEGAS_DE_QUARTO_PHASES, POINTS, TARGET_ID } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

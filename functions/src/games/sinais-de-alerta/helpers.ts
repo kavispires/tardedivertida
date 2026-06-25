@@ -10,7 +10,7 @@ import type {
 // Constants
 import { SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

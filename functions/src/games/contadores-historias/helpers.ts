@@ -5,7 +5,7 @@ import type { ContadoresHistoriasOptions, FirebaseStoreData, Table } from './typ
 import { NPC, DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

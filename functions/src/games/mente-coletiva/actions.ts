@@ -6,7 +6,7 @@ import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
 import { throwHttpsError } from '../../services/firebase-core';
 import { getStateReferences, saveGame, updatePlayer, updateStore } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { buildListOfAnswers } from './helpers';
 

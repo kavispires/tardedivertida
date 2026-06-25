@@ -13,7 +13,7 @@ import type {
 // Constants
 import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { pushAchievement, increaseAchievement } from './achievements';
 

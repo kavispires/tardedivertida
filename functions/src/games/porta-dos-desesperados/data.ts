@@ -7,7 +7,7 @@ import { TOTAL_IMAGE_CARDS } from './constants';
 import { updateFirestoreCommunityDataForImageCardsRelationships } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * Get image decks card

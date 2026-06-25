@@ -4,9 +4,9 @@ import { isEmpty } from 'lodash';
 // Constants
 import { GAME_PROCESS_PHASES } from '../constants/general';
 // Utils
-import utils from '../utils';
+import utils from '../utils_LEGACY';
+import { print } from '../utils_LEGACY/helpers';
 import { isEmulatingEnvironment } from '../utils/environment';
-import { print } from '../utils/helpers';
 // Internal
 import { throwHttpsError } from './firebase-core';
 import { getMetaCollectionRef, getSessionRef } from './firestore-core';

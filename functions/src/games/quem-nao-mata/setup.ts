@@ -6,7 +6,7 @@ import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 
 /**
  * [Setup Phase] - Initialize game and reset player properties

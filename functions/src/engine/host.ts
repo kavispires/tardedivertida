@@ -7,13 +7,13 @@ import type { CallableRequest, FirebaseAuth } from '../types/reference';
 import { GAME_CODES } from '../constants/games';
 import { USED_GAME_IDS } from '../constants/general';
 // Services
+import { feedEmulatorDB } from '../services/emulator';
 import { throwHttpsError, verifyPayload } from '../services/firebase-core';
 import { getGlobalCollectionRef, getMetaCollectionRef, getSessionRef } from '../services/firestore-core';
 import { fetchGameSessionDoc, getStateReferences } from '../services/game-session';
 // Utils
-import utils from '../utils';
+import utils from '../utils_LEGACY';
 import { isEmulatingEnvironment } from '../utils/environment';
-import { feedEmulatorDB } from '../utils/mocks/emulator';
 // Internal
 import * as delegatorUtils from '../games/delegators';
 

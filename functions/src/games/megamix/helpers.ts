@@ -22,7 +22,7 @@ import {
   WINNING_CONDITION,
 } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { increaseAchievement, pushAchievement } from './achievements';

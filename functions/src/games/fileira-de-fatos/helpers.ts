@@ -3,7 +3,7 @@ import type { FirebaseStoreData } from './types';
 // Constants
 import { FILEIRA_DE_FATOS_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 

@@ -1,7 +1,7 @@
 // Constants
 import { QUEM_SOU_EU_PHASES } from './constants';
 // Utils
-import utils from '../../utils';
+import utils from '../../utils_LEGACY';
 // Internal
 import { increaseAchievement } from './achievements';
 
