@@ -6,10 +6,10 @@ import { onCall } from 'firebase-functions/v2/https';
 import { isEmulatingEnvironment } from './utils/environment';
 import { feedEmulatorUser } from './utils/mocks/emulator';
 // Internal
-import { dailyEngine } from './engine/daily';
-import { hostEngine } from './engine/host';
-import { userEngine } from './engine/user';
 import { gameEngine } from './gameEngine';
+import { dailyEngine } from './games/daily';
+import { hostEngine } from './games/host';
+import { userEngine } from './games/user';
 
 initializeApp();
 
