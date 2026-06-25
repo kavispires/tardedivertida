@@ -11,9 +11,9 @@ import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Utils
 import utils from '../../utils';
 // Internal
+import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { saveData } from './data';
 import {
-  getAchievements,
   getFinalMovieId,
   getFinalMovies,
   getMoviePosterIds,
@@ -60,13 +60,7 @@ export const prepareSetupPhase = async (
       return acc;
     }, {});
 
-  const achievements = utils.achievements.setup(players, {
-    group: 0,
-    solo: 0,
-    couple: 0,
-    bad: 0,
-    own: 0,
-  });
+  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
 
   // Save
   return {
@@ -210,9 +204,9 @@ export const prepareRevealPhase = async (
   const wasMistake = votedForSelectedMovie.length > 0;
   const mistakes = state.mistakes ?? [];
   if (wasMistake) {
-    utils.achievements.increase(store, activePlayerId, 'bad', 1);
+    increaseAchievement(store.achievement, activePlayerId, 'bad', 1);
     votedForSelectedMovie.forEach((playerId) => {
-      utils.achievements.increase(store, playerId, 'own', 1);
+      increaseAchievement(store.achievement, playerId, 'own', 1);
     });
     mistakes.push(currentMovieId);
   }
@@ -261,13 +255,13 @@ export const prepareRevealPhase = async (
     });
     Object.values(playersPerMovie).forEach((playerIds) => {
       if (playerIds.length === 0) {
-        utils.achievements.increase(store, playerIds[0], 'solo', 1);
+        increaseAchievement(store.achievement, playerIds[0], 'solo', 1);
       } else if (playerIds.length === 2) {
-        utils.achievements.increase(store, playerIds[0], 'couple', 1);
-        utils.achievements.increase(store, playerIds[1], 'couple', 1);
+        increaseAchievement(store.achievement, playerIds[0], 'couple', 1);
+        increaseAchievement(store.achievement, playerIds[1], 'couple', 1);
       } else {
         playerIds.forEach((playerId) => {
-          utils.achievements.increase(store, playerId, 'group', 1);
+          increaseAchievement(store.achievement, playerId, 'group', 1);
         });
       }
     });
@@ -314,7 +308,7 @@ export const prepareGameOverPhase = async (
 
   const finalMovies = getFinalMovies(store.finalMovies, players, store.moviePosters);
 
-  const achievements = getAchievements(store);
+  const achievements = calculateAchievements(store.achievements);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
