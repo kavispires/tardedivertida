@@ -12,15 +12,34 @@ import { fetchGameSessionDoc, getStateReferences } from '../services/game-sessio
 // Utils
 import utils from '../utils';
 import { retireGamesFromUsers } from '../utils/admin-cleanup';
-import * as delegatorUtils from '../utils/delegators';
 import { isEmulatingEnvironment } from '../utils/environment';
 import { feedEmulatorDB } from '../utils/mocks/emulator';
+// Internal
+import * as delegatorUtils from '../games/delegators';
 
+/**
+ * Payload for creating a new game session
+ */
 export type CreateGamePayload = {
+  /**
+   * The name of the game to create
+   */
   gameName: string;
+  /**
+   * Language for the game session
+   */
   language: string;
+  /**
+   * Version of the game
+   */
   version: string;
+  /**
+   * Optional game configuration options
+   */
   options?: GameOptions;
+  /**
+   * Action type identifier
+   */
   action: string;
 };
 
@@ -104,10 +123,25 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   };
 };
 
+/**
+ * Basic payload structure for game operations
+ */
 export type BasicGamePayload = {
+  /**
+   * Unique identifier of the game session
+   */
   gameId: UID;
+  /**
+   * The name of the game
+   */
   gameName: string;
+  /**
+   * Action type identifier
+   */
   action: string;
+  /**
+   * Additional dynamic properties
+   */
   [key: string]: AnyOrUnknownPlaceholder;
 };
 
@@ -309,8 +343,17 @@ const playAgain = async (data: BasicGamePayload) => {
   return false;
 };
 
+/**
+ * Payload for retiring games from user profiles
+ */
 export type RetireGamesPayload = {
+  /**
+   * Array of game names to retire
+   */
   gameNames: string[];
+  /**
+   * Action type identifier
+   */
   action: string;
 };
 

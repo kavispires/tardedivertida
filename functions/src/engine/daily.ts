@@ -14,8 +14,17 @@ import {
 import { isEmulatingEnvironment } from '../utils/environment';
 import { feedEmulatorDaily } from '../utils/mocks/emulator';
 
+/**
+ * Payload for retrieving daily challenge data
+ */
 type DailyGetterPayload = {
-  date: string; // Format YYYY-MM-DD
+  /**
+   * Date identifier in format YYYY-MM-DD
+   */
+  date: string;
+  /**
+   * The document name to retrieve
+   */
   document: string;
 };
 
@@ -59,11 +68,29 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
   };
 };
 
+/**
+ * Payload for saving daily challenge results
+ */
 export type DailySetterPayload = {
-  id: string; // Format YYYY-MM-DD
+  /**
+   * Date identifier in format YYYY-MM-DD
+   */
+  id: string;
+  /**
+   * The daily challenge number
+   */
   number: number;
+  /**
+   * Whether the challenge was completed successfully
+   */
   victory: boolean;
+  /**
+   * Number of hearts/lives remaining
+   */
   hearts: number;
+  /**
+   * Array of letters used or collected
+   */
   letters: string[];
 };
 
@@ -111,8 +138,17 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
   return true;
 };
 
+/**
+ * Payload for saving drawing data to the community collection
+ */
 type DailySaveDrawingPayload = {
+  /**
+   * Drawing data to be saved
+   */
   drawings: any;
+  /**
+   * Language of the drawings
+   */
   language: Language;
 };
 
@@ -134,19 +170,50 @@ const saveDrawing = async (data: DailySaveDrawingPayload, auth: FirebaseAuth) =>
   return true;
 };
 
+/**
+ * Payload for saving testimony answers and suspect relationships
+ */
 type DailySaveTestimoniesPayload = {
+  /**
+   * Array of testimony answers
+   */
   answers: {
+    /**
+     * Unique identifier for the testimony
+     */
     testimonyId: string;
+    /**
+     * Array of suspect IDs that are related to the testimony
+     */
     related: string[];
+    /**
+     * Array of suspect IDs that are unrelated to the testimony
+     */
     unrelated: string[];
   }[];
 };
 
+/**
+ * Firestore testimony data structure mapping user IDs to stringified testimony data
+ */
 interface FirestoreTestimonyData {
-  [key: string]: string; // userId -> stringified data
+  /**
+   * User ID mapped to stringified testimony data
+   */
+  [key: string]: string;
 }
+
+/**
+ * Parsed testimony data structure for aggregating suspect relationships
+ */
 interface FirestoreParsedTestimonyData {
+  /**
+   * Testimony ID mapped to suspect relationships
+   */
   [key: string]: {
+    /**
+     * Suspect ID mapped to array of relationship scores
+     */
     [key: string]: number[];
   };
 }
@@ -215,12 +282,27 @@ const saveTestimonies = async (data: DailySaveTestimoniesPayload, auth: Firebase
   return true;
 };
 
+/**
+ * Pair of related image IDs for connection challenges
+ */
 type RelatedPair = {
+  /**
+   * First image identifier
+   */
   imageId1: string;
+  /**
+   * Second image identifier
+   */
   imageId2: string;
 };
 
+/**
+ * Payload for saving image connection relationships
+ */
 type DailySaveConexoesPayload = {
+  /**
+   * Array of related image pairs
+   */
   pairs: RelatedPair[];
 };
 

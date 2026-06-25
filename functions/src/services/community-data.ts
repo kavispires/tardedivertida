@@ -4,7 +4,7 @@ import { DATA_DOCUMENTS } from '../utils/constants';
 // Utils
 import { isEmulatingEnvironment } from '../utils/environment';
 // Internal
-import { getDataCollectionRef } from './firestore-core';
+import { getDataCollectionRef, getPublicCollectionRef } from './firestore-core';
 
 /**
  * Retrieves a document from the community data Firestore collection
@@ -158,7 +158,7 @@ export const updateFirestoreCommunityDataForImageCardsRelationships = async (
 };
 
 /**
- * Transpiles relationships by creating bidirectional connections between image cards
+ * Transpile relationships by creating bidirectional connections between image cards
  * @param source - The source relationships object to process
  * @param result - The result object to populate with bidirectional relationships (mutated)
  */
@@ -178,3 +178,65 @@ function transpileRelationships(source: ImageCardRelationship, result: ImageCard
     });
   });
 }
+
+/**
+ * Retrieves a document from the public Firestore collection
+ * @param documentName - The name of the document to retrieve
+ * @param fallback - Default value returned if the document doesn't exist or fetch fails
+ * @returns The document data or fallback value
+ */
+export const getFirestorePublicDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
+  let response: Promise<any>;
+
+  if (isEmulatingEnvironment()) {
+    return fallback;
+  }
+
+  try {
+    response = (await getPublicCollectionRef().doc(documentName)?.get())?.data() ?? fallback;
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: on purpose
+    console.error(e);
+    response = fallback;
+  }
+  return response;
+};
+
+/**
+ * Updates a public document in Firestore by merging objects or appending arrays
+ * @param documentName - The name of the document to update
+ * @param data - The data to merge (objects) or append (arrays)
+ * @returns True if the update was successful
+ */
+export const updateFirestorePublicDocData = async (documentName: string, data: any): Promise<boolean> => {
+  const expectedType = Array.isArray(data) ? 'array' : typeof data;
+
+  const defaultCurrentData =
+    {
+      object: {},
+      array: [],
+      string: '',
+      number: 0,
+      boolean: false,
+    }?.[expectedType] ?? {};
+
+  const currentData = await getFirestorePublicDocData(documentName, defaultCurrentData);
+
+  let newData: any = null;
+  switch (expectedType) {
+    case 'array':
+      newData = [...currentData, ...data];
+      break;
+    case 'object':
+      newData = { ...currentData, ...data };
+      break;
+    default:
+      newData = currentData;
+  }
+
+  if (newData) {
+    await getPublicCollectionRef().doc(documentName).update(newData);
+  }
+
+  return true;
+};

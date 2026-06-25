@@ -10,9 +10,16 @@ import {
 import { fetchGameMetaDoc, getStateReferences } from '../services/game-session';
 // Utils
 import utils from '../utils';
-import * as delegatorUtils from '../utils/delegators';
+// Internal
+import * as delegatorUtils from '../games/delegators';
 
+/**
+ * Payload for loading an existing game session
+ */
 type LoadGamePayload = {
+  /**
+   * Unique identifier of the game session to load
+   */
   gameId: UID;
 };
 
@@ -40,11 +47,29 @@ const loadGame = async (data: LoadGamePayload) => {
   return gameMetaData;
 };
 
+/**
+ * Payload for a player joining a game session
+ */
 interface JoinGamePayload {
+  /**
+   * Unique identifier of the game session
+   */
   gameId: UID;
+  /**
+   * The name of the game
+   */
   gameName: string;
+  /**
+   * Display name for the player
+   */
   playerName: string;
+  /**
+   * Avatar identifier chosen by the player
+   */
   playerAvatarId: string;
+  /**
+   * Whether the player is joining as a guest
+   */
   isGuest?: boolean;
 }
 
