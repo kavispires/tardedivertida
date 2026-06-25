@@ -1,5 +1,4 @@
 // Internal
-import * as achievements from './achievement-utils';
 import * as deck from './deck';
 import * as game from './game-utils';
 import * as helpers from './helpers';
@@ -11,7 +10,6 @@ import * as turnOrder from './turn-order-utils';
 import * as user from './user';
 
 export default {
-  achievements,
   deck,
   game,
   helpers,

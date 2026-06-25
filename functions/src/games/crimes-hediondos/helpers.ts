@@ -346,28 +346,28 @@ export const updateOrCreateGuessHistory = (
 
         if (status === GUESS_STATUS.ONE) {
           // Achievements: Half/One of the two
-          utils.achievements.increase(store, player.id, 'one', 1);
+          increaseAchievement(store.achievements, player.id, 'one', 1);
           // Achievements: Wrong
-          utils.achievements.increase(store, player.id, 'wrong', 1);
+          increaseAchievement(store.achievements, player.id, 'wrong', 1);
         }
 
         if (status === GUESS_STATUS.TWO) {
           // Achievements: Two of the three
-          utils.achievements.increase(store, player.id, 'two', 1);
+          increaseAchievement(store.achievements, player.id, 'two', 1);
           // Achievements: Wrong
-          utils.achievements.increase(store, player.id, 'wrong', 1);
+          increaseAchievement(store.achievements, player.id, 'wrong', 1);
         }
 
         if (status === GUESS_STATUS.THREE) {
           // Achievements: Three of the four
-          utils.achievements.increase(store, player.id, 'three', 1);
+          increaseAchievement(store.achievements, player.id, 'three', 1);
           // Achievements: Wrong
-          utils.achievements.increase(store, player.id, 'wrong', 1);
+          increaseAchievement(store.achievements, player.id, 'wrong', 1);
         }
 
         if (status === GUESS_STATUS.WRONG) {
           // Achievements: Wrong
-          utils.achievements.increase(store, player.id, 'wrong', 4);
+          increaseAchievement(store.achievements, player.id, 'wrong', 4);
           // Add all items to the wrong items
           wrongItems[crime.playerId] = wrongItems[crime.playerId] ?? [];
           wrongItems[crime.playerId].push(guess.weaponId, guess.evidenceId);

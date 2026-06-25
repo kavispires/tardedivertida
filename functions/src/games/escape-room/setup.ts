@@ -21,12 +21,13 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = utils.achievements.setup(players, {
-    lead: 0,
-    first: 0,
-    complete: 0,
-    help: 0,
-  });
+  // TODO: Implement achievements
+  // const achievements = utils.achievements.setup(players, {
+  //   lead: 0,
+  //   first: 0,
+  //   complete: 0,
+  //   help: 0,
+  // });
 
   const round: Round = {
     current: 0,
@@ -44,7 +45,6 @@ export const prepareSetupPhase = async (
     update: {
       store: {
         deck: [],
-        achievements,
       },
       state: {
         phase: ESCAPE_ROOM_PHASES.SETUP,

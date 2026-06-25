@@ -65,9 +65,9 @@ export const gatherConcepts = (players: Players, store: FirebaseStoreData): Conc
       concept.soundId = unusedSounds.pop() || '0';
       concept.syllable = SOUNDS[concept.soundId];
       // Achievement: Items in concept
-      utils.achievements.increase(store, concept.playerId, 'conceptItems', concept.itemsIds.length);
+      // utils.achievements.increase(store, concept.playerId, 'conceptItems', concept.itemsIds.length);
       // Achievement: Concepts created
-      utils.achievements.increase(store, concept.playerId, 'concepts', 1);
+      // utils.achievements.increase(store, concept.playerId, 'concepts', 1);
     }
   });
 
@@ -126,18 +126,18 @@ export const buildGalleryAndRanking = (
       galleryEntry.guesses[selectedItemId].push(player.id);
     });
     // Achievement: Name length
-    utils.achievements.increase(store, creatorId, 'nameLength', nameEntry.name.length);
+    // utils.achievements.increase(store, creatorId, 'nameLength', nameEntry.name.length);
     // Achievement: Name quality
-    utils.achievements.increase(store, creatorId, 'nameQuality', galleryEntry.correctPlayersIds.length);
+    // utils.achievements.increase(store, creatorId, 'nameQuality', galleryEntry.correctPlayersIds.length);
 
     // Achievement: Distinct name (only one guesser)
     if (galleryEntry.correctPlayersIds.length === 1) {
-      utils.achievements.increase(store, creatorId, 'distinctNames', 1);
+      // utils.achievements.increase(store, creatorId, 'distinctNames', 1);
     }
 
     // Achievement: Everybody guessed
     if (galleryEntry.correctPlayersIds.length === playerCount - 1) {
-      utils.achievements.increase(store, creatorId, 'commonKnowledge', 1);
+      // utils.achievements.increase(store, creatorId, 'commonKnowledge', 1);
     }
 
     gallery.push(galleryEntry);
