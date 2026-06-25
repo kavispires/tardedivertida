@@ -1,7 +1,7 @@
 import { orderBy, shuffle } from 'lodash';
 // Types
+import type { AlienItem } from '../../tool-kits/alien-attributes';
 import type { ItemData, ItemAttributeData, ItemAttributesValuesData } from '../../types/tdr';
-import type { AlienItem } from '../../utils/tool-kits/alien-attributes';
 import type { ResourceData, ComunicacaoAlienigenaOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
@@ -9,7 +9,7 @@ import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
 // Tool Kits
-import { alienAttributesUtils } from '../../utils/tool-kits';
+import { alienAttributesUtils } from '../../tool-kits/alien-attributes';
 // Utils
 import utils from '../../utils';
 import { makeArray } from '../../utils/helpers';

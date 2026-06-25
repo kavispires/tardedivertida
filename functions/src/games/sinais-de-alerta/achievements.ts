@@ -1,5 +1,5 @@
 // Tool Kits
-import { achievementBuilder } from '../../utils/tool-kits';
+import { achievementBuilder } from '../../tool-kits/achievements';
 
 /**
  * SINAIS_DE_ALERTA ACHIEVEMENTS

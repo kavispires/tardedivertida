@@ -1,5 +1,3 @@
-// Tool Kits
-import * as toolKits from './tool-kits';
 // Internal
 import * as achievements from './achievement-utils';
 import * as deck from './deck';
@@ -23,5 +21,4 @@ export default {
   tdr,
   turnOrder,
   user,
-  toolKits,
 };

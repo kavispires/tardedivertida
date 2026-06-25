@@ -15,11 +15,7 @@ import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './consta
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 // Tool Kits
-import {
-  type AlienAttribute,
-  alienAttributesUtils,
-  type AlienItem,
-} from '../../utils/tool-kits/alien-attributes';
+import { type AlienAttribute, alienAttributesUtils, type AlienItem } from '../../tool-kits/alien-attributes';
 // Utils
 import utils from '../../utils';
 // Internal

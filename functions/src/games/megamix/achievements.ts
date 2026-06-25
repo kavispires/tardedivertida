@@ -1,7 +1,7 @@
 // Constants
 import { SIDES } from './constants';
 // Tool Kits
-import { achievementBuilder } from '../../utils/tool-kits';
+import { achievementBuilder } from '../../tool-kits/achievements';
 
 /**
  * MEGAMIX ACHIEVEMENTS

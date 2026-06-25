@@ -1,4 +1,5 @@
-import utils from '..';
+// Utils
+import utils from '../utils';
 // Internal
 import { achievementBuilder } from './achievements';
 

@@ -1,5 +1,5 @@
 // Types
-import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
+import type { AlienAttribute, AlienItem } from '../../tool-kits/alien-attributes';
 import type { COMUNICACAO_ALIENIGENA_ACTIONS } from './constants';
 
 export type ComunicacaoAlienigenaOptions = {

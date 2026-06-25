@@ -1,6 +1,6 @@
 import { uniq } from 'lodash';
 // Types
-import type { AlienAttribute, AlienItem } from '../../utils/tool-kits/alien-attributes';
+import type { AlienAttribute, AlienItem } from '../../tool-kits/alien-attributes';
 import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseStoreData } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
