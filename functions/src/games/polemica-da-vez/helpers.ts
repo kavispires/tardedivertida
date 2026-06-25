@@ -2,7 +2,7 @@ import { sampleSize } from 'lodash';
 // Types
 import type { CustomTweet, Decks, FirebaseStoreData, PolemicaDaVezOptions } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import {
   CUSTOM_TOPICS_PER_ROUND,
   MAX_ROUNDS,

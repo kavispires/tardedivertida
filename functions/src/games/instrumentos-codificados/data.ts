@@ -1,7 +1,7 @@
 // Types
 import type { ThingPromptCardData } from '../../types/tdr';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { fetchResource } from '../../services/resource';
 

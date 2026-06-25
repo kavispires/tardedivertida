@@ -3,7 +3,8 @@ import { sampleSize, shuffle } from 'lodash';
 import type { ArteRuimCardData, ArteRuimGroupData, ArteRuimPairData, TextCardData } from '../../types/tdr';
 import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level4Type } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { SPECIAL_LEVELS_LIBRARIES } from './constants';
 // Services
 import { updateFirestoreCommunityDataRecursively } from '../../services/community-data';

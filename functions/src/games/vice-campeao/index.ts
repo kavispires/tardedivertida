@@ -7,7 +7,7 @@ import type {
   ViceCampeaoSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { VICE_CAMPEAO_ACTIONS, VICE_CAMPEAO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Services
 import {

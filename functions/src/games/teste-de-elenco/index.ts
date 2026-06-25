@@ -7,7 +7,7 @@ import type {
   TesteDeElencoSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, PLAYER_COUNTS, TESTE_DE_ELENCO_ACTIONS, TESTE_DE_ELENCO_PHASES } from './constants';
 // Services
 import {

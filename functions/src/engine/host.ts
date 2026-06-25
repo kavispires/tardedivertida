@@ -4,7 +4,8 @@ import { orderBy } from 'lodash';
 // Types
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
 // Constants
-import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
+import { GAME_CODES } from '../constants/games';
+import { USED_GAME_IDS } from '../constants/general';
 // Services
 import { throwHttpsError, verifyPayload } from '../services/firebase-core';
 import { getGlobalCollectionRef, getMetaCollectionRef, getSessionRef } from '../services/firestore-core';

@@ -20,7 +20,9 @@ import type {
 } from '../../types/tdr';
 import type { MegamixGameOptions, ResourceData, Track, TrackCandidate } from './types';
 // Constants
-import { GAME_NAMES, SPRITE_LIBRARIES, TDR_RESOURCES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { TDR_RESOURCES } from '../../constants/resources';
+import { SPRITE_LIBRARIES } from '../../constants/sprites';
 import {
   CHARACTERS_TRACKS,
   DRAWING_TRACKS,

@@ -2,7 +2,7 @@ import { shuffle } from 'lodash';
 // Types
 import type { ContadoresHistoriasOptions, FirebaseStoreData, Table } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD, NPC } from '../../utils/constants';
+import { NPC, DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 // Utils
 import utils from '../../utils';

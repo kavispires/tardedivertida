@@ -2,7 +2,8 @@
 import type { MovieCardData, MovieReviewCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { MOVIES_PER_ROUND, TOTAL_REVIEW_CARDS, TOTAL_ROUNDS } from './constants';
 // Services
 import {

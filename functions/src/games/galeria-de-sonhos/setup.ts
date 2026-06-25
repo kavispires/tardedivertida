@@ -3,7 +3,7 @@ import { sample, sampleSize } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './constants';
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';

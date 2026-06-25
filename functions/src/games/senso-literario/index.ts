@@ -6,7 +6,7 @@ import type {
   SensoLiterarioSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { PLAYER_COUNTS, SENSO_LITERARIO_ACTIONS, SENSO_LITERARIO_PHASES, TOTAL_ROUNDS } from './constants';
 // Services
 import {

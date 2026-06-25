@@ -1,7 +1,8 @@
 // Types
 import type { ResourceData, UsedCards } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { HAND_LIMIT } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';

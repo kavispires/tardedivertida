@@ -1,7 +1,8 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import {
   CARDS_PER_PLAYER,
   CONTADORES_HISTORIAS_PHASES,

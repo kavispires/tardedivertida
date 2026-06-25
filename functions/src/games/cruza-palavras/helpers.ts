@@ -3,7 +3,7 @@ import { shuffle } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { ClueEntry, CruzaPalavrasOptions, Deck, FirebaseStoreData, GridCell, PastClues } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from '../../constants/general';
 import { CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
 import utils from '../../utils';

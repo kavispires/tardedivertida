@@ -2,7 +2,7 @@ import { cloneDeep, sample } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT, TOTAL_ROUNDS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

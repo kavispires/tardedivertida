@@ -3,7 +3,7 @@ import { orderBy, sampleSize } from 'lodash';
 import type { SpyLocationData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   ESPIAO_ENTRE_NOS_PHASES,
   GAME_DURATION,

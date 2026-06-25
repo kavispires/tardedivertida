@@ -1,6 +1,6 @@
 import { cloneDeep, groupBy, orderBy, shuffle } from 'lodash';
 // Constants
-import { AVATAR_IDS } from './constants';
+import { AVATARS_COLORS } from '../constants/avatars';
 // Services
 import { throwHttpsError } from '../services/firebase-core';
 // Internal
@@ -37,7 +37,7 @@ export const createPlayer = (
   const playerList = getListOfPlayers(players, true);
   const usedAvatars = playerList.map((player) => player.avatarId);
   const newAvatarId = usedAvatars.includes(avatarId)
-    ? getRandomUniqueItem(AVATAR_IDS, usedAvatars)
+    ? getRandomUniqueItem(Object.keys(AVATARS_COLORS), usedAvatars)
     : avatarId;
 
   return {

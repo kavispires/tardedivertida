@@ -7,7 +7,7 @@ import type {
   FirebaseStoreData,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   COLEGAS_DE_QUARTO_ACTIONS,
   COLEGAS_DE_QUARTO_PHASES,

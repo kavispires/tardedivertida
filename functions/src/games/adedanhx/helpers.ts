@@ -9,7 +9,7 @@ import type {
   LetterEntry,
 } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from '../../constants/general';
 import { ADEDANHX_PHASES } from './constants';
 // Utils
 import utils from '../../utils';

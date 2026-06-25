@@ -2,7 +2,8 @@ import { keyBy, shuffle } from 'lodash';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
 import { MEGAMIX_PHASES, SIDES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

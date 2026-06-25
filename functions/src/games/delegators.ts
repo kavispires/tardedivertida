@@ -1,5 +1,5 @@
 // Constants
-import { GAME_NAMES } from '../utils/constants';
+import { GAME_NAMES } from '../constants/games';
 // Internal
 import * as adedanhxEngine from './adedanhx';
 import * as arteRuimEngine from './arte-ruim';

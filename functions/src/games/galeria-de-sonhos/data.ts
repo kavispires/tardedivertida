@@ -2,7 +2,8 @@
 import type { TextCardData } from '../../types/tdr';
 import type { ImageCardMatch, ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { TABLE_DECK_TOTAL } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';

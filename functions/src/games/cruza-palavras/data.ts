@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { CruzaPalavrasOptions, PastClues, ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { fetchResource } from '../../services/resource';

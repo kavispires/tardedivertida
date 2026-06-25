@@ -2,7 +2,7 @@ import { shuffle } from 'lodash';
 // Types
 import type { CategoryCard, Deck, OndaTelepaticaOptions, ResourceData } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import {
   ONDA_TELEPATICA_PHASES,
   CATEGORIES_PER_ROUND,

@@ -6,7 +6,7 @@ import {
   BONUS_POINT_FOR_SET,
   COLORS,
   GENRES,
-  LETTERS,
+  BOOK_INITIALS,
   POINTS_PER_GUESS,
   SENSO_LITERARIO_PHASES,
 } from './constants';
@@ -44,7 +44,7 @@ export function buildDeck() {
   const deck: UID[] = [];
   COLORS.forEach((color) => {
     GENRES.forEach((genre) => {
-      LETTERS.forEach((letter) => {
+      BOOK_INITIALS.forEach((letter) => {
         deck.push(`${color}-${genre}-${letter}`);
       });
     });

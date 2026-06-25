@@ -1,6 +1,6 @@
 import { sampleSize } from 'lodash';
 // Constants
-import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
+import { LETTERS } from '../constants/general';
 // Internal
 import { buildBooleanDictionary } from './helpers';
 import { getListOfPlayers } from './players-utils';
@@ -72,11 +72,17 @@ export const generateGameId = (
    */
   function generateId(gameCode: UID, length: number, language: Language): string {
     let id = `${gameCode}`;
+
+    const LETTERS_SAMPLE =
+      language === 'en'
+        ? LETTERS.slice(0, LETTERS.length / 2)
+        : LETTERS.slice(LETTERS.length / 2, LETTERS.length);
+
     // Add second character based on language
     id +=
       language === 'en'
-        ? LETTERS_EN[Math.floor(Math.random() * LETTERS_EN.length)]
-        : LETTERS_PT[Math.floor(Math.random() * LETTERS_PT.length)];
+        ? LETTERS_SAMPLE[Math.floor(Math.random() * LETTERS_SAMPLE.length)]
+        : LETTERS_SAMPLE[Math.floor(Math.random() * LETTERS_SAMPLE.length)];
 
     while (id.length < length) {
       id += LETTERS[Math.floor(Math.random() * LETTERS.length)];

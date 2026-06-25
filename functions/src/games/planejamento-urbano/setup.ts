@@ -3,7 +3,8 @@ import { difference, orderBy, sampleSize, shuffle } from 'lodash';
 import type { CityLocationData } from '../../types/tdr';
 import type { City, FirebaseStateData, FirebaseStoreData, GalleryEntry, ResourceData } from './types';
 // Constants
-import { GAME_NAMES, LETTERS } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { LETTERS } from '../../constants/general';
 import {
   ARCHITECT_MATCH_POINTS,
   ARCHITECT_PASSIVE_POINTS,

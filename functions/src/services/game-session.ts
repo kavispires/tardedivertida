@@ -1,6 +1,8 @@
 // eslint-disable-next-line
 import * as functions from 'firebase-functions/v2';
 import { isEmpty } from 'lodash';
+// Constants
+import { GAME_PROCESS_PHASES } from '../constants/general';
 // Utils
 import utils from '../utils';
 import { isEmulatingEnvironment } from '../utils/environment';
@@ -211,12 +213,12 @@ export const saveGame = async (
     const phase = (saveContent?.set?.state?.phase ?? saveContent?.update?.state?.phase) as string | undefined;
 
     // So players can see the animation and there's a sense of things are getting setup we wait at least 7 seconds
-    if (phase && phase === 'SETUP' && Date.now() - now < 7000) {
+    if (phase && phase === GAME_PROCESS_PHASES.SETUP && Date.now() - now < 7000) {
       await utils.helpers.forceWait(7000 - (Date.now() - now));
     }
 
     // TODO: Needs to figure out how to get the gameId, too risky to check the payload and not have it
-    // if (phase && phase === 'GAME_OVER') {
+    // if (phase && phase === BASIC_PHASES.GAME_OVER) {
     //   await getMetaRef().doc(gameId).update({ isComplete: true });
     // }
   }
@@ -242,7 +244,7 @@ export const markGameAsComplete = async (gameId: UID) => {
 export const triggerSetupPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
-  await sessionRef.doc('state').update({ phase: 'SETUP', updatedAt: Date.now() });
+  await sessionRef.doc('state').update({ phase: GAME_PROCESS_PHASES.SETUP, updatedAt: Date.now() });
   await utils.helpers.devSimulateWait(2000);
   return true;
 };
@@ -255,7 +257,7 @@ export const triggerSetupPhase = async (
 export const triggerWaitPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
-  await sessionRef.doc('state').update({ phase: 'WAIT', updatedAt: Date.now() });
+  await sessionRef.doc('state').update({ phase: GAME_PROCESS_PHASES.WAIT, updatedAt: Date.now() });
   await utils.helpers.devSimulateWait(2000);
   return true;
 };

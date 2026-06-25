@@ -2,7 +2,8 @@
 import type { TextCardData } from '../../types/tdr';
 import type { PastBattles, ResourceData, SuperCampeonatoOptions } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { CHALLENGES_PER_GAME, CONTENDERS_PER_PLAYER, CONTENDERS_PER_ROUND } from './constants';
 // Services
 import {

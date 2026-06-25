@@ -1,6 +1,6 @@
 import { merge, uniq } from 'lodash';
 // Constants
-import { DATA_DOCUMENTS } from '../utils/constants';
+import { DATA_DOCUMENTS } from '../constants/collections';
 // Utils
 import { isEmulatingEnvironment } from '../utils/environment';
 // Internal

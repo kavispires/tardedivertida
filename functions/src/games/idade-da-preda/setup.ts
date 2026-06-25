@@ -3,7 +3,7 @@ import { keyBy, orderBy, shuffle } from 'lodash';
 import type { ItemData } from '../../types/tdr';
 import type { ConceptData, FirebaseStateData, FirebaseStoreData, NewNameEntry, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   BASIC_CONCEPTS,
   CONCEPTS_FOR_FIRST_ROUND,

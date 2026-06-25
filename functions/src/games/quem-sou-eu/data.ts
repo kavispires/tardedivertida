@@ -2,7 +2,7 @@
 import type { ContenderCardData } from '../../types/tdr';
 import type { QuemSouEuOptions, ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS } from '../../utils/constants';
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
 import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './constants';
 // Services
 import { updateFirestoreCommunityData } from '../../services/community-data';

@@ -10,7 +10,8 @@ import type {
 import type { HouseCard } from '../na-rua-do-medo/types';
 import type { AvailableTrack, FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
 // Constants
-import { AVATAR_SPRITE_LIBRARIES, GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
+import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
 import {
   MEGAMIX_PHASES,
   PARTY_GAMES,

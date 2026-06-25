@@ -7,7 +7,7 @@ import type {
   SuperCampeonatoSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES, SUPER_CAMPEONATO_ACTIONS } from './constants';
 // Services
 import {

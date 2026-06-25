@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { TextCardData } from '../../types/tdr';
 import type { LabirintoSecretoGameOptions, ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

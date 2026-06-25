@@ -7,7 +7,7 @@ import type {
   VamosAoCinemaSubmitAction,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { VAMOS_AO_CINEMA_ACTIONS, VAMOS_AO_CINEMA_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Services
 import {

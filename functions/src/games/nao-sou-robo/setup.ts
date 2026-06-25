@@ -2,7 +2,7 @@ import { keyBy, sampleSize } from 'lodash';
 // Types
 import type { CaptchaCard, FirebaseStateData, FirebaseStoreData, ResourceData, Robot } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   CARD_SELECTION_PER_PLAYER_COUNT,
   GOODS_LIBRARY_COUNT,

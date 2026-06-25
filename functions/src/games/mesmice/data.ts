@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { ObjectFeatureCardData } from '../../types/tdr';
 import type { MesmiceOptions, ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

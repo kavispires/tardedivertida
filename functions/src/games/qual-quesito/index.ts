@@ -8,7 +8,7 @@ import type {
   QualQuesitoPhase,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { QUAL_QUESITO_ACTIONS, QUAL_QUESITO_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Services
 import {

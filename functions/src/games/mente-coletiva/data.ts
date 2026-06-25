@@ -2,7 +2,8 @@
 import type { GroupQuestionCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Services
 import {

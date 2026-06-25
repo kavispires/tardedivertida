@@ -3,7 +3,8 @@ import { sampleSize } from 'lodash';
 import type { TestimonyQuestionCardData } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS, PLAYER_SUGGESTED_QUESTIONS_COUNT } from './constants';
 // Services
 import { fetchGlobalTrackerDocumentData, resetGlobalTrackerDocument } from '../../services/global-tracker';

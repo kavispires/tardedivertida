@@ -10,7 +10,7 @@ import type {
   Seed,
 } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';

@@ -3,7 +3,7 @@ import { sampleSize } from 'lodash';
 import type { DiagramTopicData, ItemData } from '../../types/tdr';
 import type { TeoriaDeConjuntosOptions, ResourceData, TopicsByDiagramType } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';

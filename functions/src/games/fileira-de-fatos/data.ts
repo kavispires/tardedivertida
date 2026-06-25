@@ -2,7 +2,7 @@
 import type { TextCardData } from '../../types/tdr';
 import type { FileiraDeFatosOptions, ResourceData } from './types';
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { fetchResource } from '../../services/resource';
 

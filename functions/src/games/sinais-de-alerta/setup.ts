@@ -2,7 +2,7 @@ import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
 // Types
 import type { DrawingEntryData, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import {
   LONGER_TIME_LIMIT,
   NORMAL_TIME_LIMIT,

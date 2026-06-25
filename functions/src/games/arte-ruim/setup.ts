@@ -3,7 +3,7 @@ import { cloneDeep, orderBy, shuffle } from 'lodash';
 import type { ArteRuimCardData } from '../../types/tdr';
 import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
 // Constants
-import { GAME_NAMES } from '../../utils/constants';
+import { GAME_NAMES } from '../../constants/games';
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
