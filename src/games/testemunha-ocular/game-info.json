@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "6.1.49",
+  "version": "6.1.50",
   "release": "stable",
   "releaseDate": "2021-08-01",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
@@ -45,11 +45,7 @@
   },
   "playerCount": {
     "best": 3,
-    "recommended": [
-      2,
-      3,
-      4
-    ],
+    "recommended": [2, 3, 4],
     "min": 2,
     "max": 10
   },
@@ -57,15 +53,8 @@
     "base": 20,
     "perPlayer": 1
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "guessing",
-    "discussion"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "turn-based", "guessing", "discussion"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "largePool",
