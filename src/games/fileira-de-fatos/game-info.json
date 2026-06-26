@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "1.0.67",
+  "version": "1.0.68",
   "release": "stable",
   "releaseDate": "2023-07-21",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Fileira De Fatos",
     "en": "Facts Lineup"
@@ -44,7 +44,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 3,
     "max": 12
@@ -53,8 +57,14 @@
     "base": 5,
     "perPlayer": 4
   },
-  "mechanics": ["competitive", "same-time", "guessing"],
-  "features": ["achievements"],
+  "mechanics": [
+    "competitive",
+    "same-time",
+    "guessing"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "nsfw",

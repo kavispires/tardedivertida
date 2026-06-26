@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "3.0.59",
+  "version": "3.0.60",
   "release": "stable",
   "releaseDate": "2021-12-30",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
@@ -47,7 +47,11 @@
   },
   "playerCount": {
     "best": 4,
-    "recommended": [3, 4, 5],
+    "recommended": [
+      3,
+      4,
+      5
+    ],
     "min": 2,
     "max": 10
   },
@@ -55,8 +59,15 @@
     "base": 15,
     "perPlayer": 6
   },
-  "mechanics": ["competitive", "same-time", "pairing"],
-  "features": ["bots", "achievements"],
+  "mechanics": [
+    "competitive",
+    "same-time",
+    "pairing"
+  ],
+  "features": [
+    "bots",
+    "achievements"
+  ],
   "options": [
     {
       "key": "withBots",

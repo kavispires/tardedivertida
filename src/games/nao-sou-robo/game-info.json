@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "3.0.35",
+  "version": "3.0.36",
   "release": "stable",
   "releaseDate": "2023-11-12",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Eu Não Sou Um Robô",
     "en": "I'm Not A Robot"
@@ -48,7 +48,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 2,
     "max": 8,
     "best": 5
@@ -57,6 +61,13 @@
     "base": 5,
     "perPlayer": 4
   },
-  "mechanics": ["competitive", "images", "guessing", "same-time"],
-  "features": ["achievements"]
+  "mechanics": [
+    "competitive",
+    "images",
+    "guessing",
+    "same-time"
+  ],
+  "features": [
+    "achievements"
+  ]
 }

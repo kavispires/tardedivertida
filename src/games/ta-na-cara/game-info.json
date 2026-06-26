@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "2.1.20",
+  "version": "2.1.21",
   "release": "stable",
   "releaseDate": "2023-03-25",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Tá Na Cara",
     "en": "What Vibe?"
@@ -42,7 +42,9 @@
     ]
   },
   "playerCount": {
-    "recommended": [2],
+    "recommended": [
+      2
+    ],
     "best": 2,
     "min": 2,
     "max": 2
@@ -51,7 +53,12 @@
     "base": 10,
     "perPlayer": 2
   },
-  "mechanics": ["competitive", "turn-based", "guessing", "writing"],
+  "mechanics": [
+    "competitive",
+    "turn-based",
+    "guessing",
+    "writing"
+  ],
   "features": [],
   "options": [
     {
