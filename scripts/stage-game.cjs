@@ -15,7 +15,7 @@
  *   1. bomba-relogio
  *   2. arte-ruim
  *   Enter selection (1-2) or game name: 1
- *   ✅ Staged: functions/src/engine/bomba-relogio src/games/bomba-relogio
+ *   ✅ Staged: functions/src/games/bomba-relogio src/games/bomba-relogio
  */
 
 const { execSync } = require('child_process');
@@ -73,11 +73,11 @@ function getModifiedGames() {
     const filePath = line.replace(/^.../, '').trim();
 
     // Check if it's a game file in either location
-    const engineMatch = filePath.match(/^functions\/src\/engine\/([a-z-]+)\//);
+    const backendMatch = filePath.match(/^functions\/src\/games\/([a-z-]+)\//);
     const frontendMatch = filePath.match(/^src\/games\/([a-z-]+)\//);
 
-    if (engineMatch) {
-      games.add(engineMatch[1]);
+    if (backendMatch) {
+      games.add(backendMatch[1]);
     } else if (frontendMatch) {
       games.add(frontendMatch[1]);
     }
@@ -162,38 +162,38 @@ async function main() {
   }
 
   // Define paths
-  const enginePath = path.resolve(__dirname, `../functions/src/engine/${gameName}`);
+  const backendPath = path.resolve(__dirname, `../functions/src/games/${gameName}`);
   const frontendPath = path.resolve(__dirname, `../src/games/${gameName}`);
 
   // Check if directories exist
-  const engineExists = directoryExists(enginePath);
+  const backendExists = directoryExists(backendPath);
   const frontendExists = directoryExists(frontendPath);
 
-  if (!engineExists && !frontendExists) {
+  if (!backendExists && !frontendExists) {
     console.error(`❌ Error: Game "${gameName}" not found in either location:`);
-    console.error(`   - functions/src/engine/${gameName}`);
+    console.error(`   - functions/src/games/${gameName}`);
     console.error(`   - src/games/${gameName}`);
     rl.close();
     process.exit(1);
   }
 
   // Warn if only one path exists
-  if (!engineExists) {
-    console.warn(`⚠️  Warning: Backend not found at functions/src/engine/${gameName}`);
+  if (!backendExists) {
+    console.warn(`⚠️  Warning: Backend not found at functions/src/games/${gameName}`);
   }
   if (!frontendExists) {
     console.warn(`⚠️  Warning: Frontend not found at src/games/${gameName}`);
   }
 
   // Stage the files
-  const pathsToStage = `functions/src/engine/${gameName} src/games/${gameName}`;
+  const pathsToStage = `functions/src/games/${gameName} src/games/${gameName}`;
 
   try {
     execSync(`git add ${pathsToStage}`, { stdio: 'inherit' });
     console.log(`\n✅ Staged: ${pathsToStage}`);
     console.log(`   Metadata: src/games/${gameName}/metadata.md`);
     console.log(`   Game Info: src/games/${gameName}/game-info.json`);
-    console.log(`   Engine: functions/src/engine/${gameName}/index.ts`);
+    console.log(`   Backend: functions/src/games/${gameName}/index.ts`);
   } catch (error) {
     console.error('\n❌ Error: Failed to stage files');
     console.error(error.message);
