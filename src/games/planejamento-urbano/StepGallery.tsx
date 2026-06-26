@@ -216,24 +216,32 @@ export function StepGallery({
                         )
                       }
                     >
-                      <Translate
-                        pt="Prefiro construir no cone"
-                        en="I prefer building in cone site"
-                      />
-                      :{' '}
-                      <ConeIcon
-                        color={color}
-                        width={16}
-                      />
-                      {adjacentLocationNames.map((name, index, arr) => (
-                        <span
-                          key={name.en}
-                          className="italic"
-                        >
-                          <DualTranslate key={index}>{name}</DualTranslate>
-                          {index < arr.length - 1 ? ', ' : ''}
-                        </span>
-                      ))}
+                      <Flex
+                        wrap
+                        gap={3}
+                      >
+                        <Translate
+                          pt="Prefiro construir no cone"
+                          en="I prefer building in cone site"
+                        />
+                        <ConeIcon
+                          color={color}
+                          width={16}
+                        />
+                        <Translate
+                          pt="do lado de:"
+                          en="next to:"
+                        />
+                        {adjacentLocationNames.map((name, index, arr) => (
+                          <span
+                            key={name.en}
+                            className="italic"
+                          >
+                            <DualTranslate key={index}>{name}</DualTranslate>
+                            {index < arr.length - 1 ? ', ' : ''}
+                          </span>
+                        ))}
+                      </Flex>
                     </SlideShowBubbleValue>
 
                     <SlideShowPlayersList
