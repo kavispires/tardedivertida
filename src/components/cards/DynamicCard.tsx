@@ -6,28 +6,50 @@ import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 import styles from './DynamicCard.module.scss';
 
 export type DynamicCardSpanItemProps = {
+  /**
+   * The content to render inside the span
+   */
   children: ReactNode;
+  /**
+   * Distance from the top edge (use % or cqw units)
+   */
   top?: string | number;
+  /**
+   * Distance from the bottom edge (use % or cqw units)
+   */
   bottom?: string | number;
+  /**
+   * Distance from the left edge (use % or cqw units)
+   */
   left?: string | number;
+  /**
+   * Distance from the right edge (use % or cqw units)
+   */
   right?: string | number;
-  /** Automatically centers the item horizontally (left: 50%, translateX(-50%)) */
+  /**
+   * Automatically centers the item horizontally (left: 50%, translateX(-50%))
+   */
   centerHorizontal?: boolean;
-  /** Automatically centers the item vertically (top: 50%, translateY(-50%)) */
+  /**
+   * Automatically centers the item vertically (top: 50%, translateY(-50%))
+   */
   centerVertical?: boolean;
-  /** Width of the item. Highly recommended to use 'cqw' units here (e.g. '20cqw') */
+  /**
+   * Width of the item (highly recommended to use cqw units for responsive scaling)
+   */
   width?: string | number;
+  /**
+   * Optional custom className
+   */
   className?: string;
+  /**
+   * Optional inline styles
+   */
   style?: React.CSSProperties;
 };
 
 /**
- * A companion component for positioning elements absolutely within a DynamicCard.
- *
- * @example
- * <DynamicCard.Span top="67%" centerHorizontal width="90cqw">
- *   <h1>Card Title</h1>
- * </DynamicCard.Span>
+ * Positions elements absolutely within a DynamicCard using container query units (cqw)
  */
 function DynamicCardSpanItem({
   children,
@@ -74,36 +96,27 @@ function DynamicCardSpanItem({
 // ==========================================
 
 export type DynamicCardProps = {
-  /** The base width of the card. Height is calculated automatically via aspectRatio. */
+  /**
+   * The base width of the card in pixels (height is calculated automatically via aspectRatio)
+   */
   width: number;
-  /** The unique ID of the background image to fetch from the TD assets. */
+  /**
+   * The unique ID of the background image to fetch from TD assets
+   */
   backgroundImageId: string;
+  /**
+   * Optional content to render inside the card
+   */
   children?: ReactNode;
   /**
-   * The height-to-width ratio.
-   * @default 1.5 (Standard playing card ratio where height = width * 1.5)
+   * The height-to-width ratio (defaults to 1.5 for standard playing card ratio)
    */
   aspectRatio?: number;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 /**
- * A flexible, container-query-enabled wrapper for rendering game cards.
- *
- * This component establishes a `container-type: size` boundary. This is a modern CSS
- * feature that allows child elements to size themselves relative to this card rather
- * than the whole browser window.
- *
- * **How to use `cqw` (Container Query Width):**
- * `1cqw` is exactly 1% of this card's width.
- * If you set a child's font-size to `5cqw`, it will always be exactly 5% of the card's
- * width, perfectly maintaining its scale whether the card is 100px or 800px wide!
- *
- * @example
- * <DynamicCard width={200} backgroundImageId="bg-123">
- *   <DynamicCard.Span top="1%" left="2%" width="20cqw">
- *     Badge
- *   </DynamicCard.Span>
- * </DynamicCard>
+ * Container-query-enabled wrapper for rendering game cards with responsive scaling
+ * To enable preview, use it with general / ComponentPreview
  */
 export function DynamicCard({
   width,

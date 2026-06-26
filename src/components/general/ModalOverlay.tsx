@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 // Ant Design Resources
 import {
   CloseOutlined,
@@ -36,25 +37,69 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
   const toggleFlipX = () => setFlipX((prevFlipX) => !prevFlipX);
   const toggleFlipY = () => setFlipY((prevFlipY) => !prevFlipY);
 
-  if (!open) return null;
-
   const handleOverlayClick = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
       onClose();
     }
   };
 
-  return (
+  return createPortal(
     <AnimatePresence>
-      <motion.div
-        className={styles.simpleModalOverlay}
-        onClick={handleOverlayClick}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.1 }}
-      >
-        <AnimatePresence>
+      {open && (
+        <motion.div
+          className={styles.simpleModalOverlay}
+          onClick={handleOverlayClick}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.1 }}
+        >
+          <Button
+            shape="circle"
+            size="large"
+            ghost
+            variant="outlined"
+            className={styles.simpleModalOverlayClose}
+            onClick={onClose}
+            icon={<CloseOutlined />}
+          />
+          <div className={styles.simpleModalOverlayControlsContainer}>
+            <Space.Compact className={styles.simpleModalOverlayControls}>
+              <Button
+                onClick={zoomIn}
+                ghost
+                icon={<ZoomInOutlined />}
+              />
+
+              <Button
+                onClick={zoomOut}
+                ghost
+                icon={<ZoomOutOutlined />}
+              />
+
+              <Button
+                onClick={rotateLeft}
+                ghost
+                icon={<RotateLeftOutlined />}
+              />
+              <Button
+                onClick={rotateRight}
+                ghost
+                icon={<RotateRightOutlined />}
+              />
+
+              <Button
+                onClick={toggleFlipX}
+                ghost
+                icon={<SwapOutlined />}
+              />
+              <Button
+                onClick={toggleFlipY}
+                ghost
+                icon={<SwapOutlined style={{ rotate: '90deg' }} />}
+              />
+            </Space.Compact>
+          </div>
           <motion.div
             className={styles.simpleModalOverlayContent}
             initial={{ opacity: 0, scale: 0.85 }}
@@ -62,15 +107,6 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
             exit={{ opacity: 0, scale: 0.3 }}
             transition={{ duration: 0.05 }}
           >
-            <Button
-              shape="circle"
-              size="large"
-              ghost
-              variant="outlined"
-              className={styles.simpleModalOverlayClose}
-              onClick={onClose}
-              icon={<CloseOutlined />}
-            />
             <div
               className={styles.simpleModalOverlayBody}
               style={{
@@ -79,46 +115,10 @@ export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClose, o
             >
               {children}
             </div>
-            <div className={styles.simpleModalOverlayControlsContainer}>
-              <Space.Compact className={styles.simpleModalOverlayControls}>
-                <Button
-                  onClick={zoomIn}
-                  ghost
-                  icon={<ZoomInOutlined />}
-                />
-
-                <Button
-                  onClick={zoomOut}
-                  ghost
-                  icon={<ZoomOutOutlined />}
-                />
-
-                <Button
-                  onClick={rotateLeft}
-                  ghost
-                  icon={<RotateLeftOutlined />}
-                />
-                <Button
-                  onClick={rotateRight}
-                  ghost
-                  icon={<RotateRightOutlined />}
-                />
-
-                <Button
-                  onClick={toggleFlipX}
-                  ghost
-                  icon={<SwapOutlined />}
-                />
-                <Button
-                  onClick={toggleFlipY}
-                  ghost
-                  icon={<SwapOutlined style={{ rotate: '90deg' }} />}
-                />
-              </Space.Compact>
-            </div>
           </motion.div>
-        </AnimatePresence>
-      </motion.div>
-    </AnimatePresence>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body,
   );
 };

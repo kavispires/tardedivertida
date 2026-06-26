@@ -3,14 +3,20 @@
 .simpleModalOverlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.85);
+  overflow: auto;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 .simpleModalOverlayContent {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
@@ -21,18 +27,20 @@
 }
 
 .simpleModalOverlayClose {
-  position: absolute;
+  position: fixed;
   right: get-unit(12);
   top: get-unit(12);
+  z-index: 10000;
 }
 
 .simpleModalOverlayControlsContainer {
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   bottom: get-unit(6);
   display: flex;
   justify-content: center;
+  z-index: 10000;
 }
 
 .simpleModalOverlayControls {
