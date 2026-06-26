@@ -95,16 +95,18 @@ export function StepResults({ announcement, sequence, players, gallery, goToNext
               prefix={card.patternId}
               style={{ maxWidth: cardWidth * 1.5 }}
             />
-            {card.playersIds.length > 1 && (
-              <span>
-                <PointsHighlight type="positive">
-                  <Translate
-                    pt="1 ponto bônus"
-                    en="1 bonus point"
-                  />
-                </PointsHighlight>
-              </span>
-            )}
+
+            <span
+              style={{ visibility: card.playersIds.length <= 1 ? 'hidden' : 'visible' }}
+              aria-hidden={card.playersIds.length <= 1}
+            >
+              <PointsHighlight type="positive">
+                <Translate
+                  pt="1 ponto bônus"
+                  en="1 bonus point"
+                />
+              </PointsHighlight>
+            </span>
           </Flex>
         ))}
       </SpaceContainer>
