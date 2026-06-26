@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "na-fila-do-banco",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "release": "stable",
   "releaseDate": "2026-04-16",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Na Fila do Banco",
     "en": "Next in Line"
@@ -48,7 +48,9 @@
     ]
   },
   "playerCount": {
-    "recommended": [3],
+    "recommended": [
+      3
+    ],
     "min": 2,
     "max": 5,
     "best": 0
@@ -57,6 +59,10 @@
     "base": 10,
     "perPlayer": 10
   },
-  "mechanics": ["competitive"],
-  "features": ["achievements"]
+  "mechanics": [
+    "competitive"
+  ],
+  "features": [
+    "achievements"
+  ]
 }

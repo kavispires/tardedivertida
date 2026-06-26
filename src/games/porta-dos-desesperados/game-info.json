@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.115",
+  "version": "4.0.116",
   "release": "stable",
   "releaseDate": "2022-10-02",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -44,7 +44,12 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6, 7],
+    "recommended": [
+      4,
+      5,
+      6,
+      7
+    ],
     "best": 5,
     "min": 2,
     "max": 10
@@ -53,8 +58,18 @@
     "base": 15,
     "perPlayer": 3
   },
-  "mechanics": ["cooperative", "guessing", "puzzle", "images", "turn-based", "discussion"],
-  "features": ["bots", "achievements"],
+  "mechanics": [
+    "cooperative",
+    "guessing",
+    "puzzle",
+    "images",
+    "turn-based",
+    "discussion"
+  ],
+  "features": [
+    "bots",
+    "achievements"
+  ],
   "options": [
     {
       "key": "withBots",

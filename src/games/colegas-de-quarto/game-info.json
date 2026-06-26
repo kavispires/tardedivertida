@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "release": "stable",
   "releaseDate": "2026-01-07",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Colegas de Quarto",
     "en": "Roommates"
@@ -44,7 +44,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [2, 3, 4],
+    "recommended": [
+      2,
+      3,
+      4
+    ],
     "min": 2,
     "max": 6,
     "best": 4
@@ -53,8 +57,14 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": ["cooperative", "writing", "guessing"],
-  "features": ["achievements"],
+  "mechanics": [
+    "cooperative",
+    "writing",
+    "guessing"
+  ],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "wordsSource",

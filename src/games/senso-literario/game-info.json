@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "senso-literario",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "release": "stable",
   "releaseDate": "2026-01-31",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Senso Literário",
     "en": "Book Sense"
@@ -45,7 +45,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "min": 2,
     "max": 6,
     "best": 5
@@ -54,6 +58,11 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": ["competitive", "brain-burner"],
-  "features": ["achievements"]
+  "mechanics": [
+    "competitive",
+    "brain-burner"
+  ],
+  "features": [
+    "achievements"
+  ]
 }

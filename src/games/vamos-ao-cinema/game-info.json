@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "2.0.56",
+  "version": "2.0.57",
   "release": "stable",
   "releaseDate": "2023-01-14",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Vamos Ao Cinema",
     "en": "Movie Night"
@@ -47,7 +47,14 @@
   },
   "playerCount": {
     "best": 5,
-    "recommended": [4, 5, 6, 7, 8, 9],
+    "recommended": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
     "min": 2,
     "max": 9
   },
@@ -55,6 +62,13 @@
     "base": 30,
     "perPlayer": 1
   },
-  "mechanics": ["cooperative", "turn-based", "guessing", "push-your-luck"],
-  "features": ["achievements"]
+  "mechanics": [
+    "cooperative",
+    "turn-based",
+    "guessing",
+    "push-your-luck"
+  ],
+  "features": [
+    "achievements"
+  ]
 }

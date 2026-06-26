@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sinais-de-alerta",
-  "version": "1.0.92",
+  "version": "1.0.93",
   "release": "stable",
   "releaseDate": "2024-09-02",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Sinais de Alerta",
     "en": "Warning Signs"
@@ -48,11 +48,22 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 3,
     "max": 10
   },
-  "mechanics": ["competitive", "drawing", "pairing", "timed"],
-  "features": ["achievements"]
+  "mechanics": [
+    "competitive",
+    "drawing",
+    "pairing",
+    "timed"
+  ],
+  "features": [
+    "achievements"
+  ]
 }

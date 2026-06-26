@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "planejamento-urbano",
-  "version": "1.1.58",
+  "version": "1.1.59",
   "release": "stable",
   "releaseDate": "2024-11-11",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Planejamento Urbano",
     "en": "City Planning"
@@ -46,17 +46,28 @@
     ]
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 2,
     "max": 8
   },
-  "mechanics": ["competitive", "guessing", "pairing", "turn-based"],
+  "mechanics": [
+    "competitive",
+    "guessing",
+    "pairing",
+    "turn-based"
+  ],
   "duration": {
     "base": 0,
     "perPlayer": 0
   },
-  "features": ["achievements"],
+  "features": [
+    "achievements"
+  ],
   "options": [
     {
       "key": "nsfw",

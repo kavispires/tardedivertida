@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "4.0.76",
+  "version": "4.0.77",
   "release": "stable",
   "releaseDate": "2021-05-18",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -48,7 +48,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [5, 6, 7],
+    "recommended": [
+      5,
+      6,
+      7
+    ],
     "min": 3,
     "max": 10,
     "best": 6
@@ -57,9 +61,16 @@
     "base": 15,
     "perPlayer": 3
   },
-  "mechanics": ["cooperative", "guessing", "writing"],
+  "mechanics": [
+    "cooperative",
+    "guessing",
+    "writing"
+  ],
   "cooperative": true,
-  "features": ["mobile-friendly", "achievements"],
+  "features": [
+    "mobile-friendly",
+    "achievements"
+  ],
   "options": [
     {
       "key": "fewerCards",

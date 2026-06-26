@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "release": "beta",
   "releaseDate": "2026-06-14",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Controle De Estoque",
     "en": "Inventory Control"
@@ -28,19 +28,32 @@
     "en": "You are workers that must place products in the warehouse and fulfill all orders by the end of the day."
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "TBD"
+    ],
+    "en": [
+      "TBD"
+    ]
   },
   "duration": {
     "base": 0,
     "perPlayer": 0
   },
   "playerCount": {
-    "recommended": [4, 5, 6],
+    "recommended": [
+      4,
+      5,
+      6
+    ],
     "best": 5,
     "min": 2,
     "max": 7
   },
-  "mechanics": ["competitive", "pairing", "timed", "discussion"],
+  "mechanics": [
+    "competitive",
+    "pairing",
+    "timed",
+    "discussion"
+  ],
   "features": []
 }

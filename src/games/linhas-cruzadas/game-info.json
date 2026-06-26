@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.123",
+  "version": "1.2.124",
   "release": "stable",
   "releaseDate": "2022-02-13",
-  "available": true,
+  "available": false,
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"
@@ -39,7 +39,13 @@
     ]
   },
   "playerCount": {
-    "recommended": [6, 7, 8, 9, 10],
+    "recommended": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
     "min": 4,
     "max": 10,
     "best": 7
@@ -48,8 +54,16 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": ["cooperative", "drawing", "guessing", "writing"],
-  "features": ["achievements", "mobile-friendly"],
+  "mechanics": [
+    "cooperative",
+    "drawing",
+    "guessing",
+    "writing"
+  ],
+  "features": [
+    "achievements",
+    "mobile-friendly"
+  ],
   "options": [
     {
       "key": "singleWordOnly",
