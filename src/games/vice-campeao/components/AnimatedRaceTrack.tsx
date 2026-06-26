@@ -40,7 +40,7 @@ export function AnimatedRaceTrack({
         clearInterval(interval);
         return prevIndex;
       });
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [race]);
@@ -60,11 +60,6 @@ export function AnimatedRaceTrack({
 
       {card && (
         <>
-          <Progress
-            steps={race.length}
-            showInfo={false}
-            percent={(100 * (currentIndex + 1)) / race.length}
-          />
           <CardPlay
             runActivity={runActivity}
             players={players}
@@ -72,6 +67,11 @@ export function AnimatedRaceTrack({
             lockedPlayersIds={lockedPlayersIds}
             ongoingPlusOnePlayersIds={ongoingPlusOnePlayersIds}
             ongoingMinusOnePlayersIds={ongoingMinusOnePlayersIds}
+          />
+          <Progress
+            steps={race.length}
+            showInfo={false}
+            percent={(100 * (currentIndex + 1)) / race.length}
           />
         </>
       )}

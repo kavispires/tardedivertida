@@ -22,6 +22,7 @@ import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import utils from '../../legacy-utils';
 import { setupAchievements, calculateAchievements } from './achievements';
+import { TRIGGER_KEYS } from './data';
 import { buildRun } from './helpers';
 
 /**
@@ -43,6 +44,8 @@ export const prepareSetupPhase = async (
 
   // Build deck and give two cards for each player
   utils.deck.setup(store, players, Object.keys(cardsDict), STARTING_CARDS + CARD_PER_ROUND * MAX_ROUNDS);
+
+  // TODO: Adapt so in the first round it only deals movement cards
   utils.deck.deal(store, players, STARTING_CARDS);
 
   // Add starting position
@@ -90,6 +93,7 @@ export const prepareCardSelectionPhase = async (
     removePropertiesFromPlayers(players, ['selectedCardId', 'selectedTargetId']);
   }
 
+  // TODO: Adapt dealing so players get a unique card they don't already have
   utils.deck.deal(store, players, CARD_PER_ROUND);
 
   const turnOrder = turnOrderUtils.reorder(state.turnOrder, state.turnOrder[1]);
@@ -160,21 +164,21 @@ export const prepareRunPhase = async (
 
   // Get any players that are locked
   const lockedPlayersIds = Object.values(players).reduce((acc: string[], player) => {
-    if (state.cardsDict[player.selectedCardId].triggerKey === 'freeze') {
+    if (state.cardsDict[player.selectedCardId].triggerKey === TRIGGER_KEYS.FREEZE) {
       acc.push(player.selectedTargetId);
     }
     return acc;
   }, []);
   // Players with ongoing +1
   const ongoingPlusOnePlayersIds = Object.values(players).reduce((acc: string[], player) => {
-    if (state.cardsDict[player.selectedCardId].triggerKey === 'ongoing-plus-one') {
+    if (state.cardsDict[player.selectedCardId].triggerKey === TRIGGER_KEYS.ONGOING_PLUS_ONE) {
       acc.push(player.selectedTargetId);
     }
     return acc;
   }, []);
   // Players with ongoing -1
   const ongoingMinusOnePlayersIds = Object.values(players).reduce((acc: string[], player) => {
-    if (state.cardsDict[player.selectedCardId].triggerKey === 'ongoing-minus-one') {
+    if (state.cardsDict[player.selectedCardId].triggerKey === TRIGGER_KEYS.ONGOING_MINUS_ONE) {
       acc.push(player.selectedTargetId);
     }
     return acc;

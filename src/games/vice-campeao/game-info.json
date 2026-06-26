@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vice-campeao",
-  "version": "1.0.62",
+  "version": "2.0.1",
   "release": "stable",
   "releaseDate": "2025-04-08",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Vice-Campeão",
     "en": "Runner-Up"
@@ -23,7 +23,7 @@
     "clouds": "marathon-clouds",
     "cloudsAnimationType": "flow",
     "primaryColor": "rgb(255,114,199)",
-    "colorScheme": "dark",
+    "colorScheme": "light",
     "videoBackground": true,
     "imageBackground": true
   },

@@ -683,7 +683,7 @@ export const collectionByGame: Record<string, string[]> = {
     'TheEndIcon',
     'TrophyIcon',
   ],
-  'vice-campeao': ['ArrowIcon', 'HandOfCardsIcon', 'NoIcon', 'TrophyIcon', 'WalkIcon'],
+  'vice-campeao': ['ArrowIcon', 'HandOfCardsIcon', 'NoIcon', 'TrophyIcon', 'WalkIcon', 'SnowFlakeIcon'],
 };
 
 const flatGeneralList = Object.values(collectionByCategory).flat();

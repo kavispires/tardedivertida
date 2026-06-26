@@ -21,6 +21,7 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
   const { step, setStep, goToNextStep } = useStep();
 
   const onSubmitCard = useOnSubmitCardAPIRequest(setStep);
+  const hand = user?.hand || [];
 
   const announcement = (
     <PhaseAnnouncement
@@ -36,8 +37,8 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
     >
       <Surface>
         <Translate
-          pt={<>Escolha uma das suas três cartas</>}
-          en={<>Choose one of your three cards</>}
+          pt={<>Escolha uma das suas {hand.length} cartas</>}
+          en={<>Choose one of your {hand.length} cards</>}
         />
       </Surface>
     </PhaseAnnouncement>
@@ -60,8 +61,8 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
         >
           <Surface contained>
             <Translate
-              en="Round"
-              pt="Rodada"
+              en="Leg"
+              pt="Etapa"
             />{' '}
             {state.round.current}{' '}
             <Translate

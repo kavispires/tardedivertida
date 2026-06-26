@@ -32,7 +32,7 @@ export function StepRace({
   ongoingPlusOnePlayersIds,
   ongoingMinusOnePlayersIds,
 }: StepRaceProps) {
-  const duration = 6 * Object.keys(players).length;
+  const duration = 7 * Object.keys(players).length;
   return (
     <Step
       fullWidth

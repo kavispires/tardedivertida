@@ -22,13 +22,55 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep();
 
   const imagesIds = useMemo(() => {
-    return state.race
-      .map((activity) => {
-        const card = state.cardsDict?.[activity.cardId];
-        return card?.imageId ?? '';
-      })
-      .filter(Boolean);
+    return Object.keys(
+      state.race.reduce(
+        (acc, activity) => {
+          const card = state.cardsDict?.[activity.cardId];
+          if (card?.imageId) {
+            acc[card.imageId] = true;
+          }
+          return acc;
+        },
+        {} as Record<string, boolean>,
+      ),
+    );
   }, [state.cardsDict, state.race]);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<WalkIcon />}
+      title={
+        <Translate
+          pt="A corrida"
+          en="The race"
+        />
+      }
+      currentRound={state?.round?.current}
+      type="overlay"
+      duration={4}
+      unskippable
+    >
+      <Surface>
+        <Translate
+          pt={
+            <>
+              Vamos avaliar cada carta que os jogadores escolheram.
+              <br />
+              Especiais acontecem primeiro e então movimentos.
+            </>
+          }
+          en={
+            <>
+              Let's evaluate each card that the players chose.
+              <br />
+              Effect cards happen first and then Movements.
+            </>
+          }
+        />
+      </Surface>
+      <ImageCardPreloadHand hand={imagesIds} />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -40,42 +82,7 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
         players={players}
       >
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<WalkIcon />}
-          title={
-            <Translate
-              pt="A corrida"
-              en="The race"
-            />
-          }
-          currentRound={state?.round?.current}
-          type="block"
-          onClose={goToNextStep}
-          duration={4}
-          unskippable
-        >
-          <Surface>
-            <Translate
-              pt={
-                <>
-                  Vamos avaliar cada carta que os jogadores escolheram.
-                  <br />
-                  Especiais acontecem primeiro e então movimentos.
-                </>
-              }
-              en={
-                <>
-                  Let's evaluate each card that the players chose.
-                  <br />
-                  Effect cards happen first and then Movements.
-                </>
-              }
-            />
-          </Surface>
-          <ImageCardPreloadHand hand={imagesIds} />
-        </PhaseAnnouncement>
 
-        {/* Step 1 */}
         <StepRace
           players={players}
           cardsDict={state.cardsDict}
@@ -84,6 +91,7 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
           lockedPlayersIds={state.lockedPlayersIds}
           ongoingPlusOnePlayersIds={state.ongoingPlusOnePlayersIds}
           ongoingMinusOnePlayersIds={state.ongoingMinusOnePlayersIds}
+          announcement={announcement}
         />
 
         {/* Step 2 */}

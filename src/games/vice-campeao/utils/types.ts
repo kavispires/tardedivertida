@@ -52,9 +52,13 @@ export type RunnerCard = {
    */
   triggerKey?: string;
   /**
-   * Whether this card requires no target selection
+   * Whether this card does not require target selection
    */
-  noTarget?: boolean;
+  autoTarget?: boolean;
+  /**
+   * Whether this card omits the target during the race
+   */
+  omitsTarget?: boolean;
 };
 
 /**
