@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, Flex } from 'antd';
 // Types
@@ -6,7 +7,7 @@ import type { GamePlayers } from 'types/game';
 import { getAnimationClass } from '@utils/helpers';
 // Icons
 import { ArrowIcon } from '@icons/ArrowIcon';
-import { NoIcon } from '@icons/NoIcon';
+import { SnowFlakeIcon } from '@icons/SnowFlakeIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
@@ -37,16 +38,15 @@ export function CardPlay({
 
   if (!card) return null;
 
+  const isTargetLocked = lockedPlayersIds.includes(runActivity.targetId);
+
   return (
     <RuleInstruction
       type="event"
       key={runActivity.id}
       className={getAnimationClass('tada')}
     >
-      <Flex
-        align="center"
-        gap={6}
-      >
+      <div className="card-play-container">
         <PlayerAvatarCard
           player={players[runActivity.playerId]}
           withName
@@ -66,56 +66,105 @@ export function CardPlay({
           />
         </Flex>
 
-        <RunCard card={card} />
-        {runActivity.newValue && runActivity.newValue > 0 && <PositiveValue value={runActivity.newValue} />}
-        {runActivity.newValue && runActivity.newValue < 0 && <NegativeValue value={runActivity.newValue} />}
+        <div className="card-play-container__section-container">
+          <RunCard card={card} />
 
-        {!card.noTarget && (
-          <>
-            <Flex
-              vertical
-              gap={6}
-              align="center"
-            >
-              <Icon icon={<ArrowIcon />} />
-              <Translate
-                en="on"
-                pt="em"
-              />
-            </Flex>
-
-            {lockedPlayersIds.includes(runActivity.targetId) && <Icon icon={<NoIcon />} />}
-            <PlayerAvatarCard
-              player={players[runActivity.targetId]}
-              withName
-              withRoundCorners
-              size="small"
+          {runActivity.newValue && runActivity.newValue > 0 && (
+            <PositiveValue
+              value={runActivity.newValue}
+              className="card-play-container__new-value"
             />
-            {ongoingPlusOnePlayersIds.includes(runActivity.targetId) && <PositiveValue value={1} />}
-            {ongoingMinusOnePlayersIds.includes(runActivity.targetId) && <NegativeValue value={-1} />}
-          </>
-        )}
-      </Flex>
+          )}
+          {runActivity.newValue && runActivity.newValue < 0 && (
+            <NegativeValue
+              value={runActivity.newValue}
+              className="card-play-container__new-value"
+            />
+          )}
+        </div>
+
+        <Flex
+          vertical
+          gap={6}
+          align="center"
+          className={clsx({ 'card-play-container__invisible': card.omitsTarget })}
+        >
+          <Icon icon={<ArrowIcon />} />
+          <Translate
+            en="on"
+            pt="em"
+          />
+        </Flex>
+
+        <div className="card-play-container__section-container">
+          {isTargetLocked && (
+            <div
+              className={clsx('card-play-container__locked-overlay', {
+                'card-play-container__invisible': card.omitsTarget,
+              })}
+            >
+              <Icon
+                icon={<SnowFlakeIcon />}
+                size="large"
+              />
+            </div>
+          )}
+
+          <PlayerAvatarCard
+            player={players[runActivity.targetId]}
+            withName
+            withRoundCorners
+            size="small"
+            className={clsx({
+              'card-play-container__avatar-locked': isTargetLocked,
+              'card-play-container__invisible': card.omitsTarget,
+            })}
+          />
+          {ongoingPlusOnePlayersIds.includes(runActivity.targetId) && (
+            <PositiveValue
+              value={1}
+              className={clsx('card-play-container__ongoing-value', {
+                'card-play-container__invisible': card.omitsTarget,
+              })}
+            />
+          )}
+          {ongoingMinusOnePlayersIds.includes(runActivity.targetId) && (
+            <NegativeValue
+              value={-1}
+              className={clsx('card-play-container__ongoing-value', {
+                'card-play-container__invisible': card.omitsTarget,
+              })}
+            />
+          )}
+        </div>
+      </div>
     </RuleInstruction>
   );
 }
 
-function PositiveValue({ value }: { value: number }) {
+type NewValueProps = {
+  value: number;
+  className: string;
+};
+
+function PositiveValue({ value, className }: NewValueProps) {
   return (
     <Avatar
       size="large"
       style={{ backgroundColor: 'green' }}
+      className={className}
     >
       +{value}
     </Avatar>
   );
 }
 
-function NegativeValue({ value }: { value: number }) {
+function NegativeValue({ value, className }: NewValueProps) {
   return (
     <Avatar
       size="large"
       style={{ backgroundColor: 'red' }}
+      className={className}
     >
       {value}
     </Avatar>

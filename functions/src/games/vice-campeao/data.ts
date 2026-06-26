@@ -3,6 +3,8 @@ import { shuffle } from 'lodash';
 import type { RunnerCard, ResourceData } from './types';
 // Constants
 import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS } from './constants';
+// Utils
+import { extractPropertyAsConst, type ExtractPropertyAsConst } from '../../utils/object';
 
 /**
  * Get characters based on the game's language
@@ -16,8 +18,7 @@ export const getResourceData = async (playerCount: number): Promise<ResourceData
       for (let i = 0; i < card.quantity; i++) {
         acc.push({
           ...card,
-          imageId: card.id,
-          id: `${card.id}-${(i + 1).toString().padStart(2, '0')}`,
+          id: `${card.imageId}-${(acc.length + 1).toString().padStart(2, '0')}`,
         });
       }
     }
@@ -32,13 +33,11 @@ export const getResourceData = async (playerCount: number): Promise<ResourceData
       deck.push({
         ...CARDS[0],
         id: `extra-${extraCount}`,
-        imageId: CARDS[0].id,
       });
     } else {
       deck.push({
         ...CARDS[5],
         id: `extra-${extraCount}`,
-        imageId: CARDS[5].id,
       });
     }
     extraCount++;
@@ -49,9 +48,9 @@ export const getResourceData = async (playerCount: number): Promise<ResourceData
   };
 };
 
-const CARDS: Omit<RunnerCard, 'imageId'>[] = [
+const CARDS = [
   {
-    id: 'vc-01',
+    imageId: 'vc-01',
     name: {
       en: 'Tiny Triumph',
       pt: 'Passinho',
@@ -61,7 +60,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 6,
   },
   {
-    id: 'vc-02',
+    imageId: 'vc-02',
     name: {
       en: 'Quick Step',
       pt: 'Pisadinha',
@@ -71,7 +70,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 4,
   },
   {
-    id: 'vc-03',
+    imageId: 'vc-03',
     name: {
       en: 'Solid Stride',
       pt: 'Passada Boa',
@@ -81,7 +80,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 4,
   },
   {
-    id: 'vc-04',
+    imageId: 'vc-04',
     name: {
       en: 'Turbo Burst',
       pt: 'Turbinado',
@@ -91,7 +90,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-05',
+    imageId: 'vc-05',
     name: {
       en: 'Rocket Legs',
       pt: 'Perna de Foguete',
@@ -101,7 +100,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-06',
+    imageId: 'vc-06',
     name: {
       en: 'Oops!',
       pt: 'Eita!',
@@ -111,7 +110,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 6,
   },
   {
-    id: 'vc-07',
+    imageId: 'vc-07',
     name: {
       en: 'Stumble',
       pt: 'Tropeço',
@@ -121,7 +120,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 4,
   },
   {
-    id: 'vc-08',
+    imageId: 'vc-08',
     name: {
       en: 'Trip Wire',
       pt: 'Armadilha',
@@ -131,7 +130,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 4,
   },
   {
-    id: 'vc-09',
+    imageId: 'vc-09',
     name: {
       en: 'Faceplant',
       pt: 'Caiu de Boca',
@@ -141,7 +140,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-10',
+    imageId: 'vc-10',
     name: {
       en: 'Sabotage',
       pt: 'Fail Épico',
@@ -151,7 +150,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-11',
+    imageId: 'vc-11',
     name: {
       en: 'Stay Put',
       pt: 'Fica Parado',
@@ -161,7 +160,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-12',
+    imageId: 'vc-12',
     name: {
       en: 'Catch Breath',
       pt: 'Descansadinha',
@@ -171,7 +170,7 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
     quantity: 1,
   },
   {
-    id: 'vc-13',
+    imageId: 'vc-13',
     name: {
       en: 'First place',
       pt: 'Primeiro Lugar',
@@ -181,11 +180,11 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'Coloca o corredor-alvo na frente do primeiro lugar.',
     },
     type: 'effect',
-    triggerKey: 'first-place',
+    triggerKey: 'FIRST_PLACE',
     quantity: 2,
   },
   {
-    id: 'vc-14',
+    imageId: 'vc-14',
     name: {
       en: 'Last place',
       pt: 'Último Lugar',
@@ -195,11 +194,11 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'Coloca o corredor-alvo atrás do último lugar.',
     },
     type: 'effect',
-    triggerKey: 'last-place',
+    triggerKey: 'LAST_PLACE',
     quantity: 2,
   },
   {
-    id: 'vc-15',
+    imageId: 'vc-15',
     name: {
       en: 'Swap',
       pt: 'Troca-troca',
@@ -209,56 +208,57 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'Troca o primeiro lugar com o último lugar.',
     },
     type: 'effect',
-    triggerKey: 'swap',
+    triggerKey: 'SWAP',
     quantity: 1,
-    noTarget: true,
+    autoTarget: true,
+    omitsTarget: true,
   },
-  // TODO: does not work
-  // {
-  //   id: 'vc-16',
-  //   name: {
-  //     en: 'Twist',
-  //     pt: 'Reviravolta',
-  //   },
-  //   description: {
-  //     en: 'Reverses the order of the runners.',
-  //     pt: 'Inverte a ordem dos corredores.',
-  //   },
-  //   type: 'effect',
-  //   triggerKey: 'inverse',
-  //   quantity: 1,
-  //   noTarget: true,
-  // },
   {
-    id: 'vc-17',
+    imageId: 'vc-16',
     name: {
-      en: 'Everybody but you go',
-      pt: 'Todo mundo menos você vai',
+      en: 'Twist',
+      pt: 'Reviravolta',
+    },
+    description: {
+      en: 'Reverses the order of the runners.',
+      pt: 'Inverte a ordem dos corredores.',
+    },
+    type: 'effect',
+    triggerKey: 'INVERSE',
+    quantity: 1,
+    autoTarget: true,
+    omitsTarget: true,
+  },
+  {
+    imageId: 'vc-17',
+    name: {
+      en: 'Everybody but this runner go',
+      pt: 'Todo mundo menos esse vai',
     },
     description: {
       en: 'Everybody but the target runner moves 1.',
       pt: 'Todo mundo menos o corredor-alvo anda 1.',
     },
     type: 'effect',
-    triggerKey: 'everybody-else-go',
+    triggerKey: 'EVERYBODY_ELSE_GO',
     quantity: 1,
   },
   {
-    id: 'vc-18',
+    imageId: 'vc-18',
     name: {
-      en: 'Everybody but you back up',
-      pt: 'Todo mundo menos você volta',
+      en: 'Everybody but this runner back up',
+      pt: 'Todo mundo menos esse volta',
     },
     description: {
       en: 'Everybody but the target runner moves -1.',
       pt: 'Todo mundo menos o corredor-alvo anda -1.',
     },
     type: 'effect',
-    triggerKey: 'everybody-else-back',
+    triggerKey: 'EVERYBODY_ELSE_BACK',
     quantity: 1,
   },
   {
-    id: 'vc-19',
+    imageId: 'vc-19',
     name: {
       en: 'Russian Roulette',
       pt: 'Roleta Russa',
@@ -268,11 +268,27 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'Um corredor aleatório será escolhido ir para o último lugar.',
     },
     type: 'effect',
-    triggerKey: 'roulette',
-    quantity: 2,
+    triggerKey: 'ROULETTE_LAST',
+    quantity: 1,
+    autoTarget: true,
   },
   {
-    id: 'vc-20',
+    imageId: 'vc-19', // The image is the same
+    name: {
+      en: 'Russian Roulette',
+      pt: 'Roleta Russa',
+    },
+    description: {
+      en: 'A runner will randomly be chosen to go to the first place.',
+      pt: 'Um corredor aleatório será escolhido ir para o primeiro lugar.',
+    },
+    type: 'effect',
+    triggerKey: 'ROULETTE_FIRST',
+    quantity: 1,
+    autoTarget: true,
+  },
+  {
+    imageId: 'vc-20',
     name: {
       en: 'Surprise!',
       pt: 'Surpresa!',
@@ -282,11 +298,11 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'Uma carta de movimento aleatória será jogada em seu nome afetando o corredor-alvo.',
     },
     type: 'effect',
-    triggerKey: 'surprise',
+    triggerKey: 'SURPRISE',
     quantity: 2,
   },
   {
-    id: 'vc-21',
+    imageId: 'vc-21',
     name: {
       en: 'Energy Drink',
       pt: 'Energético',
@@ -296,11 +312,11 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'As cartas de movimento usadas nesse corredor valerão +1 nessa rodada.',
     },
     type: 'ongoing',
-    triggerKey: 'ongoing-plus-one',
+    triggerKey: 'ONGOING_PLUS_ONE',
     quantity: 1,
   },
   {
-    id: 'vc-22',
+    imageId: 'vc-22',
     name: {
       en: 'Heavy food',
       pt: 'Comida pesada',
@@ -310,22 +326,30 @@ const CARDS: Omit<RunnerCard, 'imageId'>[] = [
       pt: 'As cartas de movimento usadas nesse corredor valerão -1 nessa rodada.',
     },
     type: 'ongoing',
-    triggerKey: 'ongoing-minus-one',
+    triggerKey: 'ONGOING_MINUS_ONE',
     quantity: 1,
   },
-  // {
-  //   id: 'vc-23',
-  //   name: {
-  //     en: 'Freeze!',
-  //     pt: 'Congelou!',
-  //   },
-  //   description: {
-  //     // eslint-disable-next-line quotes
-  //     en: "The target runner can't be moved this turn by movement cards.",
-  //     pt: 'O corredor-alvo não pode ser movido nessa rodada por cartões de movimento.',
-  //   },
-  //   type: 'ongoing',
-  //   triggerKey: 'freeze',
-  //   quantity: 1,
-  // },
-];
+  {
+    imageId: 'vc-23',
+    name: {
+      en: 'Freeze!',
+      pt: 'Congelou!',
+    },
+    description: {
+      en: "The target runner can't be moved this turn by movement cards.",
+      pt: 'O corredor-alvo não pode ser movido nessa rodada por cartões de movimento.',
+    },
+    type: 'ongoing',
+    triggerKey: 'FREEZE',
+    quantity: 1,
+  },
+] as const satisfies readonly Omit<RunnerCard, 'id'>[];
+
+/**
+ * Type-safe constant containing all trigger keys extracted from runner cards
+ * Automatically synced with CARDS array, provides autocomplete for valid trigger key values
+ */
+export const TRIGGER_KEYS = extractPropertyAsConst(CARDS, 'triggerKey') as ExtractPropertyAsConst<
+  typeof CARDS,
+  'triggerKey'
+>;

@@ -14,7 +14,8 @@ export type RunnerCard = {
   description?: DualLanguageValue;
   value?: number;
   triggerKey?: string;
-  noTarget?: boolean;
+  autoTarget?: boolean;
+  omitsTarget?: boolean;
 };
 
 export type RunActivity = {

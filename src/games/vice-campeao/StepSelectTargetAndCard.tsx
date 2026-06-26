@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
 import { ArrowUpOutlined, CheckCircleFilled } from '@ant-design/icons';
@@ -9,8 +10,8 @@ import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { Translate } from '@components/language/Translate';
+import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
-import { Surface } from '@components/layout/Surface';
 import { PlayersSelect } from '@components/players/PlayersSelect';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -43,6 +44,8 @@ export function StepSelectTargetAndCard({
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(user.id);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
 
+  const requiresTarget = selectedCardId ? !cardsDict[selectedCardId].autoTarget : false;
+
   useMock(() => {
     onSubmitCard(mockCardPlay(user, players, cardsDict));
   });
@@ -68,47 +71,29 @@ export function StepSelectTargetAndCard({
         players={players}
       />
 
-      <RuleInstruction type="action">
-        <Translate
-          en="Select a card to play and a player (including yourself) to be the target of the card."
-          pt="Escolha uma carta para jogar e um jogador (incluindo você mesmo) para ser o alvo da carta."
-        />
-        <br />
-        <Translate
-          en="Some cards don't require a target, so you can just leave yourself selected."
-          pt="Algumas cartas não precisam de alvo, então você pode escolher a si mesmo."
-        />
-        <br />
-        <strong>
+      <SpaceContainer vertical>
+        <RuleInstruction type="action">
           <Translate
-            pt="Lembre-se que o objetivo é terminar o jogo em segundo lugar!"
-            en="Remember that the goal is to finish the game in second place!"
+            en={
+              <>
+                Select a card to play!
+                <br />
+                Most cards require a target for you to also select that will suffer the effect of the card.
+                <br />
+                <strong>Remember that the goal is to finish the game in second place!</strong>
+              </>
+            }
+            pt={
+              <>
+                Escolha uma carta para jogar!
+                <br />A maioria das cartas exige que você selecione um alvo que sofrerá o efeito da carta.
+                <br />
+                <strong>Lembre-se que o objetivo é terminar o jogo em segundo lugar!</strong>
+              </>
+            }
           />
-        </strong>
-      </RuleInstruction>
-
-      <Surface contained>
-        <Flex
-          align="center"
-          gap={8}
-          vertical
-        >
-          <Translate
-            en="Who will be affected by the card (Target):"
-            pt="Quem vai ser afetado(a) pela carta (Alvo):"
-          />
-          <PlayersSelect
-            players={players}
-            onChange={setSelectedPlayerId}
-            defaultValue={user.id}
-            value={selectedPlayerId}
-          />
-        </Flex>
-
-        <Flex
-          gap={12}
-          className="my-4"
-        >
+        </RuleInstruction>
+        <Flex gap={12}>
           {user.hand?.map((cardId: string) => {
             const card = cardsDict[cardId];
 
@@ -117,6 +102,7 @@ export function StepSelectTargetAndCard({
                 key={cardId}
                 vertical
                 gap={6}
+                align="center"
               >
                 <RunCard card={card} />
                 <div>
@@ -136,7 +122,38 @@ export function StepSelectTargetAndCard({
           })}
         </Flex>
 
-        <SpaceFloat enabled={!!selectedCardId && !!selectedPlayerId}>
+        {requiresTarget && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <RuleInstruction type="action">
+                <Translate
+                  en="Select a player (including yourself) to be the target of the card:"
+                  pt="Escolha um jogador (incluindo você mesmo) para ser o alvo da carta:"
+                />
+              </RuleInstruction>
+
+              <Flex justify="center">
+                <PlayersSelect
+                  players={players}
+                  onChange={setSelectedPlayerId}
+                  defaultValue={user.id}
+                  value={selectedPlayerId}
+                  size="large"
+                />
+              </Flex>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        <SpaceFloat
+          enabled={!!selectedCardId && !!selectedPlayerId}
+          className="mt-4"
+        >
           <SendButton
             size="large"
             onClick={() =>
@@ -150,7 +167,7 @@ export function StepSelectTargetAndCard({
             />
           </SendButton>
         </SpaceFloat>
-      </Surface>
+      </SpaceContainer>
     </Step>
   );
 }

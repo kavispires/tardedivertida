@@ -27,6 +27,7 @@ export * from '@icons/AlienIcon';
 export * from '@icons/AlienNeutralIcon';
 export * from '@icons/AlienStarEyesIcon';
 export * from '@icons/AngryMayorIcon';
+export * from '@icons/SnowFlakeIcon';
 export * from '@icons/AnimatedClockIcon';
 export * from '@icons/AnimatedGearIcon';
 export * from '@icons/AnimatedLoaderIcon';

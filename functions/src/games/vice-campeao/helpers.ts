@@ -8,6 +8,7 @@ import { getListOfPlayers } from '../../mechanics/players';
 import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
+import { TRIGGER_KEYS } from './data';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -28,7 +29,11 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return nextPhaseDelegator(currentPhase, order);
 };
 
-type OngoingPlayerEffectsType = Record<string, string | null>;
+type OngoingPlayerEffectsType = {
+  [TRIGGER_KEYS.FREEZE]: UID | null;
+  [TRIGGER_KEYS.ONGOING_PLUS_ONE]: UID | null;
+  [TRIGGER_KEYS.ONGOING_MINUS_ONE]: UID | null;
+};
 
 /**
  * Builds the race run sequence by processing all player card plays in order
@@ -45,9 +50,9 @@ export const buildRun = (
 ) => {
   // Ongoing cards tracking
   const ongoingPlayerEffects: OngoingPlayerEffectsType = {
-    freeze: null,
-    'ongoing-plus-one': null,
-    'ongoing-minus-one': null,
+    [TRIGGER_KEYS.FREEZE]: null,
+    [TRIGGER_KEYS.ONGOING_PLUS_ONE]: null,
+    [TRIGGER_KEYS.ONGOING_MINUS_ONE]: null,
   };
 
   // Order players by ongoing, effect, positive movement, negative movement, ties solved by turn order
@@ -107,14 +112,14 @@ export const buildRun = (
 
     // Ongoing Cards
     if (cardType === 'ongoing') {
-      if (triggerKey === 'freeze') {
-        ongoingPlayerEffects.freeze = targetId;
+      if (triggerKey === TRIGGER_KEYS.FREEZE) {
+        ongoingPlayerEffects[TRIGGER_KEYS.FREEZE] = targetId;
       }
-      if (triggerKey === 'ongoing-plus-one') {
-        ongoingPlayerEffects['ongoing-plus-one'] = targetId;
+      if (triggerKey === TRIGGER_KEYS.ONGOING_PLUS_ONE) {
+        ongoingPlayerEffects[TRIGGER_KEYS.ONGOING_PLUS_ONE] = targetId;
       }
-      if (triggerKey === 'ongoing-minus-one') {
-        ongoingPlayerEffects['ongoing-minus-one'] = targetId;
+      if (triggerKey === TRIGGER_KEYS.ONGOING_MINUS_ONE) {
+        ongoingPlayerEffects[TRIGGER_KEYS.ONGOING_MINUS_ONE] = targetId;
       }
 
       return race.push({
@@ -126,7 +131,7 @@ export const buildRun = (
     // Movement Cards
     if (['movement-positive', 'movement-negative', 'movement-neutral'].includes(cardType)) {
       const value = play.value || 0;
-      if (ongoingPlayerEffects.freeze === targetId) {
+      if (ongoingPlayerEffects.FREEZE === targetId) {
         return race.push({
           ...baseActivity,
           endingPositions,
@@ -146,7 +151,7 @@ export const buildRun = (
 
     // Effect Cards
     // First place (vc-13)
-    if (triggerKey === 'first-place') {
+    if (triggerKey === TRIGGER_KEYS.FIRST_PLACE) {
       return race.push({
         ...baseActivity,
         endingPositions: triggerEffectFirstPlace(endingPositions, targetId),
@@ -154,7 +159,7 @@ export const buildRun = (
     }
 
     // Last place (vc-14)
-    if (triggerKey === 'last-place') {
+    if (triggerKey === TRIGGER_KEYS.LAST_PLACE) {
       return race.push({
         ...baseActivity,
         endingPositions: triggerEffectLastPlace(endingPositions, targetId),
@@ -162,7 +167,7 @@ export const buildRun = (
     }
 
     // Swap (vc-15)
-    if (triggerKey === 'swap') {
+    if (triggerKey === TRIGGER_KEYS.SWAP) {
       return race.push({
         ...baseActivity,
         endingPositions: triggerEffectSwap(endingPositions),
@@ -170,7 +175,7 @@ export const buildRun = (
     }
 
     // Twist (vc-16)
-    if (triggerKey === 'twist') {
+    if (triggerKey === TRIGGER_KEYS.INVERSE) {
       return race.push({
         ...baseActivity,
         endingPositions: triggerEffectTwist(endingPositions),
@@ -178,7 +183,7 @@ export const buildRun = (
     }
 
     // Everybody but you go (vc-17)
-    if (triggerKey === 'everybody-else-go') {
+    if (triggerKey === TRIGGER_KEYS.EVERYBODY_ELSE_GO) {
       return race.push({
         ...baseActivity,
         endingPositions: triggerEffectEveryElseGo(
@@ -190,7 +195,7 @@ export const buildRun = (
     }
 
     // Everybody but you back (vc-18)
-    if (triggerKey === 'everybody-else-back') {
+    if (triggerKey === TRIGGER_KEYS.EVERYBODY_ELSE_BACK) {
       return race.push({
         ...baseActivity,
         endingPositions: triggerEffectEverybodyElseBack(
@@ -202,9 +207,9 @@ export const buildRun = (
     }
 
     // Russian roulette (vc-19)
-    if (triggerKey === 'roulette') {
+    if (triggerKey === TRIGGER_KEYS.ROULETTE_LAST) {
       const randomTargetId = sampleSize(
-        Object.keys(players).filter((pId) => ongoingPlayerEffects.freeze !== pId),
+        Object.keys(players).filter((pId) => ongoingPlayerEffects.FREEZE !== pId),
         1,
       )[0];
       return race.push({
@@ -214,8 +219,21 @@ export const buildRun = (
       });
     }
 
-    if (triggerKey === 'surprise') {
-      if (ongoingPlayerEffects.freeze === targetId) {
+    // Russian roulette (vc-19)
+    if (triggerKey === TRIGGER_KEYS.ROULETTE_FIRST) {
+      const randomTargetId = sampleSize(
+        Object.keys(players).filter((pId) => ongoingPlayerEffects.FREEZE !== pId),
+        1,
+      )[0];
+      return race.push({
+        ...baseActivity,
+        targetId: randomTargetId,
+        endingPositions: triggerEffectFirstPlace(endingPositions, randomTargetId),
+      });
+    }
+
+    if (triggerKey === TRIGGER_KEYS.SURPRISE) {
+      if (ongoingPlayerEffects.FREEZE === targetId) {
         return race.push({
           ...baseActivity,
           endingPositions,
@@ -304,10 +322,10 @@ const minMaxValue = (value: number) => {
 };
 
 const getOngoingModifier = (ongoingPlayerEffects: OngoingPlayerEffectsType, targetId: UID) => {
-  if (ongoingPlayerEffects['ongoing-plus-one'] === targetId) {
+  if (ongoingPlayerEffects[TRIGGER_KEYS.ONGOING_PLUS_ONE] === targetId) {
     return 1;
   }
-  if (ongoingPlayerEffects['ongoing-minus-one'] === targetId) {
+  if (ongoingPlayerEffects[TRIGGER_KEYS.ONGOING_MINUS_ONE] === targetId) {
     return -1;
   }
   return 0;
@@ -352,15 +370,25 @@ const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
 };
 
 const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
-  // Order values
+  // Create a copy to avoid mutation conflicts
+  const newPositions = { ...endingPositions };
+
+  // Get unique position values sorted ascending
   const orderedPositions = uniq(Object.values(endingPositions).sort((a, b) => a - b));
   const reversedPositions = [...orderedPositions].reverse();
-  // Reverse the order of the positions
-  Object.entries(endingPositions).forEach(([playerId, currentPosition]) => {
-    const currentPositionIndex = orderedPositions.indexOf(currentPosition);
-    endingPositions[playerId] = reversedPositions[currentPositionIndex];
+
+  // Create a mapping of old position -> new position
+  const positionMap = orderedPositions.reduce((acc: Record<number, number>, pos, index) => {
+    acc[pos] = reversedPositions[index];
+    return acc;
+  }, {});
+
+  // Apply the mapping to all players
+  Object.keys(endingPositions).forEach((playerId) => {
+    newPositions[playerId] = positionMap[endingPositions[playerId]];
   });
-  return endingPositions;
+
+  return newPositions;
 };
 
 const triggerEffectEveryElseGo = (endingPositions: Record<UID, number>, targetId: UID, modifier: number) => {

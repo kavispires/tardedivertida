@@ -4,6 +4,8 @@ import { Image } from 'antd';
 // Hooks
 import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Components
+import { DynamicCard } from '@components/cards/DynamicCard';
+import { ComponentPreview } from '@components/general/ComponentPreview';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 // Internal
@@ -14,57 +16,81 @@ type RunCardProps = {
   width?: number;
 };
 
-export function RunCard({ card, width = 128 }: RunCardProps) {
+function RunCardBase({ card, width = 128 }: RunCardProps) {
   const baseUrl = useTDBaseUrl('images');
   const imageURL = card.imageId.replace(/-/g, '/');
 
   return (
-    <div
-      className="run-card"
-      style={{
-        width: `${width}px`,
-        height: `${width * 1.5}px`,
-        backgroundImage: `url(${baseUrl}/er/bg/default.jpg)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+    <DynamicCard
+      width={width}
+      backgroundImageId="er-bg-default"
+      aspectRatio={1.5}
     >
-      <header className="run-card__illustration">
+      {/* Card Illustration */}
+      <DynamicCard.Span
+        top="3%"
+        left="50%"
+        centerHorizontal
+        width="90cqw"
+      >
         <Image
-          width={width - 12}
           src={`${baseUrl}/${imageURL}.jpg`}
           fallback={`${baseUrl}/td/d0/00.jpg`}
-          preview
+          preview={false}
           className="run-card__image"
         />
-        <div className="run-card__name">
-          <DualTranslate>{card.name}</DualTranslate>
-        </div>
-      </header>
+      </DynamicCard.Span>
 
-      <div className="run-card__content">
-        <div className="run-card__description">
-          {card.description && <DualTranslate>{card.description}</DualTranslate>}
-        </div>
+      {/* Card Name */}
+      <DynamicCard.Span
+        top="32%"
+        right="10%"
+        className="run-card__name"
+      >
+        <DualTranslate>{card.name}</DualTranslate>
+      </DynamicCard.Span>
 
-        {card.value !== undefined && (
-          <div
-            className={clsx('run-card__value', {
-              'run-card__value--positive': card.value > 0,
-              'run-card__value--negative': card.value < 0,
-              'run-card__value--neutral': card.value === 0,
-            })}
-          >
-            {card.value > 0 && '+'}
-            {card.value}
-          </div>
-        )}
-      </div>
+      {/* Description */}
+      {card.description && (
+        <DynamicCard.Span
+          top="44%"
+          left="50%"
+          centerHorizontal
+          width="90cqw"
+          className="run-card__description"
+        >
+          <DualTranslate>{card.description}</DualTranslate>
+        </DynamicCard.Span>
+      )}
 
-      <div className="run-card__footer">
-        <span>{getCardTypeName(card)}</span>
-      </div>
-    </div>
+      {/* Value */}
+      {card.value !== undefined && (
+        <DynamicCard.Span
+          top={card.description ? '58%' : '50%'}
+          left="50%"
+          centerHorizontal
+          className={clsx('run-card__value', {
+            'run-card__value--positive': card.value > 0,
+            'run-card__value--negative': card.value < 0,
+            'run-card__value--neutral': card.value === 0,
+          })}
+        >
+          {card.value > 0 && '+'}
+          {card.value}
+        </DynamicCard.Span>
+      )}
+
+      {/* Footer */}
+      <DynamicCard.Span
+        bottom="2%"
+        left="50%"
+        centerHorizontal
+        width="94cqw"
+        className="run-card__footer"
+      >
+        {getCardTypeName(card)}
+      </DynamicCard.Span>
+    </DynamicCard>
   );
 }
 
@@ -104,3 +130,11 @@ const getCardTypeName = (card: RunnerCard) => {
     }[card.type] ?? <DualTranslate>{{ pt: 'Carta', en: 'Card' }}</DualTranslate>
   );
 };
+
+export function RunCard(props: RunCardProps) {
+  return (
+    <ComponentPreview aspectRatio={2 / 3}>
+      <RunCardBase {...props} />
+    </ComponentPreview>
+  );
+}
