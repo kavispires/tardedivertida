@@ -45,3 +45,49 @@ export const filterOutByIds = <T>(
     return acc;
   }, {});
 };
+
+/**
+ * Generic utility to extract a property from an array or record and create a constant object
+ * @param source - Array of objects or Record of objects
+ * @param propertyKey - The property key to extract from each object
+ * @returns Object with extracted values as both keys and values
+ * @example
+ * const items = [{ id: 1, status: 'ACTIVE' }, { id: 2, status: 'PENDING' }];
+ * const statuses = extractPropertyAsConst(items, 'status');
+ * Result: { ACTIVE: 'ACTIVE', PENDING: 'PENDING' }
+ */
+export function extractPropertyAsConst<
+  const T extends readonly Record<string, unknown>[] | Record<string, Record<string, unknown>>,
+  K extends string,
+>(source: T, propertyKey: K) {
+  const result = {} as Record<string, string>;
+
+  if (Array.isArray(source)) {
+    for (const item of source) {
+      if (propertyKey in item && typeof item[propertyKey] === 'string') {
+        result[item[propertyKey] as string] = item[propertyKey] as string;
+      }
+    }
+  } else {
+    for (const item of Object.values(source)) {
+      if (propertyKey in item && typeof item[propertyKey] === 'string') {
+        result[item[propertyKey] as string] = item[propertyKey] as string;
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Type helper to extract property values as literal types from arrays or records
+ * Automatically chooses the correct extraction based on input type
+ */
+export type ExtractPropertyAsConst<
+  T extends readonly Record<string, unknown>[] | Record<string, Record<string, unknown>>,
+  K extends string,
+> = T extends readonly Record<string, unknown>[]
+  ? { readonly [V in Extract<T[number], Record<K, string>>[K]]: V }
+  : T extends Record<string, Record<string, unknown>>
+    ? { readonly [V in Extract<T[keyof T], Record<K, string>>[K]]: V }
+    : never;
