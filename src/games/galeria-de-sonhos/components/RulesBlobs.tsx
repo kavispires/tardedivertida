@@ -178,7 +178,8 @@ export function CardPlayRules() {
             Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos se mais de{' '}
             <PlayersHighlight>1+</PlayersHighlight> jogador visitou o mesmo sonho.
             <br />
-            Você está eliminado da rodada se ninguém mais visitou o sonho escolhido.
+            Você está eliminado da rodada se ninguém mais visitou o sonho escolhido (mas você volta para a
+            próxima rodada!)
           </>
         }
         en={
@@ -193,7 +194,8 @@ export function CardPlayRules() {
             You get <PointsHighlight type="positive">2</PointsHighlight> points if many{' '}
             <PlayersHighlight>1+</PlayersHighlight> players have visited the same dream.
             <br />
-            You are eliminated for this round if nobody else has visited the chosen dream.
+            You are eliminated from this round if nobody else has visited the chosen dream. (but you will be
+            back for the next round!)
           </>
         }
       />

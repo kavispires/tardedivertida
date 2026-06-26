@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.2.56",
+  "version": "4.2.57",
   "release": "stable",
   "releaseDate": "2022-01-26",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
@@ -50,28 +50,17 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 2,
     "max": 10
   },
-  "mechanics": [
-    "competitive",
-    "turn-based",
-    "images"
-  ],
+  "mechanics": ["competitive", "turn-based", "images"],
   "duration": {
     "base": 0,
     "perPlayer": 0
   },
-  "features": [
-    "achievements",
-    "bots"
-  ],
+  "features": ["achievements", "bots"],
   "options": [
     {
       "key": "surpriseMode",

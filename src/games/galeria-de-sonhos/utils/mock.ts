@@ -10,8 +10,8 @@ export const mockDreamSelection = (cards: ImageCardObj[], minimumSelection: numb
     [2, 11, 8, 4, 9, 3, 13],
     [2, 6, 1, 5, 9, 3, 13],
   ]);
-  const countSource = minimumSelection === 4 ? [4, 4, 4, 4, 5, 6] : [2, 3, 3, 3, 3, 4, 4, 5, 6];
-  const numberOfCards = shuffle(countSource)[0];
+  const countSource = [2, 3, 3, 3, 3, 4, 4, 5, 6];
+  const numberOfCards = Math.max(minimumSelection, shuffle(countSource)[0]);
   const selections = selectionOrder.slice(0, numberOfCards);
   return selections.map((cardIndex) => cards[cardIndex].id);
 };
