@@ -99,6 +99,22 @@ function gitCommand(command) {
 }
 
 /**
+ * Sanitize commit message by removing quotes from beginning/end and trimming whitespace
+ * @param {string} message - The commit message to sanitize
+ * @returns {string} Sanitized message
+ */
+function sanitizeMessage(message) {
+  // Trim whitespace first
+  let sanitized = message.trim();
+  // Remove leading and trailing double quotes
+  if (sanitized.startsWith('"') && sanitized.endsWith('"')) {
+    sanitized = sanitized.slice(1, -1);
+  }
+  // Trim again in case there was whitespace inside the quotes
+  return sanitized.trim();
+}
+
+/**
  * Get list of staged files
  * @returns {string[]} Array of file paths
  */
@@ -236,11 +252,11 @@ async function main() {
     // Check if it's a number selection
     const selectionNum = parseInt(historySelection, 10);
     if (!isNaN(selectionNum) && selectionNum >= 1 && selectionNum <= history.length) {
-      message = history[selectionNum - 1];
+      message = sanitizeMessage(history[selectionNum - 1]);
       console.log(`Selected: "${message}"\n`);
     } else if (!isNaN(selectionNum) && selectionNum === history.length + 1) {
       // User selected "enter new message"
-      message = await prompt('Enter your commit message: ');
+      message = sanitizeMessage(await prompt('Enter your commit message: '));
       if (!message) {
         console.error('❌ Error: Commit message cannot be empty');
         rl.close();
@@ -248,11 +264,11 @@ async function main() {
       }
     } else {
       // Treat as direct message input
-      message = historySelection;
+      message = sanitizeMessage(historySelection);
     }
   } else {
     // No history, ask directly
-    message = await prompt('Enter your commit message: ');
+    message = sanitizeMessage(await prompt('Enter your commit message: '));
     if (!message) {
       console.error('❌ Error: Commit message cannot be empty');
       rl.close();
