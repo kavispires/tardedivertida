@@ -99,6 +99,7 @@ export const prepareWordSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const round = increaseRound(state.round);
+  const isSurpriseMode = store.options?.surpriseMode ?? false;
 
   // Make sure everybody has 6 cards in hand
   removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
@@ -114,9 +115,13 @@ export const prepareWordSelectionPhase = async (
   // Get current words options
   const [wordsDeck, words] = getRoundWords(store.wordsDeck);
 
-  let minimumSelection = store.options?.surpriseMode ? sample([5, 6, 7]) : 1;
-  if (round.current === 1 && store.options?.surpriseMode) {
-    minimumSelection = 4;
+  let minimumSelection = isSurpriseMode ? sample([3, 4, 5, 6]) : 1;
+  if (round.current === 1 && isSurpriseMode) {
+    minimumSelection = sample([3, 4]);
+  }
+  // If the selected minimum is the same as the previous round, increase it by 1 to ensure variety
+  if (isSurpriseMode) {
+    minimumSelection = minimumSelection === state.minimumSelection ? minimumSelection + 1 : minimumSelection;
   }
 
   // Save

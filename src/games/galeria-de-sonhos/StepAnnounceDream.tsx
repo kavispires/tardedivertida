@@ -12,7 +12,6 @@ import { getAnimation } from '@utils/animations';
 import { getAvatarColorById } from '@utils/helpers';
 // Components
 import { TimedButton } from '@components/buttons/TimedButton';
-import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -253,15 +252,6 @@ export function StepAnnounceDream({
           order={gameOrder}
           activePlayerId={activePlayer.id}
         />
-      )}
-
-      {latest.isPhaseOver && (
-        <HostNextPhaseButton
-          autoTriggerTime={15}
-          withWaitingTimeBar
-        >
-          Ranking
-        </HostNextPhaseButton>
       )}
     </Step>
   );

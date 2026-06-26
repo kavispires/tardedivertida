@@ -75,7 +75,7 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
             />,
           ]}
         >
-          <RowSwapInstruction round={state.round} />
+          {state.round.current < state.round.total && <RowSwapInstruction round={state.round} />}
           <RoundsLeftInstruction round={state.round} />
           <HostNextPhaseButton
             round={state.round}
