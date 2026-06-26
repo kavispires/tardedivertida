@@ -3,8 +3,9 @@ import { cloneDeep, groupBy, orderBy, sampleSize, uniq } from 'lodash';
 import type { FirebaseStoreData, RunActivity, RunnerCard } from './types';
 // Constants
 import { VICE_CAMPEAO_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -24,7 +25,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return CARD_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 type OngoingPlayerEffectsType = Record<string, string | null>;
@@ -51,7 +52,7 @@ export const buildRun = (
 
   // Order players by ongoing, effect, positive movement, negative movement, ties solved by turn order
   const allPlays = orderBy(
-    utils.players.getListOfPlayers(players).map((player) => ({
+    getListOfPlayers(players).map((player) => ({
       playerId: player.id,
       ...cardsDict[player.selectedCardId],
     })),
@@ -64,12 +65,10 @@ export const buildRun = (
   );
 
   // Get all players initial positions
-  const initialPositions = utils.players
-    .getListOfPlayers(players)
-    .reduce((acc: Record<UID, number>, { id, positions }) => {
-      acc[id] = positions.at(-1) || 0;
-      return acc;
-    }, {});
+  const initialPositions = getListOfPlayers(players).reduce((acc: Record<UID, number>, { id, positions }) => {
+    acc[id] = positions.at(-1) || 0;
+    return acc;
+  }, {});
 
   // Convert all players into run activity
   const race: RunActivity[] = [
@@ -246,7 +245,7 @@ export const buildRun = (
   });
 
   // Achievements
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const currentPosition = player.positions.at(-1) || 0;
     const previousPosition = player.positions.at(-2) || 0;
     const value = currentPosition - previousPosition;

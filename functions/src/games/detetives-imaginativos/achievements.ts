@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Detetives Imaginativos game
  */
-const achievements = achievementBuilder('DETETIVES_IMAGINATIVOS')
+const achievements = achievementBuilder(GAME_KEYS.DETETIVES_IMAGINATIVOS)
   .counter('artistPoints', {
     doc: 'Points earned as the leader/artist',
     most: 'MOST_LEADER',

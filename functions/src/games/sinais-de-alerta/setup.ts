@@ -12,8 +12,19 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveDrawings } from './data';
@@ -32,7 +43,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // Gather topics and letters for the entire game 5x4 grid
   const { allSubjects, allDescriptors } = resourceData;
@@ -41,7 +52,7 @@ export const prepareSetupPhase = async (
   const subjectsDeck = sampleSize(allSubjects, cardsNeeded);
   const descriptorsDeck = sampleSize(allDescriptors, cardsNeeded);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -72,11 +83,11 @@ export const prepareDrawingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Remove previous 'guesses' from players
-  utils.players.removePropertiesFromPlayers(players, ['guesses']);
-  utils.players.addPropertiesToPlayers(players, {
+  removePropertiesFromPlayers(players, ['guesses']);
+  addPropertiesToPlayers(players, {
     currentSubjectId: '',
     currentDescriptorId: '',
     drawing: '',
@@ -92,7 +103,7 @@ export const prepareDrawingPhase = async (
       },
       state: {
         phase: SINAIS_DE_ALERTA_PHASES.DRAWING,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         timeLimit: store?.options?.longerTimer ? LONGER_TIME_LIMIT : NORMAL_TIME_LIMIT,
         cards,
         players,
@@ -114,10 +125,10 @@ export const prepareEvaluationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Gather all drawings
-  const drawings = utils.players.getListOfPlayers(players).map((player) => {
+  const drawings = getListOfPlayers(players).map((player) => {
     const entry: DrawingEntryData = {
       playerId: player.id,
       subjectId: player.currentSubjectId,
@@ -130,7 +141,7 @@ export const prepareEvaluationPhase = async (
   const subjectsIds = shuffle(Object.keys(state.cards).filter((id) => id.includes('wss')));
   const descriptorsIds = shuffle(Object.keys(state.cards).filter((id) => id.includes('wsd')));
 
-  utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
+  removePropertiesFromPlayers(players, ['choseRandomly']);
 
   return {
     update: {
@@ -157,7 +168,7 @@ export const prepareGalleryPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Build gallery and ranking
   const { gallery, pastDrawings, ranking } = evaluateAnswers(state.drawings, players, state.cards, store);
@@ -191,7 +202,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'accuracy', 'desc');
 
@@ -199,7 +210,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.SINAIS_DE_ALERTA,
     gameId,
     startedAt: store.createdAt,
@@ -212,7 +223,7 @@ export const prepareGameOverPhase = async (
   // Save data (drawings)
   await saveDrawings(store.pastDrawings, store.language);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

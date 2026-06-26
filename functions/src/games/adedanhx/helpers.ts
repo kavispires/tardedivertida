@@ -11,8 +11,12 @@ import type {
 // Constants
 import { SEPARATOR } from '../../constants/general';
 import { ADEDANHX_PHASES } from './constants';
+// Mechanics
+import { getListOfPlayers, getListOfPlayersIds } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray, stringRemoveAccents } from '../../utils';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -32,7 +36,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : ANSWERING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -101,26 +105,24 @@ export const buildGrid = (
   }
 
   // Distribute topics
-  const topics: TopicCardData[] = utils.helpers
-    .makeArray(topicsQuantity * roundsCount)
-    .map((_, index: number) => {
-      const position = index % topicsQuantity;
-      let topic: TopicCardData | undefined;
-      if (position === 0 || position === 1) {
-        topic = easyTopics.pop();
-      }
-      if (position === 2 || position === 3) {
-        topic = mediumTopics.pop();
-      }
-      if (position === 4) {
-        topic = hardTopics.pop();
-      }
+  const topics: TopicCardData[] = makeArray(topicsQuantity * roundsCount).map((_, index: number) => {
+    const position = index % topicsQuantity;
+    let topic: TopicCardData | undefined;
+    if (position === 0 || position === 1) {
+      topic = easyTopics.pop();
+    }
+    if (position === 2 || position === 3) {
+      topic = mediumTopics.pop();
+    }
+    if (position === 4) {
+      topic = hardTopics.pop();
+    }
 
-      if (topic) {
-        return topic;
-      }
-      return shuffledTopics.pop() as TopicCardData;
-    });
+    if (topic) {
+      return topic;
+    }
+    return shuffledTopics.pop() as TopicCardData;
+  });
 
   // Distribute letters
   const shuffledLetters = shuffle(allLetters);
@@ -159,26 +161,24 @@ export const buildGrid = (
     }
   }
 
-  const letters: LetterEntry[] = utils.helpers
-    .makeArray(lettersQuantity * roundsCount)
-    .map((_, index: number) => {
-      const position = index % lettersQuantity;
-      let letter: LetterEntry | undefined;
-      if (position === 0 || position === 1) {
-        letter = easyLetters.pop();
-      }
-      if (position === 2) {
-        letter = mediumLetters.pop();
-      }
-      if (position === 3) {
-        letter = hardLetters.pop();
-      }
+  const letters: LetterEntry[] = makeArray(lettersQuantity * roundsCount).map((_, index: number) => {
+    const position = index % lettersQuantity;
+    let letter: LetterEntry | undefined;
+    if (position === 0 || position === 1) {
+      letter = easyLetters.pop();
+    }
+    if (position === 2) {
+      letter = mediumLetters.pop();
+    }
+    if (position === 3) {
+      letter = hardLetters.pop();
+    }
 
-      if (letter) {
-        return letter;
-      }
-      return shuffledLetters.pop() as LetterEntry;
-    });
+    if (letter) {
+      return letter;
+    }
+    return shuffledLetters.pop() as LetterEntry;
+  });
 
   return { topics, letters };
 };
@@ -232,7 +232,7 @@ export const groupAnswers = (
     letters.forEach((letter, letterIndex) => {
       const id = `${topicIndex}-${letterIndex}`;
       const answers: AnswerEvaluationEntry[] = [];
-      utils.players.getListOfPlayersIds(players).forEach((playerId) => {
+      getListOfPlayersIds(players).forEach((playerId) => {
         const [possibleAnswer, timestamp = 0] = (players[playerId].answers[id] ?? '').split(SEPARATOR);
 
         const answer = possibleAnswer.toLowerCase();
@@ -286,12 +286,12 @@ const autoEvaluateAnswer = (answer: string, letterEntry: LetterEntry): boolean =
   }
 
   if (type === 'starts-with') {
-    const sanitizedAnswer = utils.helpers.stringRemoveAccents(answer);
+    const sanitizedAnswer = stringRemoveAccents(answer);
     return sanitizedAnswer.startsWith(letter);
   }
 
   if (type === 'ends-with') {
-    const sanitizedAnswer = utils.helpers.stringRemoveAccents(answer);
+    const sanitizedAnswer = stringRemoveAccents(answer);
     return sanitizedAnswer.endsWith(letter);
   }
 
@@ -343,7 +343,7 @@ export const evaluateAnswers = (
 ) => {
   const rejections: Dictionary<number> = {};
   // Verify rejections and reject any answer that has been rejected by the acceptableRejections value
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.keys(player.evaluations).forEach((answerId) => {
       if (rejections[answerId] === undefined) {
         rejections[answerId] = 0;
@@ -369,7 +369,7 @@ export const evaluateAnswers = (
   const answersGrid: Record<string, AnswerGridEntry> = {};
 
   // Gained Points: [answered, 1st answer bonus]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   answersGroups.forEach((group) => {
     const answerGridEntry: AnswerGridEntry = {

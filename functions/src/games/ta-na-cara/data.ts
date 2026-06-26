@@ -9,8 +9,10 @@ import { CHARACTER_COUNT, MAX_ROUNDS, PLAYER_COUNTS, PLAYER_SUGGESTED_QUESTIONS_
 // Services
 import { fetchGlobalTrackerDocumentData, resetGlobalTrackerDocument } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
+// Resources
+import { getSuspects } from '../../mechanics/resources';
 // Utils
-import utils from '../../utils_LEGACY';
+import { filterOutByIds } from '../../utils';
 
 /**
  * Get question resource based on the game's language
@@ -27,7 +29,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   // Get used deck
   const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
-  const allSuspects = await utils.tdr.getSuspects({
+  const allSuspects = await getSuspects({
     styleVariant: options.styleVariant,
     cleanup: true,
     decks: options.everyoneDeck ? ['any'] : ['adult'],
@@ -36,7 +38,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   });
 
   // Filter out used cards
-  const availableCards = Object.values(utils.game.filterOutByIds(allCards, usedCards)).filter((card) =>
+  const availableCards = Object.values(filterOutByIds(allCards, usedCards)).filter((card) =>
     options.nsfw ? card : !card.nsfw,
   );
 

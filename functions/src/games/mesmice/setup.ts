@@ -7,9 +7,22 @@ import { GAME_NAMES } from '../../constants/games';
 import { GAME_DIFFICULTY, ITEMS_PER_PLAYER, MESMICE_PHASES, OUTCOME, SCORING } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { turnOrderUtils } from '../../mechanics/turn-order';
+import { getRankedVotes, getWinningRankedVote } from '../../mechanics/voting';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 // Internal
+import utils from '../../legacy-utils';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { calculateFinalGroupScore, determineOutcome } from './helpers';
 
@@ -25,10 +38,10 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Build turn order
-  const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players);
+  const { gameOrder, playerIds: turnOrder } = turnOrderUtils.create(players);
 
   // Save
   return {
@@ -62,17 +75,17 @@ export const prepareClueWritingPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.removePropertiesFromPlayers(players, ['selectedItemId', 'selectedItem', 'clue', 'items']);
+  removePropertiesFromPlayers(players, ['selectedItemId', 'selectedItem', 'clue', 'items']);
 
   // Distribute items
-  utils.players.dealItemsToPlayers(players, store.items, ITEMS_PER_PLAYER, 'items');
+  utils.legacy.dealItemsToPlayers(players, store.items, ITEMS_PER_PLAYER, 'items');
   // Distribute target to each player
   const features: ExtendedObjectFeatureCard[] = store.features;
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.target = sampleSize(features, 1)[0].id;
   });
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -104,7 +117,7 @@ export const prepareObjectFeatureEliminationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.removePropertiesFromPlayers(players, ['selectedFeatureId']);
+  removePropertiesFromPlayers(players, ['selectedFeatureId']);
 
   let round = state.round;
 
@@ -117,8 +130,8 @@ export const prepareObjectFeatureEliminationPhase = async (
 
   if (state.outcome !== OUTCOME.CONTINUE) {
     // Save gallery
-    round = utils.game.increaseRound(state.round);
-    const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, round.current);
+    round = increaseRound(state.round);
+    const activePlayerId = turnOrderUtils.getActivePlayerId(store.gameOrder, round.current);
     const activePlayer = players[activePlayerId];
     stateUpdate.activePlayerId = activePlayerId;
     stateUpdate.item = activePlayer.items.find(
@@ -127,7 +140,7 @@ export const prepareObjectFeatureEliminationPhase = async (
     stateUpdate.clue = activePlayer.clue;
     stateUpdate.target = activePlayer.target;
     const difficulty = store.options.hardMode ? GAME_DIFFICULTY.HARD : GAME_DIFFICULTY.EASY;
-    stateUpdate.history = utils.helpers.makeArray(SCORING[difficulty].length, 0).map((value) => ({
+    stateUpdate.history = makeArray(SCORING[difficulty].length, 0).map((value) => ({
       featureId: null,
       pass: false,
       votes: [],
@@ -153,7 +166,7 @@ export const prepareObjectFeatureEliminationPhase = async (
     ];
   }
 
-  utils.players.unReadyPlayers(players, stateUpdate.activePlayerId);
+  setPlayersReadyState(players, false, { excludeIds: [stateUpdate.activePlayerId] });
 
   // Save
   return {
@@ -182,15 +195,15 @@ export const prepareResultPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   let groupScore: number = state.groupScore ?? 0;
 
   // Determine most voted feature, awarding achievements
-  const rankedVotes = utils.players.getRankedVotes(players, 'selectedFeatureId');
+  const rankedVotes = getRankedVotes(players, 'selectedFeatureId');
 
   // Get absolute winner
-  const winner = utils.players.getWinningRankedVote(rankedVotes, store.gameOrder, state.activePlayerId);
+  const winner = getWinningRankedVote(rankedVotes, store.gameOrder, state.activePlayerId);
 
   // Determine outcome
   const outcome = determineOutcome(winner.value, state.target, state.features);
@@ -243,7 +256,7 @@ export const prepareResultPhase = async (
       history[i].votes.forEach((playerId) => {
         players[playerId].score += 1;
       });
-      utils.players.getListOfPlayers(players).forEach((player) => {
+      getListOfPlayers(players).forEach((player) => {
         player.score += history[i].score;
       });
 
@@ -289,20 +302,20 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Adjust scores to reduce 1 por every time the target was selected by a player
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.score -= store.achievements[player.id].targetVotes;
     increaseAchievement(store.achievements, player.id, 'score', player.score);
   });
 
   const group = calculateFinalGroupScore(store.gallery, state.groupScore);
 
-  const winners = group.outcome === 'WIN' ? utils.players.getListOfPlayers(players) : [];
+  const winners = group.outcome === 'WIN' ? getListOfPlayers(players) : [];
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.MESMICE,
     gameId,
     startedAt: store.createdAt,
@@ -315,7 +328,7 @@ export const prepareGameOverPhase = async (
   // Save data
   // await saveData(store.language, store.pastClues, store.options.imageGrid);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

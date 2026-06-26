@@ -1,8 +1,8 @@
 import { uniq } from 'lodash';
-// Services
-import { getUserCollectionRef } from '../services/firestore-core';
+// Mechanics
+import { getListOfPlayers } from '../mechanics/players';
 // Internal
-import { getListOfPlayers } from './players-utils';
+import { getUserCollectionRef } from './firestore-core';
 
 /**
  * A single game play entry for a user's game history
@@ -649,7 +649,7 @@ export const saveGameToUsers = async ({
     let user: FirebaseUserDB | null = null;
     try {
       user = await fetchUser(player.id);
-    } catch (_) {
+    } catch {
       // do nothing
     }
 
@@ -673,7 +673,7 @@ export const saveGameToUsers = async ({
       // Save each user
       try {
         await saveNewUserData(player.id, user);
-      } catch (_) {
+      } catch {
         // do nothing
       }
     }

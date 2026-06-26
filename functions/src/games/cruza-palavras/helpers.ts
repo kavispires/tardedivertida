@@ -5,8 +5,10 @@ import type { ClueEntry, CruzaPalavrasOptions, Deck, FirebaseStoreData, GridCell
 // Constants
 import { SEPARATOR } from '../../constants/general';
 import { CRUZA_PALAVRAS_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getListOfPlayersIds, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -34,7 +36,7 @@ export const determineNextPhase = (
       : CLUE_WRITING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -157,7 +159,7 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
     }
   };
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   listOfPlayers.forEach((player) => {
     const cell = shuffledCoordinates.pop();
@@ -187,7 +189,7 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
  * @param grid - The game grid containing cells
  */
 export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): GridCell[] => {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     (player.coordinates ?? []).forEach((coordinate) => {
       if (coordinate.used) {
         grid[coordinate.coordinate].available = false;
@@ -205,7 +207,7 @@ export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): 
  * @param players - The collection of players in the game
  */
 export const getPlayerClues = (players: Players): ClueEntry[] => {
-  return utils.players.getListOfPlayers(players).map((player) => {
+  return getListOfPlayers(players).map((player) => {
     const index = player.coordinates.findIndex(
       (coordinate) => coordinate.coordinate === player.currentClueCoordinate,
     );
@@ -228,19 +230,19 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  */
 export const buildRanking = (players: Players, clues: ClueEntry[], store: FirebaseStoreData) => {
   // Gained Points: [from guesses, one coordinate right, from others, lost points]
-  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0, 0]);
 
   const answers = clues.reduce((acc, entry) => {
     acc[entry.playerId] = entry.coordinate;
     return acc;
   }, {});
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   const gotPassivePoints: Record<UID, UID[]> = {};
 
   // Collect points
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     // Achievement: Chose randomly
     if (player.choseRandomly) {
       increaseAchievement(store.achievements, player.id, 'chooseForMe', 1);
@@ -274,7 +276,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[], store: Fireba
   });
 
   // 0 correct guesses on your clue gets minus player count in points
-  const whoGotNoPoints: UID[] = utils.players.getListOfPlayersIds(players).filter((playerId) => {
+  const whoGotNoPoints: UID[] = getListOfPlayersIds(players).filter((playerId) => {
     if (gotPassivePoints[playerId] === undefined || gotPassivePoints[playerId].length === 0) {
       return true;
     }

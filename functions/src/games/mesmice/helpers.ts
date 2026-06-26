@@ -2,8 +2,8 @@
 import type { ExtendedObjectFeatureCard, MesmiceGalleryEntry, Outcome } from './types';
 // Constants
 import { MESMICE_PHASES, OUTCOME } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and outcome
@@ -38,7 +38,7 @@ export const determineNextPhase = (
     }
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**

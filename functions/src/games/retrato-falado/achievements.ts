@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Retrato Falado game
  */
-const retratoFaladoAchievements = achievementBuilder('RETRATO_FALADO')
+const retratoFaladoAchievements = achievementBuilder(GAME_KEYS.RETRATO_FALADO)
   .counter('votes', {
     doc: 'total number of votes received',
     most: 'BEST_SKETCHES',

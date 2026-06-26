@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Mesmice game
  */
-const mesmiceAchievements = achievementBuilder('MESMICE')
+const mesmiceAchievements = achievementBuilder(GAME_KEYS.MESMICE)
   .counter('safeVotes', {
     doc: 'Times voted for the safe choice',
     most: 'MOST_SAFE_VOTES',

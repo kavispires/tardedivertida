@@ -6,8 +6,19 @@ import { GAME_NAMES } from '../../constants/games';
 import { CRUZA_PALAVRAS_PHASES, WORDS_PER_COORDINATE } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
@@ -33,9 +44,9 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  utils.players.addPropertiesToPlayers(players, { coordinates: [] });
+  addPropertiesToPlayers(players, { coordinates: [] });
 
   const gameType =
     {
@@ -46,8 +57,7 @@ export const prepareSetupPhase = async (
       items: 'items',
     }?.[store?.options?.gridType ?? 'words'] || 'words';
 
-  const gridSize =
-    WORDS_PER_COORDINATE[utils.players.getPlayerCount(players)] + (store?.options?.largerGrid ? 1 : 0);
+  const gridSize = WORDS_PER_COORDINATE[getPlayerCount(players)] + (store?.options?.largerGrid ? 1 : 0);
 
   // Save
   return {
@@ -80,7 +90,7 @@ export const prepareWordsSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -112,7 +122,7 @@ export const prepareClueWritingPhase = async (
   // If coming from the word selection, create the deck of selections
   if (state.phase === CRUZA_PALAVRAS_PHASES.WORDS_SELECTION) {
     const deckDict: Dictionary<boolean> = {};
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.selectedWordsIds.forEach((wordId: string) => {
         deckDict[wordId] = true;
       });
@@ -136,21 +146,21 @@ export const prepareClueWritingPhase = async (
     store.deck = newDeck;
     storeUpdate.deck = newDeck;
 
-    utils.players.removePropertiesFromPlayers(players, ['selectedWordsIds']);
+    removePropertiesFromPlayers(players, ['selectedWordsIds']);
   }
 
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['choseRandomly']);
 
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   let gameType: string = state.gameType;
   let grid: GridCell[] = state.grid ?? buildGrid(store.deck, store.playersClues, gridSize, false);
   // Build/Rebuild grid on round 1 and 4
   if (round.current === 1 || round.current === 4) {
     grid = buildGrid(store.deck, store.playersClues, gridSize, round.current === 4);
-    utils.players.addPropertiesToPlayers(players, { coordinates: [] });
+    addPropertiesToPlayers(players, { coordinates: [] });
     gameType = round.current === 4 ? 'words' : gameType;
 
     // Reset playersClues for round 4 here instead of later
@@ -161,7 +171,7 @@ export const prepareClueWritingPhase = async (
 
   const updatedGrid = distributeCoordinates(players, grid);
 
-  utils.players.removePropertiesFromPlayers(players, ['clue', 'guesses', 'currentClueCoordinate']);
+  removePropertiesFromPlayers(players, ['clue', 'guesses', 'currentClueCoordinate']);
 
   // Save
   return {
@@ -193,7 +203,7 @@ export const prepareGuessingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const clues = getPlayerClues(players);
   // Achievement: wordLength
@@ -235,7 +245,7 @@ export const prepareRevealPhase = async (
   // Gather votes
   const { ranking, whoGotNoPoints } = buildRanking(players, state.clues, store);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -267,13 +277,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.CRUZA_PALAVRAS,
     gameId,
     startedAt: store.createdAt,
@@ -286,7 +296,7 @@ export const prepareGameOverPhase = async (
   // Save data
   await saveData(store.language, store.pastClues, store?.options?.gridType === 'contenders');
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

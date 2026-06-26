@@ -11,9 +11,11 @@ import {
   TOTAL_MOVIE_OPTIONS,
   VAMOS_AO_CINEMA_PHASES,
 } from './constants';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
-import { makeArray } from '../../utils_LEGACY/helpers';
+import { makeArray } from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -35,7 +37,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
     return MOVIE_ELIMINATION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -154,7 +156,7 @@ export const getFinalMovies = (
 
   Object.values(movies).forEach((movie) => {
     const votes: string[] = [];
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       if (player.posters[movie.id]) {
         votes.push(player.posters[movie.id]);
       }

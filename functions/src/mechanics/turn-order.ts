@@ -1,6 +1,10 @@
 import { shuffle } from 'lodash';
 // Internal
-import { getListOfPlayersIds } from './players-utils';
+import { getListOfPlayersIds } from './players';
+
+// ===========================================================
+// TURN ORDER MANAGEMENT UTILITIES
+// ===========================================================
 
 /**
  * Randomizes player ids
@@ -10,7 +14,7 @@ import { getListOfPlayersIds } from './players-utils';
  * @param excludePlayersIds - player ids to exclude from the order
  * @returns obj - gameOrder is the randomized order of players, playerIds is the list of player ids in the game, playerCount is the number of players in the game
  */
-export const create = (
+const create = (
   players: Players,
   doublingThreshold = 0,
   includeBots = false,
@@ -27,7 +31,7 @@ export const create = (
  * @param currentRound - the current round (1-indexed)
  * @returns the player id of the active player for the given round
  */
-export const getActivePlayerId = (turnOrder: GameOrder | TurnOrder, currentRound: number) => {
+const getActivePlayerId = (turnOrder: GameOrder | TurnOrder, currentRound: number) => {
   return turnOrder[(currentRound - 1) % turnOrder.length];
 };
 
@@ -37,7 +41,7 @@ export const getActivePlayerId = (turnOrder: GameOrder | TurnOrder, currentRound
  * @param activePlayerId - the current active player id
  * @returns the player id of the next player in the turn order
  */
-export const getNextPlayerId = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
+const getNextPlayerId = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
   const index = turnOrder.indexOf(activePlayerId);
 
   if (index === -1) return turnOrder[0];
@@ -51,7 +55,7 @@ export const getNextPlayerId = (turnOrder: GameOrder | TurnOrder, activePlayerId
  * @param activePlayerId - the current active player id
  * @returns the player id of the previous player in the turn order
  */
-export const getPreviousPlayerId = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
+const getPreviousPlayerId = (turnOrder: GameOrder | TurnOrder, activePlayerId: UID): UID => {
   const index = turnOrder.indexOf(activePlayerId);
 
   if (index === -1 || index === 0) return turnOrder[turnOrder.length - 1];
@@ -65,7 +69,7 @@ export const getPreviousPlayerId = (turnOrder: GameOrder | TurnOrder, activePlay
  * @param startingPlayerId - the player to start the order
  * @returns the reordered game order starting from the specified player
  */
-export const reorder = (gameOrder: UID[], startingPlayerId: UID) => {
+const reorder = (gameOrder: UID[], startingPlayerId: UID) => {
   const index = gameOrder.indexOf(startingPlayerId);
   if (index === -1) {
     return gameOrder;
@@ -81,7 +85,7 @@ export const reorder = (gameOrder: UID[], startingPlayerId: UID) => {
  * @param from - optional starting position (number) or player ID (UID) from which to start rotation; elements before this position remain untouched
  * @returns the rotated turn order
  */
-export const rotate = (order: GameOrder | TurnOrder, positions: number, from?: number | UID): UID[] => {
+const rotate = (order: GameOrder | TurnOrder, positions: number, from?: number | UID): UID[] => {
   if (order.length === 0) return order;
 
   // If no 'from' specified, rotate the entire array (original behavior)
@@ -130,7 +134,7 @@ export const rotate = (order: GameOrder | TurnOrder, positions: number, from?: n
  * @param index - the index to get (can be negative or > length, will wrap)
  * @returns the player id at the specified index, or undefined if order is empty
  */
-export const getPlayerIdAtIndex = (order: GameOrder | TurnOrder, index: number): UID | undefined => {
+const getPlayerIdAtIndex = (order: GameOrder | TurnOrder, index: number): UID | undefined => {
   if (order.length === 0) return undefined;
 
   const normalizedIndex = ((index % order.length) + order.length) % order.length;
@@ -143,7 +147,7 @@ export const getPlayerIdAtIndex = (order: GameOrder | TurnOrder, index: number):
  * @param playerId - the player id to find
  * @returns the position (0-indexed) or -1 if not found
  */
-export const getPlayerPosition = (turnOrder: GameOrder | TurnOrder, playerId: UID): number => {
+const getPlayerPosition = (turnOrder: GameOrder | TurnOrder, playerId: UID): number => {
   return turnOrder.indexOf(playerId);
 };
 
@@ -152,7 +156,7 @@ export const getPlayerPosition = (turnOrder: GameOrder | TurnOrder, playerId: UI
  * @param order - the current turn order
  * @returns the reversed turn order
  */
-export const reverse = (order: GameOrder | TurnOrder): UID[] => {
+const reverse = (order: GameOrder | TurnOrder): UID[] => {
   return [...order].reverse();
 };
 
@@ -161,6 +165,19 @@ export const reverse = (order: GameOrder | TurnOrder): UID[] => {
  * @param order - the turn order to validate
  * @returns true if the order is a valid non-empty array of strings, false otherwise
  */
-export const isValidTurnOrder = (order: unknown): order is TurnOrder => {
+const isValidTurnOrder = (order: unknown): order is TurnOrder => {
   return Array.isArray(order) && order.length > 0 && order.every((id) => typeof id === 'string');
+};
+
+export const turnOrderUtils = {
+  create,
+  getActivePlayerId,
+  getNextPlayerId,
+  getPreviousPlayerId,
+  reorder,
+  rotate,
+  getPlayerIdAtIndex,
+  getPlayerPosition,
+  reverse,
+  isValidTurnOrder,
 };

@@ -8,8 +8,14 @@ import {
   getUserCollectionRef,
 } from '../services/firestore-core';
 import { fetchGameMetaDoc, getStateReferences } from '../services/game-session';
-// Utils
-import utils from '../utils_LEGACY';
+// Mechanics
+import {
+  createPlayer,
+  generatePlayerId,
+  getPlayerCount,
+  isEverybodyReady,
+  setPlayersReadyState,
+} from '../mechanics/players';
 // Internal
 import * as delegatorUtils from '../games/delegators';
 
@@ -95,7 +101,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
 
   // Generate playerId by removing accents and lower casing the name
-  const playerId = auth?.uid ?? utils.players.generatePlayerId(cleanPlayerName);
+  const playerId = auth?.uid ?? generatePlayerId(cleanPlayerName);
 
   if (players?.[playerId]) {
     return players[playerId];
@@ -104,7 +110,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   // Verify maximum number of players
   const { getPlayerCounts } = delegatorUtils.getEngine(gameName);
   const playerCounts = getPlayerCounts();
-  const numPlayers = utils.players.getPlayerCount(players);
+  const numPlayers = getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
     throwHttpsError(
@@ -122,13 +128,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   }
 
   try {
-    const newPlayer = utils.players.createPlayer(
-      playerId,
-      cleanPlayerName,
-      `${playerAvatarId}`,
-      players,
-      isGuest,
-    );
+    const newPlayer = createPlayer(playerId, cleanPlayerName, `${playerAvatarId}`, players, isGuest);
     const path = `players.${playerId}`;
     await sessionRef.doc('state').update({
       [path]: newPlayer,
@@ -155,9 +155,9 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
   const { sessionRef, state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
 
   const players = state?.players ?? {};
-  utils.players.readyPlayer(players, playerId);
+  setPlayersReadyState(players, true, { targetIds: [playerId] });
 
-  if (onlyReady || !utils.players.isEverybodyReady(players)) {
+  if (onlyReady || !isEverybodyReady(players)) {
     try {
       const path = `players.${playerId}.ready`;
       await sessionRef.doc('state').update({ [path]: true });

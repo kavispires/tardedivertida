@@ -10,8 +10,8 @@ import { QUESTION_COUNT } from './constants';
 import { updateFirestoreCommunityData } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getSuspects, getUnusedResources } from '../../mechanics/resources';
 
 /**
  * Get question resource based on the game's language
@@ -23,7 +23,7 @@ export const getQuestionsAndSuspects = async (
   language: string,
   options: TestemunhaOcularOptions,
 ): Promise<ResourceData> => {
-  const availableCards = await utils.tdr.getUnusedResources<TestimonyQuestionCardData>(
+  const availableCards = await getUnusedResources<TestimonyQuestionCardData>(
     TDR_RESOURCES.TESTIMONY_QUESTIONS,
     GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS,
     language as Language,
@@ -31,7 +31,7 @@ export const getQuestionsAndSuspects = async (
     QUESTION_COUNT,
   );
 
-  const allSuspects = await utils.tdr.getSuspects({
+  const allSuspects = await getSuspects({
     styleVariant: options.styleVariant,
     onlyGbExclusive: options.gbExclusive,
     cleanup: true,

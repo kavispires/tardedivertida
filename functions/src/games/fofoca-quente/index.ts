@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleSubmitPlayersRoles,
@@ -52,7 +52,7 @@ export const getInitialState = (
   version: string,
   options: FofocaQuenteOptions,
 ): FofocaQuenteInitialState => {
-  return utils.game.getDefaultInitialState<FofocaQuenteInitialState>({
+  return getDefaultInitialState<FofocaQuenteInitialState>({
     gameId,
     gameName: GAME_NAMES.FOFOCA_QUENTE,
     uid,

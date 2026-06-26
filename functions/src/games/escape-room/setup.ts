@@ -5,8 +5,11 @@ import { GAME_NAMES } from '../../constants/games';
 import { ESCAPE_ROOM_PHASES, MISSIONS_COUNT } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import { cleanupPlayers, setPlayersReadyState } from '../../mechanics/players';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 
 /**
  * Setup phase - initializes game state and resources
@@ -35,7 +38,7 @@ export const prepareSetupPhase = async (
   };
 
   // Determine player order (who gets mission #1, #2, etc)
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // TODO: Deal cards
   console.log('Resource Data:', resourceData);
@@ -68,7 +71,7 @@ export const prepareMissionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -94,7 +97,7 @@ export const prepareMissionEvaluationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -120,7 +123,7 @@ export const prepareResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -147,14 +150,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   // const achievements = getAchievements(store);
   const achievements = []; // TODO: implement achievements
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.ESCAPE_ROOM,
     gameId,
     startedAt: store.createdAt,
@@ -164,7 +167,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

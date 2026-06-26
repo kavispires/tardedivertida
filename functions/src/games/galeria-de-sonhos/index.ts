@@ -21,8 +21,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { addBots } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handlePlayCard, handleSubmitCards, handleSubmitWord } from './actions';
 import { getWords } from './data';
@@ -51,7 +52,7 @@ export const getInitialState = (
   version: string,
   options: GaleriaDeSonhosOptions,
 ): GaleriaDeSonhosInitialState => {
-  return utils.game.getDefaultInitialState<GaleriaDeSonhosInitialState>({
+  return getDefaultInitialState<GaleriaDeSonhosInitialState>({
     gameId,
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     uid,
@@ -68,7 +69,7 @@ export const getInitialState = (
     onCreate: () => {
       const players: Players = {};
       if (options.withBots) {
-        utils.players.addBots(players, language, 3);
+        addBots(players, language, 3);
       }
       return {
         players,

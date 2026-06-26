@@ -1,6 +1,6 @@
 # Achievements Tool-Kit Documentation
 
-**Version:** 1.2.0
+**Version:** 1.2.1
 
 ## Overview
 
@@ -19,9 +19,10 @@ Type-safe, declarative achievements system that:
 ## Quick Start
 
 ```typescript
+import { GAME_KEYS } from '../../constants/games';
 import { achievementBuilder } from '../../utils/tool-kits';
 
-const achievements = achievementBuilder('GAME_NAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME_NAME)
   .counter('score', {
     doc: 'Total score accumulated',
     most: 'HIGHEST_SCORE',
@@ -51,6 +52,10 @@ export const {
 ```
 
 **Note:** Use direct string literals for achievement IDs instead of importing from constants files. The toolkit auto-generates a `constants` object with all achievement IDs.
+
+---
+
+**Note:** Always use `GAME_KEYS` from `constants/games.ts` for the game prefix parameter, not plain strings.
 
 ---
 
@@ -325,7 +330,7 @@ Each property name must be unique across all achievement types within a game. **
 
 ```typescript
 // ❌ RUNTIME ERROR - duplicate 'score' property between same types
-const achievements = achievementBuilder('GAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME)
   .counter('score', {
     doc: 'Total score',
     most: 'MOST_SCORE'
@@ -337,7 +342,7 @@ const achievements = achievementBuilder('GAME')
   .build();
 
 // ❌ RUNTIME ERROR - duplicate 'weapons' property between different types
-const achievements = achievementBuilder('GAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME)
   .array('weapons', {
     doc: 'Weapons selected',
     uniqueItems: { most: 'MOST_WEAPONS' }
@@ -355,7 +360,7 @@ const achievements = achievementBuilder('GAME')
 
 ```typescript
 // ✅ ALLOWED - exactMatch standalone (its own property)
-const achievements = achievementBuilder('GAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME)
   .exactMatch('perfectScore', {
     doc: 'Achieved perfect score of 100',
     key: 'PERFECT_SCORE',
@@ -365,7 +370,7 @@ const achievements = achievementBuilder('GAME')
   .build();
 
 // ✅ ALLOWED - exactMatch shares with counter
-const achievements = achievementBuilder('GAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME)
   .counter('stops', {
     doc: 'Number of times stopped',
     most: 'MOST_STOPS'
@@ -379,7 +384,7 @@ const achievements = achievementBuilder('GAME')
   .build();
 
 // ✅ ALLOWED - exactMatch shares with array
-const achievements = achievementBuilder('GAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME)
   .array('weapons', {
     doc: 'Weapons used each round',
     uniqueItems: { most: 'MOST_DIFFERENT_WEAPONS' }
@@ -387,7 +392,7 @@ const achievements = achievementBuilder('GAME')
   .exactMatch('usedKnife', {  // ✅ Shares 'weapons' property
     doc: 'Player used a knife',
   key: 'KNIFE_USER',
-const achievements = achievementBuilder('GAME')
+const achievements = achievementBuilder(GAME_KEYS.GAME)
   .truthy('foundClue', {
     doc: 'Found a clue',
     key: 'FOUND_CLUE'
@@ -571,7 +576,10 @@ Transform data before calculating achievements:
 ### 1. Definition
 ```typescript
 // achievements.ts
-const adedanhxAchievements = achievementBuilder('ADEDANHX')
+import { GAME_KEYS } from '../../constants/games';
+import { achievementBuilder } from '../../utils/tool-kits';
+
+const adedanhxAchievements = achievementBuilder(GAME_KEYS.ADEDANHX)
   .counter('stops', {
     doc: 'Times player pressed stop',
     most: 'MOST_STOPS',
@@ -600,7 +608,7 @@ export const {
 ### 2. Setup Phase
 ```typescript
 // setup.ts - prepareSetupPhase
-const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+const achievements = setupAchievements(getListOfPlayersIds(players));
 // Returns: {
 //   player1: { stops: 0, first: 0 },
 //   player2: { stops: 0, first: 0 },
@@ -662,12 +670,13 @@ return {
     * Type-safe achievement definitions using the achievements toolkit
     */
 
+    import { GAME_KEYS } from '../../constants/games';
     import { achievementBuilder } from '../../utils/tool-kits';
 
     /**
     * Build achievement utilities for Game Name game
     */
-   const gameAchievements = achievementBuilder('GAME_NAME')
+   const gameAchievements = achievementBuilder(GAME_KEYS.GAME_NAME)
      .counter('score', {
        doc: 'Points scored',
        most: 'HIGHEST_SCORE',  // ✅ Use direct strings, not constants
@@ -689,7 +698,7 @@ return {
    ```
 
 3. **Replace method calls**:
-   - `utils.achievements.setup(players, { ... })` → `setupAchievements(utils.players.getListOfPlayersIds(players))`
+   - `utils.achievements.setup(players, { ... })` → `setupAchievements(getListOfPlayersIds(players))`
    - `utils.achievements.increase(store, playerId, prop, val)` → `increaseAchievement(store.achievements, playerId, prop, val)`
    - `getAchievements(store)` → `getAchievements(store.achievements)`
 
@@ -734,9 +743,17 @@ return {
 Creates a new achievement builder.
 
 **Parameters:**
-- `gamePrefix` (string): Game name prefix (e.g., 'ADEDANHX')
+- `gamePrefix` (string): Game key from GAME_KEYS (e.g., `GAME_KEYS.ADEDANHX`)
 
 **Returns:** Builder instance
+
+**Example:**
+```typescript
+import { GAME_KEYS } from '../../constants/games';
+import { achievementBuilder } from '../../utils/tool-kits';
+
+const achievements = achievementBuilder(GAME_KEYS.MY_GAME);
+```
 
 ---
 

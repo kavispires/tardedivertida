@@ -20,8 +20,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitGuess, handleSubmitMetrics, handleSubmitPool } from './actions';
 import { getResourceData } from './data';
@@ -49,7 +49,7 @@ export const getInitialState = (
   version: string,
   // options: MedidasNaoExatasOptions,
 ): MedidasNaoExatasInitialState => {
-  return utils.game.getDefaultInitialState<MedidasNaoExatasInitialState>({
+  return getDefaultInitialState<MedidasNaoExatasInitialState>({
     gameId,
     gameName: GAME_NAMES.MEDIDAS_NAO_EXATAS,
     uid,

@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Arte Ruim game
  */
-const achievements = achievementBuilder('ARTE_RUIM')
+const achievements = achievementBuilder(GAME_KEYS.ARTE_RUIM)
   .counter('artistPoints', {
     doc: 'Points from drawings that players guessed correctly',
     most: 'BEST_ARTIST',

@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Qual Quesito game
  */
-const qualQuesitoAchievements = achievementBuilder('QUAL_QUESITO')
+const qualQuesitoAchievements = achievementBuilder(GAME_KEYS.QUAL_QUESITO)
   .counter('creatorExtra', {
     doc: 'Added extra cards when the creator',
     most: 'MOST_CREATOR_EXTRA_CARDS',

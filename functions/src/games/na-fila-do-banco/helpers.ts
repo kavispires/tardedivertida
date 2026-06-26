@@ -1,10 +1,14 @@
-// functions/src/engine/na-fila-do-banco/helpers.ts
-import { CARD_COLORS, CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TELLERS } from './constants';
-import type { ClientCard, Teller } from './types';
 import { shuffle } from 'lodash';
-// Utils
-import utils from '../../utils_LEGACY';
+// Constants
 import { AVATARS_COLORS } from '../../constants/avatars';
+import { CARD_COLORS, CHARACTER_TYPES, NA_FILA_DO_BANCO_PHASES, OUTCOME, TELLERS } from './constants';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
+
+// functions/src/engine/na-fila-do-banco/helpers.ts
+
+import type { ClientCard, Teller } from './types';
 
 /**
  * Determines the next phase based on the current phase and outcome
@@ -28,7 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return CARD_PLAY;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -50,7 +54,7 @@ export const buildDeck = (players: Players): ClientCard[] => {
     CHARACTER_TYPES.MOTOBOY,
   ];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     decksCount++;
     let color = CARD_COLORS[decksCount];
     player.deckColors = [color];
@@ -107,8 +111,7 @@ export const buildDeck = (players: Players): ClientCard[] => {
  */
 export const getDistantColors = (players: Players, minDistance = 2): string[] => {
   // Get hue values of colors used by players
-  const usedHues = utils.players
-    .getListOfPlayers(players)
+  const usedHues = getListOfPlayers(players)
     .map((player) => AVATARS_COLORS[player.avatarId]?.hue)
     .filter((hue): hue is number => hue !== undefined);
 

@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Ue So Isso game
  */
-const ueSoIssoAchievements = achievementBuilder('UE_SO_ISSO')
+const ueSoIssoAchievements = achievementBuilder(GAME_KEYS.UE_SO_ISSO)
   .counter('eliminatedClues', {
     doc: 'how many clues were eliminated',
     most: 'MOST_ELIMINATED_CLUES',

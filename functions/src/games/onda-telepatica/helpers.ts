@@ -9,8 +9,10 @@ import {
   GAME_OVER_SCORE_THRESHOLD,
   MAX_ROUNDS,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -30,7 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : DIAL_CLUE;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -45,12 +47,10 @@ export const determineGameOver = (
   round: Round,
 ): boolean => {
   if (!options.fixedRounds) {
-    return utils.players
-      .getListOfPlayers(players)
-      .some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+    return getListOfPlayers(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }
@@ -105,13 +105,13 @@ export const buildRanking = (
   store: PlainObject,
 ) => {
   // Gained Points [correct guesses, psychic points]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   let psychicPoints = 0;
   let playersMaxPoints = 0;
 
   // Build score object
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.id !== psychicId) {
       const points = determineScore(player.guess, currentCategory?.target ?? 0);
       scores.add(player.id, points, 0);
@@ -136,7 +136,7 @@ export const buildRanking = (
   increaseAchievement(store.achievements, psychicId, 'psychicPoints', psychicPoints);
 
   // If psychic predicted the win
-  const isMoreThanHalf = psychicPoints >= (utils.players.getPlayerCount(players) - 1) / 2;
+  const isMoreThanHalf = psychicPoints >= (getPlayerCount(players) - 1) / 2;
   // Psychic gets a maximum of 3 points for other players votes
   psychicPoints = psychicPoints > 3 ? 3 : psychicPoints;
   // Psychic gets 1 points if he bet on the guess amount correctly

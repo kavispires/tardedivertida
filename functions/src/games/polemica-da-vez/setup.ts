@@ -6,8 +6,17 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildDeck, countLikes, getRanking } from './helpers';
@@ -26,7 +35,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
-  const { gameOrder, playerIds } = utils.turnOrder.create(
+  const { gameOrder, playerIds } = turnOrderUtils.create(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined,
   );
@@ -35,7 +44,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const { deck, customDeck } = buildDeck(allTweets);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -73,14 +82,15 @@ export const prepareTweetSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current + 1);
+  const activePlayerId = turnOrderUtils.getActivePlayerId(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     reaction: null,
     likesGuess: null,
   });
-  utils.players.unReadyPlayer(players, activePlayerId);
+
+  setPlayersReadyState(players, false, { excludeIds: [activePlayerId] });
 
   // Get questions
   const currentTweets = Array(TOPICS_PER_ROUND)
@@ -98,7 +108,7 @@ export const prepareTweetSelectionPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
         activePlayerId,
         currentTweets,
@@ -121,7 +131,7 @@ export const prepareReactPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Modify players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   let currentTweet = {};
   const customTweet = store.customTweet ?? null;
@@ -159,7 +169,7 @@ export const prepareResolutionPhase = async (
   // Gather all reactions
   const totalLikes = countLikes(players, store);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Score players
   const ranking = getRanking(players, totalLikes, store);
@@ -201,13 +211,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,
     gameId,
     startedAt: store.createdAt,
@@ -217,7 +227,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

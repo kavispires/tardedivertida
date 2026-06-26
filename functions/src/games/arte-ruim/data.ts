@@ -16,7 +16,7 @@ import {
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary } from '../../utils';
 // Internal
 import {
   determineNumberOfCards,
@@ -180,7 +180,7 @@ export const getCards = async (
 export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
   const onlyARPDEntries = pastDrawings.filter((entry) => entry.id.includes('a-'));
   // Save usedArteRuimCards to global
-  const usedArteRuimCards = utils.helpers.buildBooleanDictionary(onlyARPDEntries);
+  const usedArteRuimCards = buildBooleanDictionary(onlyARPDEntries);
   await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
 
   // Save drawings to public gallery

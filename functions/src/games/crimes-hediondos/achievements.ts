@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Crimes Hediondos game
  */
-const achievements = achievementBuilder('CRIMES_HEDIONDOS')
+const achievements = achievementBuilder(GAME_KEYS.CRIMES_HEDIONDOS)
   .counter('wrongGroups', {
     doc: 'Wrong group guesses',
     most: 'MOST_WRONG_GROUPS',

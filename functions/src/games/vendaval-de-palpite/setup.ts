@@ -5,8 +5,10 @@ import { GAME_NAMES } from '../../constants/games';
 import { CLUES_PER_PLAYER, FINAL_ANSWER_COUNT, MAX_ROUNDS, VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import { setPlayersReadyState, getPlayerCount } from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
 // Internal
 import { gatherClues, verifyGuesses } from './helpers';
 
@@ -61,7 +63,7 @@ export const prepareSecretWordSelection = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayer(players, state.bossId);
+  setPlayersReadyState(players, false, { excludeIds: [state.bossId] });
 
   players[state.bossId].isBoss = true;
 
@@ -74,7 +76,7 @@ export const prepareSecretWordSelection = async (
         words: store.words,
         categories: store.categories,
         finalAnswersLeft: FINAL_ANSWER_COUNT,
-        cluesPerPlayer: CLUES_PER_PLAYER[utils.players.getPlayerCount(players)],
+        cluesPerPlayer: CLUES_PER_PLAYER[getPlayerCount(players)],
       },
     },
   };
@@ -85,7 +87,7 @@ export const preparePlayersClues = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players, state.bossId);
+  setPlayersReadyState(players, false, { excludeIds: [state.bossId] });
 
   const board: Board = { ...(state?.board ?? {}) };
   const clues: Clues = { ...(state?.clues ?? {}) };
@@ -104,7 +106,7 @@ export const preparePlayersClues = async (
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         board,
         clues,
       },
@@ -119,7 +121,8 @@ export const prepareClueEvaluations = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players, state.bossId);
+  // Ready players, but boss
+  setPlayersReadyState(players, true, { excludeIds: [state.bossId] });
 
   // Gather clues
   const { clues, board } = gatherClues(state.clues, state.board, players, state.round.current);
@@ -182,7 +185,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,
     gameId,
     startedAt: store.createdAt,

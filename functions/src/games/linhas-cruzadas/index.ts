@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitDrawing, handleSubmitGuess, handleSubmitPrompt } from './actions';
 import { getData } from './data';
@@ -46,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: LinhasCruzadasOptions,
 ): LinhasCruzadasInitialState => {
-  return utils.game.getDefaultInitialState<LinhasCruzadasInitialState>({
+  return getDefaultInitialState<LinhasCruzadasInitialState>({
     gameId,
     gameName: GAME_NAMES.LINHAS_CRUZADAS,
     uid,

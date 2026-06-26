@@ -12,9 +12,20 @@ import { GAME_NAMES } from '../../constants/games';
 import { CARDS_PER_ROUND, LABIRINTO_SECRETO_PHASES, MULLIGAN_HAND } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
+import utils from '../../legacy-utils';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import {
   buildForest,
@@ -49,13 +60,13 @@ export const prepareSetupPhase = async (
   // Build player hands
   distributeCards(store, players, resourceData.allCards);
 
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
-  store.achievements = setupAchievements(utils.players.getListOfPlayers(players).map((player) => player.id));
+  store.achievements = setupAchievements(getListOfPlayers(players).map((player) => player.id));
 
-  utils.players.addPropertiesToPlayers(players, { mulliganAvailable: true });
+  addPropertiesToPlayers(players, { mulliganAvailable: true });
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
   listOfPlayers.forEach((player) => {
     player.history = {};
     listOfPlayers.forEach((otherPlayer) => {
@@ -91,10 +102,10 @@ export const prepareMapBuildingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Change hands for all players who chose to mulligan
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.mulliganReceived) {
       delete player.mulliganReceived;
     }
@@ -126,7 +137,7 @@ export const prepareMapBuildingPhase = async (
       state: {
         phase: LABIRINTO_SECRETO_PHASES.MAP_BUILDING,
         players,
-        round: utils.game.increaseRound(state?.round),
+        round: increaseRound(state?.round),
       },
       stateCleanup: ['turnOrder', 'activePlayerId', 'ranking'],
     },
@@ -144,7 +155,7 @@ export const preparePathFollowingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
   // Build game order based oh the players updated time
   let turnOrder = state.turnOrder;
   if (!turnOrder) {
@@ -153,10 +164,10 @@ export const preparePathFollowingPhase = async (
   }
 
   // Get active player
-  const activePlayerId = utils.turnOrder.getNextPlayerId(turnOrder, state.activePlayerId);
+  const activePlayerId = turnOrderUtils.getNextPlayerId(turnOrder, state.activePlayerId);
 
   // Unready players
-  utils.players.unReadyPlayers(players, activePlayerId);
+  setPlayersReadyState(players, false, { excludeIds: [activePlayerId] });
 
   if (!state.activePlayerId) {
     // Update players maps and hands
@@ -189,7 +200,7 @@ export const preparePathFollowingPhase = async (
         }
       });
     });
-    utils.players.removePropertiesFromPlayers(players, ['newMap']);
+    removePropertiesFromPlayers(players, ['newMap']);
   }
 
   // Save
@@ -218,7 +229,7 @@ export const prepareResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const ranking = getRankingAndProcessScoring(players, store);
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -246,10 +257,10 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   // Achievements: Count how many cards used by each player
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.map.forEach((segment: MapSegment) => {
       const clueCount = segment.clues.length;
       increaseAchievement(store.achievements, player.id, 'adjectives', clueCount);
@@ -263,7 +274,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.LABIRINTO_SECRETO,
     gameId,
     startedAt: store.createdAt,
@@ -273,7 +284,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, ['map']);
+  cleanupPlayers(players, ['map']);
 
   return {
     update: {

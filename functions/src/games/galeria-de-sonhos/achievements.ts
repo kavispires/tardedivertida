@@ -1,10 +1,12 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
 /**
  * Galeria de Sonhos achievements system
  */
-const achievements = achievementBuilder('GALERIA_DE_SONHOS')
+const achievements = achievementBuilder(GAME_KEYS.GALERIA_DE_SONHOS)
   .counter('matches', {
     doc: 'Number of times player matched with other players',
     most: 'MOST_MATCHES',

@@ -16,8 +16,19 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  removePropertiesFromPlayers,
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
+import { stringRemoveAccents } from '../../utils';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
@@ -45,7 +56,7 @@ export const prepareSetupPhase = async (
   allWords: TextCardData[],
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Build deck
   const deck = buildDeck(
@@ -54,7 +65,7 @@ export const prepareSetupPhase = async (
     store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD,
   );
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -100,18 +111,18 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   // Determine guesser based on round and gameOrder
-  const guesserId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
-  const controllerId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current + 1);
+  const guesserId = turnOrderUtils.getActivePlayerId(state.gameOrder, round.current);
+  const controllerId = turnOrderUtils.getActivePlayerId(state.gameOrder, round.current + 1);
 
   // Get current words
   const currentWords = buildCurrentWords(JSON.parse(store.deck[round.current - 1]));
 
   // Unready players and remove any previously used game keys
-  utils.players.unReadyPlayers(players, guesserId);
-  utils.players.removePropertiesFromPlayers(players, ['suggestions', 'votes']);
+  setPlayersReadyState(players, true, { excludeIds: [guesserId] });
+  removePropertiesFromPlayers(players, ['suggestions', 'votes']);
 
   // Save
   return {
@@ -153,9 +164,9 @@ export const prepareSuggestPhase = async (
 
   const suggestionsNumber = determineSuggestionsNumber(players);
 
-  utils.players.unReadyPlayers(players, state.guesserId);
+  setPlayersReadyState(players, true, { excludeIds: [state.guesserId] });
 
-  utils.players.removePropertiesFromPlayers(players, ['votes']);
+  removePropertiesFromPlayers(players, ['votes']);
 
   // Save
   return {
@@ -193,7 +204,7 @@ export const prepareSuggestPhase = async (
 
   const shuffledSuggestions = shuffle(suggestionsArray);
 
-  utils.players.readyPlayers(players, state.controllerId);
+  setPlayersReadyState(players, true, { excludeIds: [state.controllerId] });
 
   // Save
   return {
@@ -217,7 +228,7 @@ export const prepareSuggestPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players, state.guesserId);
+  setPlayersReadyState(players, true, { excludeIds: [state.guesserId] });
 
   // Save
   return {
@@ -240,13 +251,13 @@ export const prepareSuggestPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players, state.controllerId);
+  setPlayersReadyState(players, true, { excludeIds: [state.controllerId] });
 
   // Check guess, if correct, build result, if incorrect, idk
   const { group, guess, secretWord } = state;
   const index = state.round.current - 1;
-  const cleanGuess = utils.helpers.stringRemoveAccents(guess).toLowerCase().trim();
-  const cleanWord = utils.helpers.stringRemoveAccents(secretWord.text).toLowerCase().trim();
+  const cleanGuess = stringRemoveAccents(guess).toLowerCase().trim();
+  const cleanWord = stringRemoveAccents(secretWord.text).toLowerCase().trim();
   if (cleanGuess === cleanWord) {
     group.attempts[index] = OUTCOME.CORRECT;
     group.score += CORRECT_GUESS_SCORE;
@@ -367,7 +378,7 @@ export const prepareGameOverPhase = async (
     state.group.outcome = OUTCOME.LOSE;
   }
 
-  const winners = state.win ? utils.players.getListOfPlayers(players) : [];
+  const winners = state.win ? getListOfPlayers(players) : [];
 
   // Handle achievements
   countAchievements(store);
@@ -376,7 +387,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.UE_SO_ISSO,
     gameId,
     startedAt: store.createdAt,
@@ -392,7 +403,7 @@ export const prepareGameOverPhase = async (
   // Create gallery
   const gallery = store.pastSuggestions;
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   // Save
   return {

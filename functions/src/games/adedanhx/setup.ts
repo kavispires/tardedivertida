@@ -12,8 +12,16 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { buildGrid, evaluateAnswers, getCurrentGrid, groupAnswers, storeGalleryData } from './helpers';
@@ -44,7 +52,7 @@ export const prepareSetupPhase = async (
     !!options.nsfw,
   );
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -80,11 +88,11 @@ export const prepareAnsweringPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
   // Reset values related to answers and evaluations
-  utils.players.addPropertiesToPlayers(players, { evaluations: {}, answers: {} });
+  addPropertiesToPlayers(players, { evaluations: {}, answers: {} });
 
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
   const options = store.options;
 
   // Get current grid
@@ -123,8 +131,8 @@ export const prepareEvaluationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.addPropertiesToPlayers(players, { evaluations: {} });
+  setPlayersReadyState(players, false);
+  addPropertiesToPlayers(players, { evaluations: {} });
 
   // Gather answers per player per cell, and auto-verify them
   const answersGroups = groupAnswers(players, state.grid.xHeaders, state.grid.yHeaders, store);
@@ -197,13 +205,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.ADEDANHX,
     gameId,
     startedAt: store.createdAt,
@@ -219,7 +227,7 @@ export const prepareGameOverPhase = async (
   // Save data
   // await saveData(store.language, store.pastClues, store.options.imageGrid);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

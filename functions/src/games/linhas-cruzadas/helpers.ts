@@ -4,8 +4,10 @@ import type { ArteRuimCardData, TextCardData } from '../../types/tdr';
 import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -29,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || round.current >= round.total ? PRESENTATION : DRAWING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -45,11 +47,11 @@ export const dealPromptOptions = (
   wordsDeck: TextCardData[],
   options: LinhasCruzadasOptions,
 ) => {
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   if (options.singleWordOnly) {
     const dealCardEveryNTimes = Math.floor(wordsDeck.length / playerCount);
-    utils.players.getListOfPlayers(players).forEach((player, index) => {
+    getListOfPlayers(players).forEach((player, index) => {
       player.prompts = shuffle(
         Array(dealCardEveryNTimes)
           .fill(0)
@@ -62,7 +64,7 @@ export const dealPromptOptions = (
       ? [...expressionDeck, ...wordsDeck]
       : shuffle([...expressionDeck, ...wordsDeck]);
     const dealCardEveryNTimes = Math.floor(deck.length / playerCount);
-    utils.players.getListOfPlayers(players).forEach((player, index) => {
+    getListOfPlayers(players).forEach((player, index) => {
       player.prompts = Array(dealCardEveryNTimes)
         .fill(0)
         .map((e, i) => deck[e + index + i * playerCount]);
@@ -75,7 +77,7 @@ export const dealPromptOptions = (
  * @param players - The collection of players in the game
  */
 export const buildAlbum = (players: Players): Album => {
-  return utils.players.getListOfPlayers(players).reduce((album: Album, player) => {
+  return getListOfPlayers(players).reduce((album: Album, player) => {
     const card = player.prompts.find((card: Card) => card.id === player.promptId) ?? {};
 
     album[player.id] = {
@@ -106,7 +108,7 @@ export const buildAlbum = (players: Players): Album => {
  * @param players - The collection of players in the game
  */
 export const addSlideToAlbum = (album: Album, players: Players): Album => {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     album[player.currentPrompt.id].slides.push({
       author: player.id,
       content: player.drawing ?? player.guess,
@@ -133,7 +135,7 @@ export const assignSlideToPlayers = (
     if (isFirstSlide && gameOrder.length % 2 === 0) {
       currentAlbumSlides = album[albumEntryId].slides;
     } else {
-      albumEntryId = utils.turnOrder.getNextPlayerId(gameOrder, player.currentPrompt?.id ?? player.id);
+      albumEntryId = turnOrderUtils.getNextPlayerId(gameOrder, player.currentPrompt?.id ?? player.id);
       currentAlbumSlides = album[albumEntryId].slides;
     }
     const newSlide = currentAlbumSlides[currentAlbumSlides.length - 1];

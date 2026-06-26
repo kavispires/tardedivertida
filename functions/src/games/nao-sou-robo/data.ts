@@ -11,8 +11,12 @@ import { STARTING_HAND, MAX_ROUNDS, MIN_ROUND_CARDS, CARD_SELECTION_PER_PLAYER_C
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
+// Resources
+import { getSingleWords, saveUsedAdjectives } from '../../mechanics/resources';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 
 /**
  * Get data
@@ -26,7 +30,7 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const botCardsNeeded = MAX_ROUNDS * (MIN_ROUND_CARDS - (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3));
   const imageCardsNeeded = cardsPerPlayer * playerCount + botCardsNeeded;
 
-  const images = shuffle(await utils.imageCards.getImageCards(imageCardsNeeded));
+  const images = shuffle(await getImageCards(imageCardsNeeded));
 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
@@ -39,17 +43,16 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const emotions = sampleSize(Object.values(allEmotions), quantityNeeded);
 
   // Words
-  const words = await utils.tdr.getSingleWords(language, quantityNeeded);
+  const words = await getSingleWords(language, quantityNeeded);
 
   // Glyphs
-  const glyphs = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded * 3);
+  const glyphs = sampleSize(makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded * 3);
 
   // Emojis
-  const emojis = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
+  const emojis = sampleSize(makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
 
   // Robot cards
-  const botCards = utils.helpers
-    .makeArray(botCardsNeeded)
+  const botCards = makeArray(botCardsNeeded)
     .map(() => {
       return images.pop() as string;
     })
@@ -99,7 +102,7 @@ export const saveData = async (language: Language, gallery: GalleryEntry[]): Pro
   });
 
   // Save adjectives
-  await utils.tdr.saveUsedAdjectives(usedAdjectives);
+  await saveUsedAdjectives(usedAdjectives);
   // Save imageCards
   await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedImageCards);
   // Save data relationship for card - clues

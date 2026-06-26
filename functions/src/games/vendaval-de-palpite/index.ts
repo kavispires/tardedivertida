@@ -20,8 +20,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleSubmitEvaluation,
@@ -56,7 +56,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): VendavalDePalpiteInitialState => {
-  return utils.game.getDefaultInitialState<VendavalDePalpiteInitialState>({
+  return getDefaultInitialState<VendavalDePalpiteInitialState>({
     gameId,
     gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,
     uid,

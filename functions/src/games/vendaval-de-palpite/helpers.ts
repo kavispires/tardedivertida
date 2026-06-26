@@ -3,8 +3,9 @@ import { orderBy } from 'lodash';
 import type { Board, BoardEntry, Clue, Clues } from './types';
 // Constants
 import { VENDAVAL_DE_PALPITE_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determine the next phase based on the current one
@@ -22,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
     return round.forceLastRound || round.current === round.total ? GAME_OVER : PLAYERS_CLUES;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 const buildClueId = (playerId: UID, currentRound: number, index: number, guess = '') => {
@@ -44,7 +45,7 @@ export const gatherClues = (
 ): { clues: Clues; board: Board } => {
   let newBoardEntry: Clue[] = [];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (!player.isBoss) {
       player.clues.forEach((clue: string, index: number) => {
         const clueId = buildClueId(player.id, currentRound, index);

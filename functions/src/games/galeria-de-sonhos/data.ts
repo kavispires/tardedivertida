@@ -9,8 +9,8 @@ import { TABLE_DECK_TOTAL } from './constants';
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 
 /**
  * Get words resource based on the game's language
@@ -21,7 +21,7 @@ export const getWords = async (language: Language): Promise<ResourceData> => {
   // Get full deck
   const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THEME_WORDS, language);
 
-  const imageCardIds = await utils.imageCards.getImageCards(TABLE_DECK_TOTAL);
+  const imageCardIds = await getImageCards(TABLE_DECK_TOTAL);
 
   return {
     allWords,

@@ -12,8 +12,10 @@ import {
   updateGlobalTrackerDocumentData,
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
+// Resources
+import { getContenders } from '../../mechanics/resources';
 // Utils
-import utils from '../../utils_LEGACY';
+import { filterOutByIds } from '../../utils';
 
 /**
  * Get challenges and contenders  based on the game's language
@@ -36,7 +38,7 @@ export const getResourceData = async (
   const usedChallenges = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 
   // Filter out used cards
-  let availableChallenges = utils.game.filterOutByIds(challengesResponse, usedChallenges);
+  let availableChallenges = filterOutByIds(challengesResponse, usedChallenges);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableChallenges).length < CHALLENGES_PER_GAME) {
@@ -45,7 +47,7 @@ export const getResourceData = async (
   }
 
   // Get full contenders deck
-  const contenders = await utils.tdr.getContenders(
+  const contenders = await getContenders(
     language,
     !!options.nsfw,
     options.contenderDecks,

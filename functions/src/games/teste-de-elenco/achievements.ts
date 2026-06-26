@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Teste De Elenco game
  */
-const testeDeElencoAchievements = achievementBuilder('TESTE_DE_ELENCO')
+const testeDeElencoAchievements = achievementBuilder(GAME_KEYS.TESTE_DE_ELENCO)
   .counter('alone', {
     doc: 'Times they voted alone in an actor',
     most: 'ALONE_VOTES',

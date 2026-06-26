@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for CorreioDoAmor game
  */
-const achievements = achievementBuilder('CORREIO_DO_AMOR')
+const achievements = achievementBuilder(GAME_KEYS.CORREIO_DO_AMOR)
   .counter('playedRank0', {
     doc: 'Number of plays of rank 0 cards',
     most: 'MOST_PLAYED_RANK_0',

@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleSubmitConcepts,
@@ -52,7 +52,7 @@ export const getInitialState = (
   version: string,
   options: IdadeDaPredaOptions,
 ): IdadeDaPredaInitialState => {
-  return utils.game.getDefaultInitialState<IdadeDaPredaInitialState>({
+  return getDefaultInitialState<IdadeDaPredaInitialState>({
     gameId,
     gameName: GAME_NAMES.IDADE_DA_PREDA,
     uid,

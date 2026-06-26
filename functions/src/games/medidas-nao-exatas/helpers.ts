@@ -4,8 +4,10 @@ import type { TextCardData } from '../../types/tdr';
 import type { FirebaseStoreData, GalleryEntry, Guess } from './types';
 // Constants
 import { MEDIDAS_NAO_EXATAS_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -24,7 +26,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : METRICS_BUILDING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -49,7 +51,7 @@ export const determineResults = (
   pointsBrackets: number[],
 ) => {
   // Gained points: [correct, levels, presenter]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0]);
 
   const result: GalleryEntry = {
     secretWordId,
@@ -64,7 +66,7 @@ export const determineResults = (
   };
 
   const guessesByTimestamp: Record<number, Guess[]> = {};
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.id !== presenterId) {
       const guesses: Guess[] = uniq(player.guesses);
 
@@ -161,7 +163,7 @@ export const determineResults = (
   if (correctCount === 0) {
     increaseAchievement(store.achievements, presenterId, 'badMetrics', 1);
   }
-  if (correctCount === utils.players.getPlayerCount(players) - 1) {
+  if (correctCount === getPlayerCount(players) - 1) {
     increaseAchievement(store.achievements, presenterId, 'bestMetrics', 1);
   }
 

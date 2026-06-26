@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCharacters, handleSubmitGlyphs, handleSubmitGuesses } from './actions';
 import { getResourceData } from './data';
@@ -46,7 +47,7 @@ export const getInitialState = (
   version: string,
   options: QuemSouEuOptions,
 ): QuemSouEuInitialState => {
-  return utils.game.getDefaultInitialState<QuemSouEuInitialState>({
+  return getDefaultInitialState<QuemSouEuInitialState>({
     gameId,
     gameName: GAME_NAMES.QUEM_SOU_EU,
     uid,
@@ -88,11 +89,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(
-      store.language,
-      utils.players.getPlayerCount(players),
-      store.options,
-    );
+    const additionalData = await getResourceData(store.language, getPlayerCount(players), store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

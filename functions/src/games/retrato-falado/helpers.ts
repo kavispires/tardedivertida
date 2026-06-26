@@ -4,8 +4,10 @@ import type { MonsterImageData } from '../../types/tdr';
 import type { AllMonsters, FirebaseStoreData, MonsterSketch } from './types';
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -24,7 +26,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : COMPOSITE_SKETCH;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -47,7 +49,7 @@ export const gatherSketches = (
   currentMonster: MonsterImageData,
   witnessId: UID,
 ): MonsterSketch[] => {
-  const gathering = utils.players.getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {
+  const gathering = getListOfPlayers(players).reduce((acc: MonsterSketch[], player: Player) => {
     if (player.id !== witnessId) {
       acc.push({
         playerId: player.id,
@@ -70,27 +72,25 @@ export const gatherSketches = (
  */
 export const buildRanking = (players: Players, witnessId: UID, store: FirebaseStoreData) => {
   // Gained points [Most Voted, votes, witness vote]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0]);
 
   // Count votes
   const votes: Record<UID, UID[]> = {};
-  const votesCount = utils.players
-    .getListOfPlayers(players)
-    .reduce((acc: Dictionary<number>, player: Player) => {
-      if (player.id !== witnessId) {
-        if (acc[player.vote] === undefined) {
-          scores.add(player.vote, 1, 1);
-          increaseAchievement(store.achievements, player.vote, 'votes', 1);
-          acc[player.vote] = 1;
-          votes[player.vote] = [player.id];
-          increaseAchievement(store.achievements, player.vote, 'votes', 1);
-        } else {
-          acc[player.vote] += 1;
-          votes[player.vote].push(player.id);
-        }
+  const votesCount = getListOfPlayers(players).reduce((acc: Dictionary<number>, player: Player) => {
+    if (player.id !== witnessId) {
+      if (acc[player.vote] === undefined) {
+        scores.add(player.vote, 1, 1);
+        increaseAchievement(store.achievements, player.vote, 'votes', 1);
+        acc[player.vote] = 1;
+        votes[player.vote] = [player.id];
+        increaseAchievement(store.achievements, player.vote, 'votes', 1);
+      } else {
+        acc[player.vote] += 1;
+        votes[player.vote].push(player.id);
       }
-      return acc;
-    }, {});
+    }
+    return acc;
+  }, {});
 
   const max = Math.max(...Object.values(votesCount));
 
@@ -101,7 +101,7 @@ export const buildRanking = (players: Players, witnessId: UID, store: FirebaseSt
   let mostVoted: UID | null = null;
 
   // Achievement: Group votes
-  utils.players.getListOfPlayers(players).forEach((player: Player) => {
+  getListOfPlayers(players).forEach((player: Player) => {
     if (mostVotes.includes(player.vote)) {
       increaseAchievement(store.achievements, player.vote, 'groupVote', 1);
     }

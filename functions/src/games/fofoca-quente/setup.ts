@@ -14,8 +14,8 @@ import type {
 import { FOFOCA_QUENTE_PHASES, MAX_ROUNDS, STARTING_STUDENT_POSITIONS, TOTAL_MOTIVATIONS } from './constants';
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { setPlayersReadyState, removePropertiesFromPlayers } from '../../mechanics/players';
 // Internal
 import { determineStudentsThatCanBeRumored } from './helpers';
 
@@ -130,7 +130,7 @@ export const prepareGossiperSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   return {
     update: {
@@ -154,7 +154,7 @@ export const prepareBoardSetupPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const gossiperPlayerId = state.gossiperPlayerId || '';
   const detectivePlayerId = state.detectivePlayerId || '';
@@ -164,7 +164,7 @@ export const prepareBoardSetupPhase = async (
 
   players[detectivePlayerId].locationIndexes = [];
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   return {
     update: {
@@ -208,7 +208,7 @@ export const prepareIntimidationPhase = async (
   const maxIntimidations = Math.min(2, totalPossibleIntimidations);
 
   // Unready player to has the action
-  utils.players.unReadyPlayers(players, detectivePlayerId);
+  setPlayersReadyState(players, false, { excludeIds: [detectivePlayerId] });
 
   return {
     update: {
@@ -251,9 +251,9 @@ export const prepareRumorPhase = async (
   const possibleRumors = sampleSize(store.rumors ?? [], 3);
 
   // Unready player to has the action
-  utils.players.unReadyPlayers(players, detectivePlayerId);
+  setPlayersReadyState(players, false, { excludeIds: [detectivePlayerId] });
 
-  utils.players.removePropertiesFromPlayers(players, ['skipRumor']);
+  removePropertiesFromPlayers(players, ['skipRumor']);
 
   return {
     update: {
@@ -288,7 +288,7 @@ export const prepareResponsePhase = async (
   const schoolBoard: SchoolLocation[] = state.schoolBoard || [];
 
   // Unready player to has the action
-  utils.players.unReadyPlayers(players, gossiperPlayerId);
+  setPlayersReadyState(players, false, { excludeIds: [gossiperPlayerId] });
 
   const rumorTracker: RumorTrackerEntry[] = state.rumorTracker || [];
   let maySkipRumor = state.maySkipRumor || false;
@@ -348,7 +348,7 @@ export const prepareResponsePhase = async (
     schoolBoard[detective.locationIndexes.at(-1)].rumorSlot = rumorTracker.length - 1;
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['rumoredStudentId', 'rumorIndex']);
+  removePropertiesFromPlayers(players, ['rumoredStudentId', 'rumorIndex']);
 
   return {
     update: {

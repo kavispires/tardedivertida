@@ -15,9 +15,23 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 // Internal
+import utils from '../../legacy-utils';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { calculateResults, distributeCards } from './helpers';
 
@@ -33,7 +47,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Distribute images and starting hands
   distributeCards(store, players, resourceData.images);
@@ -41,7 +55,7 @@ export const prepareSetupPhase = async (
   // Get robot cards
   const botDeck = resourceData.botCards;
   // Build word pool
-  const pool = utils.helpers.makeArray(MAX_ROUNDS).reduce((acc, _, i) => {
+  const pool = makeArray(MAX_ROUNDS).reduce((acc, _, i) => {
     const roundType = ROUND_TYPES[i % ROUND_TYPES.length];
     if (['colors', 'emotions', 'words', 'emojis'].includes(roundType)) {
       acc[i + 1] = {
@@ -65,7 +79,7 @@ export const prepareSetupPhase = async (
 
     if (roundType === 'warehouse-goods') {
       const goodsIds = sampleSize(
-        utils.helpers.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`),
+        makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`),
         2,
       );
       const values: string[] = [];
@@ -81,16 +95,16 @@ export const prepareSetupPhase = async (
     return acc;
   }, {});
 
-  utils.players.addPropertiesToPlayers(players, { suspicion: [], beat: [] });
+  addPropertiesToPlayers(players, { suspicion: [], beat: [] });
 
   const robot: Robot = {
     points: 0,
-    goal: ROBOT_GOAL_BY_PLAYER_COUNT[utils.players.getPlayerCount(players)],
+    goal: ROBOT_GOAL_BY_PLAYER_COUNT[getPlayerCount(players)],
     state: 0,
     beat: 0,
   };
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const cardsQuantityToSubmit = CARD_SELECTION_PER_PLAYER_COUNT[playerCount];
 
   // Save
@@ -125,15 +139,15 @@ export const prepareCardSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['guess', 'cardId']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['guess', 'cardId']);
 
   const cardsQuantityToSubmit: number = state.cardsQuantityToSubmit;
 
   // Deal cards to each player
   utils.deck.deal(store, players, cardsQuantityToSubmit);
 
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   const captcha = store.pool[round.current];
 
@@ -162,9 +176,9 @@ export const prepareAreYouARobotPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const playerCards: CaptchaCard[] = utils.players.getListOfPlayers(players).flatMap((player) => {
+  const playerCards: CaptchaCard[] = getListOfPlayers(players).flatMap((player) => {
     const playedCards: UID[] = player.cardIds ?? [];
     return playedCards.map((cardId) => {
       utils.deck.discard(store, players, player.id, cardId);
@@ -179,7 +193,7 @@ export const prepareAreYouARobotPhase = async (
 
   const robotCardsNeeded = Math.max(MIN_ROUND_CARDS - playerCards.length, 1);
   const botCards: CaptchaCard[] = [];
-  utils.helpers.makeArray(robotCardsNeeded).forEach(() => {
+  makeArray(robotCardsNeeded).forEach(() => {
     const cardId = store.botDeck.pop() as UID;
     botCards.push({
       id: cardId,
@@ -219,7 +233,7 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const { ranking, robot, result, outcome } = calculateResults(
     players,
@@ -264,13 +278,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = state.outcome === OUTCOME.ROBOT_WINS ? [] : utils.players.determineWinners(players);
+  const winners = state.outcome === OUTCOME.ROBOT_WINS ? [] : determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.NAO_SOU_ROBO,
     gameId,
     startedAt: store.createdAt,
@@ -285,7 +299,7 @@ export const prepareGameOverPhase = async (
   // Save data (words, adjectives, imageCards)
   // await saveData(state.language, gallery);
 
-  utils.players.cleanup(players, ['beat', 'suspicion']);
+  cleanupPlayers(players, ['beat', 'suspicion']);
 
   return {
     update: {

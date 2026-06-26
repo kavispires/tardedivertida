@@ -12,8 +12,9 @@ import {
   TRAPS_ENTRIES,
   WIN_CONDITION,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfBots } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and game state
@@ -31,7 +32,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : BOOK_POSSESSION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -177,7 +178,7 @@ export const botDoorSelection = (players: Players, doors: UID[], doorAnswerId: U
   // The bot pool is only half of the doors, but always has the answer
   const options = [...sampleSize(doors, 4), doorAnswerId];
 
-  utils.players.getListOfBots(players).forEach((bot) => {
+  getListOfBots(players).forEach((bot) => {
     bot.doorId = sample(options);
     bot.ready = true;
   });

@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitPairs } from './actions';
 import { getResourceData } from './data';
@@ -39,7 +39,7 @@ export const getInitialState = (
   version: string,
   options: DuetosOptions,
 ): DuetosInitialState => {
-  return utils.game.getDefaultInitialState<DuetosInitialState>({
+  return getDefaultInitialState<DuetosInitialState>({
     gameId,
     gameName: GAME_NAMES.DUETOS,
     uid,

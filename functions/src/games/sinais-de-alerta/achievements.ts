@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Sinais De Alerta game
  */
-const sinaisDeAlertaAchievements = achievementBuilder('SINAIS_DE_ALERTA')
+const sinaisDeAlertaAchievements = achievementBuilder(GAME_KEYS.SINAIS_DE_ALERTA)
   .counter('subjectGuesses', {
     doc: 'Times it got the subject right',
     most: 'MOST_SUBJECTS',

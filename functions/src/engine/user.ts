@@ -1,11 +1,10 @@
 // Types
+import type { FirebaseUserDB } from '../services/user';
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
-import type { FirebaseUserDB } from '../utils_LEGACY/user';
 // Services
 import { delegateApiRequest, throwHttpsError } from '../services/firebase-core';
 import { getUserCollectionRef } from '../services/firestore-core';
-// Utils
-import utils from '../utils_LEGACY';
+import { generateNewUser, mergeUserData, serializeUser } from '../services/user';
 
 /**
  * Retrieves the user data based on the provided parameters
@@ -24,14 +23,14 @@ const getUser = async (_: unknown, auth: FirebaseAuth) => {
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    const newUser = utils.user.generateNewUser(uid, auth?.token?.provider_id === 'anonymous');
+    const newUser = generateNewUser(uid, auth?.token?.provider_id === 'anonymous');
     await userRef.doc(uid).set(newUser);
 
-    return utils.user.serializeUser(newUser);
+    return serializeUser(newUser);
   }
 
   const userData = user.data();
-  return utils.user.serializeUser(utils.user.mergeUserData(uid, userData));
+  return serializeUser(mergeUserData(uid, userData));
 };
 
 /**
@@ -55,7 +54,7 @@ const getUserById = async (userUid: string, auth: FirebaseAuth) => {
   }
 
   const userData = user.data();
-  return utils.user.serializeUser(utils.user.mergeUserData(userUid, userData));
+  return serializeUser(mergeUserData(userUid, userData));
 };
 
 /**

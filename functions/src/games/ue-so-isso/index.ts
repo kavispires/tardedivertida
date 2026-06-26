@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleConfirmGuess,
@@ -60,7 +60,7 @@ export const getInitialState = (
     options.withTimer = true;
   }
 
-  return utils.game.getDefaultInitialState<UeSoIssoInitialState>({
+  return getDefaultInitialState<UeSoIssoInitialState>({
     gameId,
     gameName: GAME_NAMES.UE_SO_ISSO,
     uid,

@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitChoices, handleSubmitBets } from './actions';
 import { getDilemmas } from './data';
@@ -48,7 +48,7 @@ export const getInitialState = (
   version: string,
   options: EsquiadoresOptions,
 ): EsquiadoresInitialState => {
-  return utils.game.getDefaultInitialState<EsquiadoresInitialState>({
+  return getDefaultInitialState<EsquiadoresInitialState>({
     gameId,
     gameName: GAME_NAMES.ESQUIADORES,
     uid,

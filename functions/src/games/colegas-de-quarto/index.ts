@@ -21,8 +21,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitClues, handleSubmitGuesses, handleSubmitWords } from './actions';
 import { getWords } from './data';
@@ -51,7 +51,7 @@ export const getInitialState = (
   version: string,
   options: ColegasDeQuartoOptions,
 ): ColegasDeQuartoInitialState => {
-  return utils.game.getDefaultInitialState<ColegasDeQuartoInitialState>({
+  return getDefaultInitialState<ColegasDeQuartoInitialState>({
     gameId,
     gameName: GAME_NAMES.COLEGAS_DE_QUARTO,
     uid,

@@ -2,8 +2,8 @@
 import type { QualQuesitoOptions, ResourceData } from './types';
 // Constants
 import { CARDS_PER_PLAYER, DECK_PER_PLAYER } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems } from '../../mechanics/resources';
 
 /**
  * Get resource data for the game
@@ -19,7 +19,7 @@ export const getResourceData = async (
 
   const itemsNeeded = playerCount * (CARDS_PER_PLAYER + DECK_PER_PLAYER);
 
-  const items = await utils.tdr.getItems(itemsNeeded, {
+  const items = await getItems(itemsNeeded, {
     allowNSFW,
     decks: ['alien', 'dream', 'evidence'],
     cleanUp: (item) => {

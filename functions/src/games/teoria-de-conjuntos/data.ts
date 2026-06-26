@@ -7,8 +7,8 @@ import { TDR_RESOURCES } from '../../constants/resources';
 import { STARTING_ITEMS_PER_PLAYER_COUNT, ROUNDS_PER_PLAYER, JUDGE_HAND_QUANTITY } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems, itemUtils } from '../../mechanics/resources';
 
 /**
  * Get items and diagrams for the game
@@ -28,7 +28,7 @@ export const getResourceData = async (
   const deckQuantity = STARTING_ITEMS_PER_PLAYER_COUNT[playerCount] + ROUNDS_PER_PLAYER * playerCount;
   const itemsNeeded = deckQuantity + startingItemsQuantity + JUDGE_HAND_QUANTITY;
 
-  const items = await utils.tdr.getItems(itemsNeeded, {
+  const items = await getItems(itemsNeeded, {
     allowNSFW,
     decks: ['thing', 'manufactured', 'alien'],
     filters: [
@@ -49,7 +49,7 @@ export const getResourceData = async (
       },
     ],
     cleanUp: (item: ItemData) => {
-      const i = utils.tdr.itemUtils.cleanupDecks(item);
+      const i = itemUtils.cleanupDecks(item);
       // If the name used is not a single word, use the first single word alias
       if (i.name[language].trim().split(' ').length > 1) {
         const aliases = language === 'en' ? item.aliasesEn : item.aliasesPt;

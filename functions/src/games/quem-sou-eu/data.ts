@@ -7,8 +7,10 @@ import { CHARACTERS_PER_PLAYER, EXTRA_CHARACTERS, MINIMUM_CHARACTERS } from './c
 // Services
 import { updateFirestoreCommunityData } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getContenders } from '../../mechanics/resources';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 
 /**
  * Get characters based on the game's language
@@ -30,16 +32,16 @@ export const getResourceData = async (
 
   const characters = imageCardsMode
     ? []
-    : await utils.tdr.getContenders(language, allowNSFW, options.contenderDecks, quantityNeeded);
-  const imageCards: ContenderCardData[] = (
-    imageCardsMode ? await utils.imageCards.getImageCards(quantityNeeded) : []
-  ).map((cardId) => ({
-    id: cardId,
-    name: {
-      pt: `image-card-${cardId}`,
-      en: `image-card-${cardId}`,
-    },
-  }));
+    : await getContenders(language, allowNSFW, options.contenderDecks, quantityNeeded);
+  const imageCards: ContenderCardData[] = (imageCardsMode ? await getImageCards(quantityNeeded) : []).map(
+    (cardId) => ({
+      id: cardId,
+      name: {
+        pt: `image-card-${cardId}`,
+        en: `image-card-${cardId}`,
+      },
+    }),
+  );
 
   return {
     characters,

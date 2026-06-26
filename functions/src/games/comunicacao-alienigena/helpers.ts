@@ -5,8 +5,9 @@ import type { ComunicacaoAlienigenaState, ComunicacaoAlienigenaStore, FirebaseSt
 // Constants
 import { SEPARATOR } from '../../constants/general';
 import { COMUNICACAO_ALIENIGENA_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current state and game configuration
@@ -69,7 +70,7 @@ export const determineNextPhase = (
     return hasBot ? OFFERINGS : ALIEN_REQUEST;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -84,7 +85,7 @@ export const checkIsBot = (store: FirebaseStoreData) => Boolean(store?.options?.
  * @param players - The collection of players in the game
  */
 export function applySeedsToAlienItemKnowledge(items: AlienItem[], players: Players) {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.alienSeeds) {
       Object.entries<number>(player.alienSeeds).forEach(([itemAttributeKey, value]) => {
         const [itemId, attributeKey] = itemAttributeKey.split(SEPARATOR);

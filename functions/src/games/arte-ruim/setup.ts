@@ -7,8 +7,18 @@ import { GAME_NAMES } from '../../constants/games';
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveUsedCards } from './data';
@@ -37,7 +47,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // Update rounds
   const options = store.options as ArteRuimGameOptions;
@@ -46,7 +56,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(resourceData, playerCount, LEVELS);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   const threshold = options.forPoints ? (GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100) : 0;
 
@@ -84,10 +94,10 @@ export const prepareDrawPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Remove previous 'votes' from players
-  utils.players.removePropertiesFromPlayers(players, ['votes']);
+  removePropertiesFromPlayers(players, ['votes']);
 
   // Deal cards
   dealCards(players, store);
@@ -102,7 +112,7 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        round: utils.game.increaseRound(state?.round),
+        round: increaseRound(state?.round),
         players,
         level,
         levelType,
@@ -123,8 +133,8 @@ export const prepareEvaluationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['choseRandomly']);
 
   const level = store.currentCards?.[0]?.level ?? 1;
 
@@ -133,9 +143,7 @@ export const prepareEvaluationPhase = async (
     level === 4 ? getTwoUniquePairCards(store.currentCards) : shuffle(store.currentCards);
 
   // Shuffle drawings
-  const shuffledDrawings = shuffle(
-    utils.players.getListOfPlayers(players).map((player) => player.currentCard),
-  );
+  const shuffledDrawings = shuffle(getListOfPlayers(players).map((player) => player.currentCard));
 
   return {
     update: {
@@ -162,9 +170,9 @@ export const prepareGalleryPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const playersCardsIds = utils.players.getListOfPlayers(players).map((player) => player.currentCard.id);
+  const playersCardsIds = getListOfPlayers(players).map((player) => player.currentCard.id);
   const tableCardsIds = store.currentCards
     .filter((card) => !playersCardsIds.includes(card.id))
     .map((card) => card.id);
@@ -208,7 +216,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const finalGallery = orderBy(cloneDeep(store.pastDrawings), 'successRate', 'desc');
 
@@ -216,7 +224,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.ARTE_RUIM,
     gameId,
     startedAt: store.createdAt,
@@ -229,7 +237,7 @@ export const prepareGameOverPhase = async (
   // Save data (drawings, usedArteRuimCards)
   await saveUsedCards(store.pastDrawings, store.language);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {
