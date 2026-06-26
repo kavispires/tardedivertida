@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "5.0.78",
+  "version": "5.0.79",
   "release": "stable",
   "releaseDate": "2023-02-12",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -49,10 +49,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      2,
-      3
-    ],
+    "recommended": [2, 3],
     "min": 1,
     "max": 4,
     "best": 3
@@ -61,17 +58,8 @@
     "base": 20,
     "perPlayer": 7
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "drawing",
-    "guessing",
-    "brain-burner"
-  ],
-  "features": [
-    "bots",
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "turn-based", "drawing", "guessing", "brain-burner"],
+  "features": ["bots", "achievements"],
   "options": [
     {
       "key": "nsfw",

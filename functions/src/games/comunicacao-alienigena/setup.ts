@@ -362,12 +362,12 @@ export const prepareAlienRequestPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready alien player
-  setPlayersReadyState(players, false, { excludeIds: [state.alienId] });
+  setPlayersReadyState(players, true, { excludeIds: [state.alienId] });
 
   const inquiryHistory: InquiryHistoryEntry[] = state.inquiryHistory;
   const currentInquiries: InquiryHistoryEntry[] = state.inquiries ?? [];
   const alienResponses: Dictionary<string> = state.alienResponses ?? {};
-  const knownSpriteIds: string[] = state.knownSpriteIds ?? {};
+  const knownSpriteIds: string[] = state.knownSpriteIds ?? [];
 
   // Save any inquiry to history
   if (currentInquiries.length > 0 && !isEmpty(alienResponses)) {

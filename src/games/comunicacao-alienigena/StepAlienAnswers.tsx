@@ -250,7 +250,7 @@ export function StepAlienAnswers({
                     options={attributeSpriteOptions}
                     style={{ width: 120 }}
                     placeholder={translate({ pt: 'Selecione um símbolo', en: 'Select a symbol' })}
-                    value={selections[inquiry.id]}
+                    value={selections[inquiry.id] || undefined}
                     onChange={(value) =>
                       setSelections((prev) => ({
                         ...prev,
