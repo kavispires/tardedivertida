@@ -1,5 +1,4 @@
 import { cloneDeep, orderBy, random, sample, sampleSize, shuffle, uniq } from 'lodash';
-import stringSimilarity from 'string-similarity';
 // Types
 import type {
   CrimeSceneTileData,
@@ -26,7 +25,7 @@ import { getListOfPlayers, getListOfPlayersIds, getPlayerCount } from '../../mec
 import { Scores } from '../../mechanics/scoring';
 import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import { makeArray, sliceIntoChunks, stringRemoveAccents } from '../../utils';
+import { compareTwoStrings, makeArray, sliceIntoChunks, stringRemoveAccents } from '../../utils';
 // Internal
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { increaseAchievement, pushAchievement } from './achievements';
@@ -639,7 +638,7 @@ export const buildMenteColetivaOptions = (players: Players) => {
     (player.data.answers ?? []).forEach((answer: string) => {
       const cleanedUpWork = stringRemoveAccents(answer);
       const similar = sanitizedAnswers.some((a) => {
-        const similarity = stringSimilarity.compareTwoStrings(a, cleanedUpWork);
+        const similarity = compareTwoStrings(a, cleanedUpWork);
         return similarity >= 0.75;
       });
       if (!similar) {
