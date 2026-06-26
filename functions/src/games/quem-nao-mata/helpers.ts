@@ -1,7 +1,7 @@
 // Constants
 import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -22,5 +22,5 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return TARGETING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };

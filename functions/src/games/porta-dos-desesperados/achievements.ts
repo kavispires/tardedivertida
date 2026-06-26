@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Porta Dos Desesperados game
  */
-const portaDosDesesperadosAchievements = achievementBuilder('PORTA_DOS_DESESPERADOS')
+const portaDosDesesperadosAchievements = achievementBuilder(GAME_KEYS.PORTA_DOS_DESESPERADOS)
   .counter('possessions', {
     doc: 'how many times the player was possessed',
     most: 'MOST_POSSESSED',

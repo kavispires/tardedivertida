@@ -13,8 +13,9 @@ import {
   OUTCOME_STATUS,
   SHORT_GAME_ROUNDS,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -50,7 +51,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return TRICK_OR_TREAT;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 export const buildDecks = (isShortGame: boolean): Decks => {
@@ -143,9 +144,7 @@ export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStat
     };
   }
 
-  const continuingPlayers = utils.players
-    .getListOfPlayers(players)
-    .filter((player) => player.isTrickOrTreating);
+  const continuingPlayers = getListOfPlayers(players).filter((player) => player.isTrickOrTreating);
   const playerCount = continuingPlayers.length;
   const perPlayer = Math.floor(currentCard.value / playerCount);
   const leftover = currentCard.value % playerCount;
@@ -217,7 +216,7 @@ export const parseDecisions = (
   const continuingPlayerIds: UID[] = [];
   const alreadyAtHomePlayerIds: UID[] = [];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     switch (player.decision) {
       case DECISIONS.HOME:
         alreadyHomePlayers.push(player);
@@ -354,9 +353,7 @@ export const determineOutcome = (
 
   if (state.phase === NA_RUA_DO_MEDO_PHASES.RESULT) {
     // if everybody is home or going home => end of street
-    const isEverybodyHome = utils.players
-      .getListOfPlayers(players)
-      .every((player) => !player.isTrickOrTreating);
+    const isEverybodyHome = getListOfPlayers(players).every((player) => !player.isTrickOrTreating);
     if (isEverybodyHome) {
       return {
         status: OUTCOME_STATUS.END_STREET,
@@ -393,7 +390,7 @@ export const determineOutcome = (
 
 export const sendPlayersHome = (players: Players): UID[] => {
   const atHome: UID[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.decision === DECISIONS.HOME) {
       atHome.push(player.id);
     }
@@ -422,7 +419,7 @@ export const resetHorrorCount = (horrorCount: Dictionary<number>): Dictionary<nu
 };
 
 export const tallyCandyAsScore = (players: Players) => {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const jackpots = player.jackpots.reduce((t: number, j: HouseCard) => t + j.value, 0);
     player.score = player.totalCandy + jackpots;
   });

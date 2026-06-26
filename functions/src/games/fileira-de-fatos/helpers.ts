@@ -2,8 +2,10 @@
 import type { FirebaseStoreData } from './types';
 // Constants
 import { FILEIRA_DE_FATOS_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -22,7 +24,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : ORDERING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -39,13 +41,13 @@ export const buildRanking = (
   store: FirebaseStoreData,
 ) => {
   // Gained Points [correct guesses, penalty, perfect kill bonus]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0]);
 
   const orderKey = players[activePlayerId].currentOrder;
   let correctCount = 0;
   let maxPoints = 0;
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.id === activePlayerId) return;
     let playerCorrectCount = 0;
 

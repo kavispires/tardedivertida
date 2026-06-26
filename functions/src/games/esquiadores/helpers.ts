@@ -3,8 +3,10 @@ import { cloneDeep, uniq } from 'lodash';
 import type { FirebaseStoreData, Lodge } from './types';
 // Constants
 import { BET_TYPES, ESQUIADORES_PHASES, SKIER_BET_TYPES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement, pushAchievement } from './achievements';
 
@@ -39,7 +41,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : BETS;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -50,7 +52,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @param betType - The type of bet being placed
  */
 export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[], betType: string) => {
-  const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [skierId]);
+  const allPlayersBySkier = getListOfPlayers(players, true, [skierId]);
   // Also update lodges with players
   allPlayersBySkier.forEach((player) => {
     const bets: Dictionary<number> = player[betType];
@@ -72,7 +74,7 @@ export const applyBetsToLodges = (players: Players, skierId: UID, lodges: Lodge[
  * @param betType - The type of bet being aggregated
  */
 export const aggregateBets = (players: Players, skierId: UID, betType: string) => {
-  const allPlayersBySkier = utils.players.getListOfPlayers(players, true, [skierId]);
+  const allPlayersBySkier = getListOfPlayers(players, true, [skierId]);
 
   allPlayersBySkier.forEach((player) => {
     const bets: Dictionary<number> = player.bets ?? {};
@@ -101,9 +103,9 @@ export const calculateScores = (
   store: FirebaseStoreData,
 ) => {
   // Gained Points [correct bets, non-selected lodges, skier bets, non-selected skier players]
-  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0, 0]);
 
-  const allPlayersButSkier = utils.players.getListOfPlayers(players, true, [skierId]);
+  const allPlayersButSkier = getListOfPlayers(players, true, [skierId]);
   const skierReferencePoints: Dictionary<number> = {};
 
   const finalLodgeId = lodges.find((lodge) => lodge.selected)?.id ?? 0;
@@ -189,7 +191,7 @@ export const calculateBetAchievements = (
   const finalBets: Dictionary<string[]> = cloneDeep(REF);
   const bets: Dictionary<string[]> = cloneDeep(REF);
 
-  const allPlayersButSkier = utils.players.getListOfPlayers(players, true, [skierId]);
+  const allPlayersButSkier = getListOfPlayers(players, true, [skierId]);
 
   // Aggregate all bets
   allPlayersButSkier.forEach((player) => {

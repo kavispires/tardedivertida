@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { addBots } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCrime, handleSubmitMark, handleSubmitGuesses } from './actions';
 import { getData } from './data';
@@ -46,7 +47,7 @@ export const getInitialState = (
   version: string,
   options: CrimesHediondosOptions,
 ): CrimesHediondosInitialState => {
-  return utils.game.getDefaultInitialState<CrimesHediondosInitialState>({
+  return getDefaultInitialState<CrimesHediondosInitialState>({
     gameId,
     gameName: GAME_NAMES.CRIMES_HEDIONDOS,
     uid,
@@ -61,7 +62,7 @@ export const getInitialState = (
     onCreate: () => {
       const players: Players = {};
       if (options.withBots) {
-        utils.players.addBots(players, language, 2);
+        addBots(players, language, 2);
       }
       return {
         players,

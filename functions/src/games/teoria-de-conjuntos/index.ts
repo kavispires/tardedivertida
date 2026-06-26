@@ -21,8 +21,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleSubmitEvaluation,
@@ -55,7 +56,7 @@ export const getInitialState = (
   version: string,
   options: TeoriaDeConjuntosOptions,
 ): TeoriaDeConjuntosInitialState => {
-  return utils.game.getDefaultInitialState<TeoriaDeConjuntosInitialState>({
+  return getDefaultInitialState<TeoriaDeConjuntosInitialState>({
     gameId,
     gameName: GAME_NAMES.TEORIA_DE_CONJUNTOS,
     uid,
@@ -105,11 +106,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(
-      store.language,
-      utils.players.getPlayerCount(players),
-      store.options,
-    );
+    const additionalData = await getResourceData(store.language, getPlayerCount(players), store.options);
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await saveGame(sessionRef, newPhase);

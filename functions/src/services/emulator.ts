@@ -1,5 +1,5 @@
 // Types
-import type { FirebaseUserDB } from '../utils_LEGACY/user';
+import type { FirebaseUserDB } from './user';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS } from '../constants/collections';
 import { USED_GAME_IDS } from '../constants/general';

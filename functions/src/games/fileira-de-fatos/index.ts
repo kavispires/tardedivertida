@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitScenarioOrder } from './actions';
 import { getScenarios } from './data';
@@ -44,7 +44,7 @@ export const getInitialState = (
   version: string,
   options: FileiraDeFatosOptions,
 ): FileiraDeFatosInitialState => {
-  return utils.game.getDefaultInitialState<FileiraDeFatosInitialState>({
+  return getDefaultInitialState<FileiraDeFatosInitialState>({
     gameId,
     gameName: GAME_NAMES.FILEIRA_DE_FATOS,
     uid,

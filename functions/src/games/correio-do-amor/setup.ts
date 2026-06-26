@@ -11,8 +11,18 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildRoundDeck } from './helpers';
@@ -30,9 +40,9 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   return {
     update: {
@@ -76,28 +86,28 @@ export const prepareCardPlayPhase = async (
     const deck = buildRoundDeck(
       cardsDict,
       state.round.current,
-      utils.players.getPlayerCount(players),
+      getPlayerCount(players),
       store.plusRotation,
       store.advancedRotation,
     );
 
     // Deal cards to players
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.hand = [deck.pop()];
       player.keywords = [];
       player.status = PLAYER_STATUS.ACTIVE;
     });
 
     // Increase round
-    const round = utils.game.increaseRound(state.round);
+    const round = increaseRound(state.round);
 
     // Determine the starting player for the round, and active player
-    const startingPlayerId = utils.turnOrder.getNextPlayerId(state.gameOrder, state.startingPlayerId);
+    const startingPlayerId = turnOrderUtils.getNextPlayerId(state.gameOrder, state.startingPlayerId);
     const activePlayerId = startingPlayerId;
-    const turnOrder = utils.turnOrder.reorder([...state.gameOrder], startingPlayerId);
+    const turnOrder = turnOrderUtils.reorder([...state.gameOrder], startingPlayerId);
 
     // Set cards aside depending on player count
-    const playerCount = utils.players.getPlayerCount(players);
+    const playerCount = getPlayerCount(players);
     const cardsSetAside: UID[] = [];
     const cardsSetAsideCount = DECK_INFO_BY_PLAYER_COUNT[playerCount].setAsideCards;
     for (let i = 0; i < cardsSetAsideCount; i++) {
@@ -111,7 +121,7 @@ export const prepareCardPlayPhase = async (
     // TODO
 
     // Ready players
-    utils.players.readyPlayers(players, activePlayerId);
+    setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
 
     // Prepare turn: card to be drawn
     const turnUpdate = {
@@ -148,10 +158,10 @@ export const prepareCardPlayPhase = async (
   }
 
   // NEXT TURN
-  const activePlayerId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.activePlayerId);
+  const activePlayerId = turnOrderUtils.getNextPlayerId(state.turnOrder, state.activePlayerId);
 
   // Ready players
-  utils.players.readyPlayers(players, activePlayerId);
+  setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
 
   // Handle achievements
   // TODO: Handle achievements if needed
@@ -183,7 +193,7 @@ export const prepareCardEffectsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   return {
     update: {
@@ -211,7 +221,7 @@ export const prepareCardResolutionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   return {
     update: {
@@ -241,7 +251,7 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine winners
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   // Calculate achievements
   const achievements = calculateAchievements(store.achievements);
@@ -250,7 +260,7 @@ export const prepareGameOverPhase = async (
   await markGameAsComplete(gameId);
 
   // Save game to each user's profile
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.CONTROLE_DE_ESTOQUE,
     gameId,
     startedAt: store.createdAt,
@@ -264,7 +274,7 @@ export const prepareGameOverPhase = async (
   // await saveData(store.language, store.pastStuff);
 
   // Cleanup player for game over screen
-  utils.players.cleanup(players, []); // add in the array any props you want to keep on the player object
+  cleanupPlayers(players, []); // add in the array any props you want to keep on the player object
 
   return {
     update: {

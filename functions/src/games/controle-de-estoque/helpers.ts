@@ -12,8 +12,10 @@ import type {
 // Constants
 import { LETTERS } from '../../constants/general';
 import { CONTROLE_DE_ESTOQUE_PHASES, WAREHOUSE_SIZE } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement, pushAchievement } from './achievements';
 import { BOSS_IDEAS } from './data';
@@ -62,7 +64,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === RESULTS) {
-    const playerCount = utils.players.getPlayerCount(state.players);
+    const playerCount = getPlayerCount(state.players);
 
     return round.forceLastRound ||
       (round.current > 0 && round.current === round.total) ||
@@ -71,7 +73,7 @@ export const determineNextPhase = (
       : FULFILLMENT;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -378,7 +380,7 @@ export const buildRanking = (
   store: ControleDeEstoqueStore,
 ) => {
   // Gained Points: [correct order, wrong order, out of stock, incorrect out of stock]
-  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0, 0]);
   let newOrdersLeft = previousOrdersLeft;
 
   // Initialize gallery with proper structure
@@ -391,7 +393,7 @@ export const buildRanking = (
   };
 
   // For each player, check their orders and fulfillments
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     let correctAtOnce = 0;
 
     // Initialize arrays for this player
@@ -517,7 +519,7 @@ export const buildRanking = (
 };
 
 export function distributeOrders(players: Players, goodsDict: Dictionary<Good>) {
-  const playerList = utils.players.getListOfPlayers(players);
+  const playerList = getListOfPlayers(players);
   const playerCount = playerList.length;
 
   // Get all available orders (not yet fulfilled)

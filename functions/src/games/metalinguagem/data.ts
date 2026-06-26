@@ -3,8 +3,8 @@ import { sampleSize } from 'lodash';
 import type { MetalinguagemOptions, ResourceData } from './types';
 // Constants
 import { ITEMS_PER_ROUND, MAX_ROUNDS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems } from '../../mechanics/resources';
 
 /**
  * Get items for the game
@@ -16,7 +16,7 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
 
   const itemsNeeded = MAX_ROUNDS * ITEMS_PER_ROUND;
 
-  const dreamItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.7), {
+  const dreamItems = await getItems(Math.ceil(itemsNeeded / 0.7), {
     allowNSFW,
     decks: ['dream'],
     cleanUp: (item) => {
@@ -27,7 +27,7 @@ export const getResourceData = async (options: MetalinguagemOptions): Promise<Re
     },
   });
 
-  const metaItems = await utils.tdr.getItems(Math.ceil(itemsNeeded / 0.3), {
+  const metaItems = await getItems(Math.ceil(itemsNeeded / 0.3), {
     allowNSFW,
     decks: ['meta'],
   });

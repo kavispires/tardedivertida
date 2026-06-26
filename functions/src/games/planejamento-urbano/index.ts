@@ -21,8 +21,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitPlanning, handleSubmitPlacements } from './actions';
 import { getLocations } from './data';
@@ -50,7 +50,7 @@ export const getInitialState = (
   version: string,
   options: PlanejamentoUrbanoOptions,
 ): PlanejamentoUrbanoInitialState => {
-  return utils.game.getDefaultInitialState<PlanejamentoUrbanoInitialState>({
+  return getDefaultInitialState<PlanejamentoUrbanoInitialState>({
     gameId,
     gameName: GAME_NAMES.PLANEJAMENTO_URBANO,
     uid,

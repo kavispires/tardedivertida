@@ -562,7 +562,7 @@ export const getData = async (language: Language, options: CorreioDoAmorOptions)
 // export const saveData = async (_language: Language, data: PlainObject) => {
 // TODO: Implement data saving logic
 // Example:
-// const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(data));
-// await utils.tdr.saveUsedResource(usedIds);
+// const usedIds = buildBooleanDictionary(Object.keys(data));
+// await saveUsedResource(usedIds);
 // await dataUtils.updateCardDataCollection('collection-name', language, data);
 // };

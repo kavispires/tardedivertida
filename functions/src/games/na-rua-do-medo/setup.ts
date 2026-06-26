@@ -6,9 +6,19 @@ import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
 import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  sortPlayerIdsByName,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
+import { distributeNumberIds } from '../../legacy-utils/legacy';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import {
   buildDecks,
@@ -35,7 +45,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   const { horrorDeck, jackpotDeck, candyDeck, horrorCount } = buildDecks(store.options?.shortGame ?? false);
 
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     totalCandy: 0, // total score
     jackpots: [],
     hand: 0, // current possible score
@@ -44,9 +54,9 @@ export const prepareSetupPhase = async (
     isTrickOrTreating: true,
   });
 
-  utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.COSTUMES - 1, 'costumeId');
+  distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.COSTUMES - 1, 'costumeId');
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -94,14 +104,14 @@ export const prepareTrickOrTreatPhase = async (
   // If new round
   if (outcome.status === OUTCOME_STATUS.NEW_STREET) {
     // Reset players
-    utils.players.addPropertiesToPlayers(players, {
+    addPropertiesToPlayers(players, {
       hand: 0,
       currentJackpots: null,
       isTrickOrTreating: true,
     });
-    utils.players.unReadyPlayers(players);
+    setPlayersReadyState(players, false);
 
-    const round = utils.game.increaseRound(state.round);
+    const round = increaseRound(state.round);
     const streetDeck = buildStreetDeck(store, round.current);
     store.streetDeck = streetDeck;
     resetHorrorCount(store.horrorCount);
@@ -128,7 +138,7 @@ export const prepareTrickOrTreatPhase = async (
           totalCandyInSidewalk,
           candyPerPlayer: candyStatus.perPlayer,
           candyInHand: candyStatus.perPlayer,
-          continuingPlayerIds: utils.players.getListOfPlayersIds(players),
+          continuingPlayerIds: getListOfPlayersIds(players),
           alreadyAtHomePlayerIds: [],
         },
         stateCleanup: ['isEverybodyHome', 'isDoubleHorror', 'cashedInCandy'],
@@ -137,7 +147,7 @@ export const prepareTrickOrTreatPhase = async (
   }
 
   const atHomePlayerIds = sendPlayersHome(players);
-  utils.players.unReadyPlayers(players, atHomePlayerIds);
+  setPlayersReadyState(players, false, { excludeIds: atHomePlayerIds });
 
   const { currentCard, candyStatus } = dealNewCard(store, players);
 
@@ -191,7 +201,7 @@ export const prepareResultPhase = async (
   // Count candy
   const totalCandyInSidewalk = getTotalCandyInSidewalk(candySidewalk);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -206,9 +216,9 @@ export const prepareResultPhase = async (
         street,
         candySidewalk,
         totalCandyInSidewalk,
-        goingHomePlayerIds: utils.players.sortPlayerIdsByName(goingHomePlayerIds, players),
-        continuingPlayerIds: utils.players.sortPlayerIdsByName(continuingPlayerIds, players),
-        alreadyAtHomePlayerIds: utils.players.sortPlayerIdsByName(alreadyAtHomePlayerIds, players),
+        goingHomePlayerIds: sortPlayerIdsByName(goingHomePlayerIds, players),
+        continuingPlayerIds: sortPlayerIdsByName(continuingPlayerIds, players),
+        alreadyAtHomePlayerIds: sortPlayerIdsByName(alreadyAtHomePlayerIds, players),
         cashedInCandy,
       },
       stateCleanup: ['currentCard'],
@@ -229,7 +239,7 @@ export const prepareStreetEndPhase = async (
   players: Players,
   outcome: Outcome,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Scenario 1: Everybody went home
   if (outcome.isEverybodyHome) {
@@ -297,13 +307,13 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   tallyCandyAsScore(players);
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.NA_RUA_DO_MEDO,
     gameId,
     startedAt: store.createdAt,
@@ -313,7 +323,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, ['costumeId', 'hand', 'jackpots', 'totalCandy']);
+  cleanupPlayers(players, ['costumeId', 'hand', 'jackpots', 'totalCandy']);
 
   return {
     update: {

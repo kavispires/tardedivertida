@@ -36,8 +36,12 @@ import {
 } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
+// Resources
+import { getContenders, getItems, getSingleWords, getSuspects, itemUtils } from '../../mechanics/resources';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray, sliceInParts } from '../../utils';
 // Internal
 import {
   getCandidateOnList,
@@ -103,7 +107,7 @@ export const getData = async (
     GAME_NAMES.DETETIVES_IMAGINATIVOS,
   );
   if (detetiveImaginativosTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10);
+    const imageCardsDeck = await getImageCards(10);
 
     // VARIANT: Impostor
     if (detetiveImaginativosTrack.variant === 'detective') {
@@ -118,7 +122,7 @@ export const getData = async (
     }
     // VARIANT: Detective
     if (detetiveImaginativosTrack.variant === 'impostor') {
-      const selectedCards = utils.helpers.sliceInParts(sampleSize(imageCardsDeck, 6), 2);
+      const selectedCards = sliceInParts(sampleSize(imageCardsDeck, 6), 2);
       customTracks.push({
         game: GAME_NAMES.DETETIVES_IMAGINATIVOS,
 
@@ -134,7 +138,7 @@ export const getData = async (
   // IMAGES_TRACKS: GALERIA_DE_SONHOS
   const galeriaDeSonhosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.GALERIA_DE_SONHOS);
   if (galeriaDeSonhosTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10);
+    const imageCardsDeck = await getImageCards(10);
     const themes = Object.values(
       await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THEME_WORDS, language),
     );
@@ -153,7 +157,7 @@ export const getData = async (
     GAME_NAMES.PORTA_DOS_DESESPERADOS,
   );
   if (portaDosDesesperadosTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10);
+    const imageCardsDeck = await getImageCards(10);
     customTracks.push({
       game: GAME_NAMES.PORTA_DOS_DESESPERADOS,
 
@@ -168,7 +172,7 @@ export const getData = async (
   // IMAGE_TRACKS: CONTADORES_HISTORIAS
   const contadoresHistoriasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CONTADORES_HISTORIAS);
   if (contadoresHistoriasTrack) {
-    const imageCardsDeck = await utils.imageCards.getImageCards(10);
+    const imageCardsDeck = await getImageCards(10);
     const cards = Object.values(
       await fetchResource<Dictionary<ArteRuimCardData>>(TDR_RESOURCES.ARTE_RUIM_CARDS, language),
     );
@@ -184,7 +188,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: SUPER_CAMPEONATO
   const superCampeonatoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.SUPER_CAMPEONATO);
   if (superCampeonatoTrack) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 2);
+    const contenders = await getContenders(language, allowNSFW, ['any'], 2);
     const challenges = Object.values(
       await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.CHALLENGES, language),
     );
@@ -201,12 +205,9 @@ export const getData = async (
   // CHARACTERS_TRACKS: QUEM_SOU_EU
   const quemSouEuTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.QUEM_SOU_EU);
   if (quemSouEuTrack) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 3);
+    const contenders = await getContenders(language, allowNSFW, ['any'], 3);
 
-    const glyphs = utils.helpers.sliceInParts(
-      sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4),
-      2,
-    );
+    const glyphs = sliceInParts(sampleSize(makeArray(SPRITE_LIBRARIES.GLYPHS, 1), 4), 2);
 
     customTracks.push({
       game: GAME_NAMES.QUEM_SOU_EU,
@@ -221,7 +222,7 @@ export const getData = async (
   // CHARACTERS_TRACKS: PALHETA_DE_CORES
   const palhetaDeCoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.PALHETA_DE_CORES);
   if (palhetaDeCoresTrack) {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], 1);
+    const contenders = await getContenders(language, allowNSFW, ['any'], 1);
 
     customTracks.push({
       game: GAME_NAMES.PALHETA_DE_CORES,
@@ -343,7 +344,7 @@ export const getData = async (
   // WORDS_TRACKS: CRUZA_PALAVRAS
   const cruzaPalavrasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRUZA_PALAVRAS);
   if (cruzaPalavrasTrack) {
-    const words = await utils.tdr.getSingleWords(language);
+    const words = await getSingleWords(language);
 
     customTracks.push({
       game: GAME_NAMES.CRUZA_PALAVRAS,
@@ -357,7 +358,7 @@ export const getData = async (
   // WORDS_TRACKS: UE_SO_ISSO
   const ueSoIssoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.UE_SO_ISSO);
   if (ueSoIssoTrack) {
-    const words = await utils.tdr.getSingleWords(language);
+    const words = await getSingleWords(language);
     customTracks.push({
       game: GAME_NAMES.UE_SO_ISSO,
       data: {
@@ -391,7 +392,7 @@ export const getData = async (
     const testimonyQuestions = Object.values(
       await fetchResource<Dictionary<TestimonyQuestionCardData>>(TDR_RESOURCES.TESTIMONY_QUESTIONS, language),
     );
-    const suspects = await utils.tdr.getSuspects({
+    const suspects = await getSuspects({
       randomStyleVariant: true,
       quantity: 3,
       cleanup: true,
@@ -415,7 +416,7 @@ export const getData = async (
       await fetchResource<Dictionary<TestimonyQuestionCardData>>(TDR_RESOURCES.TESTIMONY_QUESTIONS, language),
     );
 
-    const suspects = await utils.tdr.getSuspects({
+    const suspects = await getSuspects({
       randomStyleVariant: true,
       quantity: 1,
       cleanup: true,
@@ -483,10 +484,10 @@ export const getData = async (
     );
     const selectedAttributes = sampleSize(Object.values(attributes), 2);
 
-    const selectedAlienItems = await utils.tdr.getItems(5, {
+    const selectedAlienItems = await getItems(5, {
       allowNSFW,
       decks: ['alien'],
-      cleanUp: utils.tdr.itemUtils.cleanupDecks,
+      cleanUp: itemUtils.cleanupDecks,
     });
 
     customTracks.push({
@@ -494,7 +495,7 @@ export const getData = async (
       data: {
         items: selectedAlienItems,
         attributes: selectedAttributes,
-        signs: sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
+        signs: sampleSize(makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
       },
     });
   }

@@ -15,8 +15,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleLastQuestioner, handleGuessLocation, handleMakeAccusation, handleSubmitVote } from './actions';
 import { getLocations } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): EspiaoEntreNosInitialState => {
-  return utils.game.getDefaultInitialState<EspiaoEntreNosInitialState>({
+  return getDefaultInitialState<EspiaoEntreNosInitialState>({
     gameId,
     gameName: GAME_NAMES.ESPIAO_ENTRE_NOS,
     uid,

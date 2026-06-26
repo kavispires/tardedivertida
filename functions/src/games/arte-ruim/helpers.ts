@@ -10,8 +10,12 @@ import type {
 } from './types';
 // Constants
 import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD, DEFAULT_LEVELS, BASIC_LEVELS } from './constants';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { sliceIntoChunks } from '../../utils';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -34,7 +38,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : DRAW;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -46,9 +50,9 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
   // In a short game, the points threshold doesn't count
   if (round.total === 5) return false;
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const threshold = GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100;
-  return utils.players.getListOfPlayers(players).some((player) => player.score >= threshold);
+  return getListOfPlayers(players).some((player) => player.score >= threshold);
 };
 
 /**
@@ -170,7 +174,7 @@ export const getEnoughUnusedLevel5Cards = (
     // Makes sure the look is not infinite
     tries++;
     if (tries > 100) {
-      return utils.helpers.sliceIntoChunks(discarded, cardsNeeded)[0];
+      return sliceIntoChunks(discarded, cardsNeeded)[0];
     }
     const selected = deck.pop();
     if (selected) {
@@ -330,7 +334,7 @@ export const determineNumberOfCards = (playerCount: number): number => {
  * @param store - it modifies store
  */
 export const dealCards = (players: Players, store: FirebaseStoreData) => {
-  const playersArray = utils.players.getListOfPlayers(players);
+  const playersArray = getListOfPlayers(players);
   const numberOfCards = determineNumberOfCards(playersArray.length);
 
   store.currentCards = new Array(numberOfCards).fill(0).map((i, index) => {
@@ -368,7 +372,7 @@ export const buildGallery = (
   tableCardsIds: UID[],
 ) =>
   drawings.map((drawingEntry) => {
-    const playerCount = utils.players.getPlayerCount(players);
+    const playerCount = getPlayerCount(players);
     const correctAnswer = getPairCardId(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
@@ -466,13 +470,13 @@ export const buildGallery = (
  */
 export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
   // Gained Points [correct guesses, guesses on your drawing]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {
     const correctAnswer = getPairCardId(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       if (artistId === player.id) return;
 
       if (artistId) {
@@ -499,7 +503,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
  */
 export const getNewPastDrawings = (players: Players, gallery) => {
   // Remove currentCard from players and add it to past drawings in the store
-  return utils.players.getListOfPlayers(players).map((playerData) => {
+  return getListOfPlayers(players).map((playerData) => {
     const card = playerData.currentCard;
     // Get playersSay from gallery and calculate success rate
     const galleryEntry = gallery.find((e) => e.originalId === card.id);

@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitReaction, handleSubmitTweet } from './actions';
 import { getTweets } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: PolemicaDaVezOptions,
 ): PolemicaDaVezInitialState => {
-  return utils.game.getDefaultInitialState<PolemicaDaVezInitialState>({
+  return getDefaultInitialState<PolemicaDaVezInitialState>({
     gameId,
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,
     uid,

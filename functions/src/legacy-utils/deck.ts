@@ -1,6 +1,8 @@
 import { shuffle } from 'lodash';
-// Internal
-import utils from './index';
+// Mechanics
+import { getListOfPlayers } from '../mechanics/players';
+// Utils
+import { sliceIntoChunks } from '../utils';
 
 /**
  * Sets up the game by distributing cards to players.
@@ -10,10 +12,10 @@ import utils from './index';
  * @param cardsPerPlayer - The number of cards to distribute per player
  */
 export const setup = <T>(store: PlainObject, players: Players, cards: T[], cardsPerPlayer: number) => {
-  const shuffledSplitDeck = utils.helpers.sliceIntoChunks(cards, cardsPerPlayer);
+  const shuffledSplitDeck = sliceIntoChunks(cards, cardsPerPlayer);
   store.decks = {};
 
-  utils.players.getListOfPlayers(players).forEach((player, index) => {
+  getListOfPlayers(players).forEach((player, index) => {
     player.hand = [];
     store.decks[player.id] = {
       deck: shuffledSplitDeck[index],
@@ -54,8 +56,8 @@ export const draw = (store: PlainObject, players: Players, playerId: UID, quanti
  */
 export const deal = (store: PlainObject, players: Players, quantity = 1, forThesePlayers?: UID[]) => {
   const targetPlayers = forThesePlayers
-    ? utils.players.getListOfPlayers(players).filter((player) => forThesePlayers.includes(player.id))
-    : utils.players.getListOfPlayers(players);
+    ? getListOfPlayers(players).filter((player) => forThesePlayers.includes(player.id))
+    : getListOfPlayers(players);
 
   targetPlayers.forEach((player) => {
     draw(store, players, player.id, quantity);

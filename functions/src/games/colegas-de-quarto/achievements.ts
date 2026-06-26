@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Colegas de Quarto game
  */
-const achievements = achievementBuilder('COLEGAS_DE_QUARTO')
+const achievements = achievementBuilder(GAME_KEYS.COLEGAS_DE_QUARTO)
   .counter('guessed', {
     doc: 'Number of clues guessed by other players',
     most: 'BEST_CLUES',

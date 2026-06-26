@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
 import { getCategories } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: OndaTelepaticaOptions,
 ): OndaTelepaticaInitialState => {
-  return utils.game.getDefaultInitialState<OndaTelepaticaInitialState>({
+  return getDefaultInitialState<OndaTelepaticaInitialState>({
     gameId,
     gameName: GAME_NAMES.ONDA_TELEPATICA,
     uid,

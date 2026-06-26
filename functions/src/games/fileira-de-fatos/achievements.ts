@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Fileira de Fatos game
  */
-const achievements = achievementBuilder('FILEIRA_DE_FATOS')
+const achievements = achievementBuilder(GAME_KEYS.FILEIRA_DE_FATOS)
   .counter('first', {
     doc: 'Correct guesses on the first position',
     most: 'MOST_FIRST_POSITIONS',

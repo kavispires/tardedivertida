@@ -1,8 +1,13 @@
-// Constantes
+// Constants
 import { DIGITS, INSTRUMENTOS_CODIFICADOS_PHASES, TOTAL_ROUNDS } from './constants';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
+
+// Constantes
+
 import { sampleSize } from 'lodash';
 // Helpers
-import utils from '../../utils_LEGACY';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -22,7 +27,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return GAME_OVER;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -40,7 +45,7 @@ export const buildCodeFragment = () => {
 export const buildCode = (players: Players, playerCount: number): string[] => {
   const arrayOrder = new Array(playerCount);
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     arrayOrder[player.order] = player.fragment;
   });
 

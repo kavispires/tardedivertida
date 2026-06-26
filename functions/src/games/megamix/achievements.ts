@@ -1,4 +1,5 @@
 // Constants
+import { GAME_KEYS } from '../../constants/games';
 import { SIDES } from './constants';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
@@ -11,7 +12,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Megamix game
  */
-const megamixAchievements = achievementBuilder('MEGAMIX')
+const megamixAchievements = achievementBuilder(GAME_KEYS.MEGAMIX)
   .counter('solitaryWinner', {
     doc: 'Times player was alone in VIP area',
     most: 'SOLITARY_VIP',

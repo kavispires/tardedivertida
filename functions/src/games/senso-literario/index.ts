@@ -15,8 +15,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitPattern } from './actions';
 import { determineNextPhase } from './helpers';
@@ -41,7 +41,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): SensoLiterarioInitialState => {
-  return utils.game.getDefaultInitialState<SensoLiterarioInitialState>({
+  return getDefaultInitialState<SensoLiterarioInitialState>({
     gameId,
     gameName: GAME_NAMES.SENSO_LITERARIO,
     uid,

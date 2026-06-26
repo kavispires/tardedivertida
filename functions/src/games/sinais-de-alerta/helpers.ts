@@ -9,8 +9,10 @@ import type {
 } from './types';
 // Constants
 import { SINAIS_DE_ALERTA_PHASES, TABLE_CARDS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -32,7 +34,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : DRAWING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -41,7 +43,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
  * @param store - The Firebase store data
  */
 export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) => {
-  const playersArray = utils.players.getListOfPlayers(players);
+  const playersArray = getListOfPlayers(players);
 
   const cards: Dictionary<TextCardData> = {};
 
@@ -99,7 +101,7 @@ export const evaluateAnswers = (
 ) => {
   const { language } = store;
   // Gained Points: [guesses, drawing]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   // Guess: [playerId]: [descriptorId, subjectId]
   const gallery: Dictionary<GalleryEntry> = {};
@@ -131,7 +133,7 @@ export const evaluateAnswers = (
     };
   });
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     // Achievement: choseRandomly
     if (player.choseRandomly) {
       increaseAchievement(store.achievements, player.id, 'chooseForMe', 1);
@@ -209,7 +211,7 @@ export const evaluateAnswers = (
 
   const pastDrawings = Object.values(finalGallery).map((entry) => ({
     ...entry,
-    accuracy: gallery[entry.playerId].accuracy / ((utils.players.getPlayerCount(players) - 1) * 2),
+    accuracy: gallery[entry.playerId].accuracy / ((getPlayerCount(players) - 1) * 2),
   }));
 
   return {

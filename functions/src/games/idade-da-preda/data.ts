@@ -4,8 +4,8 @@ import type { ItemData } from '../../types/tdr';
 import type { IdadeDaPredaOptions, ResourceData } from './types';
 // Constants
 import { AGE_1_ITEMS_COUNT, ITEMS_PER_PLAYER_PER_AGE, NEW_AGES_COUNT, PLAYER_COUNTS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems } from '../../mechanics/resources';
 
 /**
  * Example data structure for game data
@@ -17,11 +17,11 @@ export const getResourceData = async (options: IdadeDaPredaOptions): Promise<Res
   const allowNSFW = !!options.nsfw;
 
   // Get items per player
-  const allItems = await utils.tdr.getItems(undefined, {
+  const allItems = await getItems(undefined, {
     allowNSFW,
     decks: ['age1', 'age2', 'age3', 'age4', 'age5'],
 
-    // cleanUp: utils.tdr.itemUtils.cleanupDecks,
+    // cleanUp: itemUtils.cleanupDecks,
   });
 
   const allAge1: ItemData[] = [];

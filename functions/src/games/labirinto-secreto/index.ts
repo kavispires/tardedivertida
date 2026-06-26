@@ -21,8 +21,9 @@ import {
   triggerSetupPhase,
   triggerWaitPhase,
 } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitMap, handleSubmitPath } from './actions';
 import { getData } from './data';
@@ -50,7 +51,7 @@ export const getInitialState = (
   version: string,
   options: LabirintoSecretoGameOptions,
 ): LabirintoSecretoInitialState => {
-  return utils.game.getDefaultInitialState<LabirintoSecretoInitialState>({
+  return getDefaultInitialState<LabirintoSecretoInitialState>({
     gameId,
     gameName: GAME_NAMES.LABIRINTO_SECRETO,
     uid,
@@ -100,7 +101,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const data = await getData(store.language, utils.players.getPlayerCount(players), store?.options ?? {});
+    const data = await getData(store.language, getPlayerCount(players), store?.options ?? {});
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

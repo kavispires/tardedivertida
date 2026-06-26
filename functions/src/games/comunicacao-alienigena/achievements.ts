@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Comunicacao Alienigena game
  */
-const achievements = achievementBuilder('COMUNICACAO_ALIENIGENA')
+const achievements = achievementBuilder(GAME_KEYS.COMUNICACAO_ALIENIGENA)
   .counter('objectInquiries', {
     doc: 'How many objects were inquired by the player',
     most: 'MOST_QUESTIONED_OBJECTS',

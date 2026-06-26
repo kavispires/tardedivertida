@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitActor, handleSubmitGenre } from './actions';
 import { getData } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: TesteDeElencoOptions,
 ): TesteDeElencoInitialState => {
-  return utils.game.getDefaultInitialState<TesteDeElencoInitialState>({
+  return getDefaultInitialState<TesteDeElencoInitialState>({
     gameId,
     gameName: GAME_NAMES.TESTE_DE_ELENCO,
     uid,

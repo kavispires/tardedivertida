@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Labirinto Secreto game
  */
-const achievements = achievementBuilder('LABIRINTO_SECRETO')
+const achievements = achievementBuilder(GAME_KEYS.LABIRINTO_SECRETO)
   .counter('adjectives', {
     doc: 'Total number of clue cards used',
     most: 'MOST_CARDS',

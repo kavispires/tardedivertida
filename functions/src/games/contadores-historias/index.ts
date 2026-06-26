@@ -21,8 +21,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
 import { getData } from './data';
@@ -51,7 +52,7 @@ export const getInitialState = (
   version: string,
   options: ContadoresHistoriasOptions,
 ): ContadoresHistoriasInitialState => {
-  return utils.game.getDefaultInitialState<ContadoresHistoriasInitialState>({
+  return getDefaultInitialState<ContadoresHistoriasInitialState>({
     gameId,
     gameName: GAME_NAMES.CONTADORES_HISTORIAS,
     uid,
@@ -99,7 +100,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getData(utils.players.getPlayerCount(players));
+    const additionalData = await getData(getPlayerCount(players));
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await saveGame(sessionRef, newPhase);

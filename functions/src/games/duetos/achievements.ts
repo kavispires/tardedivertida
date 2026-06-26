@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Duetos game
  */
-const achievements = achievementBuilder('DUETOS')
+const achievements = achievementBuilder(GAME_KEYS.DUETOS)
   .counter('alone', {
     doc: 'Times having no matches with any player',
     most: 'MOST_ALONE',

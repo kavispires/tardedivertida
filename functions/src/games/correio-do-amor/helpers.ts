@@ -4,8 +4,8 @@ import type { FestaJuninaCard } from './types';
 // Constants
 import { SEPARATOR } from '../../constants/general';
 import { CORREIO_DO_AMOR_PHASES, DECK_INFO_BY_PLAYER_COUNT } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -23,7 +23,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : CARD_PLAY;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 const buildCardUniqueIds = (deck: UID[]) => {

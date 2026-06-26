@@ -7,10 +7,20 @@ import { GAME_NAMES } from '../../constants/games';
 import { DESCRIPTORS_PER_PLAYER, MEDIDAS_NAO_EXATAS_PHASES, WORDS_PER_PLAYER } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayersIds,
+  removePropertiesFromPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
-import { makeArray } from '../../utils_LEGACY/helpers';
+import { makeArray } from '../../utils';
 // Internal
+import { dealItems } from '../../legacy-utils/legacy';
 import { calculateAchievements, setupAchievements } from './achievements';
 import { determineResults } from './helpers';
 
@@ -25,9 +35,9 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  const { playerIds: turnOrder, gameOrder } = utils.turnOrder.create(players, 4);
+  const { playerIds: turnOrder, gameOrder } = turnOrderUtils.create(players, 4);
 
   const wordsDeck = sampleSize(additionalData.allWords, WORDS_PER_PLAYER * gameOrder.length);
   const descriptorsDeck = sampleSize(
@@ -73,17 +83,17 @@ export const prepareMetricsBuildingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.removePropertiesFromPlayers(players, ['guesses']);
+  removePropertiesFromPlayers(players, ['guesses']);
 
-  const round = utils.game.increaseRound(state.round);
-  const presenterId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
+  const round = increaseRound(state.round);
+  const presenterId = turnOrderUtils.getActivePlayerId(state.turnOrder, round.current);
 
   // Unready presenter only
-  utils.players.readyPlayers(players, presenterId);
+  setPlayersReadyState(players, true, { excludeIds: [presenterId] });
 
   const wordsDeck: TextCardData[] = store.wordsDeck;
   // Get active words and other in the pool
-  const roundCards = utils.game.dealItems(wordsDeck, WORDS_PER_PLAYER);
+  const roundCards = dealItems(wordsDeck, WORDS_PER_PLAYER);
   const wordsDict = keyBy(roundCards, 'id');
   const roundCardsIds = Object.keys(wordsDict);
 
@@ -93,11 +103,11 @@ export const prepareMetricsBuildingPhase = async (
   // Build descriptions
   const descriptorsDeck: TextCardData[] = store.descriptorsDeck || [];
   const metricsDescriptors = {
-    0: utils.game.dealItems(descriptorsDeck, 2),
-    1: utils.game.dealItems(descriptorsDeck, 2),
-    2: utils.game.dealItems(descriptorsDeck, 2),
-    3: utils.game.dealItems(descriptorsDeck, 2),
-    4: utils.game.dealItems(descriptorsDeck, 2),
+    0: dealItems(descriptorsDeck, 2),
+    1: dealItems(descriptorsDeck, 2),
+    2: dealItems(descriptorsDeck, 2),
+    3: dealItems(descriptorsDeck, 2),
+    4: dealItems(descriptorsDeck, 2),
   };
 
   // Save
@@ -135,7 +145,7 @@ export const prepareGuessingPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready everyone
   const presenterId: UID = state.presenterId;
-  utils.players.unReadyPlayers(players, presenterId);
+  setPlayersReadyState(players, false, { excludeIds: [presenterId] });
 
   // Remove any words in the wordsDict that are not in the pool
   const poolIds: UID[] = state.poolIds;
@@ -172,7 +182,7 @@ export const prepareResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const { result, ranking } = determineResults(
     players,
@@ -220,15 +230,15 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.MEDIDAS_NAO_EXATAS,
     gameId,
     startedAt: store.createdAt,

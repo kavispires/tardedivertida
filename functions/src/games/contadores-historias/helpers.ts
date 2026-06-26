@@ -4,8 +4,10 @@ import type { ContadoresHistoriasOptions, FirebaseStoreData, Table } from './typ
 // Constants
 import { NPC, DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -25,7 +27,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : STORY;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -60,7 +62,7 @@ export const getTableCards = (tableDeck: UID[], deckIndex: number, quantity: num
 export const buildTable = (players: Players, tableCards: UID[], storyteller: UID): Table => {
   const table: Table = [];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     table.push({
       cardId: player.cardId,
       playerId: player.id,
@@ -137,11 +139,11 @@ export const getRanking = (
   store: FirebaseStoreData,
 ): NewScore[] => {
   // Gained points: [points depending on outcome, votes on card]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   const solutionEntry = table.find((entry) => entry.isSolution);
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const playerCard = table.find((entry) => entry.playerId === player.id);
     // Calculate additional points when not storyteller
     if (player.id !== storytellerId) {
@@ -198,12 +200,12 @@ export const scoreRound = (players: Players, table: Table, storyteller: UID, sto
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);
 
   // Add player votes to table
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const cardIndex = cardIndexDictionary[player.vote];
     table[cardIndex].votes.push(player.id);
   });
 
-  const outcome = determineOutcome(table, solutionIndex, utils.players.getPlayerCount(players));
+  const outcome = determineOutcome(table, solutionIndex, getPlayerCount(players));
 
   const ranking = getRanking(table, players, outcome, storyteller, store);
 
@@ -228,12 +230,10 @@ export const determineGameOver = (
   round: Round,
 ): boolean => {
   if (!options.fixedRounds) {
-    return utils.players
-      .getListOfPlayers(players)
-      .some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+    return getListOfPlayers(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }

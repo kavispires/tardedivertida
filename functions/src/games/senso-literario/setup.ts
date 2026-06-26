@@ -5,8 +5,16 @@ import { GAME_NAMES } from '../../constants/games';
 import { SENSO_LITERARIO_PHASES, TOTAL_ROUNDS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildDeck, buildRanking, buildSequence } from './helpers';
@@ -24,7 +32,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck();
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   const round: Round = {
     current: 0,
@@ -60,11 +68,11 @@ export const preparePatternCreationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['patternId']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['patternId']);
 
   // Build sequence
   const sequence = buildSequence(store.deck, round.current);
@@ -95,7 +103,7 @@ export const prepareResultPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const { gallery, ranking } = buildRanking(store, players, state.sequence);
 
@@ -129,13 +137,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.SENSO_LITERARIO,
     gameId,
     startedAt: store.createdAt,
@@ -145,7 +153,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   // Save
   return {

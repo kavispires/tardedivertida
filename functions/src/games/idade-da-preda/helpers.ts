@@ -3,8 +3,10 @@ import { orderBy, shuffle } from 'lodash';
 import type { ConceptData, FirebaseStoreData, GalleryEntry, NewNameEntry } from './types';
 // Constants
 import { IDADE_DA_PREDA_PHASES, SOUNDS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -31,7 +33,7 @@ export const determineNextPhase = (
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CREATING_CONCEPTS;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -42,7 +44,7 @@ export const determineNextPhase = (
 export const gatherConcepts = (players: Players, store: FirebaseStoreData): ConceptData[] => {
   const allConcepts: ConceptData[] = [];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.proposedConcepts) {
       allConcepts.push(...player.proposedConcepts);
     }
@@ -91,10 +93,10 @@ export const buildGalleryAndRanking = (
   store: FirebaseStoreData,
 ) => {
   // Gained Points [correct guesses, guesses on your drawing]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
   const gallery: GalleryEntry[] = [];
 
-  const playerCount = utils.players.getListOfPlayers(players).length;
+  const playerCount = getListOfPlayers(players).length;
 
   newNames.forEach((nameEntry) => {
     const creatorId = nameEntry.playerId;
@@ -108,7 +110,7 @@ export const buildGalleryAndRanking = (
       guesses: {},
     };
 
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       if (!creatorId || creatorId === player.id) return;
 
       // Calculate player points

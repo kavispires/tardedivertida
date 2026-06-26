@@ -3,8 +3,9 @@ import { shuffle } from 'lodash';
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Constants
 import { ESPIAO_ENTRE_NOS_PHASES, GAME_DURATION, OUTCOMES, SPY } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and outcome
@@ -43,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return ASSESSMENT;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -74,7 +75,7 @@ export const createRolesPool = (roles: string[], playerCount: number): string[] 
 export const distributeRoles = (roles: string[], locationName: string, players: Players) => {
   let currentSpyId = '';
 
-  utils.players.getListOfPlayers(players).forEach((player, index) => {
+  getListOfPlayers(players).forEach((player, index) => {
     const playerRole = roles[index];
     if (playerRole === SPY) {
       currentSpyId = player.id;
@@ -137,9 +138,8 @@ export const checkOutcome = (
   }
 
   if (state.phase === ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT) {
-    const playersWhoVotedYes = utils.players.getListOfPlayers(players).filter((player) => player.vote);
-    const isVotingSuccessful =
-      utils.players.getPlayerCount(players) - 1 === Object.keys(playersWhoVotedYes).length;
+    const playersWhoVotedYes = getListOfPlayers(players).filter((player) => player.vote);
+    const isVotingSuccessful = getPlayerCount(players) - 1 === Object.keys(playersWhoVotedYes).length;
 
     // Voting passes
     if (isVotingSuccessful) {
@@ -181,7 +181,7 @@ export const calculateScore = (
   accuserId: UID,
 ) => {
   // Calculate Points
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     // If spy was successful, gets 4 points (if he guessed, otherwise 2 for not being found)
     if (isSpyWin && currentSpyId === player.id) {
       if (isSpyGuess) {

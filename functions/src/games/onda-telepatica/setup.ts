@@ -7,8 +7,17 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { CATEGORIES_PER_ROUND, MAX_ROUNDS, ONDA_TELEPATICA_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayersIds,
+  addPropertiesToPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
@@ -27,7 +36,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder, playerIds } = utils.turnOrder.create(
+  const { gameOrder, playerIds } = turnOrderUtils.create(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined,
   );
@@ -36,7 +45,7 @@ export const prepareSetupPhase = async (
   const deck = buildDeck(additionalData);
 
   // Setup achievements
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -72,9 +81,9 @@ export const prepareDialCluePhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const psychicId = utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current + 1);
+  const psychicId = turnOrderUtils.getActivePlayerId(store.gameOrder, state.round.current + 1);
 
-  utils.players.readyPlayers(players, psychicId);
+  setPlayersReadyState(players, true, { excludeIds: [psychicId] });
 
   // Get categories
   const currentCategories = Array(CATEGORIES_PER_ROUND)
@@ -89,7 +98,7 @@ export const prepareDialCluePhase = async (
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
         psychicId,
         currentCategories,
@@ -111,10 +120,10 @@ export const prepareGuessPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Modify player
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     guess: 0,
   });
 
@@ -159,7 +168,7 @@ export const prepareRevealPhase = async (
   // Gather votes
   const ranking = buildRanking(players, state.currentCategory, state.psychicId, store);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -189,14 +198,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   // Get achievements
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.ONDA_TELEPATICA,
     gameId,
     startedAt: store.createdAt,
@@ -210,7 +219,7 @@ export const prepareGameOverPhase = async (
 
   await saveData(pastCategories);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

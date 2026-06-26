@@ -1,5 +1,5 @@
-// Utils
-import utils from '../utils_LEGACY';
+// Mechanics
+import { getListOfPlayersIds } from '../mechanics/players';
 // Internal
 import { achievementBuilder } from './achievements';
 
@@ -62,7 +62,7 @@ export const { constants, setupAchievements, increaseAchievement, calculateAchie
  * 1. SETUP PHASE (setup.ts - prepareSetupPhase)
  */
 function exampleSetupPhase(players: Players) {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
   // Returns: {
   //   player1: { stops: 0, first: 0, cells: 0, autoReject: 0 },
   //   player2: { stops: 0, first: 0, cells: 0, autoReject: 0 },

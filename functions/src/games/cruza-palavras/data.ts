@@ -7,8 +7,12 @@ import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { fetchResource } from '../../services/resource';
+// Resources
+import { getContenders, getItems, getSingleWords, saveUsedSingleWords } from '../../mechanics/resources';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary } from '../../utils';
 
 /**
  * Get words resource based on the game's language
@@ -27,12 +31,12 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   }
 
   if (options?.gridType === 'imageCards') {
-    const deck = await utils.imageCards.getImageCards(quantityNeeded);
+    const deck = await getImageCards(quantityNeeded);
     return { deck: deck.map((entry) => ({ id: entry, text: entry, type: 'image' })) };
   }
 
   if (options?.gridType === 'contenders') {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, [], quantityNeeded);
+    const contenders = await getContenders(language, allowNSFW, [], quantityNeeded);
 
     const deck = contenders.map((entry) => {
       return {
@@ -46,7 +50,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   }
 
   if (options?.gridType === 'items') {
-    const items = await utils.tdr.getItems(quantityNeeded, {
+    const items = await getItems(quantityNeeded, {
       allowNSFW,
       decks: ['alien', 'dream', 'manufactured', 'thing'],
     });
@@ -62,7 +66,7 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
     return { deck };
   }
 
-  const deck = await utils.tdr.getSingleWords(language, quantityNeeded);
+  const deck = await getSingleWords(language, quantityNeeded);
 
   return { deck };
 };
@@ -76,8 +80,8 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
 export const saveData = async (language: Language, pastClues: PastClues, isContenderGrid: boolean) => {
   // Save used cards
   if (!isContenderGrid) {
-    const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(pastClues));
-    await utils.tdr.saveUsedSingleWords(usedIds);
+    const usedIds = buildBooleanDictionary(Object.keys(pastClues));
+    await saveUsedSingleWords(usedIds);
   }
 
   // Save card clues data

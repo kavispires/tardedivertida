@@ -6,8 +6,17 @@ import { GAME_NAMES } from '../../constants/games';
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES, TOTAL_ACTORS, TOTAL_TRAITS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { buildMovie, determineCast, getNextRoleId } from './helpers';
@@ -29,9 +38,9 @@ export const prepareSetupPhase = async (
   // Get character traits
   const traits = sampleSize(additionalData.allCards, TOTAL_TRAITS).map((trait) => trait.answer);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  utils.players.addPropertiesToPlayers(players, { votes: [] });
+  addPropertiesToPlayers(players, { votes: [] });
 
   // Build movie title
   const movieTitles = additionalData.moviesSamples.reduce((acc: string[], movie, index) => {
@@ -86,7 +95,7 @@ export const prepareSetupPhase = async (
   }));
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -119,15 +128,15 @@ export const prepareActorSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   let movie: Movie = state.movie;
   if (!movie) {
     movie = buildMovie(players, store, state.movieProps);
-    utils.players.removePropertiesFromPlayers(players, ['genre', 'selectedProps', 'movieTitle']);
+    removePropertiesFromPlayers(players, ['genre', 'selectedProps', 'movieTitle']);
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['actorId']);
+  removePropertiesFromPlayers(players, ['actorId']);
 
   // Determine active role
   // 1. If none, pick the first one
@@ -144,7 +153,7 @@ export const prepareActorSelectionPhase = async (
       },
       state: {
         phase: TESTE_DE_ELENCO_PHASES.ACTOR_SELECTION,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
         movie,
         activeRoleId,
@@ -167,7 +176,7 @@ export const prepareResultPhase = async (
 ): Promise<SaveGamePayload> => {
   const { outcome, ranking } = determineCast(players, state, store);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -201,9 +210,9 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const unique = uniq(player.votes).length;
     increaseAchievement(store.achievements, player.id, 'actors', unique);
   });
@@ -212,7 +221,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.TESTE_DE_ELENCO,
     gameId,
     startedAt: store.createdAt,

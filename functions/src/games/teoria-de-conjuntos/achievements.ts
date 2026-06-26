@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Teoria De Conjuntos game
  */
-const teoriaDeConjuntosAchievements = achievementBuilder('TEORIA_DE_CONJUNTOS')
+const teoriaDeConjuntosAchievements = achievementBuilder(GAME_KEYS.TEORIA_DE_CONJUNTOS)
   .counter('attributeCircle', {
     doc: 'items placed in the attribute circle',
     most: 'MOST_ATTRIBUTE_CIRCLE',

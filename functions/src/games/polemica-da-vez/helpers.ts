@@ -10,8 +10,10 @@ import {
   SCORE_GOAL,
   TOPICS_PER_ROUND,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -31,7 +33,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
       : TOPIC_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -68,7 +70,7 @@ export const buildDeck = (allTweets: CustomTweet[]): Decks => {
  * @param store - The Firebase store data for tracking achievements
  */
 export const countLikes = (players: Players, store: FirebaseStoreData): number => {
-  return utils.players.getListOfPlayers(players).reduce((acc, player) => {
+  return getListOfPlayers(players).reduce((acc, player) => {
     if (player.reaction) {
       increaseAchievement(store.achievement, player.id, 'likes', 1);
     }
@@ -83,11 +85,11 @@ export const countLikes = (players: Players, store: FirebaseStoreData): number =
  * @returns
  */
 export const getRanking = (players: Players, totalLikes: number, store: FirebaseStoreData) => {
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   const oneOffValues = [totalLikes - 1, totalLikes + 1];
 
-  utils.players.getListOfPlayers(players, true).forEach((player) => {
+  getListOfPlayers(players, true).forEach((player) => {
     if (player.likesGuess === totalLikes) {
       scores.add(player.id, 3, 0);
       increaseAchievement(store.achievement, player.id, 'exactGuesses', 1);
@@ -116,10 +118,10 @@ export const getRanking = (players: Players, totalLikes: number, store: Firebase
  */
 export const determineGameOver = (players: Players, options: PolemicaDaVezOptions, round: Round) => {
   if (!options.fixedRounds) {
-    return utils.players.getListOfPlayers(players).some((player) => player.score >= SCORE_GOAL);
+    return getListOfPlayers(players).some((player) => player.score >= SCORE_GOAL);
   }
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }

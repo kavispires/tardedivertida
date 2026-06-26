@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Metalinguagem game
  */
-const metalinguagemAchievements = achievementBuilder('METALINGUAGEM')
+const metalinguagemAchievements = achievementBuilder(GAME_KEYS.METALINGUAGEM)
   .counter('twoCorrect', {
     doc: 'Number of times player guessed both words correctly',
     most: 'MOST_TWO_CORRECT_GUESSES',

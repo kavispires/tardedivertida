@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Quem Sou Eu game
  */
-const quemSouEuAchievements = achievementBuilder('QUEM_SOU_EU')
+const quemSouEuAchievements = achievementBuilder(GAME_KEYS.QUEM_SOU_EU)
   .counter('glyphs', {
     doc: 'how many glyphs the player has used',
     most: 'MOST_GLYPHS',

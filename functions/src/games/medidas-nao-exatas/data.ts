@@ -5,8 +5,8 @@ import type { ResourceData } from './types';
 import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getSingleWords } from '../../mechanics/resources';
 
 /**
  * Get resource data for the game
@@ -15,7 +15,7 @@ import utils from '../../utils_LEGACY';
  */
 export const getResourceData = async (language: Language): Promise<ResourceData> => {
   // Text cards to make the pool
-  const allWords = await utils.tdr.getSingleWords(language);
+  const allWords = await getSingleWords(language);
   // Descriptors to make the metrics
   const allDescriptors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.DESCRIPTORS, language);
 

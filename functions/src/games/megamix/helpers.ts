@@ -21,8 +21,12 @@ import {
   TOTAL_ROUNDS,
   WINNING_CONDITION,
 } from './constants';
+// Mechanics
+import { getListOfPlayers, getListOfPlayersIds, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray, sliceIntoChunks, stringRemoveAccents } from '../../utils';
 // Internal
 import { buildDecks } from '../na-rua-do-medo/helpers';
 import { increaseAchievement, pushAchievement } from './achievements';
@@ -40,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TRACK;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -57,7 +61,7 @@ export const distributeSeeds = (
 ) => {
   const individualSeeds: any[] = [];
   const groupSeeds: any[] = [];
-  const playersList = shuffle(utils.players.getListOfPlayers(players));
+  const playersList = shuffle(getListOfPlayers(players));
   const playerCount = playersList.length;
 
   tracks.forEach((track) => {
@@ -202,7 +206,7 @@ export const distributeSeeds = (
     let customQuestionCount = playerCount;
     let customSeedIndex = 0;
 
-    const customIndividualTracks: any[] = utils.helpers.makeArray(playerCount).map(() => {
+    const customIndividualTracks: any[] = makeArray(playerCount).map(() => {
       return cloneDeep({
         type: 'party',
         cards: [],
@@ -264,7 +268,7 @@ export const distributeSeeds = (
     player.seeds.push(seed);
   });
 
-  const clubbers = utils.helpers.sliceIntoChunks(
+  const clubbers = sliceIntoChunks(
     clubberIds,
     Math.min(Math.floor(clubberIds.length / playersList.length), 5),
   );
@@ -404,7 +408,7 @@ export const handleSeedingData = (
     }
   });
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   // Build party tracks
   if (partyMode) {
     const partyTracks = buildPartyOptions(players, language);
@@ -491,7 +495,7 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTileData[]) => {
 };
 
 export const getMostVotes = (players: Players, property = 'cardId'): MostScoring => {
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
   // Count all votes
   const counts: Record<string, number> = {};
 
@@ -541,17 +545,17 @@ export const getMostVotes = (players: Players, property = 'cardId'): MostScoring
 
 export const getRanking = (players: Players, scoring: MostScoring, currentRound: number): NewScore[] => {
   // Gained points: [already on Winning team, joining Winning team]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   // Full on tie, nobody scores, everybody is kicked out
   if (scoring.scoringType === 'DRAW') {
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.team.push(SIDES.LOSER);
     });
     return scores.rank(players);
   }
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const previousTeam = player.team[currentRound - 1];
     if (scoring.scoringType === 'TIE') {
       // Is on the new winning team
@@ -620,7 +624,7 @@ export const getCandidatePersonality = (cards: DatingCandidateCardData[]) => {
 
 export const buildContadoresHistoriasOptions = (players: Players) => {
   let prompt = '';
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.data.prompt) {
       prompt = player.data.prompt;
     }
@@ -631,9 +635,9 @@ export const buildContadoresHistoriasOptions = (players: Players) => {
 export const buildMenteColetivaOptions = (players: Players) => {
   const answers: string[] = [];
   const sanitizedAnswers: string[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     (player.data.answers ?? []).forEach((answer: string) => {
-      const cleanedUpWork = utils.helpers.stringRemoveAccents(answer);
+      const cleanedUpWork = stringRemoveAccents(answer);
       const similar = sanitizedAnswers.some((a) => {
         const similarity = stringSimilarity.compareTwoStrings(a, cleanedUpWork);
         return similarity >= 0.75;
@@ -653,9 +657,8 @@ export const buildMenteColetivaOptions = (players: Players) => {
  * @param players
  */
 const buildPolemicaDaVezOptions = (players: Players) => {
-  const playerCount = utils.players.getPlayerCount(players);
-  const totalLikes = utils.players
-    .getListOfPlayers(players)
+  const playerCount = getPlayerCount(players);
+  const totalLikes = getListOfPlayers(players)
     .map((player) => player.data.likeTweet)
     .reduce((acc: number, like) => {
       if (like) {
@@ -665,15 +668,13 @@ const buildPolemicaDaVezOptions = (players: Players) => {
     }, 0);
   const correctPercentage = Math.round((totalLikes / playerCount) * 100);
 
-  const possibleLikes = utils.helpers
-    .makeArray(playerCount, 1)
-    .map((v) => Math.round((v * 100) / playerCount));
+  const possibleLikes = makeArray(playerCount, 1).map((v) => Math.round((v * 100) / playerCount));
 
   return orderBy([...new Set([0, correctPercentage, 100, ...sampleSize(possibleLikes, 3)])]);
 };
 
 const buildRetratoFaladoOptions = (players: Players, track: Track) => {
-  return utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
+  return getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
     if (player.data[track.data.card.id]) {
       acc.push({
         playerId: player.id,
@@ -685,7 +686,7 @@ const buildRetratoFaladoOptions = (players: Players, track: Track) => {
 };
 
 const buildOndaTelepaticaOptions = (players: Players) => {
-  const player = utils.players.getListOfPlayers(players).find((p) => p.data.wave);
+  const player = getListOfPlayers(players).find((p) => p.data.wave);
 
   return {
     playerId: player?.id ?? 'Bug!',
@@ -696,7 +697,7 @@ const buildOndaTelepaticaOptions = (players: Players) => {
 const buildUeSoIssoOptions = (players: Players) => {
   // Choose one card to be the card result
   const clues: string[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.data.singleClue) {
       clues.push(player.data.singleClue.trim().toLowerCase());
     }
@@ -717,7 +718,7 @@ const buildArteRuimCardOptions = (players: Players, track: Track) => {
     drawing: '[]',
     playerId: 'Bug!',
   };
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     cardIds.forEach((cardId) => {
       if (player.data[cardId]) {
         drawing.drawing = player.data[cardId];
@@ -739,7 +740,7 @@ const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
   const cardIds: UID[] = track.data.cards.map((card: TextCardData) => card.id);
   const drawings: PlainObject[] = [];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.keys(player.data).forEach((dataKey) => {
       if (cardIds.includes(dataKey)) {
         drawings.push({
@@ -763,7 +764,7 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
   const treeIds: UID[] = track.data.trees.map((tree: TextCardData) => tree.id);
 
   const clues: PlainObject[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.keys(player.data).forEach((dataKey) => {
       if (treeIds.includes(dataKey)) {
         clues[treeIds.indexOf(dataKey)] = {
@@ -808,7 +809,7 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
 const buildPartyOptions = (players: Players, language: Language) => {
   const options: Record<string, string[]> = {};
   const whoOptions: { text: string; playerId: string }[] = [];
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   listOfPlayers.forEach((player) => {
     Object.entries<string>(player.data.partyAnswers).forEach(([key, answer]) => {
@@ -816,11 +817,7 @@ const buildPartyOptions = (players: Players, language: Language) => {
         if (options[key] === undefined) {
           options[key] = [];
         }
-        if (
-          !options[key].some(
-            (a) => utils.helpers.stringRemoveAccents(a) === utils.helpers.stringRemoveAccents(answer),
-          )
-        ) {
+        if (!options[key].some((a) => stringRemoveAccents(a) === stringRemoveAccents(answer))) {
           options[key].push(answer);
         }
       } else {
@@ -845,7 +842,7 @@ const buildPartyOptions = (players: Players, language: Language) => {
           options: uniq(
             shuffle([
               option.playerId,
-              ...sampleSize(utils.players.getListOfPlayersIds(players, false, [option.playerId]), 2),
+              ...sampleSize(getListOfPlayersIds(players, false, [option.playerId]), 2),
             ]),
           ),
         },
@@ -960,8 +957,8 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
   return {
     scenarios: shuffle(scenarios),
     home: [sample(decks.horrorDeck), ...sampleSize([...decks.candyDeck, sample(decks.jackpotDeck)], 2)],
-    costumes: sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
-    kids: sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
+    costumes: sampleSize(makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), playerCount),
+    kids: sampleSize(makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), 5),
   };
 };
 
@@ -982,7 +979,7 @@ export const getMovieReviews = (reviews: MovieReviewCardData[]) => {
 };
 
 export const calculateAllAchievements = (players: Players, store: FirebaseStoreData) => {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player)
       player.team.forEach((team: string, index: number) => {
         // Longest VIP streak

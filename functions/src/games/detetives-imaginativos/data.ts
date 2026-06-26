@@ -7,8 +7,9 @@ import { HAND_LIMIT } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 
 /**
  * Get image decks card
@@ -18,12 +19,12 @@ import utils from '../../utils_LEGACY';
 export const getData = async (players: Players): Promise<ResourceData> => {
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
-  const { gameOrder, playerCount } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerCount } = turnOrderUtils.create(players, DOUBLE_ROUNDS_THRESHOLD);
   const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
   const minimumNumberOfCards = playerCount * cardsPerPlayer;
 
   // Get image cards
-  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
+  const cards = await getImageCards(minimumNumberOfCards);
 
   return {
     cards,

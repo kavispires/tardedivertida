@@ -8,8 +8,18 @@ import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL, TOTAL_ROUNDS } from './cons
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  addPropertiesToPlayers,
+  cleanupPlayers,
+  getListOfPlayersIds,
+  removePropertiesFromPlayers,
+  setPlayersReadyState,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners, neutralizeBotScores } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { calculateAchievements, setupAchievements } from './achievements';
 import { saveData } from './data';
@@ -37,7 +47,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Build Image Cards deck
   const imageCardsIdsDeck = sampleSize(resourceData.images, TABLE_DECK_TOTAL);
@@ -46,7 +56,7 @@ export const prepareSetupPhase = async (
   // Get word deck
   const wordsDeck = buildDeck(resourceData.allWords);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   const round: Round = {
     current: 0,
@@ -88,14 +98,15 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   // Make sure everybody has 6 cards in hand
-  utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
+  removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
 
   // Determine active player based on current round
-  const scoutId = utils.turnOrder.getActivePlayerId(store.gameOrder, round.current);
-  utils.players.unReadyPlayer(players, scoutId);
+  const scoutId = turnOrderUtils.getActivePlayerId(store.gameOrder, round.current);
+
+  setPlayersReadyState(players, false, { excludeIds: [scoutId] });
 
   // Update table
   const [tableDeck, table] = buildTable(store.tableDeck, state.table ?? [], round.current);
@@ -144,8 +155,8 @@ export const prepareDreamsSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.addPropertiesToPlayers(players, { cards: {} });
+  setPlayersReadyState(players, false);
+  addPropertiesToPlayers(players, { cards: {} });
 
   const word = state.words.find((w: TextCardData) => w.id === store.wordId);
   const leftoverWord = state.words.find((w: TextCardData) => w.id !== store.wordId);
@@ -179,7 +190,7 @@ export const prepareCardPlayPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const playersInMax = getPlayersWithMaxDreams(players);
   const isOnePlayerInNightmare = playersInMax.length === 1;
@@ -220,13 +231,13 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   // Build ranking
   const ranking = buildRanking(players, store, state.playerInNightmareId);
-  utils.players.neutralizeBotScores(players);
+  neutralizeBotScores(players);
 
   // Save to store most matched card
   const mostVotedCards = getMostVotedCards(state.table, state.word);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -258,13 +269,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     gameId,
     startedAt: store.createdAt,
@@ -279,7 +290,7 @@ export const prepareGameOverPhase = async (
 
   await saveData(store.language, bestMatches);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

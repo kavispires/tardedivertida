@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Onda Telepatica game
  */
-const ondaTelepaticaAchievements = achievementBuilder('ONDA_TELEPATICA')
+const ondaTelepaticaAchievements = achievementBuilder(GAME_KEYS.ONDA_TELEPATICA)
   .counter('exact', {
     doc: 'exact',
     most: 'MOST_EXACT',

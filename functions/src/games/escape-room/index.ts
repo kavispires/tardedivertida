@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCard } from './actions';
 import { getEpisode } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: EscapeRoomOptions,
 ): EscapeRoomInitialState => {
-  return utils.game.getDefaultInitialState<EscapeRoomInitialState>({
+  return getDefaultInitialState<EscapeRoomInitialState>({
     gameId,
     gameName: GAME_NAMES.ESCAPE_ROOM,
     uid,

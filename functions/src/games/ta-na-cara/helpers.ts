@@ -2,8 +2,8 @@
 import type { TaNaCaraState } from './types';
 // Constants
 import { TA_NA_CARA_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determine the next phase based on the current one
@@ -34,5 +34,5 @@ export const determineNextPhase = (state: TaNaCaraState): string => {
     return GAME_OVER;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };

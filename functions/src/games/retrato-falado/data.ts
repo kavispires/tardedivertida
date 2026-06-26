@@ -14,7 +14,7 @@ import {
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils_LEGACY';
+import { filterOutByIds } from '../../utils';
 
 /**
  * Get monster cards ids
@@ -27,7 +27,7 @@ export const getMonsterCards = async (): Promise<ResourceData> => {
   const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MONSTERS, {});
 
   // Filter out used cards
-  const availableMonsters = utils.game.filterOutByIds(allMonsters, usedCards);
+  const availableMonsters = filterOutByIds(allMonsters, usedCards);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {

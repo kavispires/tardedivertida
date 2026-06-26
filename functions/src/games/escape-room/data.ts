@@ -2,12 +2,11 @@
 import type { EscapeRoomOptions, ResourceData } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../constants/resources';
+import { MISSIONS_COUNT } from './constants';
 
 //
 // import utils from '../../utils';
 // import * as resourceUtils from '../resource';
-
-import { MISSIONS_COUNT } from './constants';
 
 /**
  * Get game json and build it

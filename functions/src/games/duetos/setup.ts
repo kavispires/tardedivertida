@@ -6,8 +6,16 @@ import { GAME_NAMES } from '../../constants/games';
 import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { savedData } from './data';
@@ -72,7 +80,7 @@ export const prepareSetupPhase = async (
     ...sampleSize(round4, 3),
   ];
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -111,10 +119,10 @@ export const preparePairPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['pairs']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['pairs']);
 
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   const pool = store.deck[round.current];
   const roundType = round.current === 5 ? 'mixed' : pool[0].type;
@@ -146,7 +154,7 @@ export const prepareResultsPhase = async (
 ): Promise<SaveGamePayload> => {
   const { ranking, gallery, leftOut } = calculateResults(players, state.pool, store);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   return {
     update: {
@@ -178,13 +186,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.DUETOS,
     gameId,
     startedAt: store.createdAt,
@@ -199,7 +207,7 @@ export const prepareGameOverPhase = async (
   // Save data (pairs)
   await savedData(gallery ?? []);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

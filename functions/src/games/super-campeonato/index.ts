@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleSubmitBets,
@@ -52,7 +53,7 @@ export const getInitialState = (
   version: string,
   options: SuperCampeonatoOptions,
 ): SuperCampeonatoInitialState => {
-  return utils.game.getDefaultInitialState<SuperCampeonatoInitialState>({
+  return getDefaultInitialState<SuperCampeonatoInitialState>({
     gameId,
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     uid,
@@ -101,11 +102,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(
-      store.language,
-      utils.players.getPlayerCount(players),
-      store.options,
-    );
+    const additionalData = await getResourceData(store.language, getPlayerCount(players), store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

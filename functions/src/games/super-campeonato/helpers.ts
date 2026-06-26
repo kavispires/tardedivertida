@@ -5,8 +5,12 @@ import type { Bracket, BracketTier, FightingContender, ContendersDeck, FirebaseS
 // Constants
 import { NPC } from '../../constants/general';
 import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { getRandomUniqueObjects } from '../../utils';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -46,7 +50,7 @@ export const determineNextPhase = (
     return BETS;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -63,7 +67,7 @@ export const isFinalRound = (round: Round): boolean => {
  * @param players - The collection of players in the game
  */
 export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): FightingContender[] => {
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const neededContendersPerRound =
     playerCount > CONTENDERS_PER_ROUND ? CONTENDERS_PER_ROUND : CONTENDERS_PER_ROUND - playerCount;
 
@@ -73,11 +77,11 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
     return [];
   }
 
-  const usedContenders: ContenderCardData[] = utils.players
-    .getListOfPlayers(players)
-    .flatMap((player) => player.contenders);
+  const usedContenders: ContenderCardData[] = getListOfPlayers(players).flatMap(
+    (player) => player.contenders,
+  );
 
-  const selectedContenders = utils.game.getRandomUniqueObjects<ContenderCardData>(
+  const selectedContenders = getRandomUniqueObjects<ContenderCardData>(
     contendersDeck,
     usedContenders,
     quantityNeeded,
@@ -100,7 +104,7 @@ export const getTableContenders = (contendersDeck: ContendersDeck, players: Play
 export const getMostVotedChallenge = (players: Players, challenges: TextCardData[]) => {
   const votes: Dictionary<number> = {};
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (votes[player.challengeId] === undefined) {
       votes[player.challengeId] = 0;
     }
@@ -141,7 +145,7 @@ const getBracketTier = (position: number): BracketTier => {
 export const makeBrackets = (players: Players, deck: FightingContender[], currentRound: number) => {
   const contenders: FightingContender[] = [];
   // Gather contenders selected by players, remove those from the players cards
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     // Get contender
     const playerContenders: FightingContender[] = player.contenders.filter((c: FightingContender) =>
       player.selectedContenderIds.includes(c.id),
@@ -220,7 +224,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
   const votes: Record<number, Record<number, number>> = {};
 
   // Count votes
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const pVotes: Dictionary<number> = player.votes;
     Object.keys(pVotes).forEach((vote) => {
       const target = Number(vote);
@@ -273,7 +277,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
  */
 export const buildRanking = (players: Players, brackets: Bracket[]) => {
   // Gained points: final, semi, quarter, own contender
-  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0, 0]);
 
   const parsedBrackets = brackets.reduce((acc: Record<string, BracketTier[]>, bracket) => {
     if (acc[bracket.id] === undefined) {
@@ -283,7 +287,7 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
     return acc;
   }, {});
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (parsedBrackets?.[player.bets.final]?.includes('winner')) {
       scores.add(player.id, 5, 0);
     }

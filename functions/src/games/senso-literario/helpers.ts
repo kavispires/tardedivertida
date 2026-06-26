@@ -10,8 +10,10 @@ import {
   POINTS_PER_GUESS,
   SENSO_LITERARIO_PHASES,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -32,7 +34,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return PATTERN_CREATION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -87,7 +89,7 @@ export function buildSequence(deck: UID[], currentRound: number) {
  */
 export function buildRanking(store: FirebaseStoreData, players: Players, sequence: UID[]) {
   // Gained Points: [each part match, bonus for all match]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   const gallery: GalleryEntry = {
     sequence,
@@ -97,7 +99,7 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
   const patternIdDictionary: Dictionary<UID[]> = {};
   const partsDictionary: Dictionary<UID[]> = {};
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const patternId = player.patternId as string;
     if (!patternIdDictionary[patternId]) {
       patternIdDictionary[patternId] = [];
@@ -172,7 +174,7 @@ export function buildRanking(store: FirebaseStoreData, players: Players, sequenc
   });
 
   // Achievement: No full matches
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (!gotMatches[player.id]) {
       increaseAchievement(store.achievements, player.id, 'noMatches', 1);
     }

@@ -15,8 +15,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCard } from './actions';
 import { determineNextPhase } from './helpers';
@@ -41,7 +41,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): NaFilaDoBancoInitialState => {
-  return utils.game.getDefaultInitialState<NaFilaDoBancoInitialState>({
+  return getDefaultInitialState<NaFilaDoBancoInitialState>({
     gameId,
     gameName: GAME_NAMES.NA_FILA_DO_BANCO,
     uid,

@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Testemunha Ocular game
  */
-const testemunhaOcularAchievements = achievementBuilder('TESTEMUNHA_OCULAR')
+const testemunhaOcularAchievements = achievementBuilder(GAME_KEYS.TESTEMUNHA_OCULAR)
   .truthy('witness', {
     doc: 'witness',
     key: 'PLAYED_AS_WITNESS',

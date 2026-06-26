@@ -7,8 +7,8 @@ import { TDR_RESOURCES } from '../../constants/resources';
 import { FEATURES_COUNTS, GAME_COMPLEXITY, GAME_DIFFICULTY, ITEMS_PER_PLAYER } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems, itemUtils } from '../../mechanics/resources';
 
 /**
  * Get object features and items
@@ -28,11 +28,11 @@ export const getData = async (
   const counts = FEATURES_COUNTS[complexity][difficulty];
 
   // Get items per player
-  const selectedItems = await utils.tdr.getItems(playerCount * ITEMS_PER_PLAYER, {
+  const selectedItems = await getItems(playerCount * ITEMS_PER_PLAYER, {
     allowNSFW,
     decks: ['manufactured'],
-    filters: [utils.tdr.itemUtils.onlyWithName(language as Language)],
-    cleanUp: utils.tdr.itemUtils.cleanupDecks,
+    filters: [itemUtils.onlyWithName(language as Language)],
+    cleanUp: itemUtils.cleanupDecks,
   });
 
   // Get full deck of features

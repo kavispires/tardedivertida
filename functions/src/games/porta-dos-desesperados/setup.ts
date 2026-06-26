@@ -17,8 +17,20 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
+import { sliceInParts } from '../../utils';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
@@ -44,14 +56,14 @@ export const prepareSetupPhase = async (
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount: pC } = utils.turnOrder.create(players);
+  const { gameOrder, playerCount: pC } = turnOrderUtils.create(players);
   const playerCount = store.options?.withBots ? pC + 2 : pC;
 
   // Setup achievements
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Get image cards
-  const imageCardsParts = utils.helpers.sliceInParts(data.cards, 3);
+  const imageCardsParts = sliceInParts(data.cards, 3);
   // Use the first as the doors
   const doorsDeck = sampleSize(imageCardsParts[0], DOOR_OPTIONS_PER_ROUND * DOOR_LEVELS);
 
@@ -96,12 +108,12 @@ export const prepareBookPossessionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
-  const possessedId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
+  const round = increaseRound(state.round);
+  const possessedId = turnOrderUtils.getActivePlayerId(state.gameOrder, round.current);
 
   // Unready players
-  utils.players.readyPlayers(players, possessedId);
-  utils.players.removePropertiesFromPlayers(players, ['pageIds', 'doorId']);
+  setPlayersReadyState(players, true, { excludeIds: [possessedId] });
+  removePropertiesFromPlayers(players, ['pageIds', 'doorId']);
 
   const isCorrect = state?.outcome !== OUTCOME.FAIL;
   const currentCorridor = isCorrect ? state.currentCorridor + 1 : state.currentCorridor;
@@ -161,7 +173,7 @@ export const prepareDoorChoicePhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players, state.possessedId);
+  setPlayersReadyState(players, false, { excludeIds: [state.possessedId] });
 
   const selectedPagesIds = state.selectedPagesIds;
 
@@ -185,17 +197,17 @@ export const prepareDoorChoicePhase = async (
     botDoorSelection(players, state.doors, state.answerDoorId);
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['blindDoorId', 'shuffledDoorOrder']);
+  removePropertiesFromPlayers(players, ['blindDoorId', 'shuffledDoorOrder']);
 
   if (state.trap === TRAPS.SHUFFLED_DOORS) {
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.shuffledDoorOrder = shuffle(state.doors);
     });
   }
 
   if (state.trap === TRAPS.BLIND_DOOR) {
     const blindDoorsOrder = shuffle(state.doors);
-    utils.players.getListOfPlayers(players).forEach((player, index) => {
+    getListOfPlayers(players).forEach((player, index) => {
       player.blindDoorId = blindDoorsOrder[index % blindDoorsOrder.length];
     });
   }
@@ -228,7 +240,7 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   const doorPlayerDict: Dictionary<UID[]> = {};
   // Gather all players door choices
-  const visitedDoors = utils.players.getListOfPlayers(players, true).reduce((acc: string[], player) => {
+  const visitedDoors = getListOfPlayers(players, true).reduce((acc: string[], player) => {
     if (player.doorId) {
       if (player.doorId && !acc.includes(player.doorId)) {
         acc.push(player.doorId);
@@ -325,7 +337,7 @@ export const prepareResolutionPhase = async (
       });
     });
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -360,7 +372,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = state.winCondition === WIN_CONDITION.WIN ? utils.players.determineWinners(players) : [];
+  const winners = state.winCondition === WIN_CONDITION.WIN ? determineWinners(players) : [];
   const currentCorridor =
     state.outcome === OUTCOME.SUCCESS ? state.currentCorridor + 1 : state.currentCorridor;
   const winCondition = state.winCondition === WIN_CONDITION.WIN ? WIN_CONDITION.WIN : WIN_CONDITION.LOSE;
@@ -369,7 +381,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.PORTA_DOS_DESESPERADOS,
     gameId,
     startedAt: store.createdAt,
@@ -383,7 +395,7 @@ export const prepareGameOverPhase = async (
 
   const doors = store.finalDoors;
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

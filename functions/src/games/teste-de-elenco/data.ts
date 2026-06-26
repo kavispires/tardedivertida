@@ -6,8 +6,8 @@ import type { ResourceData, TesteDeElencoOptions } from './types';
 import { TDR_RESOURCES } from '../../constants/resources';
 // Services
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems, getSuspects, itemUtils } from '../../mechanics/resources';
 
 /**
  * Get question resource based on the game's language
@@ -22,7 +22,7 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
     language,
   );
   // Get images info
-  const allActors = await utils.tdr.getSuspects({
+  const allActors = await getSuspects({
     styleVariant: options.styleVariant,
     cleanup: true,
     decks: ['adult'],
@@ -34,11 +34,11 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
   // Get full movies deck
   const allMovies = await fetchResource<Dictionary<MovieCardData>>(TDR_RESOURCES.MOVIES, language);
 
-  const items = await utils.tdr.getItems(6, {
+  const items = await getItems(6, {
     allowNSFW: !!options.nsfw,
     decks: ['alien', 'dream', 'manufactured'],
     filters: [(item) => !(item?.decks ?? []).includes('suspect')],
-    cleanUp: utils.tdr.itemUtils.cleanupDecks,
+    cleanUp: itemUtils.cleanupDecks,
   });
 
   return {

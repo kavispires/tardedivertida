@@ -15,9 +15,20 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  removePropertiesFromPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners, Scores } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
+import utils from '../../legacy-utils';
+import { dealItems } from '../../legacy-utils/legacy';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { buildCardsDictFromPlayersHands } from './helpers';
 
@@ -32,13 +43,13 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   const deckDict = keyBy(additionalData.allItems, 'id');
 
   const deckKeys = utils.playerHand.dealDeck(players, Object.keys(deckDict), CARDS_PER_PLAYER, 'hand');
 
-  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
+  const { gameOrder: turnOrder } = turnOrderUtils.create(players);
 
   // Save
   return {
@@ -75,13 +86,13 @@ export const prepareCategoryCreationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Cleanup
-  utils.players.removePropertiesFromPlayers(players, ['playedCardsIds', 'evaluations']);
+  removePropertiesFromPlayers(players, ['playedCardsIds', 'evaluations']);
 
-  const round = utils.game.increaseRound(state.round);
-  const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
+  const round = increaseRound(state.round);
+  const creatorId = turnOrderUtils.getActivePlayerId(state.turnOrder, round.current);
 
   // Unready creator only
-  utils.players.readyPlayers(players, creatorId);
+  setPlayersReadyState(players, true, { excludeIds: [creatorId] });
 
   const cardsDict = buildCardsDictFromPlayersHands(players, store.deckDict);
 
@@ -118,7 +129,7 @@ export const prepareCardPlayPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -144,12 +155,12 @@ export const prepareSkipAnnouncementPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const creatorId: UID = state.creatorId;
 
   // If creator have skipped their turn, they gain a new card
-  players[creatorId].hand.push(...utils.game.dealItems(store.deckKeys, 1));
+  players[creatorId].hand.push(...dealItems(store.deckKeys, 1));
 
   const cardsDict = buildCardsDictFromPlayersHands(players, store.deckDict);
 
@@ -186,11 +197,11 @@ export const prepareVerificationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Gather all played cards
   const table: TableEntry[] = shuffle(
-    utils.players.getListOfPlayers(players).flatMap((player) => {
+    getListOfPlayers(players).flatMap((player) => {
       return (player.playedCardsIds || []).map((cardId: string) => ({
         playerId: player.id,
         cardId,
@@ -223,12 +234,12 @@ export const prepareResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const creatorId: string = state.creatorId;
 
   // Gather evaluations of cards
-  const evaluations = utils.players.getListOfPlayers(players).reduce((acc: Dictionary<number>, player) => {
+  const evaluations = getListOfPlayers(players).reduce((acc: Dictionary<number>, player) => {
     if (player.evaluations) {
       Object.entries(player.evaluations).forEach(([cardId, isAccepted]) => {
         // Achievement: Most accepting / declining
@@ -243,8 +254,8 @@ export const prepareResultsPhase = async (
   let creatorBonus = false;
 
   // Scoring: accepted card, creator bonus, sequential rejection
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  const scores = new Scores(players, [0, 0, 0]);
+  getListOfPlayers(players).forEach((player) => {
     const isCreator = player.id === creatorId;
     let busted = false;
 
@@ -371,22 +382,22 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // The players who got rid of all their cards get a 3 point bonus
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if ((player.hand?.length || 0) === 0) {
       player.scores += EMPTY_HAND_BONUS;
     }
   });
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.QUAL_QUESITO,
     gameId,
     startedAt: store.createdAt,

@@ -6,8 +6,10 @@ import { TOTAL_IMAGE_CARDS } from './constants';
 // Services
 import { updateFirestoreCommunityDataForImageCardsRelationships } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary } from '../../utils';
 
 /**
  * Get image decks card
@@ -15,7 +17,7 @@ import utils from '../../utils_LEGACY';
  */
 export const getData = async (): Promise<ResourceData> => {
   // Get image cards
-  const cards = await utils.imageCards.getImageCards(TOTAL_IMAGE_CARDS);
+  const cards = await getImageCards(TOTAL_IMAGE_CARDS);
 
   return {
     cards,
@@ -28,7 +30,7 @@ export const getData = async (): Promise<ResourceData> => {
  */
 export const saveData = async (relationships: ImageCardRelationship): Promise<void> => {
   // Collect all ids
-  const usedCardsIds: Dictionary<boolean> = utils.helpers.buildBooleanDictionary(Object.keys(relationships));
+  const usedCardsIds: Dictionary<boolean> = buildBooleanDictionary(Object.keys(relationships));
 
   await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
 

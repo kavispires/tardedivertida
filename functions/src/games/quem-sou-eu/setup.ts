@@ -16,9 +16,22 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 // Internal
+import { dealItems } from '../../legacy-utils/legacy';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import { buildGallery, buildRanking } from './helpers';
@@ -36,7 +49,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const imageCardsMode = !!store.options?.imageCardsMode;
 
   const deck = imageCardsMode ? additionalData.imageCards : additionalData.characters;
@@ -48,17 +61,17 @@ export const prepareSetupPhase = async (
   tableCharactersCount += store.options?.moreCharacters ? EXTRA_CHARACTERS : 0;
 
   // Get table characters (6 - playerCount)
-  const table = utils.game.dealItems(deck, tableCharactersCount * TOTAL_ROUNDS);
+  const table = dealItems(deck, tableCharactersCount * TOTAL_ROUNDS);
 
   // Get 8 characters per player
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    player.availableCharacters = utils.game.dealItems(deck, CHARACTERS_PER_PLAYER);
+  getListOfPlayers(players).forEach((player) => {
+    player.availableCharacters = dealItems(deck, CHARACTERS_PER_PLAYER);
     if (imageCardsMode) {
       player.selectedCharacters = shuffle(player.availableCharacters.map((c: ContenderCardData) => c.id));
     }
   });
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -95,7 +108,7 @@ export const prepareCharacterFilteringPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -119,16 +132,16 @@ export const prepareCharacterDescriptionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const glyphs = shuffle(utils.helpers.makeArray(TOTAL_GLYPHS, 1));
+  const glyphs = shuffle(makeArray(TOTAL_GLYPHS, 1));
 
   const characters: Dictionary<Character> = {};
 
   // Get a character for each player and their glyphs
-  utils.players.getListOfPlayers(players).forEach((player, index) => {
+  getListOfPlayers(players).forEach((player, index) => {
     // Deal glyphs
     const glyphsPerPlayer = GLYPHS_PER_ROUND[round.current - 1] ?? 20;
     const startingIndex = index * glyphsPerPlayer;
@@ -172,7 +185,7 @@ export const prepareCharacterDescriptionPhase = async (
     };
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['guesses', 'choseRandomly']);
+  removePropertiesFromPlayers(players, ['guesses', 'choseRandomly']);
 
   // Save
   return {
@@ -201,9 +214,9 @@ export const prepareGuessingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   const gallery = store.gallery ?? [];
 
@@ -272,7 +285,7 @@ export const prepareResultsPhase = async (
   const botCharacterIds = Object.values(characters)
     .filter((character) => character.playerId === 'bot')
     .map((character) => character.id);
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.values(player.guesses).forEach((guess) => {
       if (botCharacterIds.includes(guess as string)) {
         increaseAchievement(store.achievements, player.id, 'tableVotes', 1);
@@ -281,7 +294,7 @@ export const prepareResultsPhase = async (
   });
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -312,13 +325,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.QUEM_SOU_EU,
     gameId,
     startedAt: store.createdAt,
@@ -334,7 +347,7 @@ export const prepareGameOverPhase = async (
     await saveData(store.contendersGlyphs ?? {});
   }
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

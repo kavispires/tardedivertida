@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitFeature, handleSubmitObject } from './actions';
 import { getData } from './data';
@@ -45,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: MesmiceOptions,
 ): MesmiceInitialState => {
-  return utils.game.getDefaultInitialState<MesmiceInitialState>({
+  return getDefaultInitialState<MesmiceInitialState>({
     gameId,
     gameName: GAME_NAMES.MESMICE,
     uid,
@@ -78,7 +79,7 @@ export const getNextPhase = async (
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // Determine next phase
   const nextPhase = determineNextPhase(

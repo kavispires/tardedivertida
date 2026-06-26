@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Adedanhx game
  */
-const achievements = achievementBuilder('ADEDANHX')
+const achievements = achievementBuilder(GAME_KEYS.ADEDANHX)
   .counter('stop', {
     doc: 'Number of times player stopped the game',
     most: 'MOST_STOPS',

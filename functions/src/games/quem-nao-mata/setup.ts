@@ -5,8 +5,15 @@ import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 
 /**
  * [Setup Phase] - Initialize game and reset player properties
@@ -19,8 +26,8 @@ export const prepareSetupPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.removePropertiesFromPlayers(players, ['vote']);
-  utils.players.unReadyPlayers(players);
+  removePropertiesFromPlayers(players, ['vote']);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -47,11 +54,11 @@ export const prepareTargetingPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.removePropertiesFromPlayers(players, ['target']);
-  utils.players.unReadyPlayers(players);
+  removePropertiesFromPlayers(players, ['target']);
+  setPlayersReadyState(players, false);
 
   if (!state.turn) {
-    utils.players.addPropertiesToPlayers(players, {
+    addPropertiesToPlayers(players, {
       messages: [],
       alive: true,
     });
@@ -63,7 +70,7 @@ export const prepareTargetingPhase = async (
       state: {
         phase: QUEM_NAO_MATA_PHASES.TARGETING,
         players,
-        round: state.turn ? state.round : utils.game.increaseRound(state.round),
+        round: state.turn ? state.round : increaseRound(state.round),
         turn: state.turn ? state.turn + 1 : 1,
       },
     },
@@ -149,11 +156,11 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Save
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.QUEM_NAO_MATA,
     gameId,
     startedAt: store.createdAt,

@@ -8,8 +8,10 @@ import { TOTAL_ROUNDS, WORDS_IN_POOL } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { fetchResource } from '../../services/resource';
+// Resources
+import { getSingleWords, saveUsedSingleWords } from '../../mechanics/resources';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary } from '../../utils';
 
 /**
  * Get words resource based on the game's language
@@ -29,7 +31,7 @@ export const getWords = async (
     return { deck: sampleSize(Object.values(allCards), quantityNeeded) };
   }
 
-  const deck = await utils.tdr.getSingleWords(language, quantityNeeded);
+  const deck = await getSingleWords(language, quantityNeeded);
 
   return { deck };
 };
@@ -40,8 +42,8 @@ export const getWords = async (
  * @param pastClues - Dictionary of card IDs to their associated clues
  */
 export const saveData = async (language: Language, pastClues: PastClues) => {
-  const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(pastClues));
-  await utils.tdr.saveUsedSingleWords(usedIds);
+  const usedIds = buildBooleanDictionary(Object.keys(pastClues));
+  await saveUsedSingleWords(usedIds);
 
   // Save card clues data
   await updateFirestoreCommunityDataForCards('cards', language, pastClues);

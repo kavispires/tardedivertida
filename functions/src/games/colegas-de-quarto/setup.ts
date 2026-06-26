@@ -14,8 +14,20 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Utils
-import utils from '../../utils_LEGACY';
+import { sliceInParts } from '../../utils';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
@@ -34,9 +46,9 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // Save
   return {
@@ -76,14 +88,14 @@ export const prepareWordsSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const pool: TextCardData[] = [];
   new Array(WORDS_IN_POOL).fill(null).forEach(() => {
     pool.push(store.deck.pop() as TextCardData);
   });
 
-  const requiredWords = SETTINGS_PER_PLAYER_COUNT[utils.players.getPlayerCount(players)]?.totalWords || 0;
+  const requiredWords = SETTINGS_PER_PLAYER_COUNT[getPlayerCount(players)]?.totalWords || 0;
 
   // Save
   return {
@@ -95,7 +107,7 @@ export const prepareWordsSelectionPhase = async (
         phase: COLEGAS_DE_QUARTO_PHASES.WORDS_SELECTION,
         players,
         pool,
-        round: utils.game.increaseRound(state?.round),
+        round: increaseRound(state?.round),
         requiredWords,
       },
       stateCleanup: ['table', 'gallery', 'ranking'],
@@ -115,23 +127,23 @@ export const prepareClueWritingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // Create board with words from players
   const pool: TextCardData[] = state.pool || [];
   const selectedWordsIds: string[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     selectedWordsIds.push(...(player.selectedWordsIds ?? []));
   });
   const totalWords = SETTINGS_PER_PLAYER_COUNT[playerCount]?.totalWords ?? 13;
   const cleanupIds = shuffle(uniq(selectedWordsIds)).slice(0, totalWords);
   const playerOrder = shuffle([
     TARGET_ID,
-    ...utils.players
-      .getListOfPlayers(players)
-      .flatMap((player) => Array(SETTINGS_PER_PLAYER_COUNT[playerCount]?.pairsToGuess * 2).fill(player.id)),
+    ...getListOfPlayers(players).flatMap((player) =>
+      Array(SETTINGS_PER_PLAYER_COUNT[playerCount]?.pairsToGuess * 2).fill(player.id),
+    ),
   ]);
 
   const board: BoardEntry[] = Array.from({ length: totalWords }).map((_, index) => ({
@@ -151,10 +163,10 @@ export const prepareClueWritingPhase = async (
     }
   });
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.assignedWordIds = shuffle(player?.assignedWordIds || []);
     // Divide in chunks based on pairsToGuess
-    const chunks: BoardEntry[][] = utils.helpers.sliceInParts(
+    const chunks: BoardEntry[][] = sliceInParts(
       player.assignedWordIds,
       SETTINGS_PER_PLAYER_COUNT[playerCount]?.pairsToGuess || 1,
     );
@@ -171,7 +183,7 @@ export const prepareClueWritingPhase = async (
   });
 
   // Remove selectedWordsIds from players
-  utils.players.removePropertiesFromPlayers(players, ['assignedWordIds', 'selectedWordsIds']);
+  removePropertiesFromPlayers(players, ['assignedWordIds', 'selectedWordsIds']);
 
   // Save
   return {
@@ -198,12 +210,12 @@ export const prepareGuessingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const board: BoardEntry[] = state.board;
 
   const playerClues: PastClues = {};
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.assignedPairs.forEach((pair, index) => {
       pair.clue = player.clues?.[index] || 'ERROR';
       // Achievement: Word length
@@ -253,7 +265,7 @@ export const prepareRevealPhase = async (
     state.happiness,
   );
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const purchases = store.purchases || {};
   if (foundTarget.length > 0) {
@@ -295,13 +307,13 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const happiness = state.happiness;
   const win = happiness.total >= happiness.goal;
-  const winners = win ? utils.players.getListOfPlayers(players) : utils.players.determineWinners(players);
+  const winners = win ? getListOfPlayers(players) : determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.COLEGAS_DE_QUARTO,
     gameId,
     startedAt: store.createdAt,
@@ -314,7 +326,7 @@ export const prepareGameOverPhase = async (
   // Save data
   await saveData(store.language, store.pastClues);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

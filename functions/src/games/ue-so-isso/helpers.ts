@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash';
+import { mean, shuffle } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
 import type {
@@ -12,8 +12,11 @@ import type {
 } from './types';
 // Constants
 import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_PHASES } from './constants';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { stringRemoveAccents } from '../../utils';
 // Internal
 import { pushAchievement, increaseAchievement } from './achievements';
 
@@ -55,7 +58,7 @@ export const determineNextPhase = (
       : WORD_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -99,7 +102,7 @@ export const buildCurrentWords = (currentCard: TextCardData[]) => {
  * @returns
  */
 export const determineSuggestionsNumber = (players: Players) => {
-  const numberOfPlayers = utils.players.getPlayerCount(players);
+  const numberOfPlayers = getPlayerCount(players);
 
   if (numberOfPlayers <= 4) return 2;
   return 1;
@@ -113,7 +116,7 @@ export const determineSuggestionsNumber = (players: Players) => {
  */
 export const tallyVotes = (currentWords: UsedWords, players: Players): UsedWords => {
   const currentWordsCopy = { ...currentWords };
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player?.votes) {
       player.votes.forEach((wordId: string) => {
         currentWordsCopy[wordId].votes += 1;
@@ -161,14 +164,13 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
  * @returns
  */
 export const groupSuggestions = (players: Players): CurrentSuggestions => {
-  return utils.players.getListOfPlayers(players).reduce((acc: CurrentSuggestions, player: Player) => {
+  return getListOfPlayers(players).reduce((acc: CurrentSuggestions, player: Player) => {
     if (player.suggestions) {
       player.suggestions.forEach((sug: string) => {
         const suggestion = sug.toLowerCase();
         const similarKey =
-          Object.keys(acc).find(
-            (key) => utils.helpers.stringRemoveAccents(key) === utils.helpers.stringRemoveAccents(suggestion),
-          ) ?? suggestion;
+          Object.keys(acc).find((key) => stringRemoveAccents(key) === stringRemoveAccents(suggestion)) ??
+          suggestion;
         if (acc[similarKey] === undefined) {
           acc[similarKey] = [];
         }
@@ -270,11 +272,7 @@ export const countAchievements = (store: FirebaseStoreData) => {
 
   // Get mean values
   Object.keys(store.achievements).forEach((playerId) => {
-    store.achievements[playerId].correctGuesses = utils.helpers.calculateAverage(
-      store.achievements[playerId].correctGuesses ?? [],
-    );
-    store.achievements[playerId].wrongGuesses = utils.helpers.calculateAverage(
-      store.achievements[playerId].wrongGuesses ?? [],
-    );
+    store.achievements[playerId].correctGuesses = mean(store.achievements[playerId].correctGuesses ?? []);
+    store.achievements[playerId].wrongGuesses = mean(store.achievements[playerId].wrongGuesses ?? []);
   });
 };

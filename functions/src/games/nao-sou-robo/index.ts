@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCards, handleSubmitCardGuess } from './actions';
 import { getResourceData } from './data';
@@ -45,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: NaoSouRoboOptions,
 ): NaoSouRoboInitialState => {
-  return utils.game.getDefaultInitialState<NaoSouRoboInitialState>({
+  return getDefaultInitialState<NaoSouRoboInitialState>({
     gameId,
     gameName: GAME_NAMES.NAO_SOU_ROBO,
     uid,
@@ -87,7 +88,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(store.language, utils.players.getPlayerCount(players));
+    const additionalData = await getResourceData(store.language, getPlayerCount(players));
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await saveGame(sessionRef, newPhase);

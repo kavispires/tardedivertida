@@ -6,9 +6,21 @@ import { GAME_NAMES } from '../../constants/games';
 import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { orderPlayersByScore, Scores } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
+import utils from '../../legacy-utils';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildRun } from './helpers';
 
@@ -23,9 +35,9 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
+  const { gameOrder: turnOrder } = turnOrderUtils.create(players);
 
   const cardsDict = keyBy(additionalData.cards, 'id');
 
@@ -34,7 +46,7 @@ export const prepareSetupPhase = async (
   utils.deck.deal(store, players, STARTING_CARDS);
 
   // Add starting position
-  utils.players.addPropertiesToPlayers(players, { positions: [0] });
+  addPropertiesToPlayers(players, { positions: [0] });
 
   // Save
   return {
@@ -69,25 +81,23 @@ export const prepareCardSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
   // Discard any previously used card
   if (state.round.current > 0) {
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       utils.deck.discard(store, players, player.id, player.selectedCardId);
     });
-    utils.players.removePropertiesFromPlayers(players, ['selectedCardId', 'selectedTargetId']);
+    removePropertiesFromPlayers(players, ['selectedCardId', 'selectedTargetId']);
   }
 
   utils.deck.deal(store, players, CARD_PER_ROUND);
 
-  const turnOrder = utils.turnOrder.reorder(state.turnOrder, state.turnOrder[1]);
+  const turnOrder = turnOrderUtils.reorder(state.turnOrder, state.turnOrder[1]);
 
-  const currentPositions = utils.players
-    .getListOfPlayers(players)
-    .reduce((acc: Record<UID, number>, { id, positions }) => {
-      acc[id] = positions.at(-1) || 0;
-      return acc;
-    }, {});
+  const currentPositions = getListOfPlayers(players).reduce((acc: Record<UID, number>, { id, positions }) => {
+    acc[id] = positions.at(-1) || 0;
+    return acc;
+  }, {});
 
   const race: RunActivity[] = [
     {
@@ -109,7 +119,7 @@ export const prepareCardSelectionPhase = async (
       state: {
         phase: VICE_CAMPEAO_PHASES.CARD_SELECTION,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         turnOrder,
         race,
       },
@@ -129,7 +139,7 @@ export const prepareRunPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const race = buildRun(players, state.cardsDict, state.turnOrder, store);
 
@@ -139,7 +149,7 @@ export const prepareRunPhase = async (
     players[playerId].positions.push(finalPositions[playerId]);
   });
 
-  const scores = new utils.players.Scores(players, [0]);
+  const scores = new Scores(players, [0]);
   Object.keys(players).forEach((playerId) => {
     const currentPosition = players[playerId].positions.at(-1) || 0;
     const previousPosition = players[playerId].positions.at(-2) || 0;
@@ -202,14 +212,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const ranked = utils.players.orderPlayersByScore(players, true);
+  const ranked = orderPlayersByScore(players, true);
   const winners = ranked[1] ?? [];
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.VICE_CAMPEAO,
     gameId,
     startedAt: store.createdAt,
@@ -219,7 +229,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, ['positions']);
+  cleanupPlayers(players, ['positions']);
 
   return {
     update: {

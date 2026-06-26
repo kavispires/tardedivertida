@@ -7,8 +7,17 @@ import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, PLAYER_SUGGESTED_QUESTIONS_COUNT, TA_NA_CARA_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  removePropertiesFromPlayers,
+  setPlayersReadyState,
+  getListOfPlayers,
+  addPropertiesToPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 
 /**
  * Setup
@@ -22,14 +31,14 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
+  const { gameOrder: turnOrder } = turnOrderUtils.create(players);
 
   // Assign a random character to each player
   const charactersIds = shuffle(additionalData.characters);
 
-  utils.players.addPropertiesToPlayers(players, { answers: [] });
+  addPropertiesToPlayers(players, { answers: [] });
 
-  utils.players.getListOfPlayers(players).forEach((player, index) => {
+  getListOfPlayers(players).forEach((player, index) => {
     player.secretCharacterId = charactersIds[index].id;
     player.suggestedQuestions = [];
     player.answers = [];
@@ -79,7 +88,7 @@ export const preparePromptPhase = async (
   if (previousPlayerId && state.currentQuestion) {
     questionsHistory.push(state.currentQuestion);
 
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.answers.push(player.currentAnswer || 0);
     });
 
@@ -87,7 +96,7 @@ export const preparePromptPhase = async (
   }
 
   // Every round a player will be the asker
-  const activePlayerId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.activePlayerId);
+  const activePlayerId = turnOrderUtils.getNextPlayerId(state.turnOrder, state.activePlayerId);
 
   // Add questions until the active player has the required number of suggested questions
   while (players[activePlayerId].suggestedQuestions.length < PLAYER_SUGGESTED_QUESTIONS_COUNT) {
@@ -96,8 +105,8 @@ export const preparePromptPhase = async (
     players[activePlayerId].suggestedQuestions.push(question);
   }
 
-  utils.players.readyPlayers(players, activePlayerId);
-  utils.players.removePropertiesFromPlayers(players, ['currentAnswer']);
+  setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
+  removePropertiesFromPlayers(players, ['currentAnswer']);
 
   // Save
   return {
@@ -109,7 +118,7 @@ export const preparePromptPhase = async (
         phase: TA_NA_CARA_PHASES.PROMPT,
         players,
         activePlayerId,
-        round: activePlayerId === state.turnOrder[0] ? utils.game.increaseRound(state.round) : state.round,
+        round: activePlayerId === state.turnOrder[0] ? increaseRound(state.round) : state.round,
         questionsHistory,
       },
       stateCleanup: ['currentQuestion'],
@@ -152,10 +161,10 @@ export const preparePromptPhase = async (
     }
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['currentQuestion', 'currentAnswer']);
+  removePropertiesFromPlayers(players, ['currentQuestion', 'currentAnswer']);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -179,7 +188,7 @@ export const preparePromptPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -207,7 +216,7 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Award points if the player have guessed the other correctly
-  const playersList = utils.players.getListOfPlayers(players);
+  const playersList = getListOfPlayers(players);
 
   playersList.forEach((player) => {
     const opponent = playersList.find((p) => p.id !== player.id);
@@ -217,13 +226,13 @@ export const prepareGameOverPhase = async (
     }
   });
 
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
-  utils.players.removePropertiesFromPlayers(players, ['suggestedQuestions', 'currentQuestionId']);
+  removePropertiesFromPlayers(players, ['suggestedQuestions', 'currentQuestionId']);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.TA_NA_CARA,
     gameId,
     startedAt: store.createdAt,
@@ -233,7 +242,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   return {
     update: {

@@ -9,8 +9,10 @@ import type {
 // Constants
 import { SEPARATOR } from '../../constants/general';
 import { COLEGAS_DE_QUARTO_PHASES, POINTS, TARGET_ID } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -29,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : WORDS_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -47,10 +49,10 @@ export function buildRanking(
 ) {
   let gainedHappiness = 0;
   // Gained Points: [from guesses, from others, target]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0]);
 
   const gallery: GalleryEntry[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const assignedPairs: PlayerAssignedPair[] = player.assignedPairs;
 
     assignedPairs.forEach((pair) => {
@@ -64,7 +66,7 @@ export function buildRanking(
         misses: [],
       };
 
-      utils.players.getListOfPlayers(players).forEach((guesser) => {
+      getListOfPlayers(players).forEach((guesser) => {
         const guess: string[] | undefined = guesser.guesses[result.id];
         if (!guess) return;
 
@@ -98,7 +100,7 @@ export function buildRanking(
   // If the target
   const targetId = board.find((entry) => entry.playerId === TARGET_ID)?.id ?? 'ERROR';
   const foundTarget: UID[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const guesses: string[] = Object.values<string[]>(player.guesses).flat();
     if (!guesses.includes(targetId)) {
       scores.add(player.id, POINTS.CORRECT_TARGET, 2);

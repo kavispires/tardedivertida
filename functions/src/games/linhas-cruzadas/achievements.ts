@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Linhas Cruzadas game
  */
-const linhasCruzadasAchievements = achievementBuilder('LINHAS_CRUZADAS')
+const linhasCruzadasAchievements = achievementBuilder(GAME_KEYS.LINHAS_CRUZADAS)
   .counter('drawingDuration', {
     doc: 'Time taken to complete drawing',
     most: 'QUICKEST_DRAWER',
