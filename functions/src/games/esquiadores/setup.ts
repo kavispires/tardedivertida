@@ -17,9 +17,20 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineLosers, determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
-import { makeArray } from '../../utils_LEGACY/helpers';
+import { makeArray } from '../../utils';
 // Internal
 import { calculateAchievements, setupAchievements } from './achievements';
 import { aggregateBets, applyBetsToLodges, calculateScores } from './helpers';
@@ -37,12 +48,12 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerIds: turnOrder } = turnOrderUtils.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
   const deck = sampleSize(resourceData.dilemmas, gameOrder.length * DILEMMAS_PER_ROUND);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -76,8 +87,8 @@ export const prepareBetsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, [
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, [
     SKIER_BET_TYPES.SKIERS_BETS,
     SKIER_BET_TYPES.SKIERS_BOOST,
     BET_TYPES.INITIAL,
@@ -89,11 +100,11 @@ export const prepareBetsPhase = async (
   ]);
 
   // Get new active skier
-  const round = utils.game.increaseRound(state.round);
-  const activeSkierId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
+  const round = increaseRound(state.round);
+  const activeSkierId = turnOrderUtils.getActivePlayerId(state.turnOrder, round.current);
 
   // Give initial chips to players
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     chips: BETTING_CHIPS.INITIAL,
   });
   // Give skiers initial chips
@@ -113,13 +124,13 @@ export const prepareBetsPhase = async (
   const catchUp: UID[] = [];
   // Catch up mechanism: give last player(s) extra chips
   if (round.current > 1) {
-    utils.players.determineLosers(players).forEach((player) => {
+    determineLosers(players).forEach((player) => {
       player.chips += CATCH_UP_BONUS;
       catchUp.push(player.id);
     });
   }
 
-  const lodges: Lodge[] = utils.helpers.makeArray(6).map((i) => ({
+  const lodges: Lodge[] = makeArray(6).map((i) => ({
     id: i,
     playersIds: [],
     selected: false,
@@ -160,7 +171,7 @@ export const prepareStartingResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const activeSkierId: UID = state.activeSkierId;
   const skier = players[activeSkierId];
@@ -240,11 +251,11 @@ export const prepareBoostsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const activeSkierId: UID = state.activeSkierId;
   // Give boost chips to players
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     chips: BETTING_CHIPS.BOOST,
   });
   // Give skiers boost chips
@@ -280,7 +291,7 @@ export const preparePreliminaryResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const activeSkierId: UID = state.activeSkierId;
   const lodges: Lodge[] = state.lodges;
@@ -323,11 +334,11 @@ export const prepareLastChangePhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const activeSkierId: UID = state.activeSkierId;
   // Give final chips to players
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     chips: BETTING_CHIPS.FINAL,
   });
   // Give skiers final chips
@@ -363,7 +374,7 @@ export const prepareResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const activeSkierId: UID = state.activeSkierId;
   const lodges: Lodge[] = state.lodges;
@@ -435,13 +446,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.ESQUIADORES,
     gameId,
     startedAt: store.createdAt,
@@ -451,7 +462,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

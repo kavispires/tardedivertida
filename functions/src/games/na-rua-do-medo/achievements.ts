@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Na Rua do Medo game
  */
-const achievements = achievementBuilder('NA_RUA_DO_MEDO')
+const achievements = achievementBuilder(GAME_KEYS.NA_RUA_DO_MEDO)
   .counter('facingMonsters', {
     doc: 'Number of monsters faced during the game',
     most: 'BRAVEST',

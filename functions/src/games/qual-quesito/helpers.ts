@@ -4,8 +4,9 @@ import type { ItemData } from '../../types/tdr';
 import type { QualQuesitoPhase } from './types';
 // Constants
 import { QUAL_QUESITO_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and skip status
@@ -34,7 +35,7 @@ export const determineNextPhase = (
 
   if (currentPhase === RESULTS) {
     // If a player has no cards left, the game is over
-    if (utils.players.getListOfPlayers(players).some((p) => p.hand.length === 0)) {
+    if (getListOfPlayers(players).some((p) => p.hand.length === 0)) {
       return GAME_OVER;
     }
 
@@ -43,7 +44,7 @@ export const determineNextPhase = (
       : CATEGORY_CREATION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -56,8 +57,7 @@ export const buildCardsDictFromPlayersHands = (
   deckDict: Dictionary<ItemData>,
 ): Dictionary<ItemData> => {
   return keyBy(
-    utils.players
-      .getListOfPlayers(players)
+    getListOfPlayers(players)
       .flatMap((player) => player.hand || [])
       .map((itemId) => deckDict[itemId]),
     'id',

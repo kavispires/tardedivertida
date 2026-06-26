@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Polemica Da Vez game
  */
-const polemicaDaVezAchievements = achievementBuilder('POLEMICA_DA_VEZ')
+const polemicaDaVezAchievements = achievementBuilder(GAME_KEYS.POLEMICA_DA_VEZ)
   .counter('likes', {
     doc: 'How many things were liked by the player',
     most: 'MOST_LIKER',

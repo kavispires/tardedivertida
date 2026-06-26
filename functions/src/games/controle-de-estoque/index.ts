@@ -20,8 +20,10 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Mechanics
+import { getListOfPlayersIds } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
 import { isEmulatingEnvironment } from '../../utils/environment';
 // Internal
 import { setupAchievements } from './achievements';
@@ -52,7 +54,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): ControleDeEstoqueInitialState => {
-  return utils.game.getDefaultInitialState<ControleDeEstoqueInitialState>({
+  return getDefaultInitialState<ControleDeEstoqueInitialState>({
     gameId,
     gameName: GAME_NAMES.CONTROLE_DE_ESTOQUE,
     uid,
@@ -96,7 +98,7 @@ export const getNextPhase = async (
     if (isEmulatingEnvironment()) {
       const MOCK_PLAYERS = FULFILLMENT_MOCK.players as unknown as Players;
 
-      const achievements = setupAchievements(utils.players.getListOfPlayersIds(MOCK_PLAYERS));
+      const achievements = setupAchievements(getListOfPlayersIds(MOCK_PLAYERS));
 
       await saveGame(sessionRef, {
         update: {

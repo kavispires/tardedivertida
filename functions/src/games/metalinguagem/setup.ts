@@ -7,8 +7,19 @@ import { GAME_NAMES } from '../../constants/games';
 import { ITEMS_PER_ROUND, MAX_ROUNDS, METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayersIds,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 // Internal
 import {
   setupAchievements,
@@ -28,14 +39,14 @@ export const prepareSetupPhase = async (
   players: Players,
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  const wordLengths = utils.helpers.makeArray(6, 3).map((value) => ({
+  const wordLengths = makeArray(6, 3).map((value) => ({
     wordLength: value,
     status: WORD_LENGTH_STATUS.AVAILABLE,
   }));
 
-  const { gameOrder: turnOrder } = utils.turnOrder.create(players);
+  const { gameOrder: turnOrder } = turnOrderUtils.create(players);
 
   // Save
   return {
@@ -70,10 +81,10 @@ export const prepareWordCreationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Cleanup
-  utils.players.removePropertiesFromPlayers(players, ['guesses', 'newWord', 'names']);
+  removePropertiesFromPlayers(players, ['guesses', 'newWord', 'names']);
 
-  const round = utils.game.increaseRound(state.round);
-  const creatorId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
+  const round = increaseRound(state.round);
+  const creatorId = turnOrderUtils.getActivePlayerId(state.turnOrder, round.current);
 
   const storeItems: ItemData[] = store.items;
 
@@ -84,7 +95,7 @@ export const prepareWordCreationPhase = async (
   const targets = sampleSize(items, 2);
 
   // Unready creator only
-  utils.players.readyPlayers(players, creatorId);
+  setPlayersReadyState(players, true, { excludeIds: [creatorId] });
 
   // Save
   return {
@@ -118,7 +129,7 @@ export const prepareGuessingPhase = async (
 
   const creator = players[creatorId];
   // Unready players
-  utils.players.unReadyPlayers(players, creatorId);
+  setPlayersReadyState(players, false, { excludeIds: [creatorId] });
 
   const names: string[] = creator.names;
   const newWord: string = creator.newWord;
@@ -150,7 +161,7 @@ export const prepareResultsPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const creatorId: UID = state.creatorId;
 
@@ -159,7 +170,7 @@ export const prepareResultsPhase = async (
 
   const wordLengths: WordLength[] = state.wordLengths;
 
-  const turnOrderWithoutCreator: UID[] = utils.turnOrder
+  const turnOrderWithoutCreator: UID[] = turnOrderUtils
     .reorder(state.turnOrder, creatorId)
     .filter((id: string) => id !== creatorId);
 
@@ -278,13 +289,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = state.outcome === WORD_LENGTH_STATUS.FAILED ? [] : utils.players.determineWinners(players);
+  const winners = state.outcome === WORD_LENGTH_STATUS.FAILED ? [] : determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.METALINGUAGEM,
     gameId,
     startedAt: store.createdAt,
@@ -294,7 +305,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

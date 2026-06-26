@@ -3,10 +3,8 @@ import type { BossIdeaCardData } from '../../types/tdr';
 import type { ResourceData } from './types';
 // Constants
 import { GOODS_LIBRARY_COUNT } from './constants';
-
-// import * as resourceUtils from '../resource';
-
-import utils from '../../utils_LEGACY';
+// Utils
+import { makeArray } from '../../utils';
 
 /**
  * Get warehouse boss ideas and goods IDs
@@ -19,7 +17,7 @@ export const getData = async (): Promise<ResourceData> => {
   // );
   const allBossIdeas = BOSS_IDEAS;
 
-  const goodsIds = utils.helpers.makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`);
+  const goodsIds = makeArray(GOODS_LIBRARY_COUNT, 1).map((i) => `good-${i}`);
 
   return { allBossIdeas, goodsIds };
 };

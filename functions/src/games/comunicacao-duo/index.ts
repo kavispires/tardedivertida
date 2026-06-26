@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitRequest, handleSubmitDelivery, handleStopDelivering } from './actions';
 import { getDeck } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: ComunicacaoDuoOptions,
 ): ComunicacaoDuoInitialState => {
-  return utils.game.getDefaultInitialState<ComunicacaoDuoInitialState>({
+  return getDefaultInitialState<ComunicacaoDuoInitialState>({
     gameId,
     gameName: GAME_NAMES.COMUNICACAO_DUO,
     uid,

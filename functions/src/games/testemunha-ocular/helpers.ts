@@ -10,8 +10,8 @@ import {
   SUSPECT_COUNT,
   TESTEMUNHA_OCULAR_PHASES,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determine the next phase based on the current phase and outcome
@@ -40,7 +40,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
     return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**

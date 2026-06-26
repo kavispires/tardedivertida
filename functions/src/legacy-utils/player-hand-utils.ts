@@ -1,6 +1,7 @@
-// Internal
-import { sliceIntoChunks, removeItem } from './helpers';
-import { getListOfPlayersIds } from './players-utils';
+// Mechanics
+import { getListOfPlayersIds } from '../mechanics/players';
+// Utils
+import { removeItem, sliceIntoChunks } from '../utils';
 
 /**
  * Deal list items between players

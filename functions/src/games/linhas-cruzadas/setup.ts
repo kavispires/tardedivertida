@@ -6,8 +6,16 @@ import { GAME_NAMES } from '../../constants/games';
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
@@ -24,7 +32,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerCount } = utils.turnOrder.create(players);
+  const { gameOrder, playerCount } = turnOrderUtils.create(players);
 
   const expressionsDeck = sampleSize(
     resourceData.allExpressions,
@@ -32,7 +40,7 @@ export const prepareSetupPhase = async (
   );
   const wordsDeck = sampleSize(resourceData.allWords, playerCount * (store.options.singleWordOnly ? 4 : 2));
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -67,7 +75,7 @@ export const preparePromptSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   dealPromptOptions(players, store.expressionsDeck, store.wordsDeck, store.options);
 
@@ -109,19 +117,19 @@ export const prepareDrawingPhase = async (
   assignSlideToPlayers(album, players, state.gameOrder, isFirstSlide);
 
   // Achievements: Random Prompt Selection
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.randomSelection) {
       increaseAchievement(store.achievements, player.id, 'randomPromptSelection', 1);
     }
   });
 
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess', 'randomSelection']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess', 'randomSelection']);
 
   // Achievements: Drawing
   if (state.round.current > 0) {
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       if (player.updatedAt) {
         increaseAchievement(
           store.achievements,
@@ -141,7 +149,7 @@ export const prepareDrawingPhase = async (
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.DRAWING,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
       },
     },
@@ -165,11 +173,11 @@ export const prepareNamingPhase = async (
   assignSlideToPlayers(album, players, state.gameOrder);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['drawing']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['drawing']);
 
   // Achievements: Drawing
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.updatedAt) {
       increaseAchievement(
         store.achievements,
@@ -207,14 +215,14 @@ export const preparePresentationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   const album = addSlideToAlbum(store.album, players);
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
-  utils.players.removePropertiesFromPlayers(players, ['guess']);
+  removePropertiesFromPlayers(players, ['guess']);
 
   const orderedAlbum = state.gameOrder.map((playerId: UID) => album[playerId]);
 
   // Achievements: Writing
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.updatedAt) {
       increaseAchievement(
         store.achievements,
@@ -258,7 +266,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.LINHAS_CRUZADAS,
     gameId,
     startedAt: store.createdAt,

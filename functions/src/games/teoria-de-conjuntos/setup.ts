@@ -13,8 +13,18 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { createVennDiagram } from './helpers';
@@ -40,10 +50,10 @@ export const prepareSetupPhase = async (
 
   const items: Dictionary<ItemData> = {};
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // Assign items to players
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.hand = Array(STARTING_ITEMS_PER_PLAYER_COUNT[playerCount])
       .fill('')
       .map(() => deckIds.pop())
@@ -109,7 +119,7 @@ export const prepareSetupPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -140,7 +150,7 @@ export const prepareItemPlacementPhase = async (
 
   // Create player order in a way that the judge is always the first player
   const getPlayerOrder = () => {
-    const po = utils.turnOrder.create(players, undefined, false, [judgeId]);
+    const po = turnOrderUtils.create(players, undefined, false, [judgeId]);
     return [judgeId, ...po.gameOrder];
   };
 
@@ -191,19 +201,19 @@ export const prepareItemPlacementPhase = async (
   // If player got it right (CONTINUE), just continue with the same player.
   const shouldTriggerNewRound = !isNotTheJudge || isNewRound;
   // Determine round if outcome has been wrong or new
-  const round: Round = shouldTriggerNewRound ? utils.game.increaseRound(state.round) : state.round;
+  const round: Round = shouldTriggerNewRound ? increaseRound(state.round) : state.round;
   let activePlayerId: string = state.activePlayerId;
   // Determine the active player - if it's a new round, get the next player in the order, otherwise keep the same active player
   if (shouldTriggerNewRound) {
     // However, if the current active player is the last player in the order, we need to push the first non-judge player to the end of the order.
     if (activePlayerId === turnOrder[turnOrder.length - 1]) {
-      turnOrder = utils.turnOrder.rotate(turnOrder, 1, judgeId);
+      turnOrder = turnOrderUtils.rotate(turnOrder, 1, judgeId);
     }
 
-    activePlayerId = utils.turnOrder.getActivePlayerId(turnOrder, round.current);
+    activePlayerId = turnOrderUtils.getActivePlayerId(turnOrder, round.current);
   }
 
-  utils.players.readyPlayers(players, activePlayerId);
+  setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
 
   const previousGuess = previousActivePlayerId ? cloneDeep(currentGuess) : null;
 
@@ -254,7 +264,7 @@ export const prepareEvaluationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players, state.judgeId);
+  setPlayersReadyState(players, true, { excludeIds: [state.judgeId] });
 
   // Achievements
   const currentGuess: Guess = state.currentGuess;
@@ -337,13 +347,13 @@ export const prepareGameOverPhase = async (
   // Achieve the judge
   increaseAchievement(store.achievements, state.judgeId, 'judge', 1);
 
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.TEORIA_DE_CONJUNTOS,
     gameId,
     startedAt: store.createdAt,
@@ -353,7 +363,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

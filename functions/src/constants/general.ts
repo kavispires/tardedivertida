@@ -12,6 +12,7 @@ export const USED_GAME_IDS = 'usedGameIds';
  * Common phases used in all/most games, such as SETUP and GAME_OVER
  */
 export const GAME_PROCESS_PHASES = {
+  LOBBY: 'LOBBY',
   SETUP: 'SETUP',
   GAME_OVER: 'GAME_OVER',
   WAIT: 'WAIT',

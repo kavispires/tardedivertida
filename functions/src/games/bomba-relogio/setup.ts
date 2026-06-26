@@ -7,8 +7,18 @@ import { BOMBA_RELOGIO_PHASES, CARD_TYPES, DATA_COUNTS, OUTCOME, ROLES, TOTAL_RO
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
 // Utils
-import utils from '../../utils_LEGACY';
+import { sliceInParts } from '../../utils';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { buildDeck, determineRoles, getStartingStatus } from './helpers';
@@ -24,9 +34,9 @@ export const prepareSetupPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const dataCounts = DATA_COUNTS[playerCount] || DATA_COUNTS[4];
 
   // Create roles array
@@ -65,11 +75,11 @@ export const prepareDeclarationPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const status: Status = state.status.outcome === OUTCOME.RESTART ? getStartingStatus(players) : state.status;
   const dataCounts: DataCounts = state.dataCounts;
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   const isNewGame = status.outcome === OUTCOME.START || status.outcome === OUTCOME.RESTART;
 
@@ -77,7 +87,7 @@ export const prepareDeclarationPhase = async (
     achievements: store.achievements,
   };
   if (isNewGame) {
-    storeUpdate.achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+    storeUpdate.achievements = setupAchievements(getListOfPlayersIds(players));
     storeUpdate.deck = buildDeck(dataCounts);
   }
 
@@ -86,13 +96,13 @@ export const prepareDeclarationPhase = async (
     determineRoles(players, dataCounts, storeUpdate);
   }
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   // USE PLAYERS HANDS AS DECK IF NOT STARTING A NEW GAME
   const deck: TimeBombCard[] = isNewGame
     ? shuffle(storeUpdate.deck)
     : shuffle(listOfPlayers.flatMap((player) => player.hand));
-  const deckChunks = utils.helpers.sliceInParts(deck, playerCount);
+  const deckChunks = sliceInParts(deck, playerCount);
 
   // Assign roles to players
   listOfPlayers.forEach((player, index) => {
@@ -116,7 +126,7 @@ export const prepareDeclarationPhase = async (
       state: {
         phase: BOMBA_RELOGIO_PHASES.DECLARATION,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         status,
       },
     },
@@ -225,7 +235,8 @@ export const prepareExaminationPhase = async (
   }
 
   // Update active player
-  utils.players.readyPlayers(players, activePlayerId);
+  setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
+
   // Update new target player
   if (activePlayerIdsArray.at(-1) !== null) {
     status.activePlayerIds[activePlayerIdsLength] = null;
@@ -267,7 +278,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.BOMBA_RELOGIO,
     gameId,
     startedAt: store.createdAt,
@@ -277,7 +288,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, ['role', 'hand', 'declarations']);
+  cleanupPlayers(players, ['role', 'hand', 'declarations']);
 
   return {
     update: {

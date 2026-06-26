@@ -2,7 +2,7 @@ import { cloneDeep, mean, uniq } from 'lodash';
 
 /**
  * TD ACHIEVEMENTS TOOLKIT
- * Version 1.2.0
+ * Version 1.2.1
  *
  * Type-safe, declarative achievements system with method overloading
  * to prevent misuse of tracking methods on wrong achievement types.
@@ -1302,8 +1302,11 @@ function buildAchievementUtils<TDefinitions extends AchievementDefinition[]>(
 
 /**
  * Create a new achievement builder for a game
- * @param gamePrefix - Game name prefix (e.g., 'ADEDANHX')
+ * @param gamePrefix - Game key from GAME_KEYS (e.g., GAME_KEYS.ADEDANHX)
  * @returns Achievement builder instance
+ * @example
+ * import { GAME_KEYS } from '../../constants/games';
+ * const achievements = achievementBuilder(GAME_KEYS.MY_GAME);
  */
 export function achievementBuilder(gamePrefix: string) {
   return new AchievementBuilderClass(gamePrefix);

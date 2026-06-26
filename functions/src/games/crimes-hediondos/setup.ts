@@ -5,8 +5,17 @@ import { GAME_NAMES } from '../../constants/games';
 import { CRIMES_HEDIONDOS_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import {
@@ -42,7 +51,7 @@ export const prepareSetupPhase = async (
     resourceData.allScenes,
   );
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Cleanup unused scene tiles from items likelihood object
   const sceneTilesIds = [
@@ -102,8 +111,8 @@ export const prepareCrimeSelectionPhase = async (
   dealItemGroups(players);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
+  setPlayersReadyState(players, false);
+  addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
 
   // Auto select cards for bots and perform initial markings
   mockCrimeForBots(
@@ -120,7 +129,7 @@ export const prepareCrimeSelectionPhase = async (
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
         items,
         groupedItems,
@@ -152,9 +161,9 @@ export const prepareSceneMarkingPhase = async (
   mockSceneMarkForBots(players, newScene, state.items);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
   // Update pastCorrectCrimes
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.pastCorrectCrimes += player.correctCrimes ?? 0;
   });
 
@@ -165,7 +174,7 @@ export const prepareSceneMarkingPhase = async (
       },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SCENE_MARKING,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players: players,
         scenes: updatedScenes,
         scenesOrder: updatedScenesOrder,
@@ -188,7 +197,7 @@ export const prepareGuessingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   if (state.round.current === 1) {
     // Group scenes
@@ -207,7 +216,7 @@ export const prepareGuessingPhase = async (
       state.victimTile,
     );
     // Cleanup properties from players
-    utils.players.removePropertiesFromPlayers(players, [
+    removePropertiesFromPlayers(players, [
       'causeOfDeathIndex',
       'locationIndex',
       'reasonForEvidenceIndex',
@@ -234,7 +243,7 @@ export const prepareGuessingPhase = async (
   const updatedCrimes = updateCrime(state.crimes, players, state.currentScene);
 
   // Cleanup properties from players
-  utils.players.removePropertiesFromPlayers(players, ['sceneIndex']);
+  removePropertiesFromPlayers(players, ['sceneIndex']);
 
   return {
     update: {
@@ -260,7 +269,7 @@ export const prepareRevealPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Update or create guess history
   const results = updateOrCreateGuessHistory(
@@ -305,20 +314,18 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
   const winningPlayers = state.winners.map((playerId: UID) => players[playerId]);
 
-  const winners = utils.players.determineWinners(
-    Object.keys(winningPlayers).length > 0 ? winningPlayers : players,
-  );
+  const winners = determineWinners(Object.keys(winningPlayers).length > 0 ? winningPlayers : players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.CRIMES_HEDIONDOS,
     gameId,
     startedAt: store.createdAt,

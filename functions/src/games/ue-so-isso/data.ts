@@ -2,8 +2,10 @@
 import type { PastSuggestion } from './types';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
+// Resources
+import { getSingleWords, saveUsedSingleWords } from '../../mechanics/resources';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary } from '../../utils';
 // Internal
 import { findDuplicateSuggestions } from './helpers';
 
@@ -13,7 +15,7 @@ import { findDuplicateSuggestions } from './helpers';
  * @returns Array of single word text cards
  */
 export const getWords = async (language: Language) => {
-  return await utils.tdr.getSingleWords(language);
+  return await getSingleWords(language);
 };
 
 /**
@@ -23,8 +25,8 @@ export const getWords = async (language: Language) => {
  */
 export const saveData = async (pastSuggestions: PastSuggestion[], language: Language) => {
   // Save used cards
-  const usedIds = utils.helpers.buildBooleanDictionary(pastSuggestions);
-  await utils.tdr.saveUsedSingleWords(usedIds);
+  const usedIds = buildBooleanDictionary(pastSuggestions);
+  await saveUsedSingleWords(usedIds);
 
   // Save card clues data
   const toBeSaved = pastSuggestions.reduce((acc, entry) => {

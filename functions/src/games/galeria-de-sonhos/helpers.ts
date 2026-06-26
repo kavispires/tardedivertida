@@ -4,8 +4,10 @@ import type { TextCardData } from '../../types/tdr';
 import type { AllWords, FirebaseStoreData, ImageCard, PlayerCard } from './types';
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getListOfBots } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -25,7 +27,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
       : WORD_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 const replaceTableCards = (
@@ -91,9 +93,9 @@ export const getRoundWords = (wordsDeck: TextCardData[]): [TextCardData[], TextC
  * @param playerInNightmareId - Optional ID of the player having a nightmare
  */
 export const buildRanking = (players: Players, store: FirebaseStoreData, playerInNightmareId?: UID) => {
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
   // Gained points: super sparks, sparks, nightmare
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0]);
 
   listOfPlayers.forEach((player) => {
     let scoringCardsCount = 0;
@@ -153,12 +155,10 @@ export const buildRanking = (players: Players, store: FirebaseStoreData, playerI
  */
 export const getPlayersWithMaxDreams = (players: Players) => {
   // Count selected cards per player
-  const cardCount = utils.players
-    .getListOfPlayers(players)
-    .reduce((acc: Dictionary<number>, player: PlainObject) => {
-      acc[player.id] = Object.keys(player.cards).length;
-      return acc;
-    }, {});
+  const cardCount = getListOfPlayers(players).reduce((acc: Dictionary<number>, player: PlainObject) => {
+    acc[player.id] = Object.keys(player.cards).length;
+    return acc;
+  }, {});
 
   // Check if anybody is having a nightmare (in the dark) (uniquely most cards)
   const maxDreamCount = Math.max(...Object.values(cardCount));
@@ -190,10 +190,10 @@ export const getMostVotedCards = (table: ImageCard[], word: TextCardData): Image
  * @param table - The array of image cards on the table
  */
 export const simulateBotCards = (players: Players, table: ImageCard[]) => {
-  const playersCount = utils.players.getListOfPlayers(players).length;
+  const playersCount = getListOfPlayers(players).length;
   const cardMatches: Dictionary<UID[]> = {};
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.keys(player.cards).forEach((cardId) => {
       if (cardMatches[cardId] === undefined) {
         cardMatches[cardId] = [];
@@ -221,15 +221,14 @@ export const simulateBotCards = (players: Players, table: ImageCard[]) => {
     }
   });
 
-  const bots = utils.players.getListOfBots(players);
+  const bots = getListOfBots(players);
 
   // METHOD BOT A: matches with one card only selected by each player (N)
   const singleMatchedCardIds = Object.values(singleMatchedCards);
   if (bots[0] && singleMatchedCardIds.length > 1) {
     const bot = bots[0];
 
-    bot.cards = utils.helpers;
-    sampleSize(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount)).reduce(
+    bot.cards = sampleSize(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount)).reduce(
       (acc: Dictionary<PlayerCard>, cardId: UID) => {
         const entry: PlayerCard = {
           cardId,

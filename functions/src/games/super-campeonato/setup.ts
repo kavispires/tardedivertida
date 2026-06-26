@@ -13,9 +13,21 @@ import {
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
+import { dealItemsToPlayers } from '../../legacy-utils/legacy';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import {
@@ -43,7 +55,7 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const options = { ...store.options };
   if (playerCount > 8) {
     options.autoContenders = true;
@@ -56,17 +68,17 @@ export const prepareSetupPhase = async (
   const contendersDeck = resourceData.contenders;
 
   if (options.autoContenders) {
-    utils.players.addPropertiesToPlayers(players, { contenders: [], usedContenders: [] });
+    addPropertiesToPlayers(players, { contenders: [], usedContenders: [] });
   } else {
     // Give contenders to each player
-    utils.players.dealItemsToPlayers(players, contendersDeck, CONTENDERS_PER_PLAYER, 'contenders');
-    utils.players.addPropertiesToPlayers(players, { usedContenders: [] });
+    dealItemsToPlayers(players, contendersDeck, CONTENDERS_PER_PLAYER, 'contenders');
+    addPropertiesToPlayers(players, { usedContenders: [] });
   }
 
   // Get extra contenders to the table in cases there are less than 8 players
   const tableContenders = getTableContenders(contendersDeck, players);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -103,12 +115,12 @@ export const prepareChallengeSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Get the two challenges
   const challenges = [store.deck[store.deckIndex], store.deck[store.deckIndex + 1]];
 
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   // If round 5, build brackets with store.finalBrackets
   let brackets: unknown = firestoreValueUtils.deleteValue();
@@ -117,7 +129,7 @@ export const prepareChallengeSelectionPhase = async (
     brackets = makeFinalBrackets(store.finalBrackets) as Bracket[];
     // Also make all previous selected contenders for each user as their current round contenders if they are in the brackets
 
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.contendersIds = (brackets as Bracket[])
         .filter((bracket) => bracket.playerId === player.id)
         .map((b) => b.id);
@@ -126,7 +138,7 @@ export const prepareChallengeSelectionPhase = async (
     brackets = makeBrackets(players, store.tableContenders, state.round.current);
   }
 
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
 
   const contendersPerPlayerNeeded = playerCount > 4 ? 1 : 2;
 
@@ -160,7 +172,7 @@ export const prepareContenderSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const challenge = getMostVotedChallenge(players, state.challenges);
 
@@ -188,7 +200,7 @@ export const prepareBetsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const isAutoContenderGame = store.options?.autoContenders ?? false;
 
@@ -202,7 +214,7 @@ export const prepareBetsPhase = async (
       ? getMostVotedChallenge(players, state.challenges)
       : state.challenge;
 
-  utils.players.removePropertiesFromPlayers(players, ['votes', 'challengeId']);
+  removePropertiesFromPlayers(players, ['votes', 'challengeId']);
 
   // Save
   return {
@@ -229,7 +241,7 @@ export const prepareBattlePhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const tier = getChampionshipTier(state.tier);
 
@@ -297,7 +309,7 @@ export const prepareResultsPhase = async (
   // Calculate achievements
   updateAchievements(store, brackets);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -331,7 +343,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
@@ -342,7 +354,7 @@ export const prepareGameOverPhase = async (
   // Save used challenges and contenders
   await saveData(pastBattles);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     gameId,
     startedAt: store.createdAt,
@@ -352,7 +364,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

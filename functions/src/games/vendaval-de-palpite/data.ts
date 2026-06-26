@@ -7,8 +7,8 @@ import { TDR_RESOURCES } from '../../constants/resources';
 import { TOTAL_WORDS_NEEDED } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getSingleWords } from '../../mechanics/resources';
 
 /**
  * Get word cards and categories resource based on the game's language
@@ -16,7 +16,7 @@ import utils from '../../utils_LEGACY';
  * @returns Resource data containing categories and single words
  */
 export const getData = async (language: Language): Promise<ResourceData> => {
-  const words = await utils.tdr.getSingleWords(language, TOTAL_WORDS_NEEDED);
+  const words = await getSingleWords(language, TOTAL_WORDS_NEEDED);
 
   const categoriesResourceName = `${TDR_RESOURCES.CATEGORIES}-${language}`;
   const categories = await fetchResource<Dictionary<TextCardData>>(categoriesResourceName);

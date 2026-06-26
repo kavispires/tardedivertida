@@ -15,9 +15,18 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getPlayerCount,
+  setPlayersReadyState,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
+import { dealItems } from '../../legacy-utils/legacy';
 import { buildGalleryAndRanking, gatherConcepts } from './helpers';
 
 /**
@@ -77,29 +86,26 @@ export const prepareCreatingConceptsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Determine how many concepts each player may create
   const totalProposals = round.current === 1 ? CONCEPTS_FOR_FIRST_ROUND : CONCEPTS_FOR_NEW_AGES;
 
-  const maxProposals = Math.max(Math.ceil(totalProposals / utils.players.getPlayerCount(players)), 1);
+  const maxProposals = Math.max(Math.ceil(totalProposals / getPlayerCount(players)), 1);
 
   const roundsItems = shuffle([...store.items[round.current]]);
 
-  const playersCount = utils.players.getPlayerCount(players);
+  const playersCount = getPlayerCount(players);
 
   // Deal hands
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    player.hand = utils.game.dealItems(roundsItems, ITEMS_PER_PLAYER_PER_AGE);
+  getListOfPlayers(players).forEach((player) => {
+    player.hand = dealItems(roundsItems, ITEMS_PER_PLAYER_PER_AGE);
   });
 
   // Pool items for the round
-  const pool = utils.game.dealItems(
-    roundsItems,
-    (PLAYER_COUNTS.MAX - playersCount) * ITEMS_PER_PLAYER_PER_AGE,
-  );
+  const pool = dealItems(roundsItems, (PLAYER_COUNTS.MAX - playersCount) * ITEMS_PER_PLAYER_PER_AGE);
 
   // Add new items
   const items: Dictionary<ItemData> = { ...(state.items ?? {}), ...keyBy(roundsItems, 'id') };
@@ -126,7 +132,7 @@ export const prepareConceptsRevealPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const concepts = gatherConcepts(players, store);
 
@@ -153,13 +159,13 @@ export const prepareCommunicatingThingsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const concepts: ConceptData[] = state.concepts;
 
   const pool: ItemData[] = state.pool;
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.hand) {
       pool.push(...player.hand);
     }
@@ -185,10 +191,10 @@ export const prepareGuessingPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const newNames: NewNameEntry[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.proposedName) {
       const { itemId, name, conceptsIds } = player.proposedName;
       newNames.push({
@@ -220,7 +226,7 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // 2 points for guessing correctly, 1 point for getting your name guessed
 
@@ -260,14 +266,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   // const achievements = getAchievements(store);
   const achievements = [];
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.IDADE_DA_PREDA,
     gameId,
     startedAt: store.createdAt,
@@ -279,7 +285,7 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.gallery;
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

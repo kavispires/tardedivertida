@@ -4,8 +4,8 @@ import type { ContenderCardData, ItemData, SuspectCardData, TextCardData } from 
 import type { DeckEntry, Summary } from './types';
 // Constants
 import { COMUNICACAO_DUO_PHASES, AFFILIATIONS, DECK, DECK_ENTRY_STATUS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and round
@@ -27,7 +27,7 @@ export const determineNextPhase = (
       : nextPhase || ASKING_FOR_SOMETHING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**

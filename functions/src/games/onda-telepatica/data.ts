@@ -13,7 +13,7 @@ import {
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary, filterOutByIds } from '../../utils';
 
 /**
  * Get question resource based on the game's language
@@ -27,7 +27,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
   const usedCategories = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 
   // Filter out used cards
-  const availableCategories = utils.game.filterOutByIds(allCategories, usedCategories);
+  const availableCategories = filterOutByIds(allCategories, usedCategories);
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
@@ -46,6 +46,6 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
  */
 export const saveData = async (pastCategories: PastCategories): Promise<void> => {
   // Save usedTestemunhaOcularCards to global
-  const usedOndaTelepaticaCategories = utils.helpers.buildBooleanDictionary(pastCategories);
+  const usedOndaTelepaticaCategories = buildBooleanDictionary(pastCategories);
   await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, usedOndaTelepaticaCategories);
 };

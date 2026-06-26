@@ -13,8 +13,12 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import { getPlayerCount, setPlayersReadyState, addPropertiesToPlayers } from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import {
   calculateScore,
@@ -38,7 +42,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Save
   return {
@@ -84,7 +88,7 @@ export const prepareAssignmentPhase = async (
 
   const currentLocation = sampleSize(availableLocations, 1)[0];
 
-  const availableRoles = createRolesPool(currentLocation.roles, utils.players.getPlayerCount(players));
+  const availableRoles = createRolesPool(currentLocation.roles, getPlayerCount(players));
 
   const currentSpyId = distributeRoles(availableRoles, currentLocation.name, players);
 
@@ -101,7 +105,7 @@ export const prepareAssignmentPhase = async (
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         locations,
         currentSpyId,
         startingPlayerId: store.gameOrder[0],
@@ -172,8 +176,8 @@ export const prepareAssessmentPhase = async (
   const { targetId, accuserId, pausedAt } = store;
 
   // Update players
-  utils.players.addPropertiesToPlayers(players, { vote: false });
-  utils.players.unReadyPlayers(players);
+  addPropertiesToPlayers(players, { vote: false });
+  setPlayersReadyState(players, false);
   // Ready the players who won't need to vote
   players[targetId].ready = true;
   players[accuserId].ready = true;
@@ -306,11 +310,11 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.ESPIAO_ENTRE_NOS,
     gameId,
     startedAt: store.createdAt,

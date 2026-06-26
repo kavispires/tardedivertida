@@ -2,8 +2,10 @@
 import type { FirebaseStoreData } from './types';
 // Constants
 import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -25,7 +27,7 @@ export const determineNextPhase = (
       : SECRET_CLUE;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -35,7 +37,7 @@ export const determineNextPhase = (
  * @param store - The Firebase store data for tracking achievements
  */
 export const countImpostorVotes = (players: Players, impostorId: UID, store: FirebaseStoreData): number =>
-  utils.players.getListOfPlayers(players).reduce((total: number, player: Player) => {
+  getListOfPlayers(players).reduce((total: number, player: Player) => {
     if (!player.vote) {
       return total;
     }
@@ -68,11 +70,11 @@ export const calculateRanking = (
   leaderId: UID,
 ): PlainObject => {
   // Gained points: [player vote, being impostor/leader]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   const relevantPlayers = [impostorId, leaderId];
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     // If detectives won
     if (impostorVotes > 1 && !relevantPlayers.includes(player.id)) {
       // If the player voted for the impostor

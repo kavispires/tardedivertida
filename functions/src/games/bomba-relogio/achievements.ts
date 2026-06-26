@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Bomba Relógio game
  */
-const achievements = achievementBuilder('BOMBA_RELOGIO')
+const achievements = achievementBuilder(GAME_KEYS.BOMBA_RELOGIO)
   .counter('terrorist', {
     doc: 'Times being a terrorist',
     most: 'SOLO_TERRORIST',

@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleElimination,
@@ -52,7 +52,7 @@ export const getInitialState = (
   version: string,
   options: TestemunhaOcularOptions,
 ): TestemunhaOcularInitialState => {
-  return utils.game.getDefaultInitialState<TestemunhaOcularInitialState>({
+  return getDefaultInitialState<TestemunhaOcularInitialState>({
     gameId,
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     uid,

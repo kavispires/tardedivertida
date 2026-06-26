@@ -12,9 +12,14 @@ import {
   fetchGlobalTrackerDocumentData,
 } from '../services/global-tracker';
 import { fetchResource } from '../services/resource';
-// Internal
-import * as gameUtils from './game-utils';
-import { buildBooleanDictionary } from './helpers';
+// Utils
+import { buildBooleanDictionary, filterOutByIds } from '../utils';
+
+/**
+ * Resources Mechanics
+ * Handles fetching, filtering, and tracking of various game resources including
+ * items, contenders, suspects, single words, and adjectives
+ */
 
 /**
  * Retrieves items with optional filtering and NSFW handling
@@ -89,7 +94,7 @@ export const getItems = async (
   );
 
   // Filter out used items
-  let availableAlienItems = gameUtils.filterOutByIds(itemsObj, usedItems);
+  let availableAlienItems = filterOutByIds(itemsObj, usedItems);
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableAlienItems).length < quantity) {
@@ -152,8 +157,8 @@ export const itemUtils = {
 
 /**
  * Saves list of used items ids into the global used document
- * @param items
- * @returns
+ * @param items - Array of items to mark as used
+ * @returns Promise that resolves when the update is complete
  */
 export const saveUsedItems = async (items: ItemData[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
@@ -162,8 +167,8 @@ export const saveUsedItems = async (items: ItemData[]) => {
 
 /**
  * Saves list of used alien items ids into the global used document
- * @param items
- * @returns
+ * @param items - Array of alien items to mark as used
+ * @returns Promise that resolves when the update is complete
  */
 export const saveUsedAlienItems = async (items: ItemData[]) => {
   const itemsIdsDict = buildBooleanDictionary(items);
@@ -188,8 +193,8 @@ export const getSingleWords = async (language: Language, quantity?: number): Pro
 
 /**
  * Saves list of used single words ids into the global used document
- * @param usedWords
- * @returns
+ * @param usedWords - Dictionary of used single words ids
+ * @returns Promise that resolves when the update is complete
  */
 export const saveUsedSingleWords = async (usedWords: Dictionary<boolean>) => {
   return updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedWords);
@@ -258,7 +263,7 @@ export const getContenders = async (
   const cardQuantity = quantity + 5;
 
   // Filter out used items
-  let availableContendersDict = gameUtils.filterOutByIds(languageContenders, usedContenders);
+  let availableContendersDict = filterOutByIds(languageContenders, usedContenders);
 
   // If not the minimum items needed, reset and use all
   if (Object.keys(availableContendersDict).length < cardQuantity) {
@@ -331,7 +336,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
   const usedResources: Dictionary<boolean> = await fetchGlobalTrackerDocumentData(usedDocKey, {});
 
   // Filter out used resources
-  let availableResources = gameUtils.filterOutByIds(safeResources, usedResources);
+  let availableResources = filterOutByIds(safeResources, usedResources);
 
   // If not the minimum resources needed, reset and use all
   if (Object.keys(availableResources).length < quantity) {
@@ -393,10 +398,21 @@ export const getSuspects = async ({
   const allSuspects = await fetchResource<Dictionary<SuspectCardData>>(TDR_RESOURCES.SUSPECTS);
   const suspectsArray = Object.values(allSuspects);
 
+  /**
+   * Applies the style variant to a suspect ID
+   * @param id - The original suspect ID
+   * @param styleVariant - The style variant to apply
+   * @returns The modified ID in format 'us-{variant}-{id}'
+   */
   function applyStyleVariantOnId(id: string, styleVariant: SuspectCardsOptions['styleVariant']): string {
     return `us-${styleVariant ?? 'gb'}-${id.split('-')[1]}`;
   }
 
+  /**
+   * Removes non-essential properties from a suspect card
+   * @param suspect - The suspect card to clean up
+   * @returns Suspect card with only essential properties
+   */
   function cleanUpSuspect(suspect: SuspectCardData): SuspectCardData {
     return {
       id: suspect.id,
@@ -411,6 +427,11 @@ export const getSuspects = async ({
     };
   }
 
+  /**
+   * Filters suspects by the specified deck names
+   * @param list - Array of suspects to filter
+   * @returns Filtered array of suspects matching the deck criteria
+   */
   function filterByDecks(list: SuspectCardData[]) {
     return list.filter((suspect) => {
       if (decks?.includes('any')) {
@@ -529,8 +550,8 @@ export const saveUsedAdjectives = async (usedAdjectives: Dictionary<boolean>) =>
 };
 
 /**
- * Saves list of used items ids into the global used document
- * @param items- Array of items to save as used
+ * Saves list of used pairs ids into the community data
+ * @param pairs - Dictionary of used pairs ids
  * @returns Promise that resolves when the update is complete
  */
 export const savePairs = async (pairs: Dictionary<boolean>) => {

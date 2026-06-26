@@ -10,9 +10,10 @@ import { ITEM_TYPES, ITEMS_COUNT, TOTAL_ITEMS } from './constants';
 import { fetchResource } from '../../services/resource';
 // Tool Kits
 import { alienAttributesUtils } from '../../tool-kits/alien-attributes';
+// Resources
+import { saveUsedAlienItems } from '../../mechanics/resources';
 // Utils
-import utils from '../../utils_LEGACY';
-import { makeArray } from '../../utils_LEGACY/helpers';
+import { makeArray } from '../../utils';
 
 /**
  * Get characters based on the game's language
@@ -46,7 +47,7 @@ export const getResourceData = async (
   );
 
   // Attributes: Randomize spriteIds
-  const sortedSprites = shuffle(utils.helpers.makeArray(Object.keys(itemsAttributesResource).length, 0));
+  const sortedSprites = shuffle(makeArray(Object.keys(itemsAttributesResource).length, 0));
   attributes.forEach((attr, index) => {
     attr.spriteId = `${sortedSprites[index]}`;
   });
@@ -92,5 +93,5 @@ export const getResourceData = async (
  * @returns True if save was successful
  */
 export const saveUsedItems = async (items: AlienItem[]): Promise<boolean> => {
-  return await utils.tdr.saveUsedAlienItems(items);
+  return await saveUsedAlienItems(items);
 };

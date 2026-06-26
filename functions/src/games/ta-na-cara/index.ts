@@ -17,8 +17,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitAnswer, handleSubmitGuess, handleSubmitPrompt, handleTriggerGuessing } from './actions';
 import { getResourceData } from './data';
@@ -46,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: TaNaCaraOptions,
 ): TaNaCaraInitialState => {
-  return utils.game.getDefaultInitialState<TaNaCaraInitialState>({
+  return getDefaultInitialState<TaNaCaraInitialState>({
     gameId,
     gameName: GAME_NAMES.TA_NA_CARA,
     uid,

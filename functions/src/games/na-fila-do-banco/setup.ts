@@ -1,3 +1,4 @@
+import { keyBy, orderBy, shuffle } from 'lodash';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
 import {
@@ -10,18 +11,30 @@ import {
   TELLER_EFFECT_TYPE,
   TOTAL_ROUNDS,
 } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners, Scores } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
+import { buildDeck, buildTellers } from './helpers';
 
 // functions/src/engine/na-fila-do-banco/setup.ts
 
-import { keyBy, orderBy, shuffle } from 'lodash';
 // Utils
-import utils from '../../utils_LEGACY';
-import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
-import { buildDeck, buildTellers } from './helpers';
 
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import type { ClientCard, FirebaseStateData, FirebaseStoreData, Teller } from './types';
 
 /**
  * [Setup Phase] - Initialize game, create deck, and setup achievements
@@ -36,10 +49,10 @@ export const prepareSetupPhase = async (
 ) => {
   const deck = buildDeck(players);
 
-  const { gameOrder } = utils.turnOrder.create(players);
-  const playerCount = utils.players.getPlayerCount(players);
+  const { gameOrder } = turnOrderUtils.create(players);
+  const playerCount = getPlayerCount(players);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   return {
     update: {
@@ -75,12 +88,12 @@ export const prepareCardPlayPhase = async (
   players: Players,
 ) => {
   const previousPlayerId = state.activePlayerId ?? null;
-  const nextActivePlayerId = utils.turnOrder.getNextPlayerId(state.gameOrder, state.activePlayerId ?? '');
-  const playerCount = utils.players.getPlayerCount(players);
+  const nextActivePlayerId = turnOrderUtils.getNextPlayerId(state.gameOrder, state.activePlayerId ?? '');
+  const playerCount = getPlayerCount(players);
 
   // START ROUND
   if (state.outcome === OUTCOME.SETUP) {
-    const round: Round = utils.game.increaseRound(state.round);
+    const round: Round = increaseRound(state.round);
     // Reshuffle deck
     const deckDict: Dictionary<ClientCard> = state.deckDict || {};
     const deck: UID[] = shuffle(Object.keys(deckDict));
@@ -146,7 +159,7 @@ export const prepareCardPlayPhase = async (
     // Make a draw deck with the remaining cards, it will have all the KID cards.
     const drawDeck = shuffle([...deckWithoutKids, ...kidCards]);
 
-    utils.players.readyPlayers(players, nextActivePlayerId);
+    setPlayersReadyState(players, true, { excludeIds: [nextActivePlayerId] });
 
     return {
       update: {
@@ -300,16 +313,12 @@ export const prepareCardPlayPhase = async (
   const isDeckEmpty = drawDeck.length <= 1;
   const doesNextActivePlayerHaveCards = players[nextActivePlayerId].hand.length > 1;
 
-  utils.players.removePropertiesFromPlayers(players, [
-    'selectedTellerId',
-    'selectedCardId',
-    'selectedNewCardId',
-  ]);
+  removePropertiesFromPlayers(players, ['selectedTellerId', 'selectedCardId', 'selectedNewCardId']);
 
   tellers[selectedTellerId].queue = queue;
 
   if (isDeckEmpty && !doesNextActivePlayerHaveCards) {
-    utils.players.unReadyPlayers(players);
+    setPlayersReadyState(players, false);
 
     return {
       update: {
@@ -327,7 +336,7 @@ export const prepareCardPlayPhase = async (
   }
 
   // Define next player
-  utils.players.readyPlayers(players, nextActivePlayerId);
+  setPlayersReadyState(players, true, { excludeIds: [nextActivePlayerId] });
 
   return {
     update: {
@@ -358,12 +367,12 @@ export const prepareRoundResolutionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ) => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const gallery: UID[] = store.gallery || [];
 
   // Gained points [Teller A, Teller B, Teller C, Online Triggers]
-  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0, 0]);
 
   const deckDict: Dictionary<ClientCard> = state.deckDict || {};
   const tellers: Dictionary<Teller> = state.tellers || {};
@@ -405,7 +414,7 @@ export const prepareRoundResolutionPhase = async (
   });
 
   // Award points for online triggers
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     if (player.onlineTriggers.length > 0) {
       player.onlineTriggers.forEach((triggerType) => {
         const points =
@@ -446,13 +455,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.NA_FILA_DO_BANCO,
     gameId,
     startedAt: store.createdAt,
@@ -462,7 +471,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   // Save
   return {

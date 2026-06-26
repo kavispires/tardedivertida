@@ -18,8 +18,12 @@ import {
   QUESTIONS_PER_ROUND,
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { stringRemoveAccents } from '../../utils';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -42,7 +46,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return round.forceLastRound ? GAME_OVER : QUESTION_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -90,14 +94,14 @@ export const buildDeck = (allQuestions: AllQuestions): Deck => {
  */
 export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
   const answersArr: AnswerEntry[] = [];
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const answers: Dictionary<string> = player.answers;
     Object.entries(answers).forEach(([key, answer]) => {
       answersArr.push({
         id: key,
         playerId: player.id,
         answer,
-        parsedAnswer: utils.helpers.stringRemoveAccents(answer),
+        parsedAnswer: stringRemoveAccents(answer),
         isLocked: false,
         score: 0,
       });
@@ -112,11 +116,11 @@ export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
  * @returns
  */
 export const extendPlayerAnswers = (players: Players) => {
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     const answers: PlainObject = player.answers;
     Object.entries(answers).forEach(([key, answer]) => {
       player.answers[key] = {
-        parsedAnswer: utils.helpers.stringRemoveAccents(answer),
+        parsedAnswer: stringRemoveAccents(answer),
         answer,
         isLocked: false,
       };
@@ -167,10 +171,10 @@ export const buildListOfAnswers = (allAnswers: AnswerEntry[]): AnswerGroupEntry[
  */
 export const buildRanking = (players: Players, store: PlainObject): RankingEntry[] => {
   // Gained points: [matches]
-  const scores = new utils.players.Scores(players, [0]);
+  const scores = new Scores(players, [0]);
   scores.reset();
 
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     scores.add(player.id, player.score, 0);
 
     increaseAchievement(store.achievements, player.id, 'secretScore', player.score);
@@ -243,7 +247,7 @@ export const buildPastureChange = (players: Players, lowestScores: UID[], highes
 
   // First change: previous levels
   change.push(
-    utils.players.getListOfPlayers(players).map((player) => ({
+    getListOfPlayers(players).map((player) => ({
       id: player.id,
       avatarId: player.avatarId,
       name: player.name,
@@ -361,12 +365,10 @@ export const updateLevelsForPlayers = (players: Players, pastureChange: PastureC
  * @returns
  */
 export const determineGameOver = (players: Players, isShortPasture: boolean) => {
-  return utils.players
-    .getListOfPlayers(players)
-    .some(
-      (player) =>
-        player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD),
-    );
+  return getListOfPlayers(players).some(
+    (player) =>
+      player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD),
+  );
 };
 
 /**
@@ -410,7 +412,7 @@ export const calculateSheepTravelDistance = (store: PlainObject, pastureChange: 
 
 export function isLevelDifferenceGreaterThanOne(players: Players): boolean {
   // Sort the players by level in descending order
-  const sortedPlayers = utils.players.getListOfPlayers(players).sort((a, b) => b.level - a.level);
+  const sortedPlayers = getListOfPlayers(players).sort((a, b) => b.level - a.level);
 
   // Calculate the difference between the highest level and the second highest level
   const highestLevel = sortedPlayers[0].level;

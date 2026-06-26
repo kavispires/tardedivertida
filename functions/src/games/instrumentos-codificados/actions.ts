@@ -3,8 +3,8 @@ import type { FirebaseStateData } from './types';
 // Services
 import { throwHttpsError } from '../../services/firebase-core';
 import { getStateReferences, updatePlayer } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { isEverybodyReady, setPlayersReadyState } from '../../mechanics/players';
 // Internal
 import { getNextPhase } from './index';
 
@@ -91,7 +91,7 @@ export const handleSubmitCode = async (gameName: string, gameId: UID, playerId: 
     actionText,
   );
 
-  utils.players.readyPlayer(players, playerId);
+  setPlayersReadyState(players, true, { targetIds: [playerId] });
 
   players[playerId].codeGuess = code;
 
@@ -102,7 +102,7 @@ export const handleSubmitCode = async (gameName: string, gameId: UID, playerId: 
   }
 
   // If all players are ready, trigger next phase
-  if (utils.players.isEverybodyReady(players)) {
+  if (isEverybodyReady(players)) {
     return getNextPhase(gameName, gameId, state);
   }
 

@@ -5,9 +5,20 @@ import { GAME_NAMES } from '../../constants/games';
 import { AFFILIATIONS, COMUNICACAO_DUO_PHASES, MAX_ROUNDS, SIDES, STATUS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
-import { print } from '../../utils_LEGACY/helpers';
+import { print } from '../../utils';
 // Internal
 import {
   addToLastAchievement,
@@ -32,12 +43,12 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   const deckType = store.options?.deckType ?? 'items';
   const clueInputType = store.options?.clueInputType ?? 'drawing';
 
-  utils.players.getListOfPlayers(players).forEach((player, index) => {
+  getListOfPlayers(players).forEach((player, index) => {
     player.side = SIDES[index % 2];
   });
 
@@ -79,28 +90,25 @@ export const prepareAskingForSomething = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   const stateUpdate: PlainObject = {};
   // If round 1, no active player, otherwise, active player is the last active player
   if (!state.turnOrder) {
-    utils.players.unReadyPlayers(players);
+    setPlayersReadyState(players, false);
   } else {
     // Only change to next player if there is still items to be delivered for that player
-    const nextRequesterId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.requesterId);
+    const nextRequesterId = turnOrderUtils.getNextPlayerId(state.turnOrder, state.requesterId);
     const nextRequesterSide = players[nextRequesterId].side;
     const properDeliverablesLeft = state.deck.filter(
       (entry: DeckEntry) => entry.affiliation.includes(nextRequesterSide) && entry.status === STATUS.IDLE,
     ).length;
 
     if (properDeliverablesLeft > 0) {
-      stateUpdate.requesterId = utils.turnOrder.getNextPlayerId(state.turnOrder, state.requesterId);
+      stateUpdate.requesterId = turnOrderUtils.getNextPlayerId(state.turnOrder, state.requesterId);
     }
-    utils.players.unReadyPlayers(players, stateUpdate.requesterId);
+    setPlayersReadyState(players, false, { excludeIds: [stateUpdate.requesterId] });
   }
-
-  // Unready players
-  utils.players.unReadyPlayers(players);
 
   return {
     update: {
@@ -134,7 +142,7 @@ export const prepareDeliveringSomethingPhase = async (
 
   // If not state.turnOrder, create one based on the current player
   if (!state.turnOrder) {
-    const listOfPlayers = utils.players.getListOfPlayers(players);
+    const listOfPlayers = getListOfPlayers(players);
     if (listOfPlayers[0].clue) {
       stateUpdate.requesterId = listOfPlayers[0].id;
       stateUpdate.turnOrder = [listOfPlayers[0].id, listOfPlayers[1].id];
@@ -163,12 +171,12 @@ export const prepareDeliveringSomethingPhase = async (
     );
 
     // Achievement: The other player resets their deliveries
-    const answererId = utils.turnOrder.getNextPlayerId(Object.keys(players), state.requesterId);
+    const answererId = turnOrderUtils.getNextPlayerId(Object.keys(players), state.requesterId);
     pushAchievement(store.achievements, answererId, 'deliveriesPerRound', 0);
   }
-  utils.players.unReadyPlayers(players, stateUpdate.requesterId);
+  setPlayersReadyState(players, false, { excludeIds: [stateUpdate.requesterId] });
 
-  utils.players.removePropertiesFromPlayers(players, ['clue', 'clueQuantity']);
+  removePropertiesFromPlayers(players, ['clue', 'clueQuantity']);
 
   return {
     update: {
@@ -196,11 +204,11 @@ export const prepareVerificationPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const answererId = utils.turnOrder.getNextPlayerId(Object.keys(players), state.requesterId);
-  utils.players.unReadyPlayers(players);
+  const answererId = turnOrderUtils.getNextPlayerId(Object.keys(players), state.requesterId);
+  setPlayersReadyState(players, false);
 
   if (players[answererId].stopDelivery) {
-    utils.players.removePropertiesFromPlayers(players, ['stopDelivery', 'delivery']);
+    removePropertiesFromPlayers(players, ['stopDelivery', 'delivery']);
     return {
       update: {
         state: {
@@ -235,7 +243,7 @@ export const prepareVerificationPhase = async (
     throw new Error('Deck entry not found');
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['delivery']);
+  removePropertiesFromPlayers(players, ['delivery']);
 
   // Update delivered by
   if (deck[deckEntryIndex].deliveredBy) {
@@ -369,13 +377,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = state.status !== STATUS.WIN ? [] : utils.players.determineWinners(players);
+  const winners = state.status !== STATUS.WIN ? [] : determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.COMUNICACAO_DUO,
     gameId,
     startedAt: store.createdAt,
@@ -385,7 +393,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, ['side']);
+  cleanupPlayers(players, ['side']);
 
   return {
     update: {

@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Comunicacao Duo game
  */
-const achievements = achievementBuilder('COMUNICACAO_DUO')
+const achievements = achievementBuilder(GAME_KEYS.COMUNICACAO_DUO)
   .array('requestsPerRound', {
     doc: 'Items requests at a single round',
     extremes: {

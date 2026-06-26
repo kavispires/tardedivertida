@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Cruza Palavras game
  */
-const achievements = achievementBuilder('CRUZA_PALAVRAS')
+const achievements = achievementBuilder(GAME_KEYS.CRUZA_PALAVRAS)
   .counter('clues', {
     doc: 'Clues that players guessed correctly',
     most: 'BEST_CLUES',

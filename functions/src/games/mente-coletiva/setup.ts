@@ -12,9 +12,19 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
+import { distributeNumberIds } from '../../legacy-utils/legacy';
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { saveData } from './data';
 import {
@@ -48,21 +58,21 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allQuestions);
 
   // Add level to players
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     level: 0,
     answers: {},
   });
 
-  utils.players.distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.SHEEP - 1, 'sheepId');
+  distributeNumberIds(players, 0, AVATAR_SPRITE_LIBRARIES.SHEEP - 1, 'sheepId');
 
   // Setup achievements
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -99,14 +109,14 @@ export const prepareQuestionSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayerId = utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current + 1);
+  const activePlayerId = turnOrderUtils.getActivePlayerId(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.players.addPropertiesToPlayers(players, {
+  addPropertiesToPlayers(players, {
     score: 0,
     answers: {},
   });
-  utils.players.unReadyPlayer(players, activePlayerId);
+  setPlayersReadyState(players, false, { excludeIds: [activePlayerId] });
 
   // Get questions
   const currentQuestions = Array(QUESTIONS_PER_ROUND)
@@ -121,7 +131,7 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
         roundType: determineRoundType(store.gameOrder.length, state.round.current + 1, players),
         activePlayerId,
@@ -144,7 +154,7 @@ export const prepareEverybodyWritesPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Modify players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const currentQuestion = store.customQuestion
     ? store.customQuestion
@@ -191,7 +201,7 @@ export const prepareComparePhase = async (
   // Save gallery, the answer(s) with most matches for the question
   store.gallery.push(getMostFrequentAnswers(answersList, state.currentQuestion));
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -221,7 +231,7 @@ export const prepareResolutionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Add up score
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.values<ExtendedPlayerAnswerEntry>(player.answers).forEach((playerAnswer) => {
       player.score += playerAnswer.score;
     });
@@ -261,7 +271,7 @@ export const prepareResolutionPhase = async (
   calculateSheepTravelDistance(store, pastureChange);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -295,14 +305,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const farthestPasturePosition = utils.players.getListOfPlayers(players).reduce((acc, player) => {
+  const farthestPasturePosition = getListOfPlayers(players).reduce((acc, player) => {
     if (player.level > acc) {
       return player.level;
     }
     return acc;
   }, 0);
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   // Deal scores:
   listOfPlayers.forEach((player) => {
@@ -341,7 +351,7 @@ export const prepareGameOverPhase = async (
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.MENTE_COLETIVA,
     gameId,
     startedAt: store.createdAt,
@@ -356,7 +366,7 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.gallery ?? [];
 
-  utils.players.cleanup(players, ['sheepId', 'level']);
+  cleanupPlayers(players, ['sheepId', 'level']);
 
   // Save
   return {

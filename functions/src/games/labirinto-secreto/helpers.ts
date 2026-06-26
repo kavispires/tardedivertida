@@ -16,9 +16,14 @@ import {
   STARTING_CARDS,
   TREE_TYPE_BY_ID,
 } from './constants';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { getLastItem, makeArray, print } from '../../utils';
 // Internal
+import utils from '../../legacy-utils';
 import { increaseAchievement } from './achievements';
 
 /**
@@ -27,9 +32,7 @@ import { increaseAchievement } from './achievements';
  */
 export const determineGameOver = (players: Players) => {
   // After 5 rounds or all paths are completed
-  return utils.players
-    .getListOfPlayers(players)
-    .every((player) => player?.map && getIsPlayerMapComplete(player));
+  return getListOfPlayers(players).every((player) => player?.map && getIsPlayerMapComplete(player));
 };
 
 /**
@@ -55,14 +58,14 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === PATH_FOLLOWING) {
-    return utils.helpers.getLastItem(turnOrder ?? []) === activePlayerId ? RESULTS : PATH_FOLLOWING;
+    return getLastItem(turnOrder ?? []) === activePlayerId ? RESULTS : PATH_FOLLOWING;
   }
 
   if (currentPhase === RESULTS) {
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : MAP_BUILDING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 // FOREST FUNCTIONS
@@ -264,7 +267,7 @@ const buildPath = (
     }
 
     // Last resort safety
-    return utils.helpers.makeArray(length).map(() => startingPoint);
+    return makeArray(length).map(() => startingPoint);
   }
 
   return segments;
@@ -280,7 +283,7 @@ export const buildForest = (cards: TextCardData[], isItemsForest: boolean): Tree
     .fill(0)
     .map(() => random(2, 15));
 
-  return utils.helpers.makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
+  return makeArray(FOREST_WIDTH * FOREST_HEIGHT, 0).map((el: number, index) => {
     if (FORBIDDEN_TREES.includes(index)) {
       return {
         id: el,
@@ -328,16 +331,16 @@ export const buildPaths = (players: Players) => {
   });
 
   // Assign to players
-  if (generatedPaths.length < utils.players.getPlayerCount(players)) {
-    utils.helpers.print(
-      `Warning: Only generated ${generatedPaths.length} valid paths for ${utils.players.getPlayerCount(players)} players.`,
+  if (generatedPaths.length < getPlayerCount(players)) {
+    print(
+      `Warning: Only generated ${generatedPaths.length} valid paths for ${getPlayerCount(players)} players.`,
     );
   }
 
   // Shuffle the valid paths again before assigning to ensure fairness
   const finalPaths = shuffle(generatedPaths);
 
-  utils.players.getListOfPlayers(players).forEach((player, playerIndex) => {
+  getListOfPlayers(players).forEach((player, playerIndex) => {
     const path = finalPaths[playerIndex];
 
     // Safety check if we have more players than paths
@@ -346,8 +349,7 @@ export const buildPaths = (players: Players) => {
       return;
     }
 
-    player.map = utils.helpers
-      .makeArray(PATH_DISTANCE)
+    player.map = makeArray(PATH_DISTANCE)
       .map((_, index) => {
         // Safety: Ensure current point exists
         if (!path[index]) return null;
@@ -418,8 +420,8 @@ export const distributeCards = (store: PlainObject, players: Players, cards: Tex
 
 export const getRankingAndProcessScoring = (players: Players, store: FirebaseStoreData) => {
   // Gained points index: [Correct guesses, from other players]
-  const scores = new utils.players.Scores(players, [0, 0]);
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const scores = new Scores(players, [0, 0]);
+  const listOfPlayers = getListOfPlayers(players);
 
   listOfPlayers.forEach((activePlayer) => {
     if (!getIsPlayerMapComplete(activePlayer)) {
@@ -508,7 +510,7 @@ export const getRankingAndProcessScoring = (players: Players, store: FirebaseSto
  * @param players
  */
 export const updateMaps = (players: Players) => {
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
   listOfPlayers.forEach((activePlayer) => {
     const furthestPlayerIndex = activePlayer.map.reduce(
       (lastIndex: number, segment: MapSegment, index: number) => {
@@ -538,8 +540,7 @@ export const updateMaps = (players: Players) => {
  * @param players - The collection of players in the game
  */
 export const getAllCompletePlayerIds = (players: Players): UID[] => {
-  return utils.players
-    .getListOfPlayers(players)
+  return getListOfPlayers(players)
     .filter((player) => getIsPlayerMapComplete(player))
     .map((player) => player.id);
 };
@@ -549,7 +550,7 @@ export const getAllCompletePlayerIds = (players: Players): UID[] => {
  * @param players - The collection of players in the game
  */
 export const getPlayersWhoHaveNotCompletedTheirMaps = (players: Players): Player[] => {
-  return utils.players.getListOfPlayers(players).filter((player) => !getIsPlayerMapComplete(player));
+  return getListOfPlayers(players).filter((player) => !getIsPlayerMapComplete(player));
 };
 
 /**

@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitAnswers, handleSubmitEvaluationsAnswers } from './actions';
 import { getTopics } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: AdedanhxOptions,
 ): AdedanhxInitialState => {
-  return utils.game.getDefaultInitialState<AdedanhxInitialState>({
+  return getDefaultInitialState<AdedanhxInitialState>({
     gameId,
     gameName: GAME_NAMES.ADEDANHX,
     uid,

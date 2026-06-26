@@ -4,8 +4,11 @@ import type { ItemData } from '../../types/tdr';
 import type { ActingRole, FirebaseStateData, FirebaseStoreData, Movie, MovieGenre } from './types';
 // Constants
 import { GENRES, MAX_ROUNDS, TESTE_DE_ELENCO_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
+import { getRankedVotes } from '../../mechanics/voting';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -28,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
     return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : ACTOR_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -38,13 +41,13 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
 const determineMovieVotes = (
   players: Players,
 ): { genre: MovieGenre; movieTitle: string; selectedProps: string[] } => {
-  const genreVotes = utils.players.getRankedVotes(players, 'genre', true);
+  const genreVotes = getRankedVotes(players, 'genre', true);
   const genreKey = sampleSize(genreVotes, 1)[0].value;
   const genre = GENRES[genreKey];
 
-  const movieTitle = sampleSize(utils.players.getRankedVotes(players, 'movieTitle', true), 1)[0].value;
+  const movieTitle = sampleSize(getRankedVotes(players, 'movieTitle', true), 1)[0].value;
 
-  const selectedProps = utils.players.getListOfPlayers(players).reduce((acc: string[], player) => {
+  const selectedProps = getListOfPlayers(players).reduce((acc: string[], player) => {
     if (player.selectedProps) {
       return uniq(acc.concat(player.selectedProps));
     }
@@ -116,21 +119,21 @@ export const buildMovie = (players: Players, store: FirebaseStoreData, movieProp
  */
 export const determineCast = (players: Players, state: FirebaseStateData, store: FirebaseStoreData) => {
   // Gained Points [matches]
-  const scores = new utils.players.Scores(players, [0]);
+  const scores = new Scores(players, [0]);
 
   let outcome = 'CONTINUE';
 
   // Count votes
-  const votes = utils.players.getRankedVotes(players, 'actorId', true);
-  const allVotes = utils.players.getRankedVotes(players, 'actorId');
+  const votes = getRankedVotes(players, 'actorId', true);
+  const allVotes = getRankedVotes(players, 'actorId');
 
   // Achievement: Consistency and Changeling
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     player.votes.push(player.actorId);
   });
 
   // Determine success threshold (how many votes are necessary to consider the role cast)
-  const successThreshold = Math.ceil(utils.players.getListOfPlayers(players).length / 2); // 50% + 1
+  const successThreshold = Math.ceil(getListOfPlayers(players).length / 2); // 50% + 1
 
   const activeRole = state.movie.roles[state.activeRoleId];
 

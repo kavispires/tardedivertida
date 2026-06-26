@@ -12,8 +12,17 @@ import { GAME_NAMES } from '../../constants/games';
 import { MAX_ROUNDS, OUTCOME, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import {
   setupAchievements,
@@ -49,7 +58,7 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildQuestionsDeck(additionalData.allCards);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Determine the reason
   const perpetratorGender = suspectsDict[perpetratorId].gender;
@@ -101,7 +110,7 @@ export const prepareSetupPhase = async (
  * @param players - The players object
  */
 export const prepareWitnessSelectionPhase = async (players: Players): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -127,7 +136,7 @@ export const prepareQuestionSelectionPhase = async (
 ): Promise<SaveGamePayload> => {
   const witnessId = state.witnessId;
 
-  const newTurnOrder = utils.turnOrder.create(players).gameOrder.filter((id) => id !== witnessId);
+  const newTurnOrder = turnOrderUtils.create(players).gameOrder.filter((id) => id !== witnessId);
 
   const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : newTurnOrder;
 
@@ -162,7 +171,7 @@ export const prepareQuestionSelectionPhase = async (
     history[0].remaining = remainingSuspects;
   }
 
-  utils.players.readyPlayers(players, questionerId);
+  setPlayersReadyState(players, true, { excludeIds: [questionerId] });
 
   // Save
   return {
@@ -177,7 +186,7 @@ export const prepareQuestionSelectionPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         questionerId,
         questions,
         witnessId,
@@ -210,7 +219,7 @@ export const prepareQuestionSelectionPhase = async (
     (q: TestimonyQuestionCardData) => q.id !== state.questionId,
   );
 
-  utils.players.readyPlayers(players, state.witnessId);
+  setPlayersReadyState(players, true, { excludeIds: [state.witnessId] });
 
   // Save
   return {
@@ -249,7 +258,7 @@ export const prepareQuestionSelectionPhase = async (
 
   // In final showdown, skip to FINAL_TRIAL phase
   if (state.outcome === OUTCOME.FINAL_SHOWDOWN) {
-    utils.players.unReadyPlayers(players, state.witnessId);
+    setPlayersReadyState(players, true, { excludeIds: [state.witnessId] });
 
     return {
       update: {
@@ -264,7 +273,8 @@ export const prepareQuestionSelectionPhase = async (
     };
   }
 
-  utils.players.readyPlayers(players, state.questionerId);
+  setPlayersReadyState(players, true, { excludeIds: [state.questionerId] });
+
   // Save
   return {
     update: {
@@ -295,7 +305,7 @@ export const prepareGameOverPhase = async (
 
   const perpetratorId: UID = state.perpetratorId ?? '';
   const witnessId: UID = state.witnessId;
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   // Determine what suspect got the most votes
   const suspectVoteCount: Dictionary<number> = {};
@@ -369,10 +379,10 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements, {
     // The witness does not score for releases
-    releases: utils.players.getListOfPlayersIds(players, false, [state.witnessId]),
+    releases: getListOfPlayersIds(players, false, [state.witnessId]),
   });
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     gameId,
     startedAt: store.createdAt,
@@ -383,9 +393,9 @@ export const prepareGameOverPhase = async (
   });
 
   // Save Data (usedSuspects, usedQuestions, relationships)
-  await saveData(gameId, history, isWin, perpetratorId, utils.players.getPlayerCount(players));
+  await saveData(gameId, history, isWin, perpetratorId, getPlayerCount(players));
 
-  utils.players.cleanup(players, ['suspectId']);
+  cleanupPlayers(players, ['suspectId']);
 
   markGameAsComplete(gameId);
 

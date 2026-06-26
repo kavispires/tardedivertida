@@ -8,8 +8,20 @@ import { MOVIES_PER_ROUND, OUTCOME, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from 
 // Services
 import * as firestoreValueUtils from '../../services/firestore-core';
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayers,
+  getListOfPlayersIds,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
+import { sliceIntoChunks } from '../../utils';
 // Internal
 import { calculateAchievements, increaseAchievement, setupAchievements } from './achievements';
 import { saveData } from './data';
@@ -34,10 +46,10 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Add poster votes
-  utils.players.addPropertiesToPlayers(players, { posters: {} });
+  addPropertiesToPlayers(players, { posters: {} });
 
   const movieDeck = sampleSize(Object.values(additionalData.movies), TOTAL_ROUNDS * MOVIES_PER_ROUND);
 
@@ -52,15 +64,14 @@ export const prepareSetupPhase = async (
 
   const goodReviewsDeck = sampleSize(good, TOTAL_ROUNDS);
   const badReviewsDeck = sampleSize(bad, TOTAL_ROUNDS);
-  const moviePosters = utils.helpers
-    .sliceIntoChunks(shuffle(getMoviePosterIds()), 5)
+  const moviePosters = sliceIntoChunks(shuffle(getMoviePosterIds()), 5)
     .splice(0, 5)
     .reduce((acc, posterList, index) => {
       acc[index] = posterList;
       return acc;
     }, {});
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -104,8 +115,8 @@ export const prepareMovieSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['movieId']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['movieId']);
 
   // Get cards
   const movies = Array(MOVIES_PER_ROUND)
@@ -128,7 +139,7 @@ export const prepareMovieSelectionPhase = async (
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.MOVIE_SELECTION,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         movies,
         goodReview,
         badReview,
@@ -156,14 +167,14 @@ export const prepareMovieEliminationPhase = async (
   // Get or build turnOrder
   const turnOrder =
     state.turnOrder ??
-    utils.turnOrder.reorder(
+    turnOrderUtils.reorder(
       store.gameOrder,
-      utils.turnOrder.getActivePlayerId(store.gameOrder, state.round.current),
+      turnOrderUtils.getActivePlayerId(store.gameOrder, state.round.current),
     );
 
-  const activePlayerId = utils.turnOrder.getNextPlayerId(turnOrder, state.activePlayerId);
+  const activePlayerId = turnOrderUtils.getNextPlayerId(turnOrder, state.activePlayerId);
 
-  utils.players.readyPlayers(players, activePlayerId);
+  setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
 
   // Save
   return {
@@ -190,14 +201,13 @@ export const prepareRevealPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
   const activePlayerId: UID = state.activePlayerId;
 
   // Gather vote
   const { currentMovieId } = store;
 
-  const votedForSelectedMovie = utils.players
-    .getListOfPlayers(players)
+  const votedForSelectedMovie = getListOfPlayers(players)
     .filter((player) => player.movieId === currentMovieId)
     .map((player) => player.id);
 
@@ -247,7 +257,7 @@ export const prepareRevealPhase = async (
 
   if (outcome !== OUTCOME.CONTINUE) {
     const playersPerMovie: Record<string, UID[]> = {};
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       if (!playersPerMovie[player.movieId]) {
         playersPerMovie[player.movieId] = [];
       }
@@ -310,7 +320,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
     gameId,
     startedAt: store.createdAt,
@@ -322,7 +332,7 @@ export const prepareGameOverPhase = async (
 
   await saveData(store.movieDeck, store.goodReviewsDeck, store.badReviewsDeck);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

@@ -7,8 +7,18 @@ import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
 import { MEGAMIX_PHASES, SIDES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import {
@@ -31,9 +41,9 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  utils.players.addPropertiesToPlayers(players, { team: [SIDES.LOSER] });
+  addPropertiesToPlayers(players, { team: [SIDES.LOSER] });
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -65,7 +75,7 @@ export const prepareSeedingPhase = async (
   _state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Give each player 5 outfits
   const clubbers = shuffle(
@@ -102,18 +112,18 @@ export const prepareTrackPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   if (state.round.current === 0) {
     // Give each player their outfit
-    utils.players.getListOfPlayers(players).forEach((player) => {
+    getListOfPlayers(players).forEach((player) => {
       player.clubberId = player.data.clubberId;
     });
 
     // Handle seeding data
     const tracks = handleSeedingData(store.tracks, players, !!store?.options?.partyMode, store.language);
 
-    const playerData = utils.players.getListOfPlayers(players).reduce((acc, player) => {
+    const playerData = getListOfPlayers(players).reduce((acc, player) => {
       acc[player.id] = {
         seeds: player.seeds,
         data: player.data,
@@ -121,7 +131,7 @@ export const prepareTrackPhase = async (
       return acc;
     }, {});
 
-    utils.players.removePropertiesFromPlayers(players, ['data', 'seeds']);
+    removePropertiesFromPlayers(players, ['data', 'seeds']);
 
     // Save
     return {
@@ -133,14 +143,14 @@ export const prepareTrackPhase = async (
         state: {
           phase: MEGAMIX_PHASES.TRACK,
           track: tracks[state.round.current],
-          round: utils.game.increaseRound(state.round),
+          round: increaseRound(state.round),
           players,
         },
       },
     };
   }
 
-  utils.players.removePropertiesFromPlayers(players, ['data']);
+  removePropertiesFromPlayers(players, ['data']);
 
   // Save
   return {
@@ -148,7 +158,7 @@ export const prepareTrackPhase = async (
       state: {
         phase: MEGAMIX_PHASES.TRACK,
         track: store.tracks[state.round.current],
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         players,
       },
     },
@@ -177,7 +187,7 @@ export const prepareResultPhase = async (
     increaseAchievement(store.achievements, scoring.winningTeam[0], 'solitaryWinner', 1);
   }
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -208,12 +218,10 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winningPlayers = utils.players
-    .getListOfPlayers(players)
-    .filter((player) => state.winningTeam.includes(player.id));
+  const winningPlayers = getListOfPlayers(players).filter((player) => state.winningTeam.includes(player.id));
 
-  const winners = utils.players.determineWinners(keyBy(winningPlayers));
-  const fairWinners = utils.players.determineWinners(players);
+  const winners = determineWinners(keyBy(winningPlayers));
+  const fairWinners = determineWinners(players);
 
   calculateAllAchievements(players, store);
 
@@ -221,7 +229,7 @@ export const prepareGameOverPhase = async (
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.MEGAMIX,
     gameId,
     startedAt: store.createdAt,
@@ -231,7 +239,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, ['clubberId']);
+  cleanupPlayers(players, ['clubberId']);
 
   return {
     update: {

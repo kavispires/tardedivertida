@@ -7,8 +7,8 @@ import { CARDS_PER_PLAYER } from './constants';
 // Services
 import { updateFirestoreCommunityDataForCards } from '../../services/community-data';
 import { updateGlobalTrackerDocumentData } from '../../services/global-tracker';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 
 /**
  * Get image decks card
@@ -22,7 +22,7 @@ export const getData = async (playerCount: number): Promise<ResourceData> => {
   const minimumNumberOfCards = (playerCount + 2) * CARDS_PER_PLAYER;
 
   // Get image cards
-  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
+  const cards = await getImageCards(minimumNumberOfCards);
 
   return {
     cards: shuffle(cards),

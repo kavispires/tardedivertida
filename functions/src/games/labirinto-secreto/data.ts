@@ -7,8 +7,8 @@ import { TDR_RESOURCES } from '../../constants/resources';
 import { CARDS_PER_PLAYER, FOREST_HEIGHT, FOREST_WIDTH } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getItems, itemUtils, getAdjectives, saveUsedAdjectives } from '../../mechanics/resources';
 
 /**
  * Get cards resources based on the game's language
@@ -24,14 +24,14 @@ export const getData = async (
 ): Promise<ResourceData> => {
   // Get Adjectives
   const adjectivesPerPlayer = playerCount * CARDS_PER_PLAYER + 1;
-  const adjectives = await utils.tdr.getAdjectives(language, adjectivesPerPlayer);
+  const adjectives = await getAdjectives(language, adjectivesPerPlayer);
 
   if (options.itemTreeType) {
-    const items = await utils.tdr.getItems(FOREST_HEIGHT * FOREST_WIDTH, {
+    const items = await getItems(FOREST_HEIGHT * FOREST_WIDTH, {
       allowNSFW: !!options.nsfw,
       decks: ['alien', 'dream', 'manufactured'],
       deckFiltering: 'OR',
-      cleanUp: utils.tdr.itemUtils.cleanupDecks,
+      cleanUp: itemUtils.cleanupDecks,
     });
 
     return {
@@ -64,5 +64,5 @@ export const saveData = async (
   usedAdjectives: Dictionary<boolean>,
   // usedTreeCards: Dictionary<boolean>,
 ) => {
-  await utils.tdr.saveUsedAdjectives(usedAdjectives);
+  await saveUsedAdjectives(usedAdjectives);
 };

@@ -3,8 +3,9 @@ import type { FirebaseStateData, ImageCard, PlayerCard } from './types';
 // Services
 import { throwHttpsError } from '../../services/firebase-core';
 import { getStateReferences, updatePlayer, updateStore, updateState } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { getNextPhase } from './index';
 
@@ -72,7 +73,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
     actionText,
   );
 
-  const playersList = utils.players.getListOfPlayers(players);
+  const playersList = getListOfPlayers(players);
 
   // Group each players in a dictionary of cardIds and players array
   const cardCache: Dictionary<UID[]> = {};
@@ -147,7 +148,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
   let currentPlayerId = state.activePlayerId;
   let tries = 0;
   while (!nextActivePlayerId && tries <= playersList.length) {
-    currentPlayerId = utils.turnOrder.getNextPlayerId(state.gameOrder, currentPlayerId);
+    currentPlayerId = turnOrderUtils.getNextPlayerId(state.gameOrder, currentPlayerId);
     tries += 1;
 
     if (!players[currentPlayerId].fallen && !players[currentPlayerId].skip) {
@@ -179,7 +180,7 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
   if (availableTurnOrder.length === 1) {
     const leftOverPlayerId = availableTurnOrder[0];
 
-    const cardsLeftToMatch = utils.players.getListOfPlayers(players).reduce((acc, player) => {
+    const cardsLeftToMatch = getListOfPlayers(players).reduce((acc, player) => {
       if (player.id !== leftOverPlayerId) {
         let sum = acc;
         const cards: PlayerCard[] = Object.values(player.cards);

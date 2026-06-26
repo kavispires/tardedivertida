@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitGuess, handleSubmitWord } from './actions';
 import { getResourceData } from './data';
@@ -45,7 +45,7 @@ export const getInitialState = (
   version: string,
   options: MetalinguagemOptions,
 ): MetalinguagemInitialState => {
-  return utils.game.getDefaultInitialState<MetalinguagemInitialState>({
+  return getDefaultInitialState<MetalinguagemInitialState>({
     gameId,
     gameName: GAME_NAMES.METALINGUAGEM,
     uid,

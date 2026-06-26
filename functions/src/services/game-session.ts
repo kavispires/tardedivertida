@@ -3,9 +3,10 @@ import * as functions from 'firebase-functions/v2';
 import { isEmpty } from 'lodash';
 // Constants
 import { GAME_PROCESS_PHASES } from '../constants/general';
+// Mechanics
+import { isEverybodyReady } from '../mechanics/players';
 // Utils
-import utils from '../utils_LEGACY';
-import { print } from '../utils_LEGACY/helpers';
+import { devSimulateWait, print } from '../utils';
 import { isEmulatingEnvironment } from '../utils/environment';
 // Internal
 import { throwHttpsError } from './firebase-core';
@@ -149,7 +150,7 @@ export const saveGame = async (
   const hasStateSet = !isEmpty(saveContent?.set?.state);
 
   if (saveContent?.set?.state?.phase || saveContent?.update?.state?.phase) {
-    utils.helpers.print(
+    print(
       `➡️ Saving game state phase: ${
         (saveContent?.set?.state?.phase ?? saveContent?.update?.state?.phase) as string
       }`,
@@ -214,7 +215,12 @@ export const saveGame = async (
 
     // So players can see the animation and there's a sense of things are getting setup we wait at least 7 seconds
     if (phase && phase === GAME_PROCESS_PHASES.SETUP && Date.now() - now < 7000) {
-      await utils.helpers.forceWait(7000 - (Date.now() - now));
+      // Pauses execution
+      const forceWait = async (duration = 0) => {
+        await new Promise((resolve) => setTimeout(resolve, duration));
+      };
+
+      await forceWait(7000 - (Date.now() - now));
     }
 
     // TODO: Needs to figure out how to get the gameId, too risky to check the payload and not have it
@@ -245,7 +251,7 @@ export const triggerSetupPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
   await sessionRef.doc('state').update({ phase: GAME_PROCESS_PHASES.SETUP, updatedAt: Date.now() });
-  await utils.helpers.devSimulateWait(2000);
+  await devSimulateWait(2000);
   return true;
 };
 
@@ -258,7 +264,7 @@ export const triggerWaitPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
 ) => {
   await sessionRef.doc('state').update({ phase: GAME_PROCESS_PHASES.WAIT, updatedAt: Date.now() });
-  await utils.helpers.devSimulateWait(2000);
+  await devSimulateWait(2000);
   return true;
 };
 
@@ -307,7 +313,7 @@ export const updatePlayer = async ({
     const { state } = await getStateReferences<DefaultState>(gameName, gameId, actionText);
     const players = state?.players ?? {};
     // If all players are ready, trigger next phase
-    if (shouldGoToNextPhase || utils.players.isEverybodyReady(players)) {
+    if (shouldGoToNextPhase || isEverybodyReady(players)) {
       return nextPhaseFunction(gameName, gameId, state);
     }
   }

@@ -8,8 +8,17 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../constants/general';
 import { SCENARIOS_PER_ROUND, FILEIRA_DE_FATOS_PHASES, ROUND_TYPES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 import { buildRanking } from './helpers';
@@ -27,12 +36,12 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerIds: turnOrder } = utils.turnOrder.create(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerIds: turnOrder } = turnOrderUtils.create(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Build deck
   const deck = sampleSize(resourceData.scenarios, gameOrder.length * SCENARIOS_PER_ROUND);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -66,11 +75,11 @@ export const prepareScenarioOrderingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['currentOrder']);
+  setPlayersReadyState(players, false);
+  removePropertiesFromPlayers(players, ['currentOrder']);
 
-  const round = utils.game.increaseRound(state.round);
-  const activePlayerId = utils.turnOrder.getActivePlayerId(state.turnOrder, round.current);
+  const round = increaseRound(state.round);
+  const activePlayerId = turnOrderUtils.getActivePlayerId(state.turnOrder, round.current);
   const deck: TextCardData[] = store.deck;
   const scenarios = deck.splice(0, SCENARIOS_PER_ROUND);
 
@@ -117,7 +126,7 @@ export const prepareResultsPhase = async (
   ];
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -148,13 +157,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.FILEIRA_DE_FATOS,
     gameId,
     startedAt: store.createdAt,
@@ -164,7 +173,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

@@ -11,8 +11,8 @@ import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './
 // Services
 import { validateSubmitActionPayload, throwHttpsError } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
 import { getThemes } from './data';
@@ -39,7 +39,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): InstrumentosCodificadosInitialState => {
-  return utils.game.getDefaultInitialState<InstrumentosCodificadosInitialState>({
+  return getDefaultInitialState<InstrumentosCodificadosInitialState>({
     gameId,
     gameName: GAME_NAMES.INSTRUMENTOS_CODIFICADOS,
     uid,

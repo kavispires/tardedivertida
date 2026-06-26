@@ -5,8 +5,19 @@ import type { DuetosOptions, Gallery, ResourceData } from './types';
 // Constants
 import { AVATAR_SPRITE_LIBRARIES, SPRITE_LIBRARIES } from '../../constants/sprites';
 import { EXTRA_ITEMS, PAIRS_PER_ROUND, TOTAL_ROUNDS } from './constants';
+// Resources
+import {
+  getContenders,
+  getItems,
+  getSingleWords,
+  getSuspects,
+  itemUtils,
+  savePairs,
+} from '../../mechanics/resources';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 
 /**
  * Get characters based on the game's language
@@ -44,50 +55,50 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   const itemsNeeded = Math.max(TOTAL_ROUNDS - customRounds, 1) * quantityNeeded;
 
-  const items = await utils.tdr.getItems(itemsNeeded, {
+  const items = await getItems(itemsNeeded, {
     allowNSFW,
     decks: ['alien', 'dream', 'manufactured', 'thing'],
-    cleanUp: utils.tdr.itemUtils.cleanupDecks,
+    cleanUp: itemUtils.cleanupDecks,
   });
 
   let images: UID[] = [];
   if (specialDeckTypes.includes('images')) {
-    images = await utils.imageCards.getImageCards(quantityNeeded);
+    images = await getImageCards(quantityNeeded);
   }
 
   let emojis: number[] = [];
   if (specialDeckTypes.includes('emojis')) {
-    emojis = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
+    emojis = sampleSize(makeArray(SPRITE_LIBRARIES.EMOJIS), quantityNeeded);
   }
 
   let glyphs: number[] = [];
   if (specialDeckTypes.includes('glyphs')) {
-    glyphs = sampleSize(utils.helpers.makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
+    glyphs = sampleSize(makeArray(SPRITE_LIBRARIES.GLYPHS), quantityNeeded);
   }
 
   let superHeroes: number[] = [];
   if (specialDeckTypes.includes('superHeroes')) {
-    superHeroes = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES), quantityNeeded);
+    superHeroes = sampleSize(makeArray(AVATAR_SPRITE_LIBRARIES.SUPER_HEROES), quantityNeeded);
   }
 
   let clubbers: number[] = [];
   if (specialDeckTypes.includes('clubbers')) {
-    clubbers = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS), quantityNeeded);
+    clubbers = sampleSize(makeArray(AVATAR_SPRITE_LIBRARIES.CLUBBERS), quantityNeeded);
   }
 
   let costumes: number[] = [];
   if (specialDeckTypes.includes('costumes')) {
-    costumes = sampleSize(utils.helpers.makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), quantityNeeded);
+    costumes = sampleSize(makeArray(AVATAR_SPRITE_LIBRARIES.COSTUMES), quantityNeeded);
   }
 
   let words: TextCardData[] = [];
   if (specialDeckTypes.includes('words')) {
-    words = await utils.tdr.getSingleWords(language, quantityNeeded);
+    words = await getSingleWords(language, quantityNeeded);
   }
 
   let suspects: SuspectCardData[] = [];
   if (specialDeckTypes.includes('suspects')) {
-    suspects = await utils.tdr.getSuspects({
+    suspects = await getSuspects({
       randomStyleVariant: true,
       quantity: quantityNeeded,
       cleanup: true,
@@ -97,7 +108,7 @@ export const getResourceData = async (language: Language, options?: DuetosOption
 
   let contenders: ContenderCardData[] = [];
   if (specialDeckTypes.includes('contenders')) {
-    contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], quantityNeeded);
+    contenders = await getContenders(language, allowNSFW, ['any'], quantityNeeded);
   }
 
   return {
@@ -131,5 +142,5 @@ export const savedData = async (gallery: Gallery): Promise<boolean> => {
     return false;
   }
 
-  return await utils.tdr.savePairs(dataDict);
+  return await savePairs(dataDict);
 };

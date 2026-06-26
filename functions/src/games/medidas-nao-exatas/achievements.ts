@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Medidas Não Exatas game
  */
-const achievements = achievementBuilder('MEDIDAS_NAO_EXATAS')
+const achievements = achievementBuilder(GAME_KEYS.MEDIDAS_NAO_EXATAS)
   .counter('doubleGuesses', {
     doc: 'Number of times a player made multiple guesses',
     most: 'MOST_DOUBLE_GUESSES',

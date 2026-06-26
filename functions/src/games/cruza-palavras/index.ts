@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitClue, handleSubmitGuesses, handleSubmitWords } from './actions';
 import { getWords } from './data';
@@ -46,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: CruzaPalavrasOptions,
 ): CruzaPalavrasInitialState => {
-  return utils.game.getDefaultInitialState<CruzaPalavrasInitialState>({
+  return getDefaultInitialState<CruzaPalavrasInitialState>({
     gameId,
     gameName: GAME_NAMES.CRUZA_PALAVRAS,
     uid,

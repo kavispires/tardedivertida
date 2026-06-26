@@ -6,9 +6,19 @@ import { GAME_NAMES } from '../../constants/games';
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT, TOTAL_ROUNDS } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
+import utils from '../../legacy-utils';
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import { calculateRanking, countImpostorVotes } from './helpers';
@@ -27,7 +37,7 @@ export const prepareSetupPhase = async (
   data: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Assigned cards to players depending on player count
   const cardsPerPlayer = TOTAL_ROUNDS * 2 + HAND_LIMIT;
@@ -35,7 +45,7 @@ export const prepareSetupPhase = async (
   // Split cards equally between players
   utils.playerHand.dealDeck(players, data.cards, cardsPerPlayer, 'deck');
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -72,14 +82,14 @@ export const prepareSecretCluePhase = async (
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
   utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
-  utils.players.removePropertiesFromPlayers(players, ['vote']);
+  removePropertiesFromPlayers(players, ['vote']);
 
   // Determine the leader
   const leaderId = state.impostorId;
   // Determine the impostor
-  const impostorId = sample(utils.players.getListOfPlayersIds(players, false, [leaderId]));
+  const impostorId = sample(getListOfPlayersIds(players, false, [leaderId]));
 
-  utils.players.unReadyPlayer(players, leaderId);
+  setPlayersReadyState(players, false, { excludeIds: [leaderId] });
 
   // Save
   return {
@@ -87,10 +97,10 @@ export const prepareSecretCluePhase = async (
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         leaderId,
         impostorId,
-        turnOrder: utils.turnOrder.reorder(state.turnOrder, leaderId),
+        turnOrder: turnOrderUtils.reorder(state.turnOrder, leaderId),
       },
       stateCleanup: ['phaseOrder', 'phaseIndex', 'currentPlayerId', 'impostorVotes', 'ranking', 'table'],
     },
@@ -137,7 +147,7 @@ export const prepareDefensePhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save leaders cards and clue
   const leaderCards = state.table.find((e: TableEntry) => state.leaderId === e.playerId);
@@ -189,7 +199,7 @@ export const prepareVotingPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players, state.leaderId);
+  setPlayersReadyState(players, false, { excludeIds: [state.leaderId] });
 
   // Save
   return {
@@ -225,7 +235,7 @@ export const prepareRevealPhase = async (
   increaseAchievement(store.achievements, state.leaderId, 'clueLength', state.clue.length || 0);
 
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -256,14 +266,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
   const gallery = cloneDeep(store.usedCards);
 
   await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
     gameId,
     startedAt: store.createdAt,
@@ -276,7 +286,7 @@ export const prepareGameOverPhase = async (
   // Save data: imageCards and clues
   await saveData(store.usedCards, store.language);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

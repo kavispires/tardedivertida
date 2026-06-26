@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Esquiadores game
  */
-const achievements = achievementBuilder('ESQUIADORES')
+const achievements = achievementBuilder(GAME_KEYS.ESQUIADORES)
   .counter('lodges', {
     doc: 'Number of lodges player placed bets on',
     most: 'MOST_LODGES',

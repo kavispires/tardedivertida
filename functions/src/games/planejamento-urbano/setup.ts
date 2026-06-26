@@ -16,10 +16,22 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
 // Tool Kits
 import { gridMapUtils } from '../../tool-kits/grid-map';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners, Scores } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
+import { print } from '../../utils';
 // Internal
 import { setupAchievements, increaseAchievement, calculateAchievements } from './achievements';
 
@@ -71,7 +83,7 @@ export const prepareSetupPhase = async (
     }
   });
 
-  const { playerIds: gameOrder, gameOrder: totalGameOrder } = utils.turnOrder.create(players, 6);
+  const { playerIds: gameOrder, gameOrder: totalGameOrder } = turnOrderUtils.create(players, 6);
 
   const deck = sampleSize(allLocations, totalGameOrder.length * 3).map((l) => l.id);
 
@@ -79,7 +91,7 @@ export const prepareSetupPhase = async (
     usedCityLocations[locationId] = allCityLocations[locationId];
   });
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -117,12 +129,12 @@ export const preparePlanningPhase = async (
   const deck = store.deck;
   const city: City = state.city;
 
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 
   // Determine the active planner
-  const architectId = utils.turnOrder.getActivePlayerId(state.gameOrder, round.current);
+  const architectId = turnOrderUtils.getActivePlayerId(state.gameOrder, round.current);
 
-  utils.players.readyPlayers(players, architectId);
+  setPlayersReadyState(players, true, { excludeIds: [architectId] });
 
   // If there are pending sites, resolve them
   const gallery: GalleryEntry[] = state.gallery || [];
@@ -223,9 +235,9 @@ export const preparePlacingPhase = async (
 
   const planning: Dictionary<string> = players[architectId].planning;
 
-  utils.players.removePropertiesFromPlayers(players, ['planning']);
+  removePropertiesFromPlayers(players, ['planning']);
 
-  utils.players.unReadyPlayers(players, architectId);
+  setPlayersReadyState(players, false, { excludeIds: [architectId] });
 
   // Achievement: Cones for architect
   const leftOverCone = difference(Object.values(planning), CONES)[0];
@@ -233,7 +245,7 @@ export const preparePlacingPhase = async (
     const achievementKey = `cone${leftOverCone}` as 'coneA' | 'coneB' | 'coneC' | 'coneD';
     increaseAchievement(store.achievements, architectId, achievementKey, 1);
   } else {
-    utils.helpers.print('No leftover cone for architect');
+    print('No leftover cone for architect');
   }
 
   // Save
@@ -261,7 +273,7 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const city: City = state.city;
   const availableProjectsIds: string[] = state.availableProjectsIds;
@@ -272,7 +284,7 @@ export const prepareResolutionPhase = async (
   const conesCellIds: Record<string, string> = state.coneCellIds;
 
   // Gained Points [correct guesses, architect points, bonus matches]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+  const scores = new Scores(players, [0, 0, 0]);
 
   const gallery: GalleryEntry[] = [];
   // If placement is correct, give 1 point, and place it in the city
@@ -287,7 +299,7 @@ export const prepareResolutionPhase = async (
     let architectPoints = 0;
 
     // If at least one player guessed correctly, it's correct
-    utils.players.getListOfPlayers(players, false, [architectId]).forEach((player) => {
+    getListOfPlayers(players, false, [architectId]).forEach((player) => {
       const playerGuess = player.evaluations?.[projectId];
       if (playerGuess) {
         playersPoints[player.id] = playersPoints[player.id] || 0;
@@ -411,13 +423,13 @@ export const prepareGameOverPhase = async (
     }
   });
 
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.PLANEJAMENTO_URBANO,
     gameId,
     startedAt: store.createdAt,
@@ -427,7 +439,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

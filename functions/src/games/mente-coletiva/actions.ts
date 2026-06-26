@@ -5,8 +5,8 @@ import type { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
 // Services
 import { throwHttpsError } from '../../services/firebase-core';
 import { getStateReferences, saveGame, updatePlayer, updateStore } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
 // Internal
 import { buildListOfAnswers } from './helpers';
 
@@ -123,7 +123,7 @@ export const handleNextAnswers = async (
   });
 
   // Removed updated accepted answers
-  utils.players.getListOfPlayers(players).forEach((player) => {
+  getListOfPlayers(players).forEach((player) => {
     Object.keys(player.answers).forEach((id) => {
       if (matchingAnswers.includes(id)) {
         player.answers[id].isLocked = true;

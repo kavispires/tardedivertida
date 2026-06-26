@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Controle de Estoque game
  */
-const achievements = achievementBuilder('CONTROLE_DE_ESTOQUE')
+const achievements = achievementBuilder(GAME_KEYS.CONTROLE_DE_ESTOQUE)
   .counter('attempts', {
     doc: 'Attempted to fulfill an order',
     most: 'MOST_FULFILLMENT_ATTEMPTS_OVERALL',

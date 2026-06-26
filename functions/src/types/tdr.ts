@@ -1029,7 +1029,7 @@ export type DailyPasscodeSet = {
    * List of synonyms for the passcodes
    */
   synonyms: string[];
-}
+};
 
 export type DailyQuartetSet = {
   /**

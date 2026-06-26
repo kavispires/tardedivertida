@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Planejamento Urbano game
  */
-const planejamentoUrbanoAchievements = achievementBuilder('PLANEJAMENTO_URBANO')
+const planejamentoUrbanoAchievements = achievementBuilder(GAME_KEYS.PLANEJAMENTO_URBANO)
   .counter('coneA', {
     doc: 'Left the cone A without a location',
     most: 'MOST_CONE_A_LEFT',

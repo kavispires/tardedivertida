@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitDrawing, handleSubmitVoting } from './actions';
 import { getCards } from './data';
@@ -45,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: ArteRuimGameOptions,
 ): ArteRuimInitialState => {
-  return utils.game.getDefaultInitialState<ArteRuimInitialState>({
+  return getDefaultInitialState<ArteRuimInitialState>({
     gameId,
     gameName: GAME_NAMES.ARTE_RUIM,
     uid,
@@ -96,7 +97,7 @@ export const getNextPhase = async (
     // Request data
     const data = await getCards(
       store.language,
-      utils.players.getPlayerCount(players),
+      getPlayerCount(players),
       store.options as ArteRuimGameOptions,
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);

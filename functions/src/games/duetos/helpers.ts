@@ -4,8 +4,10 @@ import type { FirebaseStoreData, Gallery, GalleryItem, ItemEntry } from './types
 // Constants
 import { SEPARATOR } from '../../constants/general';
 import { DUETOS_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -22,7 +24,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : PAIRING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -83,7 +85,7 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
 
   const extra: Record<string, UID[]> = {};
 
-  utils.players.getListOfPlayers(players, true).forEach((player) => {
+  getListOfPlayers(players, true).forEach((player) => {
     for (let i = 0; i < player.pairs.length; i += 2) {
       const pair = [player.pairs[i], player.pairs[i + 1]].sort().join(PAIR_SEPARATOR);
 
@@ -106,7 +108,7 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
   });
 
   // Gained Points: [paris, left out]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
   Object.values(pairsByPlayers).forEach((pairPlayers) => {
     const count = pairPlayers.length;

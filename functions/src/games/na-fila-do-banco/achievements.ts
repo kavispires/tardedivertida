@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Na Fila do Banco game
  */
-const achievements = achievementBuilder('NA_FILA_DO_BANCO')
+const achievements = achievementBuilder(GAME_KEYS.NA_FILA_DO_BANCO)
   .counter('kid', {
     doc: 'Total Kid cards played',
     most: 'MOST_KID_CARDS',

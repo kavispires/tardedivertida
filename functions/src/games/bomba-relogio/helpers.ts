@@ -3,8 +3,11 @@ import { sample, shuffle } from 'lodash';
 import type { DataCounts, FirebaseStoreData, Status, TimeBombCard } from './types';
 // Constants
 import { BOMBA_RELOGIO_PHASES, CARD_TYPES, OUTCOME, ROLES } from './constants';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -26,7 +29,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, status: S
     return status.outcome === OUTCOME.END ? DECLARATION : EXAMINATION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -41,7 +44,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, status: S
  *   - `activePlayerIds`: Object mapping round 0 to a randomly selected player ID, or null if no players exist
  */
 export const getStartingStatus = (players: Players): Status => {
-  const activePlayerId = sample(utils.players.getListOfPlayers(players))?.id;
+  const activePlayerId = sample(getListOfPlayers(players))?.id;
 
   return {
     cut: {},
@@ -82,15 +85,15 @@ export const getStartingStatus = (players: Players): Status => {
  */
 export const buildDeck = (dataCounts: DataCounts): TimeBombCard[] => {
   return shuffle([
-    ...utils.helpers.makeArray(dataCounts.bomb).map(() => ({
+    ...makeArray(dataCounts.bomb).map(() => ({
       id: 'card-0',
       type: CARD_TYPES.BOMB,
     })),
-    ...utils.helpers.makeArray(dataCounts.wires).map((v) => ({
+    ...makeArray(dataCounts.wires).map((v) => ({
       id: `card-${v + dataCounts.bomb}`,
       type: CARD_TYPES.WIRE,
     })),
-    ...utils.helpers.makeArray(dataCounts.blank).map((v) => ({
+    ...makeArray(dataCounts.blank).map((v) => ({
       id: `card-${v + dataCounts.bomb + dataCounts.wires}`,
       type: CARD_TYPES.BLANK,
     })),
@@ -114,10 +117,10 @@ export const determineRoles = (
   dataCounts: DataCounts,
   storeUpdate: Partial<FirebaseStoreData>,
 ): void => {
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
   const allRoles = shuffle([
-    ...utils.helpers.makeArray(dataCounts.agents).map(() => ROLES.AGENT),
-    ...utils.helpers.makeArray(dataCounts.terrorists).map(() => ROLES.TERRORIST),
+    ...makeArray(dataCounts.agents).map(() => ROLES.AGENT),
+    ...makeArray(dataCounts.terrorists).map(() => ROLES.TERRORIST),
   ]);
 
   // Assign roles to players

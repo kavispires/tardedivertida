@@ -16,8 +16,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitDecision } from './actions';
 import { determineOutcome, determineNextPhase } from './helpers';
@@ -44,7 +44,7 @@ export const getInitialState = (
   version: string,
   options: NoRuaDoMedoOptions,
 ): NoRuaDoMedoInitialState => {
-  return utils.game.getDefaultInitialState<NoRuaDoMedoInitialState>({
+  return getDefaultInitialState<NoRuaDoMedoInitialState>({
     gameId,
     gameName: GAME_NAMES.NA_RUA_DO_MEDO,
     uid,

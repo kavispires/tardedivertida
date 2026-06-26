@@ -2,8 +2,8 @@
 import type { WordLength } from './types';
 // Constants
 import { METALINGUAGEM_PHASES, WORD_LENGTH_STATUS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and word lengths
@@ -33,5 +33,5 @@ export const determineNextPhase = (currentPhase: string, round: Round, wordLengt
     return GAME_OVER;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };

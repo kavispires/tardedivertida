@@ -22,8 +22,21 @@ import {
 } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  setPlayersReadyState,
+  getListOfPlayersIds,
+  getPlayerCount,
+  addPropertiesToPlayers,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Utils
-import utils from '../../utils_LEGACY';
+import { makeArray } from '../../utils';
 // Internal
 import { calculateAchievements, setupAchievements } from './achievements';
 import {
@@ -47,10 +60,10 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Get player count and determine goods counts from COUNTS_BY_PLAYER_COUNT
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const counts = COUNTS_BY_PLAYER_COUNT[playerCount as keyof typeof COUNTS_BY_PLAYER_COUNT];
 
   // Gather goods and build dictionary
@@ -78,7 +91,7 @@ export const prepareSetupPhase = async (
 
   // Build grid
   const warehouseGrid = keyBy(
-    utils.helpers.makeArray(49).map((id) => {
+    makeArray(49).map((id) => {
       const slot: WarehouseSlot = {
         id,
         goodId: null,
@@ -102,7 +115,7 @@ export const prepareSetupPhase = async (
   });
 
   // Create game order for supervisor rotation
-  const { gameOrder } = utils.turnOrder.create(players);
+  const { gameOrder } = turnOrderUtils.create(players);
 
   // Calculate total rounds (minimum 5 rounds)
   const totalRounds = MIN_ROUNDS;
@@ -167,7 +180,7 @@ export const prepareTheWarehousePhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready all players (they all need to press ready to proceed)
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Expose initial goods for viewing
   (Object.values(state.goodsDict) as Good[]).forEach((good) => {
@@ -200,15 +213,15 @@ export const prepareGoodPlacementPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Get player count and counts configuration
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const counts = COUNTS_BY_PLAYER_COUNT[playerCount as keyof typeof COUNTS_BY_PLAYER_COUNT];
   let round: Round = state.round;
 
   // Get supervisor for this turn (cycles through turnOrder)
   const previousSupervisorId = state.supervisorId ?? null;
-  const supervisorId = utils.turnOrder.getNextPlayerId(state.turnOrder, previousSupervisorId);
+  const supervisorId = turnOrderUtils.getNextPlayerId(state.turnOrder, previousSupervisorId);
   // Ready everybody but the supervisor
-  utils.players.readyPlayers(players, supervisorId);
+  setPlayersReadyState(players, true, { excludeIds: [supervisorId] });
 
   const status: Status = state.status ?? {
     outcome: OUTCOME.NEW_IDEA,
@@ -227,7 +240,7 @@ export const prepareGoodPlacementPhase = async (
 
   // SETUP FIRST ROUND
   if (round.current === 0) {
-    round = utils.game.increaseRound(round);
+    round = increaseRound(round);
 
     // The 1st round's goods might be a different amount
     status.goal = counts.goodsOnFirstRound;
@@ -283,7 +296,7 @@ export const prepareGoodPlacementPhase = async (
   // SETUP NEW ROUND
   if (status.progress >= status.goal) {
     const previousBossIdea = state.bossIdea;
-    round = utils.game.increaseRound(round);
+    round = increaseRound(round);
 
     // Override status for new round
     status.progress = 0;
@@ -355,7 +368,7 @@ export const prepareFulfillmentPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
   const warehouseGrid: Dictionary<WarehouseSlot> = state.warehouseGrid;
   const goodsDict: Dictionary<Good> = state.goodsDict;
 
@@ -387,7 +400,7 @@ export const prepareFulfillmentPhase = async (
       slot.available = false;
     });
 
-    utils.players.addPropertiesToPlayers(players, { fulfillments: {}, previousOrders: [] });
+    addPropertiesToPlayers(players, { fulfillments: {}, previousOrders: [] });
 
     const { ordersLeft } = distributeOrders(players, state.goodsDict);
 
@@ -420,7 +433,7 @@ export const prepareFulfillmentPhase = async (
 
   const { ordersLeft } = distributeOrders(players, state.goodsDict);
 
-  utils.players.removePropertiesFromPlayers(players, ['fulfillments']);
+  removePropertiesFromPlayers(players, ['fulfillments']);
 
   // Save
   return {
@@ -428,7 +441,7 @@ export const prepareFulfillmentPhase = async (
       state: {
         phase: CONTROLE_DE_ESTOQUE_PHASES.FULFILLMENT,
         players,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
         warehouseGrid,
         ordersLeft,
       },
@@ -456,7 +469,7 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   const { gallery, ranking, ordersLeft } = buildRanking(
     players,
@@ -497,13 +510,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   const achievements = calculateAchievements(store.achievements);
 
   await markGameAsComplete(gameId);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.CONTROLE_DE_ESTOQUE,
     gameId,
     startedAt: store.createdAt,
@@ -516,7 +529,7 @@ export const prepareGameOverPhase = async (
   // Save data
   // await saveData(store.language, store.pastClues, store.options.imageGrid);
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

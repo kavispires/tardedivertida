@@ -18,12 +18,13 @@ function generateAchievements(metadata) {
  * Type-safe achievement definitions using the achievements toolkit
  */
 
+import { GAME_KEYS } from '../../constants/games';
 import { achievementBuilder } from '../../utils/tool-kits';
 
 /**
  * Build achievement utilities for ${pascalName} game
  */
-const achievements = achievementBuilder('${gameKey}')
+const achievements = achievementBuilder(GAME_KEYS.${gameKey})
   // TODO: Define achievement counters
   // Example:
   // .counter('correctAnswers', {

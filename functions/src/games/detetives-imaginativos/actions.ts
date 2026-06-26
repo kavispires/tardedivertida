@@ -5,9 +5,8 @@ import { HAND_LIMIT } from './constants';
 // Services
 import { throwHttpsError } from '../../services/firebase-core';
 import { getStateReferences, updatePlayer } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
 // Internal
+import utils from '../../legacy-utils';
 import { getNextPhase } from './index';
 
 /**

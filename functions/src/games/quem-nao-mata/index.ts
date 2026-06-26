@@ -15,8 +15,8 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from './actions';
 import { determineNextPhase } from './helpers';
@@ -43,7 +43,7 @@ export const getInitialState = (
   language: Language,
   version: string,
 ): QuemNaoMataInitialState => {
-  return utils.game.getDefaultInitialState<QuemNaoMataInitialState>({
+  return getDefaultInitialState<QuemNaoMataInitialState>({
     gameId,
     gameName: GAME_NAMES.QUEM_NAO_MATA,
     uid,

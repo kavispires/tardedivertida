@@ -17,8 +17,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleEvaluations, handleSkipTurn, handleSubmitCards, handleSubmitCategory } from './actions';
 import { getResourceData } from './data';
@@ -48,7 +49,7 @@ export const getInitialState = (
   version: string,
   options: QualQuesitoOptions,
 ): QualQuesitoInitialState => {
-  return utils.game.getDefaultInitialState<QualQuesitoInitialState>({
+  return getDefaultInitialState<QualQuesitoInitialState>({
     gameId,
     gameName: GAME_NAMES.QUAL_QUESITO,
     uid,
@@ -95,7 +96,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(store.options, utils.players.getPlayerCount(players));
+    const additionalData = await getResourceData(store.options, getPlayerCount(players));
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

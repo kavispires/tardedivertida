@@ -2,8 +2,10 @@
 import type { ComunicacaoDuoOptions, ResourceData } from './types';
 // Constants
 import { TOTAL_ITEMS } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Resources
+import { getContenders, getItems, getSingleWords, getSuspects } from '../../mechanics/resources';
+// Mechanics
+import { getImageCards } from '../../mechanics/image-cards';
 // Internal
 import { applyDataToDeck } from './helpers';
 
@@ -18,7 +20,7 @@ export const getDeck = async (language: Language, options: ComunicacaoDuoOptions
   const deckType = options?.deckType ?? 'items';
 
   if (deckType === 'items') {
-    const items = await utils.tdr.getItems(TOTAL_ITEMS, {
+    const items = await getItems(TOTAL_ITEMS, {
       allowNSFW,
       decks: ['alien'],
     });
@@ -27,22 +29,22 @@ export const getDeck = async (language: Language, options: ComunicacaoDuoOptions
   }
 
   if (deckType === 'images') {
-    const images = await utils.imageCards.getImageCards(TOTAL_ITEMS);
+    const images = await getImageCards(TOTAL_ITEMS);
     return { deck: applyDataToDeck(images, 'images') };
   }
 
   if (deckType === 'words') {
-    const words = await utils.tdr.getSingleWords(language, TOTAL_ITEMS);
+    const words = await getSingleWords(language, TOTAL_ITEMS);
     return { deck: applyDataToDeck(words, 'words') };
   }
 
   if (deckType === 'contenders') {
-    const contenders = await utils.tdr.getContenders(language, allowNSFW, ['any'], TOTAL_ITEMS);
+    const contenders = await getContenders(language, allowNSFW, ['any'], TOTAL_ITEMS);
     return { deck: applyDataToDeck(contenders, 'contenders') };
   }
 
   if (deckType === 'suspects') {
-    const suspects = await utils.tdr.getSuspects({
+    const suspects = await getSuspects({
       randomStyleVariant: true,
       quantity: TOTAL_ITEMS,
       cleanup: true,

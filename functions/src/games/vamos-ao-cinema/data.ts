@@ -13,7 +13,7 @@ import {
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary, filterOutByIds } from '../../utils';
 
 /**
  * Get movie titles and reviews based on game's language
@@ -32,8 +32,8 @@ export const getCards = async (language: string): Promise<ResourceData> => {
   const usedMoviesAndReviews = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MOVIES, {});
 
   // Filter out used cards
-  const movies = utils.game.filterOutByIds(allMovies, usedMoviesAndReviews);
-  const reviews = utils.game.filterOutByIds(allReviews, usedMoviesAndReviews);
+  const movies = filterOutByIds(allMovies, usedMoviesAndReviews);
+  const reviews = filterOutByIds(allReviews, usedMoviesAndReviews);
 
   // If not the minimum cards needed, reset and use all
   if (
@@ -64,9 +64,9 @@ export const saveData = async (
   goodReviews: MovieReviewCardData[],
   badReviews: MovieReviewCardData[],
 ): Promise<void> => {
-  const usedMovies = utils.helpers.buildBooleanDictionary(movies);
-  const usedGoodReviews = utils.helpers.buildBooleanDictionary(goodReviews);
-  const usedBadReviews = utils.helpers.buildBooleanDictionary(badReviews);
+  const usedMovies = buildBooleanDictionary(movies);
+  const usedGoodReviews = buildBooleanDictionary(goodReviews);
+  const usedBadReviews = buildBooleanDictionary(badReviews);
 
   await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.MOVIES, {
     ...usedMovies,

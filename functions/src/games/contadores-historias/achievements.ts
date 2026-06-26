@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Contadores de Histórias game
  */
-const achievements = achievementBuilder('CONTADORES_HISTORIAS')
+const achievements = achievementBuilder(GAME_KEYS.CONTADORES_HISTORIAS)
   .counter('playerVotes', {
     doc: 'Votes received on player cards when not the storyteller',
     most: 'MOST_DECEIVING',

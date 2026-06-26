@@ -9,10 +9,17 @@ import { USED_GAME_IDS } from '../constants/general';
 // Services
 import { feedEmulatorDB } from '../services/emulator';
 import { throwHttpsError, verifyPayload } from '../services/firebase-core';
-import { getGlobalCollectionRef, getMetaCollectionRef, getSessionRef } from '../services/firestore-core';
+import {
+  getGlobalCollectionRef,
+  getMetaCollectionRef,
+  getServerTimestamp,
+  getSessionRef,
+} from '../services/firestore-core';
 import { fetchGameSessionDoc, getStateReferences } from '../services/game-session';
+// Mechanics
+import { getListOfPlayers, resetPlayers } from '../mechanics/players';
+import { generateGameId } from '../mechanics/session';
 // Utils
-import utils from '../utils_LEGACY';
 import { isEmulatingEnvironment } from '../utils/environment';
 // Internal
 import * as delegatorUtils from '../games/delegators';
@@ -79,7 +86,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   const gameRef = admin.firestore().collection('games').doc(gameName);
 
   // Generate unique 4 digit code starting with game code letter
-  let gameId: string = utils.game.generateGameId(gameCode, language as Language, usedGameIds);
+  let gameId: string = generateGameId(gameCode, language as Language, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await gameRef.collection(gameId).doc('state').get();
@@ -113,7 +120,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
 
   try {
     // Update global ids. This is in a different block just for dev purposes
-    await globalRef.doc(USED_GAME_IDS).update({ [gameId]: Date.now() });
+    await globalRef.doc(USED_GAME_IDS).update({ [gameId]: getServerTimestamp() });
   } catch {
     // Do nothing
   }
@@ -161,7 +168,7 @@ const lockGame = async (data: BasicGamePayload) => {
   const players = state?.players ?? {};
 
   // Verify minimum number of players
-  const numPlayers = utils.players.getPlayerCount(players);
+  const numPlayers = getListOfPlayers(players).length;
   const { getPlayerCounts, getNextPhase } = delegatorUtils.getEngine(gameName);
   const playerCounts = getPlayerCounts();
 
@@ -180,9 +187,7 @@ const lockGame = async (data: BasicGamePayload) => {
   }
 
   // Update meta with players Ids
-  const listOfPlayers = orderBy(utils.players.getListOfPlayers(players), ['name'], 'asc').map(
-    (player) => player.id,
-  );
+  const listOfPlayers = orderBy(getListOfPlayers(players), ['name'], 'asc').map((player) => player.id);
 
   try {
     // Set info with players object and isLocked
@@ -308,9 +313,9 @@ const playAgain = async (data: BasicGamePayload) => {
 
   const players = state?.players ?? {};
   // Reset players
-  utils.players.resetPlayers(players);
-  utils.players.getListOfPlayers(players).forEach((player) => {
-    player.forceMetaRefresh = player.updatedAt ?? 0;
+  resetPlayers(players);
+  getListOfPlayers(players).forEach((player) => {
+    player.forceMetaRefresh = getServerTimestamp();
   });
 
   // Update meta

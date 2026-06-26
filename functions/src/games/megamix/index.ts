@@ -16,8 +16,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import { handleSubmitSeeds, handleSubmitTrackAnswer } from './actions';
 import { getData } from './data';
@@ -45,7 +46,7 @@ export const getInitialState = (
   version: string,
   options: MegamixGameOptions,
 ): MegamixInitialState => {
-  return utils.game.getDefaultInitialState<MegamixInitialState>({
+  return getDefaultInitialState<MegamixInitialState>({
     gameId,
     gameName: GAME_NAMES.MEGAMIX,
     uid,
@@ -89,11 +90,7 @@ export const getNextPhase = async (
     await triggerSetupPhase(sessionRef);
 
     // Request data
-    const data = await getData(
-      store.language,
-      store.options as MegamixGameOptions,
-      utils.players.getPlayerCount(players),
-    );
+    const data = await getData(store.language, store.options as MegamixGameOptions, getPlayerCount(players));
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);

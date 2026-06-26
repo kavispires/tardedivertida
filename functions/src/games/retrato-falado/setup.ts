@@ -3,16 +3,25 @@ import type { FirebaseStateData, FirebaseStoreData, MonsterSketch, ResourceData 
 // Constants
 import { GAME_NAMES } from '../../constants/games';
 import { RETRATO_FALADO_PHASES } from './constants';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import {
+  getListOfPlayersIds,
+  setPlayersReadyState,
+  removePropertiesFromPlayers,
+  cleanupPlayers,
+} from '../../mechanics/players';
+import { increaseRound } from '../../mechanics/round';
+import { determineWinners } from '../../mechanics/scoring';
+import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
+import { setupAchievements, calculateAchievements } from './achievements';
 import { saveData } from './data';
 import { buildDeck, buildRanking, gatherSketches } from './helpers';
 
 // Helpers1
-import utils from '../../utils_LEGACY';
-
-import { setupAchievements, calculateAchievements } from './achievements';
-
-import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 
 /**
  * Setup
@@ -27,12 +36,12 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData,
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount } = utils.turnOrder.create(players);
+  const { gameOrder, playerCount } = turnOrderUtils.create(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allMonsters, playerCount);
 
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -69,8 +78,8 @@ export const prepareCompositeSketchPhase = async (
   const deck = [...store.deck];
   const currentMonster = deck.pop();
 
-  utils.players.unReadyPlayers(players, witnessId);
-  utils.players.removePropertiesFromPlayers(players, ['vote', 'drawing']);
+  setPlayersReadyState(players, false, { excludeIds: [witnessId] });
+  removePropertiesFromPlayers(players, ['vote', 'drawing']);
 
   // Save
   return {
@@ -83,7 +92,7 @@ export const prepareCompositeSketchPhase = async (
         players,
         currentMonster,
         witnessId,
-        round: utils.game.increaseRound(state.round),
+        round: increaseRound(state.round),
       },
       storeCleanup: ['currentOrientation', 'witnessVote', 'mostVotes', 'ranking', 'mostVoted', 'votes'],
     },
@@ -109,7 +118,7 @@ export const prepareEvaluationPhase = async (
   // Gather all drawings
   const sketches = gatherSketches(players, currentMonster, state.witnessId);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -144,7 +153,7 @@ export const prepareRevealPhase = async (
 
   await saveData(state.sketches, store.language);
 
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 
   // Save
   return {
@@ -179,13 +188,13 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   await markGameAsComplete(gameId);
 
   const achievements = calculateAchievements(store.achievements);
 
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.RETRATO_FALADO,
     gameId,
     startedAt: store.createdAt,
@@ -197,7 +206,7 @@ export const prepareGameOverPhase = async (
 
   const gallery = store.pastSketches;
 
-  utils.players.cleanup(players, []);
+  cleanupPlayers(players, []);
 
   return {
     update: {

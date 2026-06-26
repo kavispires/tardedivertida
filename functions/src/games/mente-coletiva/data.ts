@@ -13,7 +13,7 @@ import {
 } from '../../services/global-tracker';
 import { fetchResource } from '../../services/resource';
 // Utils
-import utils from '../../utils_LEGACY';
+import { buildBooleanDictionary, filterOutByIds } from '../../utils';
 
 /**
  * Get question cards resource based on the game's language
@@ -30,7 +30,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
   const usedQuestions = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
 
   // Filter out used cards
-  const availableQuestions: Record<string, GroupQuestionCardData> = utils.game.filterOutByIds(
+  const availableQuestions: Record<string, GroupQuestionCardData> = filterOutByIds(
     allQuestions,
     usedQuestions,
   );
@@ -57,6 +57,6 @@ export const saveData = async (pastQuestions: string[]) => {
   }, []);
 
   // Save usedMenteColetivaQuestions to global
-  const usedMenteColetivaQuestions = utils.helpers.buildBooleanDictionary(pastQuestionsObj);
+  const usedMenteColetivaQuestions = buildBooleanDictionary(pastQuestionsObj);
   await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, usedMenteColetivaQuestions);
 };

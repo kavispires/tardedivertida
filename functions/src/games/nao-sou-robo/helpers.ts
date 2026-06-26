@@ -11,9 +11,12 @@ import {
   SUSPICION_THRESHOLD,
   NAO_SOU_ROBO_PHASES,
 } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers, getPlayerCount } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
+import utils from '../../legacy-utils';
 import { increaseAchievement } from './achievements';
 
 /**
@@ -32,7 +35,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
       : CARD_SELECTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -42,7 +45,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
  * @param cards - The array of card IDs to distribute
  */
 export const distributeCards = (store: FirebaseStoreData, players: Players, cards: UID[]) => {
-  const playerCount = utils.players.getPlayerCount(players);
+  const playerCount = getPlayerCount(players);
   const deckPerPlayer = STARTING_HAND + MAX_ROUNDS * (CARD_SELECTION_PER_PLAYER_COUNT[playerCount] ?? 3);
   // Builds deck per player: starting hand + cards drawn each round
   utils.deck.setup(store, players, cards, deckPerPlayer);
@@ -66,13 +69,13 @@ export const calculateResults = (
   store: FirebaseStoreData,
 ) => {
   // Gained Points: [correct, botVotes]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
   // Reset robot state
   robot.state = 0;
   // Current outcome
   let outcome = OUTCOME.CONTINUE as string;
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   // Players get 1 point per correct card
   // Players lose 1 point per robot card

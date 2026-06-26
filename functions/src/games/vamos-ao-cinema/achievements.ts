@@ -1,5 +1,5 @@
 // Constants
-import { GAME_NAMES } from '../../constants/games';
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -11,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Vamos Ao Cinema game
  */
-const vamosAoCinemaAchievements = achievementBuilder(GAME_NAMES.VAMOS_AO_CINEMA)
+const vamosAoCinemaAchievements = achievementBuilder(GAME_KEYS.VAMOS_AO_CINEMA)
   .counter('group', {
     doc: 'how many times the player chose the same movie as other players',
     most: 'MOST_GROUP_SELECTIONS',

@@ -1,7 +1,9 @@
 // Constants
 import { QUEM_SOU_EU_PHASES } from './constants';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getListOfPlayers } from '../../mechanics/players';
+import { Scores } from '../../mechanics/scoring';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Internal
 import { increaseAchievement } from './achievements';
 
@@ -24,7 +26,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, imageCard
     return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHARACTER_DESCRIPTION;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 /**
@@ -34,9 +36,9 @@ export const determineNextPhase = (currentPhase: string, round: Round, imageCard
  */
 export const buildRanking = (players: Players, currentRound: number) => {
   // Gained Points: [from guesses, from others]
-  const scores = new utils.players.Scores(players, [0, 0]);
+  const scores = new Scores(players, [0, 0]);
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   const answers = listOfPlayers.reduce((acc, player) => {
     acc[player.id] = player.character.id;
@@ -79,7 +81,7 @@ type GalleryEntry = {
  * @param currentRound - The current round number
  */
 export const buildGallery = (store: PlainObject, players: Players, currentRound: number): GalleryEntry[] => {
-  const listOfPlayers = utils.players.getListOfPlayers(players);
+  const listOfPlayers = getListOfPlayers(players);
 
   const gallery = listOfPlayers.map((player) => {
     // Achievement: choseRandomly

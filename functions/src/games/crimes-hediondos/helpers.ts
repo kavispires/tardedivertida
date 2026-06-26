@@ -21,8 +21,16 @@ import {
   SCENE_TILES_COUNT,
   TOTAL_ROUNDS,
 } from './constants';
+// Mechanics
+import {
+  getListOfPlayers,
+  getListOfPlayersIds,
+  getPlayerCount,
+  getListOfBots,
+} from '../../mechanics/players';
+import { nextPhaseDelegator } from '../../mechanics/session';
 // Utils
-import utils from '../../utils_LEGACY';
+import { getLastItem, sliceIntoChunks } from '../../utils';
 // Internal
 import { increaseAchievement, insertAchievement, pushAchievement } from './achievements';
 
@@ -45,7 +53,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
     return GUESSING;
   }
 
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 
 type ParsedTiles = {
@@ -142,10 +150,10 @@ export const groupItems = (
   locations: CrimesHediondosCardData[],
 ): GroupItems => {
   // Divide things into 4 groups
-  const groupedWeapons = utils.helpers.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
-  const groupedEvidence = utils.helpers.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
-  const groupedLocations = utils.helpers.sliceIntoChunks(locations, ITEMS_PER_GROUP);
-  const groupedVictims = utils.helpers.sliceIntoChunks(victims, ITEMS_PER_GROUP);
+  const groupedWeapons = sliceIntoChunks(weapons, ITEMS_PER_GROUP);
+  const groupedEvidence = sliceIntoChunks(evidence, ITEMS_PER_GROUP);
+  const groupedLocations = sliceIntoChunks(locations, ITEMS_PER_GROUP);
+  const groupedVictims = sliceIntoChunks(victims, ITEMS_PER_GROUP);
 
   const groupedItems = {};
   groupedEvidence.forEach((evidenceGroup, index) => {
@@ -176,7 +184,7 @@ export const groupItems = (
  * @param players - The collection of players in the game
  */
 export const dealItemGroups = (players: Players) => {
-  utils.players.getListOfPlayersIds(players, true).forEach((playerId) => {
+  getListOfPlayersIds(players, true).forEach((playerId) => {
     players[playerId].itemGroupIndex = Math.round(Math.random() * 100) % ITEMS_GROUP_COUNT;
   });
 };
@@ -196,7 +204,7 @@ export const buildCrimes = (
   locationTile: CrimeSceneTileData,
   victimTile: CrimeSceneTileData,
 ): Crime[] => {
-  return utils.players.getListOfPlayers(players, true).map((player) => {
+  return getListOfPlayers(players, true).map((player) => {
     return {
       playerId: player.id,
       weaponId: player.weaponId,
@@ -276,7 +284,7 @@ export const updateOrCreateGuessHistory = (
 ): PlainObject => {
   const results: PlainObject = {};
   // Each history entry shows the
-  utils.players.getListOfPlayers(players, true).forEach((player) => {
+  getListOfPlayers(players, true).forEach((player) => {
     const history: GuessHistory = { ...(player.history ?? {}) };
     const wrongGroups: WrongGroups = { ...(player.wrongGroups ?? {}) };
     const wrongItems: WrongItems = { ...(player.wrongItems ?? {}) };
@@ -295,7 +303,7 @@ export const updateOrCreateGuessHistory = (
         const guess = player.guesses[crime.playerId];
 
         // Lock a crime if it was previously correct
-        const lastGuess = utils.helpers.getLastItem(history[crime.playerId]);
+        const lastGuess = getLastItem(history[crime.playerId]);
         if (lastGuess && [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuess.status)) {
           history[crime.playerId].push({
             status: GUESS_STATUS.LOCKED,
@@ -462,9 +470,9 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
   // Points granted in reverse round order 1:12, 2:11, 3:10, 4:9, 5:8, 7:6
   const pointMultiplier = TOTAL_ROUNDS + 4 - currentRound;
 
-  const playerCount = utils.players.getPlayerCount(players, true);
+  const playerCount = getPlayerCount(players, true);
 
-  const playersArray = utils.players.getListOfPlayers(players);
+  const playersArray = getListOfPlayers(players);
 
   const ranking: RankingEntry[] = playersArray
     .map((player) => {
@@ -480,7 +488,7 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
       const history: GuessHistory = player.history;
       Object.entries(history).forEach((entry: HistoryEntry) => {
         const criminalId = entry[0];
-        const lastGuess = utils.helpers.getLastItem(entry[1]);
+        const lastGuess = getLastItem(entry[1]);
 
         switch (lastGuess.status) {
           case GUESS_STATUS.CORRECT:
@@ -552,7 +560,7 @@ export const mockCrimeForBots = (
   locationTile: CrimeSceneTileData,
   victimTile: CrimeSceneTileData,
 ) => {
-  utils.players.getListOfBots(players).forEach((bot) => {
+  getListOfBots(players).forEach((bot) => {
     const itemsGroup = groupedItems[bot.itemGroupIndex];
     const shuffledItems = shuffle(itemsGroup);
     const weaponId = shuffledItems.find((e) => e?.includes('wp'));
@@ -594,9 +602,9 @@ export const mockCrimeForBots = (
  * @param players - The collection of players in the game
  */
 export const mockGuessingForBots = (players: Players) => {
-  utils.players.getListOfBots(players).forEach((bot) => {
+  getListOfBots(players).forEach((bot) => {
     const guesses: Guesses = {};
-    utils.players.getListOfPlayers(players, true).forEach((player) => {
+    getListOfPlayers(players, true).forEach((player) => {
       guesses[player.id] = {
         // TODO: Should it be actually guessing?
         weaponId: bot.weaponId,
@@ -620,7 +628,7 @@ export const mockSceneMarkForBots = (
   scene: CrimeSceneTileData,
   items: Record<string, CrimesHediondosCardData>,
 ) => {
-  utils.players.getListOfBots(players).forEach((bot) => {
+  getListOfBots(players).forEach((bot) => {
     bot.sceneIndex = botSmartSceneMarking(
       scene,
       items[bot.weaponId],

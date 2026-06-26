@@ -23,8 +23,9 @@ import {
   throwHttpsError,
 } from '../../services/firebase-core';
 import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
-// Utils
-import utils from '../../utils_LEGACY';
+// Mechanics
+import { getPlayerCount, addBots } from '../../mechanics/players';
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal
 import {
   handleConfirmNotes,
@@ -64,7 +65,7 @@ export const getInitialState = (
   version: string,
   options: ComunicacaoAlienigenaOptions,
 ): ComunicacaoAlienigenaInitialState => {
-  return utils.game.getDefaultInitialState<ComunicacaoAlienigenaInitialState>({
+  return getDefaultInitialState<ComunicacaoAlienigenaInitialState>({
     gameId,
     gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
     uid,
@@ -77,7 +78,7 @@ export const getInitialState = (
     onCreate: () => {
       const players: Players = {};
       if (options.botAlien) {
-        utils.players.addBots(players, language, 1, { role: 'alien', avatarId: 'T', name: 'Alien-Bot' });
+        addBots(players, language, 1, { role: 'alien', avatarId: 'T', name: 'Alien-Bot' });
       }
       return {
         players,
@@ -120,7 +121,7 @@ export const getNextPhase = async (
     // Request data
     const additionalData = await getResourceData(
       store.language,
-      utils.players.getPlayerCount(players),
+      getPlayerCount(players),
       store.options ?? {},
     );
 

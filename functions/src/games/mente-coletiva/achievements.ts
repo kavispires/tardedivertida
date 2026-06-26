@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Mente Coletiva game
  */
-const menteColetivaAchievements = achievementBuilder('MENTE_COLETIVA')
+const menteColetivaAchievements = achievementBuilder(GAME_KEYS.MENTE_COLETIVA)
   .counter('secretScore', {
     doc: 'Final score (total matches)',
     most: 'MOST_MATCHES',

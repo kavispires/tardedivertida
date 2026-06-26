@@ -1,3 +1,5 @@
+// Constants
+import { GAME_KEYS } from '../../constants/games';
 // Tool Kits
 import { achievementBuilder } from '../../tool-kits/achievements';
 
@@ -9,7 +11,7 @@ import { achievementBuilder } from '../../tool-kits/achievements';
 /**
  * Build achievement utilities for Vice Campeao game
  */
-const viceCampeaoAchievements = achievementBuilder('VICE_CAMPEAO')
+const viceCampeaoAchievements = achievementBuilder(GAME_KEYS.VICE_CAMPEAO)
   .counter('first', {
     doc: 'how many rounds the player finished in first place',
     most: 'MOST_FIRST_PLACE',
