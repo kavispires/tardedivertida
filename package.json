@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.371",
+	"version": "50.13.373",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -48,6 +48,7 @@
 		"prepare": "husky",
 		"update-commit": "td amend-commit-date",
 		"game-metadata": "node scripts/metadata-helper.cjs",
+		"modify-game-info": "node scripts/modify-game-info.cjs",
 		"onboard": "node scripts/onboard-game.cjs",
 		"achievements": "node scripts/generate-achievement-reference.cjs",
 		"stage-game": "node scripts/stage-game.cjs",
