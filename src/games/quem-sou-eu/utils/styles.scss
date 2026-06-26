@@ -83,10 +83,11 @@
 
   &__strip {
     justify-content: flex-start;
+    padding-top: get-unit(1);
   }
 
   &__entry {
-    padding: get-unit(1);
+    padding: get-unit(2);
     display: flex;
     flex-direction: column;
     align-items: center;
