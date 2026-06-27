@@ -1,17 +1,11 @@
-import clsx from 'clsx';
-import { useMemo, useState } from 'react';
-// Ant Design Resources
-import { Space } from 'antd';
+import { useState } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
-// Utils
-import { getAnimationClass } from '@utils/helpers';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { TransparentButton } from '@components/buttons/TransparentButton';
 import { DevButton } from '@components/debug/DevButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
@@ -22,7 +16,7 @@ import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { ItemData, SubmitPairsPayload } from './utils/types';
 import { mockPairs } from './utils/mock';
-import { ItemEntry } from './components/ItemEntry';
+import { MatchingPlayArea } from './components/MatchingPlayArea';
 
 type StepTemplateProps = {
   user: GamePlayer;
@@ -34,46 +28,12 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
   const { isLoading } = useLoading();
   const [pairs, setPairs] = useState<(string | null)[]>([]);
   const pairsCount = Math.floor(pool.length / 2);
-  const selectedPairs = useMemo(() => {
-    return pairs.map((entry) => pool.find((item) => item.id === entry));
-  }, [pairs, pool]);
 
   const isComplete = pairs.length === pairsCount * 2 && pairs.every(Boolean);
 
   useMock(() => {
     onSubmitPairs({ pairs: mockPairs(pool) });
   });
-
-  const addItem = (key: string) => {
-    if (isComplete) return;
-
-    setPairs((prev) => {
-      const copy = [...prev];
-      const index = copy.findIndex((element) => typeof element !== 'string');
-      if (index !== -1) {
-        // If a non-string element is found, add the key at that index
-        copy[index] = key;
-      } else {
-        // If all elements are strings, add the key to the end of the array
-        copy.push(key);
-      }
-
-      return copy;
-    });
-  };
-
-  const removeItem = (key: string) => {
-    setPairs((prev) => {
-      const copy = [...prev];
-      const index = copy.indexOf(key);
-      if (index !== -1) {
-        // If a non-string element is found, add the key at that index
-        copy[index] = null;
-      }
-
-      return copy;
-    });
-  };
 
   return (
     <Step
@@ -95,7 +55,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
               Você ganha <PointsHighlight>pontos</PointsHighlight> por cada jogador que fez o mesmo par que
               você!
               <br />
-              <strong>Clique</strong> em um item para adicioná-lo ao par.
+              <strong>Arraste e solte</strong> os itens nos slots para criar pares.
               <br />
               Para remover, basta clicar no item novamente.
             </>
@@ -105,7 +65,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
               You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
               you!
               <br />
-              <strong>Click</strong> on an item to add it to the pair.
+              <strong>Drag and drop</strong> items to slots to create pairs.
               <br />
               To remove, just click on the item again.
             </>
@@ -129,90 +89,13 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         </RuleInstruction>
       )}
 
-      <Space
-        className={clsx('pairs-grid', `pairs-grid--${pairsCount}`)}
-        wrap
-      >
-        {Array.from({ length: pairsCount }).map((_, index) => {
-          const firstItemIndex = index * 2;
-          const firstItem = pairs[firstItemIndex];
-          const secondItem = pairs[firstItemIndex + 1];
-          const selectedFirstItem = selectedPairs[firstItemIndex];
-          const selectedSecondItem = selectedPairs[firstItemIndex + 1];
-          const placeholder =
-            pool[0].type === 'alien-item'
-              ? { ...pool[0], value: { id: pool[0].id, name: { pt: '?', en: '?' } } }
-              : pool[0];
-
-          return (
-            <Space
-              className={clsx('pairs-grid__pair', `pairs-grid__pair--${index}`)}
-              orientation="vertical"
-              key={`pair-${index}`}
-            >
-              <div className="pairs-grid__slot">
-                {firstItem && selectedFirstItem ? (
-                  <TransparentButton
-                    onClick={() => removeItem(firstItem)}
-                    className={getAnimationClass('bounceIn')}
-                  >
-                    <ItemEntry itemEntry={selectedFirstItem} />
-                  </TransparentButton>
-                ) : (
-                  <ItemEntry
-                    itemEntry={placeholder}
-                    className="pairs-grid__empty-slot"
-                  />
-                )}
-              </div>
-              <div className="pairs-grid__slot">
-                {secondItem && selectedSecondItem ? (
-                  <TransparentButton
-                    onClick={() => removeItem(secondItem)}
-                    className={getAnimationClass('bounceIn')}
-                  >
-                    <ItemEntry itemEntry={selectedSecondItem} />
-                  </TransparentButton>
-                ) : (
-                  <ItemEntry
-                    itemEntry={placeholder}
-                    className="pairs-grid__empty-slot"
-                  />
-                )}
-              </div>
-            </Space>
-          );
-        })}
-      </Space>
-
-      <Space
-        wrap
-        className={clsx('options-grid', `options-grid--${pool.length}`)}
-      >
-        {pool.map((entry) => {
-          const selected = pairs.includes(entry.id);
-          if (selected) {
-            return (
-              <ItemEntry
-                itemEntry={entry}
-                key={entry.id}
-                className="options-grid--selected"
-              />
-            );
-          }
-          return (
-            <TransparentButton
-              onClick={() => addItem(entry.id)}
-              key={entry.id}
-            >
-              <ItemEntry
-                itemEntry={entry}
-                looseItem
-              />
-            </TransparentButton>
-          );
-        })}
-      </Space>
+      <MatchingPlayArea
+        pool={pool}
+        pairs={pairs}
+        setPairs={setPairs}
+        pairsCount={pairsCount}
+        disabled={isLoading || user.ready}
+      />
 
       <SpaceFloat enabled={isComplete}>
         <DevButton onClick={() => setPairs(mockPairs(pool))}>Mock Pairs</DevButton>
