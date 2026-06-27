@@ -33,12 +33,12 @@ const ueSoIssoAchievements = achievementBuilder(GAME_KEYS.UE_SO_ISSO)
   })
   .array('correctGuesses', {
     doc: 'Correct guesses with fewest clues',
-    unique: { least: 'BEST_GUESSER' },
+    average: { least: 'BEST_GUESSER' },
     qualifier: (v) => v > 0,
   })
   .array('wrongGuesses', {
     doc: 'Wrong guesses with most clues',
-    unique: { most: 'WORST_GUESSER' },
+    average: { most: 'WORST_GUESSER' },
     qualifier: (v) => v > 0,
   })
   .build();

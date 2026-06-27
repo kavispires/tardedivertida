@@ -1,4 +1,4 @@
-import { mean, shuffle } from 'lodash';
+import { shuffle } from 'lodash';
 // Types
 import type { TextCardData } from '../../types/tdr';
 import type {
@@ -268,11 +268,5 @@ export const countAchievements = (store: FirebaseStoreData) => {
     validClues.forEach((clue) => {
       increaseAchievement(store.achievements, clue.playerId, 'clueLength', clue.suggestion.length);
     });
-  });
-
-  // Get mean values
-  Object.keys(store.achievements).forEach((playerId) => {
-    store.achievements[playerId].correctGuesses = mean(store.achievements[playerId].correctGuesses ?? []);
-    store.achievements[playerId].wrongGuesses = mean(store.achievements[playerId].wrongGuesses ?? []);
   });
 };
