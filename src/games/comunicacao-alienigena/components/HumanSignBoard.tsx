@@ -108,7 +108,7 @@ export function HumanSignBoard({
                     }
                     placement="bottom"
                   >
-                    <DualTranslate>{attribute.name}</DualTranslate>*
+                    <DualTranslate>{attribute.name}</DualTranslate>
                   </Tooltip>
                   <SignCard
                     signId={`${attribute.spriteId}`}
@@ -270,7 +270,7 @@ export function HumanPlayerFinalSignBoard({
                     }
                     placement="bottom"
                   >
-                    <DualTranslate>{attribute.name}</DualTranslate>*
+                    <DualTranslate>{attribute.name}</DualTranslate>
                   </Tooltip>
                   <SignCard
                     signId={`${attribute.spriteId}`}
