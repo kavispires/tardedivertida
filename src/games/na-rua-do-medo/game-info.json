@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.112",
+  "version": "3.1.113",
   "release": "stable",
   "releaseDate": "2022-02-09",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Na Rua do Medo",
     "en": "Fear Street"
@@ -46,11 +46,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 3,
     "max": 10
@@ -59,15 +55,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "competitive",
-    "same-time",
-    "push-your-luck"
-  ],
-  "features": [
-    "mobile-friendly",
-    "achievements"
-  ],
+  "mechanics": ["competitive", "same-time", "push-your-luck"],
+  "features": ["mobile-friendly", "achievements"],
   "options": [
     {
       "key": "shortGame",

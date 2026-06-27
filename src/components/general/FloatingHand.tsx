@@ -27,12 +27,18 @@ type FloatingHandProps = {
    * The icon (default: Hand of Cards)
    */
   icon?: ReactNode;
+  /**
+   *
+   */
+  slots?: {
+    contentProps: React.HTMLAttributes<HTMLDivElement>;
+  };
 };
 
 /**
  * Component that displays a floating expandable hand of cards at the bottom of the screen
  */
-export function FloatingHand({ children, icon, title }: FloatingHandProps) {
+export function FloatingHand({ children, icon, title, slots }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { translate } = useLanguage();
 
@@ -70,7 +76,12 @@ export function FloatingHand({ children, icon, title }: FloatingHandProps) {
             </span>
           </span>
         </h3>
-        <div className={styles.floatingHandChildren}>{children}</div>
+        <div
+          {...slots?.contentProps}
+          className={clsx(styles.floatingHandChildren, slots?.contentProps?.className)}
+        >
+          {children}
+        </div>
       </DivButton>
     </>
   );
