@@ -1,7 +1,8 @@
+// Components
+import { DraggableItem } from '@components/drag-and-drop/DragAndDrop';
 // Internal
 import type { Clue } from '../utils/types';
 import { getClueKey } from '../utils/helpers';
-import { DraggableItem } from '../../../components/drag-and-drop/DragAndDrop';
 import { ClueCard } from './ClueCard';
 
 type DraggableClueProps = {

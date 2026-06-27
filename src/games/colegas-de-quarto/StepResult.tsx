@@ -54,7 +54,7 @@ export function StepResult({
         {foundTarget.length > 0 ? (
           <Translate
             pt="Vocês estão em harmonia e compraram o item que faltava!"
-            en="You are in harmony and bought the missing item!"
+            en="You are in harmony and bought the only item no one hates!"
           />
         ) : (
           <Translate

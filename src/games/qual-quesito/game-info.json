@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "qual-quesito",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "release": "stable",
   "releaseDate": "2026-01-01",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Qual O Quesito?",
     "en": "And The Category Is"
@@ -22,7 +22,7 @@
   "appearance": {
     "clouds": "cloud",
     "cloudsAnimationType": "flow",
-    "primaryColor": "",
+    "primaryColor": "#d29f00",
     "colorScheme": "dark",
     "videoBackground": true,
     "imageBackground": true
@@ -50,11 +50,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 10,
     "best": 5
@@ -63,14 +59,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "competitive",
-    "writing",
-    "voting"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["competitive", "writing", "voting"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",
