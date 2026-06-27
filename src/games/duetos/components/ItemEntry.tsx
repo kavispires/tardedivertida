@@ -26,7 +26,7 @@ type ItemEntryProps = {
 export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryProps) {
   const { translate } = useLanguage();
 
-  const sizeMultiplier = size === 'small' ? 0.75 : 1;
+  const sizeMultiplier = size === 'small' ? 0.65 : 1;
 
   if (itemEntry.type === 'alien-item') {
     return (

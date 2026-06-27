@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "duetos",
-  "version": "1.1.130",
+  "version": "1.1.131",
   "release": "stable",
   "releaseDate": "2023-11-05",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Duetos",
     "en": "Duets"
@@ -47,22 +47,12 @@
   },
   "playerCount": {
     "best": 4,
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 10
   },
-  "mechanics": [
-    "competitive",
-    "pairing",
-    "same-time"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["competitive", "pairing", "same-time"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",
