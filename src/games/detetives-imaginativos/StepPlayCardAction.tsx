@@ -29,7 +29,7 @@ import { isEarliestPlayerWithFewestCards } from './utils/helpers';
 import { Table } from './components/Table';
 import { ImposterTitle, SecretClueTitle } from './components/Titles';
 
-const PREVENT_USER_FROM_CLICKING_TIME = 10;
+const PREVENT_USER_FROM_CLICKING_TIME = 7;
 
 type StepPlayCardActionProps = {
   isUserTheImpostor: boolean;
@@ -134,7 +134,6 @@ export function StepPlayCardAction({
           <>
             <Icon
               icon={<ImageCardsIcon />}
-              size="large"
               shape="square"
             />{' '}
             <Translate
