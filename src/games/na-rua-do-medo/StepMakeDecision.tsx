@@ -14,6 +14,7 @@ import { WalkIcon } from '@icons/WalkIcon';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { SpaceFloat } from '@components/layout/SpaceFloat';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -180,36 +181,44 @@ export function StepMakeDecision({
       )}
 
       {user.isTrickOrTreating && !user.ready && (
-        <div className="n-decision-buttons-container">
-          <TransparentButton
-            className="n-decision-button n-decision-button--home"
-            onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
-            disabled={isLoading || user.ready}
-          >
-            <Icon
-              icon={<HouseIcon />}
-              size="large"
-            />
-            <Translate
-              pt="Voltar pra casa"
-              en="Go back home"
-            />
-          </TransparentButton>
-          <TransparentButton
-            className="n-decision-button n-decision-button--continue"
-            onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
-            disabled={isLoading || user.ready}
-          >
-            <Icon
-              icon={<WalkIcon />}
-              size="large"
-            />
-            <Translate
-              pt="Continuar para a próxima casa"
-              en="Continue trick or treating"
-            />
-          </TransparentButton>
-        </div>
+        <SpaceFloat>
+          <div className="n-decision-buttons-container">
+            <TransparentButton
+              className="n-decision-button n-decision-button--home"
+              onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
+              disabled={isLoading || user.ready}
+            >
+              <Icon
+                icon={<HouseIcon />}
+                size="large"
+              />
+              <Translate
+                pt="Voltar pra casa"
+                en="Go back home"
+              />
+            </TransparentButton>
+            <span>
+              <Translate
+                en="or"
+                pt="ou"
+              />
+            </span>
+            <TransparentButton
+              className="n-decision-button n-decision-button--continue"
+              onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
+              disabled={isLoading || user.ready}
+            >
+              <Icon
+                icon={<WalkIcon />}
+                size="large"
+              />
+              <Translate
+                pt="Continuar para a próxima casa"
+                en="Continue trick or treating"
+              />
+            </TransparentButton>
+          </div>
+        </SpaceFloat>
       )}
 
       <PlayerStats
