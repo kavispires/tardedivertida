@@ -116,7 +116,7 @@ export const prepareQuestionSelectionPhase = async (
     score: 0,
     answers: {},
   });
-  setPlayersReadyState(players, false, { excludeIds: [activePlayerId] });
+  setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
 
   // Get questions
   const currentQuestions = Array(QUESTIONS_PER_ROUND)
