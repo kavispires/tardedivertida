@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "metalinguagem",
-  "version": "1.0.76",
+  "version": "1.0.77",
   "release": "stable",
   "releaseDate": "2025-03-21",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Meta Linguagem",
     "en": "Meta Language"
@@ -46,12 +46,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      3,
-      4,
-      5,
-      6
-    ],
+    "recommended": [3, 4, 5, 6],
     "best": 4,
     "min": 2,
     "max": 6
@@ -60,15 +55,8 @@
     "base": 0,
     "perPlayer": 0
   },
-  "mechanics": [
-    "cooperative",
-    "writing",
-    "guessing",
-    "brain-burner"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["cooperative", "writing", "guessing", "brain-burner"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "nsfw",
