@@ -1,6 +1,6 @@
 // Ant Design Resources
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { Card, Divider, Badge, Space, Tag, Tooltip } from 'antd';
+import { Card, Divider, Badge, Space, Tag, Tooltip, Typography } from 'antd';
 // Types
 import type { GameInfo } from 'types/game-info';
 // Hooks
@@ -8,6 +8,7 @@ import { useLanguage } from '@hooks/useLanguage';
 // Utils
 import { calculateGameAverageDuration, truncateRecommended } from '@utils/helpers';
 // Components
+import { DebugOnly } from '@components/debug/DebugOnly';
 import { GameStrip } from '@components/general/GameBanner';
 import { GameTags } from '@components/general/GameTags';
 import { RulesModal } from '@components/rules/RulesModal';
@@ -105,6 +106,14 @@ export function GameCard({ info, isAdmin = true }: GameCardProps) {
               .reverse()
               .join('')}`}
           />
+          <DebugOnly devOnly>
+            <Typography.Text
+              copyable
+              type="secondary"
+            >
+              {info.gameName}
+            </Typography.Text>
+          </DebugOnly>
 
           <Card.Meta
             className="game-card__description"
