@@ -1,0 +1,1 @@
+import{V as e}from"./react-vendor-B4MxxhR7.js";import{o as t}from"./Session-DxJ3q8AS.js";var n=e();function r({state:e}){return(0,n.jsx)(t,{phase:`ANY`,allowedPhase:`ANY`,className:`phase-placeholder`,children:e?.phase??`Unknown Phase`})}export{r as t};

@@ -1,1 +1,0 @@
-import{V as e}from"./react-vendor-B4MxxhR7.js";import{t}from"./MetricHighlight-DaMelmSk.js";import{t as n}from"./StarIcon-NNwlz3s1.js";var r=e();function i(e){return(0,r.jsx)(t,{icon:(0,r.jsx)(n,{}),...e})}export{i as t};

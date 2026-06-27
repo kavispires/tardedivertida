@@ -1,1 +1,0 @@
-import{V as e}from"./react-vendor-B4MxxhR7.js";import{t}from"./CustomAvatarWrapper-BHxcD2GF.js";var n=`/tardedivertida/assets/costumes-DHJSY3rV.svg`,r=e(),i=e=>(0,r.jsx)(t,{sprite:n,prefix:`costume`,viewBox:`0 0 100 155`,...e});export{i as t};
