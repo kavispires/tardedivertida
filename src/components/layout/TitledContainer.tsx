@@ -46,7 +46,7 @@ export function TitledContainer({
   contentProps,
   ...spaceProps
 }: TitledContainerProps) {
-  const { level = 4, size = 'xx-small', ...restTitleProps } = titleProps ?? {};
+  const { level = 4, size = 'xx-small', style, ...restTitleProps } = titleProps ?? {};
 
   const {
     className: childrenClassName,
@@ -64,6 +64,7 @@ export function TitledContainer({
       <Title
         level={level}
         size={size}
+        style={{ marginBottom: 6, ...style }}
         {...restTitleProps}
       >
         {title}

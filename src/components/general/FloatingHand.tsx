@@ -8,7 +8,6 @@ import { useLanguage } from '@hooks/useLanguage';
 // Icons
 import { HandOfCardsIcon } from '@icons/HandOfCardsIcon';
 // Components
-import { DivButton } from '@components/buttons/DivButton';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 // Sass
@@ -28,61 +27,75 @@ type FloatingHandProps = {
    */
   icon?: ReactNode;
   /**
-   *
+   * Optional props for the content area of the floating hand
    */
   slots?: {
     contentProps: React.HTMLAttributes<HTMLDivElement>;
   };
+  /**
+   * Make the floating hand full width (100%)
+   */
+  fullWidth?: boolean;
 };
 
 /**
  * Component that displays a floating expandable hand of cards at the bottom of the screen
  */
-export function FloatingHand({ children, icon, title, slots }: FloatingHandProps) {
+export function FloatingHand({ children, icon, title, slots, fullWidth = true }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { translate } = useLanguage();
 
   return (
     <>
       <div className={styles.floatingHandAddedWhiteSpace}></div>
-      <DivButton
-        className={clsx(styles.floatingHand, isExpanded && styles.floatingHandExpanded)}
+      <div
+        role="group"
+        className={clsx(
+          styles.floatingHand,
+          isExpanded && styles.floatingHandExpanded,
+          fullWidth && styles.floatingHandFullWidth,
+        )}
         onMouseOver={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
         onFocus={() => setIsExpanded(true)}
         onBlur={() => setIsExpanded(false)}
       >
-        <h3 className={styles.floatingHandLabel}>
-          <Icon
-            icon={icon ?? <HandOfCardsIcon />}
-            size={isExpanded ? 30 : 40}
-            className={styles.floatingHandIcon}
-            alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}
-          />
-          <span className={styles.floatingHandLabelText}>
-            {title ?? (
-              <Translate
-                pt="Suas Cartas"
-                en="Your Cards"
-              />
-            )}
-            <span className={styles.floatingHandLabelTextHint}>
-              (
-              <Translate
-                pt="Passe o mouse para expandir"
-                en="Hover to expand"
-              />
-              )
+        <button
+          type="button"
+          className={styles.floatingHandHeader}
+        >
+          <h3 className={styles.floatingHandLabel}>
+            <Icon
+              icon={icon ?? <HandOfCardsIcon />}
+              size={isExpanded ? 30 : 40}
+              className={styles.floatingHandIcon}
+              alt={translate({ pt: 'Mão de Cartas', en: 'Hand of Cards' })}
+            />
+            <span className={styles.floatingHandLabelText}>
+              {title ?? (
+                <Translate
+                  pt="Suas Cartas"
+                  en="Your Cards"
+                />
+              )}
+              <span className={styles.floatingHandLabelTextHint}>
+                (
+                <Translate
+                  pt="Passe o mouse para expandir"
+                  en="Hover to expand"
+                />
+                )
+              </span>
             </span>
-          </span>
-        </h3>
+          </h3>
+        </button>
         <div
           {...slots?.contentProps}
           className={clsx(styles.floatingHandChildren, slots?.contentProps?.className)}
         >
           {children}
         </div>
-      </DivButton>
+      </div>
     </>
   );
 }
@@ -131,10 +144,11 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
       </button>
       <Drawer
         title={
-          <DivButton
+          <button
+            type="button"
             className={clsx(styles.floatingHandDrawerLabel, styles.floatingHandDrawerLabelOpen)}
             onClick={() => toggleDrawer(false)}
-            onKeyDown={(e) => e.key === 'Enter' && toggleDrawer(false)}
+            onKeyDown={(e: React.KeyboardEvent) => e.key === 'Enter' && toggleDrawer(false)}
           >
             <Icon
               icon={icon ?? <HandOfCardsIcon />}
@@ -157,7 +171,7 @@ export function FloatingHandDrawer({ children, icon, title }: FloatingHandProps)
                 )
               </span>
             </span>
-          </DivButton>
+          </button>
         }
         placement="bottom"
         onClose={toggleDrawer}

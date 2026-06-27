@@ -18,10 +18,10 @@ import { ImageCardHand } from '@components/image-cards/ImageCardHand';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
+import { TitledContainer } from '@components/layout/TitledContainer';
 import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
-import { Title } from '@components/text/Title';
 // Internal
 import { PORTA_DOS_DESESPERADOS_PHASES, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -157,65 +157,70 @@ export function StepSelectPages({
         </SendButton>
       )}
 
-      <Surface contained>
-        <Title size="xx-small">
+      <TitledContainer
+        title={
           <Translate
             pt="Páginas selecionadas"
             en="Selected Pages"
           />
-        </Title>
+        }
+      >
+        <Surface
+          contained
+          style={{ margin: 0, padding: 16 }}
+        >
+          <div>
+            {trap === TRAPS.MORE_CLUES ? (
+              <Translate
+                pt={
+                  <>
+                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
+                  </>
+                }
+                en={
+                  <>
+                    Select exactly <BookHighlight>3</BookHighlight> book pages
+                  </>
+                }
+              />
+            ) : (
+              <Translate
+                pt={
+                  <>
+                    Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
+                    livro
+                  </>
+                }
+                en={
+                  <>
+                    Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
+                  </>
+                }
+              />
+            )}
+          </div>
 
-        <div>
-          {trap === TRAPS.MORE_CLUES ? (
-            <Translate
-              pt={
-                <>
-                  Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
-                </>
-              }
-              en={
-                <>
-                  Select exactly <BookHighlight>3</BookHighlight> book pages
-                </>
-              }
-            />
-          ) : (
-            <Translate
-              pt={
-                <>
-                  Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
-                  livro
-                </>
-              }
-              en={
-                <>
-                  Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
-                </>
-              }
-            />
-          )}
-        </div>
-
-        <ImageCardHand
-          hand={selectedIds}
-          cardSize={100}
-          selectButtonIcon={<CloseCircleFilled />}
-          selectButtonText={
-            <Translate
-              pt="Remover"
-              en="Remove"
-            />
-          }
-          onSelectCard={select}
-          cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
-          imageGroupPreview={trap === TRAPS.SEPIA}
-          imageGroupPreviewClassNames={{
-            popup: {
-              body: 'image-preview-sepia',
-            },
-          }}
-        />
-      </Surface>
+          <ImageCardHand
+            hand={selectedIds}
+            cardSize={100}
+            selectButtonIcon={<CloseCircleFilled />}
+            selectButtonText={
+              <Translate
+                pt="Remover"
+                en="Remove"
+              />
+            }
+            onSelectCard={select}
+            cardClassName={clsx(trap === TRAPS.SEPIA && 'i-sepia-card')}
+            imageGroupPreview={trap === TRAPS.SEPIA}
+            imageGroupPreviewClassNames={{
+              popup: {
+                body: 'image-preview-sepia',
+              },
+            }}
+          />
+        </Surface>
+      </TitledContainer>
 
       <FloatingHand
         title={

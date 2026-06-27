@@ -27,6 +27,17 @@
     background-color: rgba($color: get-color("gray", 3), $alpha: 1);
     box-shadow: 0px -15px 30px rgba(0, 0, 0, 0.2);
   }
+
+  &.floatingHandFullWidth {
+    left: 0;
+    transform: translateY(calc(100% - 50px));
+    width: 100%;
+    min-width: 100%;
+
+    &.floatingHandExpanded {
+      transform: translateY(0);
+    }
+  }
 }
 
 .floatingHandChildren {
@@ -39,6 +50,23 @@
     transform: scale(100%);
     overflow-y: auto;
   }
+}
+
+.floatingHandHeader {
+  all: unset;
+  display: block; /* or inline-block if needed */
+  width: 100%; /* optional: set size like a div */
+  height: auto;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 .floatingHandLabel {
