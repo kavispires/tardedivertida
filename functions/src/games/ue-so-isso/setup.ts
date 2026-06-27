@@ -121,7 +121,7 @@ export const prepareWordSelectionPhase = async (
   const currentWords = buildCurrentWords(JSON.parse(store.deck[round.current - 1]));
 
   // Unready players and remove any previously used game keys
-  setPlayersReadyState(players, true, { excludeIds: [guesserId] });
+  setPlayersReadyState(players, false, { excludeIds: [guesserId] });
   removePropertiesFromPlayers(players, ['suggestions', 'votes']);
 
   // Save
@@ -164,7 +164,7 @@ export const prepareSuggestPhase = async (
 
   const suggestionsNumber = determineSuggestionsNumber(players);
 
-  setPlayersReadyState(players, true, { excludeIds: [state.guesserId] });
+  setPlayersReadyState(players, false, { excludeIds: [state.guesserId] });
 
   removePropertiesFromPlayers(players, ['votes']);
 

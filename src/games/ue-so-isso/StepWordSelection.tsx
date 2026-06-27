@@ -124,7 +124,7 @@ export function StepWordSelection({
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
         disabled={noSelection}
         onExpire={autoSelectRandomWord}
-        duration={20}
+        duration={30}
         hideTimer={!noSelection}
       >
         <Translate
