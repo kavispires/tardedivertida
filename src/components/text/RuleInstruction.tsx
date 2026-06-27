@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 // Ant Design Resources
 import {
   AlertFilled,
@@ -61,34 +61,47 @@ export const RuleInstruction = ({
   sfx,
   ...rest
 }: RuleInstructionProps) => {
-  const icon = {
-    action: <PlayCircleFilled />,
-    alert: <AlertFilled />,
-    event: <ExclamationCircleFilled />,
-    lore: <MessageFilled />,
-    rule: <ReadFilled />,
-    tip: <BulbFilled />,
-    scoring: <StarFilled />,
-    wait: <ClockCircleFilled />,
-    bot: <RobotFilled />,
-  }[type];
-
-  const animationClass = {
-    action: getAnimationClass('shakeX'),
-    alert: getAnimationClass('flash', { infinite: true, speed: 'fast' }),
-    event: getAnimationClass('tada', { repeat: 3, speed: 'fast' }),
-    lore: getAnimationClass('pulse'),
-    rule: getAnimationClass('pulse'),
-    tip: getAnimationClass('pulse'),
-    scoring: getAnimationClass('pulse'),
-    wait: getAnimationClass('pulse'),
-    bot: getAnimationClass('pulse'),
-  }[type];
-
   const { token } = theme.useToken();
-  const color = type === 'action' ? { background: token.colorPrimary } : {};
 
-  const iconTypeClass = `ruleInstructionIcon${type.charAt(0).toUpperCase() + type.slice(1)}`;
+  const { icon, animationClass, backgroundColor, color } = useMemo(() => {
+    const icon = {
+      action: <PlayCircleFilled />,
+      alert: <AlertFilled />,
+      event: <ExclamationCircleFilled />,
+      lore: <MessageFilled />,
+      rule: <ReadFilled />,
+      tip: <BulbFilled />,
+      scoring: <StarFilled />,
+      wait: <ClockCircleFilled />,
+      bot: <RobotFilled />,
+    }[type];
+
+    const animationClass = {
+      action: getAnimationClass('shakeX'),
+      alert: getAnimationClass('flash', { infinite: true, speed: 'fast' }),
+      event: getAnimationClass('tada', { repeat: 3, speed: 'fast' }),
+      lore: getAnimationClass('pulse'),
+      rule: getAnimationClass('pulse'),
+      tip: getAnimationClass('pulse'),
+      scoring: getAnimationClass('pulse'),
+      wait: getAnimationClass('pulse'),
+      bot: getAnimationClass('pulse'),
+    }[type];
+
+    let backgroundColor = token.colorPrimaryBorder;
+    let color = token.colorPrimaryBg;
+
+    if (type === 'alert') {
+      backgroundColor = token.colorError;
+      color = token.colorWhite;
+    }
+    if (type === 'action') {
+      backgroundColor = token.colorPrimary;
+      color = token.colorPrimaryBorder;
+    }
+
+    return { icon, animationClass, backgroundColor, color };
+  }, [token, type]);
 
   return (
     <div
@@ -101,8 +114,8 @@ export const RuleInstruction = ({
       {...rest}
     >
       <div
-        className={clsx(styles.ruleInstructionIcon, iconTypeClass)}
-        style={color}
+        className={styles.ruleInstructionIcon}
+        style={{ background: backgroundColor, color }}
       >
         <div className={animationClass}>{icon}</div>
       </div>
