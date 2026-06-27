@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "4.1.71",
+  "version": "4.1.72",
   "release": "stable",
   "releaseDate": "2021-08-28",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -49,11 +49,7 @@
   },
   "playerCount": {
     "best": 6,
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 3,
     "max": 10
   },
@@ -61,17 +57,8 @@
     "base": 10,
     "perPlayer": 5
   },
-  "mechanics": [
-    "competitive",
-    "turn-based",
-    "images",
-    "writing",
-    "guessing"
-  ],
-  "features": [
-    "mobile-friendly",
-    "achievements"
-  ],
+  "mechanics": ["competitive", "turn-based", "images", "writing", "guessing"],
+  "features": ["mobile-friendly", "achievements"],
   "options": [
     {
       "key": "fixedRounds",
