@@ -1,1 +1,0 @@
-import{a as e}from"./rolldown-runtime-Cyuzqnbw.js";import{Pr as t}from"./antd-vendor-CyTuTWjB.js";import{n}from"./index-AthN7wcm.js";var r=e(t(),1);function i(e,t=`images`){return`${n(t)}/${(0,r.useMemo)(()=>e.replace(/-/g,`/`),[e])}.jpg`}export{i as t};
