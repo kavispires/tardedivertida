@@ -1,14 +1,8 @@
 import { motion } from 'motion/react';
 import { useState } from 'react';
 // Ant Design Resources
-import {
-  DislikeFilled,
-  DoubleLeftOutlined,
-  DoubleRightOutlined,
-  LikeFilled,
-  SaveFilled,
-} from '@ant-design/icons';
-import { Badge, Button, Divider, Flex, Layout, Segmented, Space, Switch, Typography } from 'antd';
+import { DoubleLeftOutlined, DoubleRightOutlined, SaveFilled } from '@ant-design/icons';
+import { Alert, Badge, Button, Divider, Flex, Layout, Segmented, Space, Switch, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
 // Hooks
@@ -20,6 +14,7 @@ import { getAnimation } from '@utils/animations';
 import { AnimatedProcessingIcon } from '@icons/AnimatedProcessingIcon';
 import { ThumbsUpIcon } from '@icons/ThumbsUpIcon';
 // Components
+import { TripleStateButton } from '@components/buttons/TripleStateButton';
 import { SuspectCard } from '@components/cards/SuspectCard';
 import { TextCard } from '@components/cards/TextCard';
 import { Icon } from '@components/general/Icon';
@@ -32,7 +27,7 @@ import { DailyContent } from '@pages/Daily/components/DailyContent';
 import { GameHeader } from '@pages/Daily/components/Header';
 import { Menu } from '@pages/Daily/components/Menu';
 import { NextGameSuggestion } from '@pages/Daily/components/NextGameSuggestion';
-import { Region } from '@pages/Daily/components/Region';
+import { Region, RegionText } from '@pages/Daily/components/Region';
 import { StepDots } from '@pages/Daily/components/StepDots';
 // Internal
 import { getInitialState } from '../utils/helpers';
@@ -54,7 +49,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
     questionIndex,
     totalQuestions,
     question,
-    answer,
+    currentAnswers,
     suspects,
     onToggleAllowNSFW,
     onNext,
@@ -74,6 +69,9 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
 
   const [width, ref] = useCardWidthByContainerRef(3, { margin: 24, gap: 12, maxWidth: 256, minWidth: 55 });
   const { translate } = useLanguage();
+
+  const answerMinimumRequiredForTestimony =
+    Object.values(currentAnswers.answers).filter((value) => value !== null).length > 3;
 
   return (
     <Layout>
@@ -161,34 +159,30 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                     />
                   </Badge.Ribbon>
 
-                  <Switch
-                    loading={isSaving}
-                    checked={answer.related.includes(suspectId)}
+                  <TripleStateButton
+                    size="small"
+                    value={currentAnswers.answers[suspectId] ?? null}
                     onChange={(checked) => onUpdateAnswer(suspectId, checked)}
-                    unCheckedChildren={
-                      <>
-                        <DislikeFilled />{' '}
-                        <Translate
-                          pt="Não"
-                          en="No"
-                        />
-                      </>
-                    }
-                    checkedChildren={
-                      <>
-                        <LikeFilled />{' '}
-                        <Translate
-                          pt="Sim"
-                          en="Yes"
-                        />
-                      </>
-                    }
                   />
                 </MotionFlex>
               ))}
             </Flex>
 
-            <Space.Compact className="mt-10">
+            {!answerMinimumRequiredForTestimony && (
+              <Alert
+                className="mx-4 mt-2"
+                showIcon
+                title={
+                  <Translate
+                    en="You must evaluate at least 4 people to proceed."
+                    pt="Você deve avaliar pelo menos 4 pessoas para prosseguir."
+                  />
+                }
+                type="warning"
+              />
+            )}
+
+            <Space.Compact className="mt-4">
               <Button
                 shape="round"
                 onClick={onPrevious}
@@ -205,7 +199,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                 onClick={onNext}
                 icon={<DoubleRightOutlined />}
                 iconPlacement="end"
-                disabled={questionIndex === totalQuestions - 1}
+                disabled={questionIndex === totalQuestions - 1 || !answerMinimumRequiredForTestimony}
               >
                 <Translate
                   pt="Próximo"
@@ -226,7 +220,7 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                 )}
 
                 <Button
-                  className={questionIndex !== totalQuestions - 1 ? 'mb-10' : 'my-10'}
+                  className="mb-10 mt-4"
                   icon={<SaveFilled />}
                   loading={isSaving}
                   onClick={onComplete}
@@ -259,14 +253,14 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
           </Surface>
         )}
         {isIdle && !alreadyPlayed && (
-          <Region>
-            <Surface contained>
+          <>
+            <RegionText>
               <Translate
                 pt={
                   <>
-                    Selecione todos os personagem que você acha que se encaixam na pergunta.
+                    Avalie se cada personagem se encaixa ou não na pergunta.
                     <br />
-                    Se nenhum se encaixar, só não selecionar ninguém.
+                    Se você estiver em dúvida, deixe em branco.
                     <br />
                     Considere talvez, como "sim".
                   </>
@@ -281,35 +275,37 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                   </>
                 }
               />
-            </Surface>
+            </RegionText>
 
-            <Switch
-              checkedChildren="Incluir conteúdo sensível"
-              unCheckedChildren="Não incluir conteúdo sensível"
-              onChange={onToggleAllowNSFW}
-              className="my-4"
-              value={mode === 'nsfw'}
-            />
+            <Region>
+              <Switch
+                checkedChildren="Incluir conteúdo sensível"
+                unCheckedChildren="Não incluir conteúdo sensível"
+                onChange={onToggleAllowNSFW}
+                className="my-4"
+                value={mode === 'nsfw'}
+              />
 
-            <Button
-              type="primary"
-              size="large"
-              onClick={onStart}
-              disabled={alreadyPlayed}
-            >
-              {isSaving ? (
-                <Translate
-                  pt="Salvando"
-                  en="Saving"
-                />
-              ) : (
-                <Translate
-                  pt="Começar"
-                  en="Start"
-                />
-              )}
-            </Button>
-          </Region>
+              <Button
+                type="primary"
+                size="large"
+                onClick={onStart}
+                disabled={alreadyPlayed}
+              >
+                {isSaving ? (
+                  <Translate
+                    pt="Salvando"
+                    en="Saving"
+                  />
+                ) : (
+                  <Translate
+                    pt="Começar"
+                    en="Start"
+                  />
+                )}
+              </Button>
+            </Region>
+          </>
         )}
 
         {!alreadyPlayed && (

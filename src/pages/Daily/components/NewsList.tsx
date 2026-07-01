@@ -20,6 +20,16 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-07-02',
+    content: (
+      <GameFeatureEntry
+        type="rules"
+        game={ALL_SETTINGS.TA_NA_CARA}
+        description="agora você não precisa avaliar todos os suspeitos em sim ou não, podendo deixar em branco alguns que não tem certeza!"
+      />
+    ),
+  },
+  {
     date: '2026-07-01',
     content: (
       <EngineImprovementEntry

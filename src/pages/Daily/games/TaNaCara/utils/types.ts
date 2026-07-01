@@ -20,7 +20,7 @@ export type GameState = {
 export type SessionState = {
   testimonies: TaNaCaraQuestion[];
   suspectsIds: string[][];
-  answers: AnswerToSave[];
+  answers: PreliminaryAnswer[];
   selections: string[];
   questionIndex: number;
   mode: 'normal' | 'nsfw';
@@ -36,6 +36,11 @@ export type DailyTaNaCaraEntry = {
   suspectsIds: string[];
   names?: Dictionary<string>;
   variant?: SuspectStyleVariant;
+};
+
+export type PreliminaryAnswer = {
+  testimonyId: string;
+  answers: Record<string, boolean | null>;
 };
 
 export type AnswerToSave = {

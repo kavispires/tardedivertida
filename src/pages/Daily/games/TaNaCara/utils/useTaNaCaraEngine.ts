@@ -12,7 +12,7 @@ import { getAnalyticsEventName } from '@pages/Daily/utils';
 import { playSFX } from '@pages/Daily/utils/soundEffects';
 // Internal
 import { SETTINGS } from './settings';
-import type { DailyTaNaCaraEntry, GameState, SessionState } from './types';
+import type { AnswerToSave, DailyTaNaCaraEntry, GameState, SessionState } from './types';
 
 export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameState) {
   const { state, updateState } = useDailyGameState<GameState>(initialState);
@@ -35,8 +35,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     answers: [
       {
         testimonyId: data.testimonies[0].testimonyId,
-        related: [],
-        unrelated: [],
+        answers: {},
       },
     ],
     selections: [],
@@ -65,7 +64,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const question = data.testimonies[session.questionIndex];
-  const answer = session.answers[session.questionIndex];
+  const currentAnswers = session.answers[session.questionIndex];
   const suspects = session.suspectsIds[session.questionIndex];
 
   const onStart = () => {
@@ -87,15 +86,8 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
       if (copy.answers[nextIndex] === undefined) {
         copy.answers.push({
           testimonyId: data.testimonies[nextIndex].testimonyId,
-          related: [],
-          unrelated: [],
+          answers: {},
         });
-      }
-      // Update unrelated for the previous question
-      if (copy.answers[copy.questionIndex]) {
-        copy.answers[copy.questionIndex].unrelated = suspects.filter(
-          (suspectId) => !copy.answers[copy.questionIndex].related.includes(suspectId),
-        );
       }
 
       copy.questionIndex = nextIndex;
@@ -109,19 +101,19 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     }
   };
 
-  const onUpdateAnswer = (suspectId: string, isRelated: boolean) => {
-    playSFX(isRelated ? 'yah' : 'nah');
+  const onUpdateAnswer = (suspectId: string, answer: boolean | null) => {
+    if (answer === null) {
+      playSFX('select');
+    } else {
+      playSFX(answer ? 'yah' : 'nah');
+    }
+
     setSession((prev) => {
       const copy = cloneDeep(prev);
-      const currentAnswer = copy.answers[copy.questionIndex];
+      const currentAnswers = copy.answers[copy.questionIndex];
 
-      if (currentAnswer) {
-        copy.answers[copy.questionIndex].related = isRelated
-          ? [...currentAnswer.related, suspectId]
-          : currentAnswer.related.filter((id) => id !== suspectId);
-        copy.answers[copy.questionIndex].unrelated = isRelated
-          ? currentAnswer.unrelated.filter((id) => id !== suspectId)
-          : [...currentAnswer.unrelated, suspectId];
+      if (currentAnswers) {
+        copy.answers[copy.questionIndex].answers[suspectId] = answer;
       }
 
       return copy;
@@ -129,21 +121,20 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
   };
 
   const onComplete = () => {
-    // Update unrelated for the current question
-    if (session.answers[session.questionIndex]) {
-      session.answers[session.questionIndex].unrelated = suspects.filter(
-        (suspectId) => !session.answers[session.questionIndex].related.includes(suspectId),
-      );
-    }
-
-    // Remove style mid fix
-    const copy = cloneDeep(session.answers);
-    copy.forEach((answer) => {
-      answer.related = answer.related.map(removeStyleMidFix);
-      answer.unrelated = answer.unrelated.map(removeStyleMidFix);
+    // Parse answers into AnswersToSave format
+    const result: AnswerToSave[] = session.answers.map((answer) => {
+      return {
+        testimonyId: answer.testimonyId,
+        related: Object.entries(answer.answers)
+          .filter(([, value]) => value === true)
+          .map(([key]) => removeStyleMidFix(key)),
+        unrelated: Object.entries(answer.answers)
+          .filter(([, value]) => value === false)
+          .map(([key]) => removeStyleMidFix(key)),
+      };
     });
 
-    mutation.mutate(copy);
+    mutation.mutate(result);
   };
 
   const mutation = useDailySaveTestimonies(() => {
@@ -166,7 +157,7 @@ export function useTaNaCaraEngine(data: DailyTaNaCaraEntry, initialState: GameSt
     questionNumber: session.questionIndex + 1,
     questionSuspects: session.suspectsIds[session.questionIndex],
     question,
-    answer,
+    currentAnswers,
     suspects,
     totalQuestions: session.testimonies.length,
     isPlaying: session.screen === 'playing',
