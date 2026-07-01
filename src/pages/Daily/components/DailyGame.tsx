@@ -133,7 +133,7 @@ export function DailyGameBetaRelease({
   );
 }
 
-type EndlessGameProps = {
+type SelfGeneratingGameProps = {
   GameComponent: React.ComponentType<{ data: any; currentUser: Me; isLoading?: boolean }>;
   useGameHook: () => any;
 };
@@ -147,7 +147,7 @@ type EndlessGameProps = {
  *
  * @returns The loading, error, or game component based on the current state of the demo data.
  */
-export function EndlessGame({ GameComponent, useGameHook }: EndlessGameProps) {
+export function SelfGeneratingGame({ GameComponent, useGameHook }: SelfGeneratingGameProps) {
   const { currentUser } = useCurrentUserContext();
 
   // Load challenge

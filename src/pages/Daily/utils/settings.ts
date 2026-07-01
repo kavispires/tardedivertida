@@ -23,22 +23,24 @@ export const ALL_SETTINGS = {
   ALIENADO,
   AQUI_O,
   ARTE_RUIM,
-  CONEXOES,
   CONJUNTOS,
-  ESTOQUISTA,
   INVESTIGACAO,
   FILMACO,
   MAPEAMENTO,
   ORGANIKU,
   PALAVREADO,
   PANICO,
-  PICACO,
   PIRRALHOS,
   PORTAIS,
   QUARTETOS,
-  TA_NA_CARA,
   VITRAL,
+  // Special
   ENDLESS_VITRAIS,
+  ESTOQUISTA,
+  // Contribution games
+  PICACO,
+  TA_NA_CARA,
+  CONEXOES,
 };
 
 type GameKey = keyof typeof ALL_SETTINGS;

@@ -20,6 +20,40 @@ type NewsItem = {
 
 export const NEWS_LIST: NewsItem[] = [
   {
+    date: '2026-07-01',
+    content: (
+      <EngineImprovementEntry
+        description={
+          <>
+            <em>Mudanças:</em>
+            <br />
+            <span>
+              <Icon
+                icon={<ALL_SETTINGS.ESTOQUISTA.HUB_ICON />}
+                size="small"
+              />{' '}
+              <strong>
+                <DualTranslate>{ALL_SETTINGS.ESTOQUISTA.NAME}</DualTranslate>
+              </strong>{' '}
+              está se mudando para a seção especial
+            </span>
+            <br />
+            <span>
+              <Icon
+                icon={<ALL_SETTINGS.CONEXOES.HUB_ICON />}
+                size="small"
+              />{' '}
+              <strong>
+                <DualTranslate>{ALL_SETTINGS.CONEXOES.NAME}</DualTranslate>
+              </strong>{' '}
+              foi removido da seção de contribuições! Obrigado pela ajuda!
+            </span>
+          </>
+        }
+      />
+    ),
+  },
+  {
     date: '2026-06-20',
     content: (
       <GameFeatureEntry
@@ -154,19 +188,23 @@ export const NEWS_LIST: NewsItem[] = [
   {
     date: '2026-02-09',
     content: (
-      <>
-        <em>Nova sessão de jogos especiais:</em>
-        <br />
-        Jogue quantas vezes quiser o jogo{' '}
-        <Icon
-          icon={<ALL_SETTINGS.ENDLESS_VITRAIS.HUB_ICON />}
-          size="small"
-        />{' '}
-        <strong>
-          <DualTranslate>{ALL_SETTINGS.ENDLESS_VITRAIS.NAME}</DualTranslate>
-        </strong>{' '}
-        com uma imagem diferente a cada partida!
-      </>
+      <EngineImprovementEntry
+        description={
+          <>
+            <em>Nova sessão de jogos especiais:</em>
+            <br />
+            Jogue quantas vezes quiser o jogo{' '}
+            <Icon
+              icon={<ALL_SETTINGS.ENDLESS_VITRAIS.HUB_ICON />}
+              size="small"
+            />{' '}
+            <strong>
+              <DualTranslate>{ALL_SETTINGS.ENDLESS_VITRAIS.NAME}</DualTranslate>
+            </strong>{' '}
+            com uma imagem diferente a cada partida!
+          </>
+        }
+      />
     ),
   },
   {

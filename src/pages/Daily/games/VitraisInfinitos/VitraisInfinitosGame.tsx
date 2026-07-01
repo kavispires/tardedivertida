@@ -1,5 +1,5 @@
 // Pages
-import { EndlessGame } from '@pages/Daily/components/DailyGame';
+import { SelfGeneratingGame } from '@pages/Daily/components/DailyGame';
 // Internal
 import { useEndlessVitrais } from './utils/useEndlessVitrais';
 import { EndlessVitraisContent } from './components/EndlessVitraisContent';
@@ -8,7 +8,7 @@ import './utils/styles.scss';
 
 export function VitraisInfinitosGame() {
   return (
-    <EndlessGame
+    <SelfGeneratingGame
       GameComponent={EndlessVitraisContent}
       useGameHook={useEndlessVitrais}
     />

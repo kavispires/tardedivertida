@@ -8,7 +8,7 @@ export const SETTINGS: GameSettings = {
   ROUTE: 'conexoes',
   TYPE: 'contribution',
   RELEASE_DATE: '2026-04-04',
-  VERSION: 'stable',
+  VERSION: 'unreleased', // The game has been deprecated
   COLOR: 'rgba(232, 244, 248, 0.85)',
   EMOJI: '🔗',
   HUB_ICON: DailyConexoesGameIcon,

@@ -9,7 +9,7 @@ export const SETTINGS: GameSettings = {
   TYPE: 'special',
   RELEASE_DATE: '2026-02-08',
   VERSION: 'stable',
-  COLOR: 'rgb(255 202 141 / 85%)',
+  COLOR: 'rgb(38 196 174 / 85%)',
   EMOJI: '🧩',
   HUB_ICON: DailyPuzzleGameIcon,
   NAME: { pt: 'Vitrais∞', en: 'Vitrais∞' },

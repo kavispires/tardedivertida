@@ -1,15 +1,16 @@
 // Pages
-import { DailyGame } from '@pages/Daily/components/DailyGame';
+import { SelfGeneratingGame } from '@pages/Daily/components/DailyGame';
 // Internal
+import { useEstoquistaGameGenerator } from './utils/generator';
 import { DailyEstoquista } from './components/DailyEstoquista';
 // Sass
 import './utils/styles.scss';
 
 export function DailyEstoquistaGame() {
   return (
-    <DailyGame
-      gameName="estoquista"
+    <SelfGeneratingGame
       GameComponent={DailyEstoquista}
+      useGameHook={useEstoquistaGameGenerator}
     />
   );
 }

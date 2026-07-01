@@ -27,7 +27,6 @@ export type DailyResponse = {
   'arte-ruim': DailyArteRuimEntry;
   'aqui-o': DailyAquiOEntry;
   alienado: DailyAlienadoEntry;
-  estoquista: DailyEstoquistaEntry;
   investigacao: DailyInvestigacaoEntry;
   filmaco: DailyFilmacoEntry;
   mapeamento: DailyMapeamentoEntry;
@@ -40,9 +39,11 @@ export type DailyResponse = {
   conjuntos: DailyConjuntosEntry;
   vitral: DailyVitralEntry;
   // Contributions
-  conexoes: DailyConexoesEntry;
   picaco: DailyPicacoEntry;
   'ta-na-cara': DailyTaNaCaraEntry;
+  // Deprecated
+  estoquista?: DailyEstoquistaEntry;
+  conexoes?: DailyConexoesEntry;
   // Other
   dictionary?: Dictionary<string>;
 };

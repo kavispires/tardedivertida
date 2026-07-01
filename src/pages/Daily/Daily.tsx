@@ -35,11 +35,6 @@ const DailyConjuntosGame = lazy(() =>
     default: m.DailyConjuntosGame,
   })),
 );
-const DailyConexoesGame = lazy(() =>
-  import(/* webpackChunkName: "daily-conexoes" */ './games/Conexoes/DailyConexoesGame').then((m) => ({
-    default: m.DailyConexoesGame,
-  })),
-);
 const DailyEstoquistaGame = lazy(() =>
   import(/* webpackChunkName: "daily-estoquista" */ './games/Estoquista/DailyEstoquistaGame').then((m) => ({
     default: m.DailyEstoquistaGame,
@@ -162,7 +157,6 @@ function AuthenticatedDailyContent() {
     'aqui-o': DailyAquiOGame,
     'arte-ruim': DailyArteRuimGame,
     conjuntos: DailyConjuntosGame,
-    estoquista: DailyEstoquistaGame,
     investigacao: DailyInvestigacaoGame,
     filmaco: DailyFilmacoGame,
     mapeamento: DailyMapeamentoGame,
@@ -173,14 +167,14 @@ function AuthenticatedDailyContent() {
     portais: DailyPortaisGame,
     quartetos: DailyQuartetosGame,
     vitral: DailyVitralGame,
-    // Contribute
-    conexoes: DailyConexoesGame,
+    // Contribution games
     picaco: DailyPicacoGame,
     'ta-na-cara': DailyTaNaCaraGame,
-    demo: DailyDemoPage,
     // Endless games
     'vitrais-infinitos': VitraisInfinitosGame,
+    estoquista: DailyEstoquistaGame,
     // Dev
+    demo: DailyDemoPage,
     debug: DebugPage,
   };
 

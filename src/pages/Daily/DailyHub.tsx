@@ -183,6 +183,23 @@ export function Hub() {
 
       <BundleResults list={SHAREABLE} />
 
+      {SPECIALS.length > 0 && (
+        <div className="hub">
+          <Typography.Title level={5}>
+            <Translate
+              pt="Especiais"
+              en="Specials"
+            />
+          </Typography.Title>
+
+          <HubList
+            list={SPECIALS}
+            width={width}
+            startingIndex={GAMES.length}
+          />
+        </div>
+      )}
+
       <div className="hub">
         <Typography.Title level={5}>
           <Translate
@@ -209,23 +226,6 @@ export function Hub() {
 
           <HubList
             list={DEMOS}
-            width={width}
-            startingIndex={GAMES.length}
-          />
-        </div>
-      )}
-
-      {SPECIALS.length > 0 && (
-        <div className="hub">
-          <Typography.Title level={5}>
-            <Translate
-              pt="Especiais"
-              en="Specials"
-            />
-          </Typography.Title>
-
-          <HubList
-            list={SPECIALS}
             width={width}
             startingIndex={GAMES.length}
           />

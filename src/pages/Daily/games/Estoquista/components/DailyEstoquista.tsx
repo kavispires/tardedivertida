@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMeasure } from 'react-use';
 // Ant Design Resources
+import { UndoOutlined } from '@ant-design/icons';
 import { Button, Divider, Layout, Modal, Tooltip, Typography } from 'antd';
 // Types
 import type { Me } from 'types/user';
@@ -165,6 +166,7 @@ export function DailyEstoquista({ data }: DailyEstoquistaProps) {
               type="primary"
               danger
               disabled={hearts <= 0}
+              icon={<UndoOutlined />}
             >
               <Translate
                 pt="Recomeçar Jogo"
