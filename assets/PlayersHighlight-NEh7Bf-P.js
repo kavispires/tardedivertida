@@ -1,1 +1,0 @@
-import{V as e}from"./react-vendor-B4MxxhR7.js";import{t}from"./MetricHighlight-DhJtYMbH.js";import{t as n}from"./PlayersIcon-Dk9O3E3S.js";var r=e();function i(e){return(0,r.jsx)(t,{icon:(0,r.jsx)(n,{}),...e})}export{i as t};
