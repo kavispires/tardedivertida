@@ -133,11 +133,19 @@ body {
   align-items: center;
 }
 
+.grid {
+  display: grid;
+}
+
 .grid-container {
   margin: get-unit(2 0);
   display: grid;
   place-items: center;
   gap: get-unit(2);
+}
+
+.grid-template-2 {
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .grid-template-4 {

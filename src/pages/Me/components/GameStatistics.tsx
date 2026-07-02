@@ -98,6 +98,14 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
               </span>
             </>
           )}
+          <br />
+          <span className="italic">
+            <Translate
+              en="Inspired by "
+              pt="Inspirado por "
+            />
+            {info.inspiredBy.split('').reverse().join('')}
+          </span>
         </InfoCard>
         <InfoCard
           title={

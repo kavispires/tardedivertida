@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "correio-do-amor",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "release": "dev",
   "releaseDate": "0000-00-00",
   "available": false,

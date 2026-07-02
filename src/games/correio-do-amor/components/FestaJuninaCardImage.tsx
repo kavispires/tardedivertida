@@ -29,9 +29,14 @@ function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageP
     >
       {/* Rank Badge */}
       <DynamicCard.Span
-        top="1%"
-        left="2%"
-        width="20cqw"
+        top="8.4%"
+        left="12.5%"
+        centerHorizontal
+        centerVertical
+        width="19cqw"
+        aspectRatio="1/1"
+        padding="5%"
+        borderWidth="2cqw"
         className="a-festa-junina-card__rank"
         style={{
           backgroundColor: card.color,
@@ -54,9 +59,11 @@ function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageP
 
       {/* Effect Text */}
       <DynamicCard.Span
-        top="77%"
+        top="70%"
+        left="50%"
         centerHorizontal
-        width="88cqw"
+        centerVertical
+        width="90cqw"
         className="a-festa-junina-card__effect"
       >
         <Tooltip title={card.effect}>{card.effect}</Tooltip>
@@ -64,8 +71,13 @@ function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageP
 
       {/* Count Indicator */}
       <DynamicCard.Span
-        bottom="1%"
+        top="86.4%"
+        left="50.0%"
         centerHorizontal
+        centerVertical
+        width="90cqw"
+        fontSize="4cqw"
+        aspectRatio="3 / 1"
         className="a-festa-junina-card__count"
       >
         <Tooltip

@@ -1,0 +1,178 @@
+.cardCrafterGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 1rem;
+  min-height: 600px;
+}
+
+.cardCrafter {
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--preview {
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 2rem;
+    }
+
+    &--controls {
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+
+    &--output {
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+  }
+
+  &__section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  &__preview-container {
+    position: relative;
+    cursor: default;
+  }
+
+  &__element {
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    font-size: inherit;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    text-align: center;
+    word-break: break-word;
+    padding: 0.25rem;
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &--selected {
+      border-color: var(--color-primary);
+      border-width: 3px;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+    }
+
+    &--dragging {
+      cursor: grabbing;
+      opacity: 0.8;
+    }
+
+    &--off-canvas {
+      border-color: var(--color-error);
+      box-shadow: 0 0 8px var(--color-error);
+    }
+
+    &--transparent {
+      background-color: transparent !important;
+    }
+  }
+
+  &__element-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__element-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background-light);
+
+    &--selected {
+      border-color: var(--color-primary);
+      background-color: rgba(0, 123, 255, 0.1);
+    }
+  }
+
+  &__element-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+  }
+
+  &__element-name {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  &__button-group {
+    display: flex;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  &__config-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background-light);
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  &__code-output {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: "Courier New", monospace;
+    font-size: 0.875rem;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.5;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__property-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  &__history-info {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    padding: 0.5rem;
+  }
+}

@@ -25,6 +25,9 @@ const DevSprites = lazy(() => import('@pages/Dev/Sprites' /* webpackChunkName: "
 const DevPlayground = lazy(
   () => import('@pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */),
 );
+const DevCardCrafter = lazy(
+  () => import('@pages/Dev/CardCrafter' /* webpackChunkName: "page-dev-card-crafter" */),
+);
 const Daily = lazy(() => import('@pages/Daily/Daily' /* webpackChunkName: "page-td-daily" */));
 
 const LazyMe = () => (
@@ -65,6 +68,11 @@ const LazyDevColors = () => (
 const LazyDevSprites = () => (
   <Suspense fallback={<LoadingPage />}>
     <DevSprites />
+  </Suspense>
+);
+const LazyDevCardCrafter = () => (
+  <Suspense fallback={<LoadingPage />}>
+    <DevCardCrafter />
   </Suspense>
 );
 const LazyDevPlayground = () => (
@@ -164,6 +172,10 @@ export const routes: RouteObject[] = [
       {
         path: 'users',
         element: <LazyUsers />,
+      },
+      {
+        path: 'card-crafter',
+        element: <LazyDevCardCrafter />,
       },
     ],
   },

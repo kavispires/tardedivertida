@@ -12,6 +12,7 @@ export function DevMenu() {
     { label: 'Icons', value: '/dev/icons', disabled: pathname === '/dev/icons' },
     { label: 'Colors', value: '/dev/colors', disabled: pathname === '/dev/colors' },
     { label: 'Sprites', value: '/dev/sprites', disabled: pathname === '/dev/sprites' },
+    { label: 'Card Crafter', value: '/dev/card-crafter', disabled: pathname === '/dev/card-crafter' },
     { label: 'Playground', value: '/dev/playground', disabled: pathname === '/dev/playground' },
   ];
 

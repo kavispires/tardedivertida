@@ -6,52 +6,48 @@ import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 import styles from './DynamicCard.module.scss';
 
 export type DynamicCardSpanItemProps = {
-  /**
-   * The content to render inside the span
-   */
+  /** The content to render inside the span */
   children: ReactNode;
-  /**
-   * Distance from the top edge (use % or cqw units)
-   */
+
+  // --- POSITIONING ---
+  /** Distance from the top edge (use % or cqw units) */
   top?: string | number;
-  /**
-   * Distance from the bottom edge (use % or cqw units)
-   */
+  /** Distance from the bottom edge (use % or cqw units) */
   bottom?: string | number;
-  /**
-   * Distance from the left edge (use % or cqw units)
-   */
+  /** Distance from the left edge (use % or cqw units) */
   left?: string | number;
-  /**
-   * Distance from the right edge (use % or cqw units)
-   */
+  /** Distance from the right edge (use % or cqw units) */
   right?: string | number;
-  /**
-   * Automatically centers the item horizontally (left: 50%, translateX(-50%))
-   */
+  /** Automatically centers the item horizontally (left: 50%, translateX(-50%)) */
   centerHorizontal?: boolean;
-  /**
-   * Automatically centers the item vertically (top: 50%, translateY(-50%))
-   */
+  /** Automatically centers the item vertically (top: 50%, translateY(-50%)) */
   centerVertical?: boolean;
-  /**
-   * Width of the item (highly recommended to use cqw units for responsive scaling)
-   */
+
+  // --- PROPORTIONAL SCALING (cqw targets) ---
+  /** Width of the item (highly recommended to use cqw units for responsive scaling) */
   width?: string | number;
-  /**
-   * Optional custom className
-   */
+  /** Font size (use cqw units for responsive text scaling) */
+  fontSize?: string | number;
+  /** Aspect ratio (e.g., "1 / 1" for a perfect square or "16 / 9") */
+  aspectRatio?: string | number;
+  /** Border radius (use cqw units for responsive curves, or px for fixed) */
+  borderRadius?: string | number;
+  /** Padding inside the span (use cqw units for proportional spacing) */
+  padding?: string | number;
+  /** Border width (use cqw units for scalable borders around badges) */
+  borderWidth?: string | number;
+
+  // --- STANDARD OVERRIDES ---
+  /** Optional custom className */
   className?: string;
-  /**
-   * Optional inline styles
-   */
+  /** Optional inline styles */
   style?: React.CSSProperties;
 };
 
 /**
  * Positions elements absolutely within a DynamicCard using container query units (cqw)
  */
-function DynamicCardSpanItem({
+export function DynamicCardSpanItem({
   children,
   top,
   bottom,
@@ -60,29 +56,32 @@ function DynamicCardSpanItem({
   centerHorizontal,
   centerVertical,
   width,
+  fontSize,
+  aspectRatio,
+  borderRadius,
+  padding,
+  borderWidth,
   className,
   style,
 }: DynamicCardSpanItemProps) {
-  // Calculate transform dynamically based on centering props
-  let transform = style?.transform || '';
-  if (centerHorizontal && centerVertical) {
-    transform = 'translate(-50%, -50%)';
-  } else if (centerHorizontal) {
-    transform = 'translateX(-50%)';
-  } else if (centerVertical) {
-    transform = 'translateY(-50%)';
-  }
-
   return (
     <span
       className={clsx(styles.dynamicCardItem, className)}
       style={{
-        top: centerVertical ? '50%' : top,
+        top: top ?? (centerVertical ? '50%' : undefined),
         bottom,
-        left: centerHorizontal ? '50%' : left,
+        left: left ?? (centerHorizontal ? '50%' : undefined),
         right,
         width,
-        transform: transform || undefined,
+        fontSize,
+        aspectRatio,
+        borderRadius,
+        padding,
+        borderWidth,
+        translate:
+          centerHorizontal || centerVertical
+            ? `${centerHorizontal ? '-50%' : '0'} ${centerVertical ? '-50%' : '0'}`
+            : undefined,
         ...style,
       }}
     >
