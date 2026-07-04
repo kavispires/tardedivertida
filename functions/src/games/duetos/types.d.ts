@@ -40,6 +40,7 @@ export interface ResourceData {
 type GalleryItem = {
   pairId: string;
   pair: (ItemEntry | undefined)[];
+  round: number;
   players: UID[];
 };
 

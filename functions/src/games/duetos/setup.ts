@@ -1,6 +1,6 @@
-import { sampleSize, shuffle } from 'lodash';
+import { orderBy, shuffle } from 'lodash';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, GalleryItem, ItemEntry, ResourceData } from './types';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
 import { CARDS_PER_HARD_ROUND, CARDS_PER_NORMAL_ROUND, DUETOS_PHASES, TOTAL_ROUNDS } from './constants';
@@ -72,14 +72,6 @@ export const prepareSetupPhase = async (
     addSpecial(resourceData[decks[index]], CARDS_PER_HARD_ROUND, round4, decks[index]);
   }
 
-  // Round 5
-  const round5 = [
-    ...sampleSize(round1, 3),
-    ...sampleSize(round2, 3),
-    ...sampleSize(round3, 3),
-    ...sampleSize(round4, 3),
-  ];
-
   const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
@@ -91,7 +83,7 @@ export const prepareSetupPhase = async (
           2: round2,
           3: round3,
           4: round4,
-          5: shuffle(round5),
+          5: [{ type: 'mixed' }],
         },
         achievements,
         gallery: [],
@@ -124,8 +116,37 @@ export const preparePairPhase = async (
 
   const round = increaseRound(state.round);
 
-  const pool = store.deck[round.current];
-  const roundType = round.current === 5 ? 'mixed' : pool[0].type;
+  let pool = store.deck[round.current];
+  const roundType = pool[0].type;
+
+  if (round.current === 5) {
+    // For each of the 4 previous rounds, sort the items by lowest pair score and take 3 of them.
+    const itemsDict: Record<string, ItemEntry> = {};
+    const singleEntriesScore: Record<string, Record<string, number>> = {};
+    store.gallery.forEach((entry) => {
+      const score = entry.players.length > 1 ? entry.players.length : 0;
+      entry.pair.forEach((item) => {
+        if (item) {
+          itemsDict[item.id] = item;
+          singleEntriesScore[entry.round] = singleEntriesScore[entry.round] || {};
+          singleEntriesScore[entry.round][item.id] = (singleEntriesScore[entry.round][item.id] || 0) + score;
+        }
+      });
+    });
+
+    // For each round in singleEntriesScore, sort the items by score and take the 3 lowest scoring items
+    const finalPool: ItemEntry[] = [];
+    Object.keys(singleEntriesScore).forEach((round) => {
+      const sortedItems = Object.entries(singleEntriesScore[round])
+        .sort(([, scoreA], [, scoreB]) => scoreA - scoreB)
+        .slice(0, 3)
+        .map(([itemId]) => itemsDict[itemId]);
+      finalPool.push(...sortedItems);
+    });
+
+    // Shuffle the final pool
+    pool = shuffle(finalPool);
+  }
 
   return {
     update: {
@@ -152,7 +173,7 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const { ranking, gallery, leftOut } = calculateResults(players, state.pool, store);
+  const { ranking, gallery, leftOut } = calculateResults(players, state.pool, state.round.current, store);
 
   setPlayersReadyState(players, false);
 
@@ -202,7 +223,11 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  const gallery = store.gallery.filter((item) => item.players.length > 2 && item.pair.every(Boolean));
+  const gallery = orderBy(
+    store.gallery.filter((item: GalleryItem) => item.players.length > 2 && item.pair.every(Boolean)),
+    'players.length',
+    'desc',
+  );
 
   // Save data (pairs)
   await savedData(gallery ?? []);

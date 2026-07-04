@@ -59,6 +59,10 @@ export type DuetosGalleryEntry = {
    * The two items that form the pair
    */
   pair: ItemData[];
+  /**
+   * The round number in which this pair was made
+   */
+  round: number;
 };
 
 /**

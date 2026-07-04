@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { Flex } from 'antd';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
@@ -6,6 +8,7 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
+import { PlayersHighlight } from '@components/metrics/PlayersHighlight';
 import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import achievementsReference from './utils/achievements';
@@ -36,13 +39,19 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
         className="mt-4"
       >
         {gallery.map((pair: DuetosGalleryEntry, index) => (
-          <Pair
+          <Flex
             key={pair.pairId}
-            index={index % 6}
-            firstItem={pair.pair[0]}
-            secondItem={pair.pair[1]}
-            placeholder={pair.pair[0]}
-          />
+            align="center"
+            vertical
+          >
+            <Pair
+              index={index % 6}
+              firstItem={pair.pair[0]}
+              secondItem={pair.pair[1]}
+              placeholder={pair.pair[0]}
+            />
+            <PlayersHighlight>{pair.players.length}</PlayersHighlight>
+          </Flex>
         ))}
       </TitledContainer>
     </GameOverWrapper>

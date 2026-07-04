@@ -78,7 +78,12 @@ const PAIR_SEPARATOR = '+';
  * @param pool - The array of item entries in the pool
  * @param store - The Firebase store data for tracking achievements
  */
-export const calculateResults = (players: Players, pool: ItemEntry[], store: FirebaseStoreData) => {
+export const calculateResults = (
+  players: Players,
+  pool: ItemEntry[],
+  currentRound: number,
+  store: FirebaseStoreData,
+) => {
   const poolIds = pool.map((item) => item.id);
 
   const pairsByPlayers: Record<string, UID[]> = {};
@@ -148,9 +153,10 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
       const item2 = pool.find((item) => item.id === id2);
 
       const entry: GalleryItem = {
-        pairId: pair,
+        pairId: `${pair}-${currentRound}`,
         pair: [item1, item2],
         players,
+        round: currentRound,
       };
       return entry;
     })
@@ -165,6 +171,7 @@ export const calculateResults = (players: Players, pool: ItemEntry[], store: Fir
         id,
         item,
         players,
+        round: currentRound,
       };
     })
     .sort((a, b) => {
