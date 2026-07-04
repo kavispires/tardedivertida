@@ -8,7 +8,7 @@ import { Step, type StepProps } from '@components/steps/Step';
 import type {
   AddAnswerPayload,
   AllowedList,
-  Answer,
+  AnswerEntry,
   AnswerGroupObject,
   NextAnswersPayload,
   Question,
@@ -22,7 +22,7 @@ type StepCompareProps = {
   answerGroup: AnswerGroupObject;
   players: GamePlayers;
   user: GamePlayer;
-  allAnswers: Answer[];
+  allAnswers: AnswerEntry[];
   onAddAnswer: (payload: AddAnswerPayload) => void;
   onNextAnswer: (payload: NextAnswersPayload) => void;
   remainingGroupsCount: number;

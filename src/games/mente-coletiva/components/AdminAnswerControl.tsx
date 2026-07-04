@@ -18,13 +18,13 @@ import { WaitingTime } from '@components/timers/WaitingTime';
 import type {
   AddAnswerPayload,
   AllowedList,
-  Answer,
+  AnswerEntry,
   AnswerGroupObject,
   NextAnswersPayload,
 } from '../utils/types';
 
 type AdminAnswerControlProps = {
-  allAnswers: Answer[];
+  allAnswers: AnswerEntry[];
   allowedList: AllowedList;
   answerGroup: AnswerGroupObject;
   onAddAnswer: (payload: AddAnswerPayload) => void;
@@ -52,8 +52,8 @@ export function AdminAnswerControl({
       allAnswers.filter((answer) => {
         if (answer.isLocked) return false;
 
-        const included = answerGroup.entries.map((a: Answer) => a.id);
-        const playerIds = answerGroup.entries.map((a: Answer) => a.playerId);
+        const included = answerGroup.entries.map((a) => a.id);
+        const playerIds = answerGroup.entries.map((a) => a.playerId);
 
         return !included.includes(answer.id) && !playerIds.includes(answer.playerId);
       }),

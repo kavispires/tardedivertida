@@ -27,7 +27,7 @@ export type Question = {
 /**
  * A player's answer to a question
  */
-export type Answer = {
+export type AnswerEntry = {
   /**
    * Unique identifier for the answer
    */
@@ -48,6 +48,10 @@ export type Answer = {
    * Normalized/parsed version of the answer for comparison
    */
   parsedAnswer: string;
+  /**
+   * The score awarded for this answer
+   */
+  score: number;
 };
 
 /**
@@ -66,7 +70,7 @@ export type AnswerGroupObject = {
   /**
    * Individual answer entries in this group
    */
-  entries: Answer[];
+  entries: AnswerEntry[];
   /**
    * Normalized/parsed version of the answer
    */
@@ -120,7 +124,7 @@ export type AddAnswerPayload = {
   /**
    * The answer to add
    */
-  answer: Answer;
+  answer: AnswerEntry;
 };
 
 /**
@@ -242,7 +246,7 @@ export type PhaseCompareState = {
   /**
    * All individual answers from players
    */
-  allAnswers: Answer[];
+  allAnswers: AnswerEntry[];
 };
 
 /**

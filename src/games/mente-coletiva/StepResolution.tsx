@@ -17,6 +17,7 @@ import { RankingBoard } from '@components/wrappers/RankingBoard';
 // Internal
 import { Pasture } from './components/Pasture';
 import { RoundType } from './components/RoundType';
+import { TextHighlight } from '@components/text/TextHighlight';
 
 type StepResolutionProps = {
   ranking: GameRanking;
@@ -131,8 +132,18 @@ export function StepResolution({
             style={{ marginTop: 100, zIndex: 10 }}
           >
             <Translate
-              en="Points reset to 0 every round, so don't worry if you didn't do well this time!"
-              pt="Os pontos resetam para 0 toda rodada, então não se preocupe se você não foi bem dessa vez!"
+              en={
+                <>
+                  Points reset to <TextHighlight>0</TextHighlight> every round, so don't worry if you didn't
+                  do well this time!
+                </>
+              }
+              pt={
+                <>
+                  Os pontos resetam para <TextHighlight>0</TextHighlight> toda rodada, então não se preocupe
+                  se você não foi bem dessa vez!
+                </>
+              }
             />
           </RuleInstruction>
 
