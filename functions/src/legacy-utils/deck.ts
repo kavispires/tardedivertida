@@ -11,7 +11,7 @@ import { sliceIntoChunks } from '../utils';
  * @param cards - An array of cards
  * @param cardsPerPlayer - The number of cards to distribute per player
  */
-export const setup = <T>(store: PlainObject, players: Players, cards: T[], cardsPerPlayer: number) => {
+export const setup = <T>(store: DefaultStore, players: Players, cards: T[], cardsPerPlayer: number) => {
   const shuffledSplitDeck = sliceIntoChunks(cards, cardsPerPlayer);
   store.decks = {};
 
@@ -31,7 +31,7 @@ export const setup = <T>(store: PlainObject, players: Players, cards: T[], cards
  * @param playerId - The ID of the player
  * @param quantity - The number of cards to draw
  */
-export const draw = (store: PlainObject, players: Players, playerId: UID, quantity = 1) => {
+export const draw = (store: DefaultStore, players: Players, playerId: UID, quantity = 1) => {
   if (!store.decks?.[playerId]) {
     return;
   }
@@ -54,7 +54,7 @@ export const draw = (store: PlainObject, players: Players, playerId: UID, quanti
  * @param quantity - The number of cards to deal to each player
  * @param forThesePlayers - An optional array of player IDs to specify which players should receive cards
  */
-export const deal = (store: PlainObject, players: Players, quantity = 1, forThesePlayers?: UID[]) => {
+export const deal = (store: DefaultStore, players: Players, quantity = 1, forThesePlayers?: UID[]) => {
   const targetPlayers = forThesePlayers
     ? getListOfPlayers(players).filter((player) => forThesePlayers.includes(player.id))
     : getListOfPlayers(players);
@@ -71,7 +71,7 @@ export const deal = (store: PlainObject, players: Players, quantity = 1, forThes
  * @param playerId - The ID of the player
  * @param cardId - The ID of the card to discard
  */
-export const discard = (store: PlainObject, players: Players, playerId: UID, cardId: UID) => {
+export const discard = (store: DefaultStore, players: Players, playerId: UID, cardId: UID) => {
   if (!store.decks?.[playerId]) {
     return;
   }
@@ -99,7 +99,7 @@ export const discard = (store: PlainObject, players: Players, playerId: UID, car
  * @param playerId - The ID of the player
  * @param cardIds - An array of card IDs to discard
  */
-export const discardMultiple = (store: PlainObject, players: Players, playerId: UID, cardIds: UID[]) => {
+export const discardMultiple = (store: DefaultStore, players: Players, playerId: UID, cardIds: UID[]) => {
   cardIds.forEach((cardId) => {
     discard(store, players, playerId, cardId);
   });
@@ -112,7 +112,7 @@ export const discardMultiple = (store: PlainObject, players: Players, playerId: 
  * @param options - Optional configuration
  */
 export const reshuffle = (
-  store: PlainObject,
+  store: DefaultStore,
   playerId: UID,
   options?: { keepTopCard?: boolean; shuffleBeforeMerge?: boolean },
 ) => {
@@ -154,7 +154,7 @@ export const reshuffle = (
  * @param autoReshuffle - Whether to automatically reshuffle when deck is empty
  */
 export const drawOrReshuffle = (
-  store: PlainObject,
+  store: DefaultStore,
   players: Players,
   playerId: UID,
   quantity = 1,
@@ -179,7 +179,7 @@ export const drawOrReshuffle = (
  * @param store - The game store object
  * @param playerId - The ID of the player
  */
-export const getDeckSize = (store: PlainObject, playerId: UID): number => {
+export const getDeckSize = (store: DefaultStore, playerId: UID): number => {
   return store.decks?.[playerId]?.deck?.length ?? 0;
 };
 
@@ -188,7 +188,7 @@ export const getDeckSize = (store: PlainObject, playerId: UID): number => {
  * @param store - The game store object
  * @param playerId - The ID of the player
  */
-export const getDiscardSize = (store: PlainObject, playerId: UID): number => {
+export const getDiscardSize = (store: DefaultStore, playerId: UID): number => {
   return store.decks?.[playerId]?.discard?.length ?? 0;
 };
 
@@ -198,7 +198,7 @@ export const getDiscardSize = (store: PlainObject, playerId: UID): number => {
  * @param playerId - The ID of the player
  * @param quantity - The number of cards to peek at
  */
-export const peek = <T = unknown>(store: PlainObject, playerId: UID, quantity = 1): T[] => {
+export const peek = <T = unknown>(store: DefaultStore, playerId: UID, quantity = 1): T[] => {
   if (!store.decks?.[playerId]) {
     return [];
   }
@@ -214,7 +214,7 @@ export const peek = <T = unknown>(store: PlainObject, playerId: UID, quantity = 
  * @param store - The game store object
  * @param playerId - The ID of the player
  */
-export const shuffleDeck = (store: PlainObject, playerId: UID) => {
+export const shuffleDeck = (store: DefaultStore, playerId: UID) => {
   if (!store.decks?.[playerId]) {
     return;
   }
@@ -228,7 +228,7 @@ export const shuffleDeck = (store: PlainObject, playerId: UID) => {
  * @param playerId - The ID of the player
  * @param includeDiscard - Whether to also consider the discard pile
  */
-export const isEmpty = (store: PlainObject, playerId: UID, includeDiscard = false): boolean => {
+export const isEmpty = (store: DefaultStore, playerId: UID, includeDiscard = false): boolean => {
   if (!store.decks?.[playerId]) {
     return true;
   }
@@ -250,7 +250,7 @@ export const isEmpty = (store: PlainObject, playerId: UID, includeDiscard = fals
  * @param includeDiscard - Whether to also consider the discard pile
  */
 export const hasEnoughCards = (
-  store: PlainObject,
+  store: DefaultStore,
   playerId: UID,
   quantity: number,
   includeDiscard = false,

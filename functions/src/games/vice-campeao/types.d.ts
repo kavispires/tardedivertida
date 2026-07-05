@@ -61,5 +61,5 @@ export interface ViceCampeaoSubmitAction extends Payload {
   action: keyof typeof VICE_CAMPEAO_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | ViceCampeaoState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | ViceCampeaoStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & ViceCampeaoState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & ViceCampeaoStore;

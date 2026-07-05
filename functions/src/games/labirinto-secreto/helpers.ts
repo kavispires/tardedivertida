@@ -411,7 +411,7 @@ const determineDirectionAchievement = (
     | null;
 };
 
-export const distributeCards = (store: PlainObject, players: Players, cards: TextCardData[]) => {
+export const distributeCards = (store: FirebaseStoreData, players: Players, cards: TextCardData[]) => {
   // Builds a 18 card deck per player
   utils.deck.setup(store, players, cards, CARDS_PER_PLAYER);
   // Deals the first 3 cards

@@ -61,5 +61,5 @@ export interface NaoSouRoboSubmitAction extends Payload {
   action: keyof typeof NAO_SOU_ROBO_ACTIONS;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | NaoSouRoboState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | NaoSouRoboStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & NaoSouRoboState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & NaoSouRoboStore;
