@@ -111,7 +111,7 @@ export function useMapeamentoEngine(data: DailyMapeamentoEntry, initialState: Ga
 
   const keyboardMapping: LettersDictionary = useMemo(() => {
     const mapping: LettersDictionary = {};
-    const fragment = locationFragments.join('').toLowerCase();
+    const fragment = stringRemoveAccents(locationFragments.join('')).toLowerCase();
 
     for (const guess of state.guesses) {
       for (const char of guess.toLowerCase()) {

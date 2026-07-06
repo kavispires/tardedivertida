@@ -136,6 +136,14 @@ export function ResultsModalContent({
           />
         </Text>
 
+        {liars.length === 0 && (
+          <Text>
+            <Translate
+              en="No one"
+              pt="Ninguém"
+            />
+          </Text>
+        )}
         {liars.map((liarEntry, index, arr) => {
           const kid = KIDS_LIBRARY[liarEntry.kidId];
           return (
