@@ -44,6 +44,7 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   male: 'é homem',
   female: 'é mulher',
   'non-binary': 'é não-binário(a)',
+  other: 'é de um gênero diferente/desconhecido',
   black: 'é negro(a)',
   'black.male': 'é negro',
   'black.female': 'é negra',
@@ -111,6 +112,7 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   greyHair: 'tem cabelo grisalho',
   bald: 'é careca',
   suspenders: 'está usando suspensório',
+  zipper: 'tem zíper na roupa',
   mustache: 'tem bigode',
   goatee: 'tem cavanhaque',
   muscular: 'é sarado(a)',
@@ -146,6 +148,8 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   brownClothes: 'está vestindo roupas marrons',
   whiteShirt: 'está usando camisa branca',
   pinkClothes: 'está vestindo roupas rosas',
+  beigeClothes: 'está vestindo roupas bege',
+  greyClothes: 'está vestindo roupas cinzas',
   patternedShirt: 'está usando roupa estampada',
   buttonShirt: 'está usando camisa com botões',
   bow: 'está usando um laço',
@@ -155,6 +159,8 @@ export const FEATURE_PT_TRANSLATIONS: Dictionary<string> = {
   hairTie: 'está usando um xuxinha ou fita no cabelo',
   shirtless: 'está provavelmente sem camisa',
   noHairInfo: 'não dá pra saber direito sobre o cabelo',
+  holdingSomething: 'está segurando algo',
+  turtleNeck: 'está usando gola rolê',
 };
 
 /**
