@@ -1,5 +1,5 @@
 // Types
-import type { ItemData, MovieCardData, SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
+import type { ItemData, MovieCardData, SuspectCardData, TestimonyStatementCardData } from '../../types/tdr';
 import type { TESTE_DE_ELENCO_ACTIONS } from './constants';
 
 export type TesteDeElencoOptions = {
@@ -48,7 +48,7 @@ export type Movie = {
 export interface ResourceData {
   moviesSamples: MovieCardData[];
   itemsSamples: ItemData[];
-  allCards: TestimonyQuestionCardData[];
+  allCards: TestimonyStatementCardData[];
   allActors: SuspectCardData[];
 }
 

@@ -1,6 +1,6 @@
 import { sampleSize } from 'lodash';
 // Types
-import type { TestimonyQuestionCardData } from '../../types/tdr';
+import type { TestimonyStatementCardData } from '../../types/tdr';
 import type { ResourceData, TaNaCaraOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
@@ -22,12 +22,12 @@ import { filterOutByIds } from '../../utils';
  */
 export const getResourceData = async (language: string, options: TaNaCaraOptions): Promise<ResourceData> => {
   // Get full deck
-  const allCards = await fetchResource<Dictionary<TestimonyQuestionCardData>>(
-    TDR_RESOURCES.TESTIMONY_QUESTIONS,
+  const allCards = await fetchResource<Dictionary<TestimonyStatementCardData>>(
+    TDR_RESOURCES.TESTIMONY_STATEMENTS,
     language,
   );
   // Get used deck
-  const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
+  const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_STATEMENTS, {});
   // Get images info
   const allSuspects = await getSuspects({
     styleVariant: options.styleVariant,
@@ -46,7 +46,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < questionsQuantity) {
-    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
+    await resetGlobalTrackerDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_STATEMENTS);
     return {
       questions: sampleSize(
         options.nsfw ? Object.values(allCards) : Object.values(allCards).filter((card) => !card.nsfw),

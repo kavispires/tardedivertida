@@ -52,7 +52,7 @@ export const TDR_RESOURCES = {
   TEENAGE_MOTIVATIONS: 'teenage-motivations', // dual-language
   TEENAGE_RUMORS: 'teenage-rumors', // dual-language
   TEENAGE_STUDENTS: 'teenage-students', // dual-language
-  TESTIMONY_QUESTIONS: 'testimony-questions',
+  TESTIMONY_STATEMENTS: 'testimony-statements',
   THEME_WORDS: 'theme-words',
   THING_PROMPTS: 'thing-prompts',
   THINGS_QUALITIES: 'things-qualities',

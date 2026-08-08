@@ -1,6 +1,6 @@
 import { orderBy, random, sampleSize, shuffle } from 'lodash';
 // Types
-import type { SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from '../../types/tdr';
 // Constants
 import {
   HARD_MODE_EXTRA_SUSPECT_COUNT,
@@ -79,9 +79,9 @@ export const getPoolOfSuspects = (
  * Builds a questions deck organized by difficulty level
  * @param allQuestions - The array of all testimony question cards
  */
-export function buildQuestionsDeck(allQuestions: TestimonyQuestionCardData[]): TestimonyQuestionCardData[] {
+export function buildQuestionsDeck(allQuestions: TestimonyStatementCardData[]): TestimonyStatementCardData[] {
   // Separate the questions by level
-  const questionsByLevel: Dictionary<TestimonyQuestionCardData[]> = {};
+  const questionsByLevel: Dictionary<TestimonyStatementCardData[]> = {};
   shuffle(allQuestions).forEach((question) => {
     if (!questionsByLevel[question.level]) {
       questionsByLevel[question.level] = [];
@@ -101,7 +101,7 @@ export function buildQuestionsDeck(allQuestions: TestimonyQuestionCardData[]): T
   const firstTwoQuestions = questionsByLevel[levels[0]].slice(0, 2);
 
   // Track remaining questions per level (excluding the first two)
-  const remainingQuestionsByLevel: Dictionary<TestimonyQuestionCardData[]> = {};
+  const remainingQuestionsByLevel: Dictionary<TestimonyStatementCardData[]> = {};
   levels.forEach((level, index) => {
     remainingQuestionsByLevel[level] =
       index === 0 ? questionsByLevel[level].slice(2) : [...questionsByLevel[level]];
@@ -112,7 +112,7 @@ export function buildQuestionsDeck(allQuestions: TestimonyQuestionCardData[]): T
   const questionsPerLevel = Math.floor(questionsNeeded / levels.length);
 
   // Collect questions evenly from each level
-  const selectedQuestions: TestimonyQuestionCardData[] = [];
+  const selectedQuestions: TestimonyStatementCardData[] = [];
   levels.forEach((level) => {
     selectedQuestions.push(...remainingQuestionsByLevel[level].slice(0, questionsPerLevel));
   });
@@ -120,7 +120,7 @@ export function buildQuestionsDeck(allQuestions: TestimonyQuestionCardData[]): T
   // Fill remaining slots with any leftover questions
   const remainingSlots = questionsNeeded - selectedQuestions.length;
   if (remainingSlots > 0) {
-    const leftoverQuestions: TestimonyQuestionCardData[] = [];
+    const leftoverQuestions: TestimonyStatementCardData[] = [];
     levels.forEach((level) => {
       leftoverQuestions.push(...remainingQuestionsByLevel[level].slice(questionsPerLevel));
     });
@@ -138,9 +138,9 @@ export function buildQuestionsDeck(allQuestions: TestimonyQuestionCardData[]): T
  * @returns
  */
 export const getNewQuestions = (
-  questionsDeck: TestimonyQuestionCardData[],
+  questionsDeck: TestimonyStatementCardData[],
   totalQuestionsSoFar: number,
-): TestimonyQuestionCardData[] => {
+): TestimonyStatementCardData[] => {
   return questionsDeck.slice(totalQuestionsSoFar * 2, totalQuestionsSoFar * 2 + 2);
 };
 

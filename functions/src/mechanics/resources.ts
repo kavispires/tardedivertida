@@ -423,6 +423,8 @@ export const getSuspects = async ({
       build: suspect.build,
       height: suspect.height,
       features: [],
+      labelTransform: suspect.labelTransform,
+      persona: suspect.persona,
       deck: suspect.deck,
     };
   }

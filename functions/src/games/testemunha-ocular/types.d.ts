@@ -1,5 +1,5 @@
 // Types
-import type { CrimeReasonData, SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
+import type { CrimeReasonData, SuspectCardData, TestimonyStatementCardData } from '../../types/tdr';
 import type { OUTCOME, TESTEMUNHA_OCULAR_ACTIONS } from './constants';
 
 export type TestemunhaOcularOptions = {
@@ -27,15 +27,13 @@ export type Outcome = (typeof OUTCOME)[keyof typeof OUTCOME];
 
 export type TestemunhaOcularHistoryEntry = {
   id: UID;
-  question: string;
-  answer: string;
-  statement: boolean;
+  testimony: boolean;
   eliminated: UID[];
   remaining: UID[];
-};
+} & TestimonyStatementCardData;
 
 export interface ResourceData {
-  allCards: TestimonyQuestionCardData[];
+  allCards: TestimonyStatementCardData[];
   allSuspects: SuspectCardData[];
   allReasons: Dictionary<CrimeReasonData>;
 }

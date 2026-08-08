@@ -1,6 +1,6 @@
 import { difference, keyBy, sampleSize } from 'lodash';
 // Types
-import type { TestimonyQuestionCardData } from '../../types/tdr';
+import type { TestimonyStatementCardData } from '../../types/tdr';
 import type {
   FirebaseStateData,
   FirebaseStoreData,
@@ -214,9 +214,9 @@ export const prepareQuestionSelectionPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const question = store.deck.find((card: TestimonyQuestionCardData) => card.id === state.questionId);
+  const question = store.deck.find((card: TestimonyStatementCardData) => card.id === state.questionId);
   const questions = (state.questions || []).filter(
-    (q: TestimonyQuestionCardData) => q.id !== state.questionId,
+    (q: TestimonyStatementCardData) => q.id !== state.questionId,
   );
 
   setPlayersReadyState(players, true, { excludeIds: [state.witnessId] });
@@ -246,19 +246,17 @@ export const prepareQuestionSelectionPhase = async (
   const testimony: boolean = state.testimony;
 
   const history: TestemunhaOcularHistoryEntry[] = state.history ?? [];
-  history.unshift({
-    id: '',
-    question: '',
-    answer: '',
-    statement: testimony,
+  const newEntry: TestemunhaOcularHistoryEntry = {
+    testimony,
     eliminated: [],
     remaining: [],
     ...state.question,
-  });
+  };
+  history.unshift(newEntry);
 
   // In final showdown, skip to FINAL_TRIAL phase
   if (state.outcome === OUTCOME.FINAL_SHOWDOWN) {
-    setPlayersReadyState(players, true, { excludeIds: [state.witnessId] });
+    setPlayersReadyState(players, false, { excludeIds: [state.witnessId] });
 
     return {
       update: {

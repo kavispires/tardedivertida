@@ -15,7 +15,7 @@ import type {
   MovieCardData,
   MovieReviewCardData,
   SpectrumCardData,
-  TestimonyQuestionCardData,
+  TestimonyStatementCardData,
   TextCardData,
 } from '../../types/tdr';
 import type { MegamixGameOptions, ResourceData, Track, TrackCandidate } from './types';
@@ -390,7 +390,10 @@ export const getData = async (
   const testemunhaOcularTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TESTEMUNHA_OCULAR);
   if (testemunhaOcularTrack) {
     const testimonyQuestions = Object.values(
-      await fetchResource<Dictionary<TestimonyQuestionCardData>>(TDR_RESOURCES.TESTIMONY_QUESTIONS, language),
+      await fetchResource<Dictionary<TestimonyStatementCardData>>(
+        TDR_RESOURCES.TESTIMONY_STATEMENTS,
+        language,
+      ),
     );
     const suspects = await getSuspects({
       randomStyleVariant: true,
@@ -413,7 +416,10 @@ export const getData = async (
   const taNaCaraTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TA_NA_CARA);
   if (taNaCaraTrack) {
     const testimonyQuestions = Object.values(
-      await fetchResource<Dictionary<TestimonyQuestionCardData>>(TDR_RESOURCES.TESTIMONY_QUESTIONS, language),
+      await fetchResource<Dictionary<TestimonyStatementCardData>>(
+        TDR_RESOURCES.TESTIMONY_STATEMENTS,
+        language,
+      ),
     );
 
     const suspects = await getSuspects({

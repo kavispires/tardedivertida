@@ -1,6 +1,6 @@
 import { set } from 'lodash';
 // Types
-import type { CrimeReasonData, TestimonyQuestionCardData } from '../../types/tdr';
+import type { CrimeReasonData, TestimonyStatementCardData } from '../../types/tdr';
 import type { ResourceData, TestemunhaOcularHistoryEntry, TestemunhaOcularOptions } from './types';
 // Constants
 import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS } from '../../constants/collections';
@@ -14,18 +14,18 @@ import { fetchResource } from '../../services/resource';
 import { getSuspects, getUnusedResources } from '../../mechanics/resources';
 
 /**
- * Get question resource based on the game's language
+ * Get data resources based on the game's language
  * @param language - The language code for localized resources
  * @param options - Game options including NSFW setting
- * @returns Resource data containing testimony questions, suspects, and crime reasons
+ * @returns Resource data containing testimony statements, suspects, and crime reasons
  */
 export const getQuestionsAndSuspects = async (
   language: string,
   options: TestemunhaOcularOptions,
 ): Promise<ResourceData> => {
-  const availableCards = await getUnusedResources<TestimonyQuestionCardData>(
-    TDR_RESOURCES.TESTIMONY_QUESTIONS,
-    GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS,
+  const availableCards = await getUnusedResources<TestimonyStatementCardData>(
+    TDR_RESOURCES.TESTIMONY_STATEMENTS,
+    GLOBAL_USED_DOCUMENTS.TESTIMONY_STATEMENTS,
     language as Language,
     options.nsfw,
     QUESTION_COUNT,
@@ -79,25 +79,25 @@ export const saveData = async (
 
       entry.eliminated.forEach((suspectId) => {
         usedSuspectsIds[suspectId] = true;
-        set(testimonyAnswers, `${entry.id}.${suspectId}`, Array(strength).fill(entry.statement ? -1 : +1));
+        set(testimonyAnswers, `${entry.id}.${suspectId}`, Array(strength).fill(entry.testimony ? -1 : +1));
       });
 
       // If two suspects were eliminated, the remaining suspects, but the perpetrator, receive the opposite value
       if (entry.eliminated.length >= 2 && strength > 1) {
         entry.remaining.forEach((suspectId) => {
           if (suspectId !== perpetratorId) {
-            set(testimonyAnswers, `${entry.id}.${suspectId}`, [entry.statement ? 1 : -1]);
+            set(testimonyAnswers, `${entry.id}.${suspectId}`, [entry.testimony ? 1 : -1]);
           }
         });
       }
 
       if (win) {
-        set(testimonyAnswers, `${entry.id}.${perpetratorId}`, Array(strength).fill(entry.statement ? 1 : -1));
+        set(testimonyAnswers, `${entry.id}.${perpetratorId}`, Array(strength).fill(entry.testimony ? 1 : -1));
       }
     });
 
     // Save used questions
-    await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, usedQuestionsIds);
+    await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_STATEMENTS, usedQuestionsIds);
     // Save used suspects
     await updateGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.SUSPECTS, usedSuspectsIds);
     // Save Suspect Answers

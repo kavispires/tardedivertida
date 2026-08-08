@@ -9,7 +9,7 @@
 
 export type UID = string;
 export type Language = 'en' | 'pt';
-export type DualLanguageValue = { en: string; pt: string };
+export type DualLanguageValue<T = string> = { en: T; pt: T };
 export type DateMilliseconds = number;
 
 // ==========================================
@@ -483,6 +483,10 @@ export type ImageCardDescriptorData = {
    * Card ids from the theme-words deck associated with the image
    */
   associatedDreams?: UID[];
+  /**
+   * The date in milliseconds the card was last updated
+   */
+  updatedAt: DateMilliseconds;
 };
 
 /**
@@ -1280,6 +1284,11 @@ export type MovieGenres = {
 export type SuspectStyleVariant = 'gb' | 'rl' | 'px' | 'fx' | (string & NonNullable<unknown>);
 
 /**
+ * Enforces a format like "85|-2|0.8" or "85|-2"
+ */
+type SuspectPackedTransformString = `${number}|${number}|${number}` | `${number}|${number}`;
+
+/**
  * Suspect Card
  * Used for: suspects
  */
@@ -1293,13 +1302,24 @@ export type SuspectCardData = {
    */
   name: DualLanguageValue;
   /**
+   * Descriptive label of the suspect representing their persona
+   */
+  persona: DualLanguageValue;
+  /**
    * The deck the suspect belongs to
    */
   deck: 'adult' | 'kid' | 'pet' | 'teen' | 'other' | (string & NonNullable<unknown>);
   /**
    * The gender of the suspect
    */
-  gender: 'male' | 'female' | (string & NonNullable<unknown>);
+  gender:
+    | 'male'
+    | 'female'
+    | 'transgender'
+    | 'none'
+    | 'non-binary'
+    | 'fluid'
+    | (string & NonNullable<unknown>);
   /**
    * The race of the suspect
    */
@@ -1339,6 +1359,12 @@ export type SuspectCardData = {
    */
   features: string[];
   /**
+   * Packed coordinates for dynamic name placement on the Polaroid.
+   * Format: <y>|<angle>|<size> (separated by a pipe).
+   * @example "85|-2|0.8"
+   */
+  labelTransform?: SuspectPackedTransformString;
+  /**
    * Flag indicating if the suspect is exclusive to the gb style
    */
   gbExclusive?: true | boolean;
@@ -1354,10 +1380,6 @@ export type SuspectExtendedInfoData = {
    * Unique identifier for the card that matches its SuspectCard equivalent
    */
   id: UID;
-  /**
-   * Descriptive label of the suspect representing their persona
-   */
-  persona: DualLanguageValue;
   /**
    * AI prompt descriptor
    */
@@ -1452,6 +1474,7 @@ export type SuspectExtendedInfoData = {
  * Internal use for MBTI in TestimonyQuestionCardData
  */
 type MBTIType = 'E' | 'I' | 'N' | 'S' | 'F' | 'T' | 'J' | 'P';
+
 /**
  * Internal use for Zodiac Sign in TestimonyQuestionCardData
  */
@@ -1468,6 +1491,7 @@ type ZodiacSign =
   | 'Capricorn'
   | 'Aquarius'
   | 'Pisces';
+
 /**
  * Internal use for Alignment in TestimonyQuestionCardData
  */
@@ -1481,8 +1505,9 @@ type AlignmentType =
   | 'lawful-evil'
   | 'neutral-evil'
   | 'chaotic-evil';
+
 /**
- * Dual Relation type used in TestimonyQuestionCardData to relate or unrelate MBTI, Zodiac and Alignment types
+ * Dual Relation type used in TestimonyStatementCardData to relate or unrelate MBTI, Zodiac and Alignment types
  */
 type DualRelation<T> = {
   related: T[];
@@ -1490,22 +1515,22 @@ type DualRelation<T> = {
 };
 
 /**
- * Testimony Question Card
- * Used for: testimony-questions
+ * Testimony Statement Card
+ * Used for: testimony-statements
  */
-export type TestimonyQuestionCardData = {
+export type TestimonyStatementCardData = {
   /**
    * Unique identifier for the card
    */
   id: UID;
   /**
-   * The testimony question text
+   * The testimony statement (prefixed with a third person pronoun in context)
    */
-  question: string;
+  statement: string;
   /**
-   * The testimony question in a form of a statement (that needs to be prefixed with a third person pronoun)
+   * The deck the statement is appropriate for (family-friendly, base, or adult/NSFW)
    */
-  answer: string;
+  deck: 'family' | 'default' | 'adult' | (string & NonNullable<unknown>);
   /**
    * The level of difficulty
    */
@@ -1514,6 +1539,21 @@ export type TestimonyQuestionCardData = {
    * Flag indicating if it's nsfw
    */
   nsfw?: boolean;
+  /**
+   * Flag indicating if the statement is deprecated and shouldn't be used in new testimonies
+   */
+  deprecated?: boolean;
+};
+
+/**
+ * Testimony Statement Extended data
+ * Used for: testimony-extended-info
+ */
+export type TestimonyStatementExtendedInfoData = {
+  /**
+   * Unique identifier for the card
+   */
+  id: UID;
   /**
    * Personality types related to the question
    */
@@ -1526,10 +1566,6 @@ export type TestimonyQuestionCardData = {
    * Alignment types related to the question
    */
   alignment?: DualRelation<AlignmentType>;
-  /**
-   * Flag indicating if the question is deprecated and shouldn't be used in new testimonies
-   */
-  deprecated?: boolean;
 };
 
 /**

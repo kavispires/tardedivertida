@@ -1,6 +1,6 @@
 import { shuffle } from 'lodash';
 // Types
-import type { TestimonyQuestionCardData } from '../../types/tdr';
+import type { TestimonyStatementCardData } from '../../types/tdr';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
@@ -81,8 +81,8 @@ export const preparePromptPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  const questions: TestimonyQuestionCardData[] = store.questions;
-  const questionsHistory: TestimonyQuestionCardData[] = state.questionsHistory || [];
+  const questions: TestimonyStatementCardData[] = store.questions;
+  const questionsHistory: TestimonyStatementCardData[] = state.questionsHistory || [];
 
   const previousPlayerId = state.activePlayerId as UID | null;
   if (previousPlayerId && state.currentQuestion) {
@@ -139,22 +139,24 @@ export const preparePromptPhase = async (
   const activePlayerId: UID = state.activePlayerId;
   const activePlayer = players[activePlayerId];
 
-  let currentQuestion: TestimonyQuestionCardData | null = null;
+  let currentQuestion: TestimonyStatementCardData | null = null;
+
+  const activePlayerCurrentQuestion: string | undefined = activePlayer.currentQuestion;
 
   // Get question
-  if (activePlayer.currentQuestion) {
+  if (activePlayerCurrentQuestion) {
     currentQuestion = {
       id: `${activePlayer.id}-${round.current}`,
-      question: activePlayer.currentQuestion,
-      answer: activePlayer.currentQuestion,
+      statement: activePlayerCurrentQuestion,
+      deck: 'default',
       level: 0,
     };
   } else {
     const question = activePlayer.suggestedQuestions.find(
-      (q: TestimonyQuestionCardData) => q.id === activePlayer.currentQuestionId,
+      (q: TestimonyStatementCardData) => q.id === activePlayer.currentQuestionId,
     );
     activePlayer.suggestedQuestions = activePlayer.suggestedQuestions.filter(
-      (q: TestimonyQuestionCardData) => q.id !== activePlayer.currentQuestionId,
+      (q: TestimonyStatementCardData) => q.id !== activePlayer.currentQuestionId,
     );
     if (question) {
       currentQuestion = question;

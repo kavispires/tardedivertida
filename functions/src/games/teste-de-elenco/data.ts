@@ -1,6 +1,6 @@
 import { sampleSize } from 'lodash';
 // Types
-import type { MovieCardData, TestimonyQuestionCardData } from '../../types/tdr';
+import type { MovieCardData, TestimonyStatementCardData } from '../../types/tdr';
 import type { ResourceData, TesteDeElencoOptions } from './types';
 // Constants
 import { TDR_RESOURCES } from '../../constants/resources';
@@ -17,8 +17,8 @@ import { getItems, getSuspects, itemUtils } from '../../mechanics/resources';
  */
 export const getData = async (language: string, options: TesteDeElencoOptions): Promise<ResourceData> => {
   // Get full deck
-  const allCards = await fetchResource<Dictionary<TestimonyQuestionCardData>>(
-    TDR_RESOURCES.TESTIMONY_QUESTIONS,
+  const allCards = await fetchResource<Dictionary<TestimonyStatementCardData>>(
+    TDR_RESOURCES.TESTIMONY_STATEMENTS,
     language,
   );
   // Get images info

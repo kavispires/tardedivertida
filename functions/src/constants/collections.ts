@@ -22,7 +22,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   OPPOSING_IDEAS: 'usedOpposingIdeas',
   SINGLE_WORDS: 'usedSingleWords',
   SUSPECTS: 'usedSuspects',
-  TESTIMONY_QUESTIONS: 'usedTestimonyQuestions',
+  TESTIMONY_STATEMENTS: 'usedTestimonyQuestions',
 } as const;
 
 /**

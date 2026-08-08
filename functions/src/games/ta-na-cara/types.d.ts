@@ -1,5 +1,5 @@
 // Types
-import type { SuspectCardData, TestimonyQuestionCardData } from '../../types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from '../../types/tdr';
 import type { TA_NA_CARA_ACTIONS } from './constants';
 
 export type TaNaCaraOptions = {
@@ -14,7 +14,7 @@ export type TaNaCaraOptions = {
 } & SuspectCardsOptions;
 
 export interface ResourceData {
-  questions: TestimonyQuestionCardData[];
+  questions: TestimonyStatementCardData[];
   characters: SuspectCardData[];
 }
 
