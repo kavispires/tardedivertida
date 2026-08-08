@@ -153,6 +153,10 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
                         height: '',
                         features: [],
                         deck: '',
+                        persona: {
+                          en: '',
+                          pt: '',
+                        },
                       }}
                       variant={variant}
                       width={width}
