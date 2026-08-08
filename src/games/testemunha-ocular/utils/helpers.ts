@@ -1,25 +1,25 @@
 // Types
-import type { TestimonyQuestionCardData } from 'types/tdr';
+import type { TestimonyStatementCardData } from 'types/tdr';
 
-export const buildAnswer = (question: TestimonyQuestionCardData, testimony: boolean, language: string) => {
+export const buildAnswer = (question: TestimonyStatementCardData, testimony: boolean, language: string) => {
   if (language === 'pt') {
     if (testimony) {
-      return question.answer;
+      return question.statement;
     }
-    if (question.answer.startsWith('Já')) {
-      return `nunca ${question.answer.slice(3)}`;
+    if (question.statement.startsWith('Já')) {
+      return `nunca ${question.statement.slice(3)}`;
     }
-    return `não ${question.answer}`;
+    return `não ${question.statement}`;
   }
 
   if (language === 'en') {
     if (testimony) {
-      return question.answer;
+      return question.statement;
     }
-    if (question.question.includes('ever')) {
-      return `haver never ${question.answer.slice(5)}`;
+    if (question.statement.includes('ever')) {
+      return `have never ${question.statement.slice(5)}`;
     }
-    return `does not ${question.answer}`;
+    return `does not ${question.statement}`;
   }
 
   return '';

@@ -1,8 +1,8 @@
 import { sample } from 'lodash';
-// Internal
-import type { Question } from './types';
+// Types
+import type { TestimonyStatementCardData } from 'types/tdr';
 
-export function mockQuestionSelection(questions: Question[]) {
+export function mockQuestionSelection(questions: TestimonyStatementCardData[]) {
   return sample(questions)?.id || questions[0].id;
 }
 

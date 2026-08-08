@@ -29,7 +29,7 @@ export function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioning
   const announcement = (
     <PhaseAnnouncement
       icon={<EyeIcon />}
-      title={state.question.question}
+      title={state.question.statement}
       currentRound={state?.round?.current}
       type="overlay"
       duration={state?.round?.current === 1 ? 7 : 3}

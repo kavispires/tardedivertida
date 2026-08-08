@@ -27,8 +27,8 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
           en="Question"
         />
       ),
-      dataIndex: 'question',
-      key: 'question',
+      dataIndex: 'statement',
+      key: 'statement',
     },
     {
       title: (
@@ -37,10 +37,10 @@ export function QuestionsHistory({ history, suspectsDict }: QuestionsHistoryProp
           en="Answer"
         />
       ),
-      dataIndex: 'statement',
-      key: 'statement',
-      render: (statement: boolean) => {
-        if (statement) {
+      dataIndex: 'testimony',
+      key: 'testimony',
+      render: (testimony: boolean) => {
+        if (testimony) {
           return (
             <Flex gap={6}>
               <Icon
@@ -128,7 +128,8 @@ function EliminatedSuspects({ eliminated, suspectsDict }: EliminatedSuspectsProp
           <SuspectCard
             suspect={suspect}
             key={id}
-            width={100}
+            width={64}
+            preview
           />
         );
       })}

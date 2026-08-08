@@ -1,9 +1,12 @@
 import { clsx } from 'clsx';
 // Types
-import type { SuspectCardData as SuspectCardType, SuspectStyleVariant } from 'types/tdr';
+import type { SuspectCardData, SuspectStyleVariant } from 'types/tdr';
 // Components
-import { ImageCard } from '@components/image-cards/ImageCard';
+import { ComponentPreview } from '@components/general/ComponentPreview';
 import { DualTranslate } from '@components/language/DualTranslate';
+import { Sprite } from '@components/sprites/Sprite';
+// Internal
+import { DynamicCard } from './DynamicCard';
 // Sass
 import styles from './SuspectCard.module.scss';
 
@@ -11,7 +14,7 @@ type SuspectCardProps = {
   /**
    * Suspect object
    */
-  suspect: SuspectCardType;
+  suspect: SuspectCardData;
   /**
    * Card width
    */
@@ -41,33 +44,51 @@ type SuspectCardProps = {
 /**
  * Displays a suspect card with name and optional variant styling
  */
-export function SuspectCard({
-  suspect,
-  width,
-  hideName,
-  variant,
-  preview = false,
-  className,
-  style,
-}: SuspectCardProps) {
+function SuspectCardBase({ suspect, width, hideName, variant, className, style }: SuspectCardProps) {
   const imageId = getSuspectImageId(suspect.id, variant);
+  const { angle, scale, y } = getLabelTransform(suspect.labelTransform || '0|0');
+
   return (
-    <div
+    <DynamicCard
+      aspectRatio={1.5}
+      backgroundImageId={imageId}
+      width={width}
+      style={style}
       className={clsx(styles.suspectCard, className)}
-      style={{ width: `${width}px`, ...style }}
     >
-      <ImageCard
-        cardId={imageId}
-        className={styles.suspectCardImage}
-        cardWidth={width}
-        preview={preview}
-      />
       {!hideName && (
-        <div className={styles.suspectCardName}>
-          <DualTranslate>{suspect.name}</DualTranslate>
-        </div>
+        <DynamicCard.Span
+          centerHorizontal
+          fontSize="12cqw"
+          style={{
+            rotate: `${angle}deg`,
+            scale: `${scale}`,
+          }}
+          top={`${y}%`}
+        >
+          <span className={styles.suspectCardName}>
+            <Sprite
+              source="demographics"
+              spriteId={`gender-${suspect.gender || 'gender-other'}`}
+              width="1em"
+            />
+            <DualTranslate>{suspect.name}</DualTranslate>
+          </span>
+        </DynamicCard.Span>
       )}
-    </div>
+    </DynamicCard>
+  );
+}
+
+export function SuspectCard(props: SuspectCardProps) {
+  if (!props.preview) {
+    return <SuspectCardBase {...props} />;
+  }
+
+  return (
+    <ComponentPreview aspectRatio={2 / 3}>
+      <SuspectCardBase {...props} />
+    </ComponentPreview>
   );
 }
 
@@ -103,6 +124,23 @@ export const getSuspectImageId = (() => {
     const splitId = id.split('-');
     const result = `${splitId[0]}-${variant}-${splitId[splitId.length - 1]}`;
     cache.set(key, result);
+    return result;
+  };
+})();
+
+const getLabelTransform = (() => {
+  const cache = new Map<string, { angle: number; scale: number; y: number }>();
+
+  return (id: string): { angle: number; scale: number; y: number } => {
+    if (cache.has(id)) return cache.get(id) as { angle: number; scale: number; y: number };
+
+    const splitId = id.split('-');
+    const y = Number.parseFloat(splitId[0]) || 83;
+    const angle = Number.parseFloat(splitId[1]) || 0;
+    const scale = Number.parseFloat(splitId[2]) || 1;
+
+    const result = { angle, scale, y };
+    cache.set(id, result);
     return result;
   };
 })();

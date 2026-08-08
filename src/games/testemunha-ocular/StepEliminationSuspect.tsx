@@ -1,7 +1,9 @@
 import { useMemo } from 'react';
+// Ant Design Resources
+import { Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Icons
@@ -21,7 +23,7 @@ import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { EliminatePayload, Status, THistoryEntry } from './utils/types';
 import { buildAnswer } from './utils/helpers';
-import { Suspects } from './components/Suspects';
+import { SuspectsCorkBoard } from './components/SuspectsCorkBoard';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
@@ -36,7 +38,7 @@ type StepEliminationSuspectProps = {
   witness: GamePlayer;
   questioner: GamePlayer;
   onEliminate: (payload: EliminatePayload) => void;
-  question: TestimonyQuestionCardData;
+  question: TestimonyStatementCardData;
   testimony: boolean;
   history: THistoryEntry[];
   status: Status;
@@ -129,12 +131,17 @@ export function StepEliminationSuspect({
           <TextHighlight>{oppositeAction}</TextHighlight>
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
-            <SendButton onClick={onPass}>
-              <Translate
-                pt="Parar de eliminar e ir para a próxima pergunta"
-                en="Stop releasing suspects and go to next question"
-              />
-            </SendButton>
+            <Flex
+              justify="center"
+              className="my-2"
+            >
+              <SendButton onClick={onPass}>
+                <Translate
+                  pt="Parar de eliminar e ir para a próxima pergunta"
+                  en="Stop releasing suspects and go to next question"
+                />
+              </SendButton>
+            </Flex>
           )}
         </RuleInstruction>
       ) : (
@@ -155,7 +162,7 @@ export function StepEliminationSuspect({
         </RuleInstruction>
       )}
 
-      <Suspects
+      <SuspectsCorkBoard
         suspectsDict={suspectsDict}
         suspectsIds={suspectsIds}
         perpetratorId={isUserTheWitness ? perpetratorId : undefined}

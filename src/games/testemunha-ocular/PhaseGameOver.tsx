@@ -18,7 +18,7 @@ import type { PhaseGameOverState } from './utils/types';
 import { OUTCOME } from './utils/constants';
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Suspects } from './components/Suspects';
+import { SuspectsCorkBoard } from './components/SuspectsCorkBoard';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const didUserWin = state.outcome === OUTCOME.WIN;
@@ -95,7 +95,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
         suspectsDict={state.suspectsDict}
       />
 
-      <Suspects
+      <SuspectsCorkBoard
         suspectsIds={state.suspectsIds}
         suspectsDict={state.suspectsDict}
         perpetratorId={state.perpetratorId}

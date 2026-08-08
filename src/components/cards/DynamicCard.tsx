@@ -6,46 +6,76 @@ import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 import styles from './DynamicCard.module.scss';
 
 export type DynamicCardSpanItemProps = {
-  /** The content to render inside the span */
+  /**
+   * The content rendered inside the positioned item
+   */
   children: ReactNode;
 
   // --- POSITIONING ---
-  /** Distance from the top edge (use % or cqw units) */
+  /**
+   * Distance from the top edge
+   */
   top?: string | number;
-  /** Distance from the bottom edge (use % or cqw units) */
+  /**
+   * Distance from the bottom edge
+   */
   bottom?: string | number;
-  /** Distance from the left edge (use % or cqw units) */
+  /**
+   * Distance from the left edge
+   */
   left?: string | number;
-  /** Distance from the right edge (use % or cqw units) */
+  /**
+   * Distance from the right edge
+   */
   right?: string | number;
-  /** Automatically centers the item horizontally (left: 50%, translateX(-50%)) */
+  /**
+   * Whether to center the item horizontally
+   */
   centerHorizontal?: boolean;
-  /** Automatically centers the item vertically (top: 50%, translateY(-50%)) */
+  /**
+   * Whether to center the item vertically
+   */
   centerVertical?: boolean;
 
   // --- PROPORTIONAL SCALING (cqw targets) ---
-  /** Width of the item (highly recommended to use cqw units for responsive scaling) */
+  /**
+   * Width of the item, preferably using cqw for responsive scaling
+   */
   width?: string | number;
-  /** Font size (use cqw units for responsive text scaling) */
+  /**
+   * Font size of the item content, preferably using cqw
+   */
   fontSize?: string | number;
-  /** Aspect ratio (e.g., "1 / 1" for a perfect square or "16 / 9") */
+  /**
+   * Aspect ratio used to constrain item proportions
+   */
   aspectRatio?: string | number;
-  /** Border radius (use cqw units for responsive curves, or px for fixed) */
+  /**
+   * Border radius of the item
+   */
   borderRadius?: string | number;
-  /** Padding inside the span (use cqw units for proportional spacing) */
+  /**
+   * Padding inside the item
+   */
   padding?: string | number;
-  /** Border width (use cqw units for scalable borders around badges) */
+  /**
+   * Border width of the item
+   */
   borderWidth?: string | number;
 
   // --- STANDARD OVERRIDES ---
-  /** Optional custom className */
+  /**
+   * Optional custom class name
+   */
   className?: string;
-  /** Optional inline styles */
+  /**
+   * Optional inline style overrides
+   */
   style?: React.CSSProperties;
 };
 
 /**
- * Positions elements absolutely within a DynamicCard using container query units (cqw)
+ * Positions content inside a card with absolute coordinates and container-relative sizing.
  */
 export function DynamicCardSpanItem({
   children,
@@ -90,10 +120,6 @@ export function DynamicCardSpanItem({
   );
 }
 
-// ==========================================
-// 2. DYNAMIC CARD BASE
-// ==========================================
-
 export type DynamicCardProps = {
   /**
    * The base width of the card in pixels (height is calculated automatically via aspectRatio)
@@ -114,8 +140,8 @@ export type DynamicCardProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 /**
- * Container-query-enabled wrapper for rendering game cards with responsive scaling
- * To enable preview, use it with general / ComponentPreview
+ * Renders a responsive card shell with a dynamic background image and optional overlay content.
+ * Use this component with `ComponentPreview` when previewing cards outside gameplay layouts.
  */
 export function DynamicCard({
   width,

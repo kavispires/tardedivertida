@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import type { CSSProperties } from 'react';
 // Ant Design Resources
 import { WarningOutlined } from '@ant-design/icons';
 import { Spin, Tooltip } from 'antd';
@@ -17,9 +18,9 @@ type SpriteProps = {
    */
   spriteId: string;
   /**
-   * The width of the item
+   * The width of the item (default: 72)
    */
-  width?: number;
+  width?: CSSProperties['width'];
   /**
    * Replacement title, usually the name of the item
    */
@@ -31,7 +32,7 @@ type SpriteProps = {
   /**
    * Optional padding
    */
-  padding?: number;
+  padding?: CSSProperties['padding'];
 } & ElementProps;
 
 /**
@@ -55,24 +56,29 @@ export function Sprite({
     queryKey: ['sprite', source],
     queryFn: async () => {
       const response = await fetch(`${baseUrl}/${source}.svg`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to load sprite source: ${source}`);
+      }
+
       return await response.text();
     },
     enabled: !!spriteId && !!source,
   });
-
-  const paddedWidth = width - padding * 2;
+  const containerStyle = {
+    width,
+    height: width,
+    padding,
+    boxSizing: 'border-box' as const,
+    display: 'grid',
+    placeItems: 'center' as const,
+    ...style,
+  };
 
   if (isLoading) {
     return (
       <span
-        style={{
-          width: `${paddedWidth}px`,
-          height: `${paddedWidth}px`,
-          padding,
-          display: 'grid',
-          placeItems: 'center',
-          ...style,
-        }}
+        style={containerStyle}
         className={className}
         {...props}
       >
@@ -86,14 +92,7 @@ export function Sprite({
   if (isError || !svgContent) {
     return (
       <span
-        style={{
-          width: `${paddedWidth}px`,
-          height: `${paddedWidth}px`,
-          padding,
-          display: 'grid',
-          placeItems: 'center',
-          ...style,
-        }}
+        style={containerStyle}
         className={className}
         {...props}
       >
@@ -104,20 +103,13 @@ export function Sprite({
 
   return (
     <span
-      style={{
-        width: `${paddedWidth}px`,
-        height: `${paddedWidth}px`,
-        padding,
-        display: 'grid',
-        placeItems: 'center',
-        ...style,
-      }}
+      style={containerStyle}
       className={className}
       {...props}
     >
       <svg
         viewBox="0 0 512 512"
-        style={{ width: `${paddedWidth}px`, height: `${paddedWidth}px` }}
+        style={{ width: '100%', height: '100%' }}
       >
         <use
           href={`#${spriteId}`}

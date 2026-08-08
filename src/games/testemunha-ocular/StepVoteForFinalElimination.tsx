@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Icons
@@ -20,7 +20,7 @@ import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { FinalEliminationPayload, Status, THistoryEntry } from './utils/types';
 import { buildAnswer } from './utils/helpers';
-import { Suspects } from './components/Suspects';
+import { SuspectsCorkBoard } from './components/SuspectsCorkBoard';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
@@ -33,7 +33,7 @@ type StepVoteForFinalEliminationProps = {
   isUserTheWitness: boolean;
   witness: GamePlayer;
   onSelectCriminal: (payload: FinalEliminationPayload) => void;
-  question: TestimonyQuestionCardData;
+  question: TestimonyStatementCardData;
   testimony: boolean;
   history: THistoryEntry[];
   status: Status;
@@ -160,7 +160,7 @@ export function StepVoteForFinalElimination({
         </RuleInstruction>
       )}
 
-      <Suspects
+      <SuspectsCorkBoard
         suspectsDict={suspectsDict}
         suspectsIds={suspectsIds}
         perpetratorId={isUserTheWitness ? perpetratorId : undefined}

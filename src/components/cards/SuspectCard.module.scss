@@ -1,5 +1,5 @@
 @use "styles/sass" as *;
-@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
 
 .suspectCard {
   position: relative;
@@ -27,14 +27,11 @@
 }
 
 .suspectCardName {
-  font-family: "Architects Daughter", cursive;
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+  font-family: "Leckerli One", cursive;
   white-space: nowrap;
-  font-size: 1rem;
-  background: get-color("white", 5, 0.5);
-  padding: get-unit(0 1);
-  border-radius: var(--border-radius);
+  display: inline-flex;
+  gap: 0.3em;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }

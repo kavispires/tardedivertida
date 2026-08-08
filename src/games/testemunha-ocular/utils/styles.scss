@@ -17,6 +17,8 @@
   }
 
   &__suspect-image {
+    margin: get-unit(1);
+
     & > .ant-image {
       max-width: 250px;
     }

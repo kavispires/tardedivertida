@@ -11,7 +11,7 @@ import { StepTitle } from '@components/text/StepTitle';
 import type { Outcome, Status, THistoryEntry } from './utils/types';
 import { OUTCOME } from './utils/constants';
 import { QuestionsHistory } from './components/QuestionsHistory';
-import { Suspects } from './components/Suspects';
+import { SuspectsCorkBoard } from './components/SuspectsCorkBoard';
 import { Summary } from './components/Summary';
 
 type StepQuestionWaitingProps = {
@@ -68,7 +68,7 @@ export function StepQuestionWaiting({
         />{' '}
       </RuleInstruction>
 
-      <Suspects
+      <SuspectsCorkBoard
         suspectsDict={suspectsDict}
         suspectsIds={suspectsIds}
         perpetratorId={isUserTheWitness ? perpetratorId : undefined}

@@ -2,7 +2,7 @@
 import { Flex } from 'antd';
 // Types
 import type { GamePlayer } from 'types/game';
-import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 import { useMock } from '@hooks/useMock';
@@ -19,7 +19,7 @@ import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { Outcome, Status, SubmitTestimonyPayload, THistoryEntry } from './utils/types';
 import { mockWitnessTestimony } from './utils/mock';
-import { Suspects } from './components/Suspects';
+import { SuspectsCorkBoard } from './components/SuspectsCorkBoard';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
@@ -32,7 +32,7 @@ type StepQuestioningProps = {
   witness: GamePlayer;
   isLoading: boolean;
   onAnswer: (payload: SubmitTestimonyPayload) => void;
-  question: TestimonyQuestionCardData;
+  question: TestimonyStatementCardData;
   history: THistoryEntry[];
   status: Status;
   outcome: Outcome;
@@ -94,7 +94,7 @@ export function StepQuestioning({
             size="large"
             footer={Array(question.level).fill('•').join('')}
           >
-            {question.question}
+            {question.statement}?
           </TextCard>
 
           <AnswerYesButton
@@ -131,7 +131,7 @@ export function StepQuestioning({
             size="large"
             footer={Array(question.level).fill('•').join('')}
           >
-            {question.question}
+            {question.statement}?
           </TextCard>
         </SpaceContainer>
 
@@ -143,7 +143,7 @@ export function StepQuestioning({
         </RuleInstruction>
       </ViewIf>
 
-      <Suspects
+      <SuspectsCorkBoard
         suspectsDict={suspectsDict}
         suspectsIds={suspectsIds}
         perpetratorId={isUserTheWitness ? perpetratorId : undefined}

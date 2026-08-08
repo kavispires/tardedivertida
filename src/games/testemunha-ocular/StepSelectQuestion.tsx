@@ -1,5 +1,5 @@
 // Types
-import type { SuspectCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useMock } from '@hooks/useMock';
 // Utils
@@ -13,15 +13,15 @@ import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { Outcome, Question, SelectQuestionPayload, Status, THistoryEntry } from './utils/types';
+import type { Outcome, SelectQuestionPayload, Status, THistoryEntry } from './utils/types';
 import { OUTCOME } from './utils/constants';
 import { mockQuestionSelection } from './utils/mock';
-import { Suspects } from './components/Suspects';
+import { SuspectsCorkBoard } from './components/SuspectsCorkBoard';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Summary } from './components/Summary';
 
 type StepSelectQuestionProps = {
-  questions: Question[];
+  questions: TestimonyStatementCardData[];
   onSelectQuestion: (payload: SelectQuestionPayload) => void;
   isLoading: boolean;
   suspectsDict: Dictionary<SuspectCardData>;
@@ -79,7 +79,7 @@ export function StepSelectQuestion({
         align="center"
         wrap
       >
-        {questions.map(({ question, id, level }, index) => {
+        {questions.map(({ statement, id, level }, index) => {
           return (
             <TransparentButton
               key={id}
@@ -92,14 +92,14 @@ export function StepSelectQuestion({
                 className="t-card"
                 footer={Array(level).fill('•').join('')}
               >
-                {question}
+                {statement}?
               </TextCard>
             </TransparentButton>
           );
         })}
       </SpaceContainer>
 
-      <Suspects
+      <SuspectsCorkBoard
         suspectsDict={suspectsDict}
         suspectsIds={suspectsIds}
         eliminatedSuspects={previouslyEliminatedSuspects}

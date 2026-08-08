@@ -8,12 +8,12 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 // Components
+import { SuspectCard } from '@components/cards/SuspectCard';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { ImageCard } from '@components/image-cards/ImageCard';
-import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 
-type SuspectsProps = {
+type SuspectsCorkBoardProps = {
   suspectsDict: Dictionary<SuspectCardData>;
   suspectsIds: UID[];
   perpetratorId?: UID;
@@ -21,13 +21,13 @@ type SuspectsProps = {
   eliminatedSuspects?: string[];
 };
 
-export function Suspects({
+export function SuspectsCorkBoard({
   suspectsDict,
   suspectsIds,
   perpetratorId,
   onCardClick,
   eliminatedSuspects = [],
-}: SuspectsProps) {
+}: SuspectsCorkBoardProps) {
   const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(7, { maxWidth: 128 });
@@ -56,16 +56,12 @@ export function Suspects({
                 type="button"
                 disabled={wasEliminated || isLoading}
               >
-                <ImageCard
-                  cardId={wasEliminated ? 'us-00' : suspect.id}
-                  className={clsx(
-                    't-suspects-table__suspect-image',
-                    wasEliminated && 't-suspects-table__suspect-image--disabled',
-                  )}
+                <SuspectEntry
+                  suspect={suspect}
+                  wasEliminated={wasEliminated}
+                  isThePerpetrator={false}
                   cardWidth={cardWidth}
-                  preview={false}
                 />
-                {!wasEliminated && <div className="t-suspects-table__suspect-name">{name}</div>}
               </button>
             </Popconfirm>
           );
@@ -86,32 +82,63 @@ export function Suspects({
               className="t-suspects-table__suspect"
               key={suspect.id}
             >
-              <ImageCard
-                cardId={wasEliminated ? 'us-00' : suspect.id}
-                previewImageId={suspect.id}
-                className={clsx(
-                  't-suspects-table__suspect-image',
-                  isThePerpetrator && 't-suspects-table__suspect-image--active',
-                )}
+              <SuspectEntry
+                suspect={suspect}
+                wasEliminated={wasEliminated}
+                isThePerpetrator={isThePerpetrator}
                 cardWidth={cardWidth}
+                preview
               />
-              {isThePerpetrator && (
-                <span className="t-suspects-table__culprit-badge">
-                  <Translate
-                    pt="Culpado"
-                    en="Culprit"
-                  />
-                </span>
-              )}
-              {!wasEliminated && (
-                <div className="t-suspects-table__suspect-name">
-                  <DualTranslate>{suspect.name}</DualTranslate>
-                </div>
-              )}
             </div>
           );
         })}
       </Image.PreviewGroup>
     </div>
+  );
+}
+
+type SuspectEntryProps = {
+  suspect: SuspectCardData;
+  wasEliminated: boolean;
+  isThePerpetrator: boolean;
+  cardWidth: number;
+  preview?: boolean;
+};
+
+function SuspectEntry({ suspect, wasEliminated, isThePerpetrator, cardWidth, preview }: SuspectEntryProps) {
+  return (
+    <>
+      {wasEliminated ? (
+        <ImageCard
+          cardId={wasEliminated ? 'us-00' : suspect.id}
+          previewImageId={suspect.id}
+          className={clsx(
+            't-suspects-table__suspect-image',
+            isThePerpetrator && 't-suspects-table__suspect-image--active',
+          )}
+          cardWidth={cardWidth}
+          preview={preview}
+        />
+      ) : (
+        <SuspectCard
+          suspect={suspect}
+          width={cardWidth}
+          className={clsx(
+            't-suspects-table__suspect-image',
+            isThePerpetrator && 't-suspects-table__suspect-image--active',
+          )}
+          preview={preview}
+        />
+      )}
+
+      {isThePerpetrator && (
+        <span className="t-suspects-table__culprit-badge">
+          <Translate
+            pt="Culpado"
+            en="Culprit"
+          />
+        </span>
+      )}
+    </>
   );
 }

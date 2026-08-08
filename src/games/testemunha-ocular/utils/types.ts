@@ -1,6 +1,6 @@
 // Types
 import type { Achievement, GamePlayer } from 'types/game';
-import type { CrimeReasonData, SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
+import type { CrimeReasonData, SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Internal
 import type { OUTCOME } from './constants';
 
@@ -59,24 +59,6 @@ export type FinalEliminationPayload = {
 };
 
 /**
- * Question card for interrogation
- */
-export type Question = {
-  /**
-   * Unique identifier for the question
-   */
-  id: UID;
-  /**
-   * The question text
-   */
-  question: string;
-  /**
-   * Difficulty level of the question
-   */
-  level: number;
-};
-
-/**
  * Game outcome status
  */
 export type Outcome = (typeof OUTCOME)[keyof typeof OUTCOME];
@@ -90,17 +72,9 @@ export type THistoryEntry = {
    */
   id: UID;
   /**
-   * Question text
-   */
-  question: string;
-  /**
-   * Answer text
-   */
-  answer: string;
-  /**
    * Whether the statement was true or false
    */
-  statement: boolean;
+  testimony: boolean;
   /**
    * Array of suspect IDs eliminated in this round
    */
@@ -109,7 +83,7 @@ export type THistoryEntry = {
    * Array of remaining suspect IDs after this round
    */
   remaining: UID[];
-};
+} & TestimonyStatementCardData;
 
 /**
  * Game status tracking
@@ -202,7 +176,7 @@ export type PhaseQuestionSelectionState = {
   /**
    * Available questions to choose from
    */
-  questions: Question[];
+  questions: TestimonyStatementCardData[];
   /**
    * Current game outcome
    */
@@ -248,7 +222,7 @@ export type PhaseQuestioningState = {
   /**
    * The selected question card
    */
-  question: TestimonyQuestionCardData;
+  question: TestimonyStatementCardData;
   /**
    * Current game outcome
    */
@@ -294,7 +268,7 @@ export type PhaseTrialState = {
   /**
    * The selected question card
    */
-  question: TestimonyQuestionCardData;
+  question: TestimonyStatementCardData;
   /**
    * Whether the testimony was true or false
    */
