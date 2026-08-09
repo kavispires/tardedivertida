@@ -53,14 +53,14 @@ export function RoundTypeExplanation({ roundType }: RoundTypeProps) {
               <>
                 Nesta rodada, jogadores que <strong>errarem</strong> o cenário da posição{' '}
                 <Avatar>{POSITIONS[roundType]}</Avatar> perdem{' '}
-                <PointsHighlight type="negative">1 ponto</PointsHighlight> ao invés de 0.
+                <PointsHighlight type="negative">1 ponto</PointsHighlight>.
               </>
             }
             en={
               <>
                 This round, players who <strong>miss</strong> the scenario in position{' '}
                 <Avatar>{POSITIONS[roundType]}</Avatar> lose{' '}
-                <PointsHighlight type="negative">1 point</PointsHighlight> instead of 0.
+                <PointsHighlight type="negative">1 point</PointsHighlight>.
               </>
             }
           />

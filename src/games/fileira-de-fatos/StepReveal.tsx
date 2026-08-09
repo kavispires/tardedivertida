@@ -75,14 +75,16 @@ export function StepReveal({
           pt={
             <>
               Essa é a ordem que o(a) juiz(a) {activePlayer.name} escolheu os cenários, do ruim para o pior.
+              <br />
               Abaixo de cada cenário você pode ver a posição que cada jogador escolheu e se eles ganharam
               pontos.
             </>
           }
           en={
             <>
-              This is the order that {activePlayer.name} chose the scenarios, from bad to worst. Below each
-              scenario you can see the position that each player chose and if they got any points.
+              This is the order that {activePlayer.name} chose the scenarios, from bad to worst.
+              <br />
+              Below each scenario you can see the position that each player chose and if they got any points.
             </>
           }
         />

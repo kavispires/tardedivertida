@@ -72,8 +72,8 @@ export function SelectableScenarioOrder({ scenarios, kind, onSubmitOrder }: Sele
 
       <RuleInstruction type="action">
         <Translate
-          pt="Você deve escolher os cenários em ordem do menos pior para o pior. Você pode desfazer a seleção, se precisar. Quando estiver pronto(a), clique em 'Enviar'."
-          en="You must choose the scenarios in order from the least bad to the worst. You may undo your selection if needed. When you're ready, click 'Submit'."
+          pt="Você deve escolher os cenários em ordem do menos pior para o pior. Você pode desfazer a seleção, se precisar"
+          en="You must choose the scenarios in order from the least bad to the worst. You may undo your selection if needed"
         />
       </RuleInstruction>
 
