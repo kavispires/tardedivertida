@@ -34,7 +34,7 @@ export type RunnerCard = {
   /**
    * Type of movement or effect the card provides
    */
-  type: 'movement-positive' | 'movement-negative' | 'movement-neutral' | 'ongoing' | 'effect';
+  type: 'movement-positive' | 'movement-negative' | 'movement-neutral' | 'ongoing' | 'effect' | 'random';
   /**
    * Number of copies of this card in the deck
    */

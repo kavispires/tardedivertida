@@ -63,7 +63,9 @@ export const buildRun = (
     })),
     [
       (o) =>
-        ['ongoing', 'effect', 'movement-positive', 'movement-neutral', 'movement-negative'].indexOf(o.type),
+        ['ongoing', 'random', 'effect', 'movement-positive', 'movement-neutral', 'movement-negative'].indexOf(
+          o.type,
+        ),
       (o) => turnOrder.indexOf(o.playerId),
     ],
     ['asc', 'asc'],
@@ -122,6 +124,8 @@ export const buildRun = (
         ongoingPlayerEffects[TRIGGER_KEYS.ONGOING_MINUS_ONE] = targetId;
       }
 
+      increaseAchievement(store.achievements, playerId, 'effects', 1);
+
       return race.push({
         ...baseActivity,
         endingPositions,
@@ -143,11 +147,14 @@ export const buildRun = (
           endingPositions[targetId] + value + getOngoingModifier(ongoingPlayerEffects, targetId),
         );
       }
+
       return race.push({
         ...baseActivity,
         endingPositions,
       });
     }
+
+    increaseAchievement(store.achievements, playerId, 'effects', 1);
 
     // Effect Cards
     // First place (vc-13)
@@ -206,7 +213,7 @@ export const buildRun = (
       });
     }
 
-    // Russian roulette (vc-19)
+    // Reverse Russian roulette (vc-19)
     if (triggerKey === TRIGGER_KEYS.ROULETTE_LAST) {
       const randomTargetId = sampleSize(
         Object.keys(players).filter((pId) => ongoingPlayerEffects.FREEZE !== pId),
@@ -229,6 +236,19 @@ export const buildRun = (
         ...baseActivity,
         targetId: randomTargetId,
         endingPositions: triggerEffectFirstPlace(endingPositions, randomTargetId),
+      });
+    }
+
+    // Champion Roulette (vc-19)
+    if (triggerKey === TRIGGER_KEYS.ROULETTE_CHAMPION) {
+      const randomTargetId = sampleSize(
+        Object.keys(players).filter((pId) => ongoingPlayerEffects.FREEZE !== pId),
+        1,
+      )[0];
+      return race.push({
+        ...baseActivity,
+        targetId: randomTargetId,
+        endingPositions: triggerEffectSecondPlace(endingPositions, randomTargetId),
       });
     }
 
@@ -347,6 +367,14 @@ const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: 
   return endingPositions;
 };
 
+const triggerEffectSecondPlace = (endingPositions: Record<UID, number>, targetId: UID) => {
+  // Get the first place player
+  const orderedPositions = Object.values(endingPositions).sort((a, b) => b - a);
+  // Move the targetId to the second place
+  endingPositions[targetId] = minMaxValue(orderedPositions[1] + 1);
+  return endingPositions;
+};
+
 const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   // Get the first place player
   const orderedPositions = uniq(Object.values(endingPositions).sort((a, b) => b - a));
@@ -411,4 +439,11 @@ const triggerEffectEverybodyElseBack = (
     }
   });
   return endingPositions;
+};
+
+export const getCardIdentifierKey = (card: RunnerCard) => {
+  if (card.type.startsWith('movement')) {
+    return `movement-${card.value}`;
+  }
+  return card.type;
 };

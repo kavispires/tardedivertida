@@ -16,6 +16,8 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 5;
 
-export const STARTING_CARDS = 2;
+export const STARTING_CARDS = 3;
+
+export const DEFAULT_HAND_SIZE = 3;
 
 export const CARD_PER_ROUND = 1;

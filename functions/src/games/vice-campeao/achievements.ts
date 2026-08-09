@@ -46,6 +46,11 @@ const viceCampeaoAchievements = achievementBuilder(GAME_KEYS.VICE_CAMPEAO)
     most: 'MOST_MOVEMENT',
     least: 'LEAST_MOVEMENT',
   })
+  .counter('effects', {
+    doc: 'how many cards with effects the player played',
+    most: 'MOST_EFFECTS',
+    least: 'LEAST_EFFECTS',
+  })
   .build();
 
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =

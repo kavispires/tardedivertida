@@ -9,7 +9,7 @@ export type RunnerCard = {
   id: UID;
   imageId: string;
   name: DualLanguageValue;
-  type: 'movement-positive' | 'movement-negative' | 'movement-neutral' | 'ongoing' | 'effect';
+  type: 'movement-positive' | 'movement-negative' | 'movement-neutral' | 'ongoing' | 'effect' | 'random';
   quantity: number;
   description?: DualLanguageValue;
   value?: number;

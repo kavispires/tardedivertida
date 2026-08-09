@@ -1,9 +1,9 @@
-import { keyBy } from 'lodash';
+import { keyBy, shuffle } from 'lodash';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData, RunActivity, RunnerCard } from './types';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
-import { CARD_PER_ROUND, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from './constants';
+import { DEFAULT_HAND_SIZE, MAX_ROUNDS, STARTING_CARDS, VICE_CAMPEAO_PHASES } from './constants';
 // Services
 import { cleanupStore, markGameAsComplete } from '../../services/game-session';
 import { saveGameToUsers } from '../../services/user';
@@ -20,10 +20,9 @@ import { increaseRound } from '../../mechanics/round';
 import { orderPlayersByScore, Scores } from '../../mechanics/scoring';
 import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
-import utils from '../../legacy-utils';
 import { setupAchievements, calculateAchievements } from './achievements';
 import { TRIGGER_KEYS } from './data';
-import { buildRun } from './helpers';
+import { buildRun, getCardIdentifierKey } from './helpers';
 
 /**
  * Setup
@@ -31,7 +30,7 @@ import { buildRun } from './helpers';
  * @returns
  */
 export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
+  _store: FirebaseStoreData,
   _state: FirebaseStateData,
   players: Players,
   additionalData: ResourceData,
@@ -40,22 +39,41 @@ export const prepareSetupPhase = async (
 
   const { gameOrder: turnOrder } = turnOrderUtils.create(players);
 
+  // Add starting position
+  addPropertiesToPlayers(players, { positions: [0], hand: [] });
+
   const cardsDict = keyBy(additionalData.cards, 'id');
 
-  // Build deck and give two cards for each player
-  utils.deck.setup(store, players, Object.keys(cardsDict), STARTING_CARDS + CARD_PER_ROUND * MAX_ROUNDS);
+  let deck = shuffle(Object.keys(cardsDict));
 
-  // TODO: Adapt so in the first round it only deals movement cards
-  utils.deck.deal(store, players, STARTING_CARDS);
-
-  // Add starting position
-  addPropertiesToPlayers(players, { positions: [0] });
+  // Give starting cards to each player (but only non-repeated movement cards)
+  getListOfPlayers(players).forEach((player) => {
+    const valuesUsed: number[] = [];
+    const hand: string[] = [];
+    let deckIndex = 0;
+    while (hand.length < STARTING_CARDS) {
+      // Get a random card
+      const cardId = deck[deckIndex];
+      if (!cardId) {
+        throw new Error('Deck is empty');
+      }
+      const card = cardsDict[cardId];
+      // Check if the card is a movement and if the card value has already been used
+      if (card.type.startsWith('movement') && !valuesUsed.includes(card.value ?? 0)) {
+        valuesUsed.push(card.value ?? 0);
+        hand.push(cardId);
+      }
+      deckIndex++;
+    }
+    player.hand = hand;
+    deck = deck.filter((id) => !hand.includes(id));
+  });
 
   // Save
   return {
     update: {
       store: {
-        ...store,
+        deck,
         achievements,
         replay: [],
       },
@@ -85,16 +103,52 @@ export const prepareCardSelectionPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   setPlayersReadyState(players, false);
+
+  const cardsDict: Dictionary<RunnerCard> = state.cardsDict;
+
   // Discard any previously used card
   if (state.round.current > 0) {
     getListOfPlayers(players).forEach((player) => {
-      utils.deck.discard(store, players, player.id, player.selectedCardId);
+      player.hand = player.hand.filter((cardId) => cardId !== player.selectedCardId);
     });
     removePropertiesFromPlayers(players, ['selectedCardId', 'selectedTargetId']);
   }
 
-  // TODO: Adapt dealing so players get a unique card they don't already have
-  utils.deck.deal(store, players, CARD_PER_ROUND);
+  // Deal new card to player (it must be unique in the player's hand if possible)
+  let deck = [...store.deck];
+
+  getListOfPlayers(players).forEach((player) => {
+    const hand: string[] = player.hand;
+    const usedIdentifiers: string[] = player.hand.map((cardId) => getCardIdentifierKey(cardsDict[cardId]));
+    let deckIndex = 0;
+    while (hand.length < DEFAULT_HAND_SIZE) {
+      if (deckIndex >= deck.length) {
+        const whateverDeck = deck.filter((id) => !hand.includes(id));
+        if (whateverDeck.length === 0) {
+          throw new Error('Deck is empty');
+        }
+        const pick = whateverDeck[0];
+        hand.push(pick);
+        continue; // Skip to the next iteration of the while loop
+      }
+
+      // Get a random card
+      const cardId = deck[deckIndex];
+      if (!cardId) {
+        throw new Error('Deck is empty');
+      }
+      const card = cardsDict[cardId];
+      // Check if the card is a movement and if the card value has already been used
+      const identifier = getCardIdentifierKey(card);
+      if (!usedIdentifiers.includes(identifier)) {
+        usedIdentifiers.push(identifier);
+        hand.push(cardId);
+      }
+      deckIndex++;
+    }
+    player.hand = hand;
+    deck = deck.filter((id) => !hand.includes(id));
+  });
 
   const turnOrder = turnOrderUtils.reorder(state.turnOrder, state.turnOrder[1]);
 
@@ -118,7 +172,7 @@ export const prepareCardSelectionPhase = async (
   return {
     update: {
       store: {
-        ...store,
+        deck,
       },
       state: {
         phase: VICE_CAMPEAO_PHASES.CARD_SELECTION,

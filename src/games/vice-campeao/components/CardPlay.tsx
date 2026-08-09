@@ -87,7 +87,11 @@ export function CardPlay({
           vertical
           gap={6}
           align="center"
-          className={clsx({ 'card-play-container__invisible': card.omitsTarget })}
+          className={clsx({
+            'card-play-container__invisible':
+              card.omitsTarget ||
+              (runActivity.playerId === runActivity.targetId && card.type.startsWith('movement')),
+          })}
         >
           <Icon icon={<ArrowIcon />} />
           <Translate
@@ -117,7 +121,9 @@ export function CardPlay({
             size="small"
             className={clsx({
               'card-play-container__avatar-locked': isTargetLocked,
-              'card-play-container__invisible': card.omitsTarget,
+              'card-play-container__invisible':
+                card.omitsTarget ||
+                (runActivity.playerId === runActivity.targetId && card.type.startsWith('movement')),
             })}
           />
           {ongoingPlusOnePlayersIds.includes(runActivity.targetId) && (

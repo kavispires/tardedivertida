@@ -2,6 +2,32 @@
 import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {
+  LEAST_EFFECTS: {
+    id: 'LEAST_EFFECTS',
+    doc: 'how many cards with effects the player played',
+    icon: '',
+    title: {
+      en: '',
+      pt: '',
+    },
+    description: {
+      en: '',
+      pt: '',
+    },
+  },
+  MOST_EFFECTS: {
+    id: 'MOST_EFFECTS',
+    doc: 'how many cards with effects the player played',
+    icon: '',
+    title: {
+      en: '',
+      pt: '',
+    },
+    description: {
+      en: '',
+      pt: '',
+    },
+  },
   MOST_FIRST_PLACE: {
     id: 'MOST_FIRST_PLACE',
     doc: 'how many rounds the player finished in first place',

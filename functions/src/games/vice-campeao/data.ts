@@ -260,14 +260,14 @@ const CARDS = [
   {
     imageId: 'vc-19',
     name: {
-      en: 'Russian Roulette',
-      pt: 'Roleta Russa',
+      en: 'Reverse Russian Roulette',
+      pt: 'Roleta Russa Reversa',
     },
     description: {
       en: 'A runner will randomly be chosen to go to the last place.',
       pt: 'Um corredor aleatório será escolhido ir para o último lugar.',
     },
-    type: 'effect',
+    type: 'random',
     triggerKey: 'ROULETTE_LAST',
     quantity: 1,
     autoTarget: true,
@@ -282,8 +282,23 @@ const CARDS = [
       en: 'A runner will randomly be chosen to go to the first place.',
       pt: 'Um corredor aleatório será escolhido ir para o primeiro lugar.',
     },
-    type: 'effect',
+    type: 'random',
     triggerKey: 'ROULETTE_FIRST',
+    quantity: 1,
+    autoTarget: true,
+  },
+  {
+    imageId: 'vc-19', // The image is the same
+    name: {
+      en: 'Champion Roulette',
+      pt: 'Roleta do Campeão',
+    },
+    description: {
+      en: 'A runner will randomly be chosen to go to the champion position.',
+      pt: 'Um corredor aleatório será escolhido ir para a posição de campeão.',
+    },
+    type: 'random',
+    triggerKey: 'ROULETTE_CHAMPION',
     quantity: 1,
     autoTarget: true,
   },

@@ -127,6 +127,12 @@ const getCardTypeName = (card: RunnerCard) => {
           pt="Especial"
         />
       ),
+      random: (
+        <Translate
+          en="Random"
+          pt="Aleatória"
+        />
+      ),
     }[card.type] ?? <DualTranslate>{{ pt: 'Carta', en: 'Card' }}</DualTranslate>
   );
 };
