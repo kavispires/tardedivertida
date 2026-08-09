@@ -4,7 +4,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Flex, Input, Popover, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 // Components
@@ -12,6 +12,7 @@ import { SendButton } from '@components/buttons/SendButton';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -26,7 +27,7 @@ type StepSelectPromptProps = {
   user: GamePlayer;
   turnOrder: TurnOrder;
   characters: SuspectCardData[];
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
   onSubmitPrompt: (payload: SubmitPromptPayload) => void;
   onTriggerGuessing: () => void;
   activePlayerId: UID;
@@ -47,6 +48,7 @@ export function StepSelectPrompt({
   const { translate } = useLanguage();
 
   const suggestedQuestions = user.suggestedQuestions || [];
+  const { targetPlayerId, guesserPlayerId } = user;
 
   return (
     <Step
@@ -64,7 +66,9 @@ export function StepSelectPrompt({
         <Translate
           en={
             <>
-              Write a vibe question that will help you identify your opponents' characters.
+              Write a vibe question that will help you identify your opponent{' '}
+              <PlayerAvatarName player={players[targetPlayerId]} />
+              's characters.
               <br />
               For example: "Would they be a good villain in a horror movie?", "Do they know how to whistle?"
               <br />
@@ -74,7 +78,8 @@ export function StepSelectPrompt({
           }
           pt={
             <>
-              Escreva uma pergunta de vibe que te ajude a identificar os personagens dos seus oponentes.
+              Escreva uma pergunta de vibe que te ajude a identificar os personagens do seu oponente{' '}
+              <PlayerAvatarName player={players[targetPlayerId]} />.
               <br />
               Por exemplo: "Eles seriam um bom vilão em um filme de terror?", "Eles sabem assobiar?"
               <br />
@@ -122,7 +127,7 @@ export function StepSelectPrompt({
               gap={8}
               style={{ maxWidth: 480 }}
             >
-              {suggestedQuestions.map((suggestedQuestion: TestimonyQuestionCardData) => (
+              {suggestedQuestions.map((suggestedQuestion: TestimonyStatementCardData) => (
                 <Button
                   key={suggestedQuestion.id}
                   style={{
@@ -130,7 +135,7 @@ export function StepSelectPrompt({
                   }}
                   onClick={() => onSubmitPrompt({ questionId: suggestedQuestion.id })}
                 >
-                  {suggestedQuestion.question}
+                  {suggestedQuestion.statement}
                 </Button>
               ))}
             </Flex>
@@ -143,7 +148,7 @@ export function StepSelectPrompt({
           />
         </Popover>
 
-        {questionsHistory.length > 1 && (
+        {questionsHistory.length >= Object.keys(players).length && (
           <Popconfirm
             title={
               <Translate
@@ -189,6 +194,7 @@ export function StepSelectPrompt({
         <QuestionHistory
           players={players}
           questionsHistory={questionsHistory}
+          user={user}
         />
       </SpaceContainer>
 
@@ -196,6 +202,7 @@ export function StepSelectPrompt({
         players={players}
         order={turnOrder}
         activePlayerId={activePlayerId}
+        reorderByUser={guesserPlayerId}
       />
     </Step>
   );

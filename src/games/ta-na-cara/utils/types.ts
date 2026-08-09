@@ -1,6 +1,6 @@
 // Types
 import type { Achievement } from 'types/game';
-import type { SuspectCardData, TestimonyQuestionCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 
 export type SubmitPromptPayload = {
   questionId?: UID;
@@ -18,22 +18,22 @@ export type SubmitGuessPayload = {
 export type PhasePromptState = {
   turnOrder: TurnOrder;
   characters: SuspectCardData[];
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
   activePlayerId: UID;
 };
 
 export type PhaseAnsweringState = {
   turnOrder: TurnOrder;
   characters: SuspectCardData[];
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
   activePlayerId: UID;
-  currentQuestion: TestimonyQuestionCardData;
+  currentQuestion: TestimonyStatementCardData;
 };
 
 export type PhaseGuessingState = {
   turnOrder: TurnOrder;
   characters: SuspectCardData[];
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
   activePlayerId: UID;
 };
 
@@ -51,5 +51,6 @@ export type PhaseGameOverState = {
    */
   achievements: Achievement[];
   characters: SuspectCardData[];
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
+  turnOrder: TurnOrder;
 };

@@ -34,13 +34,14 @@ export function PhaseAnswer({ state, players, user }: PhaseProps<PhaseAnsweringS
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}
-    ></PhaseAnnouncement>
+    />
   );
 
   return (
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TA_NA_CARA_PHASES.ANSWERING}
+      hasRequiredData={!!user.targetPlayerId && !!user.guesserPlayerId}
     >
       <StepSwitcher
         step={step}

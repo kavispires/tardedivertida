@@ -88,7 +88,7 @@ export function BoardEntry({ entry, deckType, userSide }: BoardEntryProps) {
         <SuspectCard
           suspect={entry.data as unknown as SuspectCardType}
           width={72}
-          hideName
+          visibleContent={false}
         />
       </div>
     );

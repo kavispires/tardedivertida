@@ -69,6 +69,7 @@ export const handleTriggerGuessing = async (gameName: string, gameId: UID, playe
     actionText: 'trigger guessing phase',
     change: {
       triggerGuessing: true,
+      guessingTriggeredBy: playerId,
     },
     nextPhaseFunction: getNextPhase,
   });

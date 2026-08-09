@@ -1,4 +1,6 @@
 import { clsx } from 'clsx';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Types
 import type { SuspectCardData, SuspectStyleVariant } from 'types/tdr';
 // Components
@@ -10,43 +12,99 @@ import { DynamicCard } from './DynamicCard';
 // Sass
 import styles from './SuspectCard.module.scss';
 
-type SuspectCardProps = {
+/**
+ * Controls which optional parts of the suspect card should be visible.
+ */
+type SuspectCardVisibleContentConfig = {
   /**
-   * Suspect object
+   * Whether the gender icon should be displayed
    */
-  suspect: SuspectCardData;
+  genderIcon: boolean;
   /**
-   * Card width
+   * Whether the suspect name should be displayed
    */
-  width: number;
+  name: boolean;
   /**
-   * Hide the suspect name
+   * Whether the suspect deck icon should be displayed
    */
-  hideName?: boolean;
-  /**
-   * Style variant of the card (it will modify the id)
-   */
-  variant?: SuspectStyleVariant;
-  /**
-   * Preview mode for the card (defaults to false)
-   */
-  preview?: boolean;
-  /**
-   * Additional class names for the card
-   */
-  className?: string;
-  /**
-   * Inline styles for the card
-   */
-  style?: Omit<React.CSSProperties, 'width'>;
+  deckIcon: boolean;
 };
 
 /**
- * Displays a suspect card with name and optional variant styling
+ * Visibility configuration for optional suspect card content.
  */
-function SuspectCardBase({ suspect, width, hideName, variant, className, style }: SuspectCardProps) {
+type SuspectCardVisibleContent = Partial<SuspectCardVisibleContentConfig> | boolean;
+
+/**
+ * Props for the suspect card component.
+ */
+type SuspectCardProps = {
+  /**
+   * The suspect data rendered by the card
+   */
+  suspect: SuspectCardData;
+  /**
+   * The card width in pixels
+   */
+  width: number;
+  /**
+   * Optional style variant used to derive the image id
+   */
+  variant?: SuspectStyleVariant;
+  /**
+   * Whether the card should be rendered inside preview chrome
+   */
+  preview?: boolean;
+  /**
+   * Optional additional class names for the card container
+   */
+  className?: string;
+  /**
+   * Optional inline styles applied to the card container
+   */
+  style?: Omit<React.CSSProperties, 'width'>;
+  /**
+   * Optional visible content settings for the card
+   * Pass `true` to show everything, `false` to hide everything,
+   * or an object to configure individual parts.
+   * @default true
+   */
+  visibleContent?: SuspectCardVisibleContent;
+};
+
+/**
+ * Position and transform values applied to the suspect name label.
+ */
+type LabelTransform = {
+  /**
+   * The label rotation angle in degrees
+   */
+  angle: number;
+  /**
+   * The label scale multiplier
+   */
+  scale: number;
+  /**
+   * The vertical position percentage for the label
+   */
+  y: number;
+};
+
+/**
+ * Renders the base suspect card content without preview framing.
+ */
+function SuspectCardBase({
+  suspect,
+  width,
+  variant,
+  className,
+  style,
+  visibleContent = true,
+}: SuspectCardProps) {
   const imageId = getSuspectImageId(suspect.id, variant);
   const { angle, scale, y } = getLabelTransform(suspect.labelTransform || '0|0');
+  const visible = getVisibleContentConfig(visibleContent);
+  const shouldDisplayLabel = visible.genderIcon || visible.name;
 
   return (
     <DynamicCard
@@ -56,7 +114,19 @@ function SuspectCardBase({ suspect, width, hideName, variant, className, style }
       style={style}
       className={clsx(styles.suspectCard, className)}
     >
-      {!hideName && (
+      {visible.deckIcon && (
+        <DynamicCard.Span
+          fontSize="12cqw"
+          right="2%"
+          top="0%"
+        >
+          <span className={styles.suspectDeck}>
+            <DeckIcon deck={suspect.deck} />
+          </span>
+        </DynamicCard.Span>
+      )}
+
+      {shouldDisplayLabel && (
         <DynamicCard.Span
           centerHorizontal
           fontSize="12cqw"
@@ -67,12 +137,14 @@ function SuspectCardBase({ suspect, width, hideName, variant, className, style }
           top={`${y}%`}
         >
           <span className={styles.suspectCardName}>
-            <Sprite
-              source="demographics"
-              spriteId={`gender-${suspect.gender || 'gender-other'}`}
-              width="1em"
-            />
-            <DualTranslate>{suspect.name}</DualTranslate>
+            {visible.genderIcon && <GenderIcon gender={suspect.gender} />}
+            {visible.name && (
+              <Tooltip title={<DualTranslate>{suspect.name}</DualTranslate>}>
+                <span>
+                  <DualTranslate>{suspect.name}</DualTranslate>
+                </span>
+              </Tooltip>
+            )}
           </span>
         </DynamicCard.Span>
       )}
@@ -80,6 +152,9 @@ function SuspectCardBase({ suspect, width, hideName, variant, className, style }
   );
 }
 
+/**
+ * Displays a suspect card with optional preview framing and configurable visible content.
+ */
 export function SuspectCard(props: SuspectCardProps) {
   if (!props.preview) {
     return <SuspectCardBase {...props} />;
@@ -92,22 +167,43 @@ export function SuspectCard(props: SuspectCardProps) {
   );
 }
 
+const DEFAULT_VISIBLE_CONTENT: SuspectCardVisibleContentConfig = {
+  genderIcon: true,
+  name: true,
+  deckIcon: false,
+};
+
 /**
- * Generates a suspect image ID based on the provided ID and optional variant.
- * If no variant is provided, returns the original ID.
- * Otherwise, transforms the ID format to include the variant.
- *
- * @param id - The original suspect ID, expected to have a format like "prefix-suffix"
- * @param variant - Optional variant code to insert into the ID (defaults to 'gb' if specified but empty)
- * @returns The modified suspect image ID with the variant included, or the original ID if no variant provided
- *
- * @example
- * Returns "us-gb-123" if variant is provided
- * getSuspectImageId("us-123", "gb");
- *
- * @example
- * Returns "us-123" if no variant is provided
- * getSuspectImageId("us-123");
+ * Normalizes the visible content prop into a full configuration object.
+ * @param visibleContent - The optional visible content override
+ * @returns A complete visibility configuration for the suspect card
+ */
+function getVisibleContentConfig(
+  visibleContent: SuspectCardVisibleContent = true,
+): SuspectCardVisibleContentConfig {
+  if (visibleContent === false) {
+    return {
+      genderIcon: false,
+      name: false,
+      deckIcon: false,
+    };
+  }
+
+  if (visibleContent === true) {
+    return DEFAULT_VISIBLE_CONTENT;
+  }
+
+  return {
+    ...DEFAULT_VISIBLE_CONTENT,
+    ...visibleContent,
+  };
+}
+
+/**
+ * Generates the image id used to render a suspect card.
+ * @param id - The original suspect id
+ * @param variant - The optional suspect style variant
+ * @returns The base id or the variant-adjusted id
  */
 export const getSuspectImageId = (() => {
   const cache = new Map<string, string>();
@@ -128,11 +224,14 @@ export const getSuspectImageId = (() => {
   };
 })();
 
+/**
+ * Parses and caches the transform data for a suspect name label.
+ */
 const getLabelTransform = (() => {
-  const cache = new Map<string, { angle: number; scale: number; y: number }>();
+  const cache = new Map<string, LabelTransform>();
 
-  return (id: string): { angle: number; scale: number; y: number } => {
-    if (cache.has(id)) return cache.get(id) as { angle: number; scale: number; y: number };
+  return (id: string): LabelTransform => {
+    if (cache.has(id)) return cache.get(id) as LabelTransform;
 
     const splitId = id.split('-');
     const y = Number.parseFloat(splitId[0]) || 83;
@@ -144,3 +243,57 @@ const getLabelTransform = (() => {
     return result;
   };
 })();
+
+const GENDER_TITLES = {
+  male: { en: 'Male', pt: 'Masculino' },
+  female: { en: 'Female', pt: 'Feminino' },
+  'non-binary': { en: 'Non-binary', pt: 'Não-binárie' },
+  fluid: { en: 'Fluid', pt: 'Fluido' },
+  transgender: { en: 'Transgender', pt: 'Transgênero' },
+  none: { en: 'No gender/Unknown', pt: 'Sem gênero/Desconhecido' },
+} as const;
+
+/**
+ * Displays the translated gender icon tooltip for a suspect.
+ */
+function GenderIcon({ gender }: Pick<Required<SuspectCardData>, 'gender'>) {
+  const title =
+    gender in GENDER_TITLES ? GENDER_TITLES[gender as keyof typeof GENDER_TITLES] : GENDER_TITLES.none;
+
+  return (
+    <Tooltip title={<DualTranslate>{title}</DualTranslate>}>
+      <Sprite
+        source="demographics"
+        spriteId={`gender-${gender || 'gender-other'}`}
+        width="1em"
+      />
+    </Tooltip>
+  );
+}
+
+const DECK_TITLES = {
+  kid: { en: 'Kid', pt: 'Criança' },
+  teen: { en: 'Teen', pt: 'Adolescente' },
+  adult: { en: 'Adult', pt: 'Adulto' },
+  pet: { en: 'Pet', pt: 'Animal de estimação' },
+  other: { en: 'Other', pt: 'Outro' },
+} as const;
+
+/**
+ * Displays the translated deck icon tooltip for a suspect.
+ */
+function DeckIcon({ deck }: { deck: SuspectCardData['deck'] }) {
+  const title = deck in DECK_TITLES ? DECK_TITLES[deck as keyof typeof DECK_TITLES] : DECK_TITLES.other;
+
+  return (
+    <Tooltip title={<DualTranslate>{title}</DualTranslate>}>
+      <span className={styles.suspectDeckIcon}>
+        <Sprite
+          source="demographics"
+          spriteId={`deck-${deck || 'deck-other'}`}
+          width="1.5em"
+        />
+      </span>
+    </Tooltip>
+  );
+}

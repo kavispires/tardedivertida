@@ -110,7 +110,7 @@ function SuspectEntry({ suspect, wasEliminated, isThePerpetrator, cardWidth, pre
     <>
       {wasEliminated ? (
         <ImageCard
-          cardId={wasEliminated ? 'us-00' : suspect.id}
+          cardId="us-00"
           previewImageId={suspect.id}
           className={clsx(
             't-suspects-table__suspect-image',

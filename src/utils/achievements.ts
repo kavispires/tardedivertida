@@ -33,6 +33,7 @@ import RETRATO_FALADO from '@games/retrato-falado/utils/achievements';
 import SENSO_LITERARIO from '@games/senso-literario/utils/achievements';
 import SINAIS_DE_ALERTA from '@games/sinais-de-alerta/utils/achievements';
 import SUPER_CAMPEONATO from '@games/super-campeonato/utils/achievements';
+import TA_NA_CARA from '@games/ta-na-cara/utils/achievements';
 import TEORIA_DE_CONJUNTOS from '@games/teoria-de-conjuntos/utils/achievements';
 import TESTE_DE_ELENCO from '@games/teste-de-elenco/utils/achievements';
 import TESTEMUNHA_OCULAR from '@games/testemunha-ocular/utils/achievements';
@@ -85,7 +86,7 @@ export const ACHIEVEMENTS_DICT: Record<string, AchievementReference | null> = {
   'senso-literario': SENSO_LITERARIO,
   'sinais-de-alerta': SINAIS_DE_ALERTA,
   'super-campeonato': SUPER_CAMPEONATO,
-  'ta-na-cara': null,
+  'ta-na-cara': TA_NA_CARA,
   'teoria-de-conjuntos': TEORIA_DE_CONJUNTOS,
   'testemunha-ocular': TESTEMUNHA_OCULAR,
   'teste-de-elenco': TESTE_DE_ELENCO,

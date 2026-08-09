@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
-import { Flex } from 'antd';
+import { Flex, Switch } from 'antd';
 // Types
-import type { GamePlayers } from 'types/game';
-import type { TestimonyQuestionCardData } from 'types/tdr';
+import type { GamePlayer, GamePlayers } from 'types/game';
+import type { TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
@@ -17,147 +18,176 @@ import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
 
 type QuestionHistoryProps = {
+  user: GamePlayer;
   players: GamePlayers;
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
 };
 
-export function QuestionHistory({ players, questionsHistory }: QuestionHistoryProps) {
-  const playersList = useSortedPlayers(players);
+export function QuestionHistory({ players, questionsHistory, user }: QuestionHistoryProps) {
+  const [showAll, setShowAll] = useState(false);
+  const { targetPlayerId } = user;
+  const sortedPlayersList = useSortedPlayers(players, {
+    prioritizePlayerId: [targetPlayerId ?? user.id, user.id],
+  });
 
   if (questionsHistory.length === 0) {
     return null;
   }
 
-  return (
-    <div className="t-question-history-table">
-      <div className="t-question-history-table__header">
-        <Translate
-          en="Questions"
-          pt="Perguntas"
-        />
-      </div>
-      {playersList.map((player) => (
-        <PlayerAvatarCard
-          key={player.id}
-          player={player}
-          size="small"
-          withRoundCorners
-          withName
-        />
-      ))}
+  const list: GamePlayer[] = showAll ? sortedPlayersList : sortedPlayersList.slice(0, 2);
 
-      {questionsHistory.map((question, index) => (
-        <Fragment key={`question-history-${index}`}>
-          <div
-            key={`question-history-${index}`}
-            className="t-question-history-table__question"
-          >
-            {question.question}
-          </div>
-          {playersList.map((player) => {
-            const answer = player.answers?.[index];
-            switch (answer) {
-              case -2: {
-                return (
-                  <Flex
-                    key={`question-history-${index}-${player.id}`}
-                    vertical
-                    justify="center"
-                    align="center"
-                    className="t-question-history-table__answer"
-                  >
-                    <Icon
-                      icon={<BoxXIcon />}
-                      size={24}
-                    />
-                    <div>
-                      <Translate
-                        pt="Não"
-                        en="No"
+  return (
+    <Flex
+      orientation="vertical"
+      gap={8}
+    >
+      {sortedPlayersList.length > 2 && (
+        <Flex
+          justify="center"
+          align="center"
+          gap={8}
+          className="t-question-history"
+        >
+          <Translate
+            en="Show all players"
+            pt="Mostrar todos os jogadores"
+          />
+          <Switch
+            checked={showAll}
+            onChange={() => setShowAll(!showAll)}
+          />
+        </Flex>
+      )}
+      <div
+        className="t-question-history-table"
+        style={{ gridTemplateColumns: `2fr repeat(${list.length}, auto)` }}
+      >
+        <div className="t-question-history-table__header">
+          <Translate
+            en="Questions"
+            pt="Perguntas"
+          />
+        </div>
+        {list.map((player) => (
+          <PlayerAvatarCard
+            key={`question-history-${player.id}`}
+            player={player}
+            size="small"
+            withRoundCorners
+            withName
+            addressUser
+          />
+        ))}
+
+        {questionsHistory.map((question, index) => (
+          <Fragment key={`question-history-${question.id}-${index}`}>
+            <div className="t-question-history-table__question">{question.statement}</div>
+            {list.map((player) => {
+              const answer = player.answers?.[index];
+              switch (answer) {
+                case -2: {
+                  return (
+                    <Flex
+                      key={`question-history-${index}-${player.id}`}
+                      vertical
+                      justify="center"
+                      align="center"
+                      className="t-question-history-table__answer"
+                    >
+                      <Icon
+                        icon={<BoxXIcon />}
+                        size={24}
                       />
-                    </div>
-                  </Flex>
-                );
-              }
-              case -1: {
-                return (
-                  <Flex
-                    vertical
-                    justify="center"
-                    align="center"
-                    className="t-question-history-table__answer"
-                  >
-                    <Icon
-                      icon={<BoxMinusIcon color="#e8818c" />}
-                      size={24}
-                    />
-                    <div>
-                      <Translate
-                        pt="Talvez Não"
-                        en="Kinda No"
+                      <div className="text-center">
+                        <Translate
+                          pt="Não"
+                          en="No"
+                        />
+                      </div>
+                    </Flex>
+                  );
+                }
+                case -1: {
+                  return (
+                    <Flex
+                      key={`question-history-${index}-${player.id}`}
+                      vertical
+                      justify="center"
+                      align="center"
+                      className="t-question-history-table__answer"
+                    >
+                      <Icon
+                        icon={<BoxMinusIcon color="#e8818c" />}
+                        size={24}
                       />
-                    </div>
-                  </Flex>
-                );
-              }
-              case 1: {
-                return (
-                  <Flex
-                    key={`question-history-${index}-${player.id}`}
-                    vertical
-                    justify="center"
-                    align="center"
-                    className="t-question-history-table__answer"
-                  >
-                    <Icon
-                      icon={<BoxPlusIcon color="#83d39c" />}
-                      size={24}
-                    />
-                    <div>
-                      <Translate
-                        pt="Meio Sim"
-                        en="Maybe Yes"
+                      <div className="text-center">
+                        <Translate
+                          pt="Talvez Não"
+                          en="Kinda No"
+                        />
+                      </div>
+                    </Flex>
+                  );
+                }
+                case 1: {
+                  return (
+                    <Flex
+                      key={`question-history-${index}-${player.id}`}
+                      vertical
+                      justify="center"
+                      align="center"
+                      className="t-question-history-table__answer"
+                    >
+                      <Icon
+                        icon={<BoxPlusIcon color="#83d39c" />}
+                        size={24}
                       />
-                    </div>
-                  </Flex>
-                );
-              }
-              case 2: {
-                return (
-                  <Flex
-                    key={`question-history-${index}-${player.id}`}
-                    vertical
-                    justify="center"
-                    align="center"
-                    className="t-question-history-table__answer"
-                  >
-                    <Icon
-                      icon={<BoxCheckMarkIcon />}
-                      size={24}
-                    />
-                    <div>
-                      <Translate
-                        pt="Sim"
-                        en="Yes"
+                      <div className="text-center">
+                        <Translate
+                          pt="Meio Sim"
+                          en="Maybe Yes"
+                        />
+                      </div>
+                    </Flex>
+                  );
+                }
+                case 2: {
+                  return (
+                    <Flex
+                      key={`question-history-${index}-${player.id}`}
+                      vertical
+                      justify="center"
+                      align="center"
+                      className="t-question-history-table__answer"
+                    >
+                      <Icon
+                        icon={<BoxCheckMarkIcon />}
+                        size={24}
                       />
+                      <div className="text-center">
+                        <Translate
+                          pt="Sim"
+                          en="Yes"
+                        />
+                      </div>
+                    </Flex>
+                  );
+                }
+                default: {
+                  return (
+                    <div
+                      key={`question-history-${index}-${player.id}`}
+                      className="t-question-history-table__answer"
+                    >
+                      -
                     </div>
-                  </Flex>
-                );
+                  );
+                }
               }
-              default: {
-                return (
-                  <div
-                    key={`question-history-${index}-${player.id}`}
-                    className="t-question-history-table__answer"
-                  >
-                    -
-                  </div>
-                );
-              }
-            }
-          })}
-        </Fragment>
-      ))}
-    </div>
+            })}
+          </Fragment>
+        ))}
+      </div>
+    </Flex>
   );
 }

@@ -90,7 +90,7 @@ export function HistoryDeliverableEntry({ deliverable, deckType, userSide }: His
         <SuspectCard
           suspect={deliverable.data as unknown as SuspectCardType}
           width={72}
-          hideName
+          visibleContent={false}
         />
       </div>
     );

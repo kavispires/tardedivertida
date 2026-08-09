@@ -424,7 +424,7 @@ export const getSuspects = async ({
       height: suspect.height,
       features: [],
       labelTransform: suspect.labelTransform,
-      persona: suspect.persona,
+      persona: suspect.persona ?? { en: '', pt: '' },
       deck: suspect.deck,
     };
   }

@@ -16,9 +16,9 @@ type UseSortedPlayersOptions = {
    */
   orders?: Many<boolean | 'asc' | 'desc'>;
   /**
-   * Player ID to move to the front of the sorted list
+   * Player ID(s) to move to the front of the sorted list
    */
-  prioritizePlayerId?: UID;
+  prioritizePlayerId?: UID | UID[];
   /**
    * Predicate function to filter players after sorting
    */
@@ -43,11 +43,15 @@ export function useSortedPlayers(players: GamePlayers, options: UseSortedPlayers
     const sortedPlayers = orderBy(Object.values(players), sortBy, orders);
 
     if (prioritizePlayerId) {
-      const userIndex = sortedPlayers.findIndex((player) => player.id === prioritizePlayerId);
-      if (userIndex > -1) {
-        const userPlayer = sortedPlayers.splice(userIndex, 1)[0];
-        sortedPlayers.unshift(userPlayer);
-      }
+      const prioritizedIds = Array.isArray(prioritizePlayerId) ? prioritizePlayerId : [prioritizePlayerId];
+
+      const prioritizedIdSet = new Set(prioritizedIds);
+      const prioritizedPlayers = prioritizedIds
+        .map((id) => sortedPlayers.find((player) => player.id === id))
+        .filter((player): player is GamePlayer => Boolean(player));
+      const remainingPlayers = sortedPlayers.filter((player) => !prioritizedIdSet.has(player.id));
+
+      sortedPlayers.splice(0, sortedPlayers.length, ...prioritizedPlayers, ...remainingPlayers);
     }
 
     if (filter) {

@@ -272,6 +272,22 @@ export const kebabToPascal = (str: string): string => startCase(camelCase(str)).
 export const getAvatarColorById = (avatarId: string): string => AVATARS?.[avatarId]?.color ?? 'grey';
 
 /**
+ * Gets the background color and contrast color for a given avatar ID.
+ * @param avatarId - The ID of the avatar.
+ * @returns An object containing the background color and contrast color for the avatar.
+ */
+export const getBackgroundAvatarColorById = (
+  avatarId: string,
+): { backgroundColor: string; color: string } => {
+  const color = getAvatarColorById(avatarId);
+
+  return {
+    backgroundColor: color,
+    color: `contrast-color(${color})`,
+  };
+};
+
+/**
  * Converts a hex color string to an RGB array.
  * @param hex - The hex color string (e.g., "#FF5733").
  * @returns An array containing the RGB values [r, g, b].

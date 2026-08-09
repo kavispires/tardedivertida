@@ -14,10 +14,19 @@ import {
   setPlayersReadyState,
   getListOfPlayers,
   addPropertiesToPlayers,
+  cleanupPlayers,
+  getListOfPlayersIds,
 } from '../../mechanics/players';
 import { increaseRound } from '../../mechanics/round';
 import { determineWinners } from '../../mechanics/scoring';
 import { turnOrderUtils } from '../../mechanics/turn-order';
+// Internal
+import {
+  increaseAchievement,
+  setupAchievements,
+  setTruthyAchievement,
+  calculateAchievements,
+} from './achievements';
 
 /**
  * Setup
@@ -42,11 +51,14 @@ export const prepareSetupPhase = async (
     player.secretCharacterId = charactersIds[index].id;
     player.suggestedQuestions = [];
     player.answers = [];
-    player.history = {};
+
+    // Get target player (player you will be guessing) and the guesser player (player who will be guessing you)
+    const playerIndexInTurnOrder = turnOrder.indexOf(player.id);
+    player.targetPlayerId = turnOrder[(playerIndexInTurnOrder + 1) % turnOrder.length];
+    player.guesserPlayerId = turnOrder[(playerIndexInTurnOrder - 1 + turnOrder.length) % turnOrder.length];
   });
 
-  // TODO: Implement achievements
-  const achievements = {};
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   // Save
   return {
@@ -118,7 +130,7 @@ export const preparePromptPhase = async (
         phase: TA_NA_CARA_PHASES.PROMPT,
         players,
         activePlayerId,
-        round: activePlayerId === state.turnOrder[0] ? increaseRound(state.round) : state.round,
+        round: increaseRound(state.round),
         questionsHistory,
       },
       stateCleanup: ['currentQuestion'],
@@ -131,7 +143,7 @@ export const preparePromptPhase = async (
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareAnsweringPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -151,6 +163,7 @@ export const preparePromptPhase = async (
       deck: 'default',
       level: 0,
     };
+    increaseAchievement(store.achievements, activePlayer.id, 'originalQuestions', 1);
   } else {
     const question = activePlayer.suggestedQuestions.find(
       (q: TestimonyStatementCardData) => q.id === activePlayer.currentQuestionId,
@@ -161,6 +174,7 @@ export const preparePromptPhase = async (
     if (question) {
       currentQuestion = question;
     }
+    increaseAchievement(store.achievements, activePlayer.id, 'suggestedQuestions', 1);
   }
 
   removePropertiesFromPlayers(players, ['currentQuestion', 'currentAnswer']);
@@ -171,6 +185,9 @@ export const preparePromptPhase = async (
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: TA_NA_CARA_PHASES.ANSWERING,
         players,
@@ -217,20 +234,44 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  // Award points if the player have guessed the other correctly
+  // Award triggering guessing achievement
+  setTruthyAchievement(store.achievements, state.guessingTriggeredBy, 'triggerGuessing');
+
   const playersList = getListOfPlayers(players);
 
+  // Calculate achievements for each player and award point if they guessed correctly
   playersList.forEach((player) => {
-    const opponent = playersList.find((p) => p.id !== player.id);
-
+    const opponent = players[player.targetPlayerId as UID];
+    // Award point if the player guessed the opponent's secret character correctly
     if (player.guess === opponent?.secretCharacterId) {
       player.score += 1;
     }
+
+    // Calculate achievements based on the player's answers
+    player.answers.forEach((answer: number) => {
+      if (answer > 0) {
+        increaseAchievement(store.achievements, player.id, 'positiveAnswers', 1);
+        if (answer === 2) {
+          increaseAchievement(store.achievements, player.id, 'extremePositiveAnswers', 1);
+        } else {
+          increaseAchievement(store.achievements, player.id, 'maybeAnswers', 1);
+        }
+      } else {
+        increaseAchievement(store.achievements, player.id, 'negativeAnswers', 1);
+        if (answer === -2) {
+          increaseAchievement(store.achievements, player.id, 'extremeNegativeAnswers', 1);
+        } else {
+          increaseAchievement(store.achievements, player.id, 'maybeAnswers', 1);
+        }
+      }
+    });
   });
 
   const winners = determineWinners(players);
 
-  removePropertiesFromPlayers(players, ['suggestedQuestions', 'currentQuestionId']);
+  const achievements = calculateAchievements(store.achievements);
+
+  cleanupPlayers(players, ['targetPlayerId', 'guesserPlayerId', 'secretCharacterId', 'answers', 'guess']);
 
   await markGameAsComplete(gameId);
 
@@ -240,7 +281,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -259,6 +300,9 @@ export const prepareGameOverPhase = async (
         winners,
         characters: state.characters,
         questionsHistory: state.questionsHistory,
+        turnOrder: state.turnOrder,
+        guessingTriggeredBy: state.guessingTriggeredBy,
+        achievements,
       },
     },
   };

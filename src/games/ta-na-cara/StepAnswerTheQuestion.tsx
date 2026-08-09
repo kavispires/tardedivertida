@@ -3,9 +3,10 @@ import { useMemo } from 'react';
 import { Flex, Space } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-import type { SuspectCardData as SuspectCardType, TestimonyQuestionCardData } from 'types/tdr';
+import type { SuspectCardData as SuspectCardType, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
+import { useMock } from '@hooks/useMock';
 // Components
 import {
   AnswerKindaNoButton,
@@ -20,6 +21,7 @@ import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
 // Internal
 import type { SubmitAnswerPayload } from './utils/types';
+import { mockAnswer } from './utils/mock';
 import { CharactersBoard } from './components/CharactersBoard';
 import { QuestionHistory } from './components/QuestionHistory';
 
@@ -28,10 +30,10 @@ type StepAnswerTheQuestionProps = {
   user: GamePlayer;
   turnOrder: TurnOrder;
   characters: SuspectCardType[];
-  questionsHistory: TestimonyQuestionCardData[];
+  questionsHistory: TestimonyStatementCardData[];
   activePlayer: GamePlayer;
   onSubmitAnswer: (payload: SubmitAnswerPayload) => void;
-  currentQuestion: TestimonyQuestionCardData;
+  currentQuestion: TestimonyStatementCardData;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepAnswerTheQuestion({
@@ -51,9 +53,9 @@ export function StepAnswerTheQuestion({
   });
 
   // Dev Mock
-  // useMock(() => {
-  //   onSubmitAnswer({ answer: mockAnswer() });
-  // });
+  useMock(() => {
+    onSubmitAnswer({ answer: mockAnswer() });
+  });
 
   const playerSuspect = useMemo(() => {
     return characters.find((character) => character.id === user.secretCharacterId);
@@ -84,7 +86,7 @@ export function StepAnswerTheQuestion({
           level={3}
           className="answer-board__question"
         >
-          {currentQuestion.question}
+          {currentQuestion.statement}
         </Title>
 
         <Flex gap={6}>
@@ -116,6 +118,7 @@ export function StepAnswerTheQuestion({
         <QuestionHistory
           players={players}
           questionsHistory={questionsHistory}
+          user={user}
         />
       </Space>
     </Step>

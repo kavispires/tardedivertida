@@ -29,6 +29,10 @@ type PhaseContainerProps = {
    * If the container should take the full screen
    */
   fullScreen?: boolean;
+  /**
+   * Indicates if the container has all the required data
+   */
+  hasRequiredData?: boolean;
 };
 
 /**
@@ -40,12 +44,17 @@ export function PhaseContainer({
   children,
   className = '',
   fullScreen = false,
+  hasRequiredData = true,
 }: PhaseContainerProps) {
   const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
 
   if (allowedPhase !== phase) {
     return <LoadingPage />;
+  }
+
+  if (!hasRequiredData) {
+    return <LoadingPage message={{ pt: 'Aguardando dados necessários', en: 'Waiting for required data' }} />;
   }
 
   if (!phase) {

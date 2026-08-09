@@ -1,0 +1,124 @@
+// Types
+import type { AchievementReference } from 'types/game';
+
+export const achievementsReference: AchievementReference = {
+  MOST_EXTREME_NEGATIVE_ANSWERS: {
+    id: 'MOST_EXTREME_NEGATIVE_ANSWERS',
+    doc: 'Number of times the player answered extremely negatively to a question',
+    icon: 'thumbs-down',
+    title: {
+      en: 'Most Extreme Negative Answers',
+      pt: 'Mais Certeza Que Não',
+    },
+    description: {
+      en: 'Answered "No" the most times',
+      pt: 'Respondeu "Não" mais vezes',
+    },
+  },
+  MOST_EXTREME_POSITIVE_ANSWERS: {
+    id: 'MOST_EXTREME_POSITIVE_ANSWERS',
+    doc: 'Number of times the player answered extremely positively to a question',
+    icon: 'thumbs-up',
+    title: {
+      en: 'Most Extreme Positive Answers',
+      pt: 'Mais Certeza Que Sim',
+    },
+    description: {
+      en: 'Answered "Yes" the most times',
+      pt: 'Respondeu "Sim" mais vezes',
+    },
+  },
+  FEWEST_MAYBE_ANSWERS: {
+    id: 'FEWEST_MAYBE_ANSWERS',
+    doc: 'Number of times the player answered neutrally to a question',
+    icon: 'target',
+    title: {
+      en: 'Most Convinced',
+      pt: 'Mais convicto',
+    },
+    description: {
+      en: 'Answered "Maybe" the fewest times',
+      pt: 'Respondeu "Talvez" menos vezes',
+    },
+  },
+  MOST_MAYBE_ANSWERS: {
+    id: 'MOST_MAYBE_ANSWERS',
+    doc: 'Number of times the player answered neutrally to a question',
+    icon: 'yin-yang',
+    title: {
+      en: 'Most Confused',
+      pt: 'Mais confuso',
+    },
+    description: {
+      en: 'Answered "Maybe" the most times',
+      pt: 'Respondeu "Talvez" mais vezes',
+    },
+  },
+  MOST_NEGATIVE_ANSWERS: {
+    id: 'MOST_NEGATIVE_ANSWERS',
+    doc: 'Number of times the player answered negatively to a question',
+    icon: 'minus',
+    title: {
+      en: 'Most Negative Answers',
+      pt: 'Personagem mais negativo',
+    },
+    description: {
+      en: 'Answered "No" or "Maybe No" the most times',
+      pt: 'Respondeu "Não" ou "Talvez Não" mais vezes',
+    },
+  },
+  MOST_ORIGINAL_QUESTIONS: {
+    id: 'MOST_ORIGINAL_QUESTIONS',
+    doc: 'Number of original questions the player asked',
+    icon: 'light-bulb',
+    title: {
+      en: 'Best Originality',
+      pt: 'Mais original',
+    },
+    description: {
+      en: 'Wrote questions the most',
+      pt: 'Escreveu perguntas mais vezes',
+    },
+  },
+  MOST_POSITIVE_ANSWERS: {
+    id: 'MOST_POSITIVE_ANSWERS',
+    doc: 'Number of times the player answered positively to a question',
+    icon: 'plus',
+    title: {
+      en: 'Most Positive Answers',
+      pt: 'Personagem mais positivo',
+    },
+    description: {
+      en: 'Answered "Yes" or "Maybe Yes" the most times',
+      pt: 'Respondeu "Sim" ou "Meio Sim" mais vezes',
+    },
+  },
+  MOST_SUGGESTED_QUESTIONS: {
+    id: 'MOST_SUGGESTED_QUESTIONS',
+    doc: 'Number of suggested questions the player asked',
+    icon: 'guide',
+    title: {
+      en: 'Most Practical',
+      pt: 'Mais prático',
+    },
+    description: {
+      en: 'Asked the most suggested questions',
+      pt: 'Fez mais perguntas sugeridas',
+    },
+  },
+  TRIGGERED_GUESSING: {
+    id: 'TRIGGERED_GUESSING',
+    doc: 'Player triggered the guessing phase',
+    icon: 'bell',
+    title: {
+      en: 'Most Confident',
+      pt: 'Mais confiante',
+    },
+    description: {
+      en: 'Was the player who triggered the guessing phase',
+      pt: 'Foi o jogador que iniciou a fase de adivinhação',
+    },
+  },
+};
+
+export default achievementsReference;

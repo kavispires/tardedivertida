@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "2.1.21",
+  "version": "2.2.1",
   "release": "stable",
   "releaseDate": "2023-03-25",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Tá Na Cara",
     "en": "What Vibe?"
@@ -31,34 +31,27 @@
     "en": [
       "Try to guess your opponent's character by asking subjective questions",
       "Each round one player must ask a question by writing a question about the vibe of the characters. No physical characteristics allowed.",
-      "Both players must then answer the question, so be wise on what you ask so it doesn't give yourself away!",
-      "After the first round, you can always forfeit asking to guess what your opponent's character is. If you guess right, you win!"
+      "All players must then answer the question, so be wise on what you ask so it doesn't give yourself away!",
+      "After the first round, you can always forfeit asking to guess what your opponent's character is. But everybody will also try to guess it. If you guess right, you win!"
     ],
     "pt": [
       "Tente adivinhar o personagem do seu oponente fazendo perguntas subjetivas",
       "Cada rodada um jogador deve fazer uma pergunta escrevendo uma questão sobre a vibe dos personagens. Nenhuma característica física é permitida.",
-      "Ambos os jogadores devem então responder a pergunta, então seja sábio no que você pergunta para não se entregar!",
-      "Após a primeira rodada, você pode sempre desistir de fazer uma pergunta para tentar adivinhar qual é o personagem do seu oponente. Se você adivinhar certo, você vence!"
+      "Todos os jogadores devem então responder a pergunta, então seja sábio no que você pergunta para não se entregar!",
+      "Após a primeira rodada, você pode sempre desistir de fazer uma pergunta para tentar adivinhar qual é o personagem do seu oponente. Mas todos também tentarão adivinhar. Se você acertar, você vence!"
     ]
   },
   "playerCount": {
-    "recommended": [
-      2
-    ],
+    "recommended": [2, 3, 4],
     "best": 2,
     "min": 2,
-    "max": 2
+    "max": 8
   },
   "duration": {
     "base": 10,
-    "perPlayer": 2
+    "perPlayer": 3
   },
-  "mechanics": [
-    "competitive",
-    "turn-based",
-    "guessing",
-    "writing"
-  ],
+  "mechanics": ["competitive", "turn-based", "guessing", "writing"],
   "features": [],
   "options": [
     {

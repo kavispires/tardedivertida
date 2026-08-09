@@ -20,33 +20,32 @@
       max-width: 250px;
     }
 
+    &--eliminated {
+      margin: 0;
+      padding: 0;
+
+      :global(.ant-image) {
+        display: block;
+      }
+
+      &:hover {
+        transform: scale(1);
+      }
+    }
+
     &--active {
       border: 3px solid gold;
       border-radius: get-unit(4);
     }
+
+    &--opponent {
+      border: 3px solid get-color("black");
+      border-radius: get-unit(4);
+    }
+
     &--disabled {
       cursor: not-allowed;
     }
-  }
-
-  &__suspect-name {
-    font-family: "Architects Daughter", cursive;
-    position: absolute;
-    bottom: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 1rem;
-    background: get-color("white", 5, 0.85);
-    padding: get-unit(1 2);
-    border-radius: var(--border-radius);
-  }
-
-  &__suspect-button {
-    cursor: pointer !important;
-    border: none;
-    background-color: transparent;
-    padding: 0;
   }
 
   &__culprit-badge {
@@ -64,24 +63,12 @@
     top: get-unit(1);
     left: get-unit(1);
   }
+}
 
-  &__deck-type {
-    position: absolute;
-    z-index: 15;
-    padding: get-unit(1 2);
-    // background: get-color("white", 5, 0.85);
-    border-radius: var(--border-radius);
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-
-    top: get-unit(1);
-    right: get-unit(1);
-  }
-
-  &__deck-type-icon {
-    background: get-color("white", 5, 0.5);
-  }
+.t-question-history {
+  background: get-color("white");
+  border-radius: var(--border-radius);
+  padding: get-unit(4);
 }
 
 .t-question-history-table {
@@ -89,7 +76,7 @@
   grid-template-columns: 2fr auto auto;
   background: get-color("white");
   border-radius: var(--border-radius);
-  padding: get-unit(4 8);
+  padding: get-unit(4);
   width: 320px;
   gap: get-unit(2);
   max-height: 70vh;
@@ -138,4 +125,11 @@
   background: get-color("white");
   border-radius: var(--border-radius);
   padding: get-unit(4 8 4 4);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: get-unit(2);
+  place-items: center;
 }

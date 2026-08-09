@@ -69,6 +69,7 @@ export function PhasePrompt({ state, players, user }: PhaseProps<PhasePromptStat
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TA_NA_CARA_PHASES.PROMPT}
+      hasRequiredData={!!user.targetPlayerId && !!user.guesserPlayerId}
     >
       <StepSwitcher
         step={step}

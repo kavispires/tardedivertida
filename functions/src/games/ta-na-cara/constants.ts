@@ -15,10 +15,10 @@ export const TA_NA_CARA_ACTIONS = {
 
 export const PLAYER_COUNTS = {
   MIN: 2,
-  MAX: 2,
+  MAX: 8,
 } as const;
 
-export const MAX_ROUNDS = 10;
+export const MAX_ROUNDS = 20;
 
 export const CHARACTER_COUNT = 24;
 

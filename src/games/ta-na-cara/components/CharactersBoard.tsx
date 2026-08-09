@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { type JSX, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { ClearOutlined, EyeOutlined } from '@ant-design/icons';
-import { Button, Flex, Image, Tooltip } from 'antd';
+import { Button, Flex, Image } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { SuspectCardData } from 'types/tdr';
@@ -10,19 +10,12 @@ import type { SuspectCardData } from 'types/tdr';
 import { useCache } from '@hooks/useCache';
 import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
-import { getAvatarColorById } from '@utils/helpers';
-// Icons
-import { AgeAdultIcon } from '@icons/AgeAdultIcon';
-import { AgeChildIcon } from '@icons/AgeChildIcon';
-import { AgeTeenIcon } from '@icons/AgeTeenIcon';
-import { PetIcon } from '@icons/PetIcon';
-import { QuestionIcon } from '@icons/QuestionIcon';
+import { getBackgroundAvatarColorById } from '@utils/helpers';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { Icon } from '@components/general/Icon';
+import { SuspectCard } from '@components/cards/SuspectCard';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { ImageCard } from '@components/image-cards/ImageCard';
-import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 
@@ -37,7 +30,7 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
   const { cache, setCache, resetCache } = useCache<{ eliminated: Dictionary<boolean> }>({
     eliminated: {},
   });
-  const [isPeaking, setIsPeaking] = useState(false);
+  const [isPeeking, setIsPeeking] = useState(false);
 
   const cardWidth = useCardWidth(10, {
     gap: 16,
@@ -81,7 +74,7 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
           {characters.map((suspect) => {
             // const wasEliminated = eliminatedSuspects.includes(suspect.id);
             const isUserCharacter = user.secretCharacterId === suspect.id;
-            const wasEliminated = !isPeaking && !!cache.eliminated[suspect.id];
+            const wasEliminated = !isPeeking && !!cache.eliminated[suspect.id];
             const isOpponentCharacter = opponentsCharactersIds[suspect.id];
             return (
               <div
@@ -92,23 +85,34 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
                   onClick={() => onToggleCharacterElimination(suspect.id)}
                   hoverType="tint"
                 >
-                  {!wasEliminated && <DeckType deck={suspect.deck} />}
-                  <ImageCard
-                    cardId={wasEliminated ? 'us-00' : suspect.id}
-                    preview={false}
-                    className={clsx(
-                      't-characters-table__suspect-image',
-                      isUserCharacter && 't-characters-table__suspect-image--active',
-                    )}
-                    cardWidth={cardWidth}
-                  />
+                  {wasEliminated ? (
+                    <ImageCard
+                      cardId="us-00"
+                      preview={false}
+                      className={clsx(
+                        't-characters-table__suspect-image',
+                        't-characters-table__suspect-image--eliminated',
+                        isUserCharacter && 't-characters-table__suspect-image--active',
+                      )}
+                      cardWidth={cardWidth}
+                    />
+                  ) : (
+                    <SuspectCard
+                      suspect={suspect}
+                      width={cardWidth}
+                      preview={false}
+                      className={clsx(
+                        't-characters-table__suspect-image',
+                        isUserCharacter && 't-characters-table__suspect-image--active',
+                      )}
+                      visibleContent={{ deckIcon: true }}
+                    />
+                  )}
+
                   {isUserCharacter && (
                     <span
                       className="t-characters-table__culprit-badge"
-                      style={{
-                        backgroundColor: getAvatarColorById(players[user.id].avatarId),
-                        color: `contrast-color(${getAvatarColorById(players[user.id].avatarId)})`,
-                      }}
+                      style={getBackgroundAvatarColorById(user.avatarId)}
                     >
                       <Translate
                         pt="Você"
@@ -119,23 +123,16 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
                   {isOpponentCharacter && (
                     <span
                       className="t-characters-table__culprit-badge"
-                      style={{
-                        backgroundColor: getAvatarColorById(
-                          players[opponentsCharactersIds[suspect.id]].avatarId,
-                        ),
-                        color: `contrast-color(${getAvatarColorById(players[user.id].avatarId)})`,
-                      }}
+                      style={getBackgroundAvatarColorById(
+                        players[opponentsCharactersIds[suspect.id]].avatarId,
+                      )}
                     >
                       <PlayerAvatarName
                         player={players[opponentsCharactersIds[suspect.id]]}
                         size="small"
+                        contrastText
                       />
                     </span>
-                  )}
-                  {!wasEliminated && (
-                    <div className="t-characters-table__suspect-name">
-                      <DualTranslate>{suspect.name}</DualTranslate>
-                    </div>
                   )}
                 </TransparentButton>
               </div>
@@ -166,8 +163,8 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
 
         <Button
           icon={<EyeOutlined />}
-          onMouseEnter={() => setIsPeaking(true)}
-          onMouseLeave={() => setIsPeaking(false)}
+          onMouseEnter={() => setIsPeeking(true)}
+          onMouseLeave={() => setIsPeeking(false)}
         >
           <Translate
             en="Peek all characters"
@@ -176,45 +173,5 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
         </Button>
       </Flex>
     </Flex>
-  );
-}
-
-function DeckType({ deck }: Pick<SuspectCardData, 'deck'>) {
-  const iconMap: Dictionary<{ icon: JSX.Element; title: DualLanguageValue }> = {
-    kid: {
-      icon: <AgeChildIcon />,
-      title: { pt: 'Criança', en: 'Child' },
-    },
-    teen: {
-      icon: <AgeTeenIcon />,
-      title: { pt: 'Adolescente', en: 'Teen' },
-    },
-    adult: {
-      icon: <AgeAdultIcon />,
-      title: { pt: 'Adulto', en: 'Adult' },
-    },
-    pet: {
-      icon: <PetIcon />,
-      title: { pt: 'Animal de estimação', en: 'Pet' },
-    },
-    other: {
-      icon: <QuestionIcon />,
-      title: { pt: 'Outro', en: 'Other' },
-    },
-  };
-
-  const entry = iconMap?.[deck ?? 'other'] ?? iconMap.other;
-
-  return (
-    <span className="t-characters-table__deck-type">
-      <Tooltip title={<DualTranslate>{entry.title}</DualTranslate>}>
-        <Icon
-          size="small"
-          icon={entry.icon}
-          shape="circle"
-          className="t-characters-table__deck-type-icon"
-        />
-      </Tooltip>
-    </span>
   );
 }

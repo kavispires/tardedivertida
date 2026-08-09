@@ -69,7 +69,7 @@ export function ItemEntry({ itemEntry, className, size, looseItem }: ItemEntryPr
         <SuspectCard
           suspect={itemEntry.value}
           width={100 * sizeMultiplier}
-          hideName
+          visibleContent={false}
         />
       </div>
     );

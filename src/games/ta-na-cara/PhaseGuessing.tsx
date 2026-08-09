@@ -46,6 +46,7 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
     <PhaseContainer
       phase={state?.phase}
       allowedPhase={TA_NA_CARA_PHASES.GUESSING}
+      hasRequiredData={!!user.targetPlayerId && !!user.guesserPlayerId}
     >
       <StepSwitcher
         step={step}

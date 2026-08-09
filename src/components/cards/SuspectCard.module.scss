@@ -35,3 +35,10 @@
   justify-content: center;
   line-height: 1;
 }
+
+.suspectDeckIcon {
+  display: block;
+  background: get-color("white", 5, 0.5);
+  padding: 0.3em;
+  border-radius: 50%;
+}
