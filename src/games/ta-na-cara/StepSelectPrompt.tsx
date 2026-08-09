@@ -148,7 +148,7 @@ export function StepSelectPrompt({
           />
         </Popover>
 
-        {questionsHistory.length >= Object.keys(players).length && (
+        {questionsHistory.length >= 2 && (
           <Popconfirm
             title={
               <Translate
@@ -190,6 +190,7 @@ export function StepSelectPrompt({
           characters={characters}
           players={players}
           user={user}
+          questionsHistory={questionsHistory}
         />
         <QuestionHistory
           players={players}

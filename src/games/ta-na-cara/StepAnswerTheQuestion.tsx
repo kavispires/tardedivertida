@@ -114,6 +114,7 @@ export function StepAnswerTheQuestion({
           characters={characters}
           players={players}
           user={user}
+          questionsHistory={questionsHistory}
         />
         <QuestionHistory
           players={players}

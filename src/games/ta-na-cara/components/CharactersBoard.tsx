@@ -2,12 +2,11 @@ import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { ClearOutlined, EyeOutlined } from '@ant-design/icons';
-import { Button, Flex, Image } from 'antd';
+import { Button, Flex, Image, Tooltip } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-import type { SuspectCardData } from 'types/tdr';
+import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
 // Hooks
-import { useCache } from '@hooks/useCache';
 import { useCardWidth } from '@hooks/useCardWidth';
 // Utils
 import { getBackgroundAvatarColorById } from '@utils/helpers';
@@ -18,18 +17,35 @@ import { Popconfirm } from '@components/general/Popconfirm';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+// Internal
+import { useCharacterEliminationCache } from '../utils/useCharacterEliminationCache';
 
 type CharactersBoardProps = {
   characters: SuspectCardData[];
   players: GamePlayers;
   user: GamePlayer;
   revealCharacters?: boolean;
+  questionsHistory: TestimonyStatementCardData[];
+  disableEliminations?: boolean;
 };
 
-export function CharactersBoard({ characters, players, user, revealCharacters }: CharactersBoardProps) {
-  const { cache, setCache, resetCache } = useCache<{ eliminated: Dictionary<boolean> }>({
-    eliminated: {},
-  });
+export function CharactersBoard({
+  characters,
+  players,
+  user,
+  revealCharacters,
+  questionsHistory,
+  disableEliminations,
+}: CharactersBoardProps) {
+  const {
+    eliminations,
+    generalEliminations,
+    showInferredEliminations,
+    onUpdateElimination,
+    resetCache,
+    activeStatementId,
+  } = useCharacterEliminationCache();
+
   const [isPeeking, setIsPeeking] = useState(false);
 
   const cardWidth = useCardWidth(10, {
@@ -38,17 +54,6 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
     maxWidth: 100,
     margin: 16,
   });
-
-  const onToggleCharacterElimination = (characterId: UID) => {
-    const isAlreadyEliminated = cache.eliminated[characterId];
-    const newEliminated = { ...cache.eliminated };
-    if (isAlreadyEliminated) {
-      delete newEliminated[characterId];
-    } else {
-      newEliminated[characterId] = true;
-    }
-    setCache((prev) => ({ ...prev, eliminated: newEliminated }));
-  };
 
   const opponentsCharactersIds = useMemo(() => {
     if (!revealCharacters) return {};
@@ -64,6 +69,12 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
       );
   }, [players, user.id, revealCharacters]);
 
+  const activeStatementTooltip = useMemo(() => {
+    if (!activeStatementId) return '';
+    const activeStatement = questionsHistory.find((question) => question.id === activeStatementId);
+    return activeStatement ? `${activeStatement.statement}?` : '';
+  }, [activeStatementId, questionsHistory]);
+
   return (
     <Flex
       vertical
@@ -74,67 +85,75 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
           {characters.map((suspect) => {
             // const wasEliminated = eliminatedSuspects.includes(suspect.id);
             const isUserCharacter = user.secretCharacterId === suspect.id;
-            const wasEliminated = !isPeeking && !!cache.eliminated[suspect.id];
+            const wasEliminated =
+              !isPeeking && (!!eliminations[suspect.id] || !!generalEliminations[suspect.id]);
             const isOpponentCharacter = opponentsCharactersIds[suspect.id];
+            const canEliminate =
+              !isUserCharacter &&
+              !showInferredEliminations &&
+              !disableEliminations &&
+              questionsHistory.length > 0;
             return (
               <div
                 className="t-characters-table__suspect"
                 key={suspect.id}
               >
-                <TransparentButton
-                  onClick={() => onToggleCharacterElimination(suspect.id)}
-                  hoverType="tint"
-                >
-                  {wasEliminated ? (
-                    <ImageCard
-                      cardId="us-00"
-                      preview={false}
-                      className={clsx(
-                        't-characters-table__suspect-image',
-                        't-characters-table__suspect-image--eliminated',
-                        isUserCharacter && 't-characters-table__suspect-image--active',
-                      )}
-                      cardWidth={cardWidth}
-                    />
-                  ) : (
-                    <SuspectCard
-                      suspect={suspect}
-                      width={cardWidth}
-                      preview={false}
-                      className={clsx(
-                        't-characters-table__suspect-image',
-                        isUserCharacter && 't-characters-table__suspect-image--active',
-                      )}
-                      visibleContent={{ deckIcon: true }}
-                    />
-                  )}
+                <Tooltip title={activeStatementTooltip}>
+                  <TransparentButton
+                    onClick={canEliminate ? () => onUpdateElimination(suspect.id) : undefined}
+                    hoverType="tint"
+                  >
+                    {wasEliminated ? (
+                      <ImageCard
+                        cardId="us-00"
+                        preview={false}
+                        className={clsx(
+                          't-characters-table__suspect-image',
+                          't-characters-table__suspect-image--eliminated',
+                          isUserCharacter && 't-characters-table__suspect-image--active',
+                        )}
+                        cardWidth={cardWidth}
+                      />
+                    ) : (
+                      <SuspectCard
+                        suspect={suspect}
+                        width={cardWidth}
+                        preview={false}
+                        className={clsx(
+                          't-characters-table__suspect-image',
+                          isUserCharacter && 't-characters-table__suspect-image--active',
+                        )}
+                        visibleContent={{ deckIcon: true }}
+                      />
+                    )}
 
-                  {isUserCharacter && (
-                    <span
-                      className="t-characters-table__culprit-badge"
-                      style={getBackgroundAvatarColorById(user.avatarId)}
-                    >
-                      <Translate
-                        pt="Você"
-                        en="You"
-                      />
-                    </span>
-                  )}
-                  {isOpponentCharacter && (
-                    <span
-                      className="t-characters-table__culprit-badge"
-                      style={getBackgroundAvatarColorById(
-                        players[opponentsCharactersIds[suspect.id]].avatarId,
-                      )}
-                    >
-                      <PlayerAvatarName
-                        player={players[opponentsCharactersIds[suspect.id]]}
-                        size="small"
-                        contrastText
-                      />
-                    </span>
-                  )}
-                </TransparentButton>
+                    {isUserCharacter && (
+                      <span
+                        className="t-characters-table__culprit-badge"
+                        style={getBackgroundAvatarColorById(user.avatarId)}
+                      >
+                        <Translate
+                          pt="Você"
+                          en="You"
+                        />
+                      </span>
+                    )}
+                    {isOpponentCharacter && (
+                      <span
+                        className="t-characters-table__culprit-badge"
+                        style={getBackgroundAvatarColorById(
+                          players[opponentsCharactersIds[suspect.id]].avatarId,
+                        )}
+                      >
+                        <PlayerAvatarName
+                          player={players[opponentsCharactersIds[suspect.id]]}
+                          size="small"
+                          contrastText
+                        />
+                      </span>
+                    )}
+                  </TransparentButton>
+                </Tooltip>
               </div>
             );
           })}
@@ -153,10 +172,13 @@ export function CharactersBoard({ characters, players, user, revealCharacters }:
           }
           onConfirm={resetCache}
         >
-          <Button icon={<ClearOutlined />}>
+          <Button
+            icon={<ClearOutlined />}
+            disabled={disableEliminations}
+          >
             <Translate
-              pt="Limpar eliminações"
-              en="Clear eliminations"
+              pt="Limpar tudo"
+              en="Clear all"
             />
           </Button>
         </Popconfirm>

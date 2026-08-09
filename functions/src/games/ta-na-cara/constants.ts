@@ -18,7 +18,7 @@ export const PLAYER_COUNTS = {
   MAX: 8,
 } as const;
 
-export const MAX_ROUNDS = 20;
+export const MAX_ROUNDS = 15;
 
 export const CHARACTER_COUNT = 24;
 

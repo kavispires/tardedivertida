@@ -151,6 +151,8 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
           players={players}
           user={user}
           revealCharacters
+          questionsHistory={state.questionsHistory}
+          disableEliminations
         />
         <QuestionHistory
           players={players}

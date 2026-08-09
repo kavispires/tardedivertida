@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 // Types
 import type { PhaseProps } from 'types/game';
@@ -18,6 +19,7 @@ import { ViewIf } from '@components/views/ViewIf';
 import { useOnSubmitPromptAPIRequest, useOnTriggerGuessingAPIRequest } from './utils/api-requests';
 import { TA_NA_CARA_PHASES } from './utils/constants';
 import type { PhasePromptState } from './utils/types';
+import { useCharacterEliminationCache } from './utils/useCharacterEliminationCache';
 import { StepSelectPrompt } from './StepSelectPrompt';
 import { StepWaitingForPrompt } from './StepWaitingForPrompt';
 
@@ -27,6 +29,14 @@ export function PhasePrompt({ state, players, user }: PhaseProps<PhasePromptStat
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
   const onTriggerGuessing = useOnTriggerGuessingAPIRequest(setStep);
+  const { resetCache } = useCharacterEliminationCache();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no functions as dependencies
+  useEffect(() => {
+    if (state.questionsHistory.length === 0) {
+      resetCache();
+    }
+  }, [state.questionsHistory]);
 
   const announcement = (
     <PhaseAnnouncement

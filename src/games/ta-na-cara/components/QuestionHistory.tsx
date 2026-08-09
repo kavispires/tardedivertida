@@ -1,7 +1,8 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 // Ant Design Resources
-import { Flex, Switch } from 'antd';
+import { Flex, Switch, Radio } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 import type { TestimonyStatementCardData } from 'types/tdr';
@@ -16,6 +17,9 @@ import { BoxXIcon } from '@icons/BoxXIcon';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+// Internal
+import { useCharacterEliminationCache } from '../utils/useCharacterEliminationCache';
+import { EliminationRulesModal } from './EliminationRulesModal';
 
 type QuestionHistoryProps = {
   user: GamePlayer;
@@ -25,6 +29,9 @@ type QuestionHistoryProps = {
 
 export function QuestionHistory({ players, questionsHistory, user }: QuestionHistoryProps) {
   const [showAll, setShowAll] = useState(false);
+  const { activeStatementId, onSelectStatement, onToggleInferredEliminations, showInferredEliminations } =
+    useCharacterEliminationCache();
+
   const { targetPlayerId } = user;
   const sortedPlayersList = useSortedPlayers(players, {
     prioritizePlayerId: [targetPlayerId ?? user.id, user.id],
@@ -42,30 +49,41 @@ export function QuestionHistory({ players, questionsHistory, user }: QuestionHis
       gap={8}
     >
       {sortedPlayersList.length > 2 && (
-        <Flex
-          justify="center"
-          align="center"
-          gap={8}
-          className="t-question-history"
-        >
-          <Translate
-            en="Show all players"
-            pt="Mostrar todos os jogadores"
-          />
-          <Switch
-            checked={showAll}
-            onChange={() => setShowAll(!showAll)}
-          />
-        </Flex>
+        <>
+          <EliminationRulesModal />
+          <Flex
+            justify="center"
+            align="center"
+            gap={8}
+            className="t-question-history"
+          >
+            <Translate
+              en="Show Intersection of Eliminations"
+              pt="Mostrar Intersecção de Eliminações"
+            />
+            <Switch
+              checked={showInferredEliminations}
+              onChange={() => onToggleInferredEliminations()}
+            />
+          </Flex>
+        </>
       )}
       <div
         className="t-question-history-table"
-        style={{ gridTemplateColumns: `2fr repeat(${list.length}, auto)` }}
+        style={{ gridTemplateColumns: ` auto 2fr repeat(${list.length}, auto)` }}
       >
         <div className="t-question-history-table__header">
+          <Radio
+            checked={activeStatementId === null}
+            onChange={() => onSelectStatement(null)}
+            disabled={showInferredEliminations}
+          />
+        </div>
+
+        <div className="t-question-history-table__header">
           <Translate
-            en="Questions"
-            pt="Perguntas"
+            en="All Questions"
+            pt="Todas as Perguntas"
           />
         </div>
         {list.map((player) => (
@@ -81,7 +99,20 @@ export function QuestionHistory({ players, questionsHistory, user }: QuestionHis
 
         {questionsHistory.map((question, index) => (
           <Fragment key={`question-history-${question.id}-${index}`}>
-            <div className="t-question-history-table__question">{question.statement}</div>
+            <div className="t-question-history-table__header">
+              <Radio
+                checked={activeStatementId === question.id}
+                onChange={() => onSelectStatement(question.id)}
+                disabled={showInferredEliminations}
+              />
+            </div>
+            <div
+              className={clsx('t-question-history-table__question', {
+                't-question-history-table__question--active': activeStatementId === question.id,
+              })}
+            >
+              {question.statement}
+            </div>
             {list.map((player) => {
               const answer = player.answers?.[index];
               switch (answer) {
@@ -92,7 +123,7 @@ export function QuestionHistory({ players, questionsHistory, user }: QuestionHis
                       vertical
                       justify="center"
                       align="center"
-                      className="t-question-history-table__answer"
+                      className={'t-question-history-table__answer'}
                     >
                       <Icon
                         icon={<BoxXIcon />}
@@ -188,6 +219,23 @@ export function QuestionHistory({ players, questionsHistory, user }: QuestionHis
           </Fragment>
         ))}
       </div>
+      {sortedPlayersList.length > 2 && (
+        <Flex
+          justify="center"
+          align="center"
+          gap={8}
+          className="t-question-history"
+        >
+          <Translate
+            en="Show all players"
+            pt="Mostrar todos os jogadores"
+          />
+          <Switch
+            checked={showAll}
+            onChange={() => setShowAll(!showAll)}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 }

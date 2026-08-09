@@ -69,6 +69,7 @@
   background: get-color("white");
   border-radius: var(--border-radius);
   padding: get-unit(4);
+  max-width: 384px;
 }
 
 .t-question-history-table {
@@ -77,7 +78,7 @@
   background: get-color("white");
   border-radius: var(--border-radius);
   padding: get-unit(4);
-  width: 320px;
+  max-width: 384px;
   gap: get-unit(2);
   max-height: 70vh;
   overflow-y: auto;
@@ -92,6 +93,13 @@
     display: flex;
     align-items: center;
     padding: get-unit(2 4);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    &--active {
+      border: 2px solid get-color("yellow", 6);
+      background-color: get-color("yellow", 5);
+    }
   }
 
   &__answer {

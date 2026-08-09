@@ -82,6 +82,7 @@ export function StepWaitingForPrompt({
           characters={characters}
           players={players}
           user={user}
+          questionsHistory={questionsHistory}
         />
         <QuestionHistory
           players={players}

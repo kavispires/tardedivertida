@@ -4,8 +4,6 @@ import { Select } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
-// Hooks
-import { useCache } from '@hooks/useCache';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { DualTranslate } from '@components/language/DualTranslate';
@@ -16,6 +14,7 @@ import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitGuessPayload } from './utils/types';
+import { useCharacterEliminationCache } from './utils/useCharacterEliminationCache';
 import { CharactersBoard } from './components/CharactersBoard';
 import { QuestionHistory } from './components/QuestionHistory';
 
@@ -37,18 +36,16 @@ export function StepGuessPlayer({
   onSubmitGuess,
 }: StepGuessPlayerProps) {
   const [guess, setGuess] = useState<UID | null>(null);
-  const { cache } = useCache<{ eliminated: Dictionary<boolean> }>({
-    eliminated: {},
-  });
+  const { inferredEliminations } = useCharacterEliminationCache();
 
   const nonEliminatedCharacterOptions = useMemo(() => {
     return characters
-      .filter((character) => !cache.eliminated[character.id] && character.id !== user.secretCharacterId)
+      .filter((character) => !inferredEliminations[character.id] && character.id !== user.secretCharacterId)
       .map((character) => ({
         label: <DualTranslate>{character.name}</DualTranslate>,
         value: character.id,
       }));
-  }, [characters, cache.eliminated, user.secretCharacterId]);
+  }, [characters, inferredEliminations, user.secretCharacterId]);
 
   // useMock(() => {
   //   onSubmitGuess({ characterId: mockGuess(charactersDict, user, targetedPlayer.id) });
@@ -104,6 +101,7 @@ export function StepGuessPlayer({
           characters={characters}
           players={players}
           user={user}
+          questionsHistory={questionsHistory}
         />
         <QuestionHistory
           players={players}
