@@ -36,6 +36,12 @@ export type Status = {
   updatedAt: number;
 };
 
+export type LieDetectorStatus = {
+  totalWiresDeclared: number;
+  neededWires: number;
+  someoneIsLying: boolean;
+};
+
 export interface BombaRelogioStore extends DefaultStore<unknown> {
   deck: TimeBombCard[];
 }

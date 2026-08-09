@@ -1,10 +1,10 @@
 import { sortBy } from 'lodash';
-import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 // Hooks
+import { useMock } from '@hooks/useMock';
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Utils
 import { getAvatarColorById } from '@utils/helpers';
@@ -18,8 +18,15 @@ import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
-import type { DataCounts, Status, SubmitTargetPayload, UpdateTargetPlayerPayload } from './utils/types';
+import type {
+  DataCounts,
+  LieDetectorStatus,
+  Status,
+  SubmitTargetPayload,
+  UpdateTargetPlayerPayload,
+} from './utils/types';
 import { CARD_IMAGE_NAMES, OUTCOME } from './utils/constants';
+import { mockTargetPlayerForExamination } from './utils/mock';
 import { RoleCard } from './components/RoleCard';
 import { Tips } from './components/RulesBlobs';
 import { RedWireHighlight } from './components/Highlights';
@@ -37,6 +44,7 @@ type StepDeclarationProps = {
   isTheCurrentInvestigator: boolean;
   onUpdateTargetPlayerId: (payload: UpdateTargetPlayerPayload) => void;
   onTargetCard: (payload: SubmitTargetPayload) => void;
+  lieDetectorStatus: LieDetectorStatus;
 } & Pick<StepProps, 'announcement'>;
 
 export function StepExamine({
@@ -44,7 +52,6 @@ export function StepExamine({
   user,
   players,
   dataCounts,
-  // nextInvestigator,
   onUpdateTargetPlayerId,
   onTargetCard,
   isTheCurrentInvestigator,
@@ -52,20 +59,27 @@ export function StepExamine({
   currentTargetPlayerId,
   currentInvestigator,
   round,
+  lieDetectorStatus,
 }: StepDeclarationProps) {
-  const neededWires = dataCounts.wires - (status.revealed ?? 0);
-
-  const roundCuts = sortBy(Object.keys(status.cut)).map((key) => status.cut[key]);
-
   const sortedPlayers = useSortedPlayers(players);
+
+  const neededWires = dataCounts.wires - (status.revealed ?? 0);
+  const roundCuts = sortBy(Object.keys(status.cut)).map((key) => status.cut[key]);
   const targetPlayer = currentTargetPlayerId ? players[currentTargetPlayerId] : null;
 
-  const totalWiresDeclared = useMemo(() => {
-    return sortedPlayers.reduce((acc, player) => {
-      return acc + (player.declarations.wires ?? 0);
-    }, 0);
-  }, [sortedPlayers]);
-  const someoneIsLying = neededWires !== totalWiresDeclared;
+  useMock(() => {
+    if (isTheCurrentInvestigator && !currentTargetPlayerId && status.outcome === OUTCOME.CONTINUE) {
+      const mockTargetPlayerId = mockTargetPlayerForExamination(
+        user.id,
+        user.role,
+        dataCounts,
+        status,
+        players,
+        round,
+      );
+      onUpdateTargetPlayerId({ targetPlayerId: mockTargetPlayerId });
+    }
+  });
 
   return (
     <Step
@@ -91,12 +105,13 @@ export function StepExamine({
               <br />
               Se você é um terrorista, você quer enganar os agentes para que eles revelem a bomba ou não
               encontrar os fios vermelhos até o jogo acabar.
-              {someoneIsLying && (
+              {lieDetectorStatus.someoneIsLying && (
                 <>
                   <br />
                   <strong style={{ color: 'red' }}>
-                    Alguém está mentindo nessa rodada! Faltam {neededWires} fios vermelhos e{' '}
-                    {totalWiresDeclared} foram declarados.
+                    Alguém está mentindo nessa rodada! Quando começamos, faltavam{' '}
+                    {lieDetectorStatus.neededWires} fios vermelhos e {lieDetectorStatus.totalWiresDeclared}{' '}
+                    foram declarados.
                   </strong>
                 </>
               )}
@@ -109,6 +124,15 @@ export function StepExamine({
               <br />
               If you are a terrorist, you want to mislead the agents so they reveal the bomb or fail to find
               the red wires until the game ends.
+              {lieDetectorStatus.someoneIsLying && (
+                <>
+                  <br />
+                  <strong style={{ color: 'red' }}>
+                    Someone is lying this round! When we started, there were {lieDetectorStatus.neededWires}{' '}
+                    red wires and {lieDetectorStatus.totalWiresDeclared} were declared.
+                  </strong>
+                </>
+              )}
             </>
           }
         />
@@ -179,6 +203,18 @@ export function StepExamine({
         />
       )}
 
+      {isTheCurrentInvestigator &&
+        targetPlayer &&
+        status.outcome === OUTCOME.CONTINUE &&
+        targetPlayer.hand.length > 0 && (
+          <MockAutoTargetCardSelection
+            key={targetPlayer.id}
+            targetPlayer={targetPlayer}
+            status={status}
+            onTargetCard={onTargetCard}
+          />
+        )}
+
       <Tips>
         <RoleCard
           role={user?.role}
@@ -187,6 +223,42 @@ export function StepExamine({
       </Tips>
     </Step>
   );
+}
+
+type MockAutoTargetCardSelectionProps = {
+  targetPlayer: GamePlayer;
+  status: Status;
+  onTargetCard: (payload: SubmitTargetPayload) => void;
+};
+
+function MockAutoTargetCardSelection({
+  targetPlayer,
+  status,
+  onTargetCard,
+}: MockAutoTargetCardSelectionProps) {
+  useMock(() => {
+    const randomCardIndex = Math.floor(Math.random() * targetPlayer.hand.length);
+    const randomCard = targetPlayer.hand[randomCardIndex];
+    const activePlayerIdsArray = sortBy(Object.keys(status.activePlayerIds)).map(
+      (key) => status.activePlayerIds[key],
+    );
+    const playerIndex = activePlayerIdsArray.indexOf(null);
+
+    if (playerIndex === -1) {
+      return;
+    }
+
+    onTargetCard({
+      target: {
+        playerId: targetPlayer.id,
+        playerIndex,
+        targetCard: randomCard,
+        targetCardIndex: Object.keys(status.cut).length,
+      },
+    });
+  });
+
+  return null;
 }
 
 function getTitle(

@@ -145,7 +145,7 @@ export function PlayerTableEntry({
           <Button
             shape="round"
             onClick={() => onSelect(player.id)}
-            disabled={disabled}
+            disabled={disabled || currentTargetPlayerId === player.id}
           >
             <Translate
               pt="Selecionar"

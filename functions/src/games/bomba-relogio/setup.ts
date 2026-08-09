@@ -1,6 +1,13 @@
 import { shuffle, sortBy } from 'lodash';
 // Types
-import type { DataCounts, FirebaseStateData, FirebaseStoreData, Status, TimeBombCard } from './types';
+import type {
+  DataCounts,
+  FirebaseStateData,
+  FirebaseStoreData,
+  LieDetectorStatus,
+  Status,
+  TimeBombCard,
+} from './types';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
 import { BOMBA_RELOGIO_PHASES, CARD_TYPES, DATA_COUNTS, OUTCOME, ROLES, TOTAL_ROUNDS } from './constants';
@@ -168,6 +175,44 @@ export const prepareExaminationPhase = async (
     throw new Error('No active player found for examination phase.');
   }
 
+  const lieDetectorStatus: LieDetectorStatus = {
+    totalWiresDeclared: state.lieDetectorStatus?.totalWiresDeclared ?? 0,
+    neededWires: state.lieDetectorStatus?.neededWires ?? targetCuts,
+    someoneIsLying: state.lieDetectorStatus?.someoneIsLying ?? false,
+  };
+
+  // On the first ever turn of the round...
+  if (cutsLength === 0) {
+    // Calculate total wires declared and check if someone is lying
+    lieDetectorStatus.totalWiresDeclared = Object.values(players).reduce((acc, player) => {
+      return acc + (player.declarations.wires ?? 0);
+    }, 0);
+    lieDetectorStatus.neededWires = targetCuts;
+    lieDetectorStatus.someoneIsLying = lieDetectorStatus.totalWiresDeclared !== lieDetectorStatus.neededWires;
+
+    // Verify lie achievements
+    getListOfPlayers(players).forEach((player) => {
+      const declaredWires = player.declarations.wires ?? 0;
+      const declaredBomb = !!player.declarations.bombs;
+      const actualWires = player.hand.filter((card) => card.type === CARD_TYPES.WIRE).length;
+      const actualBomb = player.hand.some((card) => card.type === CARD_TYPES.BOMB);
+
+      increaseAchievement(
+        store.achievements,
+        player.id,
+        'lies',
+        declaredWires !== actualWires || declaredBomb !== actualBomb ? 1 : 0,
+      );
+      increaseAchievement(store.achievements, player.id, 'omissions', declaredWires < actualWires ? 1 : 0);
+      increaseAchievement(
+        store.achievements,
+        player.id,
+        'overDeclarations',
+        declaredWires > actualWires ? 1 : 0,
+      );
+    });
+  }
+
   // Remove the card from the player
   if (cutsLength > 0 && targetPlayerId) {
     const latestCut = Object.values(status.cut).at(-1);
@@ -211,8 +256,6 @@ export const prepareExaminationPhase = async (
 
   // OUTCOME CHANGE: IF THE FINAL WIRE WAS CUT
   if (status.revealed >= targetCuts) {
-    // Do achievements and shit
-
     // Update state
     status.outcome = OUTCOME.AGENTS_WIN;
 
@@ -245,11 +288,15 @@ export const prepareExaminationPhase = async (
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: BOMBA_RELOGIO_PHASES.EXAMINATION,
         players,
         status,
         currentTargetPlayerId: firestoreValueUtils.deleteValue(),
+        lieDetectorStatus,
       },
     },
   };
@@ -268,11 +315,16 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
-  let winners = Object.values(players).filter((player) => player.role === ROLES.AGENT);
   const status: Status = state.status;
-  if (status.outcome === OUTCOME.TERRORISTS_WIN || status.outcome === OUTCOME.BOMB) {
-    winners = Object.values(players).filter((player) => player.role === ROLES.TERRORIST);
+  // This scenario only happens when the game is forced to end before all 4 rounds are completed. In this case, the terrorists win by default.
+  if (status.outcome === OUTCOME.CONTINUE) {
+    status.outcome = OUTCOME.TERRORISTS_WIN;
   }
+
+  const winners =
+    status.outcome === OUTCOME.TERRORISTS_WIN || status.outcome === OUTCOME.BOMB
+      ? Object.values(players).filter((player) => player.role === ROLES.TERRORIST)
+      : Object.values(players).filter((player) => player.role === ROLES.AGENT);
 
   const achievements = calculateAchievements(store.achievements);
 

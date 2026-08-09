@@ -110,6 +110,24 @@ export type Status = {
 };
 
 /**
+ * State of lies in the beginning of the examination phase, tracking declared wires and whether someone is lying
+ */
+export type LieDetectorStatus = {
+  /**
+   * Total number of wires declared by players during the declaration phase
+   */
+  totalWiresDeclared: number;
+  /**
+   * Number of wires needed to win the game
+   */
+  neededWires: number;
+  /**
+   * Indicates if any player is lying about their declaration (based on declarations)
+   */
+  someoneIsLying: boolean;
+};
+
+/**
  * Payload for submitting a declaration
  */
 export type SubmitDeclarationPayload = {
@@ -169,6 +187,10 @@ export type PhaseExaminationState = {
    * ID of the player being targeted for card cutting (removed when phase starts)
    */
   currentTargetPlayerId?: UID;
+  /**
+   * State of lies in the beginning of the examination phase, tracking declared wires and whether someone is lying
+   */
+  lieDetectorStatus: LieDetectorStatus;
 };
 
 /**

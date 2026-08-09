@@ -39,6 +39,19 @@ const achievements = achievementBuilder(GAME_KEYS.BOMBA_RELOGIO)
     most: 'MOST_BLANKS',
     least: 'FEWEST_BLANKS',
   })
+  .counter('lies', {
+    doc: 'Times lying about wires or bomb',
+    most: 'BEST_LIAR',
+    least: 'MOST_HONEST',
+  })
+  .counter('omissions', {
+    doc: 'Times declared less than it had in hand (omissions)',
+    most: 'MOST_OMISSIVE',
+  })
+  .counter('overDeclarations', {
+    doc: 'Times declared more than it had in hand (over declarations)',
+    most: 'MOST_OVER_DECLARATIVE',
+  })
   .build();
 
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

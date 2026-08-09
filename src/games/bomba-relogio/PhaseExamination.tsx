@@ -68,6 +68,7 @@ export function PhaseExamination({ players, state, user }: PhaseProps<PhaseExami
           currentTargetPlayerId={state.currentTargetPlayerId}
           isTheCurrentInvestigator={isTheCurrentInvestigator}
           currentInvestigator={currentInvestigator}
+          lieDetectorStatus={state.lieDetectorStatus}
         />
         <div>?</div>
       </StepSwitcher>

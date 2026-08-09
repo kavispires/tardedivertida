@@ -20,8 +20,8 @@ export const achievementsReference: AchievementReference = {
     doc: 'Blank cards drawn',
     icon: 'eye',
     title: {
-      en: 'Attentive Player',
-      pt: 'Jogador Atento',
+      en: 'Most Attentive',
+      pt: 'Mais Atento',
     },
     description: {
       en: 'Revealed the lowest number of blank cards',
@@ -39,6 +39,58 @@ export const achievementsReference: AchievementReference = {
     description: {
       en: 'Revealed the highest number of blank cards',
       pt: 'Revelou o maior número de cartas em branco',
+    },
+  },
+  BEST_LIAR: {
+    id: 'BEST_LIAR',
+    doc: 'Times lying about wires or bomb',
+    icon: 'lie',
+    title: {
+      en: 'Master of Bluff',
+      pt: 'Mestre do Blefe',
+    },
+    description: {
+      en: 'Pulled off the most convincing bluffs at the table',
+      pt: 'Mandou os blefes mais convincentes da mesa',
+    },
+  },
+  MOST_HONEST: {
+    id: 'MOST_HONEST',
+    doc: 'Times lying about wires or bomb',
+    icon: 'check-mark',
+    title: {
+      en: 'Truth Guardian',
+      pt: 'Guardião da Verdade',
+    },
+    description: {
+      en: 'Kept it real and stayed the most truthful player',
+      pt: 'Jogou no modo sincerão e foi o mais honesto da partida',
+    },
+  },
+  MOST_OMISSIVE: {
+    id: 'MOST_OMISSIVE',
+    doc: 'Times declared less than it had in hand (omissions)',
+    icon: 'arrow-down',
+    title: {
+      en: 'Stealth Strategist',
+      pt: 'Estrategista Furtivo',
+    },
+    description: {
+      en: 'Mastered low-profile declarations to keep everyone guessing',
+      pt: 'Dominou declarações discretas para deixar todo mundo na dúvida',
+    },
+  },
+  MOST_OVER_DECLARATIVE: {
+    id: 'MOST_OVER_DECLARATIVE',
+    doc: 'Times declared more than it had in hand (over declarations)',
+    icon: 'arrow-up',
+    title: {
+      en: 'Hype Conductor',
+      pt: 'Maestro do Hype',
+    },
+    description: {
+      en: 'Raised the stakes with bold declarations all game long',
+      pt: 'Subiu a aposta com declarações ousadas o jogo inteiro',
     },
   },
   LEAST_TRUSTED: {

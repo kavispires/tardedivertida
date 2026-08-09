@@ -22,11 +22,14 @@ export const determineNextPhase = (currentPhase: string, round: Round, status: S
   const order = [SETUP, DECLARATION, EXAMINATION, GAME_OVER];
 
   if (currentPhase === EXAMINATION) {
-    if (round.forceLastRound || (round.current > 0 && round.current === round.total)) {
-      return GAME_OVER;
+    if (status.outcome === OUTCOME.END) {
+      if (round.forceLastRound || (round.current > 0 && round.current === round.total)) {
+        return GAME_OVER;
+      }
+      return DECLARATION;
     }
 
-    return status.outcome === OUTCOME.END ? DECLARATION : EXAMINATION;
+    return EXAMINATION;
   }
 
   return nextPhaseDelegator(currentPhase, order);
