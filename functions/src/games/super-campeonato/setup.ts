@@ -214,7 +214,7 @@ export const prepareBetsPhase = async (
       ? getMostVotedChallenge(players, state.challenges)
       : state.challenge;
 
-  removePropertiesFromPlayers(players, ['votes', 'challengeId']);
+  removePropertiesFromPlayers(players, ['votes', 'challengeId', 'bets']);
 
   // Save
   return {
