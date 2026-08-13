@@ -588,3 +588,74 @@ import type { GameState } from 'types/game';
 import { Translate } from 'components/language/Translate';
 import type { GameState } from '@types/game';
 ```
+
+Here is a set of rules formatted specifically for `.github/copilot-instructions.md`, `.cursorrules`, or your AI assistant's custom instructions.
+
+This will train Copilot/Cursor on exactly how and when to use the new component and how to correctly migrate old code.
+
+---
+
+```markdown
+# Translation Guidelines: Translate vs TranslateTemplate
+
+When writing or refactoring bilingual UI text in this application, follow these strict rules for using `Translate` and `TranslateTemplate`.
+
+## 1. When to use which
+- Use `Translate` ONLY for pure, simple strings with no React nodes (e.g., `<Translate en="Play" pt="Jogar" />`).
+- Use `TranslateTemplate` WHENEVER a translated string contains React components, formatting tags, or complex variables.
+
+## 2. TranslateTemplate Syntax Rules
+- **Variables**: Use `{key}` in the string and pass a ReactNode in the `values` object.
+- **Wrapper Tags**: Use `<key>text</key>` in the string and pass a function `(text) => ReactNode` in the `values` object.
+- **Self-Closing Tags**: Use `<key/>` in the string and pass a ReactNode in the `values` object.
+- **Defaults**: Do NOT pass `br`, `strong`, `b`, `i`, or `u` in `values`. They are globally supported out of the box (e.g., `<br/>`, `<strong>text</strong>`).
+- **Do not nest components**: Keep strings flat. Handle pluralization by passing the fully computed string/component as a variable.
+
+## 3. Conversions (Before & After)
+
+### Example A: Standard Variable Insertion
+**Bad (Old Pattern):**
+```tsx
+<Translate en={<><PlayerAvatarName player="{activePlayer}"/> chose <TargetHighlight><PlayerAvatarName player="{targets[0]}"/></TargetHighlight></>}
+  pt={<><PlayerAvatarName player="{activePlayer}"/> escolheu <TargetHighlight><PlayerAvatarName player="{targets[0]}"/></TargetHighlight></>}
+/>
+
+```
+
+**Good (New Pattern):**
+
+```tsx
+<TranslateTemplate en="{player} chose {target}" player="{activePlayer}" player: pt="{player} escolheu {target}" values={{
+    player: <PlayerAvatarName player={activePlayer}/>,
+    target: (
+      <TargetHighlight>
+        <PlayerAvatarName player={targets[0]}/>
+      </TargetHighlight>
+    ),
+  }}
+/>
+
+```
+
+### Example B: Wrapper Components
+
+**Bad (Old Pattern):**
+
+```tsx
+<Translate en={<>Each answer earns <PointsHighlight>points</PointsHighlight>.</>}
+  pt={<>Cada resposta ganha <PointsHighlight>pontos</PointsHighlight>.</>}
+/>
+
+```
+
+**Good (New Pattern):**
+
+```tsx
+<TranslateTemplate en="Each answer earns <highlight">points</highlight>."
+  pt="Cada resposta ganha <highlight>pontos</highlight>."
+  values={{
+    highlight: (text) => <PointsHighlight>{text}</PointsHighlight>,
+  }}
+/>
+
+```
