@@ -6,6 +6,7 @@ import type { PhaseProps } from 'types/game';
 import { useGameId } from '@hooks/useGameId';
 import { useGameMeta } from '@hooks/useGameMeta';
 import { useLanguage } from '@hooks/useLanguage';
+import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
 import { PHASES } from '@utils/phases';
 // Icons
@@ -13,6 +14,7 @@ import { AnimatedGearIcon } from '@icons/AnimatedGearIcon';
 // Components
 import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
+import { useGameAppearance, useGameInfoContext } from '@components/session/GameInfoContext';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { PhaseContainer } from './PhaseContainer';
@@ -48,6 +50,9 @@ export function PhaseSetup({ state }: PhaseProps) {
   const queryClient = useQueryClient();
   const { dataUpdatedAt } = useGameMeta();
   const { translate } = useLanguage();
+  const info = useGameInfoContext();
+  const gameAppearance = useGameAppearance();
+  const baseUrl = useTDBaseUrl('assets');
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: only the id matters
@@ -65,6 +70,14 @@ export function PhaseSetup({ state }: PhaseProps) {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Preloads background image
+  useEffect(() => {
+    if (gameAppearance.imageBackground && baseUrl && info.gameName) {
+      const img = new Image();
+      img.src = `${baseUrl}/backgrounds/${info.gameName}.jpg`; // Replace with the actual path to your background image
+    }
+  }, [gameAppearance.imageBackground, baseUrl, info.gameName]);
 
   return (
     <PhaseContainer
