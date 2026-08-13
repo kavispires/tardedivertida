@@ -6,6 +6,7 @@
   overflow: hidden;
   max-width: max-content;
   border-radius: inherit; // Inherit border radius if the child has one
+  cursor: pointer;
 }
 
 .previewMask {
@@ -19,12 +20,12 @@
   gap: 8px;
   opacity: 0;
   transition: opacity 0.3s ease;
-  cursor: pointer;
   z-index: 10;
+  pointer-events: none;
+}
 
-  &:hover {
-    opacity: 1;
-  }
+.previewWrapper:hover .previewMask {
+  opacity: 1;
 }
 
 .previewText {

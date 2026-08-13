@@ -67,7 +67,14 @@ export const ComponentPreview: React.FC<ComponentPreviewProps> = ({
     };
   }, [aspectRatio, open, windowWidth, windowHeight]);
 
-  const mergedPreviewProps = { ...calculatedProps, ...previewProps };
+  const mergedPreviewProps = {
+    ...calculatedProps,
+    ...previewProps,
+    /**
+     * Indicates whether the preview modal is currently open
+     */
+    isPreviewOpen: open,
+  };
 
   // Prioritize `previewContent` if provided, otherwise clone the child with the larger calculated width
   const contentForModal = previewContent
