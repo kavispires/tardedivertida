@@ -7,6 +7,7 @@ import { useStep } from '@hooks/useStep';
 import { PaintingIcon } from '@icons/PaintingIcon';
 // Components
 import { Translate } from '@components/language/Translate';
+import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
@@ -20,7 +21,7 @@ import { DrawInstruction } from './components/TextBlobs';
 import { LevelInstruction } from './components/LevelInstruction';
 import { StepDraw } from './StepDraw';
 
-function PhaseDraw({ players, state, user }: PhaseProps<PhaseDrawState>) {
+export function PhaseDraw({ players, state, user }: PhaseProps<PhaseDrawState>) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
 
@@ -76,7 +77,7 @@ function PhaseDraw({ players, state, user }: PhaseProps<PhaseDrawState>) {
           unskippable
         >
           <Surface contained>
-            <Translate
+            <TranslateTemplate
               pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}
               en={`This round uses cards of level ${state?.level || '?'}`}
             />
@@ -98,5 +99,3 @@ function PhaseDraw({ players, state, user }: PhaseProps<PhaseDrawState>) {
     </PhaseContainer>
   );
 }
-
-export default PhaseDraw;

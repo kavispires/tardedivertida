@@ -8,10 +8,10 @@ import { PhaseError } from '@components/phases/PhaseError';
 import { Session } from '@components/session/Session';
 // Internal
 import { ARTE_RUIM_PHASES } from './utils/constants';
-import PhaseDraw from './PhaseDraw';
-import PhaseEvaluation from './PhaseEvaluation';
-import PhaseGallery from './PhaseGallery';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseDraw } from './PhaseDraw';
+import { PhaseEvaluation } from './PhaseEvaluation';
+import { PhaseGallery } from './PhaseGallery';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
 

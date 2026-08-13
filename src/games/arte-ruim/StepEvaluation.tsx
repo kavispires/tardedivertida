@@ -17,6 +17,7 @@ import { getEntryId, shuffle } from '@utils/helpers';
 import { SendButton } from '@components/buttons/SendButton';
 import { CanvasResizer } from '@components/canvas/CanvasResizer';
 import { Translate } from '@components/language/Translate';
+import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -139,29 +140,9 @@ export function StepEvaluation({
       </StepTitle>
 
       <RuleInstruction type="action">
-        <Translate
-          pt={
-            <>
-              Faça pares com as cartas e os desenhos.
-              <br />
-              Basta clicar em um desenho e depois em sua carta correspondente, ou vice-versa.
-              <br />
-              Para refazer, basta re-selecionar o desenho ou carta normalmente.
-              <br />
-              Quando estiver pronto, clique em <b>Enviar sua avaliação</b>.
-            </>
-          }
-          en={
-            <>
-              Match the cards and drawings.
-              <br />
-              Just click on a drawing and then on its corresponding card, or vice versa.
-              <br />
-              To redo, just reselect the drawing or card normally.
-              <br />
-              When you're ready, click <b>Send evaluation</b>.
-            </>
-          }
+        <TranslateTemplate
+          pt="Faça pares com as cartas e os desenhos. Basta clicar em um desenho e depois em sua carta correspondente, ou vice-versa. Para refazer, basta re-selecionar o desenho ou carta normalmente. Quando estiver pronto, clique em <strong>Enviar sua avaliação</strong>."
+          en="Match the cards and drawings. Just click on a drawing and then on its corresponding card, or vice-versa. To redo, just reselect the drawing or card normally. When you're ready, click <strong>Send evaluation</strong>."
         />
       </RuleInstruction>
 

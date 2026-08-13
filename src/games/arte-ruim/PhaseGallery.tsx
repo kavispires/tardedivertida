@@ -17,7 +17,7 @@ import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-function PhaseGallery({ state, players, meta }: PhaseProps<PhaseGalleryState>) {
+export function PhaseGallery({ state, players, meta }: PhaseProps<PhaseGalleryState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const slideShowConfig = useSlideShow({
     length: state.gallery.length,
@@ -82,5 +82,3 @@ function PhaseGallery({ state, players, meta }: PhaseProps<PhaseGalleryState>) {
     </PhaseContainer>
   );
 }
-
-export default PhaseGallery;

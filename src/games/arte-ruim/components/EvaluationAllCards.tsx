@@ -35,8 +35,10 @@ export function EvaluationAllCards({
         const isUsed = Object.values(votes).includes(cardEntryId);
 
         return (
-          // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
+          // biome-ignore lint/a11y/useFocusableInteractive: on purpose
+          // biome-ignore lint/a11y/useSemanticElements: on purpose
           <li
+            // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: on purpose
             role="button"
             key={cardEntryId}
             className={clsx(

@@ -1,6 +1,7 @@
 // Components
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
+import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
 
 type LevelInstructionProps = {
@@ -27,14 +28,16 @@ export function LevelInstruction({ level, levelType }: LevelInstructionProps) {
   if (level === 4) {
     return (
       <Surface contained>
-        <Translate
-          pt={
-            <>
-              Rodada Especial:{' '}
-              <DualTranslate>{getLevelText[levelType] ?? { pt: 'Surpresa', en: 'Surprise' }}</DualTranslate>
-            </>
-          }
-          en={<>Special Round: {}</>}
+        <TranslateTemplate
+          en="Special round: {levelType}"
+          pt="Rodada especial: {levelType}"
+          values={{
+            levelType: (
+              <>
+                <DualTranslate>{getLevelText[levelType] ?? { pt: 'Surpresa', en: 'Surprise' }}</DualTranslate>
+              </>
+            ),
+          }}
         />
       </Surface>
     );

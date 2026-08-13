@@ -18,7 +18,7 @@ import { EvaluationRules } from './components/TextBlobs';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { StepEvaluation } from './StepEvaluation';
 
-function EvaluationPhase({ players, state, user }: PhaseProps<PhaseEvaluationState>) {
+export function PhaseEvaluation({ players, state, user }: PhaseProps<PhaseEvaluationState>) {
   const { step, setStep } = useStep(0);
 
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
@@ -80,5 +80,3 @@ function EvaluationPhase({ players, state, user }: PhaseProps<PhaseEvaluationSta
     </PhaseContainer>
   );
 }
-
-export default EvaluationPhase;

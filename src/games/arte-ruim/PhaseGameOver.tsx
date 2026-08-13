@@ -10,7 +10,7 @@ import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 import { achievementsReference } from './utils/achievements';
 import { FinalGallery } from './components/FinalGallery';
 
-function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps) {
   return (
     <GameOverWrapper
       state={state}
@@ -36,5 +36,3 @@ function PhaseGameOver({ state, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;
