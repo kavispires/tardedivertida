@@ -462,7 +462,7 @@ type Props = {
 ### Error Handling
 ```typescript
 // Use PageError component for full-page errors
-import { PageError } from 'components/errors/PageError';
+import { PageError } from '@components/errors/PageError';
 
 // Console errors (with biome ignore)
 // biome-ignore lint/suspicious/noConsole: debugging purposes
@@ -557,3 +557,34 @@ const handleClick = useCallback(
 
 **Key Patterns to Follow:**
 This codebase has strong, consistent patterns. When in doubt, find a similar existing component and match its structure exactly. The import order, file organization, and component structure are not arbitrary—they enable optimal bundle splitting and tree-shaking.
+
+# General Libraries and Dependencies
+
+## motion
+
+When importing `motion` make sure to import from `motion/react`, not `framer-motion`. The `motion` library is a lightweight alternative to `framer-motion` and is preferred for performance reasons.
+
+```typescript
+// ✅ GOOD
+import { motion } from 'motion/react';
+
+// ❌ BAD
+import { motion } from 'framer-motion';
+```
+
+## antd
+
+Many components on 'antd' version 6+ have removed the prop `direction` and now uses `orientation` instead.
+
+## types imports
+
+Most imports from internal assets in this app are prefixed with `@`, however the types folder is not prefixed with `@` and should be imported directly from `types/` instead of `@types/`.
+
+```typescript
+// ✅ GOOD
+import { Translate } from '@components/language/Translate';
+import type { GameState } from 'types/game';
+// ❌ BAD
+import { Translate } from 'components/language/Translate';
+import type { GameState } from '@types/game';
+```
