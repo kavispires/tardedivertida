@@ -1,32 +1,49 @@
-import { Fragment, type ReactNode } from 'react';
+import { Fragment, memo, type ReactNode } from 'react';
 // Ant Design Resources
 import { App } from 'antd';
 // Hooks
 import { useLanguage } from '@hooks/useLanguage';
 
+type TranslateValue = ReactNode | ((content: string) => ReactNode);
+
 type TranslateTemplateProps = {
   /**
-   * The template string in English (e.g., "{player} chose {target}")
+   * The template string in English (e.g., "{player} chose <highlight>this</highlight>")
    */
   en: string;
   /**
-   * The template string in Portuguese (e.g., "{player} escolheu {target}")
+   * The template string in Portuguese (e.g., "{player} escolheu <highlight>isto</highlight>")
    */
   pt: string;
   /**
-   * A dictionary mapping the string placeholders to React nodes
+   * A dictionary mapping the string placeholders or tags to React nodes / functions
    */
-  values: Record<string, ReactNode>;
+  values?: Record<string, TranslateValue>;
   /**
    * Optional custom content that overrides the `pt` and `en` props
    */
   custom?: ReactNode;
 };
 
+// Default HTML tag handlers so you don't have to pass them every time
+const DEFAULT_VALUES: Record<string, TranslateValue> = {
+  br: <br />,
+  strong: (text: string) => <strong>{text}</strong>,
+  b: (text: string) => <b>{text}</b>,
+  i: (text: string) => <i>{text}</i>,
+  u: (text: string) => <u>{text}</u>,
+};
+
 /**
- * Parses a string with {placeholders} and replaces them with React components.
+ * Parses a string with {placeholders}, <wrapper>tags</wrapper>, and <selfClosing/> tags,
+ * replacing them with React components.
  */
-export function TranslateTemplate({ en, pt, values, custom }: TranslateTemplateProps) {
+export const TranslateTemplate = memo(function TranslateTemplate({
+  en,
+  pt,
+  values = {},
+  custom,
+}: TranslateTemplateProps) {
   const { message } = App.useApp();
   const { language } = useLanguage();
 
@@ -51,27 +68,51 @@ export function TranslateTemplate({ en, pt, values, custom }: TranslateTemplateP
   }
 
   const text = language === 'pt' ? pt : en;
+  const allValues = { ...DEFAULT_VALUES, ...values };
 
-  // Splits the text by {key} while keeping the key in the array.
-  // Example: "A {b} C" becomes ["A ", "b", " C"]
-  const parts = text.split(/\{(\w+)\}/g);
+  // Regex matches: <tag>content</tag> OR <tag/> OR {var}
+  const regex = /(<\w+>.*?<\/\w+>|<\w+\s*\/>|\{\w+\})/g;
+  const parts = text.split(regex);
 
   return (
     <span>
       {parts.map((part, index) => {
-        // Odd indices are the captured placeholder keys from the regex
-        if (index % 2 === 1) {
-          const value = values[part];
-          // If the key exists in our values object, render the ReactNode
-          if (value !== undefined) {
+        // 1. Check for wrapper tags: <key>content</key>
+        const tagMatch = part.match(/^<(\w+)>(.*?)<\/\1>$/);
+        if (tagMatch) {
+          const key = tagMatch[1];
+          const content = tagMatch[2];
+          const Wrapper = allValues[key];
+
+          if (typeof Wrapper === 'function') {
+            return <Fragment key={index}>{Wrapper(content)}</Fragment>;
+          }
+          return <Fragment key={index}>{part}</Fragment>;
+        }
+
+        // 2. Check for self-closing tags: <key/>
+        const selfClosingMatch = part.match(/^<(\w+)\s*\/>$/);
+        if (selfClosingMatch) {
+          const key = selfClosingMatch[1];
+          const value = allValues[key];
+          if (value !== undefined && typeof value !== 'function') {
             return <Fragment key={index}>{value}</Fragment>;
           }
-          // Fallback if you accidentally use a {key} that isn't in `values`
-          return <Fragment key={index}>{`{${part}}`}</Fragment>;
         }
-        // Even indices are just standard text chunks
+
+        // 3. Check for standard variables: {key}
+        const varMatch = part.match(/^\{(\w+)\}$/);
+        if (varMatch) {
+          const key = varMatch[1];
+          const value = allValues[key];
+          if (value !== undefined && typeof value !== 'function') {
+            return <Fragment key={index}>{value}</Fragment>;
+          }
+        }
+
+        // 4. Standard text or unmatched regex parts
         return <Fragment key={index}>{part}</Fragment>;
       })}
     </span>
   );
-}
+});

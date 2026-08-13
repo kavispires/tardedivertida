@@ -238,13 +238,13 @@ export const createPlayer = (
  */
 export const createDevPlayer = (players: Players = {}, id: UID = 'dev-player'): Player => {
   const names = [
-    { name: 'Nicolas', avatarId: '6' },
-    { name: 'Louis', avatarId: '13' },
-    { name: 'Thor', avatarId: '19' },
-    { name: 'Lola', avatarId: '25' },
-    { name: 'Juca', avatarId: '30' },
-    { name: 'Cici', avatarId: '36' },
-    { name: 'Tiana', avatarId: '44' },
+    { name: 'Nicolas', avatarIds: ['6', '5', '3'] },
+    { name: 'Louis', avatarIds: ['13', '11', '12'] },
+    { name: 'Thor', avatarIds: ['19', '17', '18'] },
+    { name: 'Lola', avatarIds: ['25', '26', '27'] },
+    { name: 'Juca', avatarIds: ['30', '29', '32'] },
+    { name: 'Cici', avatarIds: ['36', '37', '38'] },
+    { name: 'Tiana', avatarIds: ['44', '53', '42'] },
   ];
   const availableNames = names.filter((n) => !Object.values(players).some((p) => p.name === n.name));
 
@@ -252,7 +252,8 @@ export const createDevPlayer = (players: Players = {}, id: UID = 'dev-player'): 
     throw new Error('No available names for dev player');
   }
 
-  const { name, avatarId } = availableNames[Math.floor(Math.random() * availableNames.length)];
+  const { name, avatarIds } = availableNames[Math.floor(Math.random() * availableNames.length)];
+  const avatarId = avatarIds[Math.floor(Math.random() * avatarIds.length)];
 
   return {
     id,
