@@ -1,7 +1,10 @@
 // Icons
+import { CardIcon } from '@icons/CardIcon';
 import { DeckIcon } from '@icons/DeckIcon';
 import { NoIcon } from '@icons/NoIcon';
+import { RefreshIcon } from '@icons/RefreshIcon.tsx';
 import { SecurityIcon } from '@icons/SecurityIcon';
+import { TargetIcon } from '@icons/TargetIcon';
 import { TrashIcon } from '@icons/TrashIcon';
 import { VictoryCoinIcon } from '@icons/VictoryCoinIcon';
 // Components
@@ -25,4 +28,28 @@ export function EliminatedHighlight({ children }: HighlightProps) {
 
 export function ReservedHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<SecurityIcon />}>{children}</MetricHighlight>;
+}
+
+export function OngoingEffectsHighlight({ children }: HighlightProps) {
+  return <MetricHighlight icon={<RefreshIcon />}>{children}</MetricHighlight>;
+}
+
+export function TargetHighlight({ children }: HighlightProps) {
+  return <MetricHighlight icon={<TargetIcon />}>{children}</MetricHighlight>;
+}
+
+export function CardHighlight({ children, color }: HighlightProps & { color: string }) {
+  return (
+    <MetricHighlight
+      iconPlacement="before"
+      icon={
+        <CardIcon
+          style={{ rotate: '15deg' }}
+          color={color}
+        />
+      }
+    >
+      {children}
+    </MetricHighlight>
+  );
 }

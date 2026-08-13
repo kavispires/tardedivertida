@@ -143,8 +143,8 @@ function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boole
               size="small"
             />
             <Translate
-              pt="Jogando"
-              en="Playing"
+              pt="Ainda no jogo"
+              en="Still Playing"
             />
           </span>
         )}

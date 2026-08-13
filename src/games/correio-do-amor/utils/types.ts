@@ -61,10 +61,63 @@ export type FestaJuninaCard = {
   count: number;
 };
 
-export type SubmitCardPayload = {
+/**
+ * Current play information for the current turn
+ */
+export type Play = {
+  activeCardId: UID | null;
+  effectKeyword: string | null;
+  options?: (string | number)[];
+  selections?: PlaySelections;
+};
+
+/**
+ * Entry for ongoing effect that persist on a full turn or round
+ */
+export type OngoingEffect = {
+  affectedPlayerId: UID;
+  effectKeyword: string;
+  type: 'TURN' | 'ROUND';
+};
+
+/**
+ * Results of the current round, including ongoing effects and eliminated players
+ */
+export type ResolutionLog = {
   playedCardId: UID;
-  keptCardId: UID;
-  playedEffect: string;
+  actorPlayerId: UID;
+  targetPlayersIds: UID[];
+  ongoingEffect: OngoingEffect | null;
+  eliminatedPlayersIds: UID[];
+  resolutionKeyword: string | null;
+  effectInput?: UID | null;
+};
+
+export type SubmitCardPayload = {
+  payload: {
+    playedCardId: UID;
+    keptCardId: UID;
+    playedEffect: string;
+  };
+};
+
+export type PlaySelections = {
+  /**
+   * Primary selected target player for target-based effects
+   */
+  targetPlayerId?: UID | null;
+  /**
+   * Guess ID, the engine will handle how to use this:
+   * - verify rank for GUESS_RANK
+   * - verify name for GUESS_NAME
+   * - verify 'SWAP' for SWAP_ASIDE
+   * - verify the second target player id for FORCE_TRADE
+   */
+  effectInput?: UID;
+};
+
+export type SubmitSelectionsPayload = {
+  selections: PlaySelections;
 };
 
 export type PhaseCardPlayState = {
@@ -75,9 +128,45 @@ export type PhaseCardPlayState = {
   startingPlayerId: UID;
   discardPile: UID[];
   cardsSetAside: UID[];
-  activeEffectKeyword: string | null;
+  effectKeyword: string | null;
   activePlayerId: UID;
   nextDrawnCardId: UID;
   targetPlayersIds: UID[];
   outcome: string;
+  ongoingEffects: OngoingEffect[];
+};
+
+export type PhaseCardEffectsState = {
+  cardsDict: Dictionary<FestaJuninaCard>;
+  deck: UID[];
+  gameOrder: GameOrder;
+  turnOrder: GameOrder;
+  startingPlayerId: UID;
+  discardPile: UID[];
+  cardsSetAside: UID[];
+  effectKeyword: string | null;
+  activePlayerId: UID;
+  nextDrawnCardId: UID;
+  targetPlayersIds: UID[];
+  outcome: string;
+  ongoingEffects: OngoingEffect[];
+  play: Play;
+};
+
+export type PhaseCardResolutionState = {
+  cardsDict: Dictionary<FestaJuninaCard>;
+  deck: UID[];
+  gameOrder: GameOrder;
+  turnOrder: GameOrder;
+  startingPlayerId: UID;
+  discardPile: UID[];
+  cardsSetAside: UID[];
+  effectKeyword: string | null;
+  activePlayerId: UID;
+  nextDrawnCardId: UID;
+  targetPlayersIds: UID[];
+  outcome: string;
+  ongoingEffects: OngoingEffect[];
+  play: Play;
+  log: ResolutionLog[];
 };

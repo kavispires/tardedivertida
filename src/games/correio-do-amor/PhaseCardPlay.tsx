@@ -4,12 +4,13 @@ import type { PhaseProps } from 'types/game';
 import { useStep } from '@hooks/useStep';
 import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Icons
-import { TDIcon } from '@icons/TDIcon';
+import { SpeechBubbleHeartIcon } from '@icons/SpeechBubbleHeartIcon';
 // Components
 import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
@@ -27,20 +28,30 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<TDIcon />}
+      icon={<SpeechBubbleHeartIcon />}
       title={
         <Translate
-          pt="?"
-          en="?"
+          pt="Anarrië!"
+          en="Card Play!"
         />
       }
       currentRound={state?.round?.current}
       type="overlay"
+      duration={3}
     >
       <Surface>
         <Translate
-          pt={<>?</>}
-          en={<>?</>}
+          pt={
+            <>
+              É a vez de <PlayerAvatarName player={activePlayer} />!
+            </>
+          }
+          en={
+            <>
+              It's <PlayerAvatarName player={activePlayer} />
+              's turn!
+            </>
+          }
         />
       </Surface>
     </PhaseAnnouncement>
@@ -71,8 +82,6 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
         </RoundAnnouncement>
 
         {/* Step 1 */}
-
-        {/* Step 2 */}
         <StepPlay
           user={user}
           players={players}
@@ -83,7 +92,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
           startingPlayerId={state.startingPlayerId}
           discardPile={state.discardPile}
           cardsSetAside={state.cardsSetAside}
-          activeEffectKeyword={state.activeEffectKeyword}
+          effectKeyword={state.effectKeyword}
           activePlayerId={state.activePlayerId}
           nextDrawnCardId={state.nextDrawnCardId}
           targetPlayersIds={state.targetPlayersIds}
@@ -91,6 +100,8 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
           activePlayer={activePlayer}
           isTheActivePlayer={isTheActivePlayer}
           deck={state.deck}
+          ongoingEffects={state.ongoingEffects}
+          onSubmitCard={onSubmitCard}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -101,6 +101,53 @@ export type ResourceData = {
   advancedRotation: UID[];
 };
 
+export type PlaySelections = {
+  /**
+   * Primary selected target player for target-based effects
+   */
+  targetPlayerId?: UID | null;
+  /**
+   * The engine will handle how to use this:
+   * - verify rank for GUESS_RANK
+   * - verify name for GUESS_NAME
+   * - verify 'SWAP' for SWAP_ASIDE
+   * - verify the second target player id for FORCE_TRADE
+   */
+  effectInput?: UID;
+};
+
+/**
+ * Current play information for the current turn
+ */
+export type Play = {
+  activeCardId: UID | null;
+  effectKeyword: string | null;
+  options?: (string | number)[];
+  selections?: PlaySelections;
+};
+
+/**
+ * Entry for ongoing effect that persist on a full turn or round
+ */
+export type OngoingEffect = {
+  affectedPlayerId: UID;
+  effectKeyword: string;
+  type: 'TURN' | 'ROUND';
+};
+
+/**
+ * Results of the current round, including ongoing effects and eliminated players
+ */
+export type ResolutionLog = {
+  playedCardId: UID;
+  actorPlayerId: UID;
+  targetPlayersIds: UID[];
+  ongoingEffect: OngoingEffect | null;
+  eliminatedPlayersIds: UID[];
+  resolutionKeyword: string | null;
+  effectInput?: UID | null;
+};
+
 /**
  * Game store persisting across phases
  */

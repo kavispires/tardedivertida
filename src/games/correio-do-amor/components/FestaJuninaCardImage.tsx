@@ -13,9 +13,13 @@ type FestaJuninaCardImageProps = {
   card: FestaJuninaCard;
   cardId: UID;
   width: number;
+  /**
+   * Indicates whether the preview modal is currently open (passed by ComponentPreview)
+   */
+  isPreviewOpen?: boolean;
 };
 
-function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageProps) {
+function FestaJuninaCardImageBase({ card, cardId, width, isPreviewOpen = false }: FestaJuninaCardImageProps) {
   if (!card) {
     return null;
   }
@@ -29,13 +33,10 @@ function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageP
     >
       {/* Rank Badge */}
       <DynamicCard.Span
-        top="8.4%"
-        left="12.5%"
-        centerHorizontal
-        centerVertical
-        width="19cqw"
+        top="1.25%"
+        left="1.75%"
+        width="20cqw"
         aspectRatio="1/1"
-        padding="5%"
         borderWidth="2cqw"
         className="a-festa-junina-card__rank"
         style={{
@@ -47,6 +48,23 @@ function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageP
         {card.rank}
       </DynamicCard.Span>
 
+      {/* Flavor text */}
+      <DynamicCard.Span
+        top="20%"
+        left="50%"
+        centerHorizontal
+        width="90cqw"
+        aspectRatio="3/2"
+        className="a-festa-junina-card__flavor-text"
+      >
+        <Tooltip
+          title={<span className="a-festa-junina-card__flavor-text-tooltip">"{card.flavorText}"</span>}
+          color="white"
+        >
+          <span className="a-festa-junina-card__flavor-text-content"> </span>
+        </Tooltip>
+      </DynamicCard.Span>
+
       {/* Name Title */}
       <DynamicCard.Span
         top="67%"
@@ -54,41 +72,45 @@ function FestaJuninaCardImageBase({ card, cardId, width }: FestaJuninaCardImageP
         width="90cqw"
         className="a-festa-junina-card__name"
       >
-        <Tooltip title={card.name}>{card.name}</Tooltip>
+        <Tooltip title={isPreviewOpen ? undefined : card.name}>
+          <span>{card.name}</span>
+        </Tooltip>
       </DynamicCard.Span>
 
       {/* Effect Text */}
       <DynamicCard.Span
-        top="70%"
+        top="75%"
         left="50%"
         centerHorizontal
-        centerVertical
         width="90cqw"
         className="a-festa-junina-card__effect"
+        aspectRatio="3 / 1"
       >
-        <Tooltip title={card.effect}>{card.effect}</Tooltip>
+        <Tooltip title={isPreviewOpen ? undefined : card.effect}>
+          <span>{card.effect}</span>
+        </Tooltip>
       </DynamicCard.Span>
 
       {/* Count Indicator */}
       <DynamicCard.Span
-        top="86.4%"
-        left="50.0%"
-        centerHorizontal
-        centerVertical
-        width="90cqw"
+        top="96%"
+        left="50%"
+        width="5cqw"
         fontSize="4cqw"
-        aspectRatio="3 / 1"
+        centerHorizontal
         className="a-festa-junina-card__count"
       >
         <Tooltip
           title={
-            <Translate
-              en={`There are ${card.count} ${pluralize(card.count, 'copy', 'copies')} of this card`}
-              pt={`Existem ${card.count} ${pluralize(card.count, 'cópia', 'cópias')} desta carta`}
-            />
+            isPreviewOpen ? undefined : (
+              <Translate
+                en={`There are ${card.count} ${pluralize(card.count, 'copy', 'copies')} of this card`}
+                pt={`Existem ${card.count} ${pluralize(card.count, 'cópia', 'cópias')} desta carta`}
+              />
+            )
           }
         >
-          {card.count}×
+          <span>{card.count}×</span>
         </Tooltip>
       </DynamicCard.Span>
     </DynamicCard>

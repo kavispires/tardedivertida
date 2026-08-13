@@ -80,7 +80,12 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state.phase, state.round);
+  const nextPhase = determineNextPhase(
+    state.phase,
+    state.round,
+    state.outcome,
+    state.play?.effectKeyword ?? null,
+  );
 
   // LOBBY -> SETUP
   if (nextPhase === CORREIO_DO_AMOR_PHASES.SETUP) {

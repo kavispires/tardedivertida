@@ -3,7 +3,7 @@ import { shuffle } from 'lodash';
 import type { FestaJuninaCard } from './types';
 // Constants
 import { SEPARATOR } from '../../constants/general';
-import { CORREIO_DO_AMOR_PHASES, DECK_INFO_BY_PLAYER_COUNT } from './constants';
+import { CORREIO_DO_AMOR_PHASES, DECK_INFO_BY_PLAYER_COUNT, OUTCOME } from './constants';
 // Mechanics
 import { nextPhaseDelegator } from '../../mechanics/session';
 
@@ -12,24 +12,74 @@ import { nextPhaseDelegator } from '../../mechanics/session';
  * @param currentPhase - The current phase of the game
  * @param round - The round object containing current round information
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const { SETUP, CARD_PLAY, CARD_EFFECTS, CARD_RESOLUTION, GAME_OVER } = CORREIO_DO_AMOR_PHASES;
-  const order = [SETUP, CARD_PLAY, CARD_EFFECTS, CARD_RESOLUTION, GAME_OVER];
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  outcome: string,
+  effectKeyword?: string | null,
+): string => {
+  const { SETUP, CARD_PLAY, CARD_EFFECTS, CARD_RESOLUTION, ROUND_RANKING, GAME_OVER } =
+    CORREIO_DO_AMOR_PHASES;
+  const order = [SETUP, CARD_PLAY, CARD_EFFECTS, CARD_RESOLUTION, ROUND_RANKING, GAME_OVER];
 
   // Check if game should end after last round
-  if (currentPhase === CARD_RESOLUTION) {
-    return round.forceLastRound || (round.current > 0 && round.current === round.total)
+  if (currentPhase === ROUND_RANKING) {
+    return round.forceLastRound ||
+      (round.current > 0 && round.current === round.total) ||
+      outcome === OUTCOME.END_GAME
       ? GAME_OVER
       : CARD_PLAY;
+  }
+
+  if (currentPhase === CARD_RESOLUTION) {
+    return outcome === OUTCOME.END_ROUND ? ROUND_RANKING : CARD_PLAY;
+  }
+
+  // Define if we need to go to card effects phase based on active effect keyword
+  if (currentPhase === CARD_PLAY) {
+    switch (effectKeyword) {
+      case 'GUESS_RANK':
+      case 'GUESS_NAME':
+      case 'PEEK':
+      case 'SWAP_ASIDE':
+      case 'COMPARE_LOWER':
+      case 'COMPARE_HIGHER':
+      case 'DISCARD_REDRAW':
+      case 'TRADE_HANDS':
+      case 'FORCE_TRADE':
+        return CARD_EFFECTS;
+
+      default:
+        return CARD_RESOLUTION;
+    }
   }
 
   return nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Get the card key which is used as a key for cardsDict
+ * @returns The key of the card
+ */
+export const getCardKeyFromId = (cardId: string) => {
+  const [key] = cardId.split(SEPARATOR);
+  return key;
+};
+
+/**
+ * Builds unique card IDs for the round deck based on the original card IDs and their index in the deck
+ * @param deck - The array of card IDs for the round deck
+ * @returns An array of unique card IDs for the round deck
+ */
 const buildCardUniqueIds = (deck: UID[]) => {
   return deck.map((cardId, index) => `${cardId}${SEPARATOR}${index}`);
 };
 
+/**
+ * Updates the count of each card in the cardsDict based on the current round deck
+ * @param cardsDict - The dictionary of cards
+ * @param deck - The array of unique card IDs for the round deck
+ */
 const updateCardsCount = (cardsDict: Dictionary<FestaJuninaCard>, deck: UID[]) => {
   // Zero everything first
   Object.values(cardsDict).forEach((card) => {

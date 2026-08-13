@@ -9,6 +9,8 @@ import { Session } from '@components/session/Session';
 // Internal
 import { CORREIO_DO_AMOR_PHASES } from './utils/constants';
 import { PhaseCardPlay } from './PhaseCardPlay';
+import { PhaseCardResolution } from './PhaseCardResolution';
+import { PhaseCardEffects } from './PhaseCardEffects';
 // Sass
 import './utils/styles.scss';
 
@@ -17,9 +19,9 @@ function getActiveComponent(state: GameState) {
     case CORREIO_DO_AMOR_PHASES.CARD_PLAY:
       return PhaseCardPlay;
     case CORREIO_DO_AMOR_PHASES.CARD_EFFECTS:
-      return PhasePlaceholder;
+      return PhaseCardEffects;
     case CORREIO_DO_AMOR_PHASES.CARD_RESOLUTION:
-      return PhasePlaceholder;
+      return PhaseCardResolution;
     case CORREIO_DO_AMOR_PHASES.GAME_OVER:
       return PhasePlaceholder;
     default:
