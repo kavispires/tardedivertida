@@ -9,48 +9,6 @@ import { getRandomUniqueItem, stringRemoveAccents } from '../utils';
 // ===========================================================
 
 /**
- * Generates a player id based on their name by normalizing, removing accents, and lowercasing.
- * @param playerName - The name of the player to generate an ID from
- * @returns A unique identifier string prefixed with underscore
- */
-export function generatePlayerId(playerName: string): UID {
-  return `_${stringRemoveAccents(playerName).toLowerCase()}`;
-}
-
-/**
- * Creates a new player object with default properties.
- * @param id - The unique identifier for the player
- * @param name - The display name of the player
- * @param avatarId - The player's chosen avatar ID, will be reassigned if already in use
- * @param players - The existing players object to check for avatar conflicts
- * @param isGuest - Whether the player is a guest user
- * @returns A new player object with initialized properties
- */
-export const createPlayer = (
-  id: UID,
-  name: string,
-  avatarId: string,
-  players: Players = {},
-  isGuest?: boolean,
-): Player => {
-  const usedAvatars = Object.values(players).map((player) => player.avatarId);
-  const newAvatarId = usedAvatars.includes(avatarId)
-    ? getRandomUniqueItem(Object.keys(AVATARS_COLORS), usedAvatars)
-    : avatarId;
-
-  return {
-    id,
-    name,
-    avatarId: newAvatarId,
-    type: 'player',
-    ready: false,
-    score: 0,
-    updatedAt: Date.now(),
-    isGuest: Boolean(isGuest),
-  };
-};
-
-/**
  * Retrieves a list of player objects, optionally including bots and excluding specific players.
  * @param players - The players object to extract from
  * @param includeBots - Whether to include bot players in the list
@@ -225,6 +183,87 @@ export const cleanupPlayers = (players: Players, keepKeys: string[]) => {
   });
 
   return players;
+};
+
+// ===========================================================
+// PLAYER CREATION UTILITIES
+// ===========================================================
+
+/**
+ * Generates a player id based on their name by normalizing, removing accents, and lowercasing.
+ * @param playerName - The name of the player to generate an ID from
+ * @returns A unique identifier string prefixed with underscore
+ */
+export function generatePlayerId(playerName: string): UID {
+  return `_${stringRemoveAccents(playerName).toLowerCase()}`;
+}
+
+/**
+ * Creates a new player object with default properties.
+ * @param id - The unique identifier for the player
+ * @param name - The display name of the player
+ * @param avatarId - The player's chosen avatar ID, will be reassigned if already in use
+ * @param players - The existing players object to check for avatar conflicts
+ * @param isGuest - Whether the player is a guest user
+ * @returns A new player object with initialized properties
+ */
+export const createPlayer = (
+  id: UID,
+  name: string,
+  avatarId: string,
+  players: Players = {},
+  isGuest?: boolean,
+): Player => {
+  const usedAvatars = Object.values(players).map((player) => player.avatarId);
+  const newAvatarId = usedAvatars.includes(avatarId)
+    ? getRandomUniqueItem(Object.keys(AVATARS_COLORS), usedAvatars)
+    : avatarId;
+
+  return {
+    id,
+    name,
+    avatarId: newAvatarId,
+    type: 'player',
+    ready: false,
+    score: 0,
+    updatedAt: Date.now(),
+    isGuest: Boolean(isGuest),
+  };
+};
+
+/**
+ * Creates a new dev player object with default properties.
+ * @param players - The existing players object to check for avatar conflicts
+ * @returns A new player object with initialized properties
+ */
+export const createDevPlayer = (players: Players = {}, id: UID = 'dev-player'): Player => {
+  const names = [
+    { name: 'Nicolas', avatarId: '6' },
+    { name: 'Louis', avatarId: '13' },
+    { name: 'Thor', avatarId: '19' },
+    { name: 'Lola', avatarId: '25' },
+    { name: 'Juca', avatarId: '30' },
+    { name: 'Cici', avatarId: '36' },
+    { name: 'Tiana', avatarId: '44' },
+  ];
+  const availableNames = names.filter((n) => !Object.values(players).some((p) => p.name === n.name));
+
+  if (availableNames.length === 0) {
+    throw new Error('No available names for dev player');
+  }
+
+  const { name, avatarId } = availableNames[Math.floor(Math.random() * availableNames.length)];
+
+  return {
+    id,
+    name,
+    avatarId,
+    type: 'player',
+    ready: false,
+    score: 0,
+    updatedAt: Date.now(),
+    isGuest: false,
+  };
 };
 
 // ===========================================================

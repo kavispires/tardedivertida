@@ -1,4 +1,3 @@
-import { mockPlayerName } from '@mock/players';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
@@ -26,7 +25,7 @@ import styles from '../PhaseLobby.module.scss';
 
 const Title = motion.create(Typography.Title);
 
-const randomName = isDevEnv ? mockPlayerName() : undefined;
+const randomName = isDevEnv ? '<dev>' : undefined;
 
 type StepInfoProps = {
   /**
@@ -47,12 +46,12 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
   const info = useGameInfoContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
-    currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS),
+    (currentUser?.avatars?.[0] ?? isDevEnv) ? 'N' : getRandomItem(AVAILABLE_AVATAR_IDS),
   );
 
-  const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? '');
-  const [lsAvatarId] = useLocalStorage('username', '');
-  const [lsUsername] = useLocalStorage('avatarId', '');
+  const [name, setName] = useState(((currentUser?.names ?? []).at(-1) ?? isDevEnv) ? '<dev>' : '');
+  const [lsAvatarId] = useLocalStorage('avatarId', '');
+  const [lsUsername] = useLocalStorage('username', '');
 
   // Load username and avatar from localStorage if any
   // biome-ignore lint/correctness/useExhaustiveDependencies: This is only necessary if the account is a for a guest

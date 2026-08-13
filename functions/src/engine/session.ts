@@ -10,6 +10,7 @@ import {
 import { fetchGameMetaDoc, getStateReferences } from '../services/game-session';
 // Mechanics
 import {
+  createDevPlayer,
   createPlayer,
   generatePlayerId,
   getPlayerCount,
@@ -125,6 +126,20 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
 
   if (meta?.isLocked) {
     throwHttpsError(`This game ${gameId} is locked and cannot accept new players`, actionText);
+  }
+
+  // DEV MODE
+  if (playerName === '<dev>') {
+    try {
+      const newPlayer = createDevPlayer(players, auth?.uid ?? String(Date.now()));
+      const path = `players.${playerId}`;
+      await sessionRef.doc('state').update({
+        [path]: newPlayer,
+      });
+      return newPlayer;
+    } catch (error) {
+      throwHttpsError(error, actionText);
+    }
   }
 
   try {
