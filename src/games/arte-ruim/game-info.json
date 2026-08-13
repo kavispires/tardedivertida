@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "6.1.24",
+  "version": "6.1.25",
   "release": "stable",
   "releaseDate": "2021-05-05",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Arte Ruim Pra Dedéu",
     "en": "Questionable Art"
@@ -47,13 +47,7 @@
   },
   "playerCount": {
     "best": 6,
-    "recommended": [
-      4,
-      5,
-      6,
-      7,
-      8
-    ],
+    "recommended": [4, 5, 6, 7, 8],
     "min": 3,
     "max": 10
   },
@@ -61,17 +55,8 @@
     "base": 5,
     "perPlayer": 3
   },
-  "mechanics": [
-    "competitive",
-    "same-time",
-    "drawing",
-    "pairing",
-    "timed"
-  ],
-  "features": [
-    "mobile-friendly",
-    "achievements"
-  ],
+  "mechanics": ["competitive", "same-time", "drawing", "pairing", "timed"],
+  "features": ["mobile-friendly", "achievements"],
   "options": [
     {
       "key": "useAllCards",
@@ -124,7 +109,7 @@
     {
       "key": "randomize",
       "kind": "switch",
-      "label": "Experience",
+      "label": "Progression",
       "description": "Rounds will have random difficulty",
       "values": [
         {

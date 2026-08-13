@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "esquiadores",
-  "version": "2.0.23",
+  "version": "2.0.24",
   "release": "stable",
   "releaseDate": "2025-01-20",
   "available": false,

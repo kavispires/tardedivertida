@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "pique-pega",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "release": "planned",
   "releaseDate": "0000-00-00",
   "available": false,
