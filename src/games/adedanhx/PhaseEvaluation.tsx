@@ -56,19 +56,10 @@ export function PhaseEvaluation({ players, state, user }: PhaseProps<PhaseEvalua
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Vamos conferir cada resposta!
-              <br />
-            </>
-          }
-          en={
-            <>
-              Let's check each answer!
-              <br />
-            </>
-          }
+          pt="Vamos conferir cada resposta!"
+          en="Let's check each answer!"
         />
+        <br />
         <ScoringRule />
       </Surface>
     </PhaseAnnouncement>

@@ -16,6 +16,7 @@ import { StopIcon } from '@icons/StopIcon';
 import { DevButton } from '@components/debug/DevButton';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
@@ -110,33 +111,22 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
       )}
 
       <RuleInstruction type="rule">
-        <Translate
-          pt={
-            <>
-              <strong>Escreva</strong> na ordem que achar melhor e não esqueça de <strong>apertar</strong> do
-              botão de cadeado{' '}
+        <TranslateTemplate
+          en="Write the answers in the order you think is best and don't forget to press the {lockIcon} lock button after each answer. You have <time>minutes</time>!"
+          pt="Escreva na ordem que achar melhor e não esqueça de apertar o {lockIcon} botão de cadeado a cada resposta. Você tem <time>minutos</time>!"
+          values={{
+            lockIcon: (
               <Icon
                 size="small"
                 icon={<LockIcon />}
-              />{' '}
-              a cada resposta para que seu tempo seja gravado corretamente.
-              <br />
-              Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight>!
-            </>
-          }
-          en={
-            <>
-              <strong>Write</strong> tne the answers in the order you think is best and don't forget to{' '}
-              <strong>press</strong> the lock button{' '}
-              <Icon
-                size="small"
-                icon={<LockIcon />}
-              />{' '}
-              after each answer.
-              <br />
-              You have <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutes</TimeHighlight>!
-            </>
-          }
+              />
+            ),
+            time: (content) => (
+              <TimeHighlight>
+                {ANSWERING_TIME_IN_MINUTES} {content}
+              </TimeHighlight>
+            ),
+          }}
         />
       </RuleInstruction>
 

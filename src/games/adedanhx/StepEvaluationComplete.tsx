@@ -9,15 +9,20 @@ export function StepEvaluationComplete() {
     <Step fullWidth>
       <StepTitle>
         <Translate
-          pt={<>Avaliação completa! Quem ganhou mais pontos nessa rodada?</>}
-          en={<>Evaluation complete! Who scored the most points this round?</>}
+          pt="Avaliação completa! Quem ganhou mais pontos nessa rodada?"
+          en="Evaluation complete! Who scored the most points this round?"
         />
       </StepTitle>
 
       <HostNextPhaseButton
         autoTriggerTime={6}
         withWaitingTimeBar
-      />
+      >
+        <Translate
+          en="Next phase"
+          pt="Próxima fase"
+        />
+      </HostNextPhaseButton>
     </Step>
   );
 }

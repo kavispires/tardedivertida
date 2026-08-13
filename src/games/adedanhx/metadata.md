@@ -13,8 +13,8 @@
 
 ### Migrations
 
-- PlayersReadyState verification: 🔘
-- TranslateTemplate: 🔘
+- PlayersReadyState verification: ✅
+- TranslateTemplate: ✅
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
 - Float Submit Migration: ⛔️

@@ -9,6 +9,7 @@ import { TimedWritingIcon } from '@icons/TimedWritingIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
@@ -45,32 +46,22 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
           unskippable
         >
           <Surface contained>
-            <Translate
-              pt={
-                <>
-                  Você tem <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutos</TimeHighlight> para preencher o
-                  maior número de células da tabela combinando coluna e linha.
-                  <br />A cada célula que você completa, lembre-se de apertar o{' '}
+            <TranslateTemplate
+              en="You have <time>minutes</time> to fill in as many cells of the table as possible by combining column and row.<br />For each cell you complete, remember to press the {lockIcon} lock to record the time."
+              pt="Você tem <time>minutos</time> para preencher o maior número de células da tabela combinando coluna e linha.<br />A cada célula que você completa, lembre-se de apertar o {lockIcon} cadeado para gravar o tempo."
+              values={{
+                time: (content) => (
+                  <TimeHighlight>
+                    {ANSWERING_TIME_IN_MINUTES} {content}
+                  </TimeHighlight>
+                ),
+                lockIcon: (
                   <Icon
                     size="small"
                     icon={<LockIcon />}
-                  />{' '}
-                  cadeado para gravar o tempo.
-                </>
-              }
-              en={
-                <>
-                  You have <TimeHighlight>{ANSWERING_TIME_IN_MINUTES} minutes</TimeHighlight> to fill in as
-                  many cells of the table as possible by combining column and row.
-                  <br />
-                  For each cell you complete, remember to press the{' '}
-                  <Icon
-                    size="small"
-                    icon={<LockIcon />}
-                  />{' '}
-                  lock to record the time.
-                </>
-              }
+                  />
+                ),
+              }}
             />
           </Surface>
         </RoundAnnouncement>
@@ -91,39 +82,19 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
           unskippable
         >
           <Surface>
-            <Translate
-              pt={
-                <>
-                  As categorias da rodada são{' '}
-                  {state.grid.xHeaders.map((c: TopicCardData) => (
-                    <TextHighlight
-                      dark
-                      key={c.label}
-                    >
-                      {c.label}
-                    </TextHighlight>
-                  ))}
-                  .
-                  <br />
-                  Você ganha pontos bônus se você for o primeiro a responder uma célula! Boa sorte!
-                </>
-              }
-              en={
-                <>
-                  The round categories are{' '}
-                  {state.grid.xHeaders.map((c: TopicCardData) => (
-                    <TextHighlight
-                      dark
-                      key={c.label}
-                    >
-                      {c.label}
-                    </TextHighlight>
-                  ))}
-                  .
-                  <br />
-                  You get bonus points if you are the first to answer a cell! Good luck!
-                </>
-              }
+            <TranslateTemplate
+              en="The round categories are {categories}.<br />You get bonus points if you are the first to answer a cell! Good luck!"
+              pt="As categorias da rodada são {categories}.<br />Você ganha pontos bônus se você for o primeiro a responder uma célula! Boa sorte!"
+              values={{
+                categories: state.grid.xHeaders.map((c: TopicCardData) => (
+                  <TextHighlight
+                    dark
+                    key={c.label}
+                  >
+                    {c.label}
+                  </TextHighlight>
+                )),
+              }}
             />
           </Surface>
         </PhaseAnnouncement>

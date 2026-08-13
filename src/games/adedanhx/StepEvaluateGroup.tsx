@@ -1,10 +1,9 @@
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
-// Utils
-import { pluralize } from '@utils/helpers';
 // Components
 import { Translate } from '@components/language/Translate';
-import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { TranslateTemplate } from '@components/language/TranslateTemplate';
+import { PointsHighlightV2 } from '@components/metrics/PointsHighlight';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
@@ -58,7 +57,18 @@ export function StepEvaluateGroup({
       </StepTitle>
 
       <RuleInstruction type="rule">
-        <Translate
+        <TranslateTemplate
+          en="If you think any of the answers is wrong, <strong>hit</strong> the check mark switch and submit wrong answers. <br/> Everyone who answered earns {letterPoints} and the first player who answered correctly earns additional {topicPoints}."
+          pt="Se você acha que alguma não está certa dentro da categoria e letra, <strong>aperte</strong> o botãozinho para marcar como errado. <br/> Todos que responderam ganham {letterPoints} e o primeiro jogador que respondeu corretamente ganha {topicPoints} adicionais."
+          values={{
+            br: <br />,
+            strong: (text) => <strong>{text}</strong>,
+            letterPoints: <PointsHighlightV2 value={answersGroup.letter.level} />,
+            topicPoints: <PointsHighlightV2 value={answersGroup.topic.level} />,
+          }}
+        />
+
+        {/* <Translate
           pt={
             <>
               Se você acha que alguma não está certa dentro da categoria e letra, aperte o botãozinho para
@@ -91,7 +101,7 @@ export function StepEvaluateGroup({
               .
             </>
           }
-        />
+        /> */}
       </RuleInstruction>
 
       <EvaluationGroup
