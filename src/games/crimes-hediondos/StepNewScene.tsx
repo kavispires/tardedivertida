@@ -68,12 +68,8 @@ export function StepNewScene({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Baseado em suas cartas, selecione uma opção na nova carta de detalhes da Cena do Crime abaixo.
-            </>
-          }
-          en={<>Based on your cards, select an option in the new Scene card below.</>}
+          pt="Baseado em suas cartas, selecione uma opção na nova carta de detalhes da Cena do Crime abaixo."
+          en="Based on your cards, select an option in the new Scene card below."
         />
       </RuleInstruction>
 

@@ -28,8 +28,8 @@ export function StepResolution({ tellers, deckDict, goToNextStep, cardWidth, rou
     <Step fullWidth>
       <StepTitle size="medium">
         <Translate
-          pt={<>Só atenderemos os primeiros clientes...</>}
-          en={<>Only the first customers will be served...</>}
+          pt="Só atenderemos os primeiros clientes..."
+          en="Only the first customers will be served..."
         />
       </StepTitle>
 

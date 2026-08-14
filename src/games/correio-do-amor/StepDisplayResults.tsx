@@ -86,8 +86,8 @@ export function StepDisplayResults({
       <StepTitle>
         {playedCard.flavorText ?? (
           <Translate
-            pt={<>E o que aconteceu...</>}
-            en={<>What had happened was...</>}
+            pt="E o que aconteceu..."
+            en="What had happened was..."
           />
         )}
       </StepTitle>

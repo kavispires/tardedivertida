@@ -37,8 +37,8 @@ export function PhaseEvaluation({ state, players, user }: PhaseProps<PhaseEvalua
     >
       <Surface>
         <Translate
-          pt={<>Vote no desenho que você acha que mais parece com o monstro meliante.</>}
-          en={<>Vote for the sketch that best represents the monster.</>}
+          pt="Vote no desenho que você acha que mais parece com o monstro meliante."
+          en="Vote for the sketch that best represents the monster."
         />
       </Surface>
     </PhaseAnnouncement>

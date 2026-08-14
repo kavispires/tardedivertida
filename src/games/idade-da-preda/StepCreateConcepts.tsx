@@ -127,8 +127,8 @@ export function StepCreateConcepts({
     <Step fullWidth>
       <StepTitle>
         <Translate
-          pt={<>Criação de Conceitos</>}
-          en={<>ConceptData Creation</>}
+          pt="Criação de Conceitos"
+          en="ConceptData Creation"
         />
       </StepTitle>
 

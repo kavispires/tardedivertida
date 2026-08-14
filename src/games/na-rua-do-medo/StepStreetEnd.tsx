@@ -56,8 +56,8 @@ export function StepStreetEnd({
       <StepTitle>
         {isDoubleHorror ? (
           <Translate
-            pt={<>Um segundo {monsterName} surgiu do nada!</>}
-            en={<>A second {monsterName} came out of nowhere!</>}
+            pt={`Um segundo ${monsterName} surgiu do nada!`}
+            en={`A second ${monsterName} came out of nowhere!`}
           />
         ) : (
           <Translate
@@ -73,8 +73,8 @@ export function StepStreetEnd({
         {isDoubleHorror && (
           <>
             <Translate
-              pt={<>Jogamos todos os doces pra cima e corremos desesperados pra casa!</>}
-              en={<>We threw all candy in the air and ran desperately home!</>}
+              pt="Jogamos todos os doces pra cima e corremos desesperados pra casa!"
+              en="We threw all candy in the air and ran desperately home!"
             />
             <br />
           </>
@@ -82,8 +82,8 @@ export function StepStreetEnd({
         {round.current < round.total && monsterName && (
           <>
             <Translate
-              pt={<>Uma carta do {monsterName} será removida, menos chances dele aparece novamente!</>}
-              en={<>One of the {monsterName} will be removed, so less chances of it showing up again!</>}
+              pt={`Uma carta do ${monsterName} será removida, menos chances dele aparece novamente!`}
+              en={`One of the ${monsterName} will be removed, so less chances of it showing up again!`}
             />
             <br />
           </>

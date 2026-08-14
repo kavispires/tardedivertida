@@ -124,8 +124,8 @@ export function StepGuessing({
     >
       <StepTitle>
         <Translate
-          pt={<>Pareie os cada personagem com um jogador</>}
-          en={<>Pair player and characters</>}
+          pt="Pareie os cada personagem com um jogador"
+          en="Pair player and characters"
         />
       </StepTitle>
 
@@ -207,8 +207,8 @@ export function StepGuessing({
           disabled={user.ready || !isVotingComplete}
         >
           <Translate
-            pt={<>Enviar pares</>}
-            en={<>Submit guesses</>}
+            pt="Enviar pares"
+            en="Submit guesses"
           />
         </SendButton>
         <Button
@@ -219,8 +219,8 @@ export function StepGuessing({
           icon={<ThunderboltOutlined />}
         >
           <Translate
-            pt={<>Desistir</>}
-            en={<>Guess for me</>}
+            pt="Desistir"
+            en="Guess for me"
           />
         </Button>
       </SpaceContainer>

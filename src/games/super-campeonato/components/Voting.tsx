@@ -84,8 +84,8 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
         <TierContenders contenders={bracketedContenders} />
         <p>
           <Translate
-            pt={<>Votação começando em {seconds}</>}
-            en={<>Voting starting in {seconds}</>}
+            pt={`Votação começando em ${seconds}`}
+            en={`Voting starting in ${seconds}`}
           />
         </p>
       </Surface>

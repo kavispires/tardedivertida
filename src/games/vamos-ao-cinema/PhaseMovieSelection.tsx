@@ -44,8 +44,8 @@ export function PhaseMovieSelection({ state, players, user }: PhaseProps<PhaseMo
     >
       <Surface>
         <Translate
-          pt={<>Selecione um filme que caiba a crítica boa e com a crítica ruim</>}
-          en={<>You now will select a movie that fits both good and bad reviews</>}
+          pt="Selecione um filme que caiba a crítica boa e com a crítica ruim"
+          en="You now will select a movie that fits both good and bad reviews"
         />
       </Surface>
     </PhaseAnnouncement>
@@ -78,8 +78,8 @@ export function PhaseMovieSelection({ state, players, user }: PhaseProps<PhaseMo
           <Surface contained>
             {state.round.current}
             <Translate
-              pt={<> de </>}
-              en={<> of </>}
+              pt="de"
+              en="of"
             />
             {state.round.total}
           </Surface>

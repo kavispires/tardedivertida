@@ -99,8 +99,8 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
       >
         <RuleInstruction type="lore">
           <Translate
-            en={<>The players were too suspicions always selecting robot cards! Particularly:</>}
-            pt={<>Os jogadores estavam muito suspeitos sempre selecionando cartas de robô! Em particular:</>}
+            en="The players were too suspicions always selecting robot cards! Particularly:"
+            pt="Os jogadores estavam muito suspeitos sempre selecionando cartas de robô! Em particular:"
           />
           <br />
           <ListOfPlayers

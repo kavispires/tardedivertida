@@ -74,13 +74,13 @@ export function StepDeliver({
       >
         {!isTheRequester ? (
           <Translate
-            pt={<>Dê um item</>}
-            en={<>Give an item</>}
+            pt="Dê um item"
+            en="Give an item"
           />
         ) : (
           <Translate
-            pt={<>Aguarde o outro jogador responder com alguma coisa</>}
-            en={<>Wait for the other player to answer with something</>}
+            pt="Aguarde o outro jogador responder com alguma coisa"
+            en="Wait for the other player to answer with something"
           />
         )}
       </StepTitle>

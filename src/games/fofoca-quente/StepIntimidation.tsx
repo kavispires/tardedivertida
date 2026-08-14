@@ -49,8 +49,8 @@ export function StepIntimidation({
     >
       <StepTitle>
         <Translate
-          pt={<>Intimidação de dois estudantes</>}
-          en={<>Intimidating two students</>}
+          pt="Intimidação de dois estudantes"
+          en="Intimidating two students"
         />
       </StepTitle>
 

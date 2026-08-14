@@ -37,8 +37,8 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
     >
       <Surface>
         <Translate
-          pt={<>Será que vamos conseguir ir no evento?</>}
-          en={<>Will we be able to go to the event?</>}
+          pt="Será que vamos conseguir ir no evento?"
+          en="Will we be able to go to the event?"
         />
       </Surface>
     </PhaseAnnouncement>

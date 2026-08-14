@@ -57,8 +57,8 @@ export function StepSelectPrompt({
     >
       <StepTitle>
         <Translate
-          pt={<>Pergunta</>}
-          en={<>Question</>}
+          pt="Pergunta"
+          en="Question"
         />
       </StepTitle>
 

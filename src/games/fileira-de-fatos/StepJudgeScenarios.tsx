@@ -29,8 +29,8 @@ export function StepJudgeScenarios({
     >
       <StepTitle>
         <Translate
-          pt={<>Você é o juiz da rodada!</>}
-          en={<>You are the round's judge!</>}
+          pt="Você é o juiz da rodada!"
+          en="You are the round's judge!"
         />
       </StepTitle>
 

@@ -27,8 +27,8 @@ export function StepPathWaiting({ players, announcement, forest, activePlayer }:
     >
       <StepTitle>
         <Translate
-          pt={<>Os jogadores estão seguindo o seu mapa!</>}
-          en={<>Players are following your map!</>}
+          pt="Os jogadores estão seguindo o seu mapa!"
+          en="Players are following your map!"
         />
       </StepTitle>
 

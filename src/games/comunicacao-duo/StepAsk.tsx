@@ -74,8 +74,8 @@ export function StepAsk({
       >
         {isTheRequester ? (
           <Translate
-            pt={<>Peça algo!</>}
-            en={<>Ask for something!</>}
+            pt="Peça algo!"
+            en="Ask for something!"
           />
         ) : (
           <Translate

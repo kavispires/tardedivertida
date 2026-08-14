@@ -74,7 +74,7 @@ export function StepPlaceLocations({
       >
         {isTheArchitect ? (
           <Translate
-            en={<>Wait while the players try to match where each project should go with your planning.</>}
+            en="Wait while the players try to match where each project should go with your planning."
             pt={
               <>
                 Aguarde enquanto os jogadores tentam fazer cada projeto deve ir de acordo com seu
@@ -84,8 +84,8 @@ export function StepPlaceLocations({
           />
         ) : (
           <Translate
-            pt={<>Decida onde cada projeto deve ir</>}
-            en={<>Decide where each project should go</>}
+            pt="Decida onde cada projeto deve ir"
+            en="Decide where each project should go"
           />
         )}
       </StepTitle>

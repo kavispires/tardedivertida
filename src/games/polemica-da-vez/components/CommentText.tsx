@@ -46,8 +46,8 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
       )}
 
       <Translate
-        pt={<>eu acho que </>}
-        en={<>I think </>}
+        pt="eu acho que"
+        en="I think"
       />
 
       <span
@@ -58,14 +58,14 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
         )}
       >
         <Translate
-          pt={<>{likes} jogadores</>}
-          en={<>{likes} players</>}
+          pt={`${likes} jogadores`}
+          en={`${likes} players`}
         />
       </span>
 
       <Translate
-        pt={<> curtem.</>}
-        en={<> do like it.</>}
+        pt="curtem."
+        en="do like it."
       />
       <br />
       <span className="p-tweet-comment__points">

@@ -70,8 +70,8 @@ export function StepHumansOfferWait({
 
       <RuleInstruction type="wait">
         <Translate
-          pt={<>Aguarde enquanto os humanos escolhem um objeto para te oferecer.</>}
-          en={<>Wait while the humans choose an object to offer.</>}
+          pt="Aguarde enquanto os humanos escolhem um objeto para te oferecer."
+          en="Wait while the humans choose an object to offer."
         />
       </RuleInstruction>
 

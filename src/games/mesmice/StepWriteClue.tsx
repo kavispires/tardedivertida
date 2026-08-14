@@ -63,8 +63,8 @@ export function StepWriteClue({
     <Step fullWidth>
       <StepTitle>
         <Translate
-          pt={<>Escreva sua dica</>}
-          en={<>Write Your Clue</>}
+          pt="Escreva sua dica"
+          en="Write Your Clue"
         />
       </StepTitle>
 

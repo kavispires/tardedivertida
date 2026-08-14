@@ -48,8 +48,8 @@ export function StepQuestionWaiting({
           />
         ) : (
           <Translate
-            pt={<>Examine os suspeitos</>}
-            en={<>Examine the suspects</>}
+            pt="Examine os suspeitos"
+            en="Examine the suspects"
           />
         )}
       </StepTitle>

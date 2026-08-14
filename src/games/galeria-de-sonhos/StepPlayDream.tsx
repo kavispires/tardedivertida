@@ -136,8 +136,8 @@ export function StepPlayDream({
       {Boolean(user.fallen) && !user.inNightmare && (
         <RuleInstruction type="event">
           <Translate
-            pt={<>Você não conseguiu dar match em uma de suas cartas, e está fora da rodada.</>}
-            en={<>You didn't get a match in one of your cards, and you're out of the round.</>}
+            pt="Você não conseguiu dar match em uma de suas cartas, e está fora da rodada."
+            en="You didn't get a match in one of your cards, and you're out of the round."
           />
         </RuleInstruction>
       )}

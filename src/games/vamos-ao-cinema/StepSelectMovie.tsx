@@ -35,8 +35,8 @@ export function StepSelectMovie({
     >
       <StepTitle>
         <Translate
-          pt={<>Selecione um filme que caiba às duas críticas abaixo</>}
-          en={<>Select a movie that fits both reviews</>}
+          pt="Selecione um filme que caiba às duas críticas abaixo"
+          en="Select a movie that fits both reviews"
         />
       </StepTitle>
 
@@ -47,8 +47,8 @@ export function StepSelectMovie({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={<>Temos uma crítica boa e uma crítica ruim, o filme que você escolher tem que caber a ambas.</>}
-          en={<>There's a good and a bad review, the movie you pick must fit both.</>}
+          pt="Temos uma crítica boa e uma crítica ruim, o filme que você escolher tem que caber a ambas."
+          en="There's a good and a bad review, the movie you pick must fit both."
         />
       </RuleInstruction>
 

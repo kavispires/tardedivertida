@@ -73,8 +73,8 @@ export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps)
 
       <RuleInstruction type="action">
         <Translate
-          pt={<>Responda à pergunta abaixo com uma resposta simples.</>}
-          en={<>Answer the prompt below with a simple answer.</>}
+          pt="Responda à pergunta abaixo com uma resposta simples."
+          en="Answer the prompt below with a simple answer."
         />
       </RuleInstruction>
 

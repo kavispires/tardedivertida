@@ -16,8 +16,8 @@ export function RoundAlert({ round }: { round: GameRound }) {
   return (
     <RuleInstruction type="alert">
       <Translate
-        en={<>There are only {roundsLeft} rounds left!</>}
-        pt={<>Restam apenas {roundsLeft} rodadas!</>}
+        en={`There are only ${roundsLeft} rounds left!`}
+        pt={`Restam apenas ${roundsLeft} rodadas!`}
       />
       <Tooltip
         title={

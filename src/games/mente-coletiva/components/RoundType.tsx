@@ -28,14 +28,14 @@ export function RoundType({ roundType, className = '' }: RoundTypeProps) {
 
       <div>
         <Translate
-          pt={<>Nesta rodada,</>}
-          en={<>This round</>}
+          pt="Nesta rodada,"
+          en="This round"
         />
       </div>
       {roundType === 1 && (
         <Translate
-          pt={<>todos com a pontuação mais baixa movem uma cerquinha para direita.</>}
-          en={<>all players with the lowest score move one fence to the right.</>}
+          pt="todos com a pontuação mais baixa movem uma cerquinha para direita."
+          en="all players with the lowest score move one fence to the right."
         />
       )}
       {roundType === 2 && (

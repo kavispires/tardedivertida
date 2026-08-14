@@ -42,8 +42,8 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
     >
       <StepTitle>
         <Translate
-          pt={<>Agrupe os itens em {pairsCount} pares</>}
-          en={<>Group the items into {pairsCount} pairs</>}
+          pt={`Agrupe os itens em ${pairsCount} pares`}
+          en={`Group the items into ${pairsCount} pairs`}
         />
       </StepTitle>
 
@@ -80,9 +80,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
                 sobrando!
               </>
             }
-            en={
-              <>One item will be left out, you also get points for each player who also left this item out!</>
-            }
+            en="One item will be left out, you also get points for each player who also left this item out!"
           />
         </RuleInstruction>
       )}

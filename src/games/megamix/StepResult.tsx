@@ -89,13 +89,13 @@ export function StepResult({
         />
         {scoringType === 'NORMAL' && (
           <Translate
-            pt={<>Jogadores que votaram com a maioria entram ou continuam na Área VIP.</>}
-            en={<>Players who voted with the majority join or stay in the VIP area.</>}
+            pt="Jogadores que votaram com a maioria entram ou continuam na Área VIP."
+            en="Players who voted with the majority join or stay in the VIP area."
           />
         )}
         {scoringType === 'TIE' && (
           <Translate
-            pt={<>Empate entre 2 ou mais respostas. Quem já estava na Área VIP fica e ganha ponto.</>}
+            pt="Empate entre 2 ou mais respostas. Quem já estava na Área VIP fica e ganha ponto."
             en={
               <>
                 It's a tie for 2 or more answers. Whoever was already in the VIP Area stays there and get
@@ -106,8 +106,8 @@ export function StepResult({
         )}
         {scoringType === 'DRAW' && (
           <Translate
-            pt={<>Cada um escolheu uma coisa diferente? Todo mundo fora da Área VIP!</>}
-            en={<>Did everybody just choose something different? Everybody out!</>}
+            pt="Cada um escolheu uma coisa diferente? Todo mundo fora da Área VIP!"
+            en="Did everybody just choose something different? Everybody out!"
           />
         )}
       </RuleInstruction>

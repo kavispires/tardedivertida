@@ -65,14 +65,14 @@ export function RobotResult({ result, robot }: RobotResultProps) {
               size="small"
             />
             <Translate
-              pt={<> Pelo menos um jogador resolveu o captcha corretamente!</>}
-              en={<>At least one player solved the captcha correctly!</>}
+              pt="Pelo menos um jogador resolveu o captcha corretamente!"
+              en="At least one player solved the captcha correctly!"
             />
           </>
         ) : (
           <Translate
-            pt={<>Ninguém resolveu o captcha!</>}
-            en={<>Nobody solved the captcha!</>}
+            pt="Ninguém resolveu o captcha!"
+            en="Nobody solved the captcha!"
           />
         )}
         <br />

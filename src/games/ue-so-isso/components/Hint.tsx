@@ -77,8 +77,8 @@ export function Hint({
     return (
       <RuleInstruction type={showFirstHint || showSecondHint ? 'event' : 'wait'}>
         <Translate
-          pt={<>{guesser.name} está pensando...</>}
-          en={<>{guesser.name} is thinking...</>}
+          pt={`${guesser.name} está pensando...`}
+          en={`${guesser.name} is thinking...`}
         />
         {firstHint}
         {secondHint}

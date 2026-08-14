@@ -57,8 +57,8 @@ export function StepRumor({
     >
       <StepTitle>
         <Translate
-          pt={<>Espalhe um boato maldoso</>}
-          en={<>Spread a nasty rumor</>}
+          pt="Espalhe um boato maldoso"
+          en="Spread a nasty rumor"
         />
       </StepTitle>
 

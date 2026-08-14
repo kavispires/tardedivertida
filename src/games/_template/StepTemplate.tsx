@@ -23,16 +23,16 @@ export function StepTemplate({ announcement }: StepTemplateProps) {
     >
       <StepTitle>
         <Translate
-          pt={<>?</>}
-          en={<>?</>}
+          pt="?"
+          en="?"
         />
       </StepTitle>
 
       {isLoading}
       <Surface contained>
         <Translate
-          pt={<>?</>}
-          en={<>?</>}
+          pt="?"
+          en="?"
         />
       </Surface>
     </Step>

@@ -41,8 +41,8 @@ export function PhaseCharacterDescription({
     >
       <Surface>
         <Translate
-          pt={<>Selecione até 6 ícones que ajudem os outros jogadores a adivinhar o seu personagem</>}
-          en={<>Select up to 6 glyphs that would help other players to guess who your character is</>}
+          pt="Selecione até 6 ícones que ajudem os outros jogadores a adivinhar o seu personagem"
+          en="Select up to 6 glyphs that would help other players to guess who your character is"
         />
       </Surface>
     </PhaseAnnouncement>

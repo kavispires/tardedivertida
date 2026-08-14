@@ -34,8 +34,8 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
     >
       <Surface>
         <Translate
-          pt={<>Adivinhe todos grupos de uma dica com seu par de objetos.</>}
-          en={<>Guess all groups from a clue with your pair of things.</>}
+          pt="Adivinhe todos grupos de uma dica com seu par de objetos."
+          en="Guess all groups from a clue with your pair of things."
         />
       </Surface>
     </PhaseAnnouncement>

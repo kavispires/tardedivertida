@@ -62,8 +62,8 @@ export function StepSelectQuestion({
           />
         ) : (
           <Translate
-            pt={<>Escolha uma pergunta</>}
-            en={<>Choose a question</>}
+            pt="Escolha uma pergunta"
+            en="Choose a question"
           />
         )}
       </StepTitle>

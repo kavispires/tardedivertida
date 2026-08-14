@@ -60,8 +60,8 @@ export function StepDeclaration({
     >
       <StepTitle>
         <Translate
-          pt={<>Declare as cartas que você "tem"</>}
-          en={<>Declare the cards you "have"</>}
+          pt={'Declare as cartas que você "tem"'}
+          en={'Declare the cards you "have"'}
         />
       </StepTitle>
 

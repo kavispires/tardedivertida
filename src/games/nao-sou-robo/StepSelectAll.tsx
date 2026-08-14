@@ -84,8 +84,8 @@ export function StepSelectAll({
     >
       <StepTitle size="small">
         <Translate
-          pt={<>Você é um robô?</>}
-          en={<>Are you a robot?</>}
+          pt="Você é um robô?"
+          en="Are you a robot?"
         />
       </StepTitle>
 

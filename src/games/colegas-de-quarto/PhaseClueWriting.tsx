@@ -36,8 +36,8 @@ export function PhaseClueWriting({ players, state, user }: PhaseProps<PhaseClueW
     >
       <Surface>
         <Translate
-          pt={<>Escreva pistas para os novos itens da loja.</>}
-          en={<>Write clues for the new store items.</>}
+          pt="Escreva pistas para os novos itens da loja."
+          en="Write clues for the new store items."
         />
       </Surface>
     </PhaseAnnouncement>

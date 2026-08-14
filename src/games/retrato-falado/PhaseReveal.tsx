@@ -37,8 +37,8 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
     >
       <Surface>
         <Translate
-          pt={<>E o mais votado é...</>}
-          en={<>And the one who got the most votes is...</>}
+          pt="E o mais votado é..."
+          en="And the one who got the most votes is..."
         />
       </Surface>
     </PhaseAnnouncement>

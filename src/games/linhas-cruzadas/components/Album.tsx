@@ -30,8 +30,8 @@ export function Album({ albumEntry, currentPage, players }: AlbumProps) {
           size="large"
         />{' '}
         <Translate
-          pt={<>Álbum de {albumOwner.name}</>}
-          en={<>{albumOwner.name}'s Album</>}
+          pt={`Álbum de ${albumOwner.name}`}
+          en={`${albumOwner.name}'s Album`}
         />
       </h2>
 

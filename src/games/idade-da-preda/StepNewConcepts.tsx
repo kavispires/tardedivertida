@@ -45,8 +45,8 @@ export function StepNewConcepts({
     >
       <StepTitle>
         <Translate
-          pt={<>Novos Conceitos</>}
-          en={<>New Concepts</>}
+          pt="Novos Conceitos"
+          en="New Concepts"
         />
       </StepTitle>
 

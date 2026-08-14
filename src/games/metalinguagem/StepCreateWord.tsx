@@ -105,8 +105,8 @@ export function StepCreateWord({
             className="no-margin"
           >
             <Translate
-              pt={<>Passo 1: Primeiro você deve nomear as duas coisas.</>}
-              en={<>Step 1: You must name these two things</>}
+              pt="Passo 1: Primeiro você deve nomear as duas coisas."
+              en="Step 1: You must name these two things"
             />
           </RuleInstruction>
 
@@ -283,21 +283,15 @@ export function StepCreateWord({
     >
       <StepTitle>
         <Translate
-          pt={<>Crie a nova palavra</>}
-          en={<>Create the new word</>}
+          pt="Crie a nova palavra"
+          en="Create the new word"
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          en={
-            <>
-              From the items below, two of them were draft to be the beginning and the end of your new word.
-            </>
-          }
-          pt={
-            <>Dos itens abaixo, dois deles foram escolhidos para ser o começo e o fim da sua nova palavra.</>
-          }
+          en="From the items below, two of them were draft to be the beginning and the end of your new word."
+          pt="Dos itens abaixo, dois deles foram escolhidos para ser o começo e o fim da sua nova palavra."
         />
       </RuleInstruction>
 

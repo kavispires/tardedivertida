@@ -67,8 +67,8 @@ export function StepPlay({
     >
       <StepTitle>
         <Translate
-          pt={<>Hora do Correio Elegante</>}
-          en={<>Elegant Mail Time</>}
+          pt="Hora do Correio Elegante"
+          en="Elegant Mail Time"
         />
       </StepTitle>
 

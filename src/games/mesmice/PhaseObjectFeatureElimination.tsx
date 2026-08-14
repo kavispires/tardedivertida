@@ -46,11 +46,7 @@ export function PhaseObjectFeatureElimination({
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Neste jogo, você escreverá uma dica que melhor conecta seu objeto com a característica sorteada.
-            </>
-          }
+          pt="Neste jogo, você escreverá uma dica que melhor conecta seu objeto com a característica sorteada."
           en={
             <>
               In this game, you will write a clue that best connects your object with the assigned

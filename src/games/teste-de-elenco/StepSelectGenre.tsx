@@ -63,8 +63,8 @@ export function StepSelectGenre({
     >
       <StepTitle>
         <Translate
-          en={<>Let's customize the movie!</>}
-          pt={<>Vamos personalizar o filme!</>}
+          en="Let's customize the movie!"
+          pt="Vamos personalizar o filme!"
         />
       </StepTitle>
 

@@ -98,8 +98,8 @@ export function StepSelectThings({
     >
       <StepTitle size="small">
         <Translate
-          pt={<>O quesito é:</>}
-          en={<>And the category is:</>}
+          pt="O quesito é:"
+          en="And the category is:"
         />
       </StepTitle>
 
@@ -108,8 +108,8 @@ export function StepSelectThings({
           size="large"
           footer={
             <Translate
-              pt={<>Categoria criada por {creator.name}</>}
-              en={<>Category created by {creator.name}</>}
+              pt={`Categoria criada por ${creator.name}`}
+              en={`Category created by ${creator.name}`}
             />
           }
         >

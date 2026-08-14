@@ -41,8 +41,8 @@ export function PhaseFinalTrial({ state, players, user }: PhaseProps<PhaseTrialS
     >
       <Surface>
         <Translate
-          pt={<>Chegamos os dois últimos suspeitos! Agora é hora do julgamento final.</>}
-          en={<>We have reached the final two suspects! Now it's time for the final trial.</>}
+          pt="Chegamos os dois últimos suspeitos! Agora é hora do julgamento final."
+          en="We have reached the final two suspects! Now it's time for the final trial."
         />
       </Surface>
     </PhaseAnnouncement>

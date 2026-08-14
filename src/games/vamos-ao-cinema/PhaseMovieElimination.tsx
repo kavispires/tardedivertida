@@ -96,8 +96,8 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps<Phase
       >
         <Surface>
           <Translate
-            pt={<>Selecione um filme que você acha que ninguém escolheu.</>}
-            en={<>Select a movie you think nobody has selected.</>}
+            pt="Selecione um filme que você acha que ninguém escolheu."
+            en="Select a movie you think nobody has selected."
           />
         </Surface>
       </PhaseAnnouncement>

@@ -48,8 +48,8 @@ export function StepSelectActor({
     >
       <StepTitle>
         <Translate
-          pt={<>Selecione um ator!</>}
-          en={<>Cast a role:</>}
+          pt="Selecione um ator!"
+          en="Cast a role:"
         />
       </StepTitle>
 

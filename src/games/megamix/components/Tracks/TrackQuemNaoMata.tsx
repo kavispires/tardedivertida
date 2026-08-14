@@ -49,7 +49,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
                 você mesmo)
               </>
             }
-            en={<>A standoff! Who are you going to shoot first? (It could be yourself)</>}
+            en="A standoff! Who are you going to shoot first? (It could be yourself)"
           />
         </RuleInstruction>
 

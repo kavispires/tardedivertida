@@ -61,21 +61,21 @@ export function StepAnimatePreviousAction({
       <StepTitle size="medium">
         <ViewIf condition={isNewRound}>
           <Translate
-            pt={<>É um novo dia no banco...</>}
-            en={<>It's a new day at the bank...</>}
+            pt="É um novo dia no banco..."
+            en="It's a new day at the bank..."
           />
         </ViewIf>
 
         <ViewIf condition={!isNewRound}>
           {previousPlayer ? (
             <Translate
-              pt={<>E isso que acontece...</>}
-              en={<>And this is what happens...</>}
+              pt="E isso que acontece..."
+              en="And this is what happens..."
             />
           ) : (
             <Translate
-              pt={<>É um calmo dia no banco...</>}
-              en={<>It's a calm day at the bank...</>}
+              pt="É um calmo dia no banco..."
+              en="It's a calm day at the bank..."
             />
           )}
         </ViewIf>

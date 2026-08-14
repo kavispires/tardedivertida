@@ -24,8 +24,8 @@ export function PhaseResult({ players, state, user }: PhaseProps<PhaseResultStat
       icon={<BookshelfIcon />}
       title={
         <Translate
-          pt={<>Quem acertou?</>}
-          en={<>Who got it right?</>}
+          pt="Quem acertou?"
+          en="Who got it right?"
         />
       }
       currentRound={state?.round?.current}
@@ -33,8 +33,8 @@ export function PhaseResult({ players, state, user }: PhaseProps<PhaseResultStat
     >
       <Surface>
         <Translate
-          pt={<>Não há resposta correta! Mas você tem o mesmo senso literário que outros jogadores?</>}
-          en={<>There is no correct answer! But do you have the same literary sense as other players?</>}
+          pt="Não há resposta correta! Mas você tem o mesmo senso literário que outros jogadores?"
+          en="There is no correct answer! But do you have the same literary sense as other players?"
         />
       </Surface>
     </PhaseAnnouncement>

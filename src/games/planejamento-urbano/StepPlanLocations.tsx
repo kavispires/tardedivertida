@@ -61,8 +61,8 @@ export function StepPlanLocations({
     >
       <StepTitle size="small">
         <Translate
-          pt={<>Decida onde as {availableProjectsIds.length} novos projetos devem ser construídos</>}
-          en={<>Decide where the {availableProjectsIds.length} new projects should be built</>}
+          pt={`Decida onde as ${availableProjectsIds.length} novos projetos devem ser construídos`}
+          en={`Decide where the ${availableProjectsIds.length} new projects should be built`}
         />
       </StepTitle>
 

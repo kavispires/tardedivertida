@@ -53,8 +53,8 @@ export function StepReviewCrime({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={<>Revise seu crime.</>}
-          en={<>Recap your crime.</>}
+          pt="Revise seu crime."
+          en="Recap your crime."
         />
       </RuleInstruction>
 

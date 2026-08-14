@@ -295,8 +295,8 @@ export function StepBuildMetrics({
 
           <RuleInstruction type="tip">
             <Translate
-              en={<>Here are the other words in case you need to verify any conflicts</>}
-              pt={<>Aqui estão as outras palavras caso você precise verificar algum conflito</>}
+              en="Here are the other words in case you need to verify any conflicts"
+              pt="Aqui estão as outras palavras caso você precise verificar algum conflito"
             />
             <Flex justify="center">
               {poolIds.map((cardId) => {

@@ -99,8 +99,8 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
 
         <RuleInstruction type="action">
           <Translate
-            pt={<>Qual das suas cartas você usaria para passar despercebido?</>}
-            en={<>Which card in your hand would play so you can blend in with the others?</>}
+            pt="Qual das suas cartas você usaria para passar despercebido?"
+            en="Which card in your hand would play so you can blend in with the others?"
           />
         </RuleInstruction>
 

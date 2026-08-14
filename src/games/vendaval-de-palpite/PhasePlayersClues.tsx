@@ -78,7 +78,7 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
                   não ajudam muito.
                 </>
               }
-              en={<>TODO</>}
+              en="TODO"
             />
           </Surface>
         </PhaseAnnouncement>

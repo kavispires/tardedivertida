@@ -33,8 +33,8 @@ export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) 
     >
       <Surface>
         <Translate
-          pt={<>Quantos pares você acertou?</>}
-          en={<>How many pairs did you get?</>}
+          pt="Quantos pares você acertou?"
+          en="How many pairs did you get?"
         />
       </Surface>
     </PhaseAnnouncement>

@@ -51,8 +51,8 @@ export function PhaseClueEvaluations({ state, players }: PhaseProps) {
         >
           <Surface>
             <Translate
-              pt={<>Os jogadores agora escrevem dicas para tentar adivinhar a palavra secreta.</>}
-              en={<>Players now write clues to try to guess the secret word.</>}
+              pt="Os jogadores agora escrevem dicas para tentar adivinhar a palavra secreta."
+              en="Players now write clues to try to guess the secret word."
             />
           </Surface>
         </PhaseAnnouncement>

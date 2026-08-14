@@ -124,8 +124,8 @@ export function StepPlaceGood({
         <RuleInstruction type="lore">
           <strong>
             <Translate
-              pt={<>Coloque a mercadoria do galpão!</>}
-              en={<>Place the good in the warehouse</>}
+              pt="Coloque a mercadoria do galpão!"
+              en="Place the good in the warehouse"
             />
           </strong>
           <Divider className="my-2" />

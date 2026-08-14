@@ -65,8 +65,8 @@ export function StepGuessPlayer({
 
       <RuleInstruction type="action">
         <Translate
-          pt={<>Analise as respostas e selecione a pessoa que você acha que seu oponente é.</>}
-          en={<>Analyze the answers and select who you think your opponent is.</>}
+          pt="Analise as respostas e selecione a pessoa que você acha que seu oponente é."
+          en="Analyze the answers and select who you think your opponent is."
         />
       </RuleInstruction>
 

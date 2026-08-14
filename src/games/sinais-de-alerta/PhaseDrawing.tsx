@@ -48,8 +48,8 @@ export function PhaseDrawing({ state, players, meta, user }: PhaseProps<PhaseDra
     >
       <Surface>
         <Translate
-          pt={<>Você tem {timeLimit} segundos para ler e desenhar sua carta</>}
-          en={<>You have {timeLimit} seconds to read and draw your card</>}
+          pt={`Você tem ${timeLimit} segundos para ler e desenhar sua carta`}
+          en={`You have ${timeLimit} seconds to read and draw your card`}
         />
       </Surface>
     </PhaseAnnouncement>

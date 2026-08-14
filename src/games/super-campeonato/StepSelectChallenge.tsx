@@ -58,8 +58,8 @@ export function StepSelectChallenge({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={<>Cada rodada é feita ao redor de um desafio.</>}
-          en={<>Each round has a challenge for the contenders to battle on!</>}
+          pt="Cada rodada é feita ao redor de um desafio."
+          en="Each round has a challenge for the contenders to battle on!"
         />
         {userContenders.length > 1 && (
           <Translate
@@ -82,8 +82,8 @@ export function StepSelectChallenge({
         )}
         {userContenders.length === 0 && (
           <Translate
-            pt={<> Selecione um dos desafios.</>}
-            en={<> Select one of the challenges.</>}
+            pt="Selecione um dos desafios."
+            en="Select one of the challenges."
           />
         )}
         {userContenders.length > 1 && round.current < 5 ? (

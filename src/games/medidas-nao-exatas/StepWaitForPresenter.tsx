@@ -74,8 +74,8 @@ function RoundsPool({ poolIds, wordsDict }: Pick<StepWaitForPresenterProps, 'poo
   return (
     <AnimatePresence>
       <Translate
-        pt={<>Palavras disponíveis para a rodada:</>}
-        en={<>Available words for the round:</>}
+        pt="Palavras disponíveis para a rodada:"
+        en="Available words for the round:"
       />
       <Flex wrap>
         {poolIds?.map((cardId, index) => {

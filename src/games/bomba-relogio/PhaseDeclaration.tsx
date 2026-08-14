@@ -42,8 +42,8 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
       <Surface>
         <Icon icon={<WalkieTalkieIcon />} />
         <Translate
-          pt={<>"Todos em seus postos! O que você tem ai?"</>}
-          en={<>"Everyone to your posts! What do you have there?"</>}
+          pt="Todos em seus postos! O que você tem ai?"
+          en="Everyone to your posts! What do you have there?"
         />
       </Surface>
     </PhaseAnnouncement>

@@ -36,8 +36,8 @@ export function StepResults({ announcement, sequence, players, gallery, goToNext
     >
       <StepTitle>
         <Translate
-          pt={<>E ai, quem escolheu os mesmo atributos que você?</>}
-          en={<>So, who chose the same attributes as you?</>}
+          pt="E ai, quem escolheu os mesmo atributos que você?"
+          en="So, who chose the same attributes as you?"
         />
       </StepTitle>
 

@@ -37,8 +37,8 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
     >
       <Surface>
         <Translate
-          pt={<>Escolha uma das suas {hand.length} cartas</>}
-          en={<>Choose one of your {hand.length} cards</>}
+          pt={`Escolha uma das suas ${hand.length} cartas`}
+          en={`Choose one of your ${hand.length} cards`}
         />
       </Surface>
     </PhaseAnnouncement>

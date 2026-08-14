@@ -77,8 +77,8 @@ export function StepSelectFeature({
     <Step fullWidth>
       <StepTitle wait={isUserTheActivePlayer}>
         <Translate
-          pt={<>Qual característica menos combina os dois objetos?</>}
-          en={<>Which feature least connects the two objects?</>}
+          pt="Qual característica menos combina os dois objetos?"
+          en="Which feature least connects the two objects?"
         />
       </StepTitle>
 

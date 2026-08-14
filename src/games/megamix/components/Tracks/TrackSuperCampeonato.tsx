@@ -35,8 +35,8 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
       <MinigameTitle title={{ pt: 'Super Campeonato', en: 'Ultimate Championship' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={<>É a batalha final, qual desses dois venceria esse desafio?</>}
-          en={<>It's the final showdown, which one of these two would win this challenge?</>}
+          pt="É a batalha final, qual desses dois venceria esse desafio?"
+          en="It's the final showdown, which one of these two would win this challenge?"
         />
       </RuleInstruction>
 

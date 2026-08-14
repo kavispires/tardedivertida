@@ -61,8 +61,8 @@ export function StepSetupDetective({
     >
       <StepTitle>
         <Translate
-          pt={<>Preparando a escola</>}
-          en={<>Setting up the school</>}
+          pt="Preparando a escola"
+          en="Setting up the school"
         />
       </StepTitle>
 

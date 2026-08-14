@@ -69,8 +69,8 @@ export function StepPlayersWaitEvaluation({
               size="small"
             />
             <Translate
-              pt={<>O grupo usou até agora {3 - finalAnswersLeft}/3 chances de respostas finais</>}
-              en={<>The group has used so far {3 - finalAnswersLeft}/3 chances of final answers</>}
+              pt={`O grupo usou até agora ${3 - finalAnswersLeft}/3 chances de respostas finais`}
+              en={`The group has used so far ${3 - finalAnswersLeft}/3 chances of final answers`}
             />
           </>
         }

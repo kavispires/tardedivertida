@@ -85,8 +85,8 @@ export function StepReveal({
     >
       <StepTitle>
         <Translate
-          pt={<>Resultado</>}
-          en={<>Results</>}
+          pt="Resultado"
+          en="Results"
         />
       </StepTitle>
 

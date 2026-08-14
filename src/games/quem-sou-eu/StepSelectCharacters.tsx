@@ -115,8 +115,8 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
           disabled={isLoading || user.ready}
         >
           <Translate
-            pt={<>Escolha pra mim</>}
-            en={<>Choose for me</>}
+            pt="Escolha pra mim"
+            en="Choose for me"
           />
         </SendButton>
         <Badge count={count}>

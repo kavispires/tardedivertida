@@ -50,8 +50,8 @@ export function StepResponse({
     >
       <StepTitle>
         <Translate
-          pt={<>Reagindo ao boato...</>}
-          en={<>Reacting to the rumor...</>}
+          pt="Reagindo ao boato..."
+          en="Reacting to the rumor..."
         />
       </StepTitle>
 

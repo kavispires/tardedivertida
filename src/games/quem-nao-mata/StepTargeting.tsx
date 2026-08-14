@@ -157,14 +157,14 @@ export function StepTargeting({
           <>
             <h3>
               <Translate
-                pt={<>Você não pode mais trocar seu alvo.</>}
-                en={<>You can not change your target anymore.</>}
+                pt="Você não pode mais trocar seu alvo."
+                en="You can not change your target anymore."
               />
             </h3>
             <p>
               <Translate
-                pt={<>Aguarde enquanto o resultado é calculado.</>}
-                en={<>Wait to see the outcome...</>}
+                pt="Aguarde enquanto o resultado é calculado."
+                en="Wait to see the outcome..."
               />
             </p>
           </>

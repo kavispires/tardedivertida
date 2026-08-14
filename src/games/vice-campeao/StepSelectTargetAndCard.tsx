@@ -57,8 +57,8 @@ export function StepSelectTargetAndCard({
     >
       <StepTitle>
         <Translate
-          pt={<>Prepare-se parar correr </>}
-          en={<>Prepare to run</>}
+          pt="Prepare-se parar correr"
+          en="Prepare to run"
         />
         !{' '}
         <TextHighlight>

@@ -82,8 +82,8 @@ export function StepNameAThing({
     >
       <StepTitle>
         <Translate
-          pt={<>Nomeie um ItemData</>}
-          en={<>Name an ItemData</>}
+          pt="Nomeie um ItemData"
+          en="Name an ItemData"
         />
       </StepTitle>
 

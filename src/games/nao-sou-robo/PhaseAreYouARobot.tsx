@@ -36,8 +36,8 @@ export function PhaseAreYouARobot({ state, players, user }: PhaseProps<PhaseAreY
     >
       <Surface>
         <Translate
-          pt={<>Prove que você não é um robô!</>}
-          en={<>Prove you are not a robot!</>}
+          pt="Prove que você não é um robô!"
+          en="Prove you are not a robot!"
         />
       </Surface>
     </PhaseAnnouncement>

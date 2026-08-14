@@ -31,8 +31,8 @@ export function StepSelectObject({ user, announcement, onSelectObject }: StepSel
     >
       <StepTitle>
         <Translate
-          pt={<>Escolha um objeto</>}
-          en={<>Select an object</>}
+          pt="Escolha um objeto"
+          en="Select an object"
         />
       </StepTitle>
 

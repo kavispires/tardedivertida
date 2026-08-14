@@ -68,8 +68,8 @@ export function StepWriteClues({
     >
       <StepTitle>
         <Translate
-          pt={<>Escreva suas pistas</>}
-          en={<>Write your clues</>}
+          pt="Escreva suas pistas"
+          en="Write your clues"
         />
       </StepTitle>
       <RuleInstruction type="lore">

@@ -53,8 +53,8 @@ export function StepResults({
     >
       <StepTitle wait>
         <Translate
-          pt={<>Resultados: "{category}"</>}
-          en={<>Results: "{category}"</>}
+          pt={`Resultados: "${category}"`}
+          en={`Results: "${category}"`}
         />
       </StepTitle>
 

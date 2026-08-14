@@ -146,8 +146,8 @@ export function StepGuess({
     >
       <StepTitle>
         <Translate
-          pt={<>O que os outros colegas de quarto estão querendo dizer?</>}
-          en={<>What are the other roommates trying to say?</>}
+          pt="O que os outros colegas de quarto estão querendo dizer?"
+          en="What are the other roommates trying to say?"
         />
       </StepTitle>
       <RuleInstruction type="action">

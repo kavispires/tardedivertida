@@ -48,8 +48,8 @@ export function PhaseAskingForSomething({ players, state, user }: PhaseProps<Pha
     >
       <Surface>
         <Translate
-          pt={<>Cada alienígena deve dar dicar para todos os itens marcados com sua cor</>}
-          en={<>Each alien must give clues for all items marked with their color</>}
+          pt="Cada alienígena deve dar dicar para todos os itens marcados com sua cor"
+          en="Each alien must give clues for all items marked with their color"
         />
       </Surface>
     </PhaseAnnouncement>

@@ -71,8 +71,8 @@ export function PhaseReveal({ state, players, user }: PhaseProps<PhaseRevealStat
       >
         <Surface>
           <Translate
-            pt={<>E o filme é: </>}
-            en={<>And the movie is: </>}
+            pt="E o filme é:"
+            en="And the movie is:"
           />
           <br />
           <MovieHighlight

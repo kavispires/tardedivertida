@@ -316,7 +316,7 @@ function FlipBookHand({ pages, onSelectPage, disabledSelectButton, selectedCards
             onClick={() => setSpread((s) => s + 1)}
           >
             <Translate
-              pt={<>Próxima Página Para Sempre ({pages.length - (spread + 1) * 2} restantes)</>}
+              pt={`Próxima Página Para Sempre (${pages.length - (spread + 1) * 2} restantes)`}
               en={`Next Page Forever (${pages.length - (spread + 1) * 2} left)`}
             />
           </Button>

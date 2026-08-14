@@ -60,8 +60,8 @@ export function StepCreateCategory({
     >
       <StepTitle>
         <Translate
-          pt={<>Qual o quesito?</>}
-          en={<>What is the category?</>}
+          pt="Qual o quesito?"
+          en="What is the category?"
         />
       </StepTitle>
 
@@ -102,11 +102,7 @@ export function StepCreateCategory({
                 vez.
               </>
             }
-            en={
-              <>
-                You need at least 2 things in your hand to create a category. So you can only skip your turn.
-              </>
-            }
+            en="You need at least 2 things in your hand to create a category. So you can only skip your turn."
           />
         </RuleInstruction>
       )}

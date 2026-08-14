@@ -63,8 +63,8 @@ export function StepHumansAsk({
     >
       <StepTitle>
         <Translate
-          pt={<>Pergunte ao Alienígena!</>}
-          en={<>Ask the Alien!</>}
+          pt="Pergunte ao Alienígena!"
+          en="Ask the Alien!"
         />
       </StepTitle>
 

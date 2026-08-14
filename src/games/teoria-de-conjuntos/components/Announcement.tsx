@@ -140,8 +140,8 @@ export function Announcement({
       >
         <Surface>
           <Translate
-            en={<>So, does it help?</>}
-            pt={<>E ai, ajuda?</>}
+            en="So, does it help?"
+            pt="E ai, ajuda?"
           />
         </Surface>
       </PhaseAnnouncement>

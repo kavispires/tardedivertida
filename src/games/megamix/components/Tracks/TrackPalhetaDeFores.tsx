@@ -41,8 +41,8 @@ export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps)
       >
         <RuleInstruction type="action">
           <Translate
-            pt={<>Selecione a cor que melhor representa o personagem abaixo!</>}
-            en={<>Select the color that best represents the character below!</>}
+            pt="Selecione a cor que melhor representa o personagem abaixo!"
+            en="Select the color that best represents the character below!"
           />
         </RuleInstruction>
 

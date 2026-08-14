@@ -65,8 +65,8 @@ export function CardDescription({ type, dataCounts }: CardDescriptionProps) {
           content={
             <Typography.Paragraph style={{ maxWidth: 300 }}>
               <Translate
-                pt={<>Caso seja revelada, o jogo acaba imediatamente e os terroristas vencem.</>}
-                en={<>If revealed, the game ends immediately and the terrorists win.</>}
+                pt="Caso seja revelada, o jogo acaba imediatamente e os terroristas vencem."
+                en="If revealed, the game ends immediately and the terrorists win."
               />
             </Typography.Paragraph>
           }
@@ -148,7 +148,7 @@ export function CardDescription({ type, dataCounts }: CardDescriptionProps) {
                   investigador.
                 </>
               }
-              en={<>If revealed, it is just a waste of time, at least you will be the next investigator.</>}
+              en="If revealed, it is just a waste of time, at least you will be the next investigator."
             />
           </Typography.Paragraph>
         }

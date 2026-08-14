@@ -42,8 +42,8 @@ export function PhaseResult({ state, players }: PhaseProps) {
     >
       <Surface>
         <Translate
-          pt={<>E o papel foi escolhido?</>}
-          en={<>So was the role cast?</>}
+          pt="E o papel foi escolhido?"
+          en="So was the role cast?"
         />
       </Surface>
     </PhaseAnnouncement>

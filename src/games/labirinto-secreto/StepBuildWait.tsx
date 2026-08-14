@@ -29,8 +29,8 @@ export function StepBuildWait({ user, announcement, forest }: StepBuildWaitProps
 
       <Surface contained>
         <Translate
-          pt={<>Aguarde pacientemente, você ainda vai participar na hora de adivinhar.</>}
-          en={<>Sit and wait patiently, you will still participate when it's time to guess.</>}
+          pt="Aguarde pacientemente, você ainda vai participar na hora de adivinhar."
+          en="Sit and wait patiently, you will still participate when it's time to guess."
         />
       </Surface>
 

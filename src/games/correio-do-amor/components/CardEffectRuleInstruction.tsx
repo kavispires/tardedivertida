@@ -49,24 +49,24 @@ export function CardEffectRuleInstruction({
     case 'GUESS_RANK':
       content = (
         <Translate
-          en={<> and must choose a player and guess the rank of the card in their hand.</>}
-          pt={<> e deve escolher um jogador e adivinhar o valor da carta na mão dele.</>}
+          en="and must choose a player and guess the rank of the card in their hand."
+          pt="e deve escolher um jogador e adivinhar o valor da carta na mão dele."
         />
       );
       break;
     case 'GUESS_NAME':
       content = (
         <Translate
-          en={<> and must choose a player and guess the name of the card in their hand.</>}
-          pt={<> e deve escolher um jogador e adivinhar o nome da carta na mão dele.</>}
+          en="and must choose a player and guess the name of the card in their hand."
+          pt="e deve escolher um jogador e adivinhar o nome da carta na mão dele."
         />
       );
       break;
     case 'PEEK':
       content = (
         <Translate
-          en={<> and will choose a player to take a peek at their hand.</>}
-          pt={<> e deve escolher um jogador para dar uma espiada na carta.</>}
+          en="and will choose a player to take a peek at their hand."
+          pt="e deve escolher um jogador para dar uma espiada na carta."
         />
       );
       break;
@@ -80,7 +80,7 @@ export function CardEffectRuleInstruction({
               eliminated.
             </>
           }
-          pt={<> e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada.</>}
+          pt="e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada."
         />
       );
       break;
@@ -94,14 +94,14 @@ export function CardEffectRuleInstruction({
               eliminated.
             </>
           }
-          pt={<> e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada.</>}
+          pt="e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada."
         />
       );
       break;
     case 'DISCARD_REDRAW':
       content = (
         <Translate
-          en={<> and must choose a player (including themselves) to discard their card and draw a new one.</>}
+          en="and must choose a player (including themselves) to discard their card and draw a new one."
           pt={
             <>
               {' '}

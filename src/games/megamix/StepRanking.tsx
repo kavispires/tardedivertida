@@ -81,19 +81,19 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
       gainedPointsDescriptions={[
         <Translate
           key="1"
-          pt={<>Pontos por já estar na Área VIP.</>}
-          en={<>Points for already being in the VIP Area.</>}
+          pt="Pontos por já estar na Área VIP."
+          en="Points for already being in the VIP Area."
         />,
         <Translate
           key="2"
-          pt={<>Pontos por entrar a Área VIP.</>}
-          en={<>Points for joining the VIP Area.</>}
+          pt="Pontos por entrar a Área VIP."
+          en="Points for joining the VIP Area."
         />,
       ]}
       title={
         <Translate
-          pt={<>Ranking da Área VIP</>}
-          en={<>VIP Ranking</>}
+          pt="Ranking da Área VIP"
+          en="VIP Ranking"
         />
       }
       // TODO: white

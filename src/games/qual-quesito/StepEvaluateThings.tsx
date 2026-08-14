@@ -78,8 +78,8 @@ export function StepEvaluateThings({
     >
       <StepTitle size="small">
         <Translate
-          pt={<>Avalie as coisas</>}
-          en={<>Evaluate the things</>}
+          pt="Avalie as coisas"
+          en="Evaluate the things"
         />
       </StepTitle>
 

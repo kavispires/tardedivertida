@@ -84,8 +84,8 @@ export function StepSelectGlyphs({
     >
       <StepTitle>
         <Translate
-          pt={<>Descreva seu personagem com ícones</>}
-          en={<>Describe your character with glyphs</>}
+          pt="Descreva seu personagem com ícones"
+          en="Describe your character with glyphs"
         />
       </StepTitle>
 
@@ -134,8 +134,8 @@ export function StepSelectGlyphs({
       {roundType !== 'SHOW' && (
         <RuleInstruction type="event">
           <Translate
-            pt={<>De agora em diante, você vê apenas o seu personagem.</>}
-            en={<>From now on, you only see your own character.</>}
+            pt="De agora em diante, você vê apenas o seu personagem."
+            en="From now on, you only see your own character."
           />
         </RuleInstruction>
       )}
@@ -274,8 +274,8 @@ export function StepSelectGlyphs({
           disabled={user.ready || (positiveSelections.length < 1 && negativeSelections.length < 1)}
         >
           <Translate
-            pt={<>Enviar ícones</>}
-            en={<>Submit glyphs</>}
+            pt="Enviar ícones"
+            en="Submit glyphs"
           />
         </SendButton>
         <DevButton

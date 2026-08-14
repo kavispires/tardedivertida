@@ -42,8 +42,8 @@ export function StepWaitGuessing({
     >
       <StepTitle wait>
         <Translate
-          pt={<>Aguarde enquanto os jogadores adivinham os itens que criaram a palavra-valise</>}
-          en={<>Wait while the players guess the items that created the portmanteau</>}
+          pt="Aguarde enquanto os jogadores adivinham os itens que criaram a palavra-valise"
+          en="Wait while the players guess the items that created the portmanteau"
         />
       </StepTitle>
 

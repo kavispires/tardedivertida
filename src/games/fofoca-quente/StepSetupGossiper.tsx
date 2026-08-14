@@ -61,8 +61,8 @@ export function StepSetupGossiper({
     >
       <StepTitle>
         <Translate
-          pt={<>Preparando a escola</>}
-          en={<>Setting up the school</>}
+          pt="Preparando a escola"
+          en="Setting up the school"
         />
       </StepTitle>
 

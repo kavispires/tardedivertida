@@ -131,8 +131,8 @@ export function StepReveal({
       <RuleInstruction type="event">
         <ViewIf condition={outcome === 'CONTINUE'}>
           <Translate
-            pt={<>Que bom, ninguém queria esse mesmo! </>}
-            en={<>Good, nobody wanted this one! </>}
+            pt="Que bom, ninguém queria esse mesmo!"
+            en="Good, nobody wanted this one!"
           />
         </ViewIf>
 

@@ -84,8 +84,8 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
 
         <RuleInstruction type="action">
           <Translate
-            pt={<>Selecione o objeto que tem a ver com a palavra que o alienígena está pedindo.</>}
-            en={<>Select the object that has to do with the word the alien is asking for.</>}
+            pt="Selecione o objeto que tem a ver com a palavra que o alienígena está pedindo."
+            en="Select the object that has to do with the word the alien is asking for."
           />
         </RuleInstruction>
 

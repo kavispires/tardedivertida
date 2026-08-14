@@ -32,8 +32,8 @@ export function PhaseTemplate({ players, state, user }: PhaseProps<PhaseTemplate
     >
       <Surface>
         <Translate
-          pt={<>?</>}
-          en={<>?</>}
+          pt="?"
+          en="?"
         />
       </Surface>
     </PhaseAnnouncement>

@@ -34,8 +34,8 @@ export function PhaseResults({ state, players, user }: PhaseProps<PhaseResultsSt
     >
       <Surface>
         <Translate
-          pt={<>Hum... será que você realmente não é um robô?</>}
-          en={<>Hm... are you sure you are not a robot?</>}
+          pt="Hum... será que você realmente não é um robô?"
+          en="Hm... are you sure you are not a robot?"
         />
       </Surface>
     </PhaseAnnouncement>

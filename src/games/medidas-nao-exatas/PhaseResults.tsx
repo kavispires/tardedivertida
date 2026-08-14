@@ -36,8 +36,8 @@ export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) 
     >
       <Surface>
         <Translate
-          pt={<>Quantos pontos você ganhou?</>}
-          en={<>How many points did you get?</>}
+          pt="Quantos pontos você ganhou?"
+          en="How many points did you get?"
         />
       </Surface>
     </PhaseAnnouncement>

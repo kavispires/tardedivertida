@@ -41,8 +41,8 @@ export function PhaseActorSelection({ state, players, user }: PhaseProps) {
     >
       <Surface>
         <Translate
-          pt={<>Quem vai ser o</>}
-          en={<>Who is the best choice for</>}
+          pt="Quem vai ser o"
+          en="Who is the best choice for"
         />
         <TextHighlight>
           <DualTranslate>{activeRole.description}</DualTranslate>

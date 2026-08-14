@@ -81,13 +81,13 @@ export function StepMakeDecision({
       <StepTitle>
         {playedCard ? (
           <Translate
-            pt={<>{playedCard.name} está aqui...</>}
-            en={<>{playedCard.name} is here</>}
+            pt={`${playedCard.name} está aqui...`}
+            en={`${playedCard.name} is here`}
           />
         ) : (
           <Translate
-            pt={<>Hora da Decisão</>}
-            en={<>Time to Decide</>}
+            pt="Hora da Decisão"
+            en="Time to Decide"
           />
         )}
       </StepTitle>

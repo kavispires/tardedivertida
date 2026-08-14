@@ -269,8 +269,8 @@ function getTitle(
   if (outcome === OUTCOME.END) {
     return (
       <Translate
-        pt={<>Todas as cartas para a rodada foram examinadas.</>}
-        en={<>All cards for the round have been examined.</>}
+        pt="Todas as cartas para a rodada foram examinadas."
+        en="All cards for the round have been examined."
       />
     );
   }

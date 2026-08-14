@@ -56,8 +56,8 @@ export function StepEliminateMovie({
       <StepTitle className={getAnimationClass('tada')}>
         {isActivePlayer ? (
           <Translate
-            pt={<>Elimine um filme que você acha que ninguém quer ver</>}
-            en={<>Eliminate a movie that you think nobody wants to see</>}
+            pt="Elimine um filme que você acha que ninguém quer ver"
+            en="Eliminate a movie that you think nobody wants to see"
           />
         ) : (
           <Translate

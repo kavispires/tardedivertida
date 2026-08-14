@@ -47,8 +47,8 @@ export function PhasePatternCreation({ players, state, user }: PhaseProps<PhaseP
     >
       <Surface>
         <Translate
-          pt={<>Use seu senso comum para desvendar qual a livro obedece a sequência</>}
-          en={<>Use your common sense to figure out which book follows the sequence</>}
+          pt="Use seu senso comum para desvendar qual a livro obedece a sequência"
+          en="Use your common sense to figure out which book follows the sequence"
         />
       </Surface>
     </PhaseAnnouncement>

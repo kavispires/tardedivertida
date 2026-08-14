@@ -111,13 +111,13 @@ export function StepPlaceItem({
       <StepTitle>
         {isJudge ? (
           <Translate
-            pt={<>Como Juiz, coloque uma coisa no diagrama para ajudar os outros jogadores</>}
-            en={<>As the Judge, place an item on the diagram to help the other players</>}
+            pt="Como Juiz, coloque uma coisa no diagrama para ajudar os outros jogadores"
+            en="As the Judge, place an item on the diagram to help the other players"
           />
         ) : (
           <Translate
-            pt={<>Selecione um item e uma área do diagrama que você acha que ele pode se encaixar</>}
-            en={<>Select an item and an area of the diagram where you think it could fit</>}
+            pt="Selecione um item e uma área do diagrama que você acha que ele pode se encaixar"
+            en="Select an item and an area of the diagram where you think it could fit"
           />
         )}
       </StepTitle>

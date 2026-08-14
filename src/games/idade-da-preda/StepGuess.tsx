@@ -85,8 +85,8 @@ export function StepGuess({
     >
       <StepTitle>
         <Translate
-          pt={<>O que os jogadores estão falando?</>}
-          en={<>What are the players talking about?</>}
+          pt="O que os jogadores estão falando?"
+          en="What are the players talking about?"
         />
       </StepTitle>
 

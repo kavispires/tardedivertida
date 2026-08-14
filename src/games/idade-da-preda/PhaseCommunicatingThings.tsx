@@ -38,8 +38,8 @@ export function PhaseCommunicatingThings({
     >
       <Surface>
         <Translate
-          pt={<>Vamos expandir nosso dicionário.</>}
-          en={<>Let's expand our dictionary.</>}
+          pt="Vamos expandir nosso dicionário."
+          en="Let's expand our dictionary."
         />
       </Surface>
     </PhaseAnnouncement>

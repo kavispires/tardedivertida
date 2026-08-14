@@ -37,8 +37,8 @@ export function PhasePairing({ players, state, user }: PhaseProps<PhasePairingSt
     >
       <Surface>
         <Translate
-          pt={<>Faça pares com os itens e ganhe pontos por cada par igual a de outros jogadores.</>}
-          en={<>Pair the items and get points for each pair you match with other players </>}
+          pt="Faça pares com os itens e ganhe pontos por cada par igual a de outros jogadores."
+          en="Pair the items and get points for each pair you match with other players"
         />
       </Surface>
     </PhaseAnnouncement>

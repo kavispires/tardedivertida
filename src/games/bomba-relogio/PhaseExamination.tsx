@@ -175,8 +175,8 @@ function getAnnouncement({
       />
     ) : (
       <Translate
-        pt={<>A rodada chegou ao final, todos, mudem de postos!</>}
-        en={<>The round has ended, everyone change positions!</>}
+        pt="A rodada chegou ao final, todos, mudem de postos!"
+        en="The round has ended, everyone change positions!"
       />
     );
 

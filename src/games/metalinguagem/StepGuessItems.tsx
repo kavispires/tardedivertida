@@ -76,8 +76,8 @@ export function StepGuessItems({
 
       <RuleInstruction type="rule">
         <Translate
-          en={<>The two most voted items will determine if the group successfully guessed the word origin.</>}
-          pt={<>Os dois itens mais votados determinarão se o grupo acertou a origem da palavra.</>}
+          en="The two most voted items will determine if the group successfully guessed the word origin."
+          pt="Os dois itens mais votados determinarão se o grupo acertou a origem da palavra."
         />
       </RuleInstruction>
 

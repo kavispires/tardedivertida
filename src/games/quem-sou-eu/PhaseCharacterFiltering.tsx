@@ -35,8 +35,8 @@ export function PhaseCharacterFiltering({ state, players, user }: PhaseProps<Pha
     >
       <Surface>
         <Translate
-          pt={<>Selecione personagens/pessoas que você conhece</>}
-          en={<>Select characters/people you know</>}
+          pt="Selecione personagens/pessoas que você conhece"
+          en="Select characters/people you know"
         />
       </Surface>
     </PhaseAnnouncement>

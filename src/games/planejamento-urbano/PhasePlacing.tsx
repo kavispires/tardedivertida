@@ -36,8 +36,8 @@ export function PhasePlacing({ state, players }: PhaseProps<PhasePlacingState>) 
     >
       <Surface>
         <Translate
-          pt={<>Agora, é hora de colocar as construções de acordo com o planejamento do engenheiro chefe.</>}
-          en={<>Now, it's time to place the buildings according to the lead engineer's planning.</>}
+          pt="Agora, é hora de colocar as construções de acordo com o planejamento do engenheiro chefe."
+          en="Now, it's time to place the buildings according to the lead engineer's planning."
         />
       </Surface>
     </PhaseAnnouncement>

@@ -82,13 +82,12 @@ export function RoleBoard({ activeRole, instruction, movie, children, outcome }:
         <Surface className="role__instructions">
           {instruction === 'SELECT' && (
             <Translate
-              pt={
-                <>
-                  Selecione o ator que mais combina com{' '}
-                  {pluralize(traitCount, 'a característica', 'as características')} abaixo:
-                </>
-              }
-              en={<>Select the actor that best fits the {pluralize(traitCount, 'trait')} below:</>}
+              pt={`Selecione o ator que mais combina com ${pluralize(
+                traitCount,
+                'a característica',
+                'as características',
+              )} abaixo:`}
+              en={`Select the actor that best fits the ${pluralize(traitCount, 'trait')} below:`}
             />
           )}
 

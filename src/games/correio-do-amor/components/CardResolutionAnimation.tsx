@@ -58,8 +58,8 @@ export function CardResolutionAnimation({
         <RuleInstruction type="event">
           {everyPrefix}
           <Translate
-            en={<> and must choose a player and guess the rank of the card in their hand.</>}
-            pt={<> e deve escolher um jogador e adivinhar o valor da carta na mão dele.</>}
+            en="and must choose a player and guess the rank of the card in their hand."
+            pt="e deve escolher um jogador e adivinhar o valor da carta na mão dele."
           />
         </RuleInstruction>
       );
@@ -99,8 +99,8 @@ export function CardResolutionAnimation({
         <RuleInstruction type="event">
           {everyPrefix}
           <Translate
-            en={<> and will choose a player to take a peek at their hand.</>}
-            pt={<> e deve escolher um jogador para dar uma espiada na carta.</>}
+            en="and will choose a player to take a peek at their hand."
+            pt="e deve escolher um jogador para dar uma espiada na carta."
           />
         </RuleInstruction>
       );
@@ -117,9 +117,7 @@ export function CardResolutionAnimation({
                 eliminated.
               </>
             }
-            pt={
-              <> e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada.</>
-            }
+            pt="e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada."
           />
         </RuleInstruction>
       );
@@ -135,9 +133,7 @@ export function CardResolutionAnimation({
                 eliminated.
               </>
             }
-            pt={
-              <> e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada.</>
-            }
+            pt="e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada."
           />
         </RuleInstruction>
       );

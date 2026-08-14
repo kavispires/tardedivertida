@@ -76,8 +76,8 @@ export function StepSelectCard({
     >
       <StepTitle size="small">
         <Translate
-          pt={<>Vamos (tentar) comprar o ingresso!</>}
-          en={<>Let's (try to) buy the tickets!</>}
+          pt="Vamos (tentar) comprar o ingresso!"
+          en="Let's (try to) buy the tickets!"
         />
       </StepTitle>
 
@@ -143,8 +143,8 @@ export function StepSelectCard({
             className={getAnimationClass('tada')}
           >
             <Translate
-              pt={<>Colocamos os ingressos no carrinho e apareceu esse anúncio:</>}
-              en={<>As we add the tickets to the cart and this ad appeared:</>}
+              pt="Colocamos os ingressos no carrinho e apareceu esse anúncio:"
+              en="As we add the tickets to the cart and this ad appeared:"
             />
           </RuleInstruction>
 
