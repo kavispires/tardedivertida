@@ -49,12 +49,22 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
         <Translate
           pt={
             <>
-              Acertar todos os cenários da rodada dá <PointsHighlight>2 pontos bônus</PointsHighlight>.
+              Acertar todos os cenários da rodada dá{' '}
+              <PointsHighlight
+                value={2}
+                bonus
+              />
+              .
             </>
           }
           en={
             <>
-              Matching all scenarios in the round gives <PointsHighlight>2 bonus points</PointsHighlight>.
+              Matching all scenarios in the round gives{' '}
+              <PointsHighlight
+                value={2}
+                bonus
+              />
+              .
             </>
           }
         />

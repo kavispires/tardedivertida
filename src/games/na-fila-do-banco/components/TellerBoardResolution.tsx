@@ -158,8 +158,7 @@ function FinalScoringSpeech({ cardId, deckDict, teller, positionInQueue }: Final
     <PointsHighlight
       iconPlacement="before"
       type={isDoubled ? 'positive' : 'default'}
-    >
-      {points} {isDoubled && ' × 2'}
-    </PointsHighlight>
+      value={`${points}${isDoubled ? ' × 2' : ''}`}
+    />
   );
 }

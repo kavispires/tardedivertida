@@ -53,14 +53,12 @@ export function StepReveal({
           <Translate
             pt={
               <>
-                Ele(a) recebeu mais de dois votos! Quem votou nele(a) ganha{' '}
-                <PointsHighlight>3</PointsHighlight> pontos!
+                Ele(a) recebeu mais de dois votos! Quem votou nele(a) ganha <PointsHighlight value={3} />!
               </>
             }
             en={
               <>
-                They received more than 2 votes! Who voted for them gets <PointsHighlight>3</PointsHighlight>{' '}
-                points!
+                They received more than 2 votes! Who voted for them gets <PointsHighlight value={3} />!
               </>
             }
           />
@@ -68,15 +66,14 @@ export function StepReveal({
           <Translate
             pt={
               <>
-                Ele(a) não recebeu mais de 2 votos: <b>Impostor</b> ganha <PointsHighlight>5</PointsHighlight>{' '}
-                pontos e <b>Líder</b> ganha <PointsHighlight>4</PointsHighlight>
-                pontos!
+                Ele(a) não recebeu mais de 2 votos: <b>Impostor</b> ganha <PointsHighlight value={5} /> e{' '}
+                <b>Líder</b> ganha <PointsHighlight value={4} />!
               </>
             }
             en={
               <>
-                They did not get enough votes: the <b>Impostor</b> gets <PointsHighlight>5</PointsHighlight>{' '}
-                points and the <b>Lead Detective</b> gets <PointsHighlight>4</PointsHighlight> points!
+                They did not get enough votes: the <b>Impostor</b> gets <PointsHighlight value={5} /> and the{' '}
+                <b>Lead Detective</b> gets <PointsHighlight value={4} />!
               </>
             }
           />

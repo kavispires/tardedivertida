@@ -71,8 +71,8 @@ export function StepBuildMap({
               Começando da <CompassHighlight>bússola</CompassHighlight>, escolha 1 carta para cada árvore do
               caminho.
               <br />
-              Você ganha <PointsHighlight>pontos</PointsHighlight> se jogadores adivinharem seu caminho, então
-              tente fazer um bom trabalho.
+              Você ganha <PointsHighlight value="pontos" /> se jogadores adivinharem seu caminho, então tente
+              fazer um bom trabalho.
             </>
           }
           en={
@@ -82,8 +82,8 @@ export function StepBuildMap({
               Starting from the <CompassHighlight>compass</CompassHighlight>, choose 1 card for each tree of
               the path.
               <br />
-              You earn <PointsHighlight>points</PointsHighlight> if players guess your path correctly, so try
-              to do a good job.
+              You earn <PointsHighlight value="points" /> if players guess your path correctly, so try to do a
+              good job.
             </>
           }
         />

@@ -60,11 +60,11 @@ export function StepFollowPath({
               <TreeHighlight>árvores</TreeHighlight> circuladas de pontinhos brancos para escolher aquele
               caminho.
               <br />
-              Cada árvore correta vale <PointsHighlight>1 ponto</PointsHighlight> por jogador que acertar (Por
-              exemplo, 3 jogadores = 3 pontos).
+              Cada árvore correta vale <PointsHighlight value={1} /> por jogador que acertar (Por exemplo, 3
+              jogadores = 3 pontos).
               <br />
               Então, talvez valha a pena discutir! Porém, se somente um jogador acertar o caminho, ele ganha{' '}
-              <PointsHighlight>{playerCount} pontos</PointsHighlight>.
+              <PointsHighlight value={playerCount} />.
               <br />O criador do mapa ganha o mesmo número de pontos que os jogadores.
             </>
           }
@@ -73,11 +73,11 @@ export function StepFollowPath({
               Based on the <MapHighlight>adjectives map</MapHighlight>, click on the{' '}
               <TreeHighlight>circled trees</TreeHighlight> with white dots to choose that path.
               <br />
-              Each correct tree is worth <PointsHighlight>1 point</PointsHighlight> per player that guesses it
-              (For example, 3 players = 3 points).
+              Each correct tree is worth <PointsHighlight value={1} /> per player that guesses it (For
+              example, 3 players = 3 points).
               <br />
               So, it might be worth discussing out loud! However, if only one player guesses the path, they
-              earn <PointsHighlight>{playerCount} points</PointsHighlight>.
+              earn <PointsHighlight value={playerCount} />.
               <br />
               The map creator also earns the same number of points as the players.
             </>

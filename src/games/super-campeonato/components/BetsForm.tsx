@@ -73,14 +73,14 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
                 <>
                   Selecione o competidor que você acha que <u>vai ganhar a final</u>.
                   <br />
-                  Se ele ganhar, você recebe <PointsHighlight>5</PointsHighlight> pontos.
+                  Se ele ganhar, você recebe <PointsHighlight value={5} />.
                 </>
               }
               en={
                 <>
                   Select the contender you think will <u>win the final</u>.
                   <br />
-                  If they win, you gain <PointsHighlight>5</PointsHighlight> points.
+                  If they win, you gain <PointsHighlight value={5} />.
                 </>
               }
             />
@@ -127,14 +127,14 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
                 <>
                   Selecione o competidor que você acha que ganha uma <u>semifinal</u>.
                   <br />
-                  Se ele ganhar, você recebe <PointsHighlight>3</PointsHighlight> pontos.
+                  Se ele ganhar, você recebe <PointsHighlight value={3} />.
                 </>
               }
               en={
                 <>
                   Select the contender you think will win at least a <u>semifinal</u>.
                   <br />
-                  If they win, you gain <PointsHighlight>3</PointsHighlight> points.
+                  If they win, you gain <PointsHighlight value={3} />.
                 </>
               }
             />
@@ -181,14 +181,14 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
                 <>
                   Selecione o competidor que você acha que ganha uma <u>quarta de final</u>.
                   <br />
-                  Se ele ganhar, você recebe <PointsHighlight>1</PointsHighlight> pontos.
+                  Se ele ganhar, você recebe <PointsHighlight value={1} />.
                 </>
               }
               en={
                 <>
                   Select the contender you think will win at least a <u>quarterfinal</u>.
                   <br />
-                  If they win, you gain <PointsHighlight>1</PointsHighlight> points.
+                  If they win, you gain <PointsHighlight value={1} />.
                 </>
               }
             />

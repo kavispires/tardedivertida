@@ -25,14 +25,20 @@ export function GroupScore({ groupScore, playerScore }: GroupScoreProps) {
             en="Group Score"
           />
           <br />
-          <PointsHighlight>{groupScore}</PointsHighlight>
+          <PointsHighlight
+            value={groupScore}
+            omitText
+          />
           <Divider />
           <Translate
             pt="Sua pontuação"
             en="Group Score"
           />
           <br />
-          <PointsHighlight>{playerScore}</PointsHighlight>
+          <PointsHighlight
+            value={playerScore}
+            omitText
+          />
         </Surface>
       }
       label={

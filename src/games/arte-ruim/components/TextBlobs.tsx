@@ -4,7 +4,7 @@ import { getAnimationClass } from '@utils/helpers';
 // Components
 import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
-import { PointsHighlightV2 } from '@components/metrics/PointsHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 
 export const DrawInstruction = () => (
@@ -40,13 +40,13 @@ export const GalleryRules = () => (
       pt="Agora, mostraremos cada arte, o que os jogadores votaram e a resposta final.<br />Se você votou na expressão correta, você ganha <points>2</points>.<br />Quando for a sua arte, você ganha <bonus>1</bonus> para cada pessoa que votou corretamente."
       values={{
         points: () => (
-          <PointsHighlightV2
+          <PointsHighlight
             type="positive"
             value={2}
           />
         ),
         bonus: () => (
-          <PointsHighlightV2
+          <PointsHighlight
             type="positive"
             value={1}
           />
@@ -63,13 +63,13 @@ export const ScoringRules = () => (
       pt="Você ganha <points>2</points> pontos se você combinou a carta correta com a arte.<br />Para sua própria arte, você ganha <bonus>1</bonus> ponto para cada combinação correta que os outros jogadores fizeram."
       values={{
         points: () => (
-          <PointsHighlightV2
+          <PointsHighlight
             type="positive"
             value={2}
           />
         ),
         bonus: () => (
-          <PointsHighlightV2
+          <PointsHighlight
             type="positive"
             value={1}
           />

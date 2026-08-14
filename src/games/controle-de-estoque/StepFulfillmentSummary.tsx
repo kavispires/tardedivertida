@@ -42,20 +42,36 @@ export function StepFulfillmentSummary({
         <Translate
           pt={
             <>
-              Você ganha <PointsHighlight type="positive">3 pontos</PointsHighlight> para cada produto que
-              colocou no local correto.
+              Você ganha{' '}
+              <PointsHighlight
+                type="positive"
+                value={3}
+              />{' '}
+              para cada produto que colocou no local correto.
               <br />
-              Você perde <PointsHighlight type="negative">-1 ponto</PointsHighlight> para cada produto
-              colocado no local errado.
+              Você perde{' '}
+              <PointsHighlight
+                type="negative"
+                value={-1}
+              />{' '}
+              para cada produto colocado no local errado.
             </>
           }
           en={
             <>
-              You earn <PointsHighlight type="positive">3 points</PointsHighlight> for each product you placed
-              in the correct location.
+              You earn{' '}
+              <PointsHighlight
+                type="positive"
+                value={3}
+              />{' '}
+              for each product you placed in the correct location.
               <br />
-              You lose <PointsHighlight type="negative">-1 point</PointsHighlight> for each product placed in
-              the wrong location.
+              You lose{' '}
+              <PointsHighlight
+                type="negative"
+                value={-1}
+              />{' '}
+              for each product placed in the wrong location.
             </>
           }
         />

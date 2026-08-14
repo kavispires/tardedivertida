@@ -17,9 +17,17 @@ export function DJInstructions({ round }: { round: GameRound }) {
               <br />
               Você consegue isso se você sempre responder com a maioria! Não importa se está certo ou errado.
               <br />
-              Ao responder com a maioria, você ganha <PointsHighlight type="positive">1</PointsHighlight>{' '}
-              ponto por entrar na área VIP ou <PointsHighlight type="positive">2</PointsHighlight> points se
-              você estiver lá.
+              Ao responder com a maioria, você ganha{' '}
+              <PointsHighlight
+                type="positive"
+                value={1}
+              />{' '}
+              por entrar na área VIP ou{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              se você estiver lá.
               <br /> Vamos aos hits!
             </>
           }
@@ -32,9 +40,17 @@ export function DJInstructions({ round }: { round: GameRound }) {
               You achieve this by always answering the tracks with the majority. It doesn't matter if it's
               wrong or right.
               <br />
-              When answering with the majority, you gain <PointsHighlight type="positive">1</PointsHighlight>{' '}
-              point for joining the VIP area or <PointsHighlight type="positive">2</PointsHighlight> points if
-              you're already there.
+              When answering with the majority, you gain{' '}
+              <PointsHighlight
+                type="positive"
+                value={1}
+              />{' '}
+              for joining the VIP area or{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              if you're already there.
               <br />
               Let's play those hits!
             </>

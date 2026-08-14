@@ -67,12 +67,10 @@ export function AnsweringRules() {
             <br />
             Pense em respostas comuns que fará com que você responda igual a outros jogadores.
             <br />
-            Você ganha <PointsHighlight>1</PointsHighlight> ponto para cada uma de suas respostas +{' '}
-            <PointsHighlight>1</PointsHighlight> ponto para cada resposta igual a de outro jogador (1 ponto
-            por jogador).
+            Você ganha <PointsHighlight value={1} /> para cada uma de suas respostas +{' '}
+            <PointsHighlight value={1} /> para cada resposta igual a de outro jogador (1 ponto por jogador).
             <br />
-            Por exemplo, se 3 jogadores escreveram 'bola', são <PointsHighlight>+3</PointsHighlight> pontos
-            para cada.
+            Por exemplo, se 3 jogadores escreveram 'bola', são <PointsHighlight value={3} /> para cada.
           </>
         }
         en={
@@ -81,11 +79,11 @@ export function AnsweringRules() {
             <br />
             Think of common answers that will help you match the largest number of players.
             <br />
-            You get <PointsHighlight>1</PointsHighlight> point for each of your answers +{' '}
-            <PointsHighlight>1</PointsHighlight> point for each match with other players.
+            You get <PointsHighlight value={1} /> for each of your answers + <PointsHighlight value={1} /> for
+            each match with other players.
             <br />
-            For example, if 3 players write 'chicken', each of those players get{' '}
-            <PointsHighlight>3</PointsHighlight> points.
+            For example, if 3 players write 'chicken', each of those players get <PointsHighlight value={3} />
+            .
           </>
         }
       />

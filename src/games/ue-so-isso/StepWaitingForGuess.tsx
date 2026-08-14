@@ -75,8 +75,17 @@ export function StepWaitingForGuess({
             <>
               {guesser.name} tem uma única chance de adivinhar a palavra secreta!
               <br />
-              Se acertar, o grupo ganha <PointsHighlight type="positive">2 pontos</PointsHighlight> mas se
-              errar, o grupo perde <PointsHighlight type="negative">1 pontos</PointsHighlight>.
+              Se acertar, o grupo ganha{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              mas se errar, o grupo perde{' '}
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />
+              .
               <br />
               Há a opção de pular a rodada, mas só faz o grupo perder tempo.
             </>
@@ -85,9 +94,17 @@ export function StepWaitingForGuess({
             <>
               {guesser.name} has a single chance to guess the secret word!
               <br />
-              If they get it right, the group wins <PointsHighlight type="positive">2 points</PointsHighlight>{' '}
+              If they get it right, the group wins{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
               but if they get it wrong, the group loses{' '}
-              <PointsHighlight type="negative">1 points</PointsHighlight>.
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />
+              .
               <br />
               There's the option to skip the round, but it only wastes time.
             </>

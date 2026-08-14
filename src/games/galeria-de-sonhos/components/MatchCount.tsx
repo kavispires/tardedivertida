@@ -88,8 +88,12 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
                       size="small"
                       addressUser
                     />{' '}
-                    vai perder <PointsHighlight type="negative">1</PointsHighlight>
-                    ponto por sonho usado até então.
+                    vai perder{' '}
+                    <PointsHighlight
+                      type="negative"
+                      value={1}
+                    />{' '}
+                    por sonho usado até então.
                   </>
                 )}
               </p>
@@ -117,8 +121,12 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
                       size="small"
                       addressUser
                     />{' '}
-                    will lose <PointsHighlight type="negative">1</PointsHighlight> point for each scored
-                    dream.
+                    will lose{' '}
+                    <PointsHighlight
+                      type="negative"
+                      value={1}
+                    />{' '}
+                    for each scored dream.
                   </>
                 )}
               </p>

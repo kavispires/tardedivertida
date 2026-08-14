@@ -54,14 +54,12 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
           <Translate
             pt={
               <>
-                Você ganha <PointsHighlight>pontos</PointsHighlight> por cada jogador que fez o mesmo par que
-                você!
+                Você ganha <PointsHighlight value="pontos" /> por cada jogador que fez o mesmo par que você!
               </>
             }
             en={
               <>
-                You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
-                you!
+                You get <PointsHighlight value="points" /> for each player who did the same pair than you!
               </>
             }
           />
@@ -119,14 +117,14 @@ export function StepResult({ announcement, pool, goToNextStep, gallery, leftOut,
             <Translate
               pt={
                 <>
-                  Para o item que ficou sobrando, você também ganha <PointsHighlight>pontos</PointsHighlight>{' '}
-                  por cada jogador que deixou de fora o mesmo item que você!
+                  Para o item que ficou sobrando, você também ganha <PointsHighlight value="pontos" /> por
+                  cada jogador que deixou de fora o mesmo item que você!
                 </>
               }
               en={
                 <>
-                  For the item that was left over, you also get <PointsHighlight>points</PointsHighlight> for
-                  each player who left out the same item as you!
+                  For the item that was left over, you also get <PointsHighlight value="points" /> for each
+                  player who left out the same item as you!
                 </>
               }
             />

@@ -17,7 +17,7 @@ import { SpeechBubbleThumbsUpIcon } from '@icons/SpeechBubbleThumbsUpIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
-import { PointsHighlightV2 } from '@components/metrics/PointsHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 // Internal
@@ -285,7 +285,7 @@ function ResultCell({ data, players }: CellProps) {
         </span>
         <span className="adedanhx-grid-cell__results-answer">"{result.main.answer}"</span>
         <span className="adedanhx-grid-cell__results-score">
-          <PointsHighlightV2
+          <PointsHighlight
             type="positive"
             value={result.main.score}
             omitText
@@ -295,7 +295,7 @@ function ResultCell({ data, players }: CellProps) {
         <Divider className="adedanhx-grid-cell__results-divider" />
         <span className="adedanhx-grid-cell__results-players">
           <div>
-            <PointsHighlightV2
+            <PointsHighlight
               value={result.score}
               omitText
             />

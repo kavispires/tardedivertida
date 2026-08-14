@@ -62,26 +62,36 @@ export function StepResults({
         <Translate
           pt={
             <>
-              • Cada coisa aceita do criador vale{' '}
-              <PointsHighlight>{CREATOR_SCORE_POINTS} pontos</PointsHighlight>
+              • Cada coisa aceita do criador vale <PointsHighlight value={CREATOR_SCORE_POINTS} />
               <br />• Se o criador tem duas coisas aceitas, ele ganha{' '}
-              <PointsHighlight>{CREATOR_SCORE_BONUS} ponto bônus</PointsHighlight>
+              <PointsHighlight
+                bonus
+                value={CREATOR_SCORE_BONUS}
+              />
               <br />• Cada coisa aceita dos outros jogadores vale{' '}
-              <PointsHighlight>{OTHERS_SCORE_POINTS} pontos</PointsHighlight>
+              <PointsHighlight value={OTHERS_SCORE_POINTS} />
               <br />• Se você tem coisas rejeitadas por 2 rodadas seguidas, você perde{' '}
-              <PointsHighlight type="negative">-1 ponto</PointsHighlight>
+              <PointsHighlight
+                type="negative"
+                value={-1}
+              />
             </>
           }
           en={
             <>
-              • Each accepted thing from the creator is worth{' '}
-              <PointsHighlight>{CREATOR_SCORE_POINTS} points</PointsHighlight>
+              • Each accepted thing from the creator is worth <PointsHighlight value={CREATOR_SCORE_POINTS} />
               <br />• If the creator has two accepted things, they earn{' '}
-              <PointsHighlight>{CREATOR_SCORE_BONUS} bonus point</PointsHighlight>
+              <PointsHighlight
+                bonus
+                value={CREATOR_SCORE_BONUS}
+              />
               <br />• Each accepted thing from other players is worth{' '}
-              <PointsHighlight>{OTHERS_SCORE_POINTS} points</PointsHighlight>
+              <PointsHighlight value={OTHERS_SCORE_POINTS} />
               <br />• If you have things rejected for 2 consecutive rounds, you lose{' '}
-              <PointsHighlight type="negative">-1 point</PointsHighlight>
+              <PointsHighlight
+                type="negative"
+                value={-1}
+              />
             </>
           }
         />

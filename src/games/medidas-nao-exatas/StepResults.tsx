@@ -58,25 +58,41 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
         <Translate
           en={
             <>
-              The guessers get <PointsHighlight>points</PointsHighlight> based on the bracket their last guess
-              falls into, if correct.
+              The guessers get <PointsHighlight value="points" /> based on the bracket their last guess falls
+              into, if correct.
               <br />
-              They also lose <PointsHighlight type="negative">1 point</PointsHighlight> if they made more than
-              one guess.
+              They also lose{' '}
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />{' '}
+              if they made more than one guess.
               <br />
-              The presenter gets <PointsHighlight type="positive">2 points</PointsHighlight> for each who
-              guessed correctly.
+              The presenter gets{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              for each who guessed correctly.
             </>
           }
           pt={
             <>
-              Os adivinhadores ganham <PointsHighlight>pontos</PointsHighlight> baseados no quadrado em que a
-              última adivinhação está, se o palpite estiver correto.
+              Os adivinhadores ganham <PointsHighlight value="pontos" /> baseados no quadrado em que a última
+              adivinhação está, se o palpite estiver correto.
               <br />
-              Mas eles também perdem <PointsHighlight type="negative">1 ponto</PointsHighlight> se fizeram
-              mais de um palpite.
-              <br />O apresentador ganha <PointsHighlight type="positive">2 pontos</PointsHighlight> por cada
-              adivinhador que acertou.
+              Mas eles também perdem{' '}
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />{' '}
+              se fizeram mais de um palpite.
+              <br />O apresentador ganha{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              por cada adivinhador que acertou.
             </>
           }
         />

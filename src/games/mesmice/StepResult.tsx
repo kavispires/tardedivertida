@@ -16,7 +16,6 @@ import { XIcon } from '@icons/XIcon';
 import { Icon } from '@components/general/Icon';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
-import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
@@ -101,14 +100,14 @@ export function StepResult({
               <>
                 Parabéns!!! Vocês eliminaram todas as características!!!
                 <br />
-                Pontos da Rodada: <PointsHighlight>{roundScore}</PointsHighlight>
+                Pontos da Rodada: {roundScore}
               </>
             }
             en={
               <>
                 Congratulations!!! You eliminated all features!!!
                 <br />
-                Round's Score: <PointsHighlight>{roundScore}</PointsHighlight>
+                Round's Score: {roundScore}
               </>
             }
           />
@@ -131,14 +130,14 @@ export function StepResult({
               <>
                 Oh não! Vocês eliminaram a característica-alvo!!!
                 <br />
-                Pontos da Rodada: <PointsHighlight>{roundScore}</PointsHighlight>
+                Pontos da Rodada: {roundScore}
               </>
             }
             en={
               <>
                 Oh no! You eliminated the target feature!!!
                 <br />
-                Round's Score: <PointsHighlight>{roundScore}</PointsHighlight>
+                Round's Score: {roundScore}
               </>
             }
           />

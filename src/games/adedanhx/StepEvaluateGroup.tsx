@@ -3,7 +3,7 @@ import type { GamePlayer, GamePlayers } from 'types/game';
 // Components
 import { Translate } from '@components/language/Translate';
 import { TranslateTemplate } from '@components/language/TranslateTemplate';
-import { PointsHighlightV2 } from '@components/metrics/PointsHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
@@ -63,45 +63,10 @@ export function StepEvaluateGroup({
           values={{
             br: <br />,
             strong: (text) => <strong>{text}</strong>,
-            letterPoints: <PointsHighlightV2 value={answersGroup.letter.level} />,
-            topicPoints: <PointsHighlightV2 value={answersGroup.topic.level} />,
+            letterPoints: <PointsHighlight value={answersGroup.letter.level} />,
+            topicPoints: <PointsHighlight value={answersGroup.topic.level} />,
           }}
         />
-
-        {/* <Translate
-          pt={
-            <>
-              Se você acha que alguma não está certa dentro da categoria e letra, aperte o botãozinho para
-              marcar como errado.
-              <br />
-              Todos que responderam ganham{' '}
-              <PointsHighlight>
-                {answersGroup.letter.level} {pluralize(answersGroup.letter.level, 'ponto')}
-              </PointsHighlight>{' '}
-              e o primeiro jogador que respondeu corretamente ganha{' '}
-              <PointsHighlight type="positive">
-                {answersGroup.topic.level} {pluralize(answersGroup.topic.level, 'ponto')}
-              </PointsHighlight>
-              adicionais.
-            </>
-          }
-          en={
-            <>
-              If you think any of the answers is wrong, <strong>hit</strong> the check mark switch and submit
-              wrong answers.
-              <br />
-              Everyone who answered earns{' '}
-              <PointsHighlight>
-                {answersGroup.letter.level} {pluralize(answersGroup.letter.level, 'point')}
-              </PointsHighlight>
-              and the first player who answered correctly earns additional{' '}
-              <PointsHighlight type="positive">
-                {answersGroup.topic.level} {pluralize(answersGroup.topic.level, 'point')}
-              </PointsHighlight>
-              .
-            </>
-          }
-        /> */}
       </RuleInstruction>
 
       <EvaluationGroup

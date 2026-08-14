@@ -8,7 +8,7 @@ import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
-import { PointsHighlightV2 } from '@components/metrics/PointsHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
@@ -50,7 +50,7 @@ export function StepRanking({ players, ranking, isGameOver, round, onGoBack, thr
             en="The game ends when someone passes <points>{threshold}</points> or {rounds} rounds."
             pt="O jogo termina quando alguém passa os <points>{threshold}</points> ou {rounds} rodadas."
             values={{
-              threshold: <PointsHighlightV2 value={threshold} />,
+              threshold: <PointsHighlight value={threshold} />,
               rounds: round.total,
             }}
           />

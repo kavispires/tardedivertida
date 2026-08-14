@@ -110,13 +110,23 @@ export function StepGuess({
               en={
                 <>
                   If you change your mind, you can choose a different word, but you will lower your points and
-                  receive a <PointsHighlight type="negative">1 point</PointsHighlight> penalty.
+                  receive a{' '}
+                  <PointsHighlight
+                    type="negative"
+                    value={1}
+                  />{' '}
+                  penalty.
                 </>
               }
               pt={
                 <>
                   Se você mudar de ideia, pode escolher uma palavra diferente, mas perderá pontos e receberá
-                  uma penalidade de <PointsHighlight type="negative">1 ponto</PointsHighlight>.
+                  uma penalidade de{' '}
+                  <PointsHighlight
+                    type="negative"
+                    value={1}
+                  />
+                  .
                 </>
               }
             />

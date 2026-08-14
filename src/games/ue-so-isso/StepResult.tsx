@@ -103,24 +103,40 @@ export function StepResult({
         <Translate
           pt={
             <>
-              Lembre-se que vocês o objetivo é conseguir <PointsHighlight>7 pontos</PointsHighlight> em até 10
-              rodadas, mas vocês perdem imediatamente se tiverem
+              Lembre-se que vocês o objetivo é conseguir <PointsHighlight value={7} /> em até 10 rodadas, mas
+              vocês perdem imediatamente se tiverem
               <WrongGuessHighlight>3 erros</WrongGuessHighlight>.
               <br />
-              Vocês ganham <PointsHighlight type="positive">2 pontos</PointsHighlight> para cada acerto e
-              perdem
-              <PointsHighlight type="negative">1 ponto</PointsHighlight> para cada erro.
+              Vocês ganham{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              para cada acerto e perdem
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />{' '}
+              para cada erro.
             </>
           }
           en={
             <>
-              Remember that the goal is to get <PointsHighlight>7 points</PointsHighlight> within 10 rounds,
-              but you immediately lose if you get
+              Remember that the goal is to get <PointsHighlight value={7} /> within 10 rounds, but you
+              immediately lose if you get
               <WrongGuessHighlight>3 errors</WrongGuessHighlight>.
               <br />
-              You gain <PointsHighlight type="positive">2 points</PointsHighlight> for each correct guess and
-              lose
-              <PointsHighlight type="negative">1 point</PointsHighlight> for each mistake.
+              You gain{' '}
+              <PointsHighlight
+                type="positive"
+                value={2}
+              />{' '}
+              for each correct guess and lose
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />{' '}
+              for each mistake.
             </>
           }
         />

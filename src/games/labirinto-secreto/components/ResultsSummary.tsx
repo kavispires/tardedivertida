@@ -126,7 +126,14 @@ export function PlayerMapResultsSummary({ players, forest, currentPlayer }: Play
                 </div>
               )}
 
-              <div>{segment.score > 0 && <PointsHighlight>{segment.score}</PointsHighlight>}</div>
+              <div>
+                {segment.score > 0 && (
+                  <PointsHighlight
+                    value={segment.score}
+                    omitText
+                  />
+                )}
+              </div>
             </div>
           </div>
         );

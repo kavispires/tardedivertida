@@ -103,10 +103,10 @@ export function StepChooseLodges({
               todos os jogadores.
               <br />
               Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar. Cada ficha vale{' '}
-              <PointsHighlight>1 ponto</PointsHighlight> se você apostar na cabana mais popular.
+              <PointsHighlight value={1} /> se você apostar na cabana mais popular.
               <br />
-              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight>1 ponto</PointsHighlight> para cada
-              cabana que você não coloca nenhuma ficha durante o jogo.
+              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight value={1} /> para cada cabana que
+              você não coloca nenhuma ficha durante o jogo.
             </>
           }
           en={
@@ -114,10 +114,10 @@ export function StepChooseLodges({
               As a skier you bet on which lodge will have the most total chips bet by all players.
               <br />
               You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet. Each chip is worth{' '}
-              <PointsHighlight>1 point</PointsHighlight> if you bet on the most popular lodge.
+              <PointsHighlight value={1} /> if you bet on the most popular lodge.
               <br />
-              <strong>BONUS:</strong> You also earn <PointsHighlight>1 point</PointsHighlight> for each lodge
-              you don't place any chips on during the game.
+              <strong>BONUS:</strong> You also earn <PointsHighlight value={1} /> for each lodge you don't
+              place any chips on during the game.
             </>
           }
         />

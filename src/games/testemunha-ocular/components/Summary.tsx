@@ -59,7 +59,13 @@ export function Summary({ status }: SummaryProps) {
             en="Score"
           />
         ),
-        value: <PointsHighlight iconPlacement="before">{status.score}</PointsHighlight>,
+        value: (
+          <PointsHighlight
+            iconPlacement="before"
+            value={status.score}
+            omitText
+          />
+        ),
       },
     ],
     [status],

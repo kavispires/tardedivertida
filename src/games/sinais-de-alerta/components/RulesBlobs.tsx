@@ -71,22 +71,48 @@ export const GalleryRules = () => (
         <>
           Agora, mostraremos cada placa, o que os jogadores votaram e a resposta final.
           <br />
-          Se você acertou as duas cartas, você ganha <PointsHighlight type="positive">2</PointsHighlight>{' '}
-          pontos e o artista ganha <PointsHighlight type="positive">3</PointsHighlight> pontos.
+          Se você acertou as duas cartas, você ganha{' '}
+          <PointsHighlight
+            type="positive"
+            value={2}
+          />{' '}
+          e o artista ganha{' '}
+          <PointsHighlight
+            type="positive"
+            value={3}
+          />
+          .
           <br />
           Se você acertou uma das cartas, você NÃO ganha nada, mas o artista ganha{' '}
-          <PointsHighlight type="positive">1</PointsHighlight> ponto.
+          <PointsHighlight
+            type="positive"
+            value={1}
+          />
+          .
         </>
       }
       en={
         <>
           Now we show each art, what players voted, and the final answer.
           <br />
-          If you matched both cards, you get <PointsHighlight type="positive">2</PointsHighlight> points and
-          the artist gets <PointsHighlight type="positive">3</PointsHighlight> points.
+          If you matched both cards, you get{' '}
+          <PointsHighlight
+            type="positive"
+            value={2}
+          />{' '}
+          and the artist gets{' '}
+          <PointsHighlight
+            type="positive"
+            value={3}
+          />
+          .
           <br />
           If you matched one card, you get nothing, but the artist gets{' '}
-          <PointsHighlight type="positive">1</PointsHighlight> point.
+          <PointsHighlight
+            type="positive"
+            value={1}
+          />
+          .
         </>
       }
     />
@@ -98,20 +124,46 @@ export const ScoringRules = () => (
     <Translate
       pt={
         <>
-          Se você acertou as duas cartas, você ganha <PointsHighlight type="positive">2</PointsHighlight>{' '}
-          pontos e o artista ganha <PointsHighlight type="positive">3</PointsHighlight> pontos.
+          Se você acertou as duas cartas, você ganha{' '}
+          <PointsHighlight
+            type="positive"
+            value={2}
+          />{' '}
+          e o artista ganha{' '}
+          <PointsHighlight
+            type="positive"
+            value={3}
+          />
+          .
           <br />
           Se você acertou uma das cartas, você NÃO ganha nada, mas o artista ganha{' '}
-          <PointsHighlight type="positive">1</PointsHighlight> ponto.
+          <PointsHighlight
+            type="positive"
+            value={1}
+          />
+          .
         </>
       }
       en={
         <>
-          If you matched both cards, you get <PointsHighlight type="positive">2</PointsHighlight> points and
-          the artist gets <PointsHighlight type="positive">3</PointsHighlight> points.
+          If you matched both cards, you get{' '}
+          <PointsHighlight
+            type="positive"
+            value={2}
+          />{' '}
+          and the artist gets{' '}
+          <PointsHighlight
+            type="positive"
+            value={3}
+          />
+          .
           <br />
           If you matched one card, you get nothing, but the artist gets{' '}
-          <PointsHighlight type="positive">1</PointsHighlight> point.
+          <PointsHighlight
+            type="positive"
+            value={1}
+          />
+          .
         </>
       }
     />

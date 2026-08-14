@@ -167,12 +167,22 @@ export function StepReveal({
           <Translate
             pt={
               <strong>
-                Decidido! E ganhamos <PointsHighlight type="positive">{score}</PointsHighlight> pontos.
+                Decidido! E ganhamos{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={score}
+                />
+                .
               </strong>
             }
             en={
               <strong>
-                It's decided! And we scored <PointsHighlight type="positive">{score}</PointsHighlight> points.
+                It's decided! And we scored{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={score}
+                />
+                .
               </strong>
             }
           />
@@ -222,14 +232,23 @@ export function StepReveal({
               <strong>
                 <br />
                 Nãaaaaaaaooo.... não conseguimos decidir o filme, vamos voltar pra casa. A rodada acabou...
-                Recebemos <PointsHighlight type="positive">{score}</PointsHighlight> pontos.
+                Recebemos{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={score}
+                />
+                .
               </strong>
             }
             en={
               <strong>
                 <br />
                 Nooooooo.... we couldn't decide on a movie, let's just go home. The round is over.... We got{' '}
-                <PointsHighlight type="positive">{score}</PointsHighlight> points.
+                <PointsHighlight
+                  type="positive"
+                  value={score}
+                />
+                .
               </strong>
             }
           />

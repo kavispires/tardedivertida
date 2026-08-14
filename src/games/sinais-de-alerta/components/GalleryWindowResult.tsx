@@ -52,7 +52,7 @@ export function GalleryWindowResult({ cards, galleryEntry, gameLanguage }: Galle
           pt="O criador ganhou"
           en="The creator earned"
         />
-        : <PointsHighlight>{galleryEntry.artistScore}</PointsHighlight> pontos
+        : <PointsHighlight value={galleryEntry.artistScore} />
       </Typography.Paragraph>
     </div>
   );

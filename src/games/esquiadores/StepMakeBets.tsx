@@ -94,11 +94,10 @@ export function StepMakeBets({
               das cabanas. Qual cabana você acha que ele(a) vai escolher?
               <br />
               Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar. Cada ficha vale{' '}
-              <PointsHighlight>1 ponto</PointsHighlight> se você acertar a cabana escolhida.
+              <PointsHighlight value={1} /> se você acertar a cabana escolhida.
               <br />
-              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight>1 ponto</PointsHighlight> para cada
-              cabana que você não aposta nada, então você vai preferir distribuir os pontos ou focar em
-              somente algumas?
+              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight value={1} /> para cada cabana que
+              você não aposta nada, então você vai preferir distribuir os pontos ou focar em somente algumas?
             </>
           }
           en={
@@ -107,11 +106,10 @@ export function StepMakeBets({
               one of the lodges. Which lodge do you think they will choose?
               <br />
               You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet. Each chip is worth{' '}
-              <PointsHighlight>1 point</PointsHighlight>
-              if you guess the chosen lodge.
+              <PointsHighlight value={1} /> if you guess the chosen lodge.
               <br />
-              <strong>BONUS:</strong> You also earn <PointsHighlight>1 point</PointsHighlight> for each lodge
-              you don't bet on, so will you prefer to distribute the points or focus on just a few?
+              <strong>BONUS:</strong> You also earn <PointsHighlight value={1} /> for each lodge you don't bet
+              on, so will you prefer to distribute the points or focus on just a few?
             </>
           }
         />

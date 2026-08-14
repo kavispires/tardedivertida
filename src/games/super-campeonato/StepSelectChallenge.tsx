@@ -92,14 +92,14 @@ export function StepSelectChallenge({
               <>
                 <br />
                 Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer.
-                porque você ganha <PointsHighlight>2 pontos</PointsHighlight> se ele(a) vencer.
+                porque você ganha <PointsHighlight value={2} /> se ele(a) vencer.
               </>
             }
             en={
               <>
                 <br />
                 Select a challenge you think one of your contenders have the best chance of winning because
-                you get <PointsHighlight>2 points</PointsHighlight> if they win.
+                you get <PointsHighlight value={2} /> if they win.
               </>
             }
           />

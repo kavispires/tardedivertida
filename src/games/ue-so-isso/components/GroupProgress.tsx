@@ -59,9 +59,10 @@ export function GroupProgress({ group }: GroupProgressProps) {
           pt="Pontuação:"
           en="Score:"
         />
-        <PointsHighlight>
-          {group.score ?? 0}/{group.goal}
-        </PointsHighlight>
+        <PointsHighlight
+          value={`${group.score ?? 0}/${group.goal}`}
+          omitText
+        />
       </span>
     </div>
   );

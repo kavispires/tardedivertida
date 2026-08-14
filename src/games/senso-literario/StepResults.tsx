@@ -56,21 +56,29 @@ export function StepResults({ announcement, sequence, players, gallery, goToNext
           pt={
             <>
               Se você deu match com qualquer jogador na <TextHighlight>cor</TextHighlight> você ganha{' '}
-              <PointsHighlight>1 ponto</PointsHighlight>, para o <TextHighlight>gênero</TextHighlight> você
-              também ganha <PointsHighlight>1 ponto</PointsHighlight>, e a{' '}
-              <TextHighlight>letra</TextHighlight> também vale <PointsHighlight>1 ponto</PointsHighlight>. Se
-              você conseguiu dar match com a carta inteira, você ganha{' '}
-              <PointsHighlight type="positive">1 ponto bônus</PointsHighlight>!
+              <PointsHighlight value={1} />, para o <TextHighlight>gênero</TextHighlight> você também ganha{' '}
+              <PointsHighlight value={1} />, e a <TextHighlight>letra</TextHighlight> também vale{' '}
+              <PointsHighlight value={1} />. Se você conseguiu dar match com a carta inteira, você ganha{' '}
+              <PointsHighlight
+                type="positive"
+                bonus
+                value={1}
+              />
+              .
             </>
           }
           en={
             <>
               If you matched with any player on the <TextHighlight>color</TextHighlight> you earn{' '}
-              <PointsHighlight>1 point</PointsHighlight>, for the <TextHighlight>genre</TextHighlight> you
-              also earn <PointsHighlight>1 point</PointsHighlight>, and the{' '}
-              <TextHighlight>letter</TextHighlight> is also worth <PointsHighlight>1 point</PointsHighlight>.
-              If you managed to match the entire card, you earn{' '}
-              <PointsHighlight type="positive">1 bonus point</PointsHighlight>!
+              <PointsHighlight value={1} />, for the <TextHighlight>genre</TextHighlight> you also earn{' '}
+              <PointsHighlight value={1} />, and the <TextHighlight>letter</TextHighlight> is also worth{' '}
+              <PointsHighlight value={1} />. If you managed to match the entire card, you earn{' '}
+              <PointsHighlight
+                type="positive"
+                bonus
+                value={1}
+              />
+              .
             </>
           }
         />
@@ -100,12 +108,11 @@ export function StepResults({ announcement, sequence, players, gallery, goToNext
               style={{ visibility: card.playersIds.length <= 1 ? 'hidden' : 'visible' }}
               aria-hidden={card.playersIds.length <= 1}
             >
-              <PointsHighlight type="positive">
-                <Translate
-                  pt="1 ponto bônus"
-                  en="1 bonus point"
-                />
-              </PointsHighlight>
+              <PointsHighlight
+                type="positive"
+                bonus
+                value={1}
+              />
             </span>
           </Flex>
         ))}

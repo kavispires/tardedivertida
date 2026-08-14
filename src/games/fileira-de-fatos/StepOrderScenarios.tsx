@@ -54,7 +54,7 @@ export function StepOrderScenarios({
               Dados os cenários abaixo, tente adivinhar como o juiz <PlayerAvatarName player={activePlayer} />{' '}
               da rodada vai ordená-los do melhor para o pior.
               <br />
-              Você ganha <PointsHighlight>1 ponto</PointsHighlight> para cada combinação!
+              Você ganha <PointsHighlight value={1} /> para cada combinação!
             </>
           }
           en={
@@ -62,7 +62,7 @@ export function StepOrderScenarios({
               Given the scenarios below, try to guess how the judge <PlayerAvatarName player={activePlayer} />{' '}
               will order them from best to worst.
               <br />
-              You get <PointsHighlight>1 point</PointsHighlight> for each match!
+              You get <PointsHighlight value={1} /> for each match!
             </>
           }
         />

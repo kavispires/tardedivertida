@@ -112,13 +112,21 @@ export function StepPlayDream({
             pt={
               <>
                 Você estava em apuros e não conseguiu dar match em uma de suas cartas, então perdeu{' '}
-                <PointsHighlight type="negative">1 ponto</PointsHighlight> por carta que você deu match.
+                <PointsHighlight
+                  type="negative"
+                  value={1}
+                />{' '}
+                por carta que você deu match.
               </>
             }
             en={
               <>
                 You were in danger and didn't get a match in one of your cards. You lost{' '}
-                <PointsHighlight type="negative">1 point</PointsHighlight> per scored card.
+                <PointsHighlight
+                  type="negative"
+                  value={1}
+                />{' '}
+                per scored card.
               </>
             }
           />

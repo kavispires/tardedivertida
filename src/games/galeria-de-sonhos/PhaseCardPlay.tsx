@@ -138,8 +138,12 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
                   o maior número de cartas da rodada!
                   <br />
                   Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas
-                  selecionadas, ele perde <PointsHighlight type="negative">1</PointsHighlight> ponto por carta
-                  que você ganhou ponto.
+                  selecionadas, ele perde{' '}
+                  <PointsHighlight
+                    type="negative"
+                    value={1}
+                  />{' '}
+                  por carta que você ganhou ponto.
                   <br />
                 </>
               }
@@ -154,7 +158,11 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
                   the largest number of cards for this round!
                   <br />
                   If they are not able to match every single dream, they will lose{' '}
-                  <PointsHighlight type="negative">1</PointsHighlight> point per card you previously scored.
+                  <PointsHighlight
+                    type="negative"
+                    value={1}
+                  />{' '}
+                  per card you previously scored.
                   <br />
                 </>
               }

@@ -66,8 +66,8 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
                   <HappinessHighlight>1 ponto</HappinessHighlight> e para cada jogador que acerta a coisa
                   final, a casa ganha <HappinessHighlight>3 pontos</HappinessHighlight>.
                   <br />
-                  Para cada par que você acerta você ganha <PointsHighlight>2 pontos</PointsHighlight> e o
-                  criador da pista ganha <PointsHighlight>1 ponto</PointsHighlight>.
+                  Para cada par que você acerta você ganha <PointsHighlight value={2} /> e o criador da pista
+                  ganha <PointsHighlight value={1} />.
                 </>
               }
               en={
@@ -76,8 +76,8 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
                   <HappinessHighlight>1 point</HappinessHighlight> and for each player who gets the final
                   thing right, the house earns <HappinessHighlight>3 points</HappinessHighlight>.
                   <br />
-                  For each pair you get right you earn <PointsHighlight>2 points</PointsHighlight> and the
-                  clue creator earns <PointsHighlight>1 point</PointsHighlight>.
+                  For each pair you get right you earn <PointsHighlight value={2} /> and the clue creator
+                  earns <PointsHighlight value={1} />.
                 </>
               }
             />

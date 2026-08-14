@@ -73,14 +73,14 @@ export function StepVote({
         <Translate
           pt={
             <>
-              Cada desenho que receber pelo menos um voto, ganha <PointsHighlight>1 ponto</PointsHighlight> e
-              o desenho mais votado ganha <PointsHighlight>3 pontos</PointsHighlight>.
+              Cada desenho que receber pelo menos um voto, ganha <PointsHighlight value={1} /> e o desenho
+              mais votado ganha <PointsHighlight value={3} />.
             </>
           }
           en={
             <>
-              Each sketch that receives at least one vote gets <PointsHighlight>1 point</PointsHighlight> and
-              the sketch with the most votes gets <PointsHighlight>3 points</PointsHighlight>.
+              Each sketch that receives at least one vote gets <PointsHighlight value={1} /> and the sketch
+              with the most votes gets <PointsHighlight value={3} />.
             </>
           }
         />
@@ -89,14 +89,14 @@ export function StepVote({
           <Translate
             pt={
               <>
-                Como testemunha, você ganha <PointsHighlight>2 pontos</PointsHighlight> se você escolher o
-                desenho mais votado pelos outros jogadores. (E você é o desempate em caso de empate!)
+                Como testemunha, você ganha <PointsHighlight value={2} /> se você escolher o desenho mais
+                votado pelos outros jogadores. (E você é o desempate em caso de empate!)
               </>
             }
             en={
               <>
-                As the witness, you get <PointsHighlight>2 points</PointsHighlight> if you choose the sketch
-                with the most votes from the other players. (And you are the tiebreaker in case of a tie!)
+                As the witness, you get <PointsHighlight value={2} /> if you choose the sketch with the most
+                votes from the other players. (And you are the tiebreaker in case of a tie!)
               </>
             }
           />

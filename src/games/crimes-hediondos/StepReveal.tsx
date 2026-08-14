@@ -110,13 +110,13 @@ export function StepReveal({
           pt={
             <>
               Você acertou {user.correctCrimes} pares e está com um total (secreto) de{' '}
-              <PointsHighlight>{user.score + user.secretScore} pontos</PointsHighlight>.
+              <PointsHighlight value={user.score + user.secretScore} />.
             </>
           }
           en={
             <>
               You guesses {user.correctCrimes} crimes and have a (secret) total of{' '}
-              <PointsHighlight>{user.score + user.secretScore} points</PointsHighlight>.
+              <PointsHighlight value={user.score + user.secretScore} />.
             </>
           }
         />

@@ -1,6 +1,6 @@
 // Components
 import { TranslateTemplate } from '@components/language/TranslateTemplate';
-import { PointsHighlightV2 } from '@components/metrics/PointsHighlight';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 
 export function ScoringRule() {
   return (
@@ -9,13 +9,13 @@ export function ScoringRule() {
       pt="Cada resposta válida ganha <points>pontos</points> de acordo com as estrelas sua letra (linha).<br />O primeiro jogador a responder em cada célula, também ganha <bonusPoints>pontos bônus</bonusPoints> igual as estrelas da categoria (coluna)."
       values={{
         points: (content) => (
-          <PointsHighlightV2
+          <PointsHighlight
             value={content}
             omitText
           />
         ),
         bonusPoints: (content) => (
-          <PointsHighlightV2
+          <PointsHighlight
             type="positive"
             value={content}
             omitText

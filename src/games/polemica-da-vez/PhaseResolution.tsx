@@ -38,19 +38,18 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
             <>
               E aí? Será que o assunto bombou?
               <br />
-              Se você acertou a quantidade de curtidas, você ganha <PointsHighlight>3</PointsHighlight>{' '}
-              pontos.
+              Se você acertou a quantidade de curtidas, você ganha <PointsHighlight value={3} />.
               <br />
-              Se você quase acertou, você ganha <PointsHighlight>1</PointsHighlight> ponto.
+              Se você quase acertou, você ganha <PointsHighlight value={1} />.
             </>
           }
           en={
             <>
               So... did the tweet trend?
               <br />
-              If you guessed the correct number of likes, you get <PointsHighlight>3</PointsHighlight> points.
+              If you guessed the correct number of likes, you get <PointsHighlight value={3} />.
               <br />
-              If you were one off, you get <PointsHighlight>1</PointsHighlight> point.
+              If you were one off, you get <PointsHighlight value={1} />.
             </>
           }
         />

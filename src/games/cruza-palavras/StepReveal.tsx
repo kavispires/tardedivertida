@@ -109,14 +109,22 @@ export function StepReveal({
               <>
                 Ninguém acertou a(s) dica(s) dadas por
                 <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, então ele(s) perde(m){' '}
-                <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
+                <PointsHighlight
+                  type="negative"
+                  value={-playerCount}
+                />{' '}
+                pontos.
               </>
             }
             en={
               <>
                 Nobody got the clues given by
                 <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, so they lose{' '}
-                <PointsHighlight type="negative">- {playerCount}</PointsHighlight> points.
+                <PointsHighlight
+                  type="negative"
+                  value={-playerCount}
+                />{' '}
+                points.
               </>
             }
           />

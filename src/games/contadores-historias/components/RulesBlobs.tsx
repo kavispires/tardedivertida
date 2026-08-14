@@ -19,14 +19,14 @@ export function VotingRules({ isUserTheStoryTeller }: VotingRulesProps) {
             ? 'Aguarde enquanto os outros jogadores selecionam as cartas'
             : 'Hora de selecionar a carta correta!'}
           <br />
-          Se todos acertarem ou todos errarem, cada jogador ganha <PointsHighlight>2</PointsHighlight> pontos,
-          menos o contador de histórias.
+          Se todos acertarem ou todos errarem, cada jogador ganha <PointsHighlight value={2} />, menos o
+          contador de histórias.
           <br />
           Se somente alguns acertarem, cada acertador e contador de histórias recebe{' '}
-          <PointsHighlight>3</PointsHighlight> pontos.
+          <PointsHighlight value={3} />.
           <br />
-          Sua carta (se você não for o contador de histórias) ganha <PointsHighlight>1</PointsHighlight> ponto
-          se alguém selecionar.
+          Sua carta (se você não for o contador de histórias) ganha <PointsHighlight value={1} /> se alguém
+          selecionar.
         </>
       }
       en={
@@ -36,12 +36,11 @@ export function VotingRules({ isUserTheStoryTeller }: VotingRulesProps) {
             : 'Time to select the correct card!'}
           <br />
           If every player gets it correct or wrong, each player but the storyteller gets{' '}
-          <PointsHighlight>2</PointsHighlight> points.
+          <PointsHighlight value={2} />.
           <br />
-          If only some get it correct, those players (and the storyteller) get{' '}
-          <PointsHighlight>3</PointsHighlight>3 points.
+          If only some get it correct, those players (and the storyteller) get <PointsHighlight value={3} />.
           <br />
-          You get <PointsHighlight>1</PointsHighlight> point for every vote your card gets (if you are not the
+          You get <PointsHighlight value={1} /> for every vote your card gets (if you are not the
           storyteller).
         </>
       }
@@ -67,10 +66,9 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
                 size="small"
               />
             }{' '}
-            ganha <PointsHighlight>3</PointsHighlight> pontos se pelo menos uma pessoa acertar (mas não
-            todas).
+            ganha <PointsHighlight value={3} /> se pelo menos uma pessoa acertar (mas não todas).
             <br />
-            Cada jogador que votou corretamente ganha <PointsHighlight>3</PointsHighlight> pontos.
+            Cada jogador que votou corretamente ganha <PointsHighlight value={3} />.
             <br />
             Para cada voto que sua carta recebeu (menos{' '}
             {
@@ -79,10 +77,10 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
                 size="small"
               />
             }
-            ), você ganha <PointsHighlight>1</PointsHighlight> ponto.
+            ), você ganha <PointsHighlight value={1} />.
             <br />
             Mas se todos jogadores votarem corretamente ou incorretamente, todos ganham{' '}
-            <PointsHighlight>2</PointsHighlight> pontos e o Contador de Histórias não ganha nada.
+            <PointsHighlight value={2} /> e o Contador de Histórias não ganha nada.
           </>
         }
         en={
@@ -96,12 +94,11 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
                 size="small"
               />
             }{' '}
-            gets <PointsHighlight>3</PointsHighlight> points if at least one player got it correctly (but not
-            all).
+            gets <PointsHighlight value={3} /> if at least one player got it correctly (but not all).
             <br />
-            Each player who voted correctly gets <PointsHighlight>3</PointsHighlight> points.
+            Each player who voted correctly gets <PointsHighlight value={3} />.
             <br />
-            Each vote your card receives grants you <PointsHighlight>1</PointsHighlight> points (except{' '}
+            Each vote your card receives grants you <PointsHighlight value={1} /> (except{' '}
             {
               <PlayerAvatar
                 avatarId={storyteller.avatarId}
@@ -110,8 +107,8 @@ export function ScoringRules({ storyteller }: ScoringRulesProps) {
             }
             ).
             <br />
-            But if all players vote correctly or incorrectly, they get <PointsHighlight>2</PointsHighlight>{' '}
-            points each and the Storyteller gets nothing.
+            But if all players vote correctly or incorrectly, they get <PointsHighlight value={2} /> each and
+            the Storyteller gets nothing.
           </>
         }
       />

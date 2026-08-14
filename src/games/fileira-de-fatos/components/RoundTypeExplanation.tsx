@@ -27,15 +27,13 @@ export function RoundTypeExplanation({ roundType }: RoundTypeProps) {
             pt={
               <>
                 Nesta rodada, jogadores que <strong>acertarem</strong> o cenário da posição{' '}
-                <Avatar>{POSITIONS[roundType]}</Avatar> ganham <PointsHighlight>3 pontos</PointsHighlight> ao
-                invés de 1.
+                <Avatar>{POSITIONS[roundType]}</Avatar> ganham <PointsHighlight value={3} /> ao invés de 1.
               </>
             }
             en={
               <>
                 This round, players who <strong>match</strong> the scenario in position{' '}
-                <Avatar>{POSITIONS[roundType]}</Avatar> get <PointsHighlight>3 points</PointsHighlight>{' '}
-                instead of 1.
+                <Avatar>{POSITIONS[roundType]}</Avatar> get <PointsHighlight value={3} /> instead of 1.
               </>
             }
           />
@@ -53,14 +51,22 @@ export function RoundTypeExplanation({ roundType }: RoundTypeProps) {
               <>
                 Nesta rodada, jogadores que <strong>errarem</strong> o cenário da posição{' '}
                 <Avatar>{POSITIONS[roundType]}</Avatar> perdem{' '}
-                <PointsHighlight type="negative">1 ponto</PointsHighlight>.
+                <PointsHighlight
+                  type="negative"
+                  value={1}
+                />
+                .
               </>
             }
             en={
               <>
                 This round, players who <strong>miss</strong> the scenario in position{' '}
                 <Avatar>{POSITIONS[roundType]}</Avatar> lose{' '}
-                <PointsHighlight type="negative">1 point</PointsHighlight>.
+                <PointsHighlight
+                  type="negative"
+                  value={1}
+                />
+                .
               </>
             }
           />

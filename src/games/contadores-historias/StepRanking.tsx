@@ -104,14 +104,22 @@ export function StepRanking({
             <Translate
               pt={
                 <>
-                  Quem acertou ganha <PointsHighlight type="positive">3</PointsHighlight> pontos! Bom
-                  trabalho, <PlayerAvatarName player={storyteller} />.
+                  Quem acertou ganha{' '}
+                  <PointsHighlight
+                    type="positive"
+                    value={3}
+                  />
+                  ! Bom trabalho, <PlayerAvatarName player={storyteller} />.
                 </>
               }
               en={
                 <>
-                  Whoever guessed it right got <PointsHighlight type="positive">3</PointsHighlight> points!
-                  Good job, <PlayerAvatarName player={storyteller} />
+                  Whoever guessed it right got{' '}
+                  <PointsHighlight
+                    type="positive"
+                    value={3}
+                  />
+                  ! Good job, <PlayerAvatarName player={storyteller} />
                 </>
               }
             />

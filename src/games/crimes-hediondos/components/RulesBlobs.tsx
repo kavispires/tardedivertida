@@ -48,8 +48,8 @@ export function GuessMessage() {
             usou em seu crime.
             <br />
             Você ganha pontos se adivinhar uma das cartas ou ambas as cartas, e você também ganha{' '}
-            <PointsHighlight>1 ponto</PointsHighlight> para cada uma de suas cartas que os outros adivinharem,
-            mas essa pontuação é secreta.
+            <PointsHighlight value={1} /> para cada uma de suas cartas que os outros adivinharem, mas essa
+            pontuação é secreta.
           </>
         }
         en={
@@ -57,9 +57,8 @@ export function GuessMessage() {
             Based on the information given by other players, try to guess the weapon and object used on their
             crimes.
             <br />
-            You get points for getting one or both cards correctly, and you get{' '}
-            <PointsHighlight>1 point</PointsHighlight> when other players get each of your cards correctly,
-            but these points are kept secret.
+            You get points for getting one or both cards correctly, and you get <PointsHighlight value={1} />{' '}
+            when other players get each of your cards correctly, but these points are kept secret.
           </>
         }
       />
@@ -74,25 +73,22 @@ export function ScoringMessage({ round }: { round: GameRound }) {
       <Translate
         pt={
           <>
-            Você ganha <PointsHighlight>1 ponto</PointsHighlight> para cada arma ou objeto que você acertar.
+            Você ganha <PointsHighlight value={1} /> para cada arma ou objeto que você acertar.
             <br />
-            Se você acertar o par de um jogador, você ganha <PointsHighlight>{points} pontos</PointsHighlight>
-            .
+            Se você acertar o par de um jogador, você ganha <PointsHighlight value={points} />.
             <br />
-            Para todos os seus acertos, seus respectivos autores ganham{' '}
-            <PointsHighlight>1 ponto</PointsHighlight>.
+            Para todos os seus acertos, seus respectivos autores ganham <PointsHighlight value={1} />.
             <br />
             Ganha o jogo o primeiro jogador que acertar tudo.
           </>
         }
         en={
           <>
-            You get <PointsHighlight>1 point</PointsHighlight> for each weapon or evidence you get correctly.
+            You get <PointsHighlight value={1} /> for each weapon or evidence you get correctly.
             <br />
-            If you get the pair for a player, you get <PointsHighlight>{points} points</PointsHighlight>{' '}
-            instead.
+            If you get the pair for a player, you get <PointsHighlight value={points} /> instead.
             <br />
-            All of your correct guesses grant <PointsHighlight>1 extra point</PointsHighlight> to the authors.
+            All of your correct guesses grant <PointsHighlight value={1} /> extra point to the authors.
             <br />
             Wins the game the player who get all correctly first.
           </>

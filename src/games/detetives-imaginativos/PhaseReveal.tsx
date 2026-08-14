@@ -39,21 +39,19 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
           pt={
             <>
               Se o impostor recebeu 2 ou mais votos ele(a) é desmascarado. Quem votou nele ganha{' '}
-              <PointsHighlight>3</PointsHighlight> pontos.
+              <PointsHighlight value={3} />.
               <br />
-              Se o impostor recebeu menos de 2 votos, ele ganha <PointsHighlight>5</PointsHighlight> pontos e
-              o detetive líder ganha <PointsHighlight>4</PointsHighlight>
-              pontos.
+              Se o impostor recebeu menos de 2 votos, ele ganha <PointsHighlight value={5} /> e o detetive
+              líder ganha <PointsHighlight value={4} />.
             </>
           }
           en={
             <>
               If the impostor gets 2 or more votes, they are exposed. Whoever voted for him get{' '}
-              <PointsHighlight>3</PointsHighlight> points.
+              <PointsHighlight value={3} />.
               <br />
-              If the impostor gets fewer than 2 votes, he gets <PointsHighlight>5</PointsHighlight> points and
-              the Lead detective gets <PointsHighlight>4</PointsHighlight>
-              points.
+              If the impostor gets fewer than 2 votes, he gets <PointsHighlight value={5} /> and the Lead
+              detective gets <PointsHighlight value={4} />.
             </>
           }
         />

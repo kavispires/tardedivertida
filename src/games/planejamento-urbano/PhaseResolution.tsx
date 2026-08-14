@@ -64,24 +64,20 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
                 <>
                   Vamos ver se você, pedreiro, pensou como o engenheiro chefe.
                   <br />
-                  Você ganha <PointsHighlight>3 pontos</PointsHighlight> se acertar o planejamento!
-                  <br />O engenheiro chefe ganha <PointsHighlight>1 ponto</PointsHighlight> para cada jogador
-                  que acertar!
+                  Você ganha <PointsHighlight value={3} /> se acertar o planejamento!
+                  <br />O engenheiro chefe ganha <PointsHighlight value={1} /> para cada jogador que acertar!
                   <br />
-                  Quem errar, ganha <PointsHighlight>1 ponto</PointsHighlight> para cada jogador que pensou
-                  igual!
+                  Quem errar, ganha <PointsHighlight value={1} /> para cada jogador que pensou igual!
                 </>
               }
               en={
                 <>
                   Let's see if you, builder, thought like the lead engineer.
-                  <br /> You earn <PointsHighlight>3 points</PointsHighlight> if you match the plan!
+                  <br /> You earn <PointsHighlight value={3} /> if you match the plan!
                   <br />
-                  The lead engineer earns <PointsHighlight>1 point</PointsHighlight> for each player who
-                  matches!
+                  The lead engineer earns <PointsHighlight value={1} /> for each player who matches!
                   <br />
-                  Those who miss earn <PointsHighlight>1 point</PointsHighlight> for each player who thought
-                  the same!
+                  Those who miss earn <PointsHighlight value={1} /> for each player who thought the same!
                 </>
               }
             />

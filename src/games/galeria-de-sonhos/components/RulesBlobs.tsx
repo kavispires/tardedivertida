@@ -172,11 +172,19 @@ export function CardPlayRules() {
             <br />
             Selecione o sonho que você mais acha que tem chance de outro jogador ter também visitado.
             <br />
-            Você ganha <PointsHighlight type="positive">3</PointsHighlight> pontos se apenas mais{' '}
-            <PlayerHighlight>1</PlayerHighlight> jogador visitou o mesmo sonho.
+            Você ganha{' '}
+            <PointsHighlight
+              type="positive"
+              value={3}
+            />{' '}
+            se apenas mais <PlayerHighlight>1</PlayerHighlight> jogador visitou o mesmo sonho.
             <br />
-            Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos se mais de{' '}
-            <PlayersHighlight>1+</PlayersHighlight> jogador visitou o mesmo sonho.
+            Você ganha{' '}
+            <PointsHighlight
+              type="positive"
+              value={2}
+            />{' '}
+            se mais de <PlayersHighlight>1+</PlayersHighlight> jogador visitou o mesmo sonho.
             <br />
             Você está eliminado da rodada se ninguém mais visitou o sonho escolhido (mas você volta para a
             próxima rodada!)
@@ -188,11 +196,19 @@ export function CardPlayRules() {
             <br />
             Select the dream you think you have the most chances of matching another player.
             <br />
-            You get <PointsHighlight type="positive">3</PointsHighlight> points if only{' '}
-            <PlayerHighlight>1</PlayerHighlight> player visited the same dream.
+            You get{' '}
+            <PointsHighlight
+              type="positive"
+              value={3}
+            />{' '}
+            if only <PlayerHighlight>1</PlayerHighlight> player visited the same dream.
             <br />
-            You get <PointsHighlight type="positive">2</PointsHighlight> points if many{' '}
-            <PlayersHighlight>1+</PlayersHighlight> players have visited the same dream.
+            You get{' '}
+            <PointsHighlight
+              type="positive"
+              value={2}
+            />{' '}
+            if many <PlayersHighlight>1+</PlayersHighlight> players have visited the same dream.
             <br />
             You are eliminated from this round if nobody else has visited the chosen dream. (but you will be
             back for the next round!)

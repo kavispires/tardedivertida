@@ -14,7 +14,11 @@ export function WritingCluesRule({ playerCount }: { playerCount: number }) {
             Escreva uma dica (palavra única) que conecte as palavras da linha e da coluna assinalada a você.
             <br />
             Escreva algo bem simples e óbvio porque se ninguém entender você perderá{' '}
-            <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
+            <PointsHighlight
+              type="negative"
+              value={-playerCount}
+            />{' '}
+            pontos.
           </>
         }
         en={
@@ -25,7 +29,10 @@ export function WritingCluesRule({ playerCount }: { playerCount: number }) {
             coordinate.
             <br />
             Write something simple and obvious because if nobody gets your clue you will lose{' '}
-            <PointsHighlight type="negative">- {playerCount}</PointsHighlight>
+            <PointsHighlight
+              type="negative"
+              value={-playerCount}
+            />{' '}
             points.
           </>
         }
@@ -40,29 +47,34 @@ export function ScoringRule({ playerCount }: { playerCount: number }) {
       <Translate
         pt={
           <>
-            Você ganha <PointsHighlight>+2</PointsHighlight> pontos para cada célula com uma resposta correta
-            sua.
+            Você ganha <PointsHighlight value={2} /> para cada célula com uma resposta correta sua.
             <br />
-            <PointsHighlight>+1</PointsHighlight> ponto para cada célula com uma dica mas uma resposta errada
-            sua.
+            <PointsHighlight value={1} /> para cada célula com uma dica mas uma resposta errada sua.
             <br />
-            <PointsHighlight>+1</PointsHighlight> ponto para cada voto correto que sua dica recebeu.
+            <PointsHighlight value={1} /> para cada voto correto que sua dica recebeu.
             <br />
             Mas se ninguém acertar sua dica, você perde{' '}
-            <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
+            <PointsHighlight
+              type="negative"
+              value={-playerCount}
+            />{' '}
+            pontos.
           </>
         }
         en={
           <>
-            You get <PointsHighlight>+2</PointsHighlight> points for each cell with your correct answer.
+            You get <PointsHighlight value={2} /> for each cell with your correct answer.
             <br />
-            <PointsHighlight>+1</PointsHighlight> point for each cell with a clue but with a wrong answer of
-            yours.
+            <PointsHighlight value={1} /> for each cell with a clue but with a wrong answer of yours.
             <br />
-            <PointsHighlight>+1</PointsHighlight> point for each correct vote your clue received.
+            <PointsHighlight value={1} /> for each correct vote your clue received.
             <br />
             But if nobody gets your clue correctly, you lose{' '}
-            <PointsHighlight type="negative">- {playerCount}</PointsHighlight> points.
+            <PointsHighlight
+              type="negative"
+              value={-playerCount}
+            />{' '}
+            points.
           </>
         }
       />

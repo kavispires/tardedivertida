@@ -77,8 +77,12 @@ export function StepSelectActor({
               Caso contrário, o papel vai o final da fila e vamos reselecioná-lo na próxima rodada (igual
               segundo turno de eleição).
               <br />
-              Você ganha <PointsHighlight>1</PointsHighlight> por cada jogador que escolher o mesmo ator que
-              você.
+              Você ganha{' '}
+              <PointsHighlight
+                value={1}
+                omitText
+              />{' '}
+              por cada jogador que escolher o mesmo ator que você.
             </>
           }
           en={
@@ -87,7 +91,12 @@ export function StepSelectActor({
               <br />
               Otherwise, the role goes to the end of the queue and we will reselect it in the next round.
               <br />
-              You earn <PointsHighlight>1</PointsHighlight> for each player who chooses the same actor as you.
+              You earn{' '}
+              <PointsHighlight
+                value={1}
+                omitText
+              />{' '}
+              for each player who chooses the same actor as you.
             </>
           }
         />

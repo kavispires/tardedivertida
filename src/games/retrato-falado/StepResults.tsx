@@ -116,12 +116,22 @@ export function StepResults({
           <Translate
             pt={
               <>
-                Esse jogador ganha <PointsHighlight type="positive">3</PointsHighlight> pontos.
+                Esse jogador ganha{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={3}
+                />
+                .
               </>
             }
             en={
               <>
-                This player gets <PointsHighlight type="positive">3</PointsHighlight> points.
+                This player gets{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={3}
+                />
+                .
               </>
             }
           />
@@ -129,12 +139,22 @@ export function StepResults({
           <Translate
             pt={
               <>
-                Esses jogadores ganharam <PointsHighlight type="positive">3</PointsHighlight> pontos cada.
+                Esses jogadores ganharam{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={3}
+                />{' '}
+                cada.
               </>
             }
             en={
               <>
-                These players get <PointsHighlight type="positive">3</PointsHighlight> points each.
+                These players get{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={3}
+                />{' '}
+                each.
               </>
             }
           />
@@ -160,14 +180,23 @@ export function StepResults({
             pt={
               <>
                 A testemunha <PlayerAvatarName player={witness} /> votou no mais votado, logo, é uma
-                testemunha confiável e ganha <PointsHighlight type="positive">2</PointsHighlight> pontos
+                testemunha confiável e ganha{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={2}
+                />{' '}
                 também.
               </>
             }
             en={
               <>
                 The witness <PlayerAvatarName player={witness} /> voted with the group which means they are a
-                credible witness and get <PointsHighlight type="positive">2</PointsHighlight> points as well.
+                credible witness and get{' '}
+                <PointsHighlight
+                  type="positive"
+                  value={2}
+                />{' '}
+                as well.
               </>
             }
           />

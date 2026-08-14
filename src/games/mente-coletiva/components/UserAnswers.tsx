@@ -46,12 +46,12 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
         <Translate
           pt={
             <>
-              Você tem: <PointsHighlight>{points}</PointsHighlight> ponto(s)
+              Você tem: <PointsHighlight value={points} />
             </>
           }
           en={
             <>
-              You have:<PointsHighlight>{points}</PointsHighlight> point(s)
+              You have: <PointsHighlight value={points} />
             </>
           }
         />

@@ -42,20 +42,36 @@ export function StepOutOfStockSummary({
         <Translate
           pt={
             <>
-              Você ganha <PointsHighlight type="positive">3 pontos</PointsHighlight> para cada produto que
-              realmente não estava disponível no galpão.
+              Você ganha{' '}
+              <PointsHighlight
+                type="positive"
+                value={3}
+              />{' '}
+              para cada produto que realmente não estava disponível no galpão.
               <br />
-              Você perde <PointsHighlight type="negative">-1 ponto</PointsHighlight> para cada produto que
-              marcou como fora de estoque incorretamente.
+              Você perde{' '}
+              <PointsHighlight
+                type="negative"
+                value={-1}
+              />{' '}
+              para cada produto que marcou como fora de estoque incorretamente.
             </>
           }
           en={
             <>
-              You earn <PointsHighlight type="positive">3 points</PointsHighlight> for each product that was
-              actually out of stock.
+              You earn{' '}
+              <PointsHighlight
+                type="positive"
+                value={3}
+              />{' '}
+              for each product that was actually out of stock.
               <br />
-              You lose <PointsHighlight type="negative">-1 point</PointsHighlight> for each product you
-              incorrectly marked as out of stock.
+              You lose{' '}
+              <PointsHighlight
+                type="negative"
+                value={-1}
+              />{' '}
+              for each product you incorrectly marked as out of stock.
             </>
           }
         />

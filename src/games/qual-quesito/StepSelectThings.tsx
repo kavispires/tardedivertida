@@ -166,14 +166,22 @@ export function StepSelectThings({
               <>
                 <strong>Atenção</strong>: Uma ou mais de suas coisas foram rejeitadas na rodada anterior. Se
                 isso acontecer novamente, você perderá{' '}
-                <PointsHighlight type="negative">{CONSECUTIVE_REJECTION_PENALTY} ponto</PointsHighlight>!
+                <PointsHighlight
+                  type="negative"
+                  value={CONSECUTIVE_REJECTION_PENALTY}
+                />
+                !
               </>
             }
             en={
               <>
                 <strong>Attention</strong>: One or more of your things were rejected in the previous round. If
                 this happens again, you will lose{' '}
-                <PointsHighlight type="negative">{CONSECUTIVE_REJECTION_PENALTY} point</PointsHighlight>!
+                <PointsHighlight
+                  type="negative"
+                  value={CONSECUTIVE_REJECTION_PENALTY}
+                />
+                !
               </>
             }
           />

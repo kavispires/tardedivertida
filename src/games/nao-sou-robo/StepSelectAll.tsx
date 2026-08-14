@@ -178,18 +178,34 @@ export function StepSelectAll({
             <>
               São <CardHighlight>{selectionCount} cartas</CardHighlight> no total a serem selecionadas.
               <br />
-              Você ganha <PointsHighlight type="positive">1 ponto</PointsHighlight> por cada carta que não é
-              do robô e perde <PointsHighlight type="negative">1 ponto</PointsHighlight> por cada carta que é
-              do robô.
+              Você ganha{' '}
+              <PointsHighlight
+                type="positive"
+                value={1}
+              />{' '}
+              por cada carta que não é do robô e perde{' '}
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />{' '}
+              por cada carta que é do robô.
             </>
           }
           en={
             <>
               There are <CardHighlight>{selectionCount} cards</CardHighlight> in total to be selected.
               <br />
-              You get <PointsHighlight type="positive">1 point</PointsHighlight> for each card that is not
-              from the robot and lose <PointsHighlight type="negative">1 point</PointsHighlight> for each card
-              that is from the robot.
+              You get{' '}
+              <PointsHighlight
+                type="positive"
+                value={1}
+              />{' '}
+              for each card that is not from the robot and lose{' '}
+              <PointsHighlight
+                type="negative"
+                value={1}
+              />{' '}
+              for each card that is from the robot.
             </>
           }
         />

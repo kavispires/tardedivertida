@@ -52,8 +52,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
         <Translate
           pt={
             <>
-              Você ganha <PointsHighlight>pontos</PointsHighlight> por cada jogador que fez o mesmo par que
-              você!
+              Você ganha <PointsHighlight value="pontos" /> por cada jogador que fez o mesmo par que você!
               <br />
               <strong>Arraste e solte</strong> os itens nos slots para criar pares.
               <br />
@@ -62,8 +61,7 @@ export function StepMakePairs({ user, announcement, pool, onSubmitPairs }: StepT
           }
           en={
             <>
-              You get <PointsHighlight>points</PointsHighlight> for each player who did the same pair than
-              you!
+              You get <PointsHighlight value="points" /> for each player who did the same pair than you!
               <br />
               <strong>Drag and drop</strong> items to slots to create pairs.
               <br />

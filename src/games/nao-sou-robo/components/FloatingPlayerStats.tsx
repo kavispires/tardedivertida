@@ -60,7 +60,11 @@ export function FloatingPlayerStats({ user, robot }: FloatingPlayerStatsProps) {
                 pt="Pontuação"
                 en="Score"
               />
-              : <PointsHighlight>{user.score}</PointsHighlight>
+              :{' '}
+              <PointsHighlight
+                value={user.score}
+                omitText
+              />
             </li>
             <li>
               <Translate

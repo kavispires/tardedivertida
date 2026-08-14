@@ -7,14 +7,32 @@ export function ScoringRules() {
     <Translate
       en={
         <>
-          You gain <PointsHighlight type="positive">2</PointsHighlight> points for every name you paired
-          correctly, and the creator gains <PointsHighlight type="positive">1</PointsHighlight> point.
+          You gain{' '}
+          <PointsHighlight
+            type="positive"
+            value={2}
+          />{' '}
+          for every name you paired correctly, and the creator gains{' '}
+          <PointsHighlight
+            type="positive"
+            value={1}
+          />
+          .
         </>
       }
       pt={
         <>
-          Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos por cada nome que você
-          acertou, e o criador ganha <PointsHighlight type="positive">1</PointsHighlight> ponto.
+          Você ganha{' '}
+          <PointsHighlight
+            type="positive"
+            value={2}
+          />{' '}
+          por cada nome que você acertou, e o criador ganha{' '}
+          <PointsHighlight
+            type="positive"
+            value={1}
+          />
+          .
         </>
       }
     />

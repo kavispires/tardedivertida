@@ -21,9 +21,9 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
           Todos vão curtir ou des-curtir a polêmica da vez e então devem tentar adivinhar quantas curtidas o
           assunto vai ganhar.
           <br />
-          Se você adivinhar corretamente, você ganha <PointsHighlight>3</PointsHighlight> pontos.
+          Se você adivinhar corretamente, você ganha <PointsHighlight value={3} />.
           <br />
-          Se você escolheu um número a menos ou a mais, você ganha <PointsHighlight>1</PointsHighlight> ponto.
+          Se você escolheu um número a menos ou a mais, você ganha <PointsHighlight value={1} />.
           <br />
           {isFixedRounds ? (
             <>O jogo tem {round.total} rodadas.</>
@@ -48,9 +48,9 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
       en={
         <>
           All players must like or dislike a tweet then must vote how trendy it is (how many players liked the
-          tweet). If you guess correctly you get <PointsHighlight>3</PointsHighlight> points.
+          tweet). If you guess correctly you get <PointsHighlight value={3} />.
           <br />
-          If you got 1 number off (more or less), you get <PointsHighlight>1</PointsHighlight> point.
+          If you got 1 number off (more or less), you get <PointsHighlight value={1} />.
           <br />
           {isFixedRounds ? (
             <>

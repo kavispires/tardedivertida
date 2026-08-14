@@ -56,19 +56,15 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
           pt={
             <>
               Você ganha pontos ao acertar o caminho do mapa. <br />
-              Cada árvore correta vale <PointsHighlight>1 ponto</PointsHighlight> por jogador que acertar.{' '}
-              <br />
-              Se você for o único que acertou, você ganha{' '}
-              <PointsHighlight>{playerCount} pontos</PointsHighlight>.
+              Cada árvore correta vale <PointsHighlight value={1} /> por jogador que acertar. <br />
+              Se você for o único que acertou, você ganha <PointsHighlight value={playerCount} />.
             </>
           }
           en={
             <>
               You get points by guessing the map path. <br />
-              Each correct tree is worth <PointsHighlight>1 point</PointsHighlight> per player who guesses it.{' '}
-              <br />
-              If you are the only one who guessed it, you get{' '}
-              <PointsHighlight>{playerCount} points</PointsHighlight>.
+              Each correct tree is worth <PointsHighlight value={1} /> per player who guesses it. <br />
+              If you are the only one who guessed it, you get <PointsHighlight value={playerCount} />.
             </>
           }
         />
