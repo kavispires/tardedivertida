@@ -102,10 +102,16 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   let response = {};
   try {
     const sessionRef = getSessionRef(gameName, gameId);
-    const { getInitialState } = delegatorUtils.getEngine(gameName);
+    const { getInitialState } = await delegatorUtils.getEngine(gameName);
 
     const uid = auth?.uid ?? 'admin?';
-    const { meta, state, store } = getInitialState(gameId, uid, language ?? 'pt', version, options);
+    const { meta, state, store } = getInitialState(
+      gameId,
+      uid,
+      (language ?? 'pt') as Language,
+      version,
+      options,
+    );
 
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
@@ -169,7 +175,7 @@ const lockGame = async (data: BasicGamePayload) => {
 
   // Verify minimum number of players
   const numPlayers = getListOfPlayers(players).length;
-  const { getPlayerCounts, getNextPhase } = delegatorUtils.getEngine(gameName);
+  const { getPlayerCounts, getNextPhase } = await delegatorUtils.getEngine(gameName);
   const playerCounts = getPlayerCounts();
 
   if (numPlayers < playerCounts.MIN) {
@@ -249,7 +255,7 @@ const goToNextPhase = async (data: BasicGamePayload) => {
   verifyPayload(gameId, 'gameId', actionText);
   verifyPayload(gameName, 'gameName', actionText);
 
-  const { getNextPhase } = delegatorUtils.getEngine(gameName);
+  const { getNextPhase } = await delegatorUtils.getEngine(gameName);
 
   return getNextPhase(gameName, gameId);
 };

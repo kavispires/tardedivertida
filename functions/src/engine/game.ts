@@ -11,7 +11,7 @@ import { gameSessionActions } from './session';
  *
  * @param request - The CallableRequest object.
  */
-export const gameEngine = (request: CallableRequest<ActionPayload>) => {
+export const gameEngine = async (request: CallableRequest<ActionPayload>) => {
   // Verify action
   const action = request.data?.action;
   if (!action) {
@@ -41,7 +41,7 @@ export const gameEngine = (request: CallableRequest<ActionPayload>) => {
   }
 
   // Delegate game first, then action
-  const engine = getEngine(gameName);
+  const engine = await getEngine(gameName);
   if (!engine) {
     return throwHttpsError('Invalid game name', action);
   }

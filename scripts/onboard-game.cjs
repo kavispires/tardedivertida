@@ -24,10 +24,6 @@ function convertNameToKey(name) {
   return name.toUpperCase().replace(/-/g, '_');
 }
 
-function convertToCamelCase(name) {
-  return name.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-}
-
 function validateGameName(name) {
   // Check if name is lowercase, single string with optional hyphens
   const regex = /^[a-z]+(-[a-z]+)*$/;
@@ -83,60 +79,33 @@ async function runBackendEngineHookup() {
 
   console.log(`\n✅ Engine for '${gameName}' found with all required exports.\n`);
 
-  const delegatorsPath = path.resolve(__dirname, '../functions/src/utils/delegators.ts');
+  const delegatorsPath = path.resolve(__dirname, '../functions/src/games/delegators.ts');
   if (!fs.existsSync(delegatorsPath)) {
     console.error('❌ Error: delegators.ts not found');
     return;
   }
 
-  const camelCaseName = convertToCamelCase(gameName);
-  const engineVarName = `${camelCaseName}Engine`;
   const gameKey = convertNameToKey(gameName);
 
   let delegatorsContent = fs.readFileSync(delegatorsPath, 'utf-8');
 
-  // --- Insert import ---
-  if (delegatorsContent.includes(`from '../engine/${gameName}'`)) {
-    console.log(`⚠️  Import for '${gameName}' already exists in delegators.ts`);
-  } else {
-    const importRegex = /^import \* as (\w+) from '\.\.\/engine\/([^']+)';$/gm;
-    const importLines = [];
-    let m;
-    while ((m = importRegex.exec(delegatorsContent)) !== null) {
-      importLines.push({ varName: m[1], gamePath: m[2], fullLine: m[0], index: m.index });
-    }
-
-    const newImportLine = `import * as ${engineVarName} from '../engine/${gameName}';`;
-    let insertAfterImport = null;
-    for (const imp of importLines) {
-      if (imp.gamePath < gameName) {
-        insertAfterImport = imp;
-      }
-    }
-
-    if (insertAfterImport) {
-      const pos = insertAfterImport.index + insertAfterImport.fullLine.length;
-      delegatorsContent = delegatorsContent.slice(0, pos) + '\n' + newImportLine + delegatorsContent.slice(pos);
-    } else if (importLines.length > 0) {
-      const first = importLines[0];
-      delegatorsContent = delegatorsContent.slice(0, first.index) + newImportLine + '\n' + delegatorsContent.slice(first.index);
-    }
-
-    console.log(`✅ Added import for '${gameName}' engine`);
-  }
-
-  // --- Insert engines entry ---
+  // --- Insert lazy engine loader ---
   if (delegatorsContent.includes(`[GAME_NAMES.${gameKey}]`)) {
-    console.log(`⚠️  Engines entry for '${gameName}' already exists in delegators.ts`);
+    console.log(`⚠️  Engine loader for '${gameName}' already exists in delegators.ts`);
   } else {
-    const entryRegex = /^  \[GAME_NAMES\.(\w+)\]: (\w+),$/gm;
+    const entryRegex = /^  \[GAME_NAMES\.(\w+)\]: \(\) => import\('\.\/([^']+)'\),$/gm;
     const entries = [];
     let e;
     while ((e = entryRegex.exec(delegatorsContent)) !== null) {
-      entries.push({ key: e[1], fullLine: e[0], index: e.index });
+      entries.push({ key: e[1], gamePath: e[2], fullLine: e[0], index: e.index });
     }
 
-    const newEntry = `  [GAME_NAMES.${gameKey}]: ${engineVarName},`;
+    if (entries.length === 0) {
+      console.error('❌ Could not find engineRegistry entries in delegators.ts');
+      return;
+    }
+
+    const newEntry = `  [GAME_NAMES.${gameKey}]: () => import('./${gameName}'),`;
     let insertAfterEntry = null;
     for (const entry of entries) {
       if (entry.key < gameKey) {
@@ -152,7 +121,7 @@ async function runBackendEngineHookup() {
       delegatorsContent = delegatorsContent.slice(0, first.index) + newEntry + '\n' + delegatorsContent.slice(first.index);
     }
 
-    console.log(`✅ Added engines entry for '${gameName}'`);
+    console.log(`✅ Added lazy engine loader for '${gameName}'`);
   }
 
   fs.writeFileSync(delegatorsPath, delegatorsContent, 'utf-8');

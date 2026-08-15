@@ -33,15 +33,15 @@ type TurnOrder = UID[];
 /**
  * Object containing translations in both supported languages
  */
-type DualLanguageValue = {
+type DualLanguageValue<T = string> = {
   /**
    * English translation
    */
-  en: string;
+  en: T;
   /**
    * Portuguese translation
    */
-  pt: string;
+  pt: T;
 };
 
 /**

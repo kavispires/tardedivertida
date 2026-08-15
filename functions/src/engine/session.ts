@@ -109,7 +109,7 @@ const joinGame = async (data: JoinGamePayload, auth: FirebaseAuth) => {
   }
 
   // Verify maximum number of players
-  const { getPlayerCounts } = delegatorUtils.getEngine(gameName);
+  const { getPlayerCounts } = await delegatorUtils.getEngine(gameName);
   const playerCounts = getPlayerCounts();
   const numPlayers = getPlayerCount(players);
 
@@ -186,7 +186,7 @@ const makeMeReady = async (data: Payload<{ onlyReady?: boolean }>) => {
     return true;
   }
 
-  const { getNextPhase } = delegatorUtils.getEngine(gameName);
+  const { getNextPhase } = await delegatorUtils.getEngine(gameName);
 
   // If all players are ready, trigger next phase
   try {
