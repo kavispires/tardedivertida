@@ -16,14 +16,14 @@ import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { Title } from '@components/text/Title';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';
 import { LoseGameText } from './components/RulesBlobs';
-import { DoorFrame } from '../../components/game/DoorFrame';
+import { DoorFrame } from '../../components/game-elements/DoorFrame';
 
 export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   const isVictory = state.winCondition === 'WIN';

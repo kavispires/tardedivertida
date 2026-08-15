@@ -6,8 +6,8 @@ import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { RuleInstruction } from '@components/text/RuleInstruction';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 
 type StepRankingProps = {
   players: GamePlayers;

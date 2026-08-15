@@ -1,5 +1,5 @@
 // Components
-import { Tweet } from '@components/game/SocialProfile';
+import { Tweet } from '@components/game-elements/SocialProfile';
 import { Translate } from '@components/language/Translate';
 import { Title } from '@components/text/Title';
 // Internal

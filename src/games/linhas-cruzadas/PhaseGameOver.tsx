@@ -10,7 +10,7 @@ import { TheEndIcon } from '@icons/TheEndIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { AlbumEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

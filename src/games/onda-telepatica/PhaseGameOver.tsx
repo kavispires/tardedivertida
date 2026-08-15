@@ -9,8 +9,8 @@ import { WavelengthDeviceIcon } from '@icons/WavelengthDeviceIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { Title } from '@components/text/Title';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { CurrentCategory, PhaseGameOverState } from './utils/types';

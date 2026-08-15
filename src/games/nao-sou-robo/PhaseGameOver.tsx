@@ -7,7 +7,7 @@ import { NuclearExplosionIcon } from '@icons/NuclearExplosionIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import achievementsReference from './utils/achievements';
 import { OUTCOME } from './utils/constants';

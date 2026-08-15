@@ -20,7 +20,7 @@ import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { TableEntry } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';
-import { BookPages } from '../../components/game/BookPages';
+import { BookPages } from '../../components/game-elements/BookPages';
 
 type StepResolutionProps = {
   players: GamePlayers;

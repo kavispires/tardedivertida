@@ -4,7 +4,7 @@ import { Button, Space } from 'antd';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { Tweet } from '@components/game/SocialProfile';
+import { Tweet } from '@components/game-elements/SocialProfile';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';

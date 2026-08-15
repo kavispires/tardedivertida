@@ -3,7 +3,7 @@ import type { GamePlayer, GameRound } from 'types/game';
 // Utils
 import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SuggestionEasel } from '@components/game-elements/SuggestionEasel';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';

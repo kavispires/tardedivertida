@@ -11,9 +11,9 @@ import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { RuleInstruction } from '@components/text/RuleInstruction';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import type { Outcome } from './utils/types';
 import { ScoringRules } from './components/RulesBlobs';

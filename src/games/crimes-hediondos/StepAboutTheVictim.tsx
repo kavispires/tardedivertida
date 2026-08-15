@@ -6,7 +6,7 @@ import type { CrimeSceneTileData } from 'types/tdr';
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
 import { CrimeItemCard } from '@components/cards/CrimeItemCard';
-import { SceneTile } from '@components/game/SceneTile';
+import { SceneTile } from '@components/game-elements/SceneTile';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step, type StepProps } from '@components/steps/Step';

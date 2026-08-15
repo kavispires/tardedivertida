@@ -9,8 +9,8 @@ import type { UseStep } from '@hooks/useStep';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { RuleInstruction } from '@components/text/RuleInstruction';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import type { GalleryEntry } from './utils/types';
 import { ConstructionHighlight } from './components/Highlights';

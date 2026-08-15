@@ -8,8 +8,8 @@ import type { UseStep } from '@hooks/useStep';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { PopoverRule } from '@components/rules/PopoverRule';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import { ScoringRules } from './components/RulesBlobs';
 

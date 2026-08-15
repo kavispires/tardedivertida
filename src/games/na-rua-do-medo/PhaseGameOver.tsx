@@ -12,7 +12,7 @@ import { Achievements } from '@components/achievements/Achievements';
 import { CostumeAvatar } from '@components/avatars/CostumeAvatar';
 import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import { GRID_REPEAT } from './utils/constants';

@@ -6,7 +6,7 @@ import type { GamePlayer } from 'types/game';
 import { useMock } from '@hooks/useMock';
 // Components
 import { DevButton } from '@components/debug/DevButton';
-import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SuggestionEasel } from '@components/game-elements/SuggestionEasel';
 import { ControlledInputWriting } from '@components/input/ControlledInputWriting';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';

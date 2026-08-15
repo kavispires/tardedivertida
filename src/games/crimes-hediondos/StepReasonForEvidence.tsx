@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Types
 import type { CrimeSceneTileData } from 'types/tdr';
 // Components
-import { SceneTile } from '@components/game/SceneTile';
+import { SceneTile } from '@components/game-elements/SceneTile';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Step, type StepProps } from '@components/steps/Step';

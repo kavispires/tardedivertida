@@ -5,7 +5,7 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { PhaseGameOverState } from './utils/types';
 

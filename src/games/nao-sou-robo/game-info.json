@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "3.0.39",
+  "version": "3.0.40",
   "release": "stable",
   "releaseDate": "2023-11-12",
-  "updatedAt": 1786736886000,
+  "updatedAt": 1786820761631,
   "available": false,
   "title": {
     "pt": "Eu Não Sou Um Robô",

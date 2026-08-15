@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 // Components
-import { DoorFrame } from '@components/game/DoorFrame';
+import { DoorFrame } from '@components/game-elements/DoorFrame';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';

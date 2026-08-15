@@ -6,7 +6,7 @@ import type { PhaseProps } from 'types/game';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { Crime, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

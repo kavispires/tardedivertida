@@ -5,7 +5,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { BookPages } from '@components/game/BookPages';
+import { BookPages } from '@components/game-elements/BookPages';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';

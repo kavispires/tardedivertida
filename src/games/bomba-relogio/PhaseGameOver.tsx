@@ -17,8 +17,8 @@ import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { ConfettiEffect } from '@components/visual-effects/ConfettiEffect';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { achievementsReference } from './utils/achievements';
 import type { DataCounts, PhaseGameOverState, Status } from './utils/types';

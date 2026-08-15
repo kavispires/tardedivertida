@@ -11,7 +11,7 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { PastTweet, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

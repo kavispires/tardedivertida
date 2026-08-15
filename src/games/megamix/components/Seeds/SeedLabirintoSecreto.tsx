@@ -7,7 +7,7 @@ import type { GamePlayer } from 'types/game';
 // Icons
 import { BikiniModelIcon } from '@icons/BikiniModelIcon';
 // Components
-import { SocialProfile } from '@components/game/SocialProfile';
+import { SocialProfile } from '@components/game-elements/SocialProfile';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';

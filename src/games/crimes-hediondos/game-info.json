@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "3.0.63",
+  "version": "3.0.64",
   "release": "stable",
   "releaseDate": "2021-12-30",
-  "updatedAt": 1786736886000,
+  "updatedAt": 1786820758378,
   "available": false,
   "title": {
     "pt": "Crimes Hediondos",

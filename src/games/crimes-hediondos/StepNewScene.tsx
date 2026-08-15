@@ -6,7 +6,7 @@ import type { GamePlayer } from 'types/game';
 import type { CrimeSceneTileData } from 'types/tdr';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { SceneTile } from '@components/game/SceneTile';
+import { SceneTile } from '@components/game-elements/SceneTile';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';

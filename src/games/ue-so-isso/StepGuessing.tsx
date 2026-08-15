@@ -9,7 +9,7 @@ import { useCountdown } from '@hooks/useCountdown';
 import { useLanguage } from '@hooks/useLanguage';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SuggestionEasel } from '@components/game-elements/SuggestionEasel';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';

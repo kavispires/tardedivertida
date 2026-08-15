@@ -11,7 +11,7 @@ import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

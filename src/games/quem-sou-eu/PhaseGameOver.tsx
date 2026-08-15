@@ -6,7 +6,7 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { FinalCharacterEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';

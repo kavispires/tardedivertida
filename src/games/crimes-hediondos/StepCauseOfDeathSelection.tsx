@@ -13,7 +13,7 @@ import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { ResetButton } from './components/ResetButton';
 import { WeaponHighlight } from './components/Highlights';
-import { SceneTile } from '../../components/game/SceneTile';
+import { SceneTile } from '../../components/game-elements/SceneTile';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;

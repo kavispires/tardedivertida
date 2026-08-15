@@ -13,7 +13,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { getAnimationClass } from '@utils/helpers';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { DoorFrame } from '@components/game/DoorFrame';
+import { DoorFrame } from '@components/game-elements/DoorFrame';
 import { ImageBlurButton } from '@components/image-cards/ImageBlurButton';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { ImageCardBack } from '@components/image-cards/ImageCardBack';

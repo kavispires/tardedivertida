@@ -5,7 +5,7 @@ import { Avatar, Flex, Image, Tag, Typography } from 'antd';
 // Utils
 import { getAnimation } from '@utils/animations';
 // Components
-import { DoorFrame } from '@components/game/DoorFrame';
+import { DoorFrame } from '@components/game-elements/DoorFrame';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';

@@ -10,7 +10,7 @@ import { useLanguage } from '@hooks/useLanguage';
 // Utils
 import { getAnimationClass } from '@utils/helpers';
 // Components
-import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SuggestionEasel } from '@components/game-elements/SuggestionEasel';
 import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';

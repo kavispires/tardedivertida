@@ -9,8 +9,8 @@ import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { RuleInstruction } from '@components/text/RuleInstruction';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import { RoundTypeExplanation } from './components/RoundTypeExplanation';
 

@@ -9,8 +9,8 @@ import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { Title } from '@components/text/Title';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import { STATUS } from './utils/constants';
 import achievementsReference from './utils/achievements';

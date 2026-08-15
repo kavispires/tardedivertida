@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.126",
+  "version": "1.2.127",
   "release": "stable",
   "releaseDate": "2022-02-13",
-  "updatedAt": 1786736886000,
+  "updatedAt": 1786820760181,
   "available": false,
   "title": {
     "pt": "Linhas Cruzadas",

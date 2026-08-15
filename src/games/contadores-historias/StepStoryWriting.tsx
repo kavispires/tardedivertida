@@ -18,7 +18,7 @@ import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import { mockStory } from './utils/mock';
 import type { SubmitStoryPayload } from './utils/types';
-import { BookPages } from '../../components/game/BookPages';
+import { BookPages } from '../../components/game-elements/BookPages';
 
 type StepStoryWritingProps = {
   user: GamePlayer;

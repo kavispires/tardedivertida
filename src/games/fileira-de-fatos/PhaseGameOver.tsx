@@ -8,7 +8,7 @@ import { FlagIcon } from '@icons/FlagIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import { getReference } from './utils/helpers';
 import achievementsReference from './utils/achievements';

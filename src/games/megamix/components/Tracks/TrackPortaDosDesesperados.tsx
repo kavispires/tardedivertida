@@ -6,7 +6,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
-import { DoorFrame } from '@components/game/DoorFrame';
+import { DoorFrame } from '@components/game-elements/DoorFrame';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';

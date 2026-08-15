@@ -5,7 +5,7 @@ import type { GamePlayer } from 'types/game';
 // Hooks
 import { useCountdown } from '@hooks/useCountdown';
 // Components
-import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SuggestionEasel } from '@components/game-elements/SuggestionEasel';
 import { Translate } from '@components/language/Translate';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';

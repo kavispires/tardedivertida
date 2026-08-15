@@ -8,8 +8,8 @@ import { TrophyIcon } from '@icons/TrophyIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayersTabs } from '@components/players/PlayersTabs';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { ViewIf } from '@components/views/ViewIf';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import achievementsReference from './utils/achievements';
 import type { PhaseGameOverState } from './utils/types';

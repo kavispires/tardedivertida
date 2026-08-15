@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "5.0.82",
+  "version": "5.0.83",
   "release": "stable",
   "releaseDate": "2023-02-12",
-  "updatedAt": 1786736886000,
+  "updatedAt": 1786820757563,
   "available": true,
   "title": {
     "pt": "Comunicação Alienígena",

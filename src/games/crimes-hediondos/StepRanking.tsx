@@ -8,7 +8,7 @@ import type { UseStep } from '@hooks/useStep';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 
 type StepRankingProps = {
   ranking: GameRanking;

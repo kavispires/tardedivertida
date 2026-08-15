@@ -6,8 +6,8 @@ import { TheEndIcon } from '@icons/TheEndIcon';
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { Title } from '@components/text/Title';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';

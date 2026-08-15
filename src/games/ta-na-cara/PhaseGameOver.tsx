@@ -16,7 +16,7 @@ import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatarCard } from '@components/player/PlayerAvatarCard';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';

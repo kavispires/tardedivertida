@@ -29,7 +29,7 @@ import { mockPageSelection } from './utils/mock';
 import type { SubmitPagesPayload, TrapEntry } from './utils/types';
 import { TrapPopupRule } from './components/RulesBlobs';
 import { BookHighlight, DoorHighlight } from './components/Highlights';
-import { DoorFrame } from '../../components/game/DoorFrame';
+import { DoorFrame } from '../../components/game-elements/DoorFrame';
 
 type StepSelectPagesProps = {
   pages: UID[];

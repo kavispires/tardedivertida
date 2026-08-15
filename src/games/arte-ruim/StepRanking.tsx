@@ -9,9 +9,9 @@ import { Translate } from '@components/language/Translate';
 import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
-import { StepRankingWrapper } from '@components/wrappers/StepRankingWrapper';
 // Internal
 import { ScoringRules } from './components/TextBlobs';
 

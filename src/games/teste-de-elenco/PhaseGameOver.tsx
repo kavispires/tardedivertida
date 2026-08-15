@@ -15,9 +15,9 @@ import { ImageCard } from '@components/image-cards/ImageCard';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { TextHighlight } from '@components/text/TextHighlight';
 import { Title } from '@components/text/Title';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { FeatureFilm } from './utils/types';
 import { achievementsReference } from './utils/achievements';

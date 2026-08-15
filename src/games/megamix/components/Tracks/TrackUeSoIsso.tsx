@@ -10,7 +10,7 @@ import { LETTERS } from '@utils/constants';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { TextCard } from '@components/cards/TextCard';
-import { SuggestionEasel } from '@components/game/SuggestionEasel';
+import { SuggestionEasel } from '@components/game-elements/SuggestionEasel';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';

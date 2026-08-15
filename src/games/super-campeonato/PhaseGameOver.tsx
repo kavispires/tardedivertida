@@ -13,8 +13,8 @@ import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { Title } from '@components/text/Title';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
 // Internal
 import type { PastBattles } from './utils/type';
 import { achievementsReference } from './utils/achievements';

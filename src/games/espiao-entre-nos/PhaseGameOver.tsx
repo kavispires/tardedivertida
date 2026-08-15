@@ -3,7 +3,7 @@ import type { PhaseProps } from 'types/game';
 // Icons
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 
 export function PhaseGameOver({ state, players }: PhaseProps) {
   return (

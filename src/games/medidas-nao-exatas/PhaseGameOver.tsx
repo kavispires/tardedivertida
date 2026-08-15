@@ -9,7 +9,7 @@ import { Achievements } from '@components/achievements/Achievements';
 import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { TitledContainer } from '@components/layout/TitledContainer';
-import { GameOverWrapper } from '@components/wrappers/GameOverWrapper';
+import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { GalleryEntry, PhaseGameOverState } from './utils/types';
 import achievementsReference from './utils/achievements';
