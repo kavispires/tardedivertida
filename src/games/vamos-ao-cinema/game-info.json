@@ -5,6 +5,7 @@
   "version": "2.0.60",
   "release": "stable",
   "releaseDate": "2023-01-14",
+  "updatedAt": 1786736886000,
   "available": false,
   "title": {
     "pt": "Vamos Ao Cinema",
@@ -47,14 +48,7 @@
   },
   "playerCount": {
     "best": 5,
-    "recommended": [
-      4,
-      5,
-      6,
-      7,
-      8,
-      9
-    ],
+    "recommended": [4, 5, 6, 7, 8, 9],
     "min": 2,
     "max": 9
   },
@@ -62,13 +56,6 @@
     "base": 30,
     "perPlayer": 1
   },
-  "mechanics": [
-    "cooperative",
-    "turn-based",
-    "guessing",
-    "push-your-luck"
-  ],
-  "features": [
-    "achievements"
-  ]
+  "mechanics": ["cooperative", "turn-based", "guessing", "push-your-luck"],
+  "features": ["achievements"]
 }

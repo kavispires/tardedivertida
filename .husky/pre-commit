@@ -26,6 +26,49 @@ function increment_patch_version {
     echo "    ☑️  Auto-incrementing patch version: $current_version to $new_version."
 }
 
+# Update the game timestamp in milliseconds without reformatting the JSON file
+# Accepts one argument: the path to the game-info.json file
+function update_game_timestamp {
+  local updated_at
+  if ! updated_at=$(node -e '
+    const fs = require("node:fs");
+    const filePath = process.argv[1];
+    const timestamp = Date.now();
+    let contents = fs.readFileSync(filePath, "utf8");
+
+    if (/"updatedAt"\s*:\s*\d+/.test(contents)) {
+      contents = contents.replace(/"updatedAt"\s*:\s*\d+/, `"updatedAt": ${timestamp}`);
+    } else {
+      const releaseDatePattern = /^(\s*)"releaseDate"\s*:\s*"[^"]+",\r?\n/m;
+
+      if (!releaseDatePattern.test(contents)) {
+        throw new Error(`Could not find releaseDate in ${filePath}`);
+      }
+
+      contents = contents.replace(
+        releaseDatePattern,
+        (releaseDate, indentation) => `${releaseDate}${indentation}"updatedAt": ${timestamp},\n`,
+      );
+    }
+
+    fs.writeFileSync(filePath, contents);
+    console.log(timestamp);
+  ' "$1"); then
+    echo "    ❌ Failed to update timestamp in $1."
+    return 1
+  fi
+
+  echo "    ☑️  Updated timestamp: ${updated_at}."
+}
+
+# Check whether a game path contains staged changes other than metadata files
+# Accepts one argument: a client or Functions game directory
+function has_meaningful_game_changes {
+  git diff --cached --name-only HEAD -- "$1" \
+    | grep -Ev '(^|/)(metadata\.md|game-info\.json)$' \
+    | grep -q .
+}
+
 function update_package_version {
   # Get the current version from package.json
   current_version=$(awk -F'"' '/version/ {print $4}' package.json)
@@ -54,16 +97,16 @@ check_game_versions() {
     if [ -d "${game_dir}" ]; then
       if [ "$(ls -A "${game_dir}")" ]; then
         local was_modified=false
-        # Check if any files in the game directory have been modified
-        if ! git diff --cached --quiet --exit-code HEAD -- ${game_dir}; then
+        # Check if any files other than metadata have been modified
+        if has_meaningful_game_changes "${game_dir}"; then
           echo "  ⏩ Files in ${game_dir} have been modified since the last commit."
           was_modified=true
         fi
 
         game_name=$(basename "$game_dir")
-        engine_dir="functions/src/engine/$game_name"
+        engine_dir="functions/src/games/$game_name"
 
-        if ! git diff --cached --quiet --exit-code HEAD -- ${engine_dir}; then
+        if has_meaningful_game_changes "${engine_dir}"; then
           echo "  ⏩ Files in ${engine_dir} have been modified since the last commit."
           was_modified=true
         fi
@@ -75,8 +118,9 @@ check_game_versions() {
             echo "    ☑️ The version was already updated."
           else
             increment_patch_version "${game_dir}/game-info.json"
-            git add "${game_dir}/game-info.json"
           fi
+          update_game_timestamp "${game_dir}/game-info.json"
+          git add "${game_dir}/game-info.json"
         fi
       fi
     fi

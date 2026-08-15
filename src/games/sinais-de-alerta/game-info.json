@@ -5,6 +5,7 @@
   "version": "1.0.96",
   "release": "stable",
   "releaseDate": "2024-09-02",
+  "updatedAt": 1786736886000,
   "available": false,
   "title": {
     "pt": "Sinais de Alerta",
@@ -48,22 +49,11 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 3,
     "max": 10
   },
-  "mechanics": [
-    "competitive",
-    "drawing",
-    "pairing",
-    "timed"
-  ],
-  "features": [
-    "achievements"
-  ]
+  "mechanics": ["competitive", "drawing", "pairing", "timed"],
+  "features": ["achievements"]
 }

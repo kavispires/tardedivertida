@@ -5,6 +5,7 @@
   "version": "7.0.54",
   "release": "stable",
   "releaseDate": "2021-12-20",
+  "updatedAt": 1786733616000,
   "available": false,
   "title": {
     "pt": "Cruza Palavras",
@@ -48,11 +49,7 @@
   },
   "playerCount": {
     "best": 4,
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 3,
     "max": 8
   },
@@ -60,16 +57,8 @@
     "base": 10,
     "perPlayer": 5
   },
-  "mechanics": [
-    "competitive",
-    "same-time",
-    "writing",
-    "pairing",
-    "brain-burner"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["competitive", "same-time", "writing", "pairing", "brain-burner"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "gridType",

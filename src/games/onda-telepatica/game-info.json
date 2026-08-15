@@ -4,6 +4,7 @@
   "gameName": "onda-telepatica",
   "version": "4.0.126",
   "releaseDate": "2021-05-18",
+  "updatedAt": 1786733616000,
   "release": "stable",
   "available": false,
   "title": {
@@ -48,11 +49,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "best": 5,
     "min": 3,
     "max": 20
@@ -61,16 +58,8 @@
     "base": 25,
     "perPlayer": 2
   },
-  "mechanics": [
-    "competitive",
-    "turn-based",
-    "writing",
-    "guessing",
-    "brain-burner"
-  ],
-  "features": [
-    "achievements"
-  ],
+  "mechanics": ["competitive", "turn-based", "writing", "guessing", "brain-burner"],
+  "features": ["achievements"],
   "options": [
     {
       "key": "fixedRounds",

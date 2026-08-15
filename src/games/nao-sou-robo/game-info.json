@@ -5,6 +5,7 @@
   "version": "3.0.39",
   "release": "stable",
   "releaseDate": "2023-11-12",
+  "updatedAt": 1786736886000,
   "available": false,
   "title": {
     "pt": "Eu Não Sou Um Robô",
@@ -48,11 +49,7 @@
     ]
   },
   "playerCount": {
-    "recommended": [
-      4,
-      5,
-      6
-    ],
+    "recommended": [4, 5, 6],
     "min": 2,
     "max": 8,
     "best": 5
@@ -61,13 +58,6 @@
     "base": 5,
     "perPlayer": 4
   },
-  "mechanics": [
-    "competitive",
-    "images",
-    "guessing",
-    "same-time"
-  ],
-  "features": [
-    "achievements"
-  ]
+  "mechanics": ["competitive", "images", "guessing", "same-time"],
+  "features": ["achievements"]
 }
