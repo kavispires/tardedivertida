@@ -27,11 +27,10 @@ export function LoadingPage({ message }: LoadingPageProps) {
   return (
     <LoadingPageLayout className={styles.loadingPage}>
       <AnimatedVideoConferenceIcon style={{ width: '120px' }} />
-      {message && (
-        <Text {...getAnimation('blink', { infinite: true })}>
-          <DualTranslate>{message}</DualTranslate>
-        </Text>
-      )}
+
+      <Text {...getAnimation('blink', { infinite: true })}>
+        <DualTranslate>{message ?? { pt: '…', en: '…' }}</DualTranslate>
+      </Text>
     </LoadingPageLayout>
   );
 }

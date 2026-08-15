@@ -1,40 +1,16 @@
 import clsx from 'clsx';
-import { motion } from 'motion/react';
 import type { ComponentProps } from 'react';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Sass
 import styles from './PageLayout.module.scss';
 
-const MotionLayout = motion.create(Layout);
-
-const OPEN = 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)';
-const CLOSE = 'polygon(50% 0, 50% 0, 50% 100%, 50% 100%)';
-
 /**
- * A page layout component that uses Framer Motion for animations.
+ * A layout component for application pages.
  */
-export const PageLayout = ({ className, ...props }: ComponentProps<typeof MotionLayout>) => {
+export const PageLayout = ({ className, ...props }: ComponentProps<typeof Layout>) => {
   return (
-    <MotionLayout
-      initial="initialState"
-      animate="animateState"
-      exit="exitState"
-      transition={{
-        duration: 0.5,
-        ease: 'easeOut',
-      }}
-      variants={{
-        initialState: {
-          clipPath: CLOSE,
-        },
-        animateState: {
-          clipPath: OPEN,
-        },
-        exitState: {
-          clipPath: CLOSE,
-        },
-      }}
+    <Layout
       className={clsx(styles.pageLayout, className)}
       {...props}
     />
@@ -42,34 +18,6 @@ export const PageLayout = ({ className, ...props }: ComponentProps<typeof Motion
 };
 
 /**
- * A loading page layout component that uses Framer Motion for animations.
- * Only animates the exit
+ * A layout component for loading pages.
  */
-export const LoadingPageLayout = (props: ComponentProps<typeof MotionLayout>) => {
-  return (
-    <MotionLayout
-      initial="initialState"
-      animate="animateState"
-      exit="exitState"
-      transition={{
-        duration: 0.5,
-        ease: 'easeOut',
-      }}
-      variants={{
-        initialState: {
-          opacity: 0,
-          clipPath: OPEN,
-        },
-        animateState: {
-          opacity: 1,
-          clipPath: OPEN,
-        },
-        exitState: {
-          opacity: 1,
-          clipPath: CLOSE,
-        },
-      }}
-      {...props}
-    />
-  );
-};
+export const LoadingPageLayout = (props: ComponentProps<typeof Layout>) => <Layout {...props} />;
