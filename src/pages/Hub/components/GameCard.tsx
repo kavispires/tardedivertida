@@ -9,8 +9,8 @@ import { useLanguage } from '@hooks/useLanguage';
 import { calculateGameAverageDuration, truncateRecommended } from '@utils/helpers';
 // Components
 import { DebugOnly } from '@components/debug/DebugOnly';
-import { GameStrip } from '@components/general/GameBanner';
-import { GameTags } from '@components/general/GameTags';
+import { GameStrip } from '@components/game-identity/GameBanner';
+import { GameTags } from '@components/game-identity/GameTags';
 import { RulesModal } from '@components/rules/RulesModal';
 // Internal
 import { CreateGameFlow } from './CreateGameModal';

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useMemo, type ReactNode } from 'react';
+import { forwardRef, useMemo, type ReactNode } from 'react';
 // Ant Design Resources
 import {
   AlertFilled,
@@ -53,74 +53,70 @@ export type RuleInstructionProps = {
  * Do not use lists (ul, ol, li) inside this component
  * Add an icon on the left side
  */
-export const RuleInstruction = ({
-  children,
-  className,
-  fullWidth,
-  type = 'rule',
-  sfx,
-  ...rest
-}: RuleInstructionProps) => {
-  const { token } = theme.useToken();
+export const RuleInstruction = forwardRef<HTMLDivElement, RuleInstructionProps>(
+  ({ children, className, fullWidth, type = 'rule', sfx, ...rest }, ref) => {
+    const { token } = theme.useToken();
 
-  const { icon, animationClass, backgroundColor, color } = useMemo(() => {
-    const icon = {
-      action: <PlayCircleFilled />,
-      alert: <AlertFilled />,
-      event: <ExclamationCircleFilled />,
-      lore: <MessageFilled />,
-      rule: <ReadFilled />,
-      tip: <BulbFilled />,
-      scoring: <StarFilled />,
-      wait: <ClockCircleFilled />,
-      bot: <RobotFilled />,
-    }[type];
+    const { icon, animationClass, backgroundColor, color } = useMemo(() => {
+      const icon = {
+        action: <PlayCircleFilled />,
+        alert: <AlertFilled />,
+        event: <ExclamationCircleFilled />,
+        lore: <MessageFilled />,
+        rule: <ReadFilled />,
+        tip: <BulbFilled />,
+        scoring: <StarFilled />,
+        wait: <ClockCircleFilled />,
+        bot: <RobotFilled />,
+      }[type];
 
-    const animationClass = {
-      action: getAnimationClass('shakeX'),
-      alert: getAnimationClass('flash', { infinite: true, speed: 'fast' }),
-      event: getAnimationClass('tada', { repeat: 3, speed: 'fast' }),
-      lore: getAnimationClass('pulse'),
-      rule: getAnimationClass('pulse'),
-      tip: getAnimationClass('pulse'),
-      scoring: getAnimationClass('pulse'),
-      wait: getAnimationClass('pulse'),
-      bot: getAnimationClass('pulse'),
-    }[type];
+      const animationClass = {
+        action: getAnimationClass('shakeX'),
+        alert: getAnimationClass('flash', { infinite: true, speed: 'fast' }),
+        event: getAnimationClass('tada', { repeat: 3, speed: 'fast' }),
+        lore: getAnimationClass('pulse'),
+        rule: getAnimationClass('pulse'),
+        tip: getAnimationClass('pulse'),
+        scoring: getAnimationClass('pulse'),
+        wait: getAnimationClass('pulse'),
+        bot: getAnimationClass('pulse'),
+      }[type];
 
-    let backgroundColor = token.colorPrimaryBorder;
-    let color = token.colorPrimaryBg;
+      let backgroundColor = token.colorPrimaryBorder;
+      let color = token.colorPrimaryBg;
 
-    if (type === 'alert') {
-      backgroundColor = token.colorError;
-      color = token.colorWhite;
-    }
-    if (type === 'action') {
-      backgroundColor = token.colorPrimary;
-      color = token.colorPrimaryBorder;
-    }
+      if (type === 'alert') {
+        backgroundColor = token.colorError;
+        color = token.colorWhite;
+      }
+      if (type === 'action') {
+        backgroundColor = token.colorPrimary;
+        color = token.colorPrimaryBorder;
+      }
 
-    return { icon, animationClass, backgroundColor, color };
-  }, [token, type]);
+      return { icon, animationClass, backgroundColor, color };
+    }, [token, type]);
 
-  return (
-    <div
-      className={clsx(
-        styles.ruleInstruction,
-        fullWidth && `${styles.ruleInstruction}--full-width`,
-        className,
-      )}
-      data-testid="rule-instruction"
-      {...rest}
-    >
+    return (
       <div
-        className={styles.ruleInstructionIcon}
-        style={{ background: backgroundColor, color }}
+        ref={ref}
+        className={clsx(
+          styles.ruleInstruction,
+          fullWidth && `${styles.ruleInstruction}--full-width`,
+          className,
+        )}
+        data-testid="rule-instruction"
+        {...rest}
       >
-        <div className={animationClass}>{icon}</div>
+        <div
+          className={styles.ruleInstructionIcon}
+          style={{ background: backgroundColor, color }}
+        >
+          <div className={animationClass}>{icon}</div>
+        </div>
+        {sfx}
+        <Typography.Paragraph className={styles.ruleInstructionContent}>{children}</Typography.Paragraph>
       </div>
-      {sfx}
-      <Typography.Paragraph className={styles.ruleInstructionContent}>{children}</Typography.Paragraph>
-    </div>
-  );
-};
+    );
+  },
+);

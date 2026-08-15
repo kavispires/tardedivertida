@@ -9,7 +9,7 @@ import { useTDBaseUrl } from '@hooks/useTDBaseUrl';
 // Utils
 import { getAnimation } from '@utils/animations';
 // Components
-import { GameTags } from '@components/general/GameTags';
+import { GameTags } from '@components/game-identity/GameTags';
 import { Translate } from '@components/language/Translate';
 import { useGameInfoContext } from '@components/session/GameInfoContext';
 // Internal

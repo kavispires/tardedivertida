@@ -18,7 +18,7 @@ import { AnimatedVideoConferenceIcon } from '@icons/AnimatedVideoConferenceIcon'
 import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
-import { GameBanner } from '@components/general/GameBanner';
+import { GameBanner } from '@components/game-identity/GameBanner';
 import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';

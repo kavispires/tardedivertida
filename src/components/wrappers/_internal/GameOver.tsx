@@ -12,7 +12,7 @@ import { useLanguage } from '@hooks/useLanguage';
 // Utils
 import { AVATARS } from '@utils/avatars';
 // Components
-import { GameStrip } from '@components/general/GameBanner';
+import { GameStrip } from '@components/game-identity/GameBanner';
 import { HostButton } from '@components/host/HostButton';
 import { HostOnlyContainer } from '@components/host/HostOnlyContainer';
 import { Translate } from '@components/language/Translate';

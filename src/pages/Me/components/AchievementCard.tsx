@@ -8,7 +8,7 @@ import type { AchievementInfo } from 'types/game';
 import { UNKNOWN_TEXT } from '@utils/constants';
 // Components
 import { Medal } from '@components/achievements/Medal';
-import { GameBanner } from '@components/general/GameBanner';
+import { GameBanner } from '@components/game-identity/GameBanner';
 import { DualTranslate } from '@components/language/DualTranslate';
 
 type AchievementProps = {

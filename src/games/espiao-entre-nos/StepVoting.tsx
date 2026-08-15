@@ -11,7 +11,6 @@ import { Surface } from '@components/layout/Surface';
 import { ReadyPlayersBar } from '@components/players/ReadyPlayersBar';
 import { Step } from '@components/steps/Step';
 import { StepTitle } from '@components/text/StepTitle';
-import { View } from '@components/views/View';
 import { ViewSwitch } from '@components/views/ViewSwitch';
 // Internal
 import type { Location } from './utils/types';
@@ -54,25 +53,30 @@ export function StepVoting({
       </StepTitle>
 
       <ViewSwitch cases={[isUserTheAccuser, isUserTheTarget, true]}>
-        <View key="accuser">
-          <Surface className="e-phase-instruction">
-            <Translate
-              pt="Você não participa dessa votação, afinal, você quem acusou!"
-              en="You do not join the voting, after all, you triggered it!"
-            />
-          </Surface>
-        </View>
+        <Surface
+          key="accuser"
+          className="e-phase-instruction"
+        >
+          <Translate
+            pt="Você não participa dessa votação, afinal, você quem acusou!"
+            en="You do not join the voting, after all, you triggered it!"
+          />
+        </Surface>
 
-        <View key="target">
-          <Surface className="e-phase-instruction">
-            <Translate
-              pt="Você não participa dessa votação, afinal, é você quem está no paredão!"
-              en="You do not joint the voting, after all, you are the target"
-            />
-          </Surface>
-        </View>
+        <Surface
+          key="target"
+          className="e-phase-instruction"
+        >
+          <Translate
+            pt="Você não participa dessa votação, afinal, é você quem está no paredão!"
+            en="You do not joint the voting, after all, you are the target"
+          />
+        </Surface>
 
-        <View key="others">
+        <Surface
+          key="others"
+          className="e-phase-instruction"
+        >
           {!user.ready ? (
             <Space>
               <Button
@@ -97,14 +101,12 @@ export function StepVoting({
               </Button>
             </Space>
           ) : (
-            <Surface className="e-phase-instruction">
-              <Translate
-                pt="Voto computado"
-                en="Vote accepted"
-              />
-            </Surface>
+            <Translate
+              pt="Voto computado"
+              en="Vote accepted"
+            />
           )}
-        </View>
+        </Surface>
       </ViewSwitch>
 
       <Card

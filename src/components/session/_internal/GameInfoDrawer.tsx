@@ -10,7 +10,7 @@ import { useCurrentUserContext } from '@hooks/useCurrentUserContext';
 import { useLanguage } from '@hooks/useLanguage';
 // Components
 import { DebugOnly } from '@components/debug/DebugOnly';
-import { GameStrip } from '@components/general/GameBanner';
+import { GameStrip } from '@components/game-identity/GameBanner';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayersStatusBar } from '@components/players/PlayersStatusBar';

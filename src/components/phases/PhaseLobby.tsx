@@ -14,7 +14,7 @@ import { useStep } from '@hooks/useStep';
 import { PHASES } from '@utils/phases';
 // Components
 import { AdminMenuDrawer } from '@components/admin/AdminMenuDrawer';
-import { GameStrip } from '@components/general/GameBanner';
+import { GameStrip } from '@components/game-identity/GameBanner';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { PhaseContainer } from '@components/phases/PhaseContainer';

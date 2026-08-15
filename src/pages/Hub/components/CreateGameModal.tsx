@@ -15,7 +15,7 @@ import { useRedirectToNewGame } from '@hooks/useRedirectToNewGame';
 // Services
 import { HOST_API, HOST_API_ACTIONS } from '@services/adapters';
 // Components
-import { GameStrip } from '@components/general/GameBanner';
+import { GameStrip } from '@components/game-identity/GameBanner';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { LanguageSwitch } from '@components/language/LanguageSwitch';
 import { Translate } from '@components/language/Translate';

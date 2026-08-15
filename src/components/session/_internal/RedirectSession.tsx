@@ -7,7 +7,7 @@ import type { GameState } from 'types/game';
 // Hooks
 import { useGameList } from '@hooks/useGameList';
 // Components
-import { GameStrip } from '@components/general/GameBanner';
+import { GameStrip } from '@components/game-identity/GameBanner';
 import { Translate } from '@components/language/Translate';
 import { Title } from '@components/text/Title';
 

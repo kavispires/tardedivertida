@@ -23,9 +23,9 @@ import { SealOfApprovalIcon } from '@icons/SealOfApprovalIcon';
 import { SkullIcon } from '@icons/SkullIcon';
 import { TrophyIcon } from '@icons/TrophyIcon';
 // Components
-import { GameStrip, GameBanner } from '@components/general/GameBanner';
-import { GameTags } from '@components/general/GameTags';
-import { GameVideo } from '@components/general/GameVideo';
+import { GameStrip, GameBanner } from '@components/game-identity/GameBanner';
+import { GameTags } from '@components/game-identity/GameTags';
+import { GameVideo } from '@components/game-identity/GameVideo';
 import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
