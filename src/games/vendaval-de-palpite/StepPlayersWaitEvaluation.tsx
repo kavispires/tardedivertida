@@ -44,18 +44,9 @@ export function StepPlayersWaitEvaluation({
 
       <Surface contained>
         <Translate
-          pt={
-            <>
-              Veja as pistas escrita por outros jogadores e aguarde enquanto{' '}
-              <PlayerAvatarName player={boss} /> as avalia.
-            </>
-          }
-          en={
-            <>
-              Check the clues written by other players while <PlayerAvatarName player={boss} /> is evaluating
-              them.
-            </>
-          }
+          pt="Veja as pistas escrita por outros jogadores e aguarde enquanto {boss} as avalia."
+          en="Check the clues written by other players while {boss} is evaluating them."
+          values={{ boss: <PlayerAvatarName player={boss} /> }}
         />
       </Surface>
 

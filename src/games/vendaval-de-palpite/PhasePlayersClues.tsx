@@ -10,9 +10,9 @@ import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundsLeftInstruction } from '@components/results/RoundsLeftInstruction';
 import { RoundAnnouncement } from '@components/round/RoundAnnouncement';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
@@ -71,14 +71,10 @@ export function PhasePlayersClues({ state, players }: PhaseProps) {
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  O chefe quer a próxima ideia brilhante! Escreva dicas para tentar desvendar o que o chefe
+              pt="O chefe quer a próxima ideia brilhante! Escreva dicas para tentar desvendar o que o chefe
                   quer! Discuta com os outros funcionários e evitem escrever a mesma coisa. Ideias contrárias
-                  não ajudam muito.
-                </>
-              }
-              en="TODO"
+                  não ajudam muito."
+              en="The boss wants the next brilliant idea! Write clues to try to figure out what the boss wants! Discuss with the other employees and avoid writing the same thing. Opposing ideas don't help much."
             />
           </Surface>
         </PhaseAnnouncement>

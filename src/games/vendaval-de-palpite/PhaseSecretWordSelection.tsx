@@ -50,16 +50,9 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  O chefe <PlayerAvatarName player={boss} /> escolherá a palavra-secreta e sua categoria.
-                </>
-              }
-              en={
-                <>
-                  The boss <PlayerAvatarName player={boss} /> will choose the secret clue and its category.
-                </>
-              }
+              pt="O chefe {boss} escolherá a palavra-secreta e sua categoria."
+              en="The boss {boss} will choose the secret clue and its category."
+              values={{ boss: <PlayerAvatarName player={boss} /> }}
             />
           </Surface>
         </PhaseAnnouncement>
@@ -77,17 +70,9 @@ export function PhaseSecretWordSelection({ state, players }: PhaseProps) {
             players={players}
             instruction={
               <Translate
-                pt={
-                  <>
-                    O mestre <PlayerAvatarName player={boss} /> está escolhendo a palavra-secreta e sua
-                    categoria.
-                  </>
-                }
-                en={
-                  <>
-                    The boss <PlayerAvatarName player={boss} /> is choosing the secret clue and its category.
-                  </>
-                }
+                pt="O mestre {boss} está escolhendo a palavra-secreta e sua categoria."
+                en="The boss {boss} is choosing the secret clue and its category."
+                values={{ boss: <PlayerAvatarName player={boss} /> }}
               />
             }
           />
