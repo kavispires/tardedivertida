@@ -55,20 +55,12 @@ export function StockingPhase({
 
       <RegionHint>
         <Translate
-          pt={
-            <>
-              Um bom funcionário sempre sabe onde está cada produto.
+          pt="Um bom funcionário sempre sabe onde está cada produto.
               <br />
-              Lembre-se de usar uma certa lógica para memorizar a posição de cada produto.
-            </>
-          }
-          en={
-            <>
-              A good employee always knows where each product is.
+              Lembre-se de usar uma certa lógica para memorizar a posição de cada produto."
+          en="A good employee always knows where each product is.
               <br />
-              Remember to use a certain logic to memorize the position of each product.
-            </>
-          }
+              Remember to use a certain logic to memorize the position of each product."
         />
       </RegionHint>
     </>

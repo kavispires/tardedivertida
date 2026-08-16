@@ -233,60 +233,34 @@ export function DailyPirralhos({ data }: DailyPirralhosProps) {
 
         <RegionHint className="pirralhos-hint">
           <Translate
-            pt={
-              <>
-                Você pode clicar no botão{' '}
-                {
-                  <Icon
-                    icon={assessmentIconMap.unknown}
-                    size="small"
-                  />
-                }{' '}
-                em cada criança pra marcá-las como culpada{' '}
+            en="You can click the {unknownIcon} button on each kid to mark them as culprit {culpritIcon}, liar {liarIcon} or innocent {innocentIcon}."
+            pt="Você pode clicar no botão {unknownIcon} em cada criança pra marcá-las como culpada {culpritIcon}, mentirosa {liarIcon} ou inocente {innocentIcon}."
+            values={{
+              unknownIcon: (
+                <Icon
+                  icon={assessmentIconMap.unknown}
+                  size="small"
+                />
+              ),
+              culpritIcon: (
                 <Icon
                   icon={assessmentIconMap.culprit}
                   size="small"
                 />
-                , mentirosa{' '}
+              ),
+              liarIcon: (
                 <Icon
                   icon={assessmentIconMap.liar}
                   size="small"
-                />{' '}
-                ou inocente{' '}
+                />
+              ),
+              innocentIcon: (
                 <Icon
                   icon={assessmentIconMap.innocent}
                   size="small"
                 />
-                .
-              </>
-            }
-            en={
-              <>
-                You can click the{' '}
-                {
-                  <Icon
-                    icon={assessmentIconMap.unknown}
-                    size="small"
-                  />
-                }{' '}
-                button on each kid to mark them as culprit{' '}
-                <Icon
-                  icon={assessmentIconMap.culprit}
-                  size="small"
-                />
-                , liar{' '}
-                <Icon
-                  icon={assessmentIconMap.liar}
-                  size="small"
-                />{' '}
-                or innocent{' '}
-                <Icon
-                  icon={assessmentIconMap.innocent}
-                  size="small"
-                />
-                .
-              </>
-            }
+              ),
+            }}
           />
           <Button
             className="ml-2"

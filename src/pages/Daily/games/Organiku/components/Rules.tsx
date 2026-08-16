@@ -16,38 +16,52 @@ export function Rules({ date }: RulesProps) {
     <RulesWrapper
       date={date}
       basicRules={
-        <Translate
-          pt={
-            <>
-              <li>Encontre os pares de coisas na grade.</li>
-              <li>Você seleciona uma espaço e deve selecionar outro espaço que você acha que está o par.</li>
-              <li>
-                Um item <strong>NÃO</strong> pode aparecer mais de uma vez em uma mesma linha e coluna.
-              </li>
-              <li>
-                Quando você não acerta o par você perde um <HeartFilled />
-              </li>
-              <li>
-                Você tem {SETTINGS.HEARTS} <HeartFilled />. Boa sorte!
-              </li>
-            </>
-          }
-          en={
-            <>
-              <li>Find the pairs of items on the grid.</li>
-              <li>You select one space and must select another space that you think is the pair.</li>
-              <li>
-                An item <strong>cannot</strong> appear more than once in any row and any column.
-              </li>
-              <li>
-                When you don't find the pair, you lose a <HeartFilled />
-              </li>
-              <li>
-                You have {SETTINGS.HEARTS} <HeartFilled />. Good luck!
-              </li>
-            </>
-          }
-        />
+        <>
+          <li>
+            <Translate
+              pt="Encontre os pares de coisas na grade."
+              en="Find the pairs of items on the grid."
+            />
+          </li>
+          <li>
+            <Translate
+              pt="Você seleciona uma espaço e deve selecionar outro espaço que você acha que está o par."
+              en="You select one space and must select another space that you think is the pair."
+            />
+          </li>
+          <li>
+            <Translate
+              pt="Um item <strong>NÃO</strong> pode aparecer mais de uma vez em uma mesma linha e coluna."
+              en="An item <strong>cannot</strong> appear more than once in any row and any column."
+            />
+          </li>
+          <li>
+            <Translate
+              pt="Quando você não acerta o par você perde um {hearts}"
+              en="When you don't find the pair, you lose a {hearts}"
+              values={{
+                hearts: (
+                  <>
+                    {SETTINGS.HEARTS} <HeartFilled />
+                  </>
+                ),
+              }}
+            />
+          </li>
+          <li>
+            <Translate
+              pt="Você tem {hearts}. Boa sorte!"
+              en="You have {hearts}. Good luck!"
+              values={{
+                hearts: (
+                  <>
+                    {SETTINGS.HEARTS} <HeartFilled />
+                  </>
+                ),
+              }}
+            />
+          </li>
+        </>
       }
     />
   );

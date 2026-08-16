@@ -3,8 +3,6 @@ import { useToggle } from 'react-use';
 // Ant Design Resources
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Button, Modal, Typography } from 'antd';
-// Components
-import { Translate } from '@components/language/Translate';
 // Pages
 import { Region } from '@pages/Daily/components/Region';
 
@@ -31,12 +29,7 @@ export function RulesHintsModal({ label, title, description, children }: RulesHi
         </Button>
       </Region>
       <Modal
-        title={
-          <Translate
-            pt={title}
-            en={title}
-          />
-        }
+        title={title}
         open={showTipsModal}
         footer={null}
         onCancel={toggleTipsModal}

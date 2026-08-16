@@ -136,24 +136,15 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
           {...leftColProps}
         >
           <Translate
-            pt={
-              <>
-                Para {info.playerCount.min}-{info.playerCount.max} jogadores
-                <br />
-                Melhor com {info.playerCount.best || '?'} jogadores
-                <br />
-                Recomendado jogar com {truncateRecommended(info.playerCount.recommended)}
-              </>
-            }
-            en={
-              <>
-                For {info.playerCount.min}-{info.playerCount.max} players
-                <br />
-                Best with {info.playerCount.best || '?'} players
-                <br />
-                Recommended to play with {truncateRecommended(info.playerCount.recommended)}
-              </>
-            }
+            en="For {infoPlayerCountMin}-{infoPlayerCountMax} players<br />Best with {infoPlayerCountBest || '?'} players<br />Recommended to play with {recommendedPlayers}"
+            pt="Para {infoPlayerCountMin}-{infoPlayerCountMax} jogadores<br />Melhor com {infoPlayerCountBest || '?'} jogadores<br />Recomendado jogar com {recommendedPlayers}"
+            values={{
+              infoPlayerCountMin: info.playerCount.min,
+              infoPlayerCountMax: info.playerCount.max,
+              infoPlayerCountBest: info.playerCount.best,
+              infoPlayerCountRecommended: info.playerCount.recommended,
+              recommendedPlayers: truncateRecommended(info.playerCount.recommended),
+            }}
           />
         </InfoCard>
         <InfoCard
@@ -165,17 +156,15 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
           }
           {...leftColProps}
         >
+          <ClockCircleOutlined />
           <Translate
-            pt={
-              <>
-                <ClockCircleOutlined /> {duration.min} min - {duration.max} min (Md: {duration.ideal} min)
-              </>
-            }
-            en={
-              <>
-                <ClockCircleOutlined /> {duration.min} min - {duration.max} min (Avg: {duration.ideal} min)
-              </>
-            }
+            en="{durationMin} min - {durationMax} min (Avg: {durationIdeal} min)"
+            pt="{durationMin} min - {durationMax} min (Md: {durationIdeal} min)"
+            values={{
+              durationMin: duration.min,
+              durationMax: duration.max,
+              durationIdeal: duration.ideal,
+            }}
           />
         </InfoCard>
       </Col>

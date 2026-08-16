@@ -168,18 +168,8 @@ export function DailyQuartetos({ data }: DailyQuartetosProps) {
 
         <RegionHint>
           <Translate
-            pt={
-              <>
-                Você pode segurar o dedo no ícone para ver ter uma ideia do que o ícone é, mas nem sempre o
-                nome dado é o que exatamente foi usado para o tema do quarteto.
-              </>
-            }
-            en={
-              <>
-                You can press and hold the icon to get an idea of what the icon is, but the given name is not
-                always exactly what was used for the quartet theme.
-              </>
-            }
+            pt="Você pode segurar o dedo no ícone para ter uma ideia do que o ícone é, mas nem sempre o nome dado é o que exatamente foi usado para o tema do quarteto."
+            en="You can press and hold the icon to get an idea of what the icon is, but the given name is not always exactly what was used for the quartet theme."
           />
         </RegionHint>
 

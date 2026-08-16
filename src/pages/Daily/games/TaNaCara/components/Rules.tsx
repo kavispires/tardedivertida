@@ -12,26 +12,32 @@ export function Rules({ date }: RulesProps) {
     <RulesWrapper
       date={date}
       basicRules={
-        <Translate
-          pt={
-            <>
-              <li>Contribua com o banco de dados do TD!</li>
-              <li>Você receberá rodadas de perguntas com seis personagens.</li>
-              <li>
-                Para cara pergunta, selecione todos os personagens que você acha que se encaixam à pergunta.
-              </li>
-              <li>Boa sorte!</li>
-            </>
-          }
-          en={
-            <>
-              <li>Contribute to TD's database!</li>
-              <li>You'll receive a round of questions and six characters.</li>
-              <li>For each question, select all characters you think fit the question.</li>
-              <li>Good luck!</li>
-            </>
-          }
-        />
+        <>
+          <li>
+            <Translate
+              en="Contribute to TD's database!"
+              pt="Contribua com o banco de dados do TD!"
+            />
+          </li>
+          <li>
+            <Translate
+              en="You'll receive a round of questions and six characters."
+              pt="Você receberá rodadas de perguntas com seis personagens."
+            />
+          </li>
+          <li>
+            <Translate
+              en="For each question, select all characters you think fit the question."
+              pt="Para cara pergunta, selecione todos os personagens que você acha que se encaixam à pergunta."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Good luck!"
+              pt="Boa sorte!"
+            />
+          </li>
+        </>
       }
     />
   );

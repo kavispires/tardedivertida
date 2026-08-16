@@ -35,8 +35,8 @@ export function RulesWrapper({
       {isWeekend ? (
         <>
           <Translate
-            pt={<strong>Especial Fim de Semana</strong>}
-            en={<strong>Weekend Special</strong>}
+            pt="<strong>Especial Fim de Semana</strong>"
+            en="<strong>Weekend Special</strong>"
           />
           {weekendRules}
         </>

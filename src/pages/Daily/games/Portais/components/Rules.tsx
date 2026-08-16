@@ -16,42 +16,46 @@ export function Rules({ date }: RulesProps) {
     <RulesWrapper
       date={date}
       basicRules={
-        <Translate
-          pt={
-            <>
-              <li>Você está diante a portais com imagens fantásticas.</li>
-              <li>
-                Organize as palavras de 3 letras até formar a palavra-chave que corresponde à similaridade
-                entre os portais.
-              </li>
-              <li>Quando você acerta uma letra, ela se trava em amarelo até você acertar a palavra-chave.</li>
-              <li>Você tem que passar por 3 corredores de portas.</li>
-              <li>
-                Cada tentativa errada remove um coração <HeartFilled />.
-              </li>
-              <li>
-                Você tem {SETTINGS.HEARTS} <HeartFilled />. Boa sorte!
-              </li>
-            </>
-          }
-          en={
-            <>
-              <li>You are facing portals with fantastic images.</li>
-              <li>
-                Organize the 3-letter words until you form the keyword that corresponds to the similarity
-                between the portals.
-              </li>
-              <li>When you hit a letter, it locks in yellow until you hit the keyword.</li>
-              <li>You have to go through 3 corridors of doors.</li>
-              <li>
-                Each wrong attempt removes a heart <HeartFilled />.
-              </li>
-              <li>
-                You have {SETTINGS.HEARTS} <HeartFilled />. Good luck!
-              </li>
-            </>
-          }
-        />
+        <>
+          <li>
+            <Translate
+              en="You are facing portals with fantastic images."
+              pt="Você está diante de portais com imagens fantásticas."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Organize the 3-letter words until you form the keyword that corresponds to the similarity between the portals."
+              pt="Organize as palavras de 3 letras até formar a palavra-chave que corresponde à similaridade entre os portais."
+            />
+          </li>
+          <li>
+            <Translate
+              en="When you hit a letter, it locks in yellow until you hit the keyword."
+              pt="Quando você acerta uma letra, ela se trava em amarelo até você acertar a palavra-chave."
+            />
+          </li>
+          <li>
+            <Translate
+              en="You have to go through 3 corridors of doors."
+              pt="Você tem que passar por 3 corredores de portas."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Each wrong attempt removes a heart {icon}."
+              pt="Cada tentativa errada remove um coração {icon}."
+              values={{ icon: <HeartFilled /> }}
+            />
+          </li>
+          <li>
+            <Translate
+              en="You have {hearts} {icon} attempts to find the keyword."
+              pt="Você tem {hearts} {icon} tentativas para encontrar a palavra-chave."
+              values={{ hearts: SETTINGS.HEARTS, icon: <HeartFilled /> }}
+            />
+          </li>
+        </>
       }
     />
   );
