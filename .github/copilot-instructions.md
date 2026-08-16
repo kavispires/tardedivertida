@@ -595,67 +595,127 @@ This will train Copilot/Cursor on exactly how and when to use the new component 
 
 ---
 
-```markdown
-# Translation Guidelines: Translate vs TranslateTemplate
+# Translation Guidelines
 
-When writing or refactoring bilingual UI text in this application, follow these strict rules for using `Translate` and `TranslateTemplate`.
+When writing or refactoring bilingual UI text in this application, strictly follow these rules for the `Translate` component.
 
-## 1. When to use which
-- Use `Translate` ONLY for pure, simple strings with no React nodes (e.g., `<Translate en="Play" pt="Jogar" />`).
-- Use `TranslateTemplate` WHENEVER a translated string contains React components, formatting tags, or complex variables.
+## 1. Core Principles
+*   **Strings Only:** The `en` and `pt` props MUST be plain strings. Never pass React fragments (`<>...</>`) or React nodes directly into these props.
+*   **Prop Ordering:** Always order props as `en` first, then `pt`.
+*   **Default Formatting:** `Translate` automatically handles standard HTML tags: `<br/>`, `<strong>`, `<b>`, `<i>`, and `<u>`. You do not need to pass these into the `values` prop.
 
-## 2. TranslateTemplate Syntax Rules
-- **Variables**: Use `{key}` in the string and pass a ReactNode in the `values` object.
-- **Wrapper Tags**: Use `<key>text</key>` in the string and pass a function `(text) => ReactNode` in the `values` object.
-- **Self-Closing Tags**: Use `<key/>` in the string and pass a ReactNode in the `values` object.
-- **Defaults**: Do NOT pass `br`, `strong`, `b`, `i`, or `u` in `values`. They are globally supported out of the box (e.g., `<br/>`, `<strong>text</strong>`).
-- **Do not nest components**: Keep strings flat. Handle pluralization by passing the fully computed string/component as a variable.
+## 2. Variables and Dynamic Values (`{var}`)
+*   To insert dynamic values, use the `{key}` placeholder syntax inside the string and pass the actual data via the `values` object prop.
+*   This is mandatory when inserting React components (like icons) inline to prevent `[object Object]` rendering issues.
+*   Standard JavaScript template literals (`${var}`) are allowed *only* if the variable is a primitive string or number, but `{var}` mapping is preferred for consistency.
 
-## 3. Conversions (Before & After)
+## 3. Wrapper Tags (`<tag>text</tag>`)
+*   To apply custom React wrapper components around specific text, use an arbitrary tag name in the string (e.g., `<highlight>text</highlight>`).
+*   Map that tag name in the `values` prop to a function that takes the string and returns a React Node: `highlight: (text) => <CustomComponent>{text}</CustomComponent>`.
+*   **Do not** put curly braces inside the wrapper tag in the string (e.g., avoid `<highlight>{text}</highlight>`). Just use plain text.
 
-### Example A: Standard Variable Insertion
-**Bad (Old Pattern):**
+## 4. Self-Closing Tags (`<tag/>`)
+*   To inject standalone React elements (like icons) without wrapping text, use a self-closing tag in the string (e.g., `<icon/>`).
+*   Map it in the `values` prop: `icon: <MyIcon />`.
+
+## Refactoring Examples (Before & After)
+
+
+### Example A: ReactNode → string even with basic HTML tags (b, strong, i, br)
 ```tsx
-<Translate en={<><PlayerAvatarName player="{activePlayer}"/> chose <TargetHighlight><PlayerAvatarName player="{targets[0]}"/></TargetHighlight></>}
-  pt={<><PlayerAvatarName player="{activePlayer}"/> escolheu <TargetHighlight><PlayerAvatarName player="{targets[0]}"/></TargetHighlight></>}
+// ❌ BAD
+<Translate
+  pt={<>Você ganhou <strong>10 pontos</strong>!</>}
+  en={<>You scored <strong>10 points</strong>!</>}
 />
-
+// ✅ GOOD
+<Translate
+  en="You scored <strong>10 points</strong>!"
+  pt="Você ganhou <strong>10 pontos</strong>!"
+/>
 ```
 
-**Good (New Pattern):**
-
+### Example B: Injecting React Icons (Self-Closing or Variables)
 ```tsx
-<TranslateTemplate en="{player} chose {target}" player="{activePlayer}" player: pt="{player} escolheu {target}" values={{
-    player: <PlayerAvatarName player={activePlayer}/>,
-    target: (
-      <TargetHighlight>
-        <PlayerAvatarName player={targets[0]}/>
-      </TargetHighlight>
-    ),
-  }}
+// ❌ BAD
+<Translate
+  en={<>You have {SETTINGS.HEARTS} <HeartFilled/> chances left.</>}
+  pt={<>Você tem {SETTINGS.HEARTS} <HeartFilled/> chances restantes.</>}
 />
-
-```
-
-### Example B: Wrapper Components
-
-**Bad (Old Pattern):**
-
-```tsx
-<Translate en={<>Each answer earns <PointsHighlight>points</PointsHighlight>.</>}
-  pt={<>Cada resposta ganha <PointsHighlight>pontos</PointsHighlight>.</>}
-/>
-
-```
-
-**Good (New Pattern):**
-
-```tsx
-<TranslateTemplate en="Each answer earns <highlight">points</highlight>."
-  pt="Cada resposta ganha <highlight>pontos</highlight>."
+// ✅ GOOD
+<Translate
+  en="You have {hearts} <icon/> chances left."
+  pt="Você tem {hearts} <icon/> chances restantes."
   values={{
-    highlight: (text) => <PointsHighlight>{text}</PointsHighlight>,
+    hearts: SETTINGS.HEARTS,
+    icon: <HeartFilled/>
   }}
 />
+```
 
+### Example C: Custom Wrapper Components
+```tsx
+// ❌ BAD
+<Translate
+  en={<>Press if you are a <TerroristHighlight>bad guy</TerroristHighlight>!</>}
+  pt={<>Aperte se você é um <TerroristHighlight>cara mau</TerroristHighlight>!</>}
+/>
+// ✅ GOOD
+<Translate
+  en="Press if you are a <highlight>bad guy</highlight>!"
+  pt="Aperte se você é um <highlight>cara mau</highlight>!"
+  values={{
+    highlight: (text) => <TerroristHighlight>{text}</TerroristHighlight>,
+  }}
+/>
+```
+
+### Example D: Dynamic Variables (Names/Strings)
+```tsx
+// ❌ BAD
+<Translate
+  en={<> {playerName} chose {targetName}</>}
+  pt={<> {playerName} escolheu {targetName}</>}
+/>
+// ✅ GOOD
+<Translate
+  en="{player} chose {target} player: playerName"
+  pt="{player} escolheu {target} player: targetName"
+  values={{ player: playerName, target: targetName }}
+/>
+```
+
+### Example E: Escaping Quotes
+```tsx
+// ❌ BAD
+<Translate
+  en={<>Press as many times as the position of the letter "{button.pool?.value}" in the alphabet</>}
+  pt={<>Aperte tantas vezes quanto a posição da letra "{button.pool?.value}" no alfabeto</>}
+/>
+// ✅ GOOD
+<Translate
+  en={`Press as many times as the position of the letter "${button.pool?.value}" in the alphabet`}
+  pt={`Aperte tantas vezes quanto a posição da letra "${button.pool?.value}" no alfabeto`}
+/>
+```
+
+### Example F: Inline Components with Props
+```tsx
+// ❌ BAD
+<Translate
+  en={<>The next investigator is <PlayerAvatarName player={previousTargetPlayer} /></>}
+  pt={<>O próximo investigador é <PlayerAvatarName player={previousTargetPlayer} /></>}
+/>
+// ❌ BAD (copilot hallucination)
+<Translate
+  en="The next investigator is <PlayerAvatarName player={previousTargetPlayer} />."
+  pt="O próximo investigador é <PlayerAvatarName player={previousTargetPlayer} />."
+  values={{ PlayerAvatarName: (text: string) => <PlayerAvatarName player={previousTargetPlayer} /> }}
+/>
+// ✅ GOOD
+<Translate
+  en="The next investigator is {previousPlayer}."
+  pt="O próximo investigador é {previousPlayer}."
+  values={{ previousPlayer: <PlayerAvatarName player={previousTargetPlayer} /> }}
+/>
 ```
