@@ -15,9 +15,8 @@ import { LETTERS } from '@utils/constants';
 import { getEntryId, shuffle } from '@utils/helpers';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { CanvasResizerButton } from '@components/canvas/CanvasResizer';
 import { Translate } from '@components/language/Translate';
-import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -131,7 +130,7 @@ export function StepEvaluation({
       fullWidth
     >
       <PopoverRule content={<EvaluationRules />} />
-      <CanvasResizer />
+
       <StepTitle>
         <Translate
           pt="Adivinhação"
@@ -140,10 +139,12 @@ export function StepEvaluation({
       </StepTitle>
 
       <RuleInstruction type="action">
-        <TranslateTemplate
+        <Translate
           pt="Faça pares com as cartas e os desenhos. Basta clicar em um desenho e depois em sua carta correspondente, ou vice-versa. Para refazer, basta re-selecionar o desenho ou carta normalmente. Quando estiver pronto, clique em <strong>Enviar sua avaliação</strong>."
           en="Match the cards and drawings. Just click on a drawing and then on its corresponding card, or vice-versa. To redo, just reselect the drawing or card normally. When you're ready, click <strong>Send evaluation</strong>."
         />
+        <br />
+        <CanvasResizerButton />
       </RuleInstruction>
 
       <Space orientation="vertical">

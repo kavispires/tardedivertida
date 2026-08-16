@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Components
-import { TranslateTemplate } from '@components/language/TranslateTemplate';
+import { Translate } from '@components/language/Translate';
 
 const GRADES = ['F', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'];
 
@@ -18,7 +18,7 @@ export const DrawingGrade = ({ value }: DrawingGradeProps) => {
   return (
     <Tooltip
       title={
-        <TranslateTemplate
+        <Translate
           en="Grade based on the number of correct guesses the artwork got: {value}%"
           pt="Nota baseada em quantos acertos o desenho teve: {value}%"
           values={{ value: value * 100 }}
