@@ -61,16 +61,11 @@ export function StepEliminateMovie({
           />
         ) : (
           <Translate
-            pt={
-              <>
-                <PlayerAvatarName player={activePlayer} /> selecionará um filme que ninguém escolheu
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName player={activePlayer} /> will select a movie that nobody has chosen
-              </>
-            }
+            en="{player} will select a movie that nobody has chosen"
+            pt="{player} selecionará um filme que ninguém escolheu"
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
           />
         )}
       </StepTitle>
@@ -82,36 +77,20 @@ export function StepEliminateMovie({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              O seu filme está marcado com uma <Icon icon={<StarIcon />} />, os filmes eliminados estão
-              marcados com <Icon icon={<TomatoIcon />} />
-            </>
-          }
-          en={
-            <>
-              Your movie is marked with a <Icon icon={<StarIcon />} />, while eliminated movies are marked
-              with <Icon icon={<TomatoIcon />} />
-            </>
-          }
+          en="Your movie is marked with a <starIcon/>, while eliminated movies are marked with <tomatoIcon/>"
+          pt="O seu filme está marcado com uma <starIcon/>, os filmes eliminados estão marcados com <tomatoIcon/>"
+          values={{
+            starIcon: <Icon icon={<StarIcon />} />,
+            tomatoIcon: <Icon icon={<TomatoIcon />} />,
+          }}
         />
-
         {mistakes.length === 1 && (
           <Translate
-            pt={
-              <>
-                <br />
-                Vocês já cometeram <MistakeCountHighlight>1 erro</MistakeCountHighlight>! Se um filme
-                selecionado por outro jogador é eliminado, a rodada termina imediatamente.
-              </>
-            }
-            en={
-              <>
-                <br />
-                You already made <MistakeCountHighlight>1 mistake</MistakeCountHighlight>, if another movie
-                selected by another player is eliminated, the round ends immediately.
-              </>
-            }
+            en="<br/> You already made <mistake>1 mistake</mistake>, if another movie selected by another player is eliminated, the round ends immediately."
+            pt="<br/> Vocês já cometeram <mistake>1 erro</mistake>! Se um filme selecionado por outro jogador é eliminado, a rodada termina imediatamente."
+            values={{
+              mistake: (text) => <MistakeCountHighlight>{text}</MistakeCountHighlight>,
+            }}
           />
         )}
       </RuleInstruction>
