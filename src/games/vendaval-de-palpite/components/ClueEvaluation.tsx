@@ -31,18 +31,8 @@ export function ClueEvaluation({ clues, latestBoardEntry, onSubmitEvaluation }: 
     <>
       <Surface contained>
         <Translate
-          pt={
-            <>
-              Avalie as dicas tem ou não a ver com a palavra secreta.
-              <br /> Você pode fazer perguntar para clarificar o que os jogadores quiseram dizer.
-            </>
-          }
-          en={
-            <>
-              Evaluate if each of the current clues are related to the secret word. You can ask clarifying
-              questions about any of them.
-            </>
-          }
+          pt="Avalie as dicas tem ou não a ver com a palavra secreta. <br /> Você pode fazer perguntar para clarificar o que os jogadores quiseram dizer."
+          en="Evaluate if each of the current clues are related to the secret word. You can ask clarifying questions about any of them."
         />
       </Surface>
 

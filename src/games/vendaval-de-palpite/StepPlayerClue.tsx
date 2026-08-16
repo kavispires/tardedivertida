@@ -39,12 +39,10 @@ type StepPlayerClueProps = {
 };
 
 export function StepPlayerClue({
-  secretWord,
   categories,
   onSubmitClues,
   board,
   clues,
-  boss,
   finalAnswersLeft,
   cluesPerPlayer,
   players,
@@ -172,18 +170,10 @@ export function StepPlayerClue({
             showIcon
             title={
               <Translate
-                pt={
-                  <>
-                    Você está prestes a enviar uma resposta. O grupo pode enviar um máximo de{' '}
-                    {finalAnswersLeft} respostas. Se esse número exceder, o grupo perde o jogo imediatamente.
-                  </>
-                }
-                en={
-                  <>
-                    You are about to send an Answer. The group may send a maximum of {finalAnswersLeft}{' '}
-                    answers total. If this number is exceeded, the game is lost immediately.
-                  </>
-                }
+                pt="Você está prestes a enviar uma resposta. O grupo pode enviar um máximo de{' '}
+                    {finalAnswersLeft} respostas. Se esse número exceder, o grupo perde o jogo imediatamente."
+                en="You are about to send an Answer. The group may send a maximum of {finalAnswersLeft} answers total. If this number is exceeded, the game is lost immediately."
+                values={{ finalAnswersLeft }}
               />
             }
           />
@@ -197,39 +187,18 @@ export function StepPlayerClue({
           description={
             finalAnswersLeft === 3 ? (
               <Translate
-                pt={
-                  <>
-                    Durante o jogo, o grupo tem 3 chances de adivinhar a palavra secreta, para isso o jogador
+                en="During the game, the group has 3 chances of guessing the secret word, to do so the player who wants to write the secret word must switch the type of answer to 'Guess' by clicking on the 'Clue' button in the card. <br /> The group still has {finalAnswersLeft} chances to guess."
+                pt="Durante o jogo, o grupo tem 3 chances de adivinhar a palavra secreta, para isso o jogador
                     que escrever a palavra secreta tem que marcar a sua dica como 'Resposta' clicando no
                     botãozinho 'Dica' na carta. <br /> O grupo ainda tem {finalAnswersLeft} chances sobrando
-                    para adivinhar.
-                  </>
-                }
-                en={
-                  <>
-                    During the game, the group has 3 chances of guessing the secret word, to do so the player
-                    who wants to write the secret word must switch the type of answer to 'Guess' by clicking
-                    on the 'Clue' button in the card.
-                    <br /> The group still has {finalAnswersLeft} chances to guess.
-                  </>
-                }
+                    para adivinhar."
+                values={{ finalAnswersLeft }}
               />
             ) : (
               <Translate
-                pt={
-                  <>
-                    O grupo tem mais {finalAnswersLeft} chances de adivinhar a palavra secreta, para isso o
-                    jogador que escrever a palavra secreta tem que marcar a sua dica como 'Resposta' clicando
-                    no botãozinho 'Dica' na carta.
-                  </>
-                }
-                en={
-                  <>
-                    The group has {finalAnswersLeft} more chances of guessing the secret word, to do so the
-                    player who wants to write the secret word must switch the type of answer to 'Guess' by
-                    clicking on the 'Clue' button in the card.
-                  </>
-                }
+                en="The group has {finalAnswersLeft} more chances of guessing the secret word, to do so the player who wants to write the secret word must switch the type of answer to 'Guess' by clicking on the 'Clue' button in the card."
+                pt="O grupo tem mais {finalAnswersLeft} chances de adivinhar a palavra secreta, para isso o jogador que escrever a palavra secreta tem que marcar a sua dica como 'Resposta' clicando no botãozinho 'Dica' na carta."
+                values={{ finalAnswersLeft }}
               />
             )
           }

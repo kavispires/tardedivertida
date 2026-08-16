@@ -45,18 +45,8 @@ export function PhaseBossPlayerSelection({ state, players }: PhaseProps) {
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Um jogador deve ser o Chefe que sabe exatamente o que ele quer (a palavra secreta) e os
-                  outros serão funcionários na reunião de brainstorm.
-                </>
-              }
-              en={
-                <>
-                  One player must be the Boss who knows exactly wht they want (the secret word) and the other
-                  players will be the employees participating in this brainstorm meeting.
-                </>
-              }
+              pt="Um jogador deve ser o Chefe que sabe exatamente o que ele quer (a palavra secreta) e os outros serão funcionários na reunião de brainstorm."
+              en="One player must be the Boss who knows exactly what they want (the secret word) and the other players will be the employees participating in this brainstorm meeting."
             />
           </Surface>
         </PhaseAnnouncement>
