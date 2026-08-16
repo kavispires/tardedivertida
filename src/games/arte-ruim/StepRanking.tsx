@@ -6,12 +6,11 @@ import type { GameRanking, GameRound, GamePlayers } from 'types/game';
 // Components
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
-import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { RoundsLeftInstruction } from '@components/results/RoundsLeftInstruction';
 import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { PopoverRule } from '@components/rules/PopoverRule';
-import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 // Internal
 import { ScoringRules } from './components/TextBlobs';
 
@@ -46,7 +45,7 @@ export function StepRanking({ players, ranking, isGameOver, round, onGoBack, thr
 
       {threshold > 0 && (
         <Surface contained>
-          <TranslateTemplate
+          <Translate
             en="The game ends when someone passes <points>{threshold}</points> or {rounds} rounds."
             pt="O jogo termina quando alguém passa os <points>{threshold}</points> ou {rounds} rodadas."
             values={{
