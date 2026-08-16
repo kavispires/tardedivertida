@@ -62,20 +62,14 @@ export function StepSelectWords({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              <strong>Selecione</strong> pelo menos {requiredWords} cartas para estar no jogo.
+          pt="<strong>Selecione</strong> pelo menos {requiredWords} cartas para estar na rodada. Quanto mais melhor!
               <br />
-              Prefira substantivos concretos. Mas quanto mais melhor!
-            </>
-          }
-          en={
-            <>
-              <strong>Select</strong> at least {requiredWords} cards to be in the game.
-              <br />
-              Prefer concrete nouns. But the more the merrier!
-            </>
-          }
+              Prefira substantivos concretos porque os mais votados serão escolhidos para a rodada."
+          en="<strong>Select</strong> at least {requiredWords} cards to be in the game. The more the merrier!<br />
+              Prefer concrete nouns because the most voted will be chosen for the game."
+          values={{
+            requiredWords,
+          }}
         />
       </RuleInstruction>
 

@@ -90,23 +90,17 @@ export function StepResult({
             ))}{' '}
             {foundTarget.length > 0 && (
               <Translate
-                pt={
-                  <>
-                    {' '}
-                    que acertaram a coisa final e aumentaram a felicidade da casa em{' '}
-                    <HappinessHighlight>{finalItemPoints} pontos</HappinessHighlight>
-                  </>
-                }
-                en={
-                  <>
-                    {' '}
-                    who got the final thing right and increased the house's happiness by{' '}
-                    <HappinessHighlight>{finalItemPoints} points</HappinessHighlight>
-                  </>
-                }
+                en=" who got the final thing right and increased the house's happiness by <HappinessHighlight>{finalItemPoints} points</HappinessHighlight>."
+                pt=" que acertaram a coisa final e aumentaram a felicidade da casa em <HappinessHighlight>{finalItemPoints} pontos</HappinessHighlight>."
+                values={{
+                  HappinessHighlight: (content) => (
+                    <HappinessHighlight>
+                      {finalItemPoints} {content}
+                    </HappinessHighlight>
+                  ),
+                }}
               />
             )}
-            <br />
           </>
         ) : (
           <>
@@ -118,24 +112,15 @@ export function StepResult({
           </>
         )}
         <Translate
-          pt={
-            <>
-              Ganhamos{' '}
+          en="We earned <HappinessHighlight>points</HappinessHighlight> from players guessing each other's clues."
+          pt="Ganhamos <HappinessHighlight>pontos</HappinessHighlight> por jogadores adivinhando a pista um dos outros."
+          values={{
+            HappinessHighlight: (content) => (
               <HappinessHighlight>
-                {(happiness.gained.at(-1) ?? 0) - finalItemPoints} pontos
-              </HappinessHighlight>{' '}
-              adicionais por jogadores adivinhando a pista um dos outros.
-            </>
-          }
-          en={
-            <>
-              We earned{' '}
-              <HappinessHighlight>
-                {(happiness.gained.at(-1) ?? 0) - finalItemPoints} points
-              </HappinessHighlight>{' '}
-              from players guessing each other's clues.
-            </>
-          }
+                {(happiness.gained.at(-1) ?? 0) - finalItemPoints} {content}
+              </HappinessHighlight>
+            ),
+          }}
         />
       </RuleInstruction>
 

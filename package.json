@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.440",
+	"version": "50.13.442",
 	"private": true,
 	"type": "module",
 	"dependencies": {
