@@ -106,21 +106,13 @@ function getAnnouncement({
       >
         <Surface>
           <Icon icon={<WalkieTalkieIcon />} />
+          "
           <Translate
-            pt={
-              <>
-                "Todos em seus postos! O que você tem ai, {<PlayerAvatarName player={currentInvestigator} />}
-                ?"
-              </>
-            }
-            en={
-              <>
-                "Everyone to your posts! What do you have there,{' '}
-                {<PlayerAvatarName player={currentInvestigator} />}
-                ?"
-              </>
-            }
+            en="Everyone to your posts! What do you have there, {investigador}?"
+            pt="Todos em seus postos! O que você tem ai, {investigador}?"
+            values={{ investigador: <PlayerAvatarName player={currentInvestigator} /> }}
           />
+          "
         </Surface>
       </PhaseAnnouncement>
     );
@@ -162,16 +154,9 @@ function getAnnouncement({
   const nextMessage =
     status.outcome === 'CONTINUE' && previousTargetPlayer ? (
       <Translate
-        pt={
-          <>
-            O próximo investigador é <PlayerAvatarName player={previousTargetPlayer} />
-          </>
-        }
-        en={
-          <>
-            The next investigator is <PlayerAvatarName player={previousTargetPlayer} />
-          </>
-        }
+        en="The next investigator is {previousPlayer}."
+        pt="O próximo investigador é {previousPlayer}."
+        values={{ previousPlayer: <PlayerAvatarName player={previousTargetPlayer} /> }}
       />
     ) : (
       <Translate

@@ -6,8 +6,11 @@ import type { PhaseProps } from 'types/game';
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
 import { BombIcon } from '@icons/BombIcon';
-import { CrownIcon } from '@icons/CrownIcon';
+import { FlagIcon } from '@icons/FlagIcon';
+import { NuclearExplosionIcon } from '@icons/NuclearExplosionIcon';
+import { PigeonIcon } from '@icons/PigeonIcon';
 import { SecurityIcon } from '@icons/SecurityIcon';
+import { SkullIcon } from '@icons/SkullIcon';
 import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
@@ -34,7 +37,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
     <GameOverWrapper
       state={state}
       players={players}
-      announcementIcon={<CrownIcon />}
+      announcementIcon={getPhaseIcon(state.status)}
     >
       {getResolution(state.status, state.dataCounts)}
       <Achievements
@@ -105,6 +108,19 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
   );
 }
 
+const getPhaseIcon = (status: Status) => {
+  switch (status.outcome) {
+    case OUTCOME.AGENTS_WIN:
+      return <PigeonIcon />;
+    case OUTCOME.TERRORISTS_WIN:
+      return <SkullIcon />;
+    case OUTCOME.BOMB:
+      return <NuclearExplosionIcon />;
+    default:
+      return <FlagIcon />;
+  }
+};
+
 const getResolution = (status: Status, dataCounts: DataCounts) => {
   switch (status.outcome) {
     case OUTCOME.AGENTS_WIN: {
@@ -117,20 +133,15 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
           <br />
           <strong>
             <Translate
-              pt={
-                <>
-                  Os agentes cortaram todos os{' '}
-                  <RedWireHighlight>{dataCounts?.wires} fios vermelhos</RedWireHighlight>!<br />
-                  Parabéns agentes, o mundo está salvo!
-                </>
-              }
-              en={
-                <>
-                  The agents cut all the <RedWireHighlight>{dataCounts?.wires} red wires</RedWireHighlight>!
-                  <br />
-                  Congratulations agents, the world is safe!
-                </>
-              }
+              en="The agents cut all the <RedWireHighlight>red wires</RedWireHighlight>!<br />Congratulations agents, the world is safe!"
+              pt="Os agentes cortaram todos os <RedWireHighlight>fios vermelhos</RedWireHighlight>!<br />Parabéns agentes, o mundo está salvo!"
+              values={{
+                RedWireHighlight: (text: string) => (
+                  <RedWireHighlight>
+                    {dataCounts?.wires} {text}
+                  </RedWireHighlight>
+                ),
+              }}
             />
           </strong>
           <ConfettiEffect />
@@ -147,21 +158,15 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
           <br />
           <strong>
             <Translate
-              pt={
-                <>
-                  Os agentes contaram apenas{' '}
-                  <RedWireHighlight>{status.revealed} fios vermelhos</RedWireHighlight>...
-                  <br />
-                  Foi só uma questão de tempo até a bomba explodir... Os Terroristas vencem!
-                </>
-              }
-              en={
-                <>
-                  The agents cut only <RedWireHighlight>{status.revealed} red wires</RedWireHighlight>...
-                  <br />
-                  It was just a matter of time until the bomb exploded... The Terrorists win!
-                </>
-              }
+              en="The agents cut only <RedWireHighlight>red wires</RedWireHighlight>...<br />It was just a matter of time until the bomb exploded... The Terrorists win!"
+              pt="Os agentes contaram apenas <RedWireHighlight>fios vermelhos</RedWireHighlight>...<br />Foi só uma questão de tempo até a bomba explodir... Os Terroristas vencem!"
+              values={{
+                RedWireHighlight: (text: string) => (
+                  <RedWireHighlight>
+                    {status?.revealed} {text}
+                  </RedWireHighlight>
+                ),
+              }}
             />
           </strong>
         </Surface>
@@ -177,20 +182,8 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
           <br />
           <strong>
             <Translate
-              pt={
-                <>
-                  Cabum!!! Um agente cortou a bomba!!! Todo mundo morreu!
-                  <br />
-                  Os Terroristas vencem, mesmo mortos, porque o que importa é a causa!
-                </>
-              }
-              en={
-                <>
-                  Kaboom!!! An agent cut the bomb! Everybody is dead!
-                  <br />
-                  The Terrorists win, even though everybody is dead, the cause has won!
-                </>
-              }
+              en="Kaboom!!! An agent cut the bomb! Everybody is dead!<br />The Terrorists win, even though everybody is dead, the cause has won!"
+              pt="Cabum!!! Um agente cortou a bomba!!! Todo mundo morreu!<br />Os Terroristas vencem, mesmo mortos, porque o que importa é a causa!"
             />
           </strong>
           <ConfettiEffect />

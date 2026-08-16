@@ -34,69 +34,35 @@ export function RoleCard({ role = 'agent', dataCounts }: RoleCard) {
       >
         {role === 'terrorist' ? (
           <Translate
-            pt={
-              <>
-                Você é um <TerroristHighlight>terrorista</TerroristHighlight>!
-                <br />
-                Seu objetivo é encontrar a <BombHighlight>Bomba</BombHighlight> <strong>OU</strong> prevenir
-                que os agentes cortem os{' '}
-                <RedWireHighlight>{dataCounts.wires} fios vermelhos</RedWireHighlight> até o final da última
-                rodada
-                <br />
-                Há{' '}
-                <TextHighlight>
-                  {minAgents} ou {dataCounts.agents} agentes
-                </TextHighlight>{' '}
-                no jogo, o resto é terrorista.
-              </>
-            }
-            en={
-              <>
-                You are a <TerroristHighlight>terrorist</TerroristHighlight>!
-                <br />
-                Your goal is to find the <BombHighlight>Bomb</BombHighlight> <strong>OR</strong> prevent the
-                agents from cutting the <RedWireHighlight>{dataCounts.wires} red wires</RedWireHighlight> by
-                the end of the final round.
-                <br />
-                There are{' '}
-                <TextHighlight>
-                  {minAgents} or {dataCounts.agents} agents
-                </TextHighlight>{' '}
-                in the game, the rest are terrorists.
-              </>
-            }
+            en="You are a <terrorist>terrorist</terrorist>!<br/>Your goal is to find the <bomb>bomb</bomb> OR prevent the agents from cutting the  <redWires>{red wires}</redWires> by the end of the final round.<br/>There are {minAgentsCount} or {maxAgentCount} agents in the game, the rest are terrorists."
+            pt="Você é um <terrorist>terrorista</terrorist>!<br/>Seu objetivo é encontrar a <bomb>bomba</bomb> OU prevenir que os agentes cortem os <redWires>fios vermelhos</redWires> até o final da última rodada.<br/>Há {minAgentsCount} ou {maxAgentCount} agentes no jogo, o resto é terrorista."
+            values={{
+              terrorist: (text: string) => <TerroristHighlight>{text}</TerroristHighlight>,
+              bomb: (text: string) => <BombHighlight>{text}</BombHighlight>,
+              redWires: (text: string) => (
+                <RedWireHighlight>
+                  {dataCounts.wires} {text}
+                </RedWireHighlight>
+              ),
+              minAgentsCount: <TextHighlight>{minAgents}</TextHighlight>,
+              maxAgentCount: <TextHighlight>{dataCounts.agents}</TextHighlight>,
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Você é um <AgentHighlight>agente</AgentHighlight>!
-                <br />
-                Seu objetivo é cortar todos os{' '}
-                <RedWireHighlight>{dataCounts.wires} fios vermelhos</RedWireHighlight> e nunca a{' '}
-                <BombHighlight>Bomba</BombHighlight>!
-                <br />
-                Há{' '}
-                <TextHighlight>
-                  {minAgents} ou {dataCounts.agents} agentes
-                </TextHighlight>{' '}
-                no jogo, o resto é terrorista.
-              </>
-            }
-            en={
-              <>
-                You are an <AgentHighlight>agent</AgentHighlight>!
-                <br />
-                Your goal is to cut all <RedWireHighlight>{dataCounts.wires} red wires</RedWireHighlight> and
-                never the <BombHighlight>Bomb</BombHighlight>!
-                <br />
-                There are{' '}
-                <TextHighlight>
-                  {minAgents} or {dataCounts.agents} agents
-                </TextHighlight>{' '}
-                in the game, the rest are terrorists.
-              </>
-            }
+            en="You are an <agent>agent</agent>!<br/>Your goal is to cut all the <redWires>red wires</redWires> and never the <bomb>bomb</bomb>!<br/>There are {minAgentsCount} or {maxAgentCount} agents in the game, the rest are terrorists."
+            pt="Você é um <agent>agente</agent>!<br/>Seu objetivo é cortar todos os <redWires>fios vermelhos</redWires> e nunca a <bomb>bomba</bomb>!<br/>Há {minAgentsCount} ou {maxAgentCount} agentes no jogo, o resto é terrorista."
+            values={{
+              agent: (text: string) => <AgentHighlight>{text}</AgentHighlight>,
+              redWires: (text: string) => (
+                <RedWireHighlight>
+                  {dataCounts.wires} {text}
+                </RedWireHighlight>
+              ),
+              bomb: (text: string) => <BombHighlight>{text}</BombHighlight>,
+              minAgentsCount: <TextHighlight>{minAgents}</TextHighlight>,
+              maxAgentCount: <TextHighlight>{dataCounts.agents}</TextHighlight>,
+            }}
           />
         )}
       </RuleInstruction>

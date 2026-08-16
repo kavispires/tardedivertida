@@ -68,18 +68,8 @@ export function PhaseDeclaration({ players, state, user }: PhaseProps<PhaseDecla
         >
           <Surface contained>
             <Translate
-              pt={
-                <>
-                  Há uma bomba no prédio! E um terrorista entre nós! Precisamos cortar todos os{' '}
-                  {state.dataCounts.wires} fios vermelhos!!!
-                </>
-              }
-              en={
-                <>
-                  There's a bom in the building! And a terrorist among us! We need to cut all{' '}
-                  {state.dataCounts.wires} red wires!!!
-                </>
-              }
+              en={`There's a bomb in the building and terrorists among us! We need to cut all ${state.dataCounts.wires} red wires!!!`}
+              pt={`Há uma bomba no prédio e terroristas entre nós! Precisamos cortar todos os ${state.dataCounts.wires} fios vermelhos!!!`}
             />
           </Surface>
         </RoundAnnouncement>
