@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "K",
   "gameName": "adedanhx",
-  "version": "3.0.38",
+  "version": "3.0.39",
   "release": "stable",
   "releaseDate": "2023-09-17",
-  "updatedAt": 1786820756599,
+  "updatedAt": 1786894664700,
   "available": true,
   "title": {
     "pt": "Adedanhx",
@@ -80,7 +80,7 @@
       "key": "shorterGame",
       "kind": "switch",
       "label": "Duration",
-      "description": "How many rounds in th game",
+      "description": "How many rounds in the game",
       "values": [
         {
           "label": "Normal",

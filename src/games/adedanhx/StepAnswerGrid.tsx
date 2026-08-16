@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Hooks
@@ -16,9 +16,6 @@ import { StopIcon } from '@icons/StopIcon';
 import { DevButton } from '@components/debug/DevButton';
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
-import { TranslateTemplate } from '@components/language/TranslateTemplate';
-import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -111,9 +108,9 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
       )}
 
       <RuleInstruction type="rule">
-        <TranslateTemplate
-          en="Write the answers in the order you think is best and don't forget to press the {lockIcon} lock button after each answer. You have <time>minutes</time>!"
-          pt="Escreva na ordem que achar melhor e não esqueça de apertar o {lockIcon} botão de cadeado a cada resposta. Você tem <time>minutos</time>!"
+        <Translate
+          en="Write the answers in the order you think is best. You have a total of <time>minutes</time>!<br/>Don't forget to press the {lockIcon} lock button after each answer, pressing tab will auto-lock for you!"
+          pt="Escreva na ordem que achar melhor. Você tem um total de <time>minutos</time>!<br/>Não se esqueça de apertar o botão {lockIcon} cadeado após cada resposta, apertando tab ele vai auto-travar pra você!"
           values={{
             lockIcon: (
               <Icon
@@ -137,12 +134,15 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
         toggleLock={toggleLock}
       />
 
-      <Surface contained>
+      <RuleInstruction type="rule">
         <Translate
           pt="Se você acabar todas as células antes do tempo você pode apertar stop para finalizar a rodada."
           en="If you finish all the cells before the time you can press stop to end the round."
         />
-        <SpaceContainer>
+        <Flex
+          justify="center"
+          gap={8}
+        >
           <DevButton
             ghost
             onClick={() => setAnswers(mockAnswers(answers, grid.xHeaders, grid.yHeaders))}
@@ -174,8 +174,8 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
               en="STOP!"
             />
           </Button>
-        </SpaceContainer>
-      </Surface>
+        </Flex>
+      </RuleInstruction>
     </Step>
   );
 }

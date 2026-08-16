@@ -9,7 +9,6 @@ import { TimedWritingIcon } from '@icons/TimedWritingIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
-import { TranslateTemplate } from '@components/language/TranslateTemplate';
 import { Surface } from '@components/layout/Surface';
 import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
@@ -46,7 +45,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
           unskippable
         >
           <Surface contained>
-            <TranslateTemplate
+            <Translate
               en="You have <time>minutes</time> to fill in as many cells of the table as possible by combining column and row.<br />For each cell you complete, remember to press the {lockIcon} lock to record the time."
               pt="Você tem <time>minutos</time> para preencher o maior número de células da tabela combinando coluna e linha.<br />A cada célula que você completa, lembre-se de apertar o {lockIcon} cadeado para gravar o tempo."
               values={{
@@ -82,7 +81,7 @@ export function PhaseAnswering({ players, state, user }: PhaseProps<PhaseAnsweri
           unskippable
         >
           <Surface>
-            <TranslateTemplate
+            <Translate
               en="The round categories are {categories}.<br />You get bonus points if you are the first to answer a cell! Good luck!"
               pt="As categorias da rodada são {categories}.<br />Você ganha pontos bônus se você for o primeiro a responder uma célula! Boa sorte!"
               values={{
