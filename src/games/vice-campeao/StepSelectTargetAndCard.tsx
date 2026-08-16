@@ -74,23 +74,8 @@ export function StepSelectTargetAndCard({
       <SpaceContainer vertical>
         <RuleInstruction type="action">
           <Translate
-            en={
-              <>
-                Select a card to play!
-                <br />
-                Most cards require a target for you to also select that will suffer the effect of the card.
-                <br />
-                <strong>Remember that the goal is to finish the game in second place!</strong>
-              </>
-            }
-            pt={
-              <>
-                Escolha uma carta para jogar!
-                <br />A maioria das cartas exige que você selecione um alvo que sofrerá o efeito da carta.
-                <br />
-                <strong>Lembre-se que o objetivo é terminar o jogo em segundo lugar!</strong>
-              </>
-            }
+            en="Select a card to play!<br />Most cards require a target for you to also select that will suffer the effect of the card.<br /><strong>Remember that the goal is to finish the game in second place!</strong>"
+            pt="Escolha uma carta para jogar!<br />A maioria das cartas exige que você selecione um alvo que sofrerá o efeito da carta.<br /><strong>Lembre-se que o objetivo é terminar o jogo em segundo lugar!</strong>"
           />
         </RuleInstruction>
         <Flex gap={12}>

@@ -61,15 +61,10 @@ export function PhaseCardSelection({ state, players, user }: PhaseProps<PhaseCar
         >
           <Surface contained>
             <Translate
-              en="Leg"
-              pt="Etapa"
-            />{' '}
-            {state.round.current}{' '}
-            <Translate
-              en="of"
-              pt="de"
-            />{' '}
-            {state.round.total}
+              en="Leg {round} of {totalRounds}"
+              pt="Etapa {round} de {totalRounds}"
+              values={{ round: state.round.current, totalRounds: state.round.total }}
+            />
           </Surface>
         </RoundAnnouncement>
 
