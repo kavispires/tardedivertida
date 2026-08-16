@@ -32,6 +32,7 @@ const DEFAULT_VALUES: Record<string, TranslateValue> = {
   b: (text: string) => <b>{text}</b>,
   i: (text: string) => <i>{text}</i>,
   u: (text: string) => <u>{text}</u>,
+  em: (text: string) => <em>{text}</em>,
 };
 
 /**

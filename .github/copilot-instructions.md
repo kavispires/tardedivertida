@@ -601,8 +601,8 @@ When writing or refactoring bilingual UI text in this application, strictly foll
 
 ## 1. Core Principles
 *   **Strings Only:** The `en` and `pt` props MUST be plain strings. Never pass React fragments (`<>...</>`) or React nodes directly into these props.
-*   **Prop Ordering:** Always order props as `en` first, then `pt`.
 *   **Default Formatting:** `Translate` automatically handles standard HTML tags: `<br/>`, `<strong>`, `<b>`, `<i>`, and `<u>`. You do not need to pass these into the `values` prop.
+* When converting from ReactNode to string, ensure that all line breaks `<br/>` are preserved in the string.
 
 ## 2. Variables and Dynamic Values (`{var}`)
 *   To insert dynamic values, use the `{key}` placeholder syntax inside the string and pass the actual data via the `values` object prop.
@@ -622,16 +622,17 @@ When writing or refactoring bilingual UI text in this application, strictly foll
 
 
 ### Example A: ReactNode → string even with basic HTML tags (b, strong, i, br)
+When converting, keep all line breaks <br/>.
 ```tsx
 // ❌ BAD
 <Translate
-  pt={<>Você ganhou <strong>10 pontos</strong>!</>}
-  en={<>You scored <strong>10 points</strong>!</>}
+  pt={<>Você ganhou <strong>10 pontos</strong>.<br/>Que legal!</>}
+  en={<>You scored <strong>10 points</strong>.<br/>Well done!</>}
 />
 // ✅ GOOD
 <Translate
-  en="You scored <strong>10 points</strong>!"
-  pt="Você ganhou <strong>10 pontos</strong>!"
+  en="You scored <strong>10 points</strong>.<br/>Well done!"
+  pt="Você ganhou <strong>10 pontos</strong>.<br/>Que legal!"
 />
 ```
 
@@ -717,5 +718,47 @@ When writing or refactoring bilingual UI text in this application, strictly foll
   en="The next investigator is {previousPlayer}."
   pt="O próximo investigador é {previousPlayer}."
   values={{ previousPlayer: <PlayerAvatarName player={previousTargetPlayer} /> }}
+/>
+```
+
+### Example G: Consolidating Components and Removing JSX Whitespace
+```tsx
+// ❌ BAD
+<Translate
+  pt={
+    <>
+      Para essa rodada,{' '}
+      <PlayerAvatarName
+        player={storyteller}
+        addressUser
+        size="small"
+      />{' '}
+      será o(a) Contador(a) de Histórias.
+    </>
+  }
+  en={
+    <>
+      In this round,{' '}
+      <PlayerAvatarName
+        player={storyteller}
+        addressUser
+      />{' '}
+      will be the Storyteller.
+    </>
+  }
+/>
+// ✅ GOOD
+<Translate
+  en="In this round, {storyteller} will be the Storyteller."
+  pt="Nessa rodada, {storyteller} será o(a) Contador(a) de Histórias."
+  values={{
+    storyteller: (
+      <PlayerAvatarName
+        player={storyteller}
+        addressUser
+        size="small"
+      />
+    ),
+  }}
 />
 ```
