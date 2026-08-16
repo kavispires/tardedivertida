@@ -98,44 +98,31 @@ export function StepExamine({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Se você é um agente, você quer descobrir onde estão os{' '}
-              <RedWireHighlight>{neededWires} fios vermelhos</RedWireHighlight> para desarmar a bomba!
-              <br />
-              Se você é um terrorista, você quer enganar os agentes para que eles revelem a bomba ou não
-              encontrar os fios vermelhos até o jogo acabar.
-              {lieDetectorStatus.someoneIsLying && (
-                <>
-                  <br />
-                  <strong style={{ color: 'red' }}>
-                    Alguém está mentindo nessa rodada! Quando começamos, faltavam{' '}
-                    {lieDetectorStatus.neededWires} fios vermelhos e {lieDetectorStatus.totalWiresDeclared}{' '}
-                    foram declarados.
-                  </strong>
-                </>
-              )}
-            </>
-          }
-          en={
-            <>
-              If you are an agent, you want to find out where the{' '}
-              <RedWireHighlight>{neededWires} red wires</RedWireHighlight> are to defuse the bomb!
-              <br />
-              If you are a terrorist, you want to mislead the agents so they reveal the bomb or fail to find
-              the red wires until the game ends.
-              {lieDetectorStatus.someoneIsLying && (
-                <>
-                  <br />
-                  <strong style={{ color: 'red' }}>
-                    Someone is lying this round! When we started, there were {lieDetectorStatus.neededWires}{' '}
-                    red wires and {lieDetectorStatus.totalWiresDeclared} were declared.
-                  </strong>
-                </>
-              )}
-            </>
-          }
+          en="If you are an agent, you want to find out where the <redWiresNeeded>red wires</redWiresNeeded> are to defuse the bomb!<br/>If you are a terrorist, you want to mislead the agents so they reveal the bomb or fail to find the red wires until the game ends."
+          pt="Se você é um agente, você quer descobrir onde estão os <redWiresNeeded>fios vermelhos</redWiresNeeded> para desarmar a bomba!<br/>Se você é um terrorista, você quer enganar os agentes para que eles revelem a bomba ou não encontrem os fios vermelhos até o jogo acabar."
+          values={{
+            redWiresNeeded: (text) => (
+              <RedWireHighlight>
+                {neededWires} {text}
+              </RedWireHighlight>
+            ),
+          }}
         />
+
+        {lieDetectorStatus.someoneIsLying && (
+          <>
+            <br />
+            <Translate
+              en="Someone is lying this round! When we started, there were {neededWires} red wires and {totalWiresDeclared} were declared."
+              pt="Alguém está mentindo nessa rodada! Quando começamos, faltavam {neededWires} fios vermelhos e {totalWiresDeclared} foram declarados."
+              values={{
+                neededWires: lieDetectorStatus.neededWires,
+                totalWiresDeclared: lieDetectorStatus.totalWiresDeclared,
+              }}
+            />
+          </>
+        )}
+
         {roundCuts.length > 0 && (
           <>
             <br />
@@ -278,40 +265,27 @@ function getTitle(
   if (targetPlayer) {
     return (
       <Translate
-        pt={
-          <>
-            <PlayerAvatarName player={currentInvestigator} />, escolha uma das cartas de{' '}
+        en="{currentInvestigador}, choose one of {targetPlayer}'s cards to examine."
+        pt="{currentInvestigador}, escolha uma das cartas de {targetPlayer} para examinar. "
+        values={{
+          currentInvestigador: <PlayerAvatarName player={currentInvestigator} />,
+          targetPlayer: (
             <TextHighlight>
               <PlayerAvatarName player={targetPlayer} />
             </TextHighlight>
-          </>
-        }
-        en={
-          <>
-            <PlayerAvatarName player={currentInvestigator} />, choose one of{' '}
-            <TextHighlight>
-              <PlayerAvatarName player={targetPlayer} />
-            </TextHighlight>
-            's cards.
-          </>
-        }
+          ),
+        }}
       />
     );
   }
 
   return (
     <Translate
-      pt={
-        <>
-          <PlayerAvatarName player={currentInvestigator} />, escolha um jogador para examinar uma de suas
-          cartas.
-        </>
-      }
-      en={
-        <>
-          <PlayerAvatarName player={currentInvestigator} />, choose a player to examine one of their cards.
-        </>
-      }
+      en="{currentInvestigator}, choose a player to examine one of their cards."
+      pt="{currentInvestigator}, escolha um jogador para examinar uma de suas cartas."
+      values={{
+        currentInvestigator: <PlayerAvatarName player={currentInvestigator} />,
+      }}
     />
   );
 }

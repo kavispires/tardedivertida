@@ -100,16 +100,8 @@ export function CardDescription({ type, dataCounts }: CardDescriptionProps) {
           content={
             <Typography.Paragraph style={{ maxWidth: 300 }}>
               <Translate
-                pt={
-                  <>
-                    Os agentes devem achar {dataCounts.wires} desses no total. Por enquanto acharam {0}.
-                  </>
-                }
-                en={
-                  <>
-                    Agents must find {dataCounts.wires} of these in total. So far they have found {0}.
-                  </>
-                }
+                en={`Agents must find ${dataCounts.wires} of these in total. So far they have found ${0}.`}
+                pt={`Os agentes devem achar ${dataCounts.wires} desses no total. Por enquanto acharam ${0}.`}
               />
             </Typography.Paragraph>
           }
@@ -142,12 +134,8 @@ export function CardDescription({ type, dataCounts }: CardDescriptionProps) {
         content={
           <Typography.Paragraph style={{ maxWidth: 300 }}>
             <Translate
-              pt={
-                <>
-                  Caso seja revelada, é apenas uma perda de tempo, pelo menos você será o próximo
-                  investigador.
-                </>
-              }
+              pt="Caso seja revelada, é apenas uma perda de tempo, pelo menos você será o próximo
+                  investigador."
               en="If revealed, it is just a waste of time, at least you will be the next investigator."
             />
           </Typography.Paragraph>

@@ -72,43 +72,31 @@ export function StepDeclaration({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Declare quantos <strong>fios vermelhos</strong> e quantas <strong>bombas</strong> você quer que
-              os outros jogadores saibam que você tem.
-              <br />
-              Minta à vontade!
-              <br />
+          en="Declare how many <strong>red wires</strong> and how many <strong>bombs</strong> you want the other players to know you have.<br/>Lie as much as you want!<br/>{nextInvestigator} will be the next investigator (in case this information influences your decision)."
+          pt="Declare quantos <strong>fios vermelhos</strong> e quantas <strong>bombas</strong> você quer que os outros jogadores saibam que você tem.<br/>Minta à vontade!<br/>{nextInvestigator} será o próximo investigador (caso isso influencie sua decisão)."
+          values={{
+            nextInvestigator: (
               <PlayerAvatarName
                 player={nextInvestigator}
                 addressUser
-              />{' '}
-              será o próximo investigador (caso isso influencie sua decisão).
-              {status.revealed > 0 && (
-                <>
-                  <br />
-                  <strong>
-                    Já encontramos <RedWireHighlight>{status.revealed} fios vermelhos</RedWireHighlight>.
-                  </strong>
-                </>
-              )}
-            </>
-          }
-          en={
-            <>
-              Declare how many <strong>red wires</strong> and how many <strong>bombs</strong> you want the
-              other players to know you have.
-              <br />
-              Lie as much as you want!
-              <br />
-              <PlayerAvatarName
-                player={nextInvestigator}
-                addressUser
-              />{' '}
-              will be the next investigator (if that influences your decision).
-            </>
-          }
+              />
+            ),
+          }}
         />
+        {status.revealed > 0 && (
+          <>
+            <br />
+            <strong>
+              <Translate
+                en="We already found <redWireHighlight>red wires</redWireHighlight>."
+                pt="Já encontramos <RedWireHighlight>fios vermelhos</RedWireHighlight>."
+                values={{
+                  redWireHighlight: (content) => <RedWireHighlight>{content}</RedWireHighlight>,
+                }}
+              />
+            </strong>
+          </>
+        )}
       </RuleInstruction>
 
       <Space
