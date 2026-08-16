@@ -5,27 +5,27 @@ export const achievementsReference: AchievementReference = {
   LEAST_EFFECTS: {
     id: 'LEAST_EFFECTS',
     doc: 'how many cards with effects the player played',
-    icon: '',
+    icon: 'glasses',
     title: {
-      en: '',
-      pt: '',
+      en: 'Most Proper',
+      pt: 'Mais certinho',
     },
     description: {
-      en: '',
-      pt: '',
+      en: 'Used the fewest cards with special effects during the race.',
+      pt: 'Usou menos cartas com efeitos especiais durante a corrida.',
     },
   },
   MOST_EFFECTS: {
     id: 'MOST_EFFECTS',
     doc: 'how many cards with effects the player played',
-    icon: '',
+    icon: 'spiral',
     title: {
-      en: '',
-      pt: '',
+      en: 'Most chaotic',
+      pt: 'Mais caótico',
     },
     description: {
-      en: '',
-      pt: '',
+      en: 'Used the most cards with special effects during the race.',
+      pt: 'Usou mais cartas com efeitos especiais durante a corrida.',
     },
   },
   MOST_FIRST_PLACE: {
