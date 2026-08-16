@@ -31,6 +31,7 @@ export function PhaseWordsSelection({ players, state, user }: PhaseProps<PhaseWo
       }
       currentRound={state?.round?.current}
       type="overlay"
+      duration={4}
     />
   );
 

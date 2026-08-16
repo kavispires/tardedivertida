@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "colegas-de-quarto",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "release": "stable",
   "releaseDate": "2026-01-07",
-  "updatedAt": 1786820757330,
+  "updatedAt": 1786894722606,
   "available": true,
   "title": {
     "pt": "Colegas de Quarto",

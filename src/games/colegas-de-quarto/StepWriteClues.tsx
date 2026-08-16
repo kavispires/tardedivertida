@@ -72,48 +72,37 @@ export function StepWriteClues({
           en="Write your clues"
         />
       </StepTitle>
+
       <RuleInstruction type="lore">
         <Translate
-          pt={
-            <>
-              Chegamos a essa loja e cada um de nós tem opiniões sobre {assignedPairs.length * 2} coisas que
-              não gostamos e ao invés de comunicarmos de forma saudável e direta, vamos dar dicas aos outros
-              sobre o que não queremos.
-            </>
-          }
-          en={
-            <>
-              We arrived at this store and each of us has opinions about {assignedPairs.length * 2} things we
-              don't like and instead of communicating in a healthy and direct way, we will give hints to
-              others about what we don't want.
-            </>
-          }
+          pt="Chegamos a essa loja e cada um de nós tem opiniões sobre {value} coisas que não gostamos e ao invés de comunicarmos de forma saudável e direta, vamos dar dicas aos outros sobre o que não queremos."
+          en="We arrived at this store and each of us has opinions about {value} things we don't like and instead of communicating in a healthy and direct way, we will give hints to others about what we don't want."
+          values={{
+            value: `${assignedPairs.length * 2}`,
+          }}
         />
       </RuleInstruction>
+
       <StoreBoard
         board={board}
         round={round}
         assignedPairs={assignedPairs}
       />
+
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Para cada um dos {assignedPairs.length} pares atribuídos a você, escreva uma pista de palavra
+          pt="Para cada um dos {value} pares atribuídos a você, escreva uma pista de palavra
               única.
               <br /> Essa pista deve ser relacionada ao significado da palavra, não pode conter nenhuma
               palavra na loja ou variações dessas palavras (porta ➜ portão), e não fazer referência à imagem
-              ou posição da palavra da grade.
-            </>
-          }
-          en={
-            <>
-              For each of your {assignedPairs.length} assigned pairs, write a single-word clue. <br />
+              ou posição da palavra da grade."
+          en="For each of your {value} assigned pairs, write a single-word clue. <br />
               This clue must be related to the meaning of the word, cannot contain any word in the store or
               variations of those words (door ➜ doorway), and cannot refer to the image or position of the
-              word on the board.
-            </>
-          }
+              word on the board."
+          values={{
+            value: `${assignedPairs.length}`,
+          }}
         />
       </RuleInstruction>
 

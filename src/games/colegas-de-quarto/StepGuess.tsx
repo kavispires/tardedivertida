@@ -152,26 +152,12 @@ export function StepGuess({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Para cada uma das pistas, selecione duas coisas na loja que você acha que seu colega de quarto
-              está tentando evitar.
-              <br />A felicidade da casa ganha <PointsHighlight value={1} /> se pelo menos uma pessoa
-              adivinhar o par.
-              <br />A casa também ganha <PointsHighlight value={3} /> se o item final é o que ninguém tem
-              nenhuma objeção.
-            </>
-          }
-          en={
-            <>
-              For each of the clues, select two things in the store that you think your roommate is trying to
-              avoid.
-              <br />
-              The house happiness gains <PointsHighlight value={1} /> if at least one person guesses the pair
-              and even more <PointsHighlight value={3} /> if the final item is what no one has any objection
-              to.
-            </>
-          }
+          en="For each of the clues, select two things in the store that you think your roommate is trying to avoid.<br/>The house happiness gains {houseHappinessPoints} if at least one person guesses the pair and even more {finalPoints} if the final item is what no one has any objection to."
+          pt="Para cada uma das pistas, selecione duas coisas na loja que você acha que seu colega de quarto está tentando evitar.<br/>A felicidade da casa ganha {houseHappinessPoints} se pelo menos uma pessoa adivinhar o par e ainda mais {finalPoints} se o item final é o que ninguém tem nenhuma objeção."
+          values={{
+            houseHappinessPoints: <PointsHighlight value={1} />,
+            finalPoints: <PointsHighlight value={3} />,
+          }}
         />
         <Flex justify="center">
           <HappinessTracker happiness={happiness} />

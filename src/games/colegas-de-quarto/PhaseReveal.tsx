@@ -60,26 +60,14 @@ export function PhaseReveal({ players, state }: PhaseProps<PhaseRevealState>) {
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Se pelo menos 1 jogador acerta uma pista, a casa ganha{' '}
-                  <HappinessHighlight>1 ponto</HappinessHighlight> e para cada jogador que acerta a coisa
-                  final, a casa ganha <HappinessHighlight>3 pontos</HappinessHighlight>.
-                  <br />
-                  Para cada par que você acerta você ganha <PointsHighlight value={2} /> e o criador da pista
-                  ganha <PointsHighlight value={1} />.
-                </>
-              }
-              en={
-                <>
-                  If at least 1 player gets a clue right, the house earns{' '}
-                  <HappinessHighlight>1 point</HappinessHighlight> and for each player who gets the final
-                  thing right, the house earns <HappinessHighlight>3 points</HappinessHighlight>.
-                  <br />
-                  For each pair you get right you earn <PointsHighlight value={2} /> and the clue creator
-                  earns <PointsHighlight value={1} />.
-                </>
-              }
+              en="If at least 1 player gets a clue right, the house earns <happinessPoints>ponto</happinessPoints> and for each player who gets the final thing right, the house earns <finalPoints>pontos</finalPoints>.<br />For each pair you get right you earn {guessPoints} and the clue creator earns {guessedPoints}."
+              pt="Se pelo menos 1 jogador acerta uma pista, a casa ganha <happinessPoints>ponto</happinessPoints> e para cada jogador que acerta a coisa final, a casa ganha <finalPoints>pontos</finalPoints>.<br />Para cada par que você acerta você ganha {guessPoints} e o criador da pista ganha {guessedPoints}."
+              values={{
+                happinessPoints: (content) => <HappinessHighlight>1 {content}</HappinessHighlight>,
+                finalPoints: (content) => <HappinessHighlight>3 {content}</HappinessHighlight>,
+                guessPoints: <PointsHighlight value={2} />,
+                guessedPoints: <PointsHighlight value={1} />,
+              }}
             />
           </Surface>
         </PhaseAnnouncement>

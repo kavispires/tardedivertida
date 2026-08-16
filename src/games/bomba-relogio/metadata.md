@@ -13,7 +13,7 @@
 
 ### Migrations
 
-- PlayersReadyState verification: 🔘
+- PlayersReadyState verification: ✅
 - Translate Migration: 🔘
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅

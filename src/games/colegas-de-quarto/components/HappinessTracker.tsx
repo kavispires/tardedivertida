@@ -27,30 +27,28 @@ export function HappinessTracker({ happiness }: HappinessTrackerProps) {
             />
           }
           content={
-            <Flex style={{ maxWidth: 320 }}>
+            <Flex
+              style={{ maxWidth: 320 }}
+              vertical
+            >
               <Translate
-                en={
-                  <>
-                    Happiness Level indicates how the housemates are in harmony and respectful of each other's
-                    choices. You can increase it when someone gets your clue correctly and when each player
-                    gets the final item correctly. Reaching the happiness goal will lead to a successful game
-                    ending! You have up to 4 rounds to reach it.
-                    <br />
-                    Goal: <TextHighlight>{happiness.goal}</TextHighlight> Current:{' '}
-                    <TextHighlight>{happiness.total}</TextHighlight>
-                  </>
-                }
-                pt={
-                  <>
-                    O Nível de Felicidade indica o quão harmoniosos e respeitosos os colegas de quarto estão
-                    com as escolhas uns dos outros. Você pode aumentá-lo quando alguém acerta sua pista e
-                    quando cada jogador acerta o item final. Alcançar a meta de felicidade levará a um final
-                    de jogo bem-sucedido! Vocês têm até 4 rodadas para alcançá-la.
-                    <br />
-                    Meta: <TextHighlight>{happiness.goal}</TextHighlight> Atual:{' '}
-                    <TextHighlight>{happiness.total}</TextHighlight>
-                  </>
-                }
+                en="Happiness Level indicates how the housemates are in harmony and respectful of each other's
+                    choices.<br/>You can increase it when someone gets your clue correctly and when each player
+                    gets the final item correctly.<br/>Reaching the happiness goal will lead to a successful game
+                    ending!<br/>You have up to 4 rounds to reach it."
+                pt="O Nível de Felicidade indica o quão harmoniosos e respeitosos os colegas de quarto estão
+                    com as escolhas uns dos outros.<br/>Você pode aumentá-lo quando alguém acerta sua pista e
+                    quando cada jogador acerta o item final.<br/>Alcançar a meta de felicidade levará a um final
+                    de jogo bem-sucedido!<br/>Vocês têm até 4 rodadas para alcançá-la."
+              />
+              <br />
+              <Translate
+                en="Goal: {happinessGoal} Current: {happinessTotal}"
+                pt="Meta: {happinessGoal} Atual: {happinessTotal}"
+                values={{
+                  happinessGoal: <TextHighlight>{happiness.goal}</TextHighlight>,
+                  happinessTotal: <TextHighlight>{happiness.total}</TextHighlight>,
+                }}
               />
             </Flex>
           }
