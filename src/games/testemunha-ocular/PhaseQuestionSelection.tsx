@@ -56,39 +56,19 @@ export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuest
       <Surface>
         {isFinalQuestion ? (
           <Translate
-            pt={
-              <>
-                Só faltam dois suspeitos e para isso precisamos fazer uma pergunta final.
-                <PlayerAvatarName player={questioner} />, escolha a pergunta certa.
-              </>
-            }
-            en={
-              <>
-                There are only two suspects left and for that we need to ask a final question.
-                <PlayerAvatarName player={questioner} />, choose the right question.
-              </>
-            }
+            en="There are only two suspects left and for that we need to ask a final question. {questioner}, choose the right question."
+            pt="Só faltam dois suspeitos e para isso precisamos fazer uma pergunta final. {questioner}, escolha a pergunta certa."
+            values={{ questioner: <PlayerAvatarName player={questioner} /> }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Agora que encontramos nossa testemunha (<PlayerAvatarName player={witness} />) é hora de
-                questioná-la.
-                <br />
-                Só temos tempo para <TimeHighlight>{roundsLeft}</TimeHighlight> perguntas. Portanto,{' '}
-                <PlayerAvatarName player={questioner} />, escolha a pergunta certa.
-              </>
-            }
-            en={
-              <>
-                Now that we have a Witness (<PlayerAvatarName player={witness} />
-                ), it's time to choose the question to ask them.
-                <br />
-                We can only have time for <TimeHighlight>{roundsLeft}</TimeHighlight> questions. So{' '}
-                <PlayerAvatarName player={questioner} />, choose a question
-              </>
-            }
+            en="Now that we have our witness {witness}, it's time to question them.<br/>We only have time for {roundsLeft} questions. So {questioner}, choose the right question."
+            pt="Agora que encontramos nossa testemunha {witness}, é hora de questioná-la.<br/>Só temos tempo para {roundsLeft} perguntas. Portanto, {questioner}, escolha a pergunta certa."
+            values={{
+              witness: <PlayerAvatarName player={witness} />,
+              questioner: <PlayerAvatarName player={questioner} />,
+              roundsLeft: <TimeHighlight>{roundsLeft}</TimeHighlight>,
+            }}
           />
         )}
       </Surface>

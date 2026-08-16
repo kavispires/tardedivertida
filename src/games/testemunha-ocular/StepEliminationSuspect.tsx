@@ -61,7 +61,7 @@ export function StepEliminationSuspect({
   announcement,
   status,
 }: StepEliminationSuspectProps) {
-  const { translate, language } = useLanguage();
+  const { language } = useLanguage();
 
   const onEliminateSuspect = (suspectId: string) => onEliminate({ suspectId, pass: false });
   const onPass = () => onEliminate({ suspectId: '', pass: true });
@@ -75,45 +75,49 @@ export function StepEliminationSuspect({
   return (
     <Step announcement={announcement}>
       <StepTitle>
-        <span>
-          <PlayerAvatarName
-            player={witness}
-            addressUser
-          />
-          <Translate
-            en="answered"
-            pt="respondeu"
-          />{' '}
-          {testimony ? (
-            <Translate
-              en="YES"
-              pt="SIM"
-            />
-          ) : (
-            <Translate
-              en="NO"
-              pt="NÃO"
-            />
-          )}{' '}
-          <Icon
-            size="large"
-            icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
-          />{' '}
-          <Translate
-            en="to the question"
-            pt="para a pergunta:"
-          />
-        </span>
+        <Translate
+          en="{witness} answered {icon} {testimony}"
+          pt="{witness} respondeu {icon} {testimony}"
+          values={{
+            witness: (
+              <PlayerAvatarName
+                player={witness}
+                addressUser
+              />
+            ),
+            icon: (
+              <Icon
+                size="large"
+                icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
+              />
+            ),
+            testimony: testimony ? (
+              <Translate
+                en="YES"
+                pt="SIM"
+              />
+            ) : (
+              <Translate
+                en="NO"
+                pt="NÃO"
+              />
+            ),
+          }}
+        />
       </StepTitle>
 
       <SpaceContainer align="center">
         <TextCard
-          header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
+          // header={translate({ pt: 'O suspeito...', en: 'The perpetrator...' })}
           color={testimony ? 'green' : 'red'}
-          className="t-card"
+          className="t-card t-card--result"
           size="large"
         >
-          {answer}
+          <Translate
+            en="The perpetrator is {answer}"
+            pt="O suspeito é {answer}"
+            values={{ answer }}
+          />
         </TextCard>
       </SpaceContainer>
 

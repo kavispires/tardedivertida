@@ -23,7 +23,6 @@ export function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioning
   const { isLoading } = useLoading();
   const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
-
   const onAnswer = useOnSubmitTestimonyAPIRequest();
 
   const announcement = (
@@ -36,24 +35,14 @@ export function PhaseQuestioning({ state, players }: PhaseProps<PhaseQuestioning
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Nossa testemunha só sabe julgar por aparência.
-              <br />
-              <PlayerAvatarName player={witness} />, é hora de nos ajudar a pegar esse criminoso hediondo.
-            </>
-          }
-          en={
-            <>
-              Our witness loves to judge the book by its cover.
-              <br />
-              <PlayerAvatarName player={witness} />, it's time to help us find this heinous perpetrator!
-            </>
-          }
+          pt="Nossa testemunha só sabe julgar por aparência.<br/>{witness}, é hora de nos ajudar a pegar esse criminoso hediondo."
+          en="Our witness loves to judge the book by its cover.<br/>{witness}, it's time to help us find this heinous perpetrator!"
+          values={{ witness: <PlayerAvatarName player={witness} /> }}
         />
       </Surface>
     </PhaseAnnouncement>
   );
+
   return (
     <PhaseContainer
       phase={state?.phase}

@@ -47,16 +47,13 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
     >
       <Surface colorScheme="dark">
         <Translate
-          pt={
-            <>
-              O interrogatório durou <TimeHighlight>{state.round.current ?? '?'}</TimeHighlight> horas.
-            </>
-          }
-          en={
-            <>
-              The interrogation lasted for <TimeHighlight>{state.round.current ?? '?'}</TimeHighlight> hours.
-            </>
-          }
+          pt="O interrogatório durou {hours} horas."
+          en="The interrogation lasted for {hours} hours."
+          values={{
+            hours: (
+              <TimeHighlight className="t-interrogation-duration">{state.round.current ?? '?'}</TimeHighlight>
+            ),
+          }}
         />
         <br />
         <Translate

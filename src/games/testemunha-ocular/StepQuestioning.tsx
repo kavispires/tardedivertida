@@ -65,16 +65,11 @@ export function StepQuestioning({
       <ViewIf condition={isUserTheWitness}>
         <StepTitle>
           <Translate
-            pt={
-              <>
-                Testemunha <PlayerAvatarName player={witness} />, responda:
-              </>
-            }
-            en={
-              <>
-                Witness <PlayerAvatarName player={witness} />, please answer:
-              </>
-            }
+            pt="Testemunha {witness}, responda:"
+            en="Witness {witness}, please answer:"
+            values={{
+              witness: <PlayerAvatarName player={witness} />,
+            }}
           />
         </StepTitle>
         <Flex
@@ -107,16 +102,11 @@ export function StepQuestioning({
       <ViewIf condition={!isUserTheWitness}>
         <StepTitle>
           <Translate
-            pt={
-              <>
-                A Testemunha <PlayerAvatarName player={witness} /> está analisando a pergunta.
-              </>
-            }
-            en={
-              <>
-                The witness <PlayerAvatarName player={witness} /> is analyzing the question.
-              </>
-            }
+            pt="A Testemunha {witness} está analisando a pergunta."
+            en="The witness {witness} is analyzing the question."
+            values={{
+              witness: <PlayerAvatarName player={witness} />,
+            }}
           />
         </StepTitle>
 

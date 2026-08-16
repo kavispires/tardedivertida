@@ -103,19 +103,14 @@
     font-size: 1.5rem;
     max-width: 800px;
   }
+
+  &--result {
+    font-size: 1.25rem;
+    max-width: 800px;
+  }
 }
 
-.t-history {
-  &__entry {
-    display: flex;
-    text-align: left;
-  }
-
-  &__question {
-    width: 90%;
-  }
-
-  &__icon {
-    margin-left: get-unit(2);
-  }
+.t-interrogation-duration {
+  color: get-color("black");
+  font-weight: bold;
 }

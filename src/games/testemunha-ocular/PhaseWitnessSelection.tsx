@@ -37,20 +37,16 @@ export function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnes
     >
       <Surface>
         <Translate
-          pt={
-            <>
+          pt="
               Um crime horrível aconteceu. Tão horrível quem não consigo nem explicar e nem podemos contar com
               a ciência forense para resolvê-lo. Portanto, só há uma pessoa que pode nos ajudar agora: uma
               testemunha ocular...
-            </>
-          }
-          en={
-            <>
+            "
+          en="
               A horrible crime has happened. So horrible that I can't even explain, neither can't rely on
               forensics and science to solve it. So there's only one person that could help us now: An eye
               witness...
-            </>
-          }
+           "
         />
       </Surface>
     </PhaseAnnouncement>
@@ -58,22 +54,15 @@ export function PhaseWitnessSelection({ state, players }: PhaseProps<PhaseWitnes
 
   const ruleInstruction = (
     <Translate
-      pt={
-        <>
-          Em Testemunha Ocular, um jogador será a testemunha que presenciou um crime desconhecido. Essa
-          testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores (detetives) a
-          liberarem pelo menos um dos <PlayersHighlight>{suspectCount} suspeitos</PlayersHighlight> a cada
-          rodada. Você quer ser a testemunha?
-        </>
-      }
-      en={
-        <>
-          In Eye Witness, a player will be the witness who witnessed an unknown crime. This witness will
-          answer yes-or-no questions to help the other players (detectives) to release at least one of the{' '}
-          <PlayersHighlight>{suspectCount} suspects</PlayersHighlight>
-          each round. Do you want to be the witness?
-        </>
-      }
+      en="In Eye Witness, a player will be the witness who witnessed an unknown crime. This witness will answer yes-or-no questions to help the other players (detectives) to release at least one of the <suspectCount>suspects</suspectCount> each round. Do you want to be the witness?"
+      pt="Em Testemunha Ocular, um jogador será a testemunha que presenciou um crime desconhecido. Essa testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores (detetives) a liberarem pelo menos um dos <suspectCount>suspeitos</suspectCount> a cada rodada. Você quer ser a testemunha?"
+      values={{
+        suspectCount: (content) => (
+          <PlayersHighlight>
+            {suspectCount} {content}
+          </PlayersHighlight>
+        ),
+      }}
     />
   );
 
