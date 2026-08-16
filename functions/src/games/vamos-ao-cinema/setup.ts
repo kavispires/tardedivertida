@@ -214,9 +214,9 @@ export const prepareRevealPhase = async (
   const wasMistake = votedForSelectedMovie.length > 0;
   const mistakes = state.mistakes ?? [];
   if (wasMistake) {
-    increaseAchievement(store.achievement, activePlayerId, 'bad', 1);
+    increaseAchievement(store.achievements, activePlayerId, 'bad', 1);
     votedForSelectedMovie.forEach((playerId) => {
-      increaseAchievement(store.achievement, playerId, 'own', 1);
+      increaseAchievement(store.achievements, playerId, 'own', 1);
     });
     mistakes.push(currentMovieId);
   }
@@ -265,13 +265,13 @@ export const prepareRevealPhase = async (
     });
     Object.values(playersPerMovie).forEach((playerIds) => {
       if (playerIds.length === 0) {
-        increaseAchievement(store.achievement, playerIds[0], 'solo', 1);
+        increaseAchievement(store.achievements, playerIds[0], 'solo', 1);
       } else if (playerIds.length === 2) {
-        increaseAchievement(store.achievement, playerIds[0], 'couple', 1);
-        increaseAchievement(store.achievement, playerIds[1], 'couple', 1);
+        increaseAchievement(store.achievements, playerIds[0], 'couple', 1);
+        increaseAchievement(store.achievements, playerIds[1], 'couple', 1);
       } else {
         playerIds.forEach((playerId) => {
-          increaseAchievement(store.achievement, playerId, 'group', 1);
+          increaseAchievement(store.achievements, playerId, 'group', 1);
         });
       }
     });

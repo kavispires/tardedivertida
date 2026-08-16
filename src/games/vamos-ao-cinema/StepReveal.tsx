@@ -80,6 +80,7 @@ export function StepReveal({
   const { isLoading } = useLoading();
 
   const isFinalMovie = Boolean(outcome === 'DONE' && mistakes.length < 2 && finalMovieId);
+  const isEverybodyReady = Object.values(players).every((player) => player.ready);
 
   return (
     <Step
@@ -91,24 +92,16 @@ export function StepReveal({
         className={getAnimationClass('slideInDown')}
       >
         <Translate
-          pt={
-            <>
+          en="{player} eliminated"
+          pt="{player} eliminou"
+          values={{
+            player: (
               <PlayerAvatarName
                 player={activePlayer}
                 addressUser
-              />{' '}
-              eliminou
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName
-                player={activePlayer}
-                addressUser
-              />{' '}
-              eliminated
-            </>
-          }
+              />
+            ),
+          }}
         />
         :
         <MovieHighlight
@@ -122,11 +115,13 @@ export function StepReveal({
         badReview={badReview}
       />
 
-      <HostNextPhaseButton
-        round={round}
-        autoTriggerTime={outcome !== 'DONE' ? 7 : undefined}
-        withWaitingTimeBar={outcome !== 'DONE'}
-      />
+      {!isEverybodyReady && (
+        <HostNextPhaseButton
+          round={round}
+          autoTriggerTime={outcome !== 'DONE' ? 7 : undefined}
+          withWaitingTimeBar={outcome !== 'DONE'}
+        />
+      )}
 
       <RuleInstruction type="event">
         <ViewIf condition={outcome === 'CONTINUE'}>
@@ -138,120 +133,69 @@ export function StepReveal({
 
         <ViewIf condition={outcome === 'MISTAKE' || (outcome === 'DONE' && mistakes.length > 1)}>
           <Translate
-            pt={
-              <>
-                Ah não!{' '}
+            en="Oh no! {playerList} chose this movie."
+            pt={`Ah não! {playerList} ${pluralize(votedForSelectedMovie.length, 'escolheu', 'escolheram')} esse filme.`}
+            values={{
+              playerList: (
                 <ListOfPlayers
                   players={players}
                   list={votedForSelectedMovie}
                   prefix="vote"
                 />
-                {pluralize(votedForSelectedMovie.length, 'escolheu', 'escolheram')} esse filme.
-              </>
-            }
-            en={
-              <>
-                Oh no!{' '}
-                <ListOfPlayers
-                  players={players}
-                  list={votedForSelectedMovie}
-                  prefix="vote"
-                />
-                chose this movie.
-              </>
-            }
+              ),
+            }}
           />
         </ViewIf>
 
         <ViewIf condition={isFinalMovie}>
-          <Translate
-            pt={
-              <strong>
-                Decidido! E ganhamos{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={score}
-                />
-                .
-              </strong>
-            }
-            en={
-              <strong>
-                It's decided! And we scored{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={score}
-                />
-                .
-              </strong>
-            }
-          />
+          <strong>
+            <Translate
+              en="It's decided! And we scored {points}."
+              pt="Decidido! E ganhamos {points}."
+              values={{
+                points: (
+                  <PointsHighlight
+                    type="positive"
+                    value={score}
+                  />
+                ),
+              }}
+            />
+          </strong>
         </ViewIf>
 
         <ViewIf condition={outcome !== 'DONE' && mistakes.length === 0}>
           <Translate
-            pt={
-              <>
-                {' '}
-                <br />
-                Estamos indo bem.
-              </>
-            }
-            en={
-              <>
-                {' '}
-                <br />
-                We're doing well.
-              </>
-            }
+            en=" <br/> We're doing well."
+            pt=" <br/> Estamos indo bem."
           />
         </ViewIf>
 
         <ViewIf condition={outcome !== 'DONE' && mistakes.length === 1}>
           <Translate
-            pt={
-              <>
-                <br />
-                Vocês já cometeram <MistakeCountHighlight>1 erro</MistakeCountHighlight>! Se um filme
-                selecionado por outro jogador é eliminado, a rodada termina imediatamente.
-              </>
-            }
-            en={
-              <>
-                <br />
-                You already made <MistakeCountHighlight>1 mistake</MistakeCountHighlight>, if another movie
-                selected by another player is eliminated, the round ends immediately.
-              </>
-            }
+            en="<br/>You already made <mistake>1 mistake</mistake>, if another movie selected by another player is eliminated, the round ends immediately."
+            pt="<br/>Vocês já cometeram <mistake>1 erro</mistake>! Se um filme selecionado por outro jogador é eliminado, a rodada termina imediatamente."
+            values={{
+              mistake: (text) => <MistakeCountHighlight>{text}</MistakeCountHighlight>,
+            }}
           />
         </ViewIf>
 
         <ViewIf condition={mistakes.length === 2}>
-          <Translate
-            pt={
-              <strong>
-                <br />
-                Nãaaaaaaaooo.... não conseguimos decidir o filme, vamos voltar pra casa. A rodada acabou...
-                Recebemos{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={score}
-                />
-                .
-              </strong>
-            }
-            en={
-              <strong>
-                <br />
-                Nooooooo.... we couldn't decide on a movie, let's just go home. The round is over.... We got{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={score}
-                />
-                .
-              </strong>
-            }
-          />
+          <strong>
+            <Translate
+              en="<br/> Nooooooo.... we couldn't decide on a movie, let's just go home. The round is over.... We got {points}."
+              pt="<br/> Nãaaaaaaaooo.... não conseguimos decidir o filme, vamos voltar pra casa. A rodada acabou... Recebemos {points}."
+              values={{
+                points: (
+                  <PointsHighlight
+                    type="positive"
+                    value={score}
+                  />
+                ),
+              }}
+            />
+          </strong>
         </ViewIf>
       </RuleInstruction>
 
