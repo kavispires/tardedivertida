@@ -1,7 +1,5 @@
 // Types
 import type { GameRound } from 'types/game';
-// Utils
-import { pluralize } from '@utils/helpers';
 // Components
 import { Translate } from '@components/language/Translate';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -33,17 +31,23 @@ export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
   return (
     <RuleInstruction type="tip">
       <Translate
-        pt={
-          <>
-            {pluralize(left, 'Falta', 'Faltam')} <strong>{left}</strong> {pluralize(left, 'rodada')} para o
-            jogo terminar...
-          </>
-        }
         en={
-          <>
-            <strong>{left}</strong> {pluralize(left, 'round')} left for the game to end...
-          </>
+          left === 1
+            ? '<strong>1 round</strong> left for the game to end...'
+            : '<left>rounds</left> left for the game to end...'
         }
+        pt={
+          left === 1
+            ? 'Falta <strong>1</strong> rodada para o jogo terminar...'
+            : 'Faltam <left>rodadas</left> para o jogo terminar...'
+        }
+        values={{
+          left: (value) => (
+            <strong>
+              {left} {value}
+            </strong>
+          ),
+        }}
       />
     </RuleInstruction>
   );
