@@ -15,7 +15,7 @@ export const handleSubmitWordSelectionVotes = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
-  votes: string[],
+  votes: Record<string, number>,
 ) => {
   return await updatePlayer({
     gameName,

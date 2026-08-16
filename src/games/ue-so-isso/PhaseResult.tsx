@@ -30,53 +30,31 @@ export function PhaseResult({ state, players }: PhaseProps<PhaseResultState>) {
       title={
         isPass ? (
           <Translate
-            pt={
-              <>
-                E{' '}
+            pt="E {guesser} passou..."
+            en="And {guesser} passed..."
+            values={{
+              guesser: (
                 <PlayerAvatarName
                   player={guesser}
                   addressUser
                   size="large"
-                />{' '}
-                passou...
-              </>
-            }
-            en={
-              <>
-                And{' '}
-                <PlayerAvatarName
-                  player={guesser}
-                  addressUser
-                  size="large"
-                />{' '}
-                passed...
-              </>
-            }
+                />
+              ),
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                E{' '}
+            pt="E {guesser} disse..."
+            en="And {guesser} said..."
+            values={{
+              guesser: (
                 <PlayerAvatarName
                   player={guesser}
                   addressUser
                   size="large"
-                />{' '}
-                disse...
-              </>
-            }
-            en={
-              <>
-                And{' '}
-                <PlayerAvatarName
-                  player={guesser}
-                  addressUser
-                  size="large"
-                />{' '}
-                said...
-              </>
-            }
+                />
+              ),
+            }}
           />
         )
       }

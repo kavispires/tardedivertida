@@ -1,7 +1,7 @@
 // Icons
-import { BoxBlankIcon } from '@icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
 import { BoxQuestionMarkIcon } from '@icons/BoxQuestionMarkIcon';
+import { BoxSkipIcon } from '@icons/BoxSkipIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
 import { Icon } from '@components/general/Icon';
@@ -42,7 +42,7 @@ export function GroupProgress({ group }: GroupProgressProps) {
               <div className="u-group-progress__result">
                 {value === 'CORRECT' && <Icon icon={<BoxCheckMarkIcon />} />}
                 {value === 'WRONG' && <Icon icon={<BoxXIcon />} />}
-                {value === 'PASS' && <Icon icon={<BoxBlankIcon />} />}
+                {value === 'PASS' && <Icon icon={<BoxSkipIcon />} />}
                 {value === 'UNKNOWN' && (
                   <Icon
                     icon={<BoxQuestionMarkIcon />}

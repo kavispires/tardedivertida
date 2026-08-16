@@ -38,6 +38,7 @@ export function PhaseGuess({ state, players, meta }: PhaseProps<PhaseGuessState>
       }
       currentRound={state?.round?.current}
       type="overlay"
+      duration={4}
     >
       <Surface>
         <Translate

@@ -49,16 +49,11 @@ export function StepSuggestion({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Escreva uma dica para <PlayerAvatarName player={guesser} />
-            </>
-          }
-          en={
-            <>
-              Write a clue for <PlayerAvatarName player={guesser} />
-            </>
-          }
+          pt="Escreva uma dica para {guesser}"
+          en="Write a clue for {guesser}"
+          values={{
+            guesser: <PlayerAvatarName player={guesser} />,
+          }}
         />
       </StepTitle>
 
@@ -69,18 +64,11 @@ export function StepSuggestion({
       {suggestionsNumber > 1 && (
         <RuleInstruction type="event">
           <Translate
-            pt={
-              <>
-                Já que esse jogo tem menos jogadores, você tem que escrever{' '}
-                <WritingHighlight>{suggestionsNumber} sugestões</WritingHighlight>
-              </>
-            }
-            en={
-              <>
-                Since we have fewer players you must write{' '}
-                <WritingHighlight>{suggestionsNumber} clues</WritingHighlight>
-              </>
-            }
+            pt="Já que esse jogo tem menos jogadores, você tem que escrever {suggestions}"
+            en="Since we have fewer players you must write {suggestions}"
+            values={{
+              suggestions: <WritingHighlight>{suggestionsNumber} sugestões</WritingHighlight>,
+            }}
           />
         </RuleInstruction>
       )}

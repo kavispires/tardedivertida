@@ -118,8 +118,9 @@ export const tallyVotes = (currentWords: UsedWords, players: Players): UsedWords
   const currentWordsCopy = { ...currentWords };
   getListOfPlayers(players).forEach((player) => {
     if (player?.votes) {
-      player.votes.forEach((wordId: string) => {
-        currentWordsCopy[wordId].votes += 1;
+      const votes: Dictionary<number> = player.votes;
+      Object.entries(votes).forEach(([wordId, voteCount]) => {
+        currentWordsCopy[wordId].votes += voteCount;
       });
     }
   });

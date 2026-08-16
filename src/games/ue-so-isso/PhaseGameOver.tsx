@@ -3,8 +3,8 @@ import { orderBy } from 'lodash';
 // Types
 import type { PhaseProps } from 'types/game';
 // Icons
-import { BoxBlankIcon } from '@icons/BoxBlankIcon';
 import { BoxCheckMarkIcon } from '@icons/BoxCheckMarkIcon';
+import { BoxSkipIcon } from '@icons/BoxSkipIcon';
 import { BoxXIcon } from '@icons/BoxXIcon';
 import { FlagIcon } from '@icons/FlagIcon';
 // Components
@@ -46,9 +46,9 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
               key={entry.id}
             >
               <div className="u-gallery-entry__word">{entry.text}</div>
-              {orderBy(entry.suggestions, 'invalid').map((suggestion) => (
+              {orderBy(entry.suggestions, 'invalid').map((suggestion, index) => (
                 <div
-                  key={suggestion.playerId}
+                  key={`${entry.id}-${suggestion.playerId}-${index}`}
                   className={clsx(
                     'u-gallery-entry__suggestion',
                     suggestion.invalid && 'u-gallery-entry__suggestion--invalid',
@@ -69,7 +69,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
 
                 {entry.outcome === 'CORRECT' && <Icon icon={<BoxCheckMarkIcon />} />}
                 {entry.outcome === 'WRONG' && <Icon icon={<BoxXIcon />} />}
-                {entry.outcome === 'PASS' && <Icon icon={<BoxBlankIcon />} />}
+                {entry.outcome === 'PASS' && <Icon icon={<BoxSkipIcon />} />}
               </div>
             </div>
           );
