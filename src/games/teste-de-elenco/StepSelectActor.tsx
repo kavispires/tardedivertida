@@ -70,35 +70,16 @@ export function StepSelectActor({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Se um ator receber mais de 50% dos votos, ele será escolhido para o papel!
-              <br />
-              Caso contrário, o papel vai o final da fila e vamos reselecioná-lo na próxima rodada (igual
-              segundo turno de eleição).
-              <br />
-              Você ganha{' '}
+          pt="Se um ator receber mais de 50% dos votos, ele será escolhido para o papel!<br/>Caso contrário, o papel vai o final da fila e vamos reselecioná-lo na próxima rodada (igual segundo turno de eleição).<br/>Você ganha {points} por cada jogador que escolher o mesmo ator que você."
+          en="If an actor receives more than 50% of the votes, he will be chosen for the role!<br/>Otherwise, the role goes to the end of the queue and we will reselect it in the next round.<br/>You earn {points} for each player who chooses the same actor as you."
+          values={{
+            points: (
               <PointsHighlight
                 value={1}
                 omitText
-              />{' '}
-              por cada jogador que escolher o mesmo ator que você.
-            </>
-          }
-          en={
-            <>
-              If an actor receives more than 50% of the votes, he will be chosen for the role!
-              <br />
-              Otherwise, the role goes to the end of the queue and we will reselect it in the next round.
-              <br />
-              You earn{' '}
-              <PointsHighlight
-                value={1}
-                omitText
-              />{' '}
-              for each player who chooses the same actor as you.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 
