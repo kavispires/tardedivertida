@@ -81,22 +81,15 @@ export function StepResult({ announcement, activeRole, goToNextStep, outcome, pl
         )}
         {outcome === 'CAST' && activeRole.actor && (
           <Translate
-            pt={
-              <>
+            pt="{actor} foi escolhido(a) para o papel!"
+            en="{actor} was chosen for the role!"
+            values={{
+              actor: (
                 <TextHighlight>
                   <DualTranslate>{activeRole.candidates[activeRole.actor].name}</DualTranslate>
-                </TextHighlight>{' '}
-                foi escolhido(a) para o papel!
-              </>
-            }
-            en={
-              <>
-                <TextHighlight>
-                  <DualTranslate>{activeRole.candidates[activeRole.actor].name}</DualTranslate>
-                </TextHighlight>{' '}
-                was chosen for the role!
-              </>
-            }
+                </TextHighlight>
+              ),
+            }}
           />
         )}
         {outcome === 'FAIL' && (
