@@ -174,20 +174,11 @@ export function DailyMapeamento({ data }: DailyMapeamentoProps) {
         {locationFragments.includes('_') && (
           <RegionHint className="mt-6">
             <Translate
-              pt={
-                <>
-                  O fragmento abaixo das dicas mostra partes da palavra que você acertou, os espaços em cinza
-                  <span className="location-fragments__unknown">_</span> representam letras que você ainda não
-                  acertou ou espaços.
-                </>
-              }
-              en={
-                <>
-                  The fragment below the clues shows parts of the word you got right, the gray spaces
-                  <span className="location-fragments__unknown">_</span>
-                  represent letters you haven't guessed yet or spaces.
-                </>
-              }
+              en="The fragment below the clues shows parts of the word you got right, the gray spaces <unknown/> represent letters you haven't guessed yet or spaces."
+              pt="O fragmento abaixo das dicas mostra partes da palavra que você acertou, os espaços em cinza <unknown/> representam letras que você ainda não acertou ou espaços."
+              values={{
+                unknown: <span className="location-fragments__unknown">_</span>,
+              }}
             />
           </RegionHint>
         )}

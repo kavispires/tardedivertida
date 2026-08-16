@@ -99,26 +99,19 @@ export function ResultsModalContent({
         )}
         <br />
         <Translate
-          pt={
-            <>
-              Sua pontuação:{' '}
-              <Icon
-                icon={<VictoryCoinIcon />}
-                size="small"
-              />{' '}
-              {score} pontos
-            </>
-          }
-          en={
-            <>
-              Your score:{' '}
-              <Icon
-                icon={<VictoryCoinIcon />}
-                size="small"
-              />{' '}
-              {score} points
-            </>
-          }
+          en="Your score: {score} points"
+          pt="Sua pontuação: {score} pontos"
+          values={{
+            score: (
+              <>
+                <Icon
+                  icon={<VictoryCoinIcon />}
+                  size="small"
+                />{' '}
+                {score}
+              </>
+            ),
+          }}
         />
       </Typography.Paragraph>
 

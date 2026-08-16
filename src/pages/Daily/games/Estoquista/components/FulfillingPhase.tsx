@@ -74,24 +74,19 @@ export function FulfillingPhase({
 
         <RegionText>
           <Translate
-            pt={
-              <>
-                Recebemos 5 pedidos e 4 deles estão em estoque!
-                <br />
-                Selecione os pedidos um a um e coloque-nos na prateleira correta.
-                <br />
-                <strong>Pedidos Posicionados ({fulfillments.length}/4).</strong>
-              </>
-            }
-            en={
-              <>
-                We have received 5 orders and 4 of them are in stock!
+            en="We have received 5 orders and 4 of them are in stock!
                 <br />
                 Select the orders one by one and place them on the correct shelf.
                 <br />
-                <strong>Orders Placed ({fulfillments.length}/4).</strong>
-              </>
-            }
+                <strong>Orders Placed </strong>{fulfillments}."
+            pt="Recebemos 5 pedidos e 4 deles estão em estoque!
+                <br />
+                Selecione os pedidos um a um e coloque-nos na prateleira correta.
+                <br />
+                <strong>Pedidos Posicionados </strong>{fulfillments}."
+            values={{
+              fulfillments: <strong>({fulfillments.length}/4)</strong>,
+            }}
           />
         </RegionText>
 
@@ -106,8 +101,8 @@ export function FulfillingPhase({
         {!isComplete && (
           <RegionText>
             <Translate
-              pt={<>Para desfazer um pedido, é só clicar nele na prateleira.</>}
-              en={<>To undo an order, just click on it on the shelf.</>}
+              pt="Para desfazer um pedido, é só clicar nele na prateleira."
+              en="To undo an order, just click on it on the shelf."
             />
           </RegionText>
         )}
@@ -129,20 +124,12 @@ export function FulfillingPhase({
 
             <RegionText>
               <Translate
-                pt={
-                  <>
-                    Se tudo estiver nos confirmes, aperte o botão de enviar.
+                pt="Se tudo estiver nos confirmes, aperte o botão de enviar.
                     <br />
-                    Você perde um coração se qualquer um deles estiver errado.
-                  </>
-                }
-                en={
-                  <>
-                    If everything is in order, press the delivery button.
+                    Você perde um coração se qualquer um deles estiver errado."
+                en="If everything is in order, press the delivery button.
                     <br />
-                    You lose a heart if any of them are wrong
-                  </>
-                }
+                    You lose a heart if any of them are wrong."
               />
             </RegionText>
           </>
@@ -180,33 +167,29 @@ export function FulfillingPhase({
 
         <RegionText>
           <Translate
-            pt={
-              <>
-                <strong>Pedidos Assinalados</strong>
-                {isMissingOutOfStock ? (
-                  <>
-                    <br />
-                    <span style={{ color: 'red' }}>
-                      <WarningFilled /> Você não colocou nenhum pedido na lata de lixo! Um dos produtos NÃO
-                      está na prateleira!!!
-                    </span>
-                  </>
-                ) : null}
+            en="<strong>All Orders have been assigned</strong>"
+            pt="<strong>Pedidos Assinalados</strong>"
+          />
+          {isMissingOutOfStock && (
+            <>
+              <br />
+              <span style={{ color: 'red' }}>
+                <WarningFilled />
+                <Translate
+                  en="You didn't put any order in the trash! One of the products is NOT on the shelf!!!"
+                  pt="Você não colocou nenhum pedido na lata de lixo! Um dos produtos NÃO está na prateleira!!!"
+                />
+              </span>
+            </>
+          )}
+          <br />
+          <Translate
+            en="If everything is in order, press the delivery button.
                 <br />
-                Se tudo estiver nos confirmes, aperte o botão de enviar.
+                You lose a heart if any of them are wrong."
+            pt="Se tudo estiver nos confirmes, aperte o botão de enviar.
                 <br />
-                Você perde um coração se qualquer um deles estiver errado.
-              </>
-            }
-            en={
-              <>
-                <strong>All Orders have been assigned</strong>
-                <br />
-                If everything is in order, press the delivery button.
-                <br />
-                You lose a heart if any of them are wrong
-              </>
-            }
+                Você perde um coração se qualquer um deles estiver errado."
           />
         </RegionText>
       </>

@@ -95,20 +95,8 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       return (
         <ContentTextLabel>
           <Translate
-            en={
-              <>
-                Quickly!
-                <br />
-                Do not press
-              </>
-            }
-            pt={
-              <>
-                Rápido!
-                <br />
-                Não aperte
-              </>
-            }
+            en="Quickly!<br />Do not press"
+            pt="Rápido!<br />Não aperte"
           />
         </ContentTextLabel>
       );
@@ -266,16 +254,11 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
         <ContentTextSentence>
           <ContentValue>
             <Translate
-              en={
-                <>
-                  Press <span className="button-unbreakable-value">{button.pool?.value ?? 'N/A'}</span> times
-                </>
-              }
-              pt={
-                <>
-                  Aperte <span className="button-unbreakable-value">{button.pool?.value ?? 'N/A'}</span> vezes
-                </>
-              }
+              en="Press <value /> times"
+              pt="Aperte <value /> vezes"
+              values={{
+                value: <span className="button-unbreakable-value">{button.pool?.value ?? 'N/A'}</span>,
+              }}
             />
           </ContentValue>
         </ContentTextSentence>
@@ -324,8 +307,8 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       return (
         <ContentTextSentence>
           <Translate
-            en={<>Press as many times as the letter "{button.pool?.letter}" appears</>}
-            pt={<>Aperte tantas vezes quanto a letra "{button.pool?.letter}" aparece</>}
+            en={`Press as many times as the letter "${button.pool?.letter}" appears`}
+            pt={`Aperte tantas vezes quanto a letra "${button.pool?.letter}" aparece`}
           />
           <br />
           <ContentValue>{button.pool?.value ?? 'N/A'}</ContentValue>
@@ -337,8 +320,8 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       return (
         <ContentTextSentence>
           <Translate
-            en={<>Press as many times as the position of the letter "{button.pool?.value}" in the alphabet</>}
-            pt={<>Aperte tantas vezes quanto a posição da letra "{button.pool?.value}" no alfabeto</>}
+            en={`Press as many times as the position of the letter "${button.pool?.value}" in the alphabet`}
+            pt={`Aperte tantas vezes quanto a posição da letra "${button.pool?.value}" no alfabeto`}
           />
         </ContentTextSentence>
       );
@@ -347,17 +330,10 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
     case 'ROMAN_NUMERALS': {
       return (
         <ContentTextLabel>
+          {/* TODO: Verify if it's correct */}
           <Translate
-            en={
-              <>
-                Press <i>{button.pool?.value ?? 'N/A'}</i> times
-              </>
-            }
-            pt={
-              <>
-                Aperte <i>{button.pool?.value ?? 'N/A'}</i> vezes
-              </>
-            }
+            en={`Press <i>${button.pool?.value ?? 'N/A'}</i> times`}
+            pt={`Aperte <i>${button.pool?.value ?? 'N/A'}</i> vezes`}
           />
         </ContentTextLabel>
       );
@@ -579,18 +555,12 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       return (
         <ContentTextSentence>
           <Translate
-            en={
-              <>
-                Press if <DualTranslate>{button.pool?.more}</DualTranslate> appear more than{' '}
-                <DualTranslate>{button.pool?.less}</DualTranslate>
-              </>
-            }
-            pt={
-              <>
-                Aperte se <DualTranslate>{button.pool?.more}</DualTranslate> aparecem mais vezes que{' '}
-                <DualTranslate>{button.pool?.less}</DualTranslate>
-              </>
-            }
+            en="Press if {more} appears more than {less}"
+            pt="Aperte se {more} aparecem mais vezes que {less}"
+            values={{
+              more: <DualTranslate>{button.pool?.more}</DualTranslate>,
+              less: <DualTranslate>{button.pool?.less}</DualTranslate>,
+            }}
           />
           <br />
           <ContentSequence>

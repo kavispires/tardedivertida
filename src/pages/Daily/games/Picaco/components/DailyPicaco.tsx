@@ -119,25 +119,12 @@ export function DailyPicaco({ data, currentUser }: DailyPicacoProps) {
             <SpaceContainer vertical>
               <Surface contained>
                 <Translate
-                  pt={
-                    <>
-                      Você tem <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight> segundos
-                      para fazer cada um dos {SETTINGS.DRAWINGS} desenhos.
-                      <br />
-                      Você <strong>NÃO</strong> pode usar letras ou números.
-                      <br />O tempo começa assim que você aperta "Começar".
-                    </>
-                  }
-                  en={
-                    <>
-                      You have <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight> seconds
-                      to draw each of the {SETTINGS.DRAWINGS} drawings.
-                      <br />
-                      You <strong>CANNOT</strong> use letters or numbers.
-                      <br />
-                      The time starts as soon as you press "Start".
-                    </>
-                  }
+                  en="You have <time>seconds</time> to make each of the {drawingsCount} drawings.<br />You <strong>CANNOT</strong> use letters or numbers.<br />The time starts as soon as you press 'Start'."
+                  pt="Você tem <time>segundos</time> para fazer cada um dos {drawingsCount} desenhos.<br />Você <strong>NÃO</strong> pode usar letras ou números.<br />O tempo começa assim que você aperta 'Começar'."
+                  values={{
+                    time: <TimeHighlight>{SETTINGS.DURATION / SETTINGS.DRAWINGS}</TimeHighlight>,
+                    drawingsCount: SETTINGS.DRAWINGS,
+                  }}
                 />
               </Surface>
               <Button

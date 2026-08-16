@@ -19,12 +19,16 @@ export function RulesHints() {
         />
       }
       description={
-        <>
-          O alienígena pensa em conceitos gerais e agrupa coisas comuns em atributos abrangentes.
+        <Translate
+          pt="O alienígena pensa em conceitos gerais e agrupa coisas comuns em atributos abrangentes.
           <br />
-          Por exemplo, líquido e aquático serão classificados como "líquido", enquanto "instrumento" e
-          "utensílio" serão classificados como "instrumentos".
-        </>
+          Por exemplo, líquido e aquático serão classificados como 'líquido', enquanto 'instrumento' e
+          'utensílio' serão classificados como 'instrumentos'."
+          en="The alien thinks in general concepts and groups common things into broad attributes.
+          <br />
+          For example, liquid and aquatic will be classified as 'liquid', while 'instrument' and
+          'utensil' will be classified as 'instruments'."
+        />
       }
     >
       <RuleEntry

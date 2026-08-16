@@ -16,41 +16,40 @@ export function Rules({ date }: RulesProps) {
     <RulesWrapper
       date={date}
       basicRules={
-        <Translate
-          pt={
-            <>
-              <li>As coisas na grade foram secretamente agrupadas em grupos de quatro com temas em comum.</li>
-              <li>
-                Forme um grupo de quatro coisas que você acha que estão relacionadas e clique em{' '}
-                <strong>Enviar</strong>.
-              </li>
-              <li>Tente adivinhar os quatro grupos um a um.</li>
-              <li>
-                Cada tentativa errada remove um coração <HeartFilled />.
-              </li>
-              <li>
-                Você tem {SETTINGS.HEARTS} <HeartFilled />. Boa sorte!
-              </li>
-            </>
-          }
-          en={
-            <>
-              <li>
-                The things on the grid have been secretly grouped into groups of four with common themes.
-              </li>
-              <li>
-                Form a group of four things that you think are related and click <strong>Submit</strong>.
-              </li>
-              <li>Try to guess the four groups one by one.</li>
-              <li>
-                Each wrong attempt removes a heart <HeartFilled />.
-              </li>
-              <li>
-                You have {SETTINGS.HEARTS} <HeartFilled />. Good luck!
-              </li>
-            </>
-          }
-        />
+        <>
+          <li>
+            <Translate
+              en="The things on the grid have been secretly grouped into groups of four with common themes."
+              pt="As coisas na grade foram secretamente agrupadas em grupos de quatro com temas em comum."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Form a group of four things that you think are related and click <strong>Submit</strong>."
+              pt="Forme um grupo de quatro coisas que você acha que estão relacionadas e clique em <strong>Enviar</strong>."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Try to guess the four groups one by one."
+              pt="Tente adivinhar os quatro grupos um a um."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Each wrong attempt removes a heart {icon}."
+              pt="Cada tentativa errada remove um coração {icon}."
+              values={{ icon: <HeartFilled /> }}
+            />
+          </li>
+          <li>
+            <Translate
+              en="You have {hearts} {icon}. Good luck!"
+              pt="Você tem {hearts} {icon}. Boa sorte!"
+              values={{ hearts: SETTINGS.HEARTS, icon: <HeartFilled /> }}
+            />
+          </li>
+        </>
       }
     />
   );

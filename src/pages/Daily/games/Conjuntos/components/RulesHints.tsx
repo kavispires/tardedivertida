@@ -19,12 +19,16 @@ export function RulesHints() {
         />
       }
       description={
-        <>
-          O título do jogo diário contém dicas sobres as regras gramaticais secretas dos círculos em forma de
+        <Translate
+          pt="O título do jogo diário contém dicas sobres as regras gramaticais secretas dos círculos em forma de
           categorias.
           <br />
-          As estrelas é a classificação do nível de dificuldade das regras (1-5).
-        </>
+          As estrelas é a classificação do nível de dificuldade das regras (1-5)."
+          en="The title of the daily game contains hints about the secret grammar rules of the circles in the form of
+          categories.
+          <br />
+          The stars are the classification of the level of difficulty of the rules (1-5)."
+        />
       }
     >
       <RuleEntry

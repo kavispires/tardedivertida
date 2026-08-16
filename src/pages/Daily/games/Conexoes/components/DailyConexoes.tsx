@@ -193,9 +193,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
           <Region>
             <Surface contained>
               <Translate
-                pt={
-                  <>
-                    Você recebera pares de imagens para avaliar.
+                pt="Você receberá pares de imagens para avaliar.
                     <br />
                     Você simplesmente tem que dizer se elas estão relacionadas ou não!
                     <br />
@@ -203,12 +201,8 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
                     faça sentido pra você!
                     <br />
                     <br />
-                    Clique em Começar para avaliar os pares de imagens!
-                  </>
-                }
-                en={
-                  <>
-                    You will receive pairs of images to evaluate.
+                    Clique em Começar para avaliar os pares de imagens!"
+                en="You will receive pairs of images to evaluate.
                     <br />
                     You just have to say if they are related or not!
                     <br />
@@ -216,9 +210,7 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
                     to you!
                     <br />
                     <br />
-                    Click Begin to start evaluating the image pairs!
-                  </>
-                }
+                    Click Begin to start evaluating the image pairs!"
               />
             </Surface>
             <Button

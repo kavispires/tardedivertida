@@ -16,37 +16,42 @@ export function Rules({ date }: RulesProps) {
     <RulesWrapper
       date={date}
       basicRules={
-        <Translate
-          pt={
-            <>
-              <li>Descubra qual criança pegou o brinquedo.</li>
-              <li>Crianças estão do lado uma da outra quando há uma seta entre elas.</li>
-              <li>
-                Podem haver mentirosas entre elas que podem ser igual ou um a menos que o número dado pelo
-                jogo.
-              </li>
-              <li>Nem sempre a criança culpada mente, será que ela se arrependeu?</li>
-
-              <li>
-                Você tem {SETTINGS.HEARTS} <HeartFilled /> chances. Boa sorte!
-              </li>
-            </>
-          }
-          en={
-            <>
-              <li>Find out which kid took the toy.</li>
-              <li>Kids are next to each other when there's an arrow between them.</li>
-              <li>
-                There may be liars among them, which can be equal to or one less than the number given by the
-                game.
-              </li>
-              <li>The guilty kid doesn't always lie, did they regret it?</li>
-              <li>
-                You have {SETTINGS.HEARTS} <HeartFilled /> chances. Good luck!
-              </li>
-            </>
-          }
-        />
+        <>
+          <li>
+            <Translate
+              en="Find out which kid took the toy."
+              pt="Descubra qual criança pegou o brinquedo."
+            />
+          </li>
+          <li>
+            <Translate
+              en="Kids are next to each other when there's an arrow between them."
+              pt="Crianças estão do lado uma da outra quando há uma seta entre elas."
+            />
+          </li>
+          <li>
+            <Translate
+              en="There may be liars among them, which can be equal to or one less than the number given by the game."
+              pt="Podem haver mentirosas entre elas que podem ser igual ou um a menos que o número dado pelo jogo."
+            />
+          </li>
+          <li>
+            <Translate
+              en="The guilty kid doesn't always lie, did they regret it?"
+              pt="Nem sempre a criança culpada mente, será que ela se arrependeu?"
+            />
+          </li>
+          <li>
+            <Translate
+              en="You have {hearts} {icon} chances. Good luck!"
+              pt="Você tem {hearts} {icon} chances. Boa sorte!"
+              values={{
+                hearts: SETTINGS.HEARTS,
+                icon: <HeartFilled />,
+              }}
+            />
+          </li>
+        </>
       }
     />
   );

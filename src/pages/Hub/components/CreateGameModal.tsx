@@ -294,22 +294,16 @@ function CreateGameModal({ gameInfo, open, setOpen }: CreateGameModalProps) {
               <>
                 {previousGameId && !wasRedirectSuccessful && (
                   <Translate
-                    pt={<>Você quer redirecionar jogadores em {previousGameId} para essa nova partida?</>}
-                    en={<>Redirect players in {previousGameId} to this new play?</>}
+                    en="Do you want to redirect players in {previousGameId} to this new game?"
+                    pt="Você quer redirecionar jogadores em {previousGameId} para essa nova partida?"
+                    values={{ previousGameId }}
                   />
                 )}
                 {wasRedirectSuccessful && (
                   <Translate
-                    pt={
-                      <>
-                        Jogadores em {previousGameId} foram convidados para o jogo {gameId}
-                      </>
-                    }
-                    en={
-                      <>
-                        Players in {previousGameId} have been invited to {gameId}
-                      </>
-                    }
+                    en="Players in {previousGameId} have been redirected to this new game: {gameId}."
+                    pt="Jogadores em {previousGameId} foram redirecionados para essa nova partida."
+                    values={{ previousGameId, gameId }}
                   />
                 )}
               </>

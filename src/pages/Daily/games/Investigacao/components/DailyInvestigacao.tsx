@@ -73,16 +73,8 @@ export function DailyInvestigacao({ data }: DailyInvestigacaoProps) {
           <Region>
             <Typography.Text strong>
               <Translate
-                pt={
-                  <>
-                    Libere alguém que <strong>não</strong> se encaixe nas declarações.
-                  </>
-                }
-                en={
-                  <>
-                    Release someone who <strong>does not</strong> fit the statements.
-                  </>
-                }
+                pt="Libere alguém que <strong>não</strong> se encaixe nas declarações."
+                en="Release someone who <strong>does not</strong> fit the statements."
               />
             </Typography.Text>
           </Region>
@@ -97,20 +89,19 @@ export function DailyInvestigacao({ data }: DailyInvestigacaoProps) {
               )}
               {isLose && (
                 <Translate
-                  pt={
-                    <>
-                      <strong>Você liberou o culpado!</strong>
+                  pt="<strong>Você liberou o culpado!</strong>
                       <br />
                       Agora crimes continuarão acontecendo.
                       <br />
                       <em>
                         Se você discorda das respostas e está revoltado, ajude a melhorar o jogo participando
                         do
-                        <strong> Tá Na Cara</strong> na seção Contribua do TD!
+                        'Tá Na Cara' na seção Contribua do TD!
                       </em>
-                    </>
-                  }
-                  en={<>You released the culprit! Now crimes will keep happening.</>}
+                    "
+                  en="You released the culprit!
+                  <br />
+                  Now crimes will keep happening."
                 />
               )}
             </Typography.Text>
