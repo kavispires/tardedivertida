@@ -33,18 +33,15 @@ export function Hint({
         <br />
         <motion.span {...getAnimation('fadeIn')}>
           <Translate
-            pt={
-              <>
-                <strong>Dica 1</strong>: A palavra tem{' '}
-                <TextHighlight>{secretWord.text.length} letras</TextHighlight>
-              </>
-            }
-            en={
-              <>
-                <strong>Hint 1</strong>: The word has{' '}
-                <TextHighlight>{secretWord.text.length} letters</TextHighlight>
-              </>
-            }
+            pt="<strong>Dica 1</strong>: A palavra tem <letters>letras</letters>"
+            en="<strong>Hint 1</strong>: The word has <letters>letters</letters>"
+            values={{
+              letters: (content) => (
+                <TextHighlight>
+                  {secretWord.text.length} {content}
+                </TextHighlight>
+              ),
+            }}
           />
         </motion.span>
       </>
@@ -56,18 +53,11 @@ export function Hint({
         <br />
         <motion.span {...getAnimation('fadeIn')}>
           <Translate
-            pt={
-              <>
-                <strong>Dica 2</strong>: A palavra começa com{' '}
-                <TextHighlight>{secretWord.text[0]}</TextHighlight>
-              </>
-            }
-            en={
-              <>
-                <strong>Hint 2</strong>: The word starts with{' '}
-                <TextHighlight>{secretWord.text[0]}</TextHighlight>
-              </>
-            }
+            pt="<strong>Dica 2</strong>: A palavra começa com {letter}"
+            en="<strong>Hint 2</strong>: The word starts with {letter}"
+            values={{
+              letter: <TextHighlight>{secretWord.text[0]}</TextHighlight>,
+            }}
           />
         </motion.span>
       </>
@@ -77,8 +67,9 @@ export function Hint({
     return (
       <RuleInstruction type={showFirstHint || showSecondHint ? 'event' : 'wait'}>
         <Translate
-          pt={`${guesser.name} está pensando...`}
-          en={`${guesser.name} is thinking...`}
+          pt="{guesser} está pensando..."
+          en="{guesser} is thinking..."
+          values={{ guesser: guesser.name }}
         />
         {firstHint}
         {secondHint}

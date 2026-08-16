@@ -48,16 +48,11 @@ export function StepWaitingForGuess({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Hora de <PlayerAvatarName player={guesser} /> brilhar!
-            </>
-          }
-          en={
-            <>
-              Time for <PlayerAvatarName player={guesser} /> to shine!
-            </>
-          }
+          pt="Hora de {guesser} brilhar!"
+          en="Time for {guesser} to shine!"
+          values={{
+            guesser: <PlayerAvatarName player={guesser} />,
+          }}
         />
       </StepTitle>
       {timerEnabled && (
@@ -71,44 +66,23 @@ export function StepWaitingForGuess({
 
       <RuleInstruction type="wait">
         <Translate
-          pt={
-            <>
-              {guesser.name} tem uma única chance de adivinhar a palavra secreta!
-              <br />
-              Se acertar, o grupo ganha{' '}
+          pt="{guesserName} tem uma única chance de adivinhar a palavra secreta!<br/>Se acertar, o grupo ganha {positivePoints} mas se errar, o grupo perde {negativePoint}.<br/>Há a opção de pular a rodada, mas só faz o grupo perder tempo."
+          en="{guesserName} has a single chance to guess the secret word!<br/>If they get it right, the group wins {positivePoints} but if they get it wrong, the group loses {negativePoint}.<br/>There's the option to skip the round, but it only wastes time."
+          values={{
+            guesserName: guesser.name,
+            positivePoints: (
               <PointsHighlight
                 type="positive"
                 value={2}
-              />{' '}
-              mas se errar, o grupo perde{' '}
+              />
+            ),
+            negativePoint: (
               <PointsHighlight
                 type="negative"
                 value={1}
               />
-              .
-              <br />
-              Há a opção de pular a rodada, mas só faz o grupo perder tempo.
-            </>
-          }
-          en={
-            <>
-              {guesser.name} has a single chance to guess the secret word!
-              <br />
-              If they get it right, the group wins{' '}
-              <PointsHighlight
-                type="positive"
-                value={2}
-              />{' '}
-              but if they get it wrong, the group loses{' '}
-              <PointsHighlight
-                type="negative"
-                value={1}
-              />
-              .
-              <br />
-              There's the option to skip the round, but it only wastes time.
-            </>
-          }
+            ),
+          }}
         />
       </RuleInstruction>
 

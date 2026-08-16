@@ -38,7 +38,11 @@ export function StepWordSelection({
 
   const autoSelectRandomWord = () => {
     const randomSelection = words[0].id;
-    onSendSelectedWords({ votes: [randomSelection] });
+    onSendSelectedWords({
+      votes: {
+        [randomSelection]: 1,
+      },
+    });
   };
 
   const onSelectWord = (wordId: string) => {
@@ -53,6 +57,23 @@ export function StepWordSelection({
     });
   };
 
+  const handleSubmitSelectedWords = () => {
+    const votes: Record<string, number> = {};
+    if (selectedWordsArray.length === 0) {
+      // If no words are selected, send the first word with weight 1
+      votes[words[0].id] = 1;
+    } else if (selectedWordsArray.length === 1) {
+      // If one word is selected, send it with weight 3
+      votes[selectedWordsArray[0]] = 3;
+    } else {
+      // If multiple words are selected, send them with weight 2
+      selectedWordsArray.forEach((wordId) => {
+        votes[wordId] = 2;
+      });
+    }
+    onSendSelectedWords({ votes });
+  };
+
   return (
     <Step
       fullWidth
@@ -60,39 +81,18 @@ export function StepWordSelection({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Selecione a Palavra Secreta para <PlayerAvatarName player={guesser} />
-            </>
-          }
-          en={
-            <>
-              Select a Secret Word for <PlayerAvatarName player={guesser} />
-            </>
-          }
+          pt="Selecione a Palavra Secreta para {guesser}"
+          en="Select a Secret Word for {guesser}"
+          values={{
+            guesser: <PlayerAvatarName player={guesser} />,
+          }}
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              A palavra com mais votos será escolhida para essa rodada.
-              <br />
-              <strong>Você pode selecionar quantas quiser!</strong>
-              <br />
-              Se você não selecionar nenhuma, a primeira palavra será enviada como sua escolha.
-            </>
-          }
-          en={
-            <>
-              The word with the most votes will be selected for the round.
-              <br />
-              <strong>You can choose as many as you wish!</strong>
-              <br />
-              If you fail to select any of them, the first one will be submitted as your choice.
-            </>
-          }
+          en="The word with the most votes will be selected for the round. <br/> <strong>You can choose as many as you wish!</strong> <br/> If you fail to select any of them, the first one will be submitted as your choice."
+          pt="A palavra com mais votos será escolhida para essa rodada. <br/> <strong>Você pode selecionar quantas quiser!</strong> <br/> Se você não selecionar nenhuma, a primeira palavra será enviada como sua escolha."
         />
       </RuleInstruction>
 
@@ -121,7 +121,7 @@ export function StepWordSelection({
       <TimedButton
         icon={<CloudUploadOutlined />}
         type="primary"
-        onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
+        onClick={handleSubmitSelectedWords}
         disabled={noSelection}
         onExpire={autoSelectRandomWord}
         duration={30}

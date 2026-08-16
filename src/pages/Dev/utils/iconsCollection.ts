@@ -60,6 +60,7 @@ export * from '@icons/BoxMinusIcon';
 export * from '@icons/BoxOneIcon';
 export * from '@icons/BoxPlusIcon';
 export * from '@icons/BoxQuestionMarkIcon';
+export * from '@icons/BoxSkipIcon';
 export * from '@icons/BoxThreeIcon';
 export * from '@icons/BoxTwoIcon';
 export * from '@icons/BoxXIcon';

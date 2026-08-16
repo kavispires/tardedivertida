@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { Input, Tag } from 'antd';
@@ -47,11 +47,18 @@ export function StepGuessing({
   const { translate } = useLanguage();
 
   const [guess, setGuess] = useState('');
-  const { timeLeft } = useCountdown({
+  const { timeLeft, pause } = useCountdown({
     duration: GUESSING_DURATION,
     disabled: !timerEnabled,
     onExpire: () => onSendGuess({ guess }),
   });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Pause timer when timerEnabled changes to false only, ignore function dependencies
+  useEffect(() => {
+    if (!timerEnabled) {
+      pause();
+    }
+  }, [timerEnabled]);
 
   const onPressEnter = () => {
     if (guess && guess.length > 0) {
@@ -92,44 +99,22 @@ export function StepGuessing({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              <strong>Escreva</strong> sua adivinhação abaixo.
-              <br />
-              Se você acertar, o grupo ganha{' '}
+          pt="<strong>Escreva</strong> sua adivinhação abaixo.<br/>Se você acertar, o grupo ganha {positivePoints} mas se você errar, o grupo perde {negativePoint}.<br/>Você pode pular se não estiver se sentindo seguro."
+          en="<strong>Write</strong> your guess below.<br/>If you get it right, the group wins {positivePoints} but if you get it wrong, the group loses {negativePoint}.<br/>You can skip if you're not feeling confident."
+          values={{
+            positivePoints: (
               <PointsHighlight
                 type="positive"
                 value={2}
-              />{' '}
-              mas se você errar, o grupo perde{' '}
+              />
+            ),
+            negativePoint: (
               <PointsHighlight
                 type="negative"
                 value={1}
               />
-              .
-              <br />
-              Você pode pular se não estiver se sentindo seguro.
-            </>
-          }
-          en={
-            <>
-              <strong>Write</strong> your guess below.
-              <br />
-              If you get it right, the group wins{' '}
-              <PointsHighlight
-                type="positive"
-                value={2}
-              />{' '}
-              but if you get it wrong, the group loses{' '}
-              <PointsHighlight
-                type="negative"
-                value={1}
-              />
-              .
-              <br />
-              You can skip if you're not feeling confident.
-            </>
-          }
+            ),
+          }}
         />
       </RuleInstruction>
 
@@ -150,7 +135,7 @@ export function StepGuessing({
             pt="Enviar"
             en="Submit"
           />
-          <Tag color="blue">{timeLeft}</Tag>
+          {timerEnabled && <Tag color="blue">{timeLeft}</Tag>}
         </SendButton>
         <span>
           <Translate

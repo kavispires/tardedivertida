@@ -38,9 +38,11 @@ export type GalleryEntry = {
 
 export type SubmitVotesPayload = {
   /**
-   * Array of word IDs voted for
+   * Record of word IDs and their corresponding vote counts
+   * If the player selected a single word, the weight is 3, if they select more than one, the weight is 2.
+   * If they don't select any, the first word will be sent with weight 1.
    */
-  votes: string[];
+  votes: Record<string, number>;
 };
 
 export type SubmitSuggestionsPayload = {

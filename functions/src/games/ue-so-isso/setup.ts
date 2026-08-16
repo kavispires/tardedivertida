@@ -247,7 +247,7 @@ export const prepareSuggestPhase = async (
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareVerifyGuessPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -269,6 +269,11 @@ export const prepareSuggestPhase = async (
   } else {
     group.attempts[index] = OUTCOME.INCONCLUSIVE;
     group.outcome = OUTCOME.INCONCLUSIVE;
+  }
+
+  // If outcome is good, skip verify guess
+  if (group.outcome !== OUTCOME.INCONCLUSIVE) {
+    return prepareResultPhase(store, state, players);
   }
 
   // Save

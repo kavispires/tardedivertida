@@ -48,49 +48,32 @@ export function StepResult({
       <StepTitle className={getAnimationClass('heartBeat')}>
         {isPass ? (
           <Translate
-            pt={
-              <>
+            pt="{guesser} passou..."
+            en="{guesser} passed..."
+            values={{
+              guesser: (
                 <PlayerAvatarName
                   player={guesser}
                   addressUser
                   size="large"
-                />{' '}
-                passou...
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName
-                  player={guesser}
-                  addressUser
-                  size="large"
-                />{' '}
-                passed...
-              </>
-            }
+                />
+              ),
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
+            pt="{guesser} disse {guess}"
+            en="{guesser} said {guess}"
+            values={{
+              guesser: (
                 <PlayerAvatarName
                   player={guesser}
                   addressUser
                   size="large"
-                />{' '}
-                disse <TextHighlight>{guess}</TextHighlight>
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName
-                  player={guesser}
-                  addressUser
-                  size="large"
-                />{' '}
-                said <TextHighlight>{guess}</TextHighlight>
-              </>
-            }
+                />
+              ),
+              guess: <TextHighlight>{guess}</TextHighlight>,
+            }}
           />
         )}
       </StepTitle>
@@ -101,44 +84,24 @@ export function StepResult({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Lembre-se que vocês o objetivo é conseguir <PointsHighlight value={7} /> em até 10 rodadas, mas
-              vocês perdem imediatamente se tiverem
-              <WrongGuessHighlight>3 erros</WrongGuessHighlight>.
-              <br />
-              Vocês ganham{' '}
+          pt="Lembre-se que vocês o objetivo é conseguir {goalPoints} em até 10 rodadas, mas vocês perdem imediatamente se tiverem <wrongGuesses>erros</wrongGuesses>.<br/>Vocês ganham {positivePoints} para cada acerto e perdem {negativePoint} para cada erro."
+          en="Remember that the goal is to get {goalPoints} within 10 rounds, but you immediately lose if you get <wrongGuesses>errors</wrongGuesses>.<br/>You gain {positivePoints} for each correct guess and lose {negativePoint} for each mistake."
+          values={{
+            goalPoints: <PointsHighlight value={7} />,
+            wrongGuesses: (content) => <WrongGuessHighlight>3 {content}</WrongGuessHighlight>,
+            positivePoints: (
               <PointsHighlight
                 type="positive"
                 value={2}
-              />{' '}
-              para cada acerto e perdem
+              />
+            ),
+            negativePoint: (
               <PointsHighlight
                 type="negative"
                 value={1}
-              />{' '}
-              para cada erro.
-            </>
-          }
-          en={
-            <>
-              Remember that the goal is to get <PointsHighlight value={7} /> within 10 rounds, but you
-              immediately lose if you get
-              <WrongGuessHighlight>3 errors</WrongGuessHighlight>.
-              <br />
-              You gain{' '}
-              <PointsHighlight
-                type="positive"
-                value={2}
-              />{' '}
-              for each correct guess and lose
-              <PointsHighlight
-                type="negative"
-                value={1}
-              />{' '}
-              for each mistake.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 

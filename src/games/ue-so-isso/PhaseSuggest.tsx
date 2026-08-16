@@ -38,6 +38,7 @@ export function PhaseSuggest({ state, players, user }: PhaseProps<PhaseSuggestSt
       }
       currentRound={state?.round?.current}
       type="overlay"
+      duration={4}
     >
       {isUserTheGuesser ? (
         <Surface>
