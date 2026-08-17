@@ -15,12 +15,13 @@ import { TimedButton } from '@components/buttons/TimedButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { StarPoints } from '@components/points/StarPoints';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
 import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { CurrentCategory } from './utils/types';
 import { countDifferentGuesses, getGuessResultClass, getPoints } from './utils/helpers';
@@ -39,18 +40,17 @@ function Sentence({ currentCategory }: SentenceProps) {
       justify="center"
     >
       <Translate
-        pt="O resultado para"
-        en="The answer for"
-      />{' '}
-      <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
-      <Translate
-        pt="na escala"
-        en="on the scale"
-      />{' '}
-      <strong>
-        {currentCategory.left}-{currentCategory.right}
-      </strong>
-      :
+        pt="O resultado para {clue} na escala {scale}:"
+        en="The answer for {clue} on the scale {scale}:"
+        values={{
+          clue: <TextHighlight>{currentCategory.clue}</TextHighlight>,
+          scale: (
+            <strong>
+              {currentCategory.left}-{currentCategory.right}
+            </strong>
+          ),
+        }}
+      />
     </Flex>
   );
 }
@@ -103,24 +103,21 @@ export function StepReveal({
         animate
       />
 
-      <Surface contained>
+      <Surface
+        contained
+        className="my-4"
+      >
         <Translate
-          pt={
-            <>
-              Vocês estão sincronizados? <PlayerAvatarName player={psychic} /> acha que{' '}
-              {psychic.guess ? 'sim' : 'não'}
-            </>
-          }
-          en={
-            <>
-              Are you in sync? <PlayerAvatarName player={psychic} /> {psychic.guess ? 'does' : "doesn't"}{' '}
-              think so
-            </>
-          }
+          pt={`Vocês estão sincronizados? {psychic} acha que ${psychic.guess ? 'sim' : 'não'}`}
+          en={`Are you in sync? {psychic} ${psychic.guess ? 'does' : "doesn't"} think so`}
+          values={{
+            psychic: <PlayerAvatarName player={psychic} />,
+          }}
         />
       </Surface>
       <ul className="o-player-guesses">
         {regularPlayers.map((player) => {
+          const points = getPoints(player.guess, currentCategory.target ?? 0);
           return (
             <li
               className="o-player-guess"
@@ -141,9 +138,10 @@ export function StepReveal({
                 className="o-player-guess__avatar"
               />
               <span className="o-player-guess__name">{player.name}</span>
-              <StarPoints
-                quantity={getPoints(player.guess, currentCategory.target ?? 0)}
-                keyPrefix={`${player.id}-points`}
+              <PointsHighlight
+                value={points}
+                type={points > 0 ? 'positive' : 'default'}
+                omitText
               />
             </li>
           );

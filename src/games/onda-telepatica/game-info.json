@@ -2,11 +2,11 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.127",
+  "version": "4.0.128",
   "releaseDate": "2021-05-18",
-  "updatedAt": 1786820761777,
+  "updatedAt": 1787006652861,
   "release": "stable",
-  "available": false,
+  "available": true,
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"

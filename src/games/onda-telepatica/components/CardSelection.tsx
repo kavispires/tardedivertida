@@ -8,7 +8,7 @@ import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type CardSelectionProps = {
   cards: SpectrumCardData[];
-  onSendChosenSide: GenericFunction;
+  onSendChosenSide: (cardId: UID) => void;
 };
 
 export function CardSelection({ onSendChosenSide, cards }: CardSelectionProps) {
