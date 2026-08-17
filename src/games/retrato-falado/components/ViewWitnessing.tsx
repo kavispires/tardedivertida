@@ -58,17 +58,11 @@ export function ViewWitnessing({
           </Title>
           <RuleInstruction type="wait">
             <Translate
-              pt={
-                <>
-                  A testemunha <PlayerAvatarName player={witness} /> está tendo um flashback do monstro.
-                </>
-              }
-              en={
-                <>
-                  The witness <PlayerAvatarName player={witness} /> is having a flashback of the monster event
-                  now.
-                </>
-              }
+              pt="A testemunha {witness} está tendo um flashback do monstro."
+              en="The witness <PlayerAvatarName {witness} is having a flashback of the monster event now."
+              values={{
+                witness: <PlayerAvatarName player={witness} />,
+              }}
             />
           </RuleInstruction>
           <TimerBar

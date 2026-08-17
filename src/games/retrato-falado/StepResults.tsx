@@ -114,49 +114,29 @@ export function StepResults({
         )}
         {mostVoted ? (
           <Translate
-            pt={
-              <>
-                Esse jogador ganha{' '}
+            pt="Esse jogador ganha {points}."
+            en="This player gets {points}."
+            values={{
+              points: (
                 <PointsHighlight
                   type="positive"
                   value={3}
                 />
-                .
-              </>
-            }
-            en={
-              <>
-                This player gets{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={3}
-                />
-                .
-              </>
-            }
+              ),
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Esses jogadores ganharam{' '}
+            pt="Esses jogadores ganharam {points} cada."
+            en="These players get {points} each."
+            values={{
+              points: (
                 <PointsHighlight
                   type="positive"
                   value={3}
-                />{' '}
-                cada.
-              </>
-            }
-            en={
-              <>
-                These players get{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={3}
-                />{' '}
-                each.
-              </>
-            }
+                />
+              ),
+            }}
           />
         )}
       </RuleInstruction>
@@ -177,43 +157,25 @@ export function StepResults({
       <RuleInstruction type="scoring">
         {mostVotes.includes(witnessVote) ? (
           <Translate
-            pt={
-              <>
-                A testemunha <PlayerAvatarName player={witness} /> votou no mais votado, logo, é uma
-                testemunha confiável e ganha{' '}
+            pt="A testemunha {witness} votou no mais votado, logo, é uma testemunha confiável e ganha {points} também."
+            en="The witness {witness} /> voted with the group which means they are a credible witness and get {points} as well."
+            values={{
+              points: (
                 <PointsHighlight
                   type="positive"
                   value={2}
-                />{' '}
-                também.
-              </>
-            }
-            en={
-              <>
-                The witness <PlayerAvatarName player={witness} /> voted with the group which means they are a
-                credible witness and get{' '}
-                <PointsHighlight
-                  type="positive"
-                  value={2}
-                />{' '}
-                as well.
-              </>
-            }
+                />
+              ),
+              witness: <PlayerAvatarName player={witness} />,
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                A testemunha achou que o desenho de <PlayerAvatarName player={players[witnessVote]} /> foi o
-                melhor, não votou com a maioria, portanto, não ganha pontos.
-              </>
-            }
-            en={
-              <>
-                The witness thought that <PlayerAvatarName player={players[witnessVote]} />
-                's sketch was the best. They didn't vote with the majority, so they don't get any points.
-              </>
-            }
+            pt="A testemunha achou que o desenho de {witnessVote} foi o melhor, não votou com a maioria, portanto, não ganha pontos."
+            en="The witness thought that {witnessVote}'s sketch was the best. They didn't vote with the majority, so they don't get any points."
+            values={{
+              witnessVote: <PlayerAvatarName player={players[witnessVote]} />,
+            }}
           />
         )}
       </RuleInstruction>

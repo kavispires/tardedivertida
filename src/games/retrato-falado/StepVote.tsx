@@ -10,7 +10,7 @@ import { useCardWidth } from '@hooks/useCardWidth';
 import { useGlobalLocalStorage } from '@hooks/useGlobalLocalStorage';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { CanvasResizerButton } from '@components/canvas/CanvasResizer';
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
 import { MonsterCard } from '@components/cards/MonsterCard';
 import { Translate } from '@components/language/Translate';
@@ -71,45 +71,33 @@ export function StepVote({
         />
         <br />
         <Translate
-          pt={
-            <>
-              Cada desenho que receber pelo menos um voto, ganha <PointsHighlight value={1} /> e o desenho
-              mais votado ganha <PointsHighlight value={3} />.
-            </>
-          }
-          en={
-            <>
-              Each sketch that receives at least one vote gets <PointsHighlight value={1} /> and the sketch
-              with the most votes gets <PointsHighlight value={3} />.
-            </>
-          }
+          pt="Cada desenho que receber pelo menos um voto, ganha {sketchPoints} e o desenho
+              mais votado ganha {mostVotedPoints}."
+          en="Each sketch that receives at least one vote gets {sketchPoints} and the sketch with the most votes gets {mostVotedPoints}."
+          values={{
+            sketchPoints: <PointsHighlight value={1} />,
+            mostVotedPoints: <PointsHighlight value={3} />,
+          }}
         />
         <br />
         <ViewIf condition={isUserTheWitness}>
           <Translate
-            pt={
-              <>
-                Como testemunha, você ganha <PointsHighlight value={2} /> se você escolher o desenho mais
-                votado pelos outros jogadores. (E você é o desempate em caso de empate!)
-              </>
-            }
-            en={
-              <>
-                As the witness, you get <PointsHighlight value={2} /> if you choose the sketch with the most
-                votes from the other players. (And you are the tiebreaker in case of a tie!)
-              </>
-            }
+            pt="Como testemunha, você ganha {artistPoints} se você escolher o desenho mais votado pelos outros jogadores. (E você é o desempate em caso de empate!)"
+            en="As the witness, you get {artistPoints} if you choose the sketch with the most votes from the other players. (And you are the tiebreaker in case of a tie!)"
+            values={{
+              artistPoints: <PointsHighlight value={2} />,
+            }}
           />
         </ViewIf>
         <ViewIf condition={!isUserTheWitness}>
           <Translate
-            pt={<strong>Você não pode votar em si mesmo.</strong>}
-            en={<strong>You cannot vote for yourself.</strong>}
+            pt="<strong>Você não pode votar em si mesmo.</strong>"
+            en="<strong>You cannot vote for yourself.</strong>"
           />
         </ViewIf>
+        <br />
+        <CanvasResizerButton />
       </RuleInstruction>
-
-      <CanvasResizer />
 
       <SpaceContainer wrap>
         {sketches.map((sketchObj) => {

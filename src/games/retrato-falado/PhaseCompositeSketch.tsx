@@ -47,19 +47,15 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps<PhaseComposi
         >
           <Surface contained>
             <Translate
-              pt={
-                <>
-                  Um meliante monstruoso está a solta!
-                  <br />A testemunha <PlayerAvatarName player={witness} /> tentará relembrar o incidente!
-                </>
-              }
-              en={
-                <>
-                  A monstrous miscreant is on the loose!
+              pt="Um meliante monstruoso está a solta!
                   <br />
-                  The witness <PlayerAvatarName player={witness} /> must recall all of its features!
-                </>
-              }
+                  A testemunha {witness} tentará relembrar o incidente!"
+              en="A monstrous miscreant is on the loose!
+                  <br />
+                  The witness {witness} must recall all of its features!"
+              values={{
+                witness: <PlayerAvatarName player={witness} />,
+              }}
             />
           </Surface>
         </RoundAnnouncement>
@@ -82,54 +78,38 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps<PhaseComposi
           <Surface>
             {isUserTheWitness ? (
               <Translate
-                pt={
-                  <>
-                    Você terá <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> segundos para memorizar as
-                    características do monstro.
+                pt="Você terá {memoryTime} segundos para memorizar as características do monstro.
                     <br />
-                    Assim que esse tempo acabar, você terá <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}
-                    minutos para descrevê-lo para os outros jogadores.
+                    Assim que esse tempo acabar, você terá {sketchTime} minutos para descrevê-lo para os outros jogadores.
                     <br />
-                    Boa sorte!
-                  </>
-                }
-                en={
-                  <>
-                    You'll have <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> seconds to memorize the
-                    monster's features.
+                    Boa sorte!"
+                en="You'll have {memoryTime} seconds to memorize the monster's features.
                     <br />
-                    When the time is up, you will have <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}
-                    minutes to describe it to the other players.
+                    When the time is up, you will have {sketchTime} minutes to describe it to the other players.
                     <br />
-                    Good luck!
-                  </>
-                }
+                    Good luck!"
+                values={{
+                  memoryTime: <TimeHighlight>{TIMES.MEMORY}</TimeHighlight>,
+                  sketchTime: <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>,
+                }}
               />
             ) : (
               <Translate
-                pt={
-                  <>
-                    A testemunha <PlayerAvatarName player={witness} /> terá{' '}
-                    <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> segundos para memorizar as características
-                    do monstro.
+                pt="A testemunha {witness} terá {memoryTime} segundos para memorizar as características do monstro.
                     <br />
-                    Assim que esse tempo acabar, você terá <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}
-                    minutos para desenhá-lo enquanto a testemunha o descreve.
+                    Assim que esse tempo acabar, você terá {sketchTime} minutos para desenhá-lo enquanto a testemunha o descreve.
                     <br />
-                    Boa sorte!
-                  </>
-                }
-                en={
-                  <>
-                    The witness <PlayerAvatarName player={witness} /> will have{' '}
-                    <TimeHighlight>{TIMES.MEMORY}</TimeHighlight> seconds to memorize the monster's features.
+                    Boa sorte!"
+                en="The witness {witness} will have {memoryTime} seconds to memorize the monster's features.
                     <br />
-                    When the time is up, you will have <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>{' '}
-                    minutes to draw the monster while the witness describes it.
+                    When the time is up, you will have {sketchTime}{ minutes to draw the monster while the witness describes it.
                     <br />
-                    Good luck!
-                  </>
-                }
+                    Good luck!"
+                values={{
+                  witness: <PlayerAvatarName player={witness} />,
+                  memoryTime: <TimeHighlight>{TIMES.MEMORY}</TimeHighlight>,
+                  sketchTime: <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>,
+                }}
               />
             )}
           </Surface>
