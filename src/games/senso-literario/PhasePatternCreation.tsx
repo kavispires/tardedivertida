@@ -30,16 +30,11 @@ export function PhasePatternCreation({ players, state, user }: PhaseProps<PhaseP
       icon={<BooksIcon />}
       title={
         <Translate
-          pt={
-            <>
-              Qual livro vai no lugar do <TextHighlight>?</TextHighlight> ?
-            </>
-          }
-          en={
-            <>
-              Which book goes in the <TextHighlight>?</TextHighlight> spot?
-            </>
-          }
+          pt="Qual livro vai no lugar do <highlight>?</highlight>?"
+          en="Which book goes in the <highlight>?</highlight> spot?"
+          values={{
+            highlight: (text) => <TextHighlight>{text}</TextHighlight>,
+          }}
         />
       }
       currentRound={state?.round?.current}

@@ -53,34 +53,19 @@ export function StepResults({ announcement, sequence, players, gallery, goToNext
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Se você deu match com qualquer jogador na <TextHighlight>cor</TextHighlight> você ganha{' '}
-              <PointsHighlight value={1} />, para o <TextHighlight>gênero</TextHighlight> você também ganha{' '}
-              <PointsHighlight value={1} />, e a <TextHighlight>letra</TextHighlight> também vale{' '}
-              <PointsHighlight value={1} />. Se você conseguiu dar match com a carta inteira, você ganha{' '}
+          pt="Se você deu match com qualquer jogador na <highlight>cor</highlight> você ganha {points}, para o <highlight>gênero</highlight> você também ganha {points}, e a <highlight>letra</highlight> também vale {points}. Se você conseguiu dar match com a carta inteira, você ganha {bonus}"
+          en="If you matched with any player on the <highlight>color</highlight> you earn {points}, for the <highlight>genre</highlight> you also earn {points}, and the <highlight>letter</highlight> is also worth {points}. If you managed to match the entire card, you earn {bonus}."
+          values={{
+            highlight: (text) => <TextHighlight>{text}</TextHighlight>,
+            points: <PointsHighlight value={1} />,
+            bonus: (
               <PointsHighlight
+                value={1}
                 type="positive"
                 bonus
-                value={1}
               />
-              .
-            </>
-          }
-          en={
-            <>
-              If you matched with any player on the <TextHighlight>color</TextHighlight> you earn{' '}
-              <PointsHighlight value={1} />, for the <TextHighlight>genre</TextHighlight> you also earn{' '}
-              <PointsHighlight value={1} />, and the <TextHighlight>letter</TextHighlight> is also worth{' '}
-              <PointsHighlight value={1} />. If you managed to match the entire card, you earn{' '}
-              <PointsHighlight
-                type="positive"
-                bonus
-                value={1}
-              />
-              .
-            </>
-          }
+            ),
+          }}
         />
       </RuleInstruction>
 
