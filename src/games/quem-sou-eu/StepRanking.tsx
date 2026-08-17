@@ -6,9 +6,9 @@ import type { GameRound, GameRanking, GamePlayers } from 'types/game';
 // Components
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
+import { RoundsLeftInstruction } from '@components/results/RoundsLeftInstruction';
 import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { PopoverRule } from '@components/rules/PopoverRule';
-import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 // Internal
 import { ScoringRules } from './components/RulesBlobs';
 

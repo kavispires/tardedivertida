@@ -54,35 +54,18 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Selecione <CardHighlight>6</CardHighlight> cartas
-            </>
-          }
-          en={
-            <>
-              Select <CardHighlight>6</CardHighlight> cards
-            </>
-          }
+          pt="Selecione seus personagens"
+          en="Select characters"
         />
       </StepTitle>
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              <strong>Selecione</strong> 6 personagens/celebridades abaixo, dessas 5 serão usadas no jogo.
-              <br />
-              Essa etapa é necessária para que você não receba um personagem que não conheça.
-            </>
-          }
-          en={
-            <>
-              <strong>Select</strong> 6 characters/celebrities below, 5 of them will be used in the game.
-              <br />
-              This step is necessary so that you don't receive a character you don't know.
-            </>
-          }
+          pt="<strong>Selecione</strong> {cardCount} personagens/celebridades abaixo, dessas 5 serão usadas no jogo.<br/>Essa etapa é necessária para que você não receba um personagem que não conheça."
+          en="<strong>Select</strong> {cardCount} characters/celebrities below, 5 of them will be used in the game.<br/>This step is necessary so that you don't receive a character you don't know."
+          values={{
+            cardCount: <CardHighlight>6</CardHighlight>,
+          }}
         />
       </RuleInstruction>
 
