@@ -131,24 +131,8 @@ export function StepGuessing({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              De acordo com a seleção de ícones de cada jogador, tente adivinhar todos os pares.
-              <br />
-              <strong>Clique</strong> em uma das barras de ícones então no personagem correspondente.
-              <br />
-              Para desfazer, basta selecionar normalmente que sua escolha era sobreposta.
-            </>
-          }
-          en={
-            <>
-              Based on each player's glyphs selection, try to guess the pairs.
-              <br />
-              <strong>Click</strong> on one of the glyph bars and then on the corresponding character.
-              <br />
-              To undo, just select normally that your choice was overridden.
-            </>
-          }
+          pt="De acordo com a seleção de ícones de cada jogador, tente adivinhar todos os pares.<br/><strong>Clique</strong> em uma das barras de ícones então no personagem correspondente.<br/>Para desfazer, basta selecionar normalmente que sua escolha era sobreposta."
+          en="Based on each player's glyphs selection, try to guess the pairs.<br/><strong>Click</strong> on one of the glyph bars and then on the corresponding character.<br/>To undo, just select normally that your choice was overridden."
         />
         <br />
         <ScoringRules currentRound={round.current} />

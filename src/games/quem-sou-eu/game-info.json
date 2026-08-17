@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "2.0.101",
+  "version": "2.0.102",
   "release": "stable",
   "releaseDate": "2023-01-28",
-  "updatedAt": 1786820762504,
+  "updatedAt": 1787001149013,
   "available": true,
   "title": {
     "pt": "Quem Sou Eu?",
