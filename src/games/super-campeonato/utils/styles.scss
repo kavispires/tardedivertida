@@ -337,17 +337,10 @@
   background-color: get-color("white");
   margin: get-unit(4);
   padding: get-unit(2);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-
-  &__vs {
-    font-family: "Bangers", monospace;
-    z-index: 2;
-    color: get-color("violet", 6);
-    text-shadow: 2px 2px 2px #000;
-    font-size: 2rem;
-    margin: get-unit(4);
-  }
+  gap: get-unit(4);
 }
 
 .w-vote {
@@ -403,6 +396,8 @@
 }
 
 .w-bet-form__container {
+  margin-bottom: get-unit(4);
+
   &--final {
     background-color: gold;
   }

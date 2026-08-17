@@ -63,21 +63,15 @@ export function StepSelectChallenge({
         />
         {userContenders.length > 1 && (
           <Translate
-            pt={
-              <>
-                {' '}
-                Você tem <HandOfCardsHighlight>{userContenders.length} competidores</HandOfCardsHighlight> em
-                mãos (na barra abaixo) e um deles irá participar desta rodada.
-              </>
-            }
-            en={
-              <>
-                {' '}
-                You have a hand of{' '}
-                <HandOfCardsHighlight>{userContenders.length} contenders</HandOfCardsHighlight> and one of
-                them will participate in this round.
-              </>
-            }
+            en="You have a hand of <hand>contenders</hand> and one of them will participate in this round."
+            pt="ocê tem seus <hand>competidores </hand> abaixo e um deles irá participar desta rodada"
+            values={{
+              hand: (text) => (
+                <HandOfCardsHighlight>
+                  {userContenders.length} {text}
+                </HandOfCardsHighlight>
+              ),
+            }}
           />
         )}
         {userContenders.length === 0 && (
@@ -88,40 +82,21 @@ export function StepSelectChallenge({
         )}
         {userContenders.length > 1 && round.current < 5 ? (
           <Translate
-            pt={
-              <>
-                <br />
-                Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer.
-                porque você ganha <PointsHighlight value={2} /> se ele(a) vencer.
-              </>
-            }
-            en={
-              <>
-                <br />
-                Select a challenge you think one of your contenders have the best chance of winning because
-                you get <PointsHighlight value={2} /> if they win.
-              </>
-            }
+            en="<br />Select a challenge you think one of your contenders have the best chance of winning because you get {points} if they win."
+            pt="<br /> Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer. porque você ganha {points} se ele(a) vencer."
+            values={{ points: <PointsHighlight value={2} /> }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                <br />
+            pt="<br />
                 Este é uma rodada de semifinalistas, então somente competidores que chegaram na semi-final
                 participam.
                 <br />
-                Você não selecionará um competidor dessa vez.
-              </>
-            }
-            en={
-              <>
-                <br />
+                Você não selecionará um competidor dessa vez."
+            en="<br />
                 This is a semifinalist round, so only contenders that got to the semifinals will participate.
                 <br />
-                You won't select a contender this time.
-              </>
-            }
+                You won't select a contender this time."
           />
         )}
       </RuleInstruction>

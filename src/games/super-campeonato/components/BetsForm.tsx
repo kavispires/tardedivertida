@@ -69,20 +69,13 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
           />
           <p className="w-bet-form__instruction">
             <Translate
-              pt={
-                <>
-                  Selecione o competidor que você acha que <u>vai ganhar a final</u>.
+              pt="Selecione o competidor que você acha que <u>vai ganhar a final</u>.
                   <br />
-                  Se ele ganhar, você recebe <PointsHighlight value={5} />.
-                </>
-              }
-              en={
-                <>
-                  Select the contender you think will <u>win the final</u>.
+                  Se ele ganhar, você recebe {points}."
+              en="Select the contender you think will <u>win the final</u>.
                   <br />
-                  If they win, you gain <PointsHighlight value={5} />.
-                </>
-              }
+                  If they win, you gain {points}>."
+              values={{ points: <PointsHighlight value={5} /> }}
             />
           </p>
 
@@ -123,20 +116,13 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
           />
           <p className="w-bet-form__instruction">
             <Translate
-              pt={
-                <>
-                  Selecione o competidor que você acha que ganha uma <u>semifinal</u>.
+              pt="Selecione o competidor que você acha que ganha uma <u>semifinal</u>.
                   <br />
-                  Se ele ganhar, você recebe <PointsHighlight value={3} />.
-                </>
-              }
-              en={
-                <>
-                  Select the contender you think will win at least a <u>semifinal</u>.
+                  Se ele ganhar, você recebe {points}."
+              en="Select the contender you think will win at least a <u>semifinal</u>.
                   <br />
-                  If they win, you gain <PointsHighlight value={3} />.
-                </>
-              }
+                  If they win, you gain {points}."
+              values={{ points: <PointsHighlight value={3} /> }}
             />
           </p>
 
@@ -177,20 +163,13 @@ export function BetsForm({ brackets, onSubmitBets, userContenders }: BetsFormPro
           />
           <p className="w-bet-form__instruction">
             <Translate
-              pt={
-                <>
-                  Selecione o competidor que você acha que ganha uma <u>quarta de final</u>.
+              pt="Selecione o competidor que você acha que ganha uma <u>quarta de final</u>.
                   <br />
-                  Se ele ganhar, você recebe <PointsHighlight value={1} />.
-                </>
-              }
-              en={
-                <>
-                  Select the contender you think will win at least a <u>quarterfinal</u>.
+                  Se ele ganhar, você recebe {points}."
+              en="Select the contender you think will win at least a <u>quarterfinal</u>.
                   <br />
-                  If they win, you gain <PointsHighlight value={1} />.
-                </>
-              }
+                  If they win, you gain {points}."
+              values={{ points: <PointsHighlight value={1} /> }}
             />
           </p>
 

@@ -573,6 +573,7 @@ export const collectionByGame: Record<string, string[]> = {
     'ThumbsUpIcon',
     'TournamentIcon',
     'TrophyIcon',
+    'VersusIcon',
   ],
   'ta-na-cara': [
     'ChatIcon',
