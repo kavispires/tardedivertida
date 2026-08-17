@@ -5,7 +5,6 @@ import type { ItemData } from 'types/tdr';
 import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
 // Components
 import { Translate } from '@components/language/Translate';
-import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -15,7 +14,6 @@ import type { DiagramArea, DiagramExamples, Solutions } from './utils/types';
 import { getPlayerItemsLeft } from './utils/helper';
 import { DiagramRules } from './components/RulesBlobs';
 import { MyThings } from './components/MyThings';
-import { Solution } from './components/Solution';
 import { DiagramSection } from './components/DiagramSection';
 import { RoundAlert } from './components/RoundAlert';
 
@@ -27,7 +25,7 @@ type StepWaitPlaceItemProps = {
   items: Dictionary<ItemData>;
   turnOrder: GameOrder;
   activePlayer: GamePlayer;
-  isJudge: boolean;
+  isTheJudge: boolean;
   solutions: Solutions;
   targetItemCount: number;
   round: GameRound;
@@ -42,7 +40,7 @@ export function StepWaitPlaceItem({
   items,
   turnOrder,
   activePlayer,
-  isJudge,
+  isTheJudge,
   solutions,
   targetItemCount,
   round,
@@ -59,18 +57,23 @@ export function StepWaitPlaceItem({
         style={{ width: '100%' }}
       />
       <StepTitle wait>
-        <Translate
-          pt={
-            <>
-              <PlayerAvatarName player={activePlayer} /> vai posicionar uma coisa
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName player={activePlayer} /> will place an item
-            </>
-          }
-        />{' '}
+        {activePlayer ? (
+          <Translate
+            pt="O Juiz {player} vai colocar um item no lugar correto para ajudar"
+            en="Judge {player} will place an item correctly to help"
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
+          />
+        ) : (
+          <Translate
+            pt="{player} vai posicionar uma coisa"
+            en="{player} will place an item"
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
+          />
+        )}
       </StepTitle>
 
       <RoundAlert round={round} />
@@ -81,35 +84,15 @@ export function StepWaitPlaceItem({
         width={width}
         diagrams={diagrams}
         items={items}
-      />
-
-      {!isJudge && (
+        solutions={isTheJudge ? solutions : undefined}
+      >
         <MyThings
           hand={user.hand ?? []}
           items={items}
           total={targetItemCount}
+          maxHeight={width * (diagrams?.C ? 1 : 0.7)}
         />
-      )}
-
-      {isJudge && (
-        <TitledContainer
-          contained
-          title={
-            <Translate
-              pt="As Regras Secretas"
-              en="The Secret Rules"
-            />
-          }
-          contentProps={{ orientation: 'vertical' }}
-        >
-          <Translate
-            pt="Essas são as regras secretas de cada círculo, não fale elas com ninguém."
-            en="These are the secret rules of each circle, don't tell them to anyone."
-          />
-
-          <Solution solutions={solutions} />
-        </TitledContainer>
-      )}
+      </DiagramSection>
 
       <PlayersTurnOrder
         players={players}

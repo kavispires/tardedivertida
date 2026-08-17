@@ -49,65 +49,71 @@ export function DiagramRules({ examples }: DiagramRulesProps) {
   return (
     <RuleInstruction type="rule">
       <Translate
-        en={
-          <>
-            The Venn diagram has {hasContext ? 'three' : 'two'} areas and each area has a secret rule.
-            <br />
-            The <CircleHighlight color="blue">blue area</CircleHighlight> has a rule related to an{' '}
-            <TextHighlight>Attribute</TextHighlight> of the thing, like its physical properties.{' '}
-            <Examples
-              examples={examples.attribute}
-              title="Attribute Examples"
-            />
-            <br />
-            The <CircleHighlight color="yellow">yellow area</CircleHighlight> has a rule related to the{' '}
-            <TextHighlight>word</TextHighlight>: the name of the thing, spelling, grammar or pronunciation.
-            <Examples
-              examples={examples.word}
-              title="Word Examples"
-            />
-            {!!examples.context && (
-              <>
-                <br />
-                The <CircleHighlight color="red">red area</CircleHighlight> has a rule related to the{' '}
-                <TextHighlight>context</TextHighlight>
-                of the thing, where you might find it or use it.{' '}
-                <Examples
-                  examples={examples.context}
-                  title="Context Examples"
-                />
-              </>
-            )}
-          </>
-        }
-        pt={
-          <>
-            O diagrama tem {hasContext ? 'três' : 'duas'} áreas e cada área tem uma regra secreta.
-            <br />A <CircleHighlight color="blue">área azul</CircleHighlight> tem uma regra relacionada a um{' '}
-            <TextHighlight>Atributo</TextHighlight> da coisa, como suas propriedades físicas.{' '}
-            <Examples
-              examples={examples.attribute}
-              title="Exemplos de Atributos"
-            />
-            <br />A <CircleHighlight color="yellow">área amarela</CircleHighlight> tem uma regra relacionada à{' '}
-            <TextHighlight>palavra</TextHighlight>: o nome da coisa, grafia, gramática ou pronúncia.
-            <Examples
-              examples={examples.word}
-              title="Exemplos de Palavras"
-            />
-            {!!examples.context && (
-              <>
-                <br />A <CircleHighlight color="red">área vermelha</CircleHighlight> tem uma regra relacionada
-                ao <TextHighlight>contexto</TextHighlight> da coisa, onde você pode encontrá-la ou usá-la.{' '}
-                <Examples
-                  examples={examples.context}
-                  title="Exemplos de Contexto"
-                />
-              </>
-            )}
-          </>
+        en="The Venn diagram has {areas} areas and each area has a secret rule."
+        pt="O diagrama tem {areas} áreas e cada área tem uma regra secreta."
+        values={{ areas: hasContext ? '3' : '2' }}
+      />
+      <br />
+
+      <Translate
+        en="The <area>blue area</area> has a rule related to an <highlight>Attribute</highlight> of the thing, like its physical properties."
+        pt="A <area>área azul</area> tem uma regra relacionada a um <highlight>Atributo</highlight> da coisa, como suas propriedades físicas."
+        values={{
+          area: (content) => <CircleHighlight color="blue">{content}</CircleHighlight>,
+          highlight: (content) => <TextHighlight>{content}</TextHighlight>,
+        }}
+      />
+      <Examples
+        examples={examples.attribute}
+        title={
+          <Translate
+            en="Attribute Examples"
+            pt="Exemplos de Atributos"
+          />
         }
       />
+      <br />
+
+      <Translate
+        en="The <area>yellow area</area> has a rule related to the <highlight>word</highlight>: the name of the thing, spelling, grammar or pronunciation."
+        pt="A <area>área amarela</area> tem uma regra relacionada à <highlight>palavra</highlight>: o nome da coisa, ortografia, gramática ou pronúncia."
+        values={{
+          area: (content) => <CircleHighlight color="yellow">{content}</CircleHighlight>,
+          highlight: (content) => <TextHighlight>{content}</TextHighlight>,
+        }}
+      />
+      <Examples
+        examples={examples.word}
+        title={
+          <Translate
+            en="Word Examples"
+            pt="Exemplos de Palavras"
+          />
+        }
+      />
+
+      {hasContext && (
+        <>
+          <br />
+          <Translate
+            en="The <area>red area</area> has a rule related to the <highlight>context</highlight> of the thing, where you might find it or use it."
+            pt="A <area>área vermelha</area> tem uma regra relacionada ao <highlight>contexto</highlight> da coisa, onde você pode encontrá-la ou usá-la."
+            values={{
+              area: (content) => <CircleHighlight color="red">{content}</CircleHighlight>,
+              highlight: (content) => <TextHighlight>{content}</TextHighlight>,
+            }}
+          />
+          <Examples
+            examples={examples.context ?? []}
+            title={
+              <Translate
+                en="Context Examples"
+                pt="Exemplos de Contexto"
+              />
+            }
+          />
+        </>
+      )}
     </RuleInstruction>
   );
 }

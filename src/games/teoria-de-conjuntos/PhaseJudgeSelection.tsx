@@ -44,18 +44,8 @@ export function PhaseJudgeSelection({ state, players }: PhaseProps<PhaseJudgeSel
 
   const ruleInstruction = (
     <Translate
-      en={
-        <>
-          The judge will be responsible for evaluating the answers of the players determining where each
-          submitted item goes in the Venn diagram.
-        </>
-      }
-      pt={
-        <>
-          O juiz será responsável por avaliar as respostas dos jogadores determinando onde cada item submetido
-          vai no diagrama.
-        </>
-      }
+      en="The judge will be responsible for evaluating the answers of the players determining where each submitted item goes in the Venn diagram."
+      pt="O juiz será responsável por avaliar as respostas dos jogadores determinando onde cada item submetido vai no diagrama."
     />
   );
 

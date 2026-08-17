@@ -28,21 +28,14 @@ type Point = {
 
 function getCenterPointInArea(containerWidth: number, areaKey: string) {
   const values = {
-    A: { x: 145, y: 160 },
-
-    W: { x: 570, y: 160 },
-
-    C: { x: 360, y: 550 },
-
-    AW: { x: 360, y: 140 },
-
-    WC: { x: 490, y: 370 },
-
-    AC: { x: 220, y: 370 },
-
-    AWC: { x: 360, y: 300 },
-
-    O: { x: 670, y: 620 },
+    A: { x: 179, y: 218 },
+    W: { x: 641, y: 218 },
+    C: { x: 410, y: 618 },
+    AW: { x: 410, y: 184 },
+    WC: { x: 555, y: 429 },
+    AC: { x: 265, y: 429 },
+    AWC: { x: 410, y: 350 },
+    O: { x: 720, y: 660 },
   }[areaKey];
 
   const points = calculateProportionalValues(containerWidth, values?.x ?? 0, values?.y ?? 0);

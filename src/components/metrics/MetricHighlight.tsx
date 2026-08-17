@@ -46,6 +46,7 @@ export function MetricHighlight({
       className={clsx(
         styles.metricHighlight,
         type && styles[`metricHighlight${type.charAt(0).toUpperCase() + type.slice(1)}`],
+
         className,
       )}
     >

@@ -1,20 +1,24 @@
 import clsx from 'clsx';
-import { motion } from 'motion/react';
-import { useMemo, useState } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Alert, Divider, Flex } from 'antd';
 // Types
 import type { ItemData } from 'types/tdr';
+// Hooks
+import { useLanguage } from '@hooks/useLanguage';
 // Utils
 import { getAnimationClass } from '@utils/helpers';
+// Icons
+import { CircleIcon } from '@icons/CircleIcon';
 // Components
 import { ItemCard } from '@components/cards/ItemCard';
+import { Icon } from '@components/general/Icon';
 import { Popconfirm } from '@components/general/Popconfirm';
 import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 import { Title } from '@components/text/Title';
 // Internal
-import type { DiagramArea, Reevaluation } from '../utils/types';
+import type { DiagramArea, Reevaluation, Solutions } from '../utils/types';
 import { checkIsDoubleDiagram } from '../utils/helper';
 import { SelectedAreasCircles } from './SelectedAreasCircles';
 import { TripleDiagram } from './TripleDiagram/TripleDiagram';
@@ -23,8 +27,7 @@ import { TripleAreaPlacedItems, tripleHelpers } from './TripleDiagram/TripleArea
 import { DoubleDiagram } from './DoubleDiagram/DoubleDiagram';
 import { DoubleDiagramClickableAreas } from './DoubleDiagram/DoubleDiagramClickableAreas';
 import { DoubleAreaPlacedItems, doubleHelpers } from './DoubleDiagram/DoubleAreaPlacedItems';
-
-const MotionInstruction = motion.create(Surface);
+import { Thing } from './Thing';
 
 type DiagramSectionProps = {
   width: number;
@@ -34,6 +37,8 @@ type DiagramSectionProps = {
   currentItem?: ItemData;
   currentItemPosition?: string;
   reevaluation?: Reevaluation;
+  children: ReactNode;
+  solutions?: Solutions;
 };
 
 export function DiagramSection({
@@ -44,6 +49,8 @@ export function DiagramSection({
   currentItem,
   currentItemPosition,
   reevaluation,
+  children,
+  solutions,
 }: DiagramSectionProps) {
   const doubleDiagram = checkIsDoubleDiagram(diagrams);
 
@@ -63,95 +70,104 @@ export function DiagramSection({
     : tripleHelpers.calculateProportionalValues(width, 0, 0);
 
   return (
-    <div className="diagram-section">
-      <MotionInstruction
-        animate={{
-          opacity: hasAnAreaSelected ? 1 : 0,
-          height: hasAnAreaSelected ? 'auto' : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        contained={hasAnAreaSelected}
-        className="diagram-section__selected-scope"
-        style={{ overflow: 'hidden' }}
-      >
-        {hasAnAreaSelected && (
-          <>
-            <Title
-              size="xx-small"
-              colorScheme="light"
-            >
-              {selectedArea === 'O' ? (
-                <Translate
-                  pt="Fora do Diagrama"
-                  en="Outside the Diagram"
-                />
-              ) : (
-                <Translate
-                  pt="Coisas na área"
-                  en="Things in area"
-                />
-              )}
-            </Title>
+    <Surface>
+      <div className="diagram-section">
+        <Surface
+          contained
+          className="diagram-section__side-section"
+        >
+          <Title
+            size="xx-small"
+            colorScheme="light"
+          >
+            {selectedArea === 'O' ? (
+              <Translate
+                pt="Fora do Diagrama"
+                en="Outside the Diagram"
+              />
+            ) : (
+              <Translate
+                pt="Coisas na área"
+                en="Things in area"
+              />
+            )}
+          </Title>
+          {hasAnAreaSelected ? (
             <SelectedAreaItemsSection
               diagrams={diagrams}
               items={items}
               selectedArea={selectedArea}
               maxHeight={containerSizes.height}
               reevaluation={reevaluation}
+              solutions={solutions}
             />
-          </>
-        )}
-      </MotionInstruction>
-
-      <Surface
-        contained
-        className="diagram-section__world"
-        style={{ width: width + 12 }}
-      >
-        {doubleDiagram ? (
-          <>
-            <DoubleDiagram width={width} />
-            {Object.values(diagrams).map((diagramArea) => (
-              <DoubleAreaPlacedItems
-                key={diagramArea.key}
-                areaKey={diagramArea.key}
-                diagramArea={diagramArea}
-                containerWidth={width}
+          ) : (
+            <Surface contained>
+              <Translate
+                en="Select an area in the diagram to see the things in it"
+                pt="Selecione uma área no diagrama para ver todas as coisas nele"
               />
-            ))}
-            <DoubleDiagramClickableAreas
-              width={width}
-              onClick={onAreaClick}
-            />
-          </>
-        ) : (
-          <>
-            <TripleDiagram width={width} />
-            {Object.values(diagrams).map((diagramArea) => (
-              <TripleAreaPlacedItems
-                key={diagramArea.key}
-                areaKey={diagramArea.key}
-                diagramArea={diagramArea}
-                containerWidth={width}
-              />
-            ))}
-            <TripleDiagramClickableAreas
-              width={width}
-              onClick={onAreaClick}
-            />
-          </>
-        )}
+            </Surface>
+          )}
+        </Surface>
 
-        {!!currentItem && (
-          <CurrentItem
-            currentItem={currentItem}
-            currentItemPosition={currentItemPosition}
-            width={width}
-            doubleDiagram={doubleDiagram}
-          />
-        )}
-      </Surface>
-    </div>
+        <Surface
+          contained
+          className="diagram-section__world"
+          style={{ width: width + 12 }}
+        >
+          {doubleDiagram ? (
+            <>
+              <DoubleDiagram width={width} />
+              {Object.values(diagrams).map((diagramArea) => (
+                <DoubleAreaPlacedItems
+                  key={diagramArea.key}
+                  areaKey={diagramArea.key}
+                  diagramArea={diagramArea}
+                  containerWidth={width}
+                />
+              ))}
+              <DoubleDiagramClickableAreas
+                width={width}
+                onClick={onAreaClick}
+              />
+            </>
+          ) : (
+            <>
+              <TripleDiagram width={width} />
+              {Object.values(diagrams).map((diagramArea) => (
+                <TripleAreaPlacedItems
+                  key={diagramArea.key}
+                  areaKey={diagramArea.key}
+                  diagramArea={diagramArea}
+                  containerWidth={width}
+                />
+              ))}
+              <TripleDiagramClickableAreas
+                width={width}
+                onClick={onAreaClick}
+              />
+            </>
+          )}
+
+          {!!currentItem && (
+            <CurrentItem
+              currentItem={currentItem}
+              currentItemPosition={currentItemPosition}
+              width={width}
+              doubleDiagram={doubleDiagram}
+            />
+          )}
+        </Surface>
+
+        <Surface
+          contained
+          className="diagram-section__side-section"
+        >
+          {children}
+        </Surface>
+      </div>
+    </Surface>
   );
 }
 
@@ -194,6 +210,7 @@ type SelectedAreaItemsSectionProps = {
   selectedArea: string;
   maxHeight: number;
   reevaluation?: Reevaluation;
+  solutions?: Solutions;
 };
 
 function SelectedAreaItemsSection({
@@ -202,6 +219,7 @@ function SelectedAreaItemsSection({
   diagrams,
   maxHeight,
   reevaluation,
+  solutions,
 }: SelectedAreaItemsSectionProps) {
   const { areaKeys, areasItems } = useMemo(() => {
     if (selectedArea.length > 1 || selectedArea === 'O') {
@@ -242,6 +260,7 @@ function SelectedAreaItemsSection({
           items={items}
           displayEmptyMessage={index === 0}
           reevaluation={reevaluation}
+          solutions={solutions}
         />
       ))}
     </Flex>
@@ -254,6 +273,7 @@ type SelectedAreaItemsProps = {
   items: Dictionary<ItemData>;
   displayEmptyMessage: boolean;
   reevaluation?: Reevaluation;
+  solutions?: Solutions;
 };
 
 function SelectedAreaItems({
@@ -262,7 +282,10 @@ function SelectedAreaItems({
   items,
   displayEmptyMessage,
   reevaluation,
+  solutions,
 }: SelectedAreaItemsProps) {
+  const { translate } = useLanguage();
+
   if (itemsIds.length === 0 && !displayEmptyMessage) return null;
 
   return (
@@ -277,10 +300,52 @@ function SelectedAreaItems({
         gap={6}
         wrap="wrap"
       >
+        {solutions?.attribute && areaKey.includes('A') && (
+          <Alert
+            banner
+            className="full-width"
+            icon={
+              <Icon
+                icon={<CircleIcon mainColor="blue" />}
+                size="small"
+              />
+            }
+            type="info"
+            title={solutions?.attribute.text}
+          />
+        )}
+        {solutions?.word && areaKey.includes('W') && (
+          <Alert
+            icon={
+              <Icon
+                icon={<CircleIcon mainColor="yellow" />}
+                size="small"
+              />
+            }
+            banner
+            className="full-width"
+            type="warning"
+            title={solutions?.word.text}
+          />
+        )}
+        {solutions?.context && areaKey.includes('C') && (
+          <Alert
+            banner
+            className="full-width"
+            icon={
+              <Icon
+                icon={<CircleIcon mainColor="red" />}
+                size="small"
+              />
+            }
+            type="info"
+            title={solutions?.context.text}
+          />
+        )}
         {itemsIds.map((itemId) => (
           <Popconfirm
             placement="right"
-            disabled={!reevaluation?.isJudge}
+            disabled={!reevaluation?.isTheJudge}
             key={itemId}
             title={
               <Translate
@@ -291,15 +356,15 @@ function SelectedAreaItems({
             onConfirm={() => reevaluation?.onOpenFixModal(itemId, areaKey)}
           >
             <div>
-              <ItemCard
-                key={itemId}
+              <Thing
                 itemId={itemId}
                 width={84}
-                text={items[itemId].name}
+                name={translate(items[itemId].name)}
               />
             </div>
           </Popconfirm>
         ))}
+
         {itemsIds.length === 0 && displayEmptyMessage && (
           <Alert
             type={

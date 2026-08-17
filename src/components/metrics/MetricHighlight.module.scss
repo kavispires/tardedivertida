@@ -10,6 +10,7 @@
   border: get-color("gray", 1, 0.4) 1px solid;
   border-radius: var(--border-radius);
   white-space: nowrap;
+  color: get-color("black");
 
   &Negative {
     border: get-color("red", 7, 0.8) 1px solid;
