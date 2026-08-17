@@ -13,6 +13,7 @@ import { Translate } from '@components/language/Translate';
 import { messageContent } from '@components/pop-up/messageContent';
 import { Step } from '@components/steps/Step';
 import { StepTitle } from '@components/text/StepTitle';
+import { TextHighlight } from '@components/text/TextHighlight';
 import { TimedTimerBar } from '@components/timers/TimedTimerBar';
 // Internal
 import type { Message } from './utils/types';
@@ -178,18 +179,12 @@ export function StepTargeting({
             </h3>
             <p>
               <Translate
-                pt={
-                  <>
-                    Você pode trocar seu alvo {votingCount} vezes. Se você acha que será o alvo, use
-                    "Emboscada" para contra-atacar.
-                  </>
-                }
-                en={
-                  <>
-                    You may change your target {votingCount} times. If you think you are the target, use
-                    "Ambush" to counterattack.
-                  </>
-                }
+                pt="Você pode trocar seu alvo {votingCount} vezes. Se você acha que será o alvo, use <highlight>Emboscada</highlight> para contra-atacar."
+                en="You may change your target {votingCount} times. If you think you are the target, use <highlight>Ambush</highlight> to counterattack."
+                values={{
+                  votingCount,
+                  highlight: (text) => <TextHighlight>{text}</TextHighlight>,
+                }}
               />
             </p>
           </>

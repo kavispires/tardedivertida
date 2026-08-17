@@ -7,7 +7,7 @@ type StepDuelProps = {
   players: GamePlayers;
 };
 
-export function StepDuel({ players }: StepDuelProps) {
+export function StepDuel(_props: StepDuelProps) {
   return (
     <Step fullWidth>
       <p>oi</p>

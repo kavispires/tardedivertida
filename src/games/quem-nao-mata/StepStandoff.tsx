@@ -7,7 +7,7 @@ type StepStandoffProps = {
   players: GamePlayers;
 };
 
-export function StepStandoff({ players }: StepStandoffProps) {
+export function StepStandoff(_props: StepStandoffProps) {
   return (
     <Step fullWidth>
       <p>oi</p>
