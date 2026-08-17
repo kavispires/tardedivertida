@@ -15,66 +15,60 @@ type ScoringRulesProps = {
 
 export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRulesProps) {
   return (
-    <Translate
-      pt={
-        <>
-          Todos vão curtir ou des-curtir a polêmica da vez e então devem tentar adivinhar quantas curtidas o
+    <>
+      <Translate
+        en="All players must like or dislike a tweet then must vote how trendy it is (how many players liked the
+          tweet).
+          <br/>
+           If you guess correctly you get {correctGuess}.
+          <br />
+          If you got 1 number off (more or less), you get {closeGuess}."
+        pt="Todos vão curtir ou des-curtir a polêmica da vez e então devem tentar adivinhar quantas curtidas o
           assunto vai ganhar.
           <br />
-          Se você adivinhar corretamente, você ganha <PointsHighlight value={3} />.
+          Se você adivinhar corretamente, você ganha {correctGuess}.
           <br />
-          Se você escolheu um número a menos ou a mais, você ganha <PointsHighlight value={1} />.
-          <br />
-          {isFixedRounds ? (
-            <>O jogo tem {round.total} rodadas.</>
-          ) : (
-            <>
-              O primeiro jogador a receber <TargetHighlight>10</TargetHighlight> pontos ganha o jogo (ou no
-              máximo {round.total} rodadas)
-            </>
-          )}
-          <br />
-          {!!activePlayer && (
-            <Surface contained>
-              <PlayerAvatarName
-                player={activePlayer}
-                addressUser
-              />{' '}
-              escolherá o assunto para essa rodada.
-            </Surface>
-          )}
-        </>
-      }
-      en={
+          Se você escolheu um número a menos ou a mais, você ganha {closeGuess}."
+        values={{
+          correctGuess: <PointsHighlight value={3} />,
+          closeGuess: <PointsHighlight value={1} />,
+        }}
+      />
+
+      {isFixedRounds ? (
+        <Translate
+          pt="<br/>O jogo tem {total} rodadas."
+          en="<br/>The game will have {total} rounds."
+          values={{ total: round.total }}
+        />
+      ) : (
+        <Translate
+          pt="<br/>O primeiro jogador a receber {target} pontos ganha o jogo (ou no
+              máximo {total} rodadas)."
+          en="<br/>The first player to get {target} points wins the game (or a maximum of {total} rounds)."
+          values={{ target: <TargetHighlight>10</TargetHighlight>, total: round.total }}
+        />
+      )}
+
+      {!!activePlayer && (
         <>
-          All players must like or dislike a tweet then must vote how trendy it is (how many players liked the
-          tweet). If you guess correctly you get <PointsHighlight value={3} />.
           <br />
-          If you got 1 number off (more or less), you get <PointsHighlight value={1} />.
-          <br />
-          {isFixedRounds ? (
-            <>
-              The game will have
-              {round.total} rounds.
-            </>
-          ) : (
-            <>
-              The first players to get <TargetHighlight>10</TargetHighlight> points wins the game (or a
-              maximum of {round.total} rounds)
-            </>
-          )}
-          <br />
-          {!!activePlayer && (
-            <Surface contained>
-              <PlayerAvatarName
-                player={activePlayer}
-                addressUser
-              />{' '}
-              will choose the tweet for this round.
-            </Surface>
-          )}
+          <Surface contained>
+            <Translate
+              pt="{player} escolherá o assunto para essa rodada."
+              en="{player} will choose the topic for this round."
+              values={{
+                player: (
+                  <PlayerAvatarName
+                    player={activePlayer}
+                    addressUser
+                  />
+                ),
+              }}
+            />
+          </Surface>
         </>
-      }
-    />
+      )}
+    </>
   );
 }

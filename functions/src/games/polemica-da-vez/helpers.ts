@@ -72,7 +72,7 @@ export const buildDeck = (allTweets: CustomTweet[]): Decks => {
 export const countLikes = (players: Players, store: FirebaseStoreData): number => {
   return getListOfPlayers(players).reduce((acc, player) => {
     if (player.reaction) {
-      increaseAchievement(store.achievement, player.id, 'likes', 1);
+      increaseAchievement(store.achievements, player.id, 'likes', 1);
     }
     return player.reaction ? acc + 1 : acc;
   }, 0);
@@ -92,16 +92,16 @@ export const getRanking = (players: Players, totalLikes: number, store: Firebase
   getListOfPlayers(players, true).forEach((player) => {
     if (player.likesGuess === totalLikes) {
       scores.add(player.id, 3, 0);
-      increaseAchievement(store.achievement, player.id, 'exactGuesses', 1);
+      increaseAchievement(store.achievements, player.id, 'exactGuesses', 1);
     }
 
     if (oneOffValues.includes(player.likesGuess)) {
-      increaseAchievement(store.achievement, player.id, 'almostGuesses', 1);
+      increaseAchievement(store.achievements, player.id, 'almostGuesses', 1);
       scores.add(player.id, 1, 0);
     }
 
     increaseAchievement(
-      store.achievement,
+      store.achievements,
       player.id,
       'guessDistance',
       Math.abs(player.likesGuess - totalLikes),
