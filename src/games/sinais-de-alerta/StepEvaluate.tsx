@@ -12,7 +12,7 @@ import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { CanvasResizer } from '@components/canvas/CanvasResizer';
+import { CanvasResizerButton } from '@components/canvas/CanvasResizer';
 import { Translate } from '@components/language/Translate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
 import { TitledContainer } from '@components/layout/TitledContainer';
@@ -143,34 +143,27 @@ export function StepEvaluate({
       </StepTitle>
 
       <PopoverRule content={<EvaluationRules />} />
-      <CanvasResizer />
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Faça pares com as cartas e os desenhos. Cada desenho tem um sujeito e um descritor
+          pt="Faça pares com as cartas e os desenhos. Cada desenho tem um sujeito e um descritor
               correspondente.
               <br />
               Basta clicar em uma carta e depois em seu desenho correspondente.
               <br />
               Para refazer, basta reselecionar o desenho ou carta normalmente.
               <br />
-              Quando estiver pronto, clique em <b>Enviar sua avaliação</b>.
-            </>
-          }
-          en={
-            <>
-              Match the cards and drawings. Each drawing has a corresponding subject and descriptor.
+              Quando estiver pronto, clique em <b>Enviar sua avaliação</b>."
+          en="Match the cards and drawings. Each drawing has a corresponding subject and descriptor.
               <br />
               Simply click on a card and then on its corresponding drawing.
               <br />
               To redo, just reselect the drawing or card normally.
               <br />
-              When you're ready, click <b>Send evaluation</b>.
-            </>
-          }
+              When you're ready, click <b>Send evaluation</b>."
         />
+        <br />
+        <CanvasResizerButton />
       </RuleInstruction>
 
       <Space orientation="vertical">
