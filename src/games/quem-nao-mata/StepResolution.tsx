@@ -7,7 +7,7 @@ type StepResolutionProps = {
   players: GamePlayers;
 };
 
-export function StepResolution({ players }: StepResolutionProps) {
+export function StepResolution(_props: StepResolutionProps) {
   return (
     <Step fullWidth>
       <p>oi</p>
