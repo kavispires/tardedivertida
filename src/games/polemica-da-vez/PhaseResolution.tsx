@@ -34,24 +34,12 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              E aí? Será que o assunto bombou?
-              <br />
-              Se você acertou a quantidade de curtidas, você ganha <PointsHighlight value={3} />.
-              <br />
-              Se você quase acertou, você ganha <PointsHighlight value={1} />.
-            </>
-          }
-          en={
-            <>
-              So... did the tweet trend?
-              <br />
-              If you guessed the correct number of likes, you get <PointsHighlight value={3} />.
-              <br />
-              If you were one off, you get <PointsHighlight value={1} />.
-            </>
-          }
+          pt="E aí? Será que o assunto bombou?<br/>Se você acertou a quantidade de curtidas, você ganha {correctPoints}.<br/>Se você quase acertou, você ganha {closePoints}."
+          en="So... did the tweet trend?<br/>If you guessed the correct number of likes, you get {correctPoints}.<br/>If you were one off, you get {closePoints}."
+          values={{
+            correctPoints: <PointsHighlight value={3} />,
+            closePoints: <PointsHighlight value={1} />,
+          }}
         />
       </Surface>
     </PhaseAnnouncement>
