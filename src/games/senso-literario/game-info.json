@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "senso-literario",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "release": "stable",
   "releaseDate": "2026-01-31",
-  "updatedAt": 1786820762763,
+  "updatedAt": 1786997686763,
   "available": true,
   "title": {
     "pt": "Senso Literário",

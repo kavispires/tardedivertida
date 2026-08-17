@@ -52,44 +52,29 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Qual livro vai no lugar do <TextHighlight>?</TextHighlight> ?
-            </>
-          }
-          en={
-            <>
-              Which book goes in the <TextHighlight>?</TextHighlight> spot?
-            </>
-          }
+          pt="Qual livro vai no lugar do <highlight>?</highlight>?"
+          en="Which book goes in the <highlight>?</highlight> spot?"
+          values={{
+            highlight: (text) => <TextHighlight>{text}</TextHighlight>,
+          }}
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              A sequência abaixo é formata de cartas que tem 3 atributos diferentes:
-              <br />O <TextHighlight>gênero</TextHighlight> do livro: Romance, Infantil ou Técnico.
-              <br />A <TextHighlight>cor</TextHighlight> da capa: Vermelha, Azul ou Amarela.
-              <br />A <TextHighlight>letra</TextHighlight> inicial do título: A, B, C, D ou E.
-              <br />
-              Porém um livro está faltando!
-            </>
-          }
-          en={
-            <>
-              The sequence below is made up of cards that have 3 different attributes:
-              <br />
-              The book genre: Romance, Children or Technical.
-              <br />
-              The cover color: Red, Blue or Yellow.
-              <br />
-              The initial letter of the title: A, B, C, D or E.
-              <br />
-              But one book is missing!
-            </>
-          }
+          pt="A sequência abaixo é formata de cartas que tem 3 atributos diferentes:
+              <br />O <highlight>gênero</highlight> do livro: Romance, Infantil ou Técnico.
+              <br />A <highlight>cor</highlight> da capa: Vermelha, Azul ou Amarela.
+              <br />A <highlight>letra</highlight> inicial do título: A, B, C, D ou E.
+              <br />Porém um livro está faltando!"
+          en="The sequence below is made up of cards that have 3 different attributes:
+              <br />The book <highlight>genre</highlight>: Romance, Children or Technical.
+              <br />The cover <highlight>color</highlight>: Red, Blue or Yellow.
+              <br />The initial <highlight>letter</highlight> of the title: A, B, C, D or E.
+              <br />But one book is missing!"
+          values={{
+            highlight: (text) => <TextHighlight>{text}</TextHighlight>,
+          }}
         />
       </RuleInstruction>
 
@@ -105,18 +90,10 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
 
       <RuleInstruction type="action">
         <Translate
-          en={
-            <>
-              Craft your book cover by selecting a color, a genre, and a letter. The goal is to match what
-              other players are thinking by doing a book cover pattern that best matches theirs.
-            </>
-          }
-          pt={
-            <>
-              Monte sua capa escolhendo uma cor, um gênero e uma letra. O objetivo é combinar com o que os
-              outros jogadores estão pensando, fazendo um padrão de capa que mais se aproxime do deles.
-            </>
-          }
+          en="Craft your book cover by selecting a color, a genre, and a letter. The goal is to match what
+              other players are thinking by doing a book cover pattern that best matches theirs."
+          pt="Monte sua capa escolhendo uma cor, um gênero e uma letra. O objetivo é combinar com o que os
+              outros jogadores estão pensando, fazendo um padrão de capa que mais se aproxime do deles."
         />
       </RuleInstruction>
 

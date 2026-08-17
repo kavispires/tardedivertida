@@ -7,14 +7,14 @@
 
 ### External Dependencies
 
-- Rules Images: 🔘
+- Rules Images: ✅
 - Image Background: ✅
 - Video Background: ✅
 
 ### Migrations
 
-- PlayersReadyState verification: 🔘
-- TranslateTemplate: 🔘
+- PlayersReadyState verification: ✅
+- Translate Migration: ✅
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
 - Float Submit Migration: ✅
