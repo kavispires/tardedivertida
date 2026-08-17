@@ -34,7 +34,7 @@ export function StepClueWriting({
   target,
   onSendClue,
 }: StepClueWritingProps) {
-  const { translate } = useLanguage();
+  const { language, translate } = useLanguage();
   const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
 
@@ -64,29 +64,17 @@ export function StepClueWriting({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              O ponteiro está no <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
+          pt="O ponteiro está no {wavelength} {side}.<br/><strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse número!"
+          en="The needle is pointing at {wavelength} {side}.<br/><strong>Write</strong> a clue that will help the other players to choose this exact number!"
+          values={{
+            wavelength: <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>,
+            side: (
               <TargetSideHighlight
                 target={target}
                 card={card}
               />
-              .<br />
-              <strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse
-              número!
-            </>
-          }
-          en={
-            <>
-              The needle is pointing at <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
-              <TargetSideHighlight
-                target={target}
-                card={card}
-              />
-              .<br />
-              <strong>Write</strong> a clue that will help the other players to choose this exact number!
-            </>
-          }
+            ),
+          }}
         />
       </RuleInstruction>
 
@@ -117,12 +105,7 @@ export function StepClueWriting({
         </SendButton>
       </SpaceFloat>
 
-      <RuleInstruction type="rule">
-        <Translate
-          pt={<RulesPt />}
-          en={<RulesEn />}
-        />
-      </RuleInstruction>
+      <RuleInstruction type="rule">{language === 'pt' ? <RulesPt /> : <RulesEn />}</RuleInstruction>
     </Step>
   );
 }

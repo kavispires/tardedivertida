@@ -17,6 +17,7 @@ export function WavelengthHighlight({ children, type, iconSize, className }: Hig
       type={type}
       iconSize={iconSize}
       className={className}
+      iconPlacement="before"
     >
       {children}
     </MetricHighlight>

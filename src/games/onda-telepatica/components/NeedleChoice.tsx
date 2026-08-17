@@ -17,20 +17,16 @@ type NeedleChoiceProps = {
 export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceProps) {
   if (isPsychic) {
     return (
-      <Surface contained>
+      <Surface
+        contained
+        className="my-4"
+      >
         <Translate
-          en={
-            <>
-              You think that {user.guess ? 'more' : 'less'} than half of the players will score points with
-              your clue.
-            </>
-          }
-          pt={
-            <>
-              Você acha que {user.guess ? 'mais' : 'menos'} da metade dos jogadores ganharão pontos com sua
-              dica.
-            </>
-          }
+          en="You think that {guess} than half of the players will score points with your clue."
+          pt="Você acha que {guess} da metade dos jogadores ganharão pontos com sua dica."
+          values={{
+            guess: user.guess ? 'more' : 'less',
+          }}
         />
       </Surface>
     );
@@ -43,20 +39,25 @@ export function NeedleChoice({ user, isPsychic, currentCategory }: NeedleChoiceP
   };
 
   return (
-    <Surface contained>
+    <Surface
+      contained
+      className="my-4"
+    >
       <Translate
         en="You chose:"
         pt="Você escolheu"
       />
       <br />
-      <Slider
-        className="o-needle-choice"
-        marks={marks}
-        min={-10}
-        max={10}
-        tooltip={{ open: true }}
-        value={user.guess}
-      />
+      <div className="mx-10">
+        <Slider
+          className="o-needle-choice"
+          marks={marks}
+          min={-10}
+          max={10}
+          tooltip={{ open: true }}
+          value={user.guess}
+        />
+      </div>
     </Surface>
   );
 }

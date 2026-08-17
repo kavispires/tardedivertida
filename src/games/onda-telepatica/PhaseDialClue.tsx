@@ -47,26 +47,16 @@ export function PhaseDialClue({ state, players }: PhaseProps<PhaseDialClueState>
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Para essa rodada,{' '}
+          pt="Para essa rodada, {psychic} será o(a) Medium."
+          en="For this round, {psychic} will be the Psychic."
+          values={{
+            psychic: (
               <PlayerAvatarName
                 player={psychic}
                 addressUser
-              />{' '}
-              será o(a) Medium.
-            </>
-          }
-          en={
-            <>
-              For this round,{' '}
-              <PlayerAvatarName
-                player={psychic}
-                addressUser
-              />{' '}
-              will be the Psychic.
-            </>
-          }
+              />
+            ),
+          }}
         />
         <PlayersTurnOrder
           players={players}
