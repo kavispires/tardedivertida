@@ -4,5 +4,12 @@ import { MysteryBoxIcon } from '@icons/MysteryBoxIcon';
 import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function ThingHighlight({ children }: HighlightProps) {
-  return <MetricHighlight icon={<MysteryBoxIcon />}>{children}</MetricHighlight>;
+  return (
+    <MetricHighlight
+      icon={<MysteryBoxIcon />}
+      iconPlacement="before"
+    >
+      {children}
+    </MetricHighlight>
+  );
 }

@@ -68,26 +68,8 @@ export function StepSelectThings({
 
   const orderRule = (
     <Translate
-      pt={
-        <>
-          A ordem que você seleciona as coisas também é importante!
-          <br />
-          Elas serão avaliadas em ordem e então, assim que uma coisa não é aprovada, as outras nem serão
-          consideradas.
-          <br />
-          Se suas coisas forem rejeitadas por duas rodadas seguidas, você perde pontos!
-        </>
-      }
-      en={
-        <>
-          The order in which you select the things is also important!
-          <br />
-          They will be evaluated in order and as soon as one thing is not approved, the others won't even be
-          considered.
-          <br />
-          <strong>If your things get rejected for two rounds in a row, you lose points!</strong>
-        </>
-      }
+      pt="A ordem que você seleciona as coisas também é importante!<br/>Elas serão avaliadas em ordem e então, assim que uma coisa não é aprovada, as outras nem serão consideradas.<br/>Se suas coisas forem rejeitadas por duas rodadas seguidas, você perde pontos!"
+      en="The order in which you select the things is also important!<br/>They will be evaluated in order and as soon as one thing is not approved, the others won't even be considered.<br/><strong>If your things get rejected for two rounds in a row, you lose points!</strong>"
     />
   );
 
@@ -120,39 +102,23 @@ export function StepSelectThings({
       <RuleInstruction type="action">
         {isTheCreator ? (
           <Translate
-            pt={
-              <>
-                Selecione{' '}
+            pt="Selecione pelo menos <thing>coisas</thing> que se encaixam à categoria criada."
+            en="Select at least <thing>things</thing> that fit the created category."
+            values={{
+              thing: (text) => (
                 <ThingHighlight>
-                  pelo menos <strong>2</strong> coisas
-                </ThingHighlight>{' '}
-                que se encaixam à categoria criada.
-              </>
-            }
-            en={
-              <>
-                Select{' '}
-                <ThingHighlight>
-                  at least <strong>2</strong> things
-                </ThingHighlight>{' '}
-                that fit the created category.
-              </>
-            }
+                  <strong>2 {text}</strong>
+                </ThingHighlight>
+              ),
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Selecione <ThingHighlight>coisas</ThingHighlight> que podem se encaixar na categoria criada.
-                Se você não tem nada que se encaixa, você pode pular sua vez.
-              </>
-            }
-            en={
-              <>
-                Select <ThingHighlight>things</ThingHighlight> that may fit the created category. If you don't
-                have anything that fits, you can skip your turn.
-              </>
-            }
+            pt="Selecione <thing>uma ou mais coisas</thing> que podem se encaixar na categoria criada. Se você não tem nada que se encaixa, você pode pular sua vez."
+            en="Select <thing>one or more things</thing> that may fit the created category. If you don't have anything that fits, you can skip your turn."
+            values={{
+              thing: (text) => <ThingHighlight>{text}</ThingHighlight>,
+            }}
           />
         )}
         <br />
@@ -162,28 +128,16 @@ export function StepSelectThings({
       {user.wasRejectedOnPreviousRound && (
         <RuleInstruction type="alert">
           <Translate
-            pt={
-              <>
-                <strong>Atenção</strong>: Uma ou mais de suas coisas foram rejeitadas na rodada anterior. Se
-                isso acontecer novamente, você perderá{' '}
+            pt="<strong>Atenção</strong>: Uma ou mais de suas coisas foram rejeitadas na rodada anterior. Se isso acontecer novamente, você perderá {penalty}!"
+            en="<strong>Attention</strong>: One or more of your things were rejected in the previous round. If this happens again, you will lose {penalty}!"
+            values={{
+              penalty: (
                 <PointsHighlight
                   type="negative"
                   value={CONSECUTIVE_REJECTION_PENALTY}
                 />
-                !
-              </>
-            }
-            en={
-              <>
-                <strong>Attention</strong>: One or more of your things were rejected in the previous round. If
-                this happens again, you will lose{' '}
-                <PointsHighlight
-                  type="negative"
-                  value={CONSECUTIVE_REJECTION_PENALTY}
-                />
-                !
-              </>
-            }
+              ),
+            }}
           />
         </RuleInstruction>
       )}
