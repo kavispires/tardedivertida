@@ -89,24 +89,8 @@ export function StepEvaluateThings({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Avalie cada uma das coisas abaixo que não são suas, dizendo se elas se encaixam ou não na
-              categoria criada. Você pode discutir com os outros jogadores.
-              <br />
-              Apesar do jogo não mostrar quem colocou cada coisa, você pode defender sua escolha durante a
-              discussão!
-            </>
-          }
-          en={
-            <>
-              Evaluate each of the things below that are not yours, saying whether they fit into the created
-              category or not. You can discuss with other players.
-              <br />
-              Although the game does not show who placed each thing, you can defend your choice during the
-              discussion!
-            </>
-          }
+          pt="Avalie cada uma das coisas abaixo que não são suas, dizendo se elas se encaixam ou não na categoria criada.<br/>Você pode discutir com os outros jogadores.<br/>Apesar do jogo não mostrar quem colocou cada coisa, você pode defender sua escolha durante a discussão!"
+          en="Evaluate each of the things below that are not yours, saying whether they fit into the created category or not.<br/>You can discuss with other players.<br/>Although the game does not show who placed each thing, you can defend your choice during the discussion!"
         />
       </RuleInstruction>
 

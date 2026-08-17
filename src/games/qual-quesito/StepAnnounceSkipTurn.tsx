@@ -37,16 +37,11 @@ export function StepAnnounceSkipTurn({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              <PlayerAvatarName player={creator} /> decidiu pular a vez dele(a).
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName player={creator} /> decided to skip their turn.
-            </>
-          }
+          pt="{creator} decidiu pular a vez dele(a)."
+          en="{creator} decided to skip their turn."
+          values={{
+            creator: <PlayerAvatarName player={creator} />,
+          }}
         />
       </StepTitle>
 
@@ -58,18 +53,8 @@ export function StepAnnounceSkipTurn({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Quando o criador decide pular a vez, ele(a) não cria uma categoria nesta rodada e ainda ganha
-              uma coisa nova.
-            </>
-          }
-          en={
-            <>
-              The creator decided to skip their turn. They will not create a category this round and will
-              receive a new thing.
-            </>
-          }
+          pt="Quando o criador decide pular a vez, ele(a) não cria uma categoria nesta rodada e ainda ganha uma coisa nova."
+          en="The creator decided to skip their turn. They will not create a category this round and will receive a new thing."
         />
       </RuleInstruction>
 

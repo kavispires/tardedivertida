@@ -42,26 +42,16 @@ export function PhaseCategoryCreation({ players, state, user }: PhaseProps<Phase
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              É a vez de{' '}
-              <PlayerAvatarName
-                player={creator}
-                addressUser
-              />{' '}
-              criar a categoria
-            </>
-          }
-          en={
-            <>
-              It's{' '}
+          pt="É a vez de {creator} criar a categoria"
+          en="It's {creator}'s turn to create the category"
+          values={{
+            creator: (
               <PlayerAvatarName
                 player={creator}
                 addressUser
               />
-              's turn to create the category
-            </>
-          }
+            ),
+          }}
         />
       </Surface>
     </PhaseAnnouncement>

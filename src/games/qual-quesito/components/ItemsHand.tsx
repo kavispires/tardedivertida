@@ -97,18 +97,11 @@ export function ItemsHand({
       {!hideCount && (
         <RuleInstruction type="tip">
           <Translate
-            pt={
-              <>
-                Você ainda tem <ThingHighlight>{hand.length}</ThingHighlight>{' '}
-                {pluralize(hand.length, 'coisa')} na mão.
-              </>
-            }
-            en={
-              <>
-                You still have <ThingHighlight>{hand.length}</ThingHighlight>{' '}
-                {pluralize(hand.length, 'thing')} in your hand.
-              </>
-            }
+            pt={`Você ainda tem {count} ${pluralize(hand.length, 'coisa')} na mão.`}
+            en={`You still have {count} ${pluralize(hand.length, 'thing')} in your hand.`}
+            values={{
+              count: <ThingHighlight>{hand.length}</ThingHighlight>,
+            }}
           />
         </RuleInstruction>
       )}
