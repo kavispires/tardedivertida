@@ -4,17 +4,21 @@ import { Select } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
 import type { SuspectCardData, TestimonyStatementCardData } from 'types/tdr';
+// Hooks
+import { useMock } from '@hooks/useMock';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { SubmitGuessPayload } from './utils/types';
 import { useCharacterEliminationCache } from './utils/useCharacterEliminationCache';
+import { mockGuess } from './utils/mock';
 import { CharactersBoard } from './components/CharactersBoard';
 import { QuestionHistory } from './components/QuestionHistory';
 
@@ -47,9 +51,9 @@ export function StepGuessPlayer({
       }));
   }, [characters, inferredEliminations, user.secretCharacterId]);
 
-  // useMock(() => {
-  //   onSubmitGuess({ characterId: mockGuess(charactersDict, user, targetedPlayer.id) });
-  // });
+  useMock(() => {
+    onSubmitGuess({ characterId: mockGuess(characters, players, user) });
+  });
 
   return (
     <Step
@@ -58,8 +62,9 @@ export function StepGuessPlayer({
     >
       <StepTitle>
         <Translate
-          pt="Quem é esse jogador?"
-          en="Who is this player?"
+          pt="Quem é esse {target}?"
+          en="Who is {target}?"
+          values={{ target: <PlayerAvatarName player={players[user?.targetPlayerId ?? '']} /> }}
         />
       </StepTitle>
 

@@ -13,13 +13,13 @@
 
 ### Migrations
 
-- PlayersReadyState verification: 🔘
-- TranslateTemplate: 🔘
-- Phase Delegator Migration: 🔘
-- PhaseProps Migration: 🔘
-- Float Submit Migration: 🔘
-- Host Timer Bar Migration: 🔘
-- Achievements Tool Kit Migration: 🔘
+- PlayersReadyState verification: ✅
+- Translate Migration: ✅
+- Phase Delegator Migration: ✅
+- PhaseProps Migration: ✅
+- Float Submit Migration: ✅
+- Host Timer Bar Migration: ✅
+- Achievements Tool Kit Migration: ✅
 
 ### Report
 

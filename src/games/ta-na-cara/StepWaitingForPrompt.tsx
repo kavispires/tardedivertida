@@ -40,40 +40,28 @@ export function StepWaitingForPrompt({
     >
       <StepTitle wait>
         <Translate
-          pt={
-            <>
-              Aguarde enquanto <PlayerAvatarName player={activePlayer} /> decide o que fazer
-            </>
-          }
-          en={
-            <>
-              Please wait while <PlayerAvatarName player={activePlayer} /> takes an action
-            </>
-          }
+          pt="Aguarde enquanto {player} decide o que fazer"
+          en="Please wait while {player} takes an action"
+          values={{
+            player: <PlayerAvatarName player={activePlayer} />,
+          }}
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          en={
-            <>
-              Every player have a secret character, but your goal is to figure out who is{' '}
-              <PlayerAvatarName player={players[targetPlayerId]} />
-              's secret character, while answering questions about your character to help{' '}
-              <PlayerAvatarName player={players[guesserPlayerId]} /> figure out who your secret character is.
+          en="Every player have a secret character, but your goal is to figure out who is {target}'s secret character, while answering questions about your character to help {guesser} figure out who your secret character is.
               <br />
               But the question cannot be about their character's physical traits, but about their vibe or
-              personality.
-            </>
-          }
-          pt={
-            <>
-              Cada jogador tem um personagem secreto, mas seu objetivo é descobrir quem é o personagem secreto
-              de <PlayerAvatarName player={players[targetPlayerId]} />, enquanto responde perguntas sobre seu
-              personagem para ajudar <PlayerAvatarName player={players[guesserPlayerId]} /> a descobrir quem é
-              seu personagem secreto.
-            </>
-          }
+              personality."
+          pt="Cada jogador tem um personagem secreto, mas seu objetivo é descobrir quem é o personagem secreto
+              de {target}, enquanto responde perguntas sobre seu
+              personagem para ajudar  {guesser} a descobrir quem é
+              seu personagem secreto."
+          values={{
+            target: <PlayerAvatarName player={players[targetPlayerId]} />,
+            guesser: <PlayerAvatarName player={players[targetPlayerId]} />,
+          }}
         />
       </RuleInstruction>
 
