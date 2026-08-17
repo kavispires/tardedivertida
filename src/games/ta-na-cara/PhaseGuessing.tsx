@@ -35,8 +35,8 @@ export function PhaseGuessing({ state, players, user }: PhaseProps<PhaseGuessing
     >
       <Surface>
         <Translate
-          pt={'Quem você acha que seu adversário é? Lembre-se que você só pode errar uma vez!'}
-          en={'Who do you think your opponent is? Remember, you can only make one mistake!'}
+          pt="Quem você acha que seu adversário é? Lembre-se que você só pode errar uma vez!"
+          en="Who do you think your opponent is? Remember, you can only make one mistake!"
         />
       </Surface>
     </PhaseAnnouncement>

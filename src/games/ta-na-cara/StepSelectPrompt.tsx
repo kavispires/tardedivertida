@@ -64,29 +64,21 @@ export function StepSelectPrompt({
 
       <RuleInstruction type="action">
         <Translate
-          en={
-            <>
-              Write a vibe question that will help you identify your opponent{' '}
-              <PlayerAvatarName player={players[targetPlayerId]} />
-              's characters.
+          en="Write a vibe question that will help you identify your opponent {player}'s characters.
               <br />
-              For example: "Would they be a good villain in a horror movie?", "Do they know how to whistle?"
+              For example: 'Would they be a good villain in a horror movie?', 'Do they know how to whistle?'
               <br />
               Your question cannot be about their character's physical traits, but about their vibe or
-              personality.
-            </>
-          }
-          pt={
-            <>
-              Escreva uma pergunta de vibe que te ajude a identificar os personagens do seu oponente{' '}
-              <PlayerAvatarName player={players[targetPlayerId]} />.
+              personality."
+          pt="Escreva uma pergunta de vibe que te ajude a identificar os personagens do seu oponente {player}
               <br />
-              Por exemplo: "Eles seriam um bom vilão em um filme de terror?", "Eles sabem assobiar?"
+              Por exemplo: 'Eles seriam um bom vilão em um filme de terror?, ou 'Eles sabem assobiar?'
               <br />
               Sua pergunta não pode ser sobre traços físicos do personagem, mas sobre a vibe ou personalidade
-              dele.
-            </>
-          }
+              dele."
+          values={{
+            player: <PlayerAvatarName player={players[targetPlayerId]} />,
+          }}
         />
       </RuleInstruction>
 
@@ -158,19 +150,11 @@ export function StepSelectPrompt({
             }
             description={
               <Translate
-                en={
-                  <>
-                    All players will be given a chance to make their guess.
+                en="All players will be given a chance to make their guess.
                     <br />
-                    The game will end after this round.
-                  </>
-                }
-                pt={
-                  <>
-                    Todos os jogadores terão a chance de fazer sua adivinhação.
-                    <br />O jogo terminará após esta rodada.
-                  </>
-                }
+                    The game will end after this round."
+                pt="Todos os jogadores terão a chance de fazer sua adivinhação.
+                    <br />O jogo terminará após esta rodada."
               />
             }
             onConfirm={onTriggerGuessing}

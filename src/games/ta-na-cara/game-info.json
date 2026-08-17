@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "release": "stable",
   "releaseDate": "2023-03-25",
-  "updatedAt": 1786820763196,
+  "updatedAt": 1786992097917,
   "available": true,
   "title": {
     "pt": "Tá Na Cara",

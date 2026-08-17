@@ -59,16 +59,11 @@ export function PhasePrompt({ state, players, user }: PhaseProps<PhasePromptStat
           />
         ) : (
           <Translate
-            pt={
-              <>
-                É a vez do(a) <PlayerAvatarName player={activePlayer} />
-              </>
-            }
-            en={
-              <>
-                It's <PlayerAvatarName player={activePlayer} /> turn!
-              </>
-            }
+            en="It's {player}'s turn!"
+            pt="É a vez do(a) {player}!"
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
           />
         )}
       </Surface>
