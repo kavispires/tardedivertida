@@ -34,7 +34,7 @@ type AchievementsProps = {
    */
   reference: AchievementReference;
   /**
-   * Color scheme for the component
+   * Overriding color scheme for the component
    */
   colorScheme?: ColorScheme;
 };

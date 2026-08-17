@@ -59,12 +59,13 @@
 
 .diagram-section {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   gap: get-unit(1);
 
-  &__selected-scope {
-    margin: 0;
+  &__side-section {
+    width: 100%;
     max-width: 250px;
+    overflow: "hidden";
   }
 
   &__world {
@@ -109,4 +110,31 @@
 
 .q-player-guess-bubble.q-player-guess-bubble {
   font-size: 1rem;
+}
+
+.thing {
+  background: get-color("brown", 1, 0.5);
+  border-radius: var(--border-radius);
+  padding: get-unit(1);
+
+  &__sprite {
+    background: transparent;
+  }
+  &__name {
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.thing-enlarged {
+  .thing__name {
+    font-size: 2em;
+  }
+}
+
+.my-hand-limit {
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: get-unit(2);
 }

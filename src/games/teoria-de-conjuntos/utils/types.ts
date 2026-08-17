@@ -148,7 +148,7 @@ export type Reevaluation = {
   /**
    * Whether the current user is the judge
    */
-  isJudge: boolean;
+  isTheJudge: boolean;
 };
 
 /**

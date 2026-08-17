@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 // Ant Design Resources
-import { AimOutlined } from '@ant-design/icons';
-import { Flex, Tag, Tooltip } from 'antd';
+import { Flex } from 'antd';
 // Types
 import type { GameRound, GamePlayers, GamePlayer } from 'types/game';
 import type { ItemData } from 'types/tdr';
@@ -12,12 +11,10 @@ import { useMock } from '@hooks/useMock';
 import { getAnimationClass } from '@utils/helpers';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
-import { TransparentButton } from '@components/buttons/TransparentButton';
 import { ItemCard } from '@components/cards/ItemCard';
 import { DualTranslate } from '@components/language/DualTranslate';
 import { Translate } from '@components/language/Translate';
 import { SpaceFloat } from '@components/layout/SpaceFloat';
-import { TitledContainer } from '@components/layout/TitledContainer';
 import { MouseFollowingContent } from '@components/mouse/MouseFollowingContent';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -37,8 +34,8 @@ import { DiagramRules } from './components/RulesBlobs';
 import { SelectedAreasCircles } from './components/SelectedAreasCircles';
 import { DiagramSection } from './components/DiagramSection';
 import { RoundAlert } from './components/RoundAlert';
-import { Solution } from './components/Solution';
 import { EvaluationModal } from './components/EvaluationModal';
+import { MyThings } from './components/MyThings';
 
 type StepPlaceItemProps = {
   players: GamePlayers;
@@ -52,7 +49,7 @@ type StepPlaceItemProps = {
   onSubmitEvaluationFix: (payload: SubmitEvaluationFixPayload) => void;
   targetItemCount: number;
   round: GameRound;
-  isJudge: boolean;
+  isTheJudge: boolean;
   solutions: Solutions;
 } & Pick<StepProps, 'announcement'>;
 
@@ -69,7 +66,7 @@ export function StepPlaceItem({
   onSubmitEvaluationFix,
   targetItemCount,
   round,
-  isJudge,
+  isTheJudge,
   solutions,
 }: StepPlaceItemProps) {
   const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
@@ -77,7 +74,7 @@ export function StepPlaceItem({
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
   const [previouslySelectedItemId, setPreviouslySelectedItemId] = useState<string | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
-  const [selectedArea, setSelectedArea] = useState<string | null>(null);
+  const [selectedArea, setSelectedArea] = useState<string | null>(isTheJudge ? 'AWC' : null);
   const onSelectArea = (area: string) => {
     setPreviouslySelectedItemId(selectedItemId || null);
     setSelectedArea(area);
@@ -109,7 +106,7 @@ export function StepPlaceItem({
         style={{ width: '100%' }}
       />
       <StepTitle>
-        {isJudge ? (
+        {isTheJudge ? (
           <Translate
             pt="Como Juiz, coloque uma coisa no diagrama para ajudar os outros jogadores"
             en="As the Judge, place an item on the diagram to help the other players"
@@ -142,6 +139,22 @@ export function StepPlaceItem({
 
       <DiagramRules examples={examples} />
 
+      {isTheJudge ? (
+        <RuleInstruction type="action">
+          <Translate
+            en="As the judge, place one of your things on the diagram to help the other players.<br/><strong>Simply choose one thing</strong>, it will be evaluated in the next phase.<br />Clin on each area of the diagram to see each secret rule on the left."
+            pt="Como juiz, coloque uma de suas coisas no diagrama para ajudar os outros jogadores.<br/><strong>Escolha uma coisa</strong>, ela será avaliada na próxima fase.<br/>Clique em cada area do diagrama para ver cada regra secreta à esquerda."
+          />
+        </RuleInstruction>
+      ) : (
+        <RuleInstruction type="action">
+          <Translate
+            en="Select one of your things and place them in one of the areas of the diagram. If there are already things there, you can try to base your placement off of them.<br/>The goal is to correctly place your things in the diagram based on the secret rules of each area.<br/>If you place it right, you can place another thing. If you place it wrong, you will receive a new thing and it will be the next player's turn."
+            pt="Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas lá, você pode tentar basear sua colocação nelas.<br/>O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas de cada área.<br/>Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova coisa e será a vez do próximo jogador."
+          />
+        </RuleInstruction>
+      )}
+
       <MouseFollowingContent
         active={Boolean(selectedItemId) && (!selectedArea || selectedItemId !== previouslySelectedItemId)}
         contained
@@ -170,113 +183,27 @@ export function StepPlaceItem({
         currentItemPosition={selectedArea ?? undefined}
         reevaluation={{
           onOpenFixModal,
-          isJudge,
+          isTheJudge,
         }}
-      />
-
-      {isJudge ? (
-        <RuleInstruction type="action">
-          <Translate
-            en={
-              <>
-                As the judge, place one of your things on the diagram to help the other players.
-                <br />
-                <strong>Simply choose one thing and place in the center of the diagram</strong>
-                <br />
-                You will evaluate it in the next phase.
-              </>
-            }
-            pt={
-              <>
-                Como juiz, coloque uma de suas coisas no diagrama para ajudar os outros jogadores.
-                <br />
-                <strong>Escolha uma coisa e coloque no centro do diagrama</strong>
-                <br />
-                Você avaliará isso na próxima fase.
-              </>
-            }
-          />
-        </RuleInstruction>
-      ) : (
-        <RuleInstruction type="action">
-          <Translate
-            en={
-              <>
-                Select one of your things and place them in one of the areas of the diagram. If there are
-                already things there, you can try to base your placement off of them.
-                <br />
-                The goal is to correctly place your things in the diagram based on the secret rules of each
-                area.
-                <br />
-                If you place it right, you can place another thing. If you place it wrong, you will receive a
-                new thing and it will be the next player's turn.
-              </>
-            }
-            pt={
-              <>
-                Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas
-                lá, você pode tentar basear sua colocação nelas.
-                <br />O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas
-                de cada área.
-                <br />
-                Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova
-                coisa e será a vez do próximo jogador.
-              </>
-            }
-          />
-        </RuleInstruction>
-      )}
-
-      <TitledContainer
-        contained
-        title={
-          <>
-            <Translate
-              pt="Suas coisas"
-              en="Your items"
-            />{' '}
-            <Tooltip
-              title={
-                <Translate
-                  en="Items to place and total items"
-                  pt="Itens para posicionar e total de itens"
-                />
-              }
-            >
-              <Tag
-                variant="filled"
-                icon={<AimOutlined />}
-              >
-                {(user.hand ?? []).slice(0, 10).length}/{targetItemCount}
-              </Tag>
-            </Tooltip>
-          </>
-        }
+        solutions={isTheJudge ? solutions : undefined}
       >
-        <Flex
-          gap={8}
-          justify="center"
-        >
-          {(user.hand ?? []).slice(0, 10).map((itemId: string) => (
-            <TransparentButton
-              key={itemId}
-              onClick={() => {
-                setPreviouslySelectedItemId(selectedItemId || itemId);
-                setSelectedItemId(itemId);
-              }}
-              active={itemId === selectedItem.id}
-            >
-              <ItemCard
-                itemId={itemId}
-                width={100}
-                text={items[itemId]?.name}
-              />
-            </TransparentButton>
-          ))}
-        </Flex>
-      </TitledContainer>
+        <MyThings
+          hand={user.hand ?? []}
+          items={items}
+          total={targetItemCount}
+          maxHeight={width * (diagrams?.C ? 1 : 0.7)}
+          activeItemId={selectedItemId}
+          onClick={(itemId) => {
+            setPreviouslySelectedItemId(selectedItemId || itemId);
+            setSelectedItemId(itemId);
+          }}
+        />
+      </DiagramSection>
 
-      <SpaceFloat enabled={Boolean(selectedArea) && Boolean(selectedItemId)}>
+      <SpaceFloat
+        enabled={Boolean(selectedArea) && Boolean(selectedItemId)}
+        className="mt-10"
+      >
         <SendButton
           size="large"
           disabled={!selectedArea || !selectedItemId}
@@ -306,26 +233,6 @@ export function StepPlaceItem({
           </Flex>
         </SendButton>
       </SpaceFloat>
-
-      {isJudge && (
-        <TitledContainer
-          contained
-          title={
-            <Translate
-              pt="As Regras Secretas"
-              en="The Secret Rules"
-            />
-          }
-          contentProps={{ orientation: 'vertical' }}
-        >
-          <Translate
-            pt="Essas são as regras secretas de cada círculo, não fale elas com ninguém."
-            en="These are the secret rules of each circle, don't tell them to anyone."
-          />
-
-          <Solution solutions={solutions} />
-        </TitledContainer>
-      )}
 
       <PlayersTurnOrder
         players={players}

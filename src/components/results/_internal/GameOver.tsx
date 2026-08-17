@@ -102,7 +102,10 @@ export function GameOver({ state, children, className, rateWidgetCustomText, ann
       </div>
 
       {hasWinnerContent && state?.group?.outcome !== 'NON_WINNABLE_GAME' && (
-        <Surface contained>
+        <Surface
+          contained
+          className="mb-5"
+        >
           {Boolean(state.winners) && state.winners.length > 0 && (
             <div className={styles.gameOver__winnerContainer}>
               <div className={styles.gameOver__text}>

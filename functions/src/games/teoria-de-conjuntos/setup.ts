@@ -363,7 +363,7 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  cleanupPlayers(players, []);
+  cleanupPlayers(players, ['hand']);
 
   return {
     update: {

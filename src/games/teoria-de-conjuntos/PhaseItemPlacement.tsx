@@ -65,7 +65,7 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps<PhaseIte
               announcement={announcement}
               targetItemCount={state.targetItemsCount}
               round={state.round}
-              isJudge={isTheJudge}
+              isTheJudge={isTheJudge}
               solutions={state.solutions}
             />
           </ViewIf>
@@ -79,7 +79,7 @@ export function PhaseItemPlacement({ state, players, user }: PhaseProps<PhaseIte
               turnOrder={state.turnOrder}
               activePlayer={activePlayer}
               announcement={announcement}
-              isJudge={isTheJudge}
+              isTheJudge={isTheJudge}
               solutions={state.solutions}
               targetItemCount={state.targetItemsCount}
               round={state.round}

@@ -1,77 +1,97 @@
+import clsx from 'clsx';
 // Ant Design Resources
-import { AimOutlined } from '@ant-design/icons';
-import { Flex, Tag, Tooltip } from 'antd';
+import { Space } from 'antd';
 // Types
 import type { ItemData } from 'types/tdr';
+// Hooks
+import { useLanguage } from '@hooks/useLanguage';
 // Components
-import { ItemCard } from '@components/cards/ItemCard';
+import { TransparentButton } from '@components/buttons/TransparentButton';
 import { Translate } from '@components/language/Translate';
-import { TitledContainer } from '@components/layout/TitledContainer';
+import { Title } from '@components/text/Title';
 import { ViewIf } from '@components/views/ViewIf';
+// Internal
+import { ThingsCountHighlight } from './Highlights';
+import { Thing } from './Thing';
 
 type MyThingsProps = {
   hand: string[];
   items: Dictionary<ItemData>;
   total: number;
+  maxHeight?: number;
+  activeItemId?: string | null;
+  onClick?: (itemId: string) => void;
+  disabled?: boolean;
 };
 
-export function MyThings({ hand = [], items, total }: MyThingsProps) {
+export function MyThings({
+  hand = [],
+  items,
+  total,
+  maxHeight,
+  activeItemId,
+  onClick,
+  disabled,
+}: MyThingsProps) {
+  const { translate } = useLanguage();
   return (
-    <TitledContainer
-      contained
-      title={
-        <>
-          <Translate
-            pt="Suas coisas"
-            en="Your items"
-          />{' '}
-          <Tooltip
-            title={
-              <Translate
-                en="Items to place and total items"
-                pt="Itens para posicionar e total de itens"
-              />
-            }
-          >
-            <Tag
-              variant="solid"
-              icon={<AimOutlined />}
-            >
-              {hand.length}/{total}
-            </Tag>
-          </Tooltip>
-        </>
-      }
-      contentProps={{ orientation: 'vertical' }}
-    >
-      <Translate
-        pt="Essas são as suas coisas que você poderá posicionar quando chegar sua vez."
-        en="These are your items that you will be able to place when it's your turn."
-      />
+    <>
+      <Title
+        size="xx-small"
+        colorScheme="light"
+      >
+        <Translate
+          pt="Suas coisas"
+          en="Your items"
+        />
+      </Title>
+
+      <div>
+        <ThingsCountHighlight>
+          {(hand ?? []).slice(0, 10).length}/{total}
+        </ThingsCountHighlight>
+      </div>
 
       <ViewIf condition={hand.length > 0}>
-        <Flex
-          gap={8}
-          justify="center"
+        <Space
+          size="small"
+          vertical
+          className="my-hand-limit"
+          style={{ maxHeight }}
         >
-          {hand.slice(0, 10).map((itemId: string) => (
-            <ItemCard
-              key={itemId}
-              itemId={itemId}
-              width={100}
-              text={items[itemId]?.name}
-            />
-          ))}
-        </Flex>
+          {hand.slice(0, 10).map((itemId: string) =>
+            onClick ? (
+              <TransparentButton
+                key={itemId}
+                onClick={() => onClick(itemId)}
+                active={itemId === activeItemId}
+              >
+                <Thing
+                  key={itemId}
+                  itemId={itemId}
+                  name={translate(items[itemId].name)}
+                  className={clsx({ 'my-hand-disabled': disabled })}
+                />
+              </TransparentButton>
+            ) : (
+              <Thing
+                key={itemId}
+                itemId={itemId}
+                name={translate(items[itemId].name)}
+                className={clsx({ 'my-hand-disabled': disabled })}
+              />
+            ),
+          )}
+        </Space>
       </ViewIf>
       <ViewIf condition={hand.length === 0}>
         <p>
           <Translate
-            en="You don't have any items yet"
+            en="You don't have any items"
             pt="Você ainda não tem itens."
           />
         </p>
       </ViewIf>
-    </TitledContainer>
+    </>
   );
 }

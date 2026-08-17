@@ -64,7 +64,7 @@ export function StepSelectPlayer({
 
       <RuleInstruction {...ruleInstructionProps} />
 
-      <Surface contained>
+      <Surface>
         <Flex
           className="div-container"
           wrap="wrap"

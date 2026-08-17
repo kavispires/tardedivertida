@@ -4,7 +4,6 @@ import { Divider } from 'antd';
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCardWidthByContainerRef } from '@hooks/useCardWidth';
-import { useWhichPlayerIsThe } from '@hooks/useWhichPlayerIsThe';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
@@ -19,7 +18,6 @@ import { MyThings } from './components/MyThings';
 import { GameOverIcon } from './components/Announcement';
 
 export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOverState>) {
-  const [, isTheJudge] = useWhichPlayerIsThe('judgeId', state, players);
   const [width, ref] = useCardWidthByContainerRef(2, { maxWidth: 1000 });
 
   return (
@@ -43,7 +41,7 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
         reference={achievementsReference}
       />
 
-      <Divider />
+      <Divider className="my-4" />
 
       <TitledContainer
         contained
@@ -62,15 +60,15 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
         width={width}
         diagrams={state.diagrams}
         items={state.items}
-      />
-
-      {!isTheJudge && user.hand && (
+        solutions={state.solutions}
+      >
         <MyThings
           hand={user.hand ?? []}
           items={state.items ?? {}}
           total={state.targetItemsCount}
+          maxHeight={width * (state.diagrams?.C ? 1 : 0.7)}
         />
-      )}
+      </DiagramSection>
     </GameOverWrapper>
   );
 }

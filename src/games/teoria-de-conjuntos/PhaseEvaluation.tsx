@@ -42,7 +42,7 @@ export function PhaseEvaluation({ state, players, user }: PhaseProps<PhaseEvalua
           activePlayer={activePlayer}
           onSubmitEvaluation={onSubmitEvaluation}
           judge={judge}
-          isJudge={isTheJudge}
+          isTheJudge={isTheJudge}
           currentGuess={currentGuess}
           solutions={state.solutions}
           targetItemCount={state.targetItemsCount}

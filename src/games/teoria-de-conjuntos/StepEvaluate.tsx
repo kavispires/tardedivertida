@@ -29,7 +29,7 @@ type StepEvaluateProps = {
   turnOrder: GameOrder;
   activePlayer: GamePlayer;
   judge: GamePlayer;
-  isJudge: boolean;
+  isTheJudge: boolean;
   onSubmitEvaluation: (payload: SubmitEvaluationPayload) => void;
   currentGuess: Guess;
   solutions: Solutions;
@@ -47,7 +47,7 @@ export function StepEvaluate({
   turnOrder,
   activePlayer,
   judge,
-  isJudge,
+  isTheJudge,
   onSubmitEvaluation,
   solutions,
   currentGuess,
@@ -69,16 +69,11 @@ export function StepEvaluate({
       />
       <StepTitle wait>
         <Translate
-          pt={
-            <>
-              <PlayerAvatarName player={judge} /> está avaliando a posição da coisa
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName player={judge} /> is evaluating the thing's position
-            </>
-          }
+          pt="{judge} está avaliando a posição da coisa"
+          en="{judge} is evaluating the thing's position"
+          values={{
+            judge: <PlayerAvatarName player={judge} />,
+          }}
         />
       </StepTitle>
 
@@ -86,7 +81,7 @@ export function StepEvaluate({
 
       <DiagramRules examples={examples} />
 
-      {isJudge ? (
+      {isTheJudge ? (
         <EvaluationModal
           item={item}
           onSubmitEvaluation={(evaluation) => onSubmitEvaluation({ evaluation })}
@@ -100,24 +95,27 @@ export function StepEvaluate({
         />
       )}
 
-      <DiagramSection
-        width={width}
-        diagrams={diagrams}
-        items={items}
-        currentItem={!isJudge ? item : undefined}
-      />
-
       <RuleInstruction type="wait">
         <EvaluationRules />
       </RuleInstruction>
 
-      {!isJudge && (
-        <MyThings
-          hand={user.hand ?? []}
-          items={items}
-          total={targetItemCount}
-        />
-      )}
+      <DiagramSection
+        width={width}
+        diagrams={diagrams}
+        items={items}
+        currentItem={!isTheJudge ? item : undefined}
+      >
+        {isTheJudge ? (
+          <span />
+        ) : (
+          <MyThings
+            hand={user.hand ?? []}
+            items={items}
+            total={targetItemCount}
+            maxHeight={width * (diagrams?.C ? 1 : 0.7)}
+          />
+        )}
+      </DiagramSection>
 
       <PlayersTurnOrder
         players={players}
