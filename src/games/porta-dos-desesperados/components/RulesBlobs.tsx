@@ -25,33 +25,18 @@ type RoundOneRuleProps = {
 
 export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
   return (
-    <Surface contained>
+    <Surface
+      contained
+      className="mb-4"
+    >
       <Translate
-        pt={
-          <>
-            Somos estudantes presos num corredor de portas tentando voltar pra casa.
-            <br />
-            Devemos que passar por <DoorHighlight>{TOTAL_DOORS}</DoorHighlight> portas.
-            <br />
-            Mas o Livro só tem <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos de energia e cada
-            porta que abrimos usamos <CrystalHighlight type="negative">-1</CrystalHighlight> cristal.
-            <br />
-            Será que conseguimos sair antes que nossa mágica acabe?
-          </>
-        }
-        en={
-          <>
-            We are students trapped in a corridor of doors trying to get back home.
-            <br />
-            We must go through <DoorHighlight>{TOTAL_DOORS}</DoorHighlight>
-            doors.
-            <br />
-            But the Book only has <CrystalHighlight>{magic}</CrystalHighlight> magic energy crystals and each
-            door we go through costs us <CrystalHighlight type="negative">-1</CrystalHighlight> crystal.
-            <br />
-            Can we get out before our crystals are gone?
-          </>
-        }
+        pt="Somos estudantes presos num corredor de portas tentando voltar pra casa.<br/>Devemos que passar por {doorCount} portas.<br/>Mas o Livro só tem {magic} cristais mágicos de energia e cada porta que abrimos usamos {cost} cristal.<br/>Será que conseguimos sair antes que nossa mágica acabe?"
+        en="We are students trapped in a corridor of doors trying to get back home.<br/>We must go through {doorCount} doors.<br/>But the Book only has {magic} magic energy crystals and each door we go through costs us {cost} crystal.<br/>Can we get out before our crystals are gone?"
+        values={{
+          doorCount: <DoorHighlight>{TOTAL_DOORS}</DoorHighlight>,
+          magic: <CrystalHighlight>{magic}</CrystalHighlight>,
+          cost: <CrystalHighlight type="negative">-1</CrystalHighlight>,
+        }}
       />
 
       <br />
@@ -77,34 +62,22 @@ type RoundRuleProps = {
 
 export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
   return (
-    <Surface contained>
+    <Surface
+      contained
+      className="mb-4"
+    >
       <Translate
-        pt={
-          <>
-            Porta
+        pt="Porta {door}<br/>Ainda temos {magic} cristais mágicos e cada porta que abrimos usamos {cost} cristal.<br/>Será que conseguimos sair antes que nossa mágica acabe?"
+        en="Door {door}<br/>We still have {magic} magic crystals left and each door we go through costs us {cost} crystal.<br/>Can we get out before our crystals are gone?"
+        values={{
+          door: (
             <DoorHighlight>
               {currentCorridor} / {TOTAL_DOORS}
             </DoorHighlight>
-            <br />
-            Ainda temos <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos e cada porta que abrimos
-            usamos <CrystalHighlight type="negative">1</CrystalHighlight> cristal.
-            <br />
-            Será que conseguimos sair antes que nossa mágica acabe?
-          </>
-        }
-        en={
-          <>
-            Door
-            <DoorHighlight>
-              {currentCorridor} / {TOTAL_DOORS}
-            </DoorHighlight>
-            <br />
-            We still have <CrystalHighlight>{magic}</CrystalHighlight> magic crystals left and each door we go
-            through costs us <CrystalHighlight type="negative">1</CrystalHighlight> crystal.
-            <br />
-            Can we get out before our crystals are gone?
-          </>
-        }
+          ),
+          magic: <CrystalHighlight>{magic}</CrystalHighlight>,
+          cost: <CrystalHighlight type="negative">1</CrystalHighlight>,
+        }}
       />
     </Surface>
   );
@@ -130,6 +103,7 @@ export function TrapRule({ trapEntry, showTitle = false }: TrapRuleProps) {
         <Title
           size="xx-small"
           level={3}
+          colorScheme="light"
         >
           <DualTranslate>{trapEntry.title}</DualTranslate>
         </Title>
@@ -172,22 +146,11 @@ export function LoseGameText({ players }: { players: GamePlayers }) {
 
   return (
     <Translate
-      pt={
-        <>
-          A comida acabou após alguns dias e fomos obrigados a dar uma chance ao canibalismo.{' '}
-          <PlayerAvatarName player={sortedPlayers[1]} /> foi o primeiro a partir e servir de alimento aos
-          outros. Diz a lenda que a batata da perna estava muito saborosa. No final das contas, todo mundo
-          morreu...
-        </>
-      }
-      en={
-        <>
-          The food soon was gone, we had to give in and try cannibalism.{' '}
-          <PlayerAvatarName player={sortedPlayers[1]} /> was the first to go and served as food to others. The
-          legend says its calf was very tasty and bough the rest of the group some extra days of live. In the
-          end, we all died...
-        </>
-      }
+      pt="A comida acabou após alguns dias e fomos obrigados a dar uma chance ao canibalismo. {player} foi o primeiro a partir e servir de alimento aos outros. Diz a lenda que a batata da perna estava muito saborosa. No final das contas, todo mundo morreu..."
+      en="The food soon was gone, we had to give in and try cannibalism. {player} was the first to go and served as food to others. The legend says its calf was very tasty and bough the rest of the group some extra days of live. In the end, we all died..."
+      values={{
+        player: <PlayerAvatarName player={sortedPlayers[1]} />,
+      }}
     />
   );
 }
@@ -196,26 +159,8 @@ export function BotsRules() {
   return (
     <Surface contained>
       <Translate
-        pt={
-          <>
-            Em um jogo com bots, 2 jogadores-robôs são adicionados ao jogo.
-            <br />
-            Quando a escolha das portas acontece, eles selecionam cada um uma porta aleatória, mas há 20-40%
-            de chance um deles selecionar a página correta.
-            <br />
-            Em comparação, você tem 14-16% de chance de escolher a porta correta, dependendo da armadilha.
-          </>
-        }
-        en={
-          <>
-            In a game with bos, the 2 bots are added to the game.
-            <br />
-            Each bot will randomly select a door, but there are 20-40% chance they will select the correct
-            door.
-            <br />
-            In comparison, you have 14-16% chances of choosing the correct door, depending on the trap.
-          </>
-        }
+        pt="Em um jogo com bots, 2 jogadores-robôs são adicionados ao jogo.<br/>Quando a escolha das portas acontece, eles selecionam cada um uma porta aleatória, mas há 20-40% de chance um deles selecionar a página correta.<br/>Em comparação, você tem 14-16% de chance de escolher a porta correta, dependendo da armadilha."
+        en="In a game with bos, the 2 bots are added to the game.<br/>Each bot will randomly select a door, but there are 20-40% chance they will select the correct door.<br/>In comparison, you have 14-16% chances of choosing the correct door, depending on the trap."
       />
     </Surface>
   );

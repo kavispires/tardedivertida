@@ -70,16 +70,11 @@ export function StepSelectPages({
     <Step fullWidth>
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Ajude os jogadores a encontrar a porta <DoorHighlight>{currentCorridor}</DoorHighlight>:
-            </>
-          }
-          en={
-            <>
-              Help players find the door <DoorHighlight>{currentCorridor}</DoorHighlight>:
-            </>
-          }
+          pt="Ajude os jogadores a encontrar a porta {door}:"
+          en="Help players find the door {door}:"
+          values={{
+            door: <DoorHighlight>{currentCorridor}</DoorHighlight>,
+          }}
         />
       </StepTitle>
 
@@ -103,21 +98,8 @@ export function StepSelectPages({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Acima está a porta que você deve ajudar os outros jogadores a selecionar. <br />
-              Consulte as páginas do livro (cartas) abaixo e <strong>selecione</strong> as que você acha que
-              mais vão ajudar!
-            </>
-          }
-          en={
-            <>
-              Above it's the door you need to help the other players to find.
-              <br />
-              Check the book pages(cards) below and <strong>select</strong> the one you think will help them
-              best!
-            </>
-          }
+          pt="Acima está a porta que você deve ajudar os outros jogadores a selecionar.<br/>Consulte as páginas do livro (cartas) abaixo e <strong>selecione</strong> as que você acha que mais vão ajudar!"
+          en="Above it's the door you need to help the other players to find.<br/>Check the book pages(cards) below and <strong>select</strong> the one you think will help them best!"
         />
 
         {trap === TRAPS.MORE_CLUES && (
@@ -125,16 +107,11 @@ export function StepSelectPages({
             <br />
             <strong>
               <Translate
-                pt={
-                  <>
-                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
-                  </>
-                }
-                en={
-                  <>
-                    Select exactly <BookHighlight>3</BookHighlight> book pages
-                  </>
-                }
+                pt="Selecione exatamente {pageCount} páginas do livro"
+                en="Select exactly {pageCount} book pages"
+                values={{
+                  pageCount: <BookHighlight>3</BookHighlight>,
+                }}
               />
             </strong>
           </>
@@ -172,30 +149,23 @@ export function StepSelectPages({
           <div>
             {trap === TRAPS.MORE_CLUES ? (
               <Translate
-                pt={
-                  <>
-                    Selecione exatamente <BookHighlight>3</BookHighlight> páginas do livro
-                  </>
-                }
-                en={
-                  <>
-                    Select exactly <BookHighlight>3</BookHighlight> book pages
-                  </>
-                }
+                pt="Selecione exatamente {pageCount} páginas do livro"
+                en="Select exactly {pageCount} book pages"
+                values={{
+                  pageCount: <BookHighlight>3</BookHighlight>,
+                }}
               />
             ) : (
               <Translate
-                pt={
-                  <>
-                    Selecione <BookHighlight>1</BookHighlight> ou <BookHighlight>2</BookHighlight> páginas do
-                    livro
-                  </>
-                }
-                en={
-                  <>
-                    Select <BookHighlight>1</BookHighlight> or <BookHighlight>2</BookHighlight> book pages
-                  </>
-                }
+                pt="Selecione <pages>ou</pages> páginas do livro"
+                en="Select <pages>or</pages> book pages"
+                values={{
+                  pages: (text) => (
+                    <BookHighlight>
+                      <strong>1</strong> {text} <strong>2</strong>
+                    </BookHighlight>
+                  ),
+                }}
               />
             )}
           </div>
@@ -316,8 +286,11 @@ function FlipBookHand({ pages, onSelectPage, disabledSelectButton, selectedCards
             onClick={() => setSpread((s) => s + 1)}
           >
             <Translate
-              pt={`Próxima Página Para Sempre (${pages.length - (spread + 1) * 2} restantes)`}
-              en={`Next Page Forever (${pages.length - (spread + 1) * 2} left)`}
+              pt="Próxima Página Para Sempre ({remaining} restantes)"
+              en="Next Page Forever ({remaining} left)"
+              values={{
+                remaining: pages.length - (spread + 1) * 2,
+              }}
             />
           </Button>
         </Flex>

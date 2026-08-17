@@ -91,31 +91,17 @@ export function PhaseBookPossession({ state, players }: PhaseProps<PhaseBookPoss
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Cada rodada um jogador é possuído pelo <BookHighlight>Livro que Tudo Sabe</BookHighlight>.
-                  <br />
+              pt="Cada rodada um jogador é possuído pelo <book>Livro que Tudo Sabe</book>.<br/>{player} vai escolher cartas que representam as páginas do livro para ajudar os outros jogadores a escolherem a porta correta pra ir para o próximo corredor."
+              en="Each round a player is possessed by <book>The Book That Knows It All</book>.<br/>{player} will choose cards representing the pages in the book to try to help the other players choose the correct door to move to the next level."
+              values={{
+                book: (text) => <BookHighlight>{text}</BookHighlight>,
+                player: (
                   <PlayerAvatarName
                     player={possessed}
                     addressUser
-                  />{' '}
-                  vai escolher cartas que representam as páginas do livro para ajudar os outros jogadores a
-                  escolherem a porta correta pra ir para o próximo corredor.
-                </>
-              }
-              en={
-                <>
-                  Each round a player is possessed by{' '}
-                  <BookHighlight>The Book That Knows It All</BookHighlight>.
-                  <br />
-                  <PlayerAvatarName
-                    player={possessed}
-                    addressUser
-                  />{' '}
-                  will choose cards representing the pages in the book to try to help the other players choose
-                  the correct door to move to the next level.
-                </>
-              }
+                  />
+                ),
+              }}
             />
 
             <PlayersTurnOrder

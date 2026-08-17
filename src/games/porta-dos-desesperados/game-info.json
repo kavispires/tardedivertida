@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "4.0.120",
+  "version": "4.0.121",
   "release": "stable",
   "releaseDate": "2022-10-02",
-  "updatedAt": 1786820762202,
+  "updatedAt": 1787002466931,
   "available": true,
   "title": {
     "pt": "Porta dos Desesperados",

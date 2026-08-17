@@ -46,20 +46,12 @@ export function StepWaitPageSelection({ possessed, players, trap, trapEntry }: S
         icon={<PossessionAnimation />}
         instruction={
           <Translate
-            pt={
-              <>
-                <PlayerAvatarName player={possessed} /> está sendo possuído(a) pelo{' '}
-                <BookHighlight>Livro que Tudo Sabe</BookHighlight> e nos mostrará páginas do livro que nos
-                ajudem a descobrir em qual porta entrar.
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName player={possessed} /> is being possessed by the{' '}
-                <BookHighlight>Book That Knows It All</BookHighlight> and will show us pages of the book that
-                could help us find out which door to enter.
-              </>
-            }
+            pt="{possessed} está sendo possuído(a) pelo <book>Livro que Tudo Sabe</book> e nos mostrará páginas do livro que nos ajudem a descobrir em qual porta entrar."
+            en="{possessed} is being possessed by the <book>Book That Knows It All</book> and will show us pages of the book that could help us find out which door to enter."
+            values={{
+              possessed: <PlayerAvatarName player={possessed} />,
+              book: (text) => <BookHighlight>{text}</BookHighlight>,
+            }}
           />
         }
       />
