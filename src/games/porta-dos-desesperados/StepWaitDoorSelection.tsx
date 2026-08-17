@@ -49,6 +49,9 @@ export function StepWaitDoorSelection({
   const showTrap = useMemo(() => shouldAnnounceTrap(trap, PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE), [trap]);
 
   const bookCardClass = trap === TRAPS.SEPIA ? 'i-sepia-card' : '';
+  const timeLimit = trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION;
+  const crystalCost = trap === TRAPS.DOUBLE_MAGIC ? 2 : 1;
+  const doorsLeft = TOTAL_DOORS - currentCorridor + 1;
 
   return (
     <Step fullWidth>
@@ -68,38 +71,14 @@ export function StepWaitDoorSelection({
         className="i-sand-timer-container"
       >
         <Translate
-          pt={
-            <>
-              Silêncio e poker face!
-              <br />
-              Eles tem{' '}
-              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
-              minutos para decidir qual(quais) porta(s) entrar.
-              <br />
-              Cada porta visitada custará{' '}
-              <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> cristal, portanto,
-              escolha sabiamente.
-              <br />
-              Vocês tem <CrystalHighlight>{magic}</CrystalHighlight> cristais sobrando e{' '}
-              <DoorHighlight>{TOTAL_DOORS - currentCorridor + 1}</DoorHighlight> portas para achar a saída.
-            </>
-          }
-          en={
-            <>
-              Silence and poker face!
-              <br />
-              You have{' '}
-              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
-              minutes to decide what door(s) to visit.
-              <br />
-              Each door a player visits costs{' '}
-              <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> crystal, so choose
-              wisely.
-              <br />
-              You all have <CrystalHighlight>{magic}</CrystalHighlight> remaining crystals and{' '}
-              <DoorHighlight>{TOTAL_DOORS - currentCorridor + 1}</DoorHighlight> doors to find the exit.
-            </>
-          }
+          pt="Silêncio e poker face!<br/>Eles tem {timeLimit} minutos para decidir qual(quais) porta(s) entrar.<br/>Cada porta visitada custará {crystalCost} cristal, portanto, escolha sabiamente.<br/>Vocês tem {magic} cristais sobrando e {doorsLeft} portas para achar a saída."
+          en="Silence and poker face!<br/>You have {timeLimit} minutes to decide what door(s) to visit.<br/>Each door a player visits costs {crystalCost} crystal, so choose wisely.<br/>You all have {magic} remaining crystals and {doorsLeft} doors to find the exit."
+          values={{
+            timeLimit: <TimeHighlight>{timeLimit}</TimeHighlight>,
+            crystalCost: <CrystalHighlight>{crystalCost}</CrystalHighlight>,
+            magic: <CrystalHighlight>{magic}</CrystalHighlight>,
+            doorsLeft: <DoorHighlight>{doorsLeft}</DoorHighlight>,
+          }}
         />
 
         <SandTimer

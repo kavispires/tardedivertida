@@ -70,32 +70,20 @@ export function StepResults({
         )}
         <br />
         <Translate
-          pt={
-            <>
-              Vocês usaram <CrystalHighlight type="negative">{usedMagic}</CrystalHighlight> e têm{' '}
-              <CrystalHighlight>{magic}</CrystalHighlight> sobrando.
-            </>
-          }
-          en={
-            <>
-              You used <CrystalHighlight type="negative">{usedMagic}</CrystalHighlight> but still have{' '}
-              <CrystalHighlight>{magic}</CrystalHighlight> remaining.
-            </>
-          }
+          pt="Vocês usaram {usedMagic} e têm {remainingMagic} sobrando."
+          en="You used {usedMagic} but still have {remainingMagic} remaining."
+          values={{
+            usedMagic: <CrystalHighlight type="negative">{usedMagic}</CrystalHighlight>,
+            remainingMagic: <CrystalHighlight>{magic}</CrystalHighlight>,
+          }}
         />
         <br />
         <Translate
-          pt={
-            <>
-              E faltam <DoorHighlight>{doorsLeft}</DoorHighlight> portas pra encontrar a saída.
-            </>
-          }
-          en={
-            <>
-              And there {pluralize(doorsLeft, 'is', 'are')} <DoorHighlight>{doorsLeft}</DoorHighlight> doors
-              left to find the exit.
-            </>
-          }
+          pt="E faltam {doors} portas pra encontrar a saída."
+          en={`And there ${pluralize(doorsLeft, 'is', 'are')} {doors} doors left to find the exit.`}
+          values={{
+            doors: <DoorHighlight>{doorsLeft}</DoorHighlight>,
+          }}
         />
       </RuleInstruction>
 
@@ -191,20 +179,11 @@ function OutcomeAlert({ outcome, doorIndex = 0 }: OutcomeProps) {
   return (
     <RuleInstruction type="alert">
       <Translate
-        pt={
-          <>
-            Para a próxima rodada, a <DoorHighlight>porta {LETTERS[doorIndex]}</DoorHighlight> será removida,
-            as outras portas e a armadilha continuam as mesmas, mas uma nova <strong>resposta</strong> será
-            sorteada aleatoriamente.
-          </>
-        }
-        en={
-          <>
-            For the next round, <DoorHighlight>door {LETTERS[doorIndex]}</DoorHighlight> will be removed, the
-            other doors and the trap remain the same, but a new <strong>answer</strong> will be randomly
-            drawn.
-          </>
-        }
+        pt="Para a próxima rodada, a {door} será removida, as outras portas e a armadilha continuam as mesmas, mas uma nova <strong>resposta</strong> será sorteada aleatoriamente."
+        en="For the next round, {door} will be removed, the other doors and the trap remain the same, but a new <strong>answer</strong> will be randomly drawn."
+        values={{
+          door: <DoorHighlight>porta {LETTERS[doorIndex]}</DoorHighlight>,
+        }}
       />
     </RuleInstruction>
   );

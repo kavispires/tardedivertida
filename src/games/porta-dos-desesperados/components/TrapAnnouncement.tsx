@@ -30,7 +30,7 @@ export function TrapAnnouncement({ trapEntry, goToNextStep }: TrapAnnouncementPr
       unskippable
       type="block"
     >
-      <Surface className="i-trap-description">
+      <Surface className="i-trap-description mb-2">
         <DualTranslate>{trapEntry.description}</DualTranslate>
       </Surface>
       <Flex justify="center">

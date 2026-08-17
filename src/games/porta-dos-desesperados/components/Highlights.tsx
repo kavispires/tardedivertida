@@ -15,6 +15,7 @@ export function CrystalHighlight({ children, type }: HighlightProps) {
     <MetricHighlight
       icon={<MagicCrystalIcon />}
       type={type}
+      iconPlacement="before"
     >
       {children}
     </MetricHighlight>
@@ -22,9 +23,23 @@ export function CrystalHighlight({ children, type }: HighlightProps) {
 }
 
 export function DoorHighlight({ children }: HighlightProps) {
-  return <MetricHighlight icon={<MagicDoorIcon />}>{children}</MetricHighlight>;
+  return (
+    <MetricHighlight
+      icon={<MagicDoorIcon />}
+      iconPlacement="before"
+    >
+      {children}
+    </MetricHighlight>
+  );
 }
 
 export function TimeHighlight({ children }: HighlightProps) {
-  return <MetricHighlight icon={<MagicHourGlassIcon />}>{children}</MetricHighlight>;
+  return (
+    <MetricHighlight
+      icon={<MagicHourGlassIcon />}
+      iconPlacement="before"
+    >
+      {children}
+    </MetricHighlight>
+  );
 }

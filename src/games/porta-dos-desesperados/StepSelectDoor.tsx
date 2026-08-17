@@ -96,6 +96,9 @@ export function StepSelectDoor({
    * When there are less crystals than doors, disabled additional voting doors
    */
   const shouldRestrainDoorConfirmation = !!magic && magic < doors.length && selectedDoors > magic;
+  const timeLimit = trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION;
+  const crystalCost = trap === TRAPS.DOUBLE_MAGIC ? 2 : 1;
+  const doorsLeft = TOTAL_DOORS - currentCorridor + 1;
 
   return (
     <Step fullWidth>
@@ -115,40 +118,15 @@ export function StepSelectDoor({
         className="i-sand-timer-container"
       >
         <Translate
-          pt={
-            <>
-              O livro contém dicas dadas por <PlayerAvatarName player={possessed} /> que ainda está possuído
-              pelo livro e não pode falar.
-              <br />
-              Vocês tem{' '}
-              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
-              minutos para decidir qual(quais) porta(s) entrar.
-              <br />
-              Cada porta visitada custará{' '}
-              <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> cristal, portanto,
-              escolha sabiamente.
-              <br />
-              Vocês tem <CrystalHighlight>{magic}</CrystalHighlight> cristais sobrando e{' '}
-              <DoorHighlight>{TOTAL_DOORS - currentCorridor + 1}</DoorHighlight> portas para achar a saída.
-            </>
-          }
-          en={
-            <>
-              The book contains hints given by <PlayerAvatarName player={possessed} /> who is still possessed
-              by the book and can't speak.
-              <br />
-              You have{' '}
-              <TimeHighlight>{trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}</TimeHighlight>{' '}
-              minutes to decide what door(s) to visit.
-              <br />
-              Each door a player visits costs{' '}
-              <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> crystal, so choose
-              wisely.
-              <br />
-              You all have <CrystalHighlight>{magic}</CrystalHighlight> remaining crystals and{' '}
-              <DoorHighlight>{TOTAL_DOORS - currentCorridor + 1}</DoorHighlight> doors to find the exit.
-            </>
-          }
+          pt="O livro contém dicas dadas por {possessed} que ainda está possuído pelo livro e não pode falar.<br/>Vocês tem {timeLimit} minutos para decidir qual(quais) porta(s) entrar.<br/>Cada porta visitada custará {crystalCost} cristal, portanto, escolha sabiamente.<br/>Vocês tem {magic} cristais sobrando e {doorsLeft} portas para achar a saída."
+          en="The book contains hints given by {possessed} who is still possessed by the book and can't speak.<br/>You have {timeLimit} minutes to decide what door(s) to visit.<br/>Each door a player visits costs {crystalCost} crystal, so choose wisely.<br/>You all have {magic} remaining crystals and {doorsLeft} doors to find the exit."
+          values={{
+            possessed: <PlayerAvatarName player={possessed} />,
+            timeLimit: <TimeHighlight>{timeLimit}</TimeHighlight>,
+            crystalCost: <CrystalHighlight>{crystalCost}</CrystalHighlight>,
+            magic: <CrystalHighlight>{magic}</CrystalHighlight>,
+            doorsLeft: <DoorHighlight>{doorsLeft}</DoorHighlight>,
+          }}
         />
         <SandTimer
           trap={trap}
@@ -180,24 +158,8 @@ export function StepSelectDoor({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              <strong>Selecione</strong> uma das portas que você acha que mais se relaciona com o livro.
-              <br />
-              {trap === TRAPS.LOCKED_CHOICE
-                ? 'Você não pode trocar de porta depois de escolher!'
-                : 'Você pode trocar de porta quantas vezes quiser até confirmar sua escolha ou o tempo acabar.'}
-            </>
-          }
-          en={
-            <>
-              <strong>Select</strong> one of the doors you think is most related to the book.
-              <br />
-              {trap === TRAPS.LOCKED_CHOICE
-                ? 'You cannot change your door after you choose!'
-                : 'You can change your door as many times as you want until you confirm your choice or time runs out.'}
-            </>
-          }
+          pt={`<strong>Selecione</strong> uma das portas que você acha que mais se relaciona com o livro.<br/>${trap === TRAPS.LOCKED_CHOICE ? 'Você não pode trocar de porta depois de escolher!' : 'Você pode trocar de porta quantas vezes quiser até confirmar sua escolha ou o tempo acabar.'}`}
+          en={`<strong>Select</strong> one of the doors you think is most related to the book.<br/>${trap === TRAPS.LOCKED_CHOICE ? 'You cannot change your door after you choose!' : 'You can change your door as many times as you want until you confirm your choice or time runs out.'}`}
         />
       </RuleInstruction>
 
