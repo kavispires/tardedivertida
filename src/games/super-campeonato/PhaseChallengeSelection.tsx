@@ -35,7 +35,7 @@ export function PhaseChallengeSelection({ state, players, user }: PhaseProps<Pha
       duration={5}
       type="overlay"
     >
-      <Surface>
+      <Surface className="m-2">
         <Translate
           pt="Qual o desafio da rodada?"
           en="What's the round's challenge?"

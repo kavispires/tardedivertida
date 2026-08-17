@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "3.0.28",
+  "version": "3.0.29",
   "release": "stable",
   "releaseDate": "2022-02-06",
-  "updatedAt": 1786820763047,
+  "updatedAt": 1786996053883,
   "available": true,
   "title": {
     "pt": "Super Campeonato",

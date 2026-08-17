@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { motion } from 'motion/react';
 import { useMemo } from 'react';
 // Types
 import type { GamePlayers } from 'types/game';
@@ -6,12 +6,13 @@ import type { GamePlayers } from 'types/game';
 import { useCountdown } from '@hooks/useCountdown';
 import { useMock } from '@hooks/useMock';
 import { useStep } from '@hooks/useStep';
-// Utils
-import { getAnimationClass } from '@utils/helpers';
+// Icons
+import { VersusIcon } from '@icons/VersusIcon';
 // Components
 import { SendButton } from '@components/buttons/SendButton';
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { CharacterCard, type OverlayColor } from '@components/cards/CharacterCard';
+import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Surface } from '@components/layout/Surface';
@@ -21,6 +22,8 @@ import type { Bet, Bracket, BracketTier, SubmitBattleVotesPayload } from '../uti
 import { useBracketVoting } from '../utils/useBracketVoting';
 import { mockVotes } from '../utils/mock';
 import { TierContenders } from './TierContenders';
+
+const MotionButton = motion.create(TransparentButton);
 
 type VotingProps = {
   brackets: Bracket[];
@@ -67,7 +70,10 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
       players={players}
     >
       {/* Step 0 */}
-      <Surface contained>
+      <Surface
+        contained
+        className="mb-4"
+      >
         <p>
           {tier === 'quarter' ? (
             <Translate
@@ -136,32 +142,52 @@ type VotingOptionsProps = {
 
 function VotingOptions({ left, right, colorLeft, colorRight, onClick, checkActiveVote }: VotingOptionsProps) {
   return (
-    <li className={clsx('w-voting-options', getAnimationClass('flipInX'))}>
-      <TransparentButton
+    <li className="w-voting-options">
+      <MotionButton
         onClick={() => onClick(left)}
         active={checkActiveVote(left.position)}
         className="w-vote"
         activeClass="w-vote--active"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
       >
         <CharacterCard
           size={CONTENDER_BATTLE_SIZE}
           character={left}
           overlayColor={colorLeft}
         />
-      </TransparentButton>
-      <span className="w-voting-options__vs">VS</span>
-      <TransparentButton
+      </MotionButton>
+      <motion.span
+        initial={{ opacity: 0, scale: 0.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 400,
+          damping: 10,
+          delay: 0.5,
+        }}
+      >
+        <Icon
+          icon={<VersusIcon />}
+          size="large"
+        />
+      </motion.span>
+      <MotionButton
         onClick={() => onClick(right)}
         active={checkActiveVote(right.position)}
         className="w-vote"
         activeClass="w-vote--active"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
       >
         <CharacterCard
           size={CONTENDER_BATTLE_SIZE}
           character={right}
           overlayColor={colorRight}
         />
-      </TransparentButton>
+      </MotionButton>
     </li>
   );
 }

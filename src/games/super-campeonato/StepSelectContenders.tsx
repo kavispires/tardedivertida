@@ -63,18 +63,9 @@ export function StepSelectContenders({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Selecione <CardHighlight>{contendersPerPlayerNeeded}</CardHighlight> dos seus competidores para
-              entrar no campeonato
-            </>
-          }
-          en={
-            <>
-              Select <CardHighlight>{contendersPerPlayerNeeded}</CardHighlight> of your contenders to join the
-              championship
-            </>
-          }
+          pt="Selecione {cardCount} dos seus competidores para entrar no campeonato"
+          en="Select {cardCount} of of your contenders to join the championship"
+          values={{ cardCount: <CardHighlight>{contendersPerPlayerNeeded}</CardHighlight> }}
         />
       </RuleInstruction>
 

@@ -333,6 +333,7 @@ export * from '@icons/UnderConstructionIcon';
 export * from '@icons/UsersStatsIcon';
 export * from '@icons/UserStatsIcon';
 export * from '@icons/VerifyListIcon';
+export * from '@icons/VersusIcon';
 export * from '@icons/VictoryCoinIcon';
 export * from '@icons/VideoConferenceIcon';
 export * from '@icons/VideoGameControllerIcon';
