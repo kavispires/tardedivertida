@@ -225,8 +225,8 @@ const getTitle = (outcome: keyof typeof WORD_LENGTH_STATUS) => {
   if (outcome === WORD_LENGTH_STATUS.SOLVED) {
     return (
       <Translate
-        pt="Parabéns a palavra foi definida corretamente!"
-        en="Congratulations the word was correctly defined!"
+        pt="Parabéns, a palavra foi definida corretamente!"
+        en="Congratulations, the word was correctly defined!"
       />
     );
   }

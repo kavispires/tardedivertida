@@ -36,16 +36,11 @@ export function PhaseResults({ state, players }: PhaseProps<PhaseResultsState>) 
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              E <TextHighlight>{state.newWord}</TextHighlight> entra para o dicionário?
-            </>
-          }
-          en={
-            <>
-              Does <TextHighlight>{state.newWord}</TextHighlight> enter the dictionary?
-            </>
-          }
+          pt="E {word} entra para o dicionário?"
+          en="Does {word} enter the dictionary?"
+          values={{
+            word: <TextHighlight>{state.newWord}</TextHighlight>,
+          }}
         />
       </Surface>
     </PhaseAnnouncement>

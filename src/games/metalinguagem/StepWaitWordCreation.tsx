@@ -36,43 +36,18 @@ export function StepWaitWordCreation({
     >
       <StepTitle wait>
         <Translate
-          pt={
-            <>
-              Aguarde enquanto <PlayerAvatarName player={creator} /> cria a palavra-valise
-            </>
-          }
-          en={
-            <>
-              Wait while <PlayerAvatarName player={creator} /> creates the new portmanteau
-            </>
-          }
+          pt="Aguarde enquanto {creator} cria a palavra-valise"
+          en="Wait while {creator} creates the new portmanteau"
+          values={{
+            creator: <PlayerAvatarName player={creator} />,
+          }}
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          en={
-            <>
-              From the items below, two of them were draft to be the beginning and the end of your new word.
-              <br />
-              The creator will name them and them use the beginning of one and the end of the other to create
-              a new word.
-              <br />
-              The goal of the group will be to figure out what two items originated the word.
-              <br />
-              <strong>Shhh! Do not discuss the items!</strong>
-            </>
-          }
-          pt={
-            <>
-              Dos itens abaixo, dois deles foram escolhidos para ser o começo e o fim da nova palavra.
-              <br />O criador irá nomeá-los e então usar o começo de um e o fim do outro para criar uma nova
-              palavra.
-              <br />O objetivo do grupo é descobrir quais foram os dois itens que originaram a palavra.
-              <br />
-              <strong>Silêncio! Não discutam os itens!</strong>
-            </>
-          }
+          en="From the items below, two of them were draft to be the beginning and the end of your new word.<br/>The creator will name them and them use the beginning of one and the end of the other to create a new word.<br/>The goal of the group will be to figure out what two items originated the word.<br/><strong>Shhh! Do not discuss the items!</strong>"
+          pt="Dos itens abaixo, dois deles foram escolhidos para ser o começo e o fim da nova palavra.<br/>O criador irá nomeá-los e então usar o começo de um e o fim do outro para criar uma nova palavra.<br/>O objetivo do grupo é descobrir quais foram os dois itens que originaram a palavra.<br/><strong>Silêncio! Não discutam os itens!</strong>"
         />
       </RuleInstruction>
 

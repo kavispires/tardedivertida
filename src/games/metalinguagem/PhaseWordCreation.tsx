@@ -42,26 +42,16 @@ export function PhaseWordCreation({ state, players, user }: PhaseProps<PhaseWord
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Hora de{' '}
+          pt="Hora de {creator} criar a nova palavra!"
+          en="Time for {creator} to create the new word!"
+          values={{
+            creator: (
               <PlayerAvatarName
                 player={creator}
                 addressUser
-              />{' '}
-              criar a nova palavra!
-            </>
-          }
-          en={
-            <>
-              Time for{' '}
-              <PlayerAvatarName
-                player={creator}
-                addressUser
-              />{' '}
-              to create the new word!
-            </>
-          }
+              />
+            ),
+          }}
         />
       </Surface>
 

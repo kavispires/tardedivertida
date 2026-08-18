@@ -57,16 +57,11 @@ export function StepGuessItems({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Selecione os <TextHighlight>2</TextHighlight> itens que compõem a palavra-valise:
-            </>
-          }
-          en={
-            <>
-              Select the <TextHighlight>2</TextHighlight> items that compose the portmanteau:
-            </>
-          }
+          pt="Selecione os {count} itens que compõem a palavra-valise:"
+          en="Select the {count} items that compose the portmanteau:"
+          values={{
+            count: <TextHighlight>2</TextHighlight>,
+          }}
         />
       </StepTitle>
 
@@ -93,7 +88,10 @@ export function StepGuessItems({
         highlightLength={newWord.length}
       />
 
-      <SpaceFloat enabled={isComplete}>
+      <SpaceFloat
+        enabled={isComplete}
+        className="mt-4"
+      >
         <SendButton
           disabled={!isComplete}
           onClick={() => onSubmitGuesses({ guesses: selectedItems })}

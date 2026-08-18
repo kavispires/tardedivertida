@@ -177,18 +177,8 @@ export function StepCreateWord({
         <>
           <RuleInstruction type="action">
             <Translate
-              en={
-                <>
-                  Then, you must create a new word that starts with the first thing and ends with the second
-                  thing that fits of the word lengths available.
-                </>
-              }
-              pt={
-                <>
-                  Crie uma nova palavra que começa com a primeira coisa e termina com a segunda coisa que se
-                  encaixe nos comprimentos de palavras disponíveis.
-                </>
-              }
+              en="Then, you must create a new word that starts with the first thing and ends with the second thing that fits of the word lengths available."
+              pt="Crie uma nova palavra que começa com a primeira coisa e termina com a segunda coisa que se encaixe nos comprimentos de palavras disponíveis."
             />
           </RuleInstruction>
 
