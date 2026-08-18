@@ -29,7 +29,7 @@ export function LoadingPage({ message }: LoadingPageProps) {
       <AnimatedVideoConferenceIcon style={{ width: '120px' }} />
 
       <Text {...getAnimation('blink', { infinite: true })}>
-        <DualTranslate>{message ?? { pt: '…', en: '…' }}</DualTranslate>
+        <DualTranslate>{message ?? { pt: 'Carregando...', en: 'Loading...' }}</DualTranslate>
       </Text>
     </LoadingPageLayout>
   );

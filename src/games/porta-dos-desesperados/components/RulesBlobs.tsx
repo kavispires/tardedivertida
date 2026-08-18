@@ -25,10 +25,7 @@ type RoundOneRuleProps = {
 
 export function RoundOneRule({ magic, difficulty }: RoundOneRuleProps) {
   return (
-    <Surface
-      contained
-      className="mb-4"
-    >
+    <Surface contained>
       <Translate
         pt="Somos estudantes presos num corredor de portas tentando voltar pra casa.<br/>Devemos que passar por {doorCount} portas.<br/>Mas o Livro só tem {magic} cristais mágicos de energia e cada porta que abrimos usamos {cost} cristal.<br/>Será que conseguimos sair antes que nossa mágica acabe?"
         en="We are students trapped in a corridor of doors trying to get back home.<br/>We must go through {doorCount} doors.<br/>But the Book only has {magic} magic energy crystals and each door we go through costs us {cost} crystal.<br/>Can we get out before our crystals are gone?"
@@ -62,10 +59,7 @@ type RoundRuleProps = {
 
 export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
   return (
-    <Surface
-      contained
-      className="mb-4"
-    >
+    <Surface contained>
       <Translate
         pt="Porta {door}<br/>Ainda temos {magic} cristais mágicos e cada porta que abrimos usamos {cost} cristal.<br/>Será que conseguimos sair antes que nossa mágica acabe?"
         en="Door {door}<br/>We still have {magic} magic crystals left and each door we go through costs us {cost} crystal.<br/>Can we get out before our crystals are gone?"

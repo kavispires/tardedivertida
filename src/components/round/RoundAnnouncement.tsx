@@ -92,7 +92,7 @@ export function RoundAnnouncement({
           </div>
         </div>
 
-        {children}
+        {!!children && <div className="my-4">{children}</div>}
 
         {Boolean(onPressButton) && !time && (
           <Button

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "3.0.96",
+  "version": "3.0.97",
   "release": "stable",
   "releaseDate": "2022-08-20",
-  "updatedAt": 1787011979867,
+  "updatedAt": 1787031618236,
   "available": true,
   "title": {
     "pt": "Polêmica da Vez",

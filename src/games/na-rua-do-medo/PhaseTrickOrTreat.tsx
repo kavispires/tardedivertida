@@ -42,10 +42,7 @@ export function PhaseTrickOrTreat({ state, players, user }: PhaseProps<PhaseTric
           onPressButton={goToNextStep}
           time={5}
         >
-          <Surface
-            contained
-            className="my-4"
-          >
+          <Surface contained>
             <Translate
               pt={`Vamos pegar doces na Rua do Medo ${state.round.current} de ${state.round.total}`}
               en={`Let's get candy on Fear Street ${state.round.current} of ${state.round.total}`}
