@@ -10,9 +10,9 @@ import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
+import { RoundsLeftInstruction } from '@components/results/RoundsLeftInstruction';
 import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
-import { RoundsLeftInstruction } from '@components/text/RoundsLeftInstruction';
 // Internal
 import { GALERIA_DE_SONHOS_PHASES } from './utils/constants';
 import type { PhaseResolutionState } from './utils/types';

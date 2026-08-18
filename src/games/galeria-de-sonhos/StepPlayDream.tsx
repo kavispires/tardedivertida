@@ -109,26 +109,16 @@ export function StepPlayDream({
       {Boolean(user.fallen) && Boolean(user.inNightmare) && (
         <RuleInstruction type="event">
           <Translate
-            pt={
-              <>
-                Você estava em apuros e não conseguiu dar match em uma de suas cartas, então perdeu{' '}
+            pt="Você estava em apuros e não conseguiu dar match em uma de suas cartas, então perdeu {penalty} por carta que você deu match."
+            en="You were in danger and didn't get a match in one of your cards. You lost {penalty} per scored card."
+            values={{
+              penalty: (
                 <PointsHighlight
                   type="negative"
                   value={1}
-                />{' '}
-                por carta que você deu match.
-              </>
-            }
-            en={
-              <>
-                You were in danger and didn't get a match in one of your cards. You lost{' '}
-                <PointsHighlight
-                  type="negative"
-                  value={1}
-                />{' '}
-                per scored card.
-              </>
-            }
+                />
+              ),
+            }}
           />
         </RuleInstruction>
       )}
@@ -150,24 +140,16 @@ export function StepPlayDream({
           />
         ) : (
           <Translate
-            pt={
-              <>
+            pt="{player} está selecionando um sonho."
+            en="{player} is selecting a dream."
+            values={{
+              player: (
                 <PlayerAvatarName
                   player={activePlayer}
                   className={getAnimationClass('flash')}
-                />{' '}
-                está selecionando um sonho.
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName
-                  player={activePlayer}
-                  className={getAnimationClass('flash')}
-                />{' '}
-                is selecting a dream.
-              </>
-            }
+                />
+              ),
+            }}
           />
         )}
       </RuleInstruction>
@@ -194,6 +176,7 @@ export function StepPlayDream({
         onPlayCard={(cardId: string) => onPlayCard({ cardId })}
         userCards={user.cards ?? {}}
         isPlayAvailable={isActivePlayer}
+        isInNightmare={Boolean(user.inNightmare)}
       />
 
       <PlayersTurnOrder

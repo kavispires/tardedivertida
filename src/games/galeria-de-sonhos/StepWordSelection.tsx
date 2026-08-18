@@ -30,19 +30,8 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              <strong>Clique</strong> em uma das palavras abaixo para selecionar.
-              <br />A carta que você não escolher ficará para a próxima rodada.
-            </>
-          }
-          en={
-            <>
-              <strong>Click</strong> on one of the words below to select.
-              <br />
-              The card you don't choose will stay in the pool for the next round.
-            </>
-          }
+          pt="<strong>Clique</strong> em uma das palavras abaixo para selecionar.<br/>A carta que você não escolher ficará para a próxima rodada."
+          en="<strong>Click</strong> on one of the words below to select.<br/>The card you don't choose will stay in the pool for the next round."
         />
       </RuleInstruction>
 

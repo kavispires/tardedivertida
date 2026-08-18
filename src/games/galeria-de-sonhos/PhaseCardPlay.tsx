@@ -97,26 +97,17 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
           animationType="tada"
           title={
             <Translate
-              pt={
-                <>
+              pt="{player} entrou em um pesadelo!"
+              en={`{player} ${isThePlayerInNightmare ? 'are' : 'is'} in a nightmare!`}
+              values={{
+                player: (
                   <PlayerAvatarName
                     player={playerInNightmare}
                     size="large"
                     addressUser
-                  />{' '}
-                  entrou em um pesadelo!
-                </>
-              }
-              en={
-                <>
-                  <PlayerAvatarName
-                    player={playerInNightmare}
-                    size="large"
-                    addressUser
-                  />{' '}
-                  {isThePlayerInNightmare ? 'are' : 'is'} in a nightmare!
-                </>
-              }
+                  />
+                ),
+              }}
             />
           }
           onClose={() => setStep(GO_TO_CARD_PLAY_STEP)}
@@ -127,45 +118,25 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
         >
           <Surface>
             <Translate
-              pt={
-                <>
+              pt="{player} selecionou {cards}, o maior número de cartas da rodada!<br/>Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas selecionadas, ele perde {penalty} por carta que você ganhou ponto.<br/>"
+              en="{player} selected {cards}, the largest number of cards for this round!<br/>If they are not able to match every single dream, they will lose {penalty} per card you previously scored.<br/>"
+              values={{
+                player: (
                   <PlayerAvatarName
                     player={playerInNightmare}
                     addressUser
-                  />{' '}
-                  selecionou{' '}
-                  <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cartas</CardHighlight>,
-                  o maior número de cartas da rodada!
-                  <br />
-                  Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas
-                  selecionadas, ele perde{' '}
+                  />
+                ),
+                cards: (
+                  <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cards</CardHighlight>
+                ),
+                penalty: (
                   <PointsHighlight
                     type="negative"
                     value={1}
-                  />{' '}
-                  por carta que você ganhou ponto.
-                  <br />
-                </>
-              }
-              en={
-                <>
-                  <PlayerAvatarName
-                    player={playerInNightmare}
-                    addressUser
-                  />{' '}
-                  selected{' '}
-                  <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cards</CardHighlight>,
-                  the largest number of cards for this round!
-                  <br />
-                  If they are not able to match every single dream, they will lose{' '}
-                  <PointsHighlight
-                    type="negative"
-                    value={1}
-                  />{' '}
-                  per card you previously scored.
-                  <br />
-                </>
-              }
+                  />
+                ),
+              }}
             />
           </Surface>
         </PhaseAnnouncement>

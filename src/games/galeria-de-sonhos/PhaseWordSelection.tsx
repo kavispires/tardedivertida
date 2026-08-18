@@ -90,16 +90,9 @@ export function PhaseWordSelection({ state, players }: PhaseProps<PhaseWordSelec
               }
               instruction={
                 <Translate
-                  pt={
-                    <>
-                      <PlayerAvatarName player={scout} /> está escolhendo o tema.
-                    </>
-                  }
-                  en={
-                    <>
-                      <PlayerAvatarName player={scout} /> is choosing the theme.
-                    </>
-                  }
+                  pt="{scout} está escolhendo o tema."
+                  en="{scout} is choosing the theme."
+                  values={{ scout: <PlayerAvatarName player={scout} /> }}
                 />
               }
             >
