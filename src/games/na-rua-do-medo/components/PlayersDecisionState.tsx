@@ -66,26 +66,17 @@ export function PlayersDecisionState({
         }
         description={
           <Translate
-            pt={
-              <>
-                Cada um levou {candyInHand + cashedInCandy}{' '}
+            pt="Cada um levou {candy} {icon} pra casa."
+            en="Each one took {candy} {icon} home."
+            values={{
+              candy: candyInHand + cashedInCandy,
+              icon: (
                 <Icon
                   icon={<CandyIcon />}
                   size="small"
-                />{' '}
-                pra casa.
-              </>
-            }
-            en={
-              <>
-                Each one took {candyInHand + cashedInCandy}{' '}
-                <Icon
-                  icon={<CandyIcon />}
-                  size="small"
-                />{' '}
-                home.
-              </>
-            }
+                />
+              ),
+            }}
           />
         }
       />
@@ -119,49 +110,31 @@ export function PlayersDecisionState({
         description={
           phase === 'STREET_END' ? (
             <Translate
-              pt={
-                <>
-                  Perderam {candyInHand}{' '}
+              pt="Perderam {candy} {icon}."
+              en="Lost {candy} {icon}."
+              values={{
+                candy: candyInHand,
+                icon: (
                   <Icon
                     icon={<CandyIcon />}
                     size="small"
                   />
-                  .
-                </>
-              }
-              en={
-                <>
-                  Lost {candyInHand}{' '}
-                  <Icon
-                    icon={<CandyIcon />}
-                    size="small"
-                  />{' '}
-                  .
-                </>
-              }
+                ),
+              }}
             />
           ) : (
             <Translate
-              pt={
-                <>
-                  Cada um tem {candyInHand}{' '}
+              pt="Cada um tem {candy} {icon} na sacolinha."
+              en="Each one has {candy} {icon} in their bag."
+              values={{
+                candy: candyInHand,
+                icon: (
                   <Icon
                     icon={<CandyIcon />}
                     size="small"
-                  />{' '}
-                  na sacolinha.
-                </>
-              }
-              en={
-                <>
-                  Each one has {candyInHand}{' '}
-                  <Icon
-                    icon={<CandyIcon />}
-                    size="small"
-                  />{' '}
-                  in their bag.
-                </>
-              }
+                  />
+                ),
+              }}
             />
           )
         }

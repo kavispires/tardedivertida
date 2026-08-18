@@ -16,7 +16,7 @@ type StreetProps = {
 
 export function Street({ street, currentCard, candySidewalk }: StreetProps) {
   const BASE_URL = useTDBaseUrl('assets');
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: ??
   useEffect(() => {
     const streetEl = document.getElementById('street');
     const currentCardEl = document.getElementById('current-card');

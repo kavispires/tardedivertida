@@ -12,6 +12,7 @@ import { StepTitle } from '@components/text/StepTitle';
 import { Title } from '@components/text/Title';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
+import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
@@ -59,8 +60,9 @@ export function StepResult({
       </StepTitle>
 
       <Title
-        size="small"
+        size="x-small"
         level={3}
+        style={{ margin: 0 }}
         className={clsx('n-subtitle', getAnimationClass('fadeIn', { delay: 1 }))}
       >
         {goingHomePlayerIds.length === 0 && (
@@ -103,7 +105,7 @@ export function StepResult({
         alreadyAtHomePlayerIds={alreadyAtHomePlayerIds ?? []}
         cashedInCandy={cashedInCandy}
         candyInHand={candyInHand}
-        phase="RESULT"
+        phase={NA_RUA_DO_MEDO_PHASES.RESULT}
       />
 
       <Street

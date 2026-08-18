@@ -18,3 +18,15 @@ export const GRID_REPEAT: Dictionary<number> = {
   9: 5,
   10: 5,
 };
+
+export const OUTCOME_STATUS = {
+  CONTINUE: 'CONTINUE',
+  NEW_STREET: 'NEW_STREET',
+  END_STREET: 'END_STREET',
+};
+
+export const DECISIONS = {
+  CONTINUE: 'CONTINUE',
+  GO_HOME: 'GO_HOME',
+  HOME: 'HOME',
+};

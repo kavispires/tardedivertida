@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 // Icons
 import { CandyIcon } from '@icons/CandyIcon';
+import { CardIcon } from '@icons/CardIcon';
 import { TabletIcon } from '@icons/TabletIcon';
 // Components
 import { Icon } from '@components/general/Icon';
@@ -39,8 +40,25 @@ export function TitleIPadHighlight({ children, type }: HighlightProps) {
     <MetricHighlight
       icon={
         <Icon
-          size="small"
+          size="large"
           icon={<TabletIcon />}
+        />
+      }
+      type={type}
+    >
+      {children}
+    </MetricHighlight>
+  );
+}
+
+export function CardHighlight({ children, type }: HighlightProps) {
+  return (
+    <MetricHighlight
+      iconPlacement="before"
+      icon={
+        <Icon
+          size="large"
+          icon={<CardIcon />}
         />
       }
       type={type}

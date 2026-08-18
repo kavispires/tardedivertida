@@ -1,5 +1,7 @@
 // Types
 import type { GamePlayer } from 'types/game';
+// Hooks
+import { useLanguage } from '@hooks/useLanguage';
 // Components
 import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
@@ -22,22 +24,12 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
     <RuleInstruction type={user.ready ? 'wait' : 'action'}>
       {isThereAnyCandy ? (
         <Translate
-          pt={
-            <>
-              Se você voltar pra sua casa você come todos os doces em mãos{' '}
-              <CandyHighlight>{user.hand}</CandyHighlight> e divide os doces ainda na rua{' '}
-              <CandyHighlight>{totalCandyInSidewalk}</CandyHighlight> com os jogadores que também decidirem
-              voltar.
-            </>
-          }
-          en={
-            <>
-              If you go back home you cash in all your candy in hand{' '}
-              <CandyHighlight>{user.hand}</CandyHighlight> and divide all candy still in the street{' '}
-              <CandyHighlight>{totalCandyInSidewalk}</CandyHighlight> with other players who also decide to go
-              back.
-            </>
-          }
+          pt="Se você voltar pra sua casa você come todos os doces em mãos {hand} e divide os doces ainda na rua {street} com os jogadores que também decidirem voltar."
+          en="If you go back home you cash in all your candy in hand {hand} and divide all candy still in the street {street} with other players who also decide to go back."
+          values={{
+            hand: <CandyHighlight>{user.hand}</CandyHighlight>,
+            street: <CandyHighlight>{totalCandyInSidewalk}</CandyHighlight>,
+          }}
         />
       ) : (
         <Translate
@@ -56,13 +48,15 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
 }
 
 export function CardCountExplanation() {
+  const { language } = useLanguage();
+
   return (
     <Surface>
-      <Translate
-        pt={
-          <RulesList>
+      <RulesList>
+        {language === 'pt' ? (
+          <>
             <li>
-              O baralho de cartas contém {CANDY_VALUES.length} cartas Gostosuras que variam de 1 a 19 doces.{' '}
+              O baralho de cartas contém {CANDY_VALUES.length} cartas Gostosuras que variam de 1 a 19 doces.
               <br />({CANDY_VALUES.join(', ')})
             </li>
             <li>Também contém 5 tipos de monstros com 3 cartas para cada (Total: 15).</li>
@@ -74,10 +68,9 @@ export function CardCountExplanation() {
               Cada rua adiciona um iPad indivisível ao baralho, somente uma pessoa pode tê-lo, se ninguém
               conseguir pegar o iPad a rua, ele fica no baralho para a próxima rodada.
             </li>
-          </RulesList>
-        }
-        en={
-          <RulesList>
+          </>
+        ) : (
+          <>
             <li>
               The deck has {CANDY_VALUES.length} Candy cards varying from 1 to 19 candies.
               <br />({CANDY_VALUES.join(', ')})
@@ -90,9 +83,9 @@ export function CardCountExplanation() {
               Each street adds an unshareable iPad to the deck, only one person get get it, if nobody has
               gotten the iPad on the current street, it will remain in the deck for the next round.
             </li>
-          </RulesList>
-        }
-      />
+          </>
+        )}
+      </RulesList>
     </Surface>
   );
 }
