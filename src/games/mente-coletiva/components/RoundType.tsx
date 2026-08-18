@@ -40,50 +40,25 @@ export function RoundType({ roundType, className = '' }: RoundTypeProps) {
       )}
       {roundType === 2 && (
         <Translate
-          pt={
-            <>
-              todos com as <span className="m-round-type__number">2</span> pontuações mais baixas movem uma
-              cerquinha para direita.
-            </>
-          }
-          en={
-            <>
-              all players with the <span className="m-round-type__number">2</span> lowest scores move one
-              fence to the right.
-            </>
-          }
+          pt="todos com as {count} pontuações mais baixas movem uma cerquinha para direita."
+          en="all players with the {count} lowest scores move one fence to the right."
+          values={{ count: <span className="m-round-type__number">2</span> }}
         />
       )}
       {roundType === 3 && (
         <Translate
-          pt={
-            <>
-              todos com as <span className="m-round-type__number">3</span> pontuações mais baixas movem uma
-              cerquinha para direita.
-            </>
-          }
-          en={
-            <>
-              all players with the <span className="m-round-type__number">3</span> lowest scores move one
-              fence to the right.
-            </>
-          }
+          pt="todos com as {count} pontuações mais baixas movem uma cerquinha para direita."
+          en="all players with the {count} lowest scores move one fence to the right."
+          values={{ count: <span className="m-round-type__number">3</span> }}
         />
       )}
       {roundType === 0 && (
         <Translate
-          pt={
-            <>
-              todos com a pontuação mais baixa movem uma cerquinha para direita e todos com a pontuação mais
-              alta movem uma cerquinha <span className="m-round-type__highlight">para a esquerda</span>!
-            </>
-          }
-          en={
-            <>
-              all players with the lowest score move one fence to the right and all players with the highest
-              score move one fence <span className="m-round-type__highlight">to the left</span>!
-            </>
-          }
+          pt="todos com a pontuação mais baixa movem uma cerquinha para direita e todos com a pontuação mais alta movem uma cerquinha {direction}!"
+          en="all players with the lowest score move one fence to the right and all players with the highest score move one fence {direction}!"
+          values={{
+            direction: <span className="m-round-type__highlight">para a esquerda</span>,
+          }}
         />
       )}
     </div>

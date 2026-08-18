@@ -132,18 +132,9 @@ export function StepResolution({
             style={{ marginTop: 100, zIndex: 10 }}
           >
             <Translate
-              en={
-                <>
-                  Points reset to <TextHighlight>0</TextHighlight> every round, so don't worry if you didn't
-                  do well this time!
-                </>
-              }
-              pt={
-                <>
-                  Os pontos resetam para <TextHighlight>0</TextHighlight> toda rodada, então não se preocupe
-                  se você não foi bem dessa vez!
-                </>
-              }
+              en="Points reset to {points} every round, so don't worry if you didn't do well this time!"
+              pt="Os pontos reiniciam para {points} toda rodada, então não se preocupe se você não foi bem dessa vez!"
+              values={{ points: <TextHighlight>0</TextHighlight> }}
             />
           </RuleInstruction>
 

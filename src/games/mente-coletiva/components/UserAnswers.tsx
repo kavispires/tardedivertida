@@ -44,16 +44,9 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
         />
         <br />
         <Translate
-          pt={
-            <>
-              Você tem: <PointsHighlight value={points} />
-            </>
-          }
-          en={
-            <>
-              You have: <PointsHighlight value={points} />
-            </>
-          }
+          pt="Você tem: {points}"
+          en="You have: {points}"
+          values={{ points: <PointsHighlight value={points} /> }}
         />
       </RuleInstruction>
 

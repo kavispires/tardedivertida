@@ -37,13 +37,17 @@ export function StepQuestionSelectionWaiting({
       </StepTitle>
 
       <RuleInstruction type="wait">
-        <PlayerAvatarName
-          player={activePlayer}
-          addressUser
-        />{' '}
         <Translate
-          pt="está escolhendo a pergunta da rodada."
-          en="is choosing the question for the round."
+          pt="{player} está escolhendo a pergunta da rodada."
+          en="{player} is choosing the question for the round."
+          values={{
+            player: (
+              <PlayerAvatarName
+                player={activePlayer}
+                addressUser
+              />
+            ),
+          }}
         />
         <br />
       </RuleInstruction>
