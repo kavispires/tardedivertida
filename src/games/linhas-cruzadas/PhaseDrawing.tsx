@@ -54,22 +54,11 @@ export function PhaseDrawing({ state, players, user }: PhaseProps<PhaseDrawingSt
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Você receberá uma carta.
-                  <br />
-                  Desenhe-a da melhor maneira possível, você tem{' '}
-                  <TimeHighlight>{DRAWING_TIME_IN_SECONDS}</TimeHighlight> segundos.
-                </>
-              }
-              en={
-                <>
-                  You will receive a card.
-                  <br />
-                  Draw it the best way possible, you have{' '}
-                  <TimeHighlight>{DRAWING_TIME_IN_SECONDS}</TimeHighlight> seconds.
-                </>
-              }
+              pt="Você receberá uma carta.
+              <br/>Desenhe-a da melhor maneira possível, você tem {time} segundos."
+              en="You will receive a card.
+              <br/>Draw it the best way possible, you have {time} seconds."
+              values={{ time: <TimeHighlight>{DRAWING_TIME_IN_SECONDS}</TimeHighlight> }}
             />
 
             <PlayersTurnOrder

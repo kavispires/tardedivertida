@@ -56,16 +56,9 @@ export function StepNameDrawing({
       </Title>
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              <PlayerAvatarName player={author} /> desenhou isso.
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName player={author} /> drew this.
-            </>
-          }
+          pt="{author} desenhou isso."
+          en="{author} drew this."
+          values={{ author: <PlayerAvatarName player={author} /> }}
         />
       </RuleInstruction>
 

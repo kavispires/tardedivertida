@@ -87,10 +87,7 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
             pt="por "
             en="by "
           />
-          <PlayerAvatarName
-            player={author}
-            addressUser
-          />
+          <PlayerAvatarName player={author} />
         </div>
       )}
     </div>

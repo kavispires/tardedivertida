@@ -66,7 +66,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
     }
   }, [areControlsLocked]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no function as a dependency
   useEffect(() => {
     if (isRunning && timeLeft < totalTime && timeLeft % SLIDE_DURATION === 0) {
       // If next page exists, go for it, otherwise, next album
