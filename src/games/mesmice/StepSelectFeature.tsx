@@ -90,50 +90,12 @@ export function StepSelectFeature({
       <ViewIf condition={isUserTheActivePlayer}>
         <RuleInstruction type="wait">
           <Translate
-            pt={
-              <>
-                Seu objeto é o objeto da vez, aguarde enquanto os outros jogadores eliminam características.
-                <br />O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
-                <br />A característica mais votada será eliminada.
-              </>
-            }
-            en={
-              <>
-                Your object is the object of the round, wait while the other players eliminate features.
-                <br />
-                The goal is to eliminate the remaining features until only the one that has the most related
-                remains.
-                <br />
-                The most voted feature will be eliminated.
-              </>
-            }
-          />
-        </RuleInstruction>
-        <RuleInstruction type="action">
-          <Translate
-            pt={
-              <>
-                Das características abaixo, <strong>selecione</strong> a que menos combina com os dois objetos
-                que <PlayerAvatarName player={activePlayer} /> escolheu e que escreveu.
-                <br />O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
-                <br />
-                Discuta com os outros jogadores para chegar a um consenso, mas a decisão final é sua.
-                <br />A característica mais votada será eliminada.
-              </>
-            }
-            en={
-              <>
-                From the features below, <strong>select</strong> the one that least connects the two objects
-                that <PlayerAvatarName player={activePlayer} /> chose and wrote.
-                <br />
-                The goal is to eliminate the remaining features until only the one that has the most related
-                remains.
-                <br />
-                Discuss with the other players to reach a consensus, but the final decision is yours.
-                <br />
-                The most voted feature will be eliminated.
-              </>
-            }
+            pt="Seu objeto é o objeto da vez, aguarde enquanto os outros jogadores eliminam características.
+            <br/>O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
+            <br/>A característica mais votada será eliminada."
+            en="Your object is the object of the round, wait while the other players eliminate features.
+            <br/>The goal is to eliminate the remaining features until only the one that has the most related remains.
+            <br/>The most voted feature will be eliminated."
           />
         </RuleInstruction>
       </ViewIf>
@@ -141,23 +103,17 @@ export function StepSelectFeature({
       <ViewIf condition={!isUserTheActivePlayer}>
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Qual característica menos combina os dois objetos?
-                <br />
-                Discuta com os outros jogadores para chegar a um consenso, mas a decisão final é sua.
-                <br />A característica mais votada será eliminada.
-              </>
-            }
-            en={
-              <>
-                Which feature least connects the two objects?
-                <br />
-                Discuss with the other players to reach a consensus, but the final decision is yours.
-                <br />
-                The most voted feature will be eliminated.
-              </>
-            }
+            pt="Das características abaixo, <strong>selecione</strong> a que menos combina com os dois objetos que {player} escolheu e que escreveu.
+            <br/>O objetivo é eliminar as características até que apenas a que tem mais a ver permaneça.
+            <br/>Discuta com os outros jogadores para chegar a um consenso, mas a decisão final é sua.
+            <br/>A característica mais votada será eliminada."
+            en="From the features below, <strong>select</strong> the one that least connects the two objects that {player} chose and wrote.
+            <br/>The goal is to eliminate the remaining features until only the one that has the most related remains.
+            <br/>Discuss with the other players to reach a consensus, but the final decision is yours.
+            <br/>The most voted feature will be eliminated."
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
           />
         </RuleInstruction>
       </ViewIf>

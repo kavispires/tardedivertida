@@ -96,20 +96,11 @@ export function StepResult({
       <ViewIf condition={outcome === OUTCOME.WIN}>
         <RuleInstruction type="scoring">
           <Translate
-            pt={
-              <>
-                Parabéns!!! Vocês eliminaram todas as características!!!
-                <br />
-                Pontos da Rodada: {roundScore}
-              </>
-            }
-            en={
-              <>
-                Congratulations!!! You eliminated all features!!!
-                <br />
-                Round's Score: {roundScore}
-              </>
-            }
+            pt="Parabéns!!! Vocês eliminaram todas as características!!!
+            <br/>Pontos da Rodada: {roundScore}"
+            en="Congratulations!!! You eliminated all features!!!
+            <br/>Round's Score: {roundScore}"
+            values={{ roundScore }}
           />
         </RuleInstruction>
       </ViewIf>
@@ -126,20 +117,11 @@ export function StepResult({
       <ViewIf condition={outcome === OUTCOME.LOSE}>
         <RuleInstruction type="alert">
           <Translate
-            pt={
-              <>
-                Oh não! Vocês eliminaram a característica-alvo!!!
-                <br />
-                Pontos da Rodada: {roundScore}
-              </>
-            }
-            en={
-              <>
-                Oh no! You eliminated the target feature!!!
-                <br />
-                Round's Score: {roundScore}
-              </>
-            }
+            pt="Oh não! Vocês eliminaram a característica-alvo!!!
+            <br/>Pontos da Rodada: {roundScore}"
+            en="Oh no! You eliminated the target feature!!!
+            <br/>Round's Score: {roundScore}"
+            values={{ roundScore }}
           />
         </RuleInstruction>
       </ViewIf>
