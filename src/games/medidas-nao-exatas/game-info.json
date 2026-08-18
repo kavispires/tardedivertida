@@ -2,11 +2,11 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "medidas-nao-exatas",
-  "version": "1.0.78",
+  "version": "1.0.79",
   "release": "stable",
   "releaseDate": "2025-07-06",
-  "updatedAt": 1786820760375,
-  "available": false,
+  "updatedAt": 1787032295508,
+  "available": true,
   "title": {
     "pt": "Medidas Não Exatas",
     "en": "Creative Metrics"
