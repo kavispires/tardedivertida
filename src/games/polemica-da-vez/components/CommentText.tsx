@@ -58,8 +58,8 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
         )}
       >
         <Translate
-          pt={`${likes} jogadores`}
-          en={`${likes} players`}
+          pt={` ${likes} jogadores `}
+          en={` ${likes} players `}
         />
       </span>
 

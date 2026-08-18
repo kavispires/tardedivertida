@@ -79,7 +79,7 @@ export function StepResolution({
         </div>
 
         <ul className="p-tweet-comments">
-          {sortedPlayers.map((player) => {
+          {sortedPlayers.map((player, index) => {
             const key = `player-result-${player.id}`;
 
             return (
@@ -90,6 +90,7 @@ export function StepResolution({
                 <TweetComment
                   player={player}
                   totalLikes={totalLikes}
+                  index={index}
                 />
               </li>
             );

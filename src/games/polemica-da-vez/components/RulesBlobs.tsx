@@ -53,7 +53,10 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
       {!!activePlayer && (
         <>
           <br />
-          <Surface contained>
+          <Surface
+            contained
+            className="my-4"
+          >
             <Translate
               pt="{player} escolherá o assunto para essa rodada."
               en="{player} will choose the topic for this round."
