@@ -45,7 +45,10 @@ export function PhaseGameOver({ state, players, user }: PhaseProps<PhaseGameOver
         </Surface>
       }
     >
-      <Surface contained>
+      <Surface
+        contained
+        className="mb-4"
+      >
         <p>
           <Translate
             pt="com"

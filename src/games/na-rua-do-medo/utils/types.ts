@@ -1,5 +1,7 @@
 // Types
 import type { Achievement, GamePlayer } from 'types/game';
+// Internal
+import type { DECISIONS } from './constants';
 
 /**
  * Represents a card in the street deck
@@ -44,7 +46,7 @@ export type CandyStatus = {
 /**
  * Player decision for trick-or-treating
  */
-export type Decision = 'GO_HOME' | 'CONTINUE' | 'HOME';
+export type Decision = (typeof DECISIONS)[keyof typeof DECISIONS];
 
 /**
  * Collection of candy statuses on the sidewalk

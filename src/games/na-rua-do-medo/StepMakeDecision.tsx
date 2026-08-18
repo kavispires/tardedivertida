@@ -23,7 +23,7 @@ import { Title } from '@components/text/Title';
 // Internal
 import type { CandySidewalk, StreetCard, SubmitDecisionPayload } from './utils/types';
 import { mockPlayerDecision } from './utils/mock';
-import { CandyCount } from './components/CandyCount';
+import { DECISIONS, NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { PlayerStats } from './components/PlayerStats';
 import { CardCountExplanation, DecisionExplanation } from './components/RulesBlobs';
 import { Street } from './components/Street';
@@ -79,6 +79,7 @@ export function StepMakeDecision({
       <StepTitle
         className={clsx('n-title', getAnimationClass('tada'))}
         level={2}
+        style={{ margin: 0 }}
       >
         <Translate
           pt="Continua ou Volta pra Casa?"
@@ -87,28 +88,19 @@ export function StepMakeDecision({
       </StepTitle>
 
       <Title
-        size="small"
+        size="x-small"
         level={3}
-        className="n-subtitle"
+        style={{ margin: 0 }}
       >
         {currentCard.type === 'candy' && (
           <Translate
-            pt={
-              <>
-                Que delícia! <CandyHighlight>{currentCard.value}</CandyHighlight>! Cada criança ganha{' '}
-                <CandyHighlight type="positive">{candyPerPlayer}</CandyHighlight> !
-              </>
-            }
-            en={
-              <>
-                Yummy!{' '}
-                <CandyCount
-                  candyCount={currentCard.value}
-                  size="large"
-                />
-                ! {candyPerPlayer} for each one of us!
-              </>
-            }
+            pt="Que delícia! {candy}! Cada criança ganha {perPlayer}!"
+            en="Yummy! {candy}! {candyPerPlayer} for each one of us!"
+            values={{
+              candy: currentCard.value && <CandyHighlight>{currentCard.value}</CandyHighlight>,
+              perPlayer: <CandyHighlight type="positive">{candyPerPlayer}</CandyHighlight>,
+              candyPerPlayer,
+            }}
           />
         )}
         {currentCard.type === 'horror' && (
@@ -119,17 +111,11 @@ export function StepMakeDecision({
         )}
         {currentCard.type === 'jackpot' && (
           <Translate
-            pt={
-              <>
-                Um <TitleIPadHighlight>iPad</TitleIPadHighlight>! Mas somente uma criança pode ficar com
-                ele...
-              </>
-            }
-            en={
-              <>
-                An <TitleIPadHighlight>iPad</TitleIPadHighlight>! But only one kid can keep it...
-              </>
-            }
+            pt="Um <iPad>iPad</iPad>! Mas somente uma criança pode ficar com ele..."
+            en="An <iPad>iPad</iPad>! But only one kid can keep it..."
+            values={{
+              iPad: (text) => <TitleIPadHighlight>{text}</TitleIPadHighlight>,
+            }}
           />
         )}
       </Title>
@@ -143,7 +129,7 @@ export function StepMakeDecision({
         alreadyAtHomePlayerIds={alreadyAtHomePlayerIds ?? []}
         cashedInCandy={0}
         candyInHand={candyInHand}
-        phase="TRICK_OR_TREAT"
+        phase={NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT}
       />
 
       <Street
@@ -162,20 +148,8 @@ export function StepMakeDecision({
       ) : (
         <RuleInstruction type="wait">
           <Translate
-            pt={
-              <>
-                Essa é a nova casa! Mas você já voltou para sua casa, então, apenas observe.
-                <br />
-                Você não tem que fazer nada.
-              </>
-            }
-            en={
-              <>
-                A new house! But you are already home, so, just chill.
-                <br />
-                You don't have to do anything.
-              </>
-            }
+            pt="Essa é a nova casa! Mas você já voltou para sua casa, então, apenas observe.<br/>Você não tem que fazer nada."
+            en="A new house! But you are already home, so, just chill.<br/>You don't have to do anything."
           />
         </RuleInstruction>
       )}
@@ -185,7 +159,7 @@ export function StepMakeDecision({
           <div className="n-decision-buttons-container">
             <TransparentButton
               className="n-decision-button n-decision-button--home"
-              onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
+              onClick={() => onSubmitDecision({ decision: DECISIONS.GO_HOME })}
               disabled={isLoading || user.ready}
             >
               <Icon
@@ -197,7 +171,7 @@ export function StepMakeDecision({
                 en="Go back home"
               />
             </TransparentButton>
-            <span>
+            <span className="n-decision-buttons-container__or">
               <Translate
                 en="or"
                 pt="ou"
@@ -205,7 +179,7 @@ export function StepMakeDecision({
             </span>
             <TransparentButton
               className="n-decision-button n-decision-button--continue"
-              onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
+              onClick={() => onSubmitDecision({ decision: DECISIONS.CONTINUE })}
               disabled={isLoading || user.ready}
             >
               <Icon

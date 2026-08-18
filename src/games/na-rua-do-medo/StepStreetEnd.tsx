@@ -11,10 +11,12 @@ import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
 import type { CandySidewalk, StreetCard } from './utils/types';
+import { NA_RUA_DO_MEDO_PHASES } from './utils/constants';
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
+import { CardHighlight } from './components/Highlights';
 
 type StepStreetEndProps = {
   street: StreetCard[];
@@ -82,8 +84,11 @@ export function StepStreetEnd({
         {round.current < round.total && monsterName && (
           <>
             <Translate
-              pt={`Uma carta do ${monsterName} será removida, menos chances dele aparece novamente!`}
-              en={`One of the ${monsterName} will be removed, so less chances of it showing up again!`}
+              pt="Uma carta do {monster} será removida, menos chances dele aparece novamente!"
+              en="One of the {monster} will be removed, so less chances of it showing up again!"
+              values={{
+                monster: <CardHighlight>{monsterName}</CardHighlight>,
+              }}
             />
             <br />
           </>
@@ -109,7 +114,7 @@ export function StepStreetEnd({
         alreadyAtHomePlayerIds={[...goingHomePlayerIds, ...alreadyAtHomePlayerIds]}
         cashedInCandy={0}
         candyInHand={candyInHand}
-        phase="STREET_END"
+        phase={NA_RUA_DO_MEDO_PHASES.STREET_END}
       />
 
       <Street
