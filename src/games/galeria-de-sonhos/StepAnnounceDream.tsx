@@ -12,6 +12,7 @@ import { getAnimation } from '@utils/animations';
 import { getAvatarColorById } from '@utils/helpers';
 // Components
 import { TimedButton } from '@components/buttons/TimedButton';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { ImageCard } from '@components/image-cards/ImageCard';
 import { Translate } from '@components/language/Translate';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
@@ -162,33 +163,15 @@ export function StepAnnounceDream({
                   title={
                     playerInNightmare?.id === gameOrder[0] ? (
                       <Translate
-                        pt={
-                          <>
-                            <PlayerAvatarName player={playerInNightmare} /> foi ganancioso(a) não conseguiu
-                            usar todos os sonhos.
-                          </>
-                        }
-                        en={
-                          <>
-                            <PlayerAvatarName player={playerInNightmare} /> was too greedy and wasn't able to
-                            use of all their dreams.
-                          </>
-                        }
+                        pt="{player} foi ganancioso(a) não conseguiu usar todos os sonhos."
+                        en="{player} was too greedy and wasn't able to use of all their dreams."
+                        values={{ player: <PlayerAvatarName player={playerInNightmare} /> }}
                       />
                     ) : (
                       <Translate
-                        pt={
-                          <>
-                            Não há mais jogadores pra dar match com{' '}
-                            <PlayerAvatarName player={players[gameOrder[0]]} />
-                          </>
-                        }
-                        en={
-                          <>
-                            There are no players to match anymore with{' '}
-                            <PlayerAvatarName player={players[gameOrder[0]]} />
-                          </>
-                        }
+                        pt="Não há mais jogadores pra dar match com {player}"
+                        en="There are no players to match anymore with {player}"
+                        values={{ player: <PlayerAvatarName player={players[gameOrder[0]]} /> }}
                       />
                     )
                   }
@@ -245,6 +228,8 @@ export function StepAnnounceDream({
           )}
         </footer>
       </motion.div>
+
+      {latest.isPhaseOver && gameOrder.length === 1 && <HostNextPhaseButton withWaitingTimeBar />}
 
       {gameOrder.length > 1 && (
         <PlayersTurnOrder

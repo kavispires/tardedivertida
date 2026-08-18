@@ -9,6 +9,7 @@ import { useLoading } from '@hooks/useLoading';
 import { getAnimation } from '@utils/animations';
 import { getAnimationClass } from '@utils/helpers';
 // Icons
+import { SkullIcon } from '@icons/SkullIcon';
 import { StarIcon } from '@icons/StarIcon';
 // Components
 import { ImageCard } from '@components/image-cards/ImageCard';
@@ -24,9 +25,12 @@ type PlayTableProps = {
   onPlayCard: (cardId: string) => void;
   userCards: PlainObject;
   isPlayAvailable: boolean;
+  isInNightmare: boolean;
 };
 
-export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: PlayTableProps) {
+const nightmareStarColor = 'rgba(249, 106, 106, 0.65)';
+
+export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable, isInNightmare }: PlayTableProps) {
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
@@ -63,15 +67,47 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                     />
                     {userCardEntry.used && (
                       <div className="g-star-points">
-                        <motion.div {...getAnimation('zoomIn', { delay: table.length * 0.1, duration: 0.4 })}>
-                          {userCardEntry.score === 3 && <StarIcon className="g-star g-star--super-spark" />}
-                        </motion.div>
-                        <motion.div {...getAnimation('zoomIn', { delay: table.length * 0.1, duration: 0.3 })}>
-                          {userCardEntry.score > 1 && <StarIcon className="g-star g-star--spark" />}
-                        </motion.div>
-                        <motion.div {...getAnimation('zoomIn', { delay: table.length * 0.1, duration: 0.2 })}>
-                          {userCardEntry.score > 0 && <StarIcon className="g-star g-star--spark" />}
-                        </motion.div>
+                        {userCardEntry.score === 3 && (
+                          <motion.div
+                            {...getAnimation('zoomIn', { delay: table.length * 0.1, duration: 0.4 })}
+                          >
+                            <StarIcon
+                              className="g-star g-star--super-spark"
+                              color={
+                                isInNightmare && userCardEntry.score === 3 ? nightmareStarColor : undefined
+                              }
+                            />
+                          </motion.div>
+                        )}
+                        {userCardEntry.score > 1 && (
+                          <motion.div
+                            {...getAnimation('zoomIn', { delay: table.length * 0.1, duration: 0.3 })}
+                          >
+                            <StarIcon
+                              className="g-star g-star--spark"
+                              color={
+                                isInNightmare && userCardEntry.score === 2 ? nightmareStarColor : undefined
+                              }
+                            />
+                          </motion.div>
+                        )}
+                        {userCardEntry.score > 0 && (
+                          <motion.div
+                            {...getAnimation('zoomIn', { delay: table.length * 0.1, duration: 0.2 })}
+                          >
+                            <StarIcon
+                              className="g-star g-star--spark"
+                              color={
+                                isInNightmare && userCardEntry.score === 1 ? nightmareStarColor : undefined
+                              }
+                            />
+                          </motion.div>
+                        )}
+                        {userCardEntry.score === 0 && (
+                          <motion.div {...getAnimation('zoomIn', { duration: 0.2 })}>
+                            <SkullIcon className="g-star g-star--spark" />
+                          </motion.div>
+                        )}
                       </div>
                     )}
                   </ImageCardButton>
