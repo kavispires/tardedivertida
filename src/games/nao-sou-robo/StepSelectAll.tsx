@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 // Ant Design Resources
 import { Avatar, Flex, Image } from 'antd';
 // Types
@@ -52,7 +52,6 @@ export function StepSelectAll({
   robot,
   selectionCount,
 }: StepSelectAllProps) {
-  const scrollToSubmitRef = useRef<HTMLButtonElement>(null);
   const { length, dict: selectedCards, updateDict, keys: selection } = useBooleanDictionary({});
   const cardWidth = useCardWidth(5, { gap: 8, minWidth: 140, maxWidth: 150 });
 
@@ -71,9 +70,6 @@ export function StepSelectAll({
   );
 
   const toggleCard = (cardId: string) => {
-    if (length + 1 === selectionCount && scrollToSubmitRef.current) {
-      scrollToSubmitRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
     updateDict(cardId);
   };
 
@@ -96,18 +92,8 @@ export function StepSelectAll({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              O sistema não está deixando você comprar! Você precisa provar que não é um cambista ordinário
-              tentando fazer mutreta!
-            </>
-          }
-          en={
-            <>
-              The system is not letting you buy the tickets! You need to prove that you are not an ordinary
-              scalper trying to do a scam!
-            </>
-          }
+          pt="O sistema não está deixando você comprar! Você precisa provar que não é um cambista ordinário tentando fazer mutreta!"
+          en="The system is not letting you buy the tickets! You need to prove that you are not an ordinary scalper trying to do a scam!"
         />
       </RuleInstruction>
 
@@ -119,16 +105,8 @@ export function StepSelectAll({
           />
           <SpeechBubble style={{ width: '90%' }}>
             <Translate
-              pt={
-                <>
-                  Selecione <em>todas</em> as imagens abaixo relacionadas a:{' '}
-                </>
-              }
-              en={
-                <>
-                  Select <em>all</em> the images below related to:{' '}
-                </>
-              }
+              pt="Selecione <em>todas</em> as imagens abaixo relacionadas a:"
+              en="Select <em>all</em> the images below related to:"
             />
             <Flex justify="center">
               <CaptchaTopic captcha={captcha} />
@@ -174,40 +152,23 @@ export function StepSelectAll({
 
       <RuleInstruction type="event">
         <Translate
-          pt={
-            <>
-              São <CardHighlight>{selectionCount} cartas</CardHighlight> no total a serem selecionadas.
-              <br />
-              Você ganha{' '}
+          pt={`São <cards>${selectionCount} cartas</cards> no total a serem selecionadas.<br/>Você ganha {positivePoints} por cada carta que não é do robô e perde {negativePoints} por cada carta que é do robô.`}
+          en={`There are <cards>${selectionCount} cards</cards> in total to be selected.<br/>You get {positivePoints} for each card that is not from the robot and lose {negativePoints} for each card that is from the robot.`}
+          values={{
+            cards: (text) => <CardHighlight>{text}</CardHighlight>,
+            positivePoints: (
               <PointsHighlight
                 type="positive"
                 value={1}
-              />{' '}
-              por cada carta que não é do robô e perde{' '}
+              />
+            ),
+            negativePoints: (
               <PointsHighlight
                 type="negative"
                 value={1}
-              />{' '}
-              por cada carta que é do robô.
-            </>
-          }
-          en={
-            <>
-              There are <CardHighlight>{selectionCount} cards</CardHighlight> in total to be selected.
-              <br />
-              You get{' '}
-              <PointsHighlight
-                type="positive"
-                value={1}
-              />{' '}
-              for each card that is not from the robot and lose{' '}
-              <PointsHighlight
-                type="negative"
-                value={1}
-              />{' '}
-              for each card that is from the robot.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 
@@ -216,7 +177,6 @@ export function StepSelectAll({
           size="large"
           onClick={onSubmitCards}
           disabled={user.ready || length !== selectionCount}
-          ref={scrollToSubmitRef}
         >
           <Translate
             pt="Enviar Captcha"

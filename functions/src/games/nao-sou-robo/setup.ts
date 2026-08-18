@@ -202,7 +202,7 @@ export const prepareAreYouARobotPhase = async (
     });
   });
 
-  const options = keyBy([...playerCards, ...botCards]);
+  const options = keyBy([...playerCards, ...botCards], 'id');
 
   return {
     update: {

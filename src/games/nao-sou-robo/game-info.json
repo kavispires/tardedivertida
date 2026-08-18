@@ -2,11 +2,11 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "B",
   "gameName": "nao-sou-robo",
-  "version": "3.0.40",
+  "version": "3.0.42",
   "release": "stable",
   "releaseDate": "2023-11-12",
-  "updatedAt": 1786820761631,
-  "available": false,
+  "updatedAt": 1787012470535,
+  "available": true,
   "title": {
     "pt": "Eu Não Sou Um Robô",
     "en": "I'm Not A Robot"
@@ -24,7 +24,7 @@
     "clouds": "captcha-clouds",
     "cloudsAnimationType": "falling",
     "primaryColor": "#313457",
-    "colorScheme": "dark",
+    "colorScheme": "light",
     "videoBackground": true,
     "imageBackground": true
   },
