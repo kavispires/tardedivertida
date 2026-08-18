@@ -43,18 +43,8 @@ export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
       >
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Jogando <strong>Ué, Só Isso</strong>, você recebeu as seguintes pistas que estão de alguma
-                forma relacionadas à palavra secreta:
-              </>
-            }
-            en={
-              <>
-                Playing the game <strong>That's it</strong>, you received the following clues that are somehow
-                related to the secret word:
-              </>
-            }
+            pt="Jogando <strong>Ué, Só Isso</strong>, você recebeu as seguintes pistas que estão de alguma forma relacionadas à palavra secreta:"
+            en="Playing the game <strong>That's it</strong>, you received the following clues that are somehow related to the secret word:"
           />
         </RuleInstruction>
 

@@ -37,18 +37,8 @@ export const TrackPolemicaDaVez = ({ track, onSubmitAnswer, user }: TrackProps) 
       >
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Observe a twitada abaixo, qual a porcentagem de <strong>curtidas</strong> entre os jogadores
-                você acha que ele ganhou?
-              </>
-            }
-            en={
-              <>
-                Based on the tweet below, what percentage of <strong>likes</strong> among the players do you
-                think it got?
-              </>
-            }
+            pt="Observe a twitada abaixo, qual a porcentagem de <strong>curtidas</strong> entre os jogadores você acha que ele ganhou?"
+            en="Based on the tweet below, what percentage of <strong>likes</strong> among the players do you think it got?"
           />
         </RuleInstruction>
 

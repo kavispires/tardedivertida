@@ -34,16 +34,8 @@ export const TrackNamoroOuAmizade = ({ track, onSubmitAnswer, user }: TrackProps
       <MinigameTitle title={{ pt: 'Namoro ou Amizade?', en: 'Love or Friendship?' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Dos <strong>3 partidos</strong> abaixo, qual é o melhor?
-            </>
-          }
-          en={
-            <>
-              From <strong>3 candidates</strong> below, which one is the best one?
-            </>
-          }
+          pt="Dos <strong>3 partidos</strong> abaixo, qual é o melhor?"
+          en="From <strong>3 candidates</strong> below, which one is the best one?"
         />
       </RuleInstruction>
 

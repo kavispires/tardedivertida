@@ -46,20 +46,8 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
       >
         <RuleInstruction type="lore">
           <Translate
-            pt={
-              <>
-                Um alienígena que não fala nossa língua está pedindo um objeto.
-                <br />
-                Qual o objeto que ele quer?
-              </>
-            }
-            en={
-              <>
-                An alien who doesn't speak our language is asking for an object.
-                <br />
-                What object do they want?
-              </>
-            }
+            pt="Um alienígena que não fala nossa língua está pedindo um objeto.<br/>Qual o objeto que ele quer?"
+            en="An alien who doesn't speak our language is asking for an object.<br/>What object do they want?"
           />
         </RuleInstruction>
 

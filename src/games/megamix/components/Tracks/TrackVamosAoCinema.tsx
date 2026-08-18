@@ -33,18 +33,8 @@ export const TrackVamosAoCinema = ({ track, onSubmitAnswer, user }: TrackProps) 
       <MinigameTitle title={{ pt: 'Vamos ao Cinema!', en: 'Movie Night!' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Decidimos que o filme que mais se encaixa nas críticas abaixo é o que vamos assistir! Qual filme
-              você quer ver?
-            </>
-          }
-          en={
-            <>
-              We decided that we will watch a movie that best match both reviews bellow! Which movie do you
-              prefer?
-            </>
-          }
+          pt="Decidimos que o filme que mais se encaixa nas críticas abaixo é o que vamos assistir! Qual filme você quer ver?"
+          en="We decided that we will watch a movie that best match both reviews bellow! Which movie do you prefer?"
         />
       </RuleInstruction>
 

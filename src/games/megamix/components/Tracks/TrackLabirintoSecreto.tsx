@@ -40,24 +40,12 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
       <MinigameTitle title={{ pt: 'Labirinto Secreto', en: 'Secret Labyrinth' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Para atravessar a floresta, você precisa passar por essas 3 árvores.
-              <br />
-              Com mapa feito de adjetivos (que útil), qual rota você selecionaria ir da{' '}
-              <TextHighlight>{track.data.trees[0].text}</TextHighlight> ao{' '}
-              <TextHighlight>{track.data.trees[2].text}</TextHighlight>?
-            </>
-          }
-          en={
-            <>
-              To cross the woods, you need to pass by 3 trees.
-              <br />
-              With a map made of adjectives (wow, so useful), what route would to select to go from{' '}
-              <TextHighlight>{track.data.trees[0].text}</TextHighlight> to{' '}
-              <TextHighlight>{track.data.trees[2].text}</TextHighlight>?
-            </>
-          }
+          pt="Para atravessar a floresta, você precisa passar por essas 3 árvores.<br/>Com mapa feito de adjetivos (que útil), qual rota você selecionaria ir da {firstTree} ao {lastTree}?"
+          en="To cross the woods, you need to pass by 3 trees.<br/>With a map made of adjectives (wow, so useful), what route would to select to go from {firstTree} to {lastTree}?"
+          values={{
+            firstTree: <TextHighlight>{track.data.trees[0].text}</TextHighlight>,
+            lastTree: <TextHighlight>{track.data.trees[2].text}</TextHighlight>,
+          }}
         />
       </RuleInstruction>
 

@@ -51,24 +51,8 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
         <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Dentre as cartas abaixo, qual melhor descreve essa linda ilustração?
-                <br />
-                Foi você quem desenhou? Lembre-se que a resposta correta não é importante, e sim o que a
-                maioria escolher.
-              </>
-            }
-            en={
-              <>
-                Among the cards below, which one best describes the beautiful illustration?
-                <br />
-                <em>
-                  Is that your drawing? Remember that the correct answer is not important, but what the
-                  majority will choose.
-                </em>
-              </>
-            }
+            pt="Dentre as cartas abaixo, qual melhor descreve essa linda ilustração?<br/>Foi você quem desenhou? Lembre-se que a resposta correta não é importante, e sim o que a maioria escolher."
+            en="Among the cards below, which one best describes the beautiful illustration?<br/><em>Is that your drawing? Remember that the correct answer is not important, but what the majority will choose.</em>"
           />
         </RuleInstruction>
 
@@ -109,24 +93,8 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
       <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Dentre as ilustrações abaixo, qual melhor descreve a carta?
-              <br />
-              Foi você quem desenhou? Lembre-se que a resposta correta não é importante, e sim o que a maioria
-              escolher.
-            </>
-          }
-          en={
-            <>
-              Among the illustrations below, which one best fits the card?
-              <br />
-              <em>
-                Is that your drawing? Remember that the correct answer is not important, but what the majority
-                will choose.
-              </em>
-            </>
-          }
+          pt="Dentre as ilustrações abaixo, qual melhor descreve a carta?<br/>Foi você quem desenhou? Lembre-se que a resposta correta não é importante, e sim o que a maioria escolher."
+          en="Among the illustrations below, which one best fits the card?<br/><em>Is that your drawing? Remember that the correct answer is not important, but what the majority will choose.</em>"
         />
       </RuleInstruction>
 

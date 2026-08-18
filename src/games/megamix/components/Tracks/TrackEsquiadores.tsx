@@ -75,20 +75,8 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
       >
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Você tem os pensamentos mais filosóficos quando você está esquiando ladeira abaixo.
-                <br />
-                Selecione a opção apropriada para a questão séria:
-              </>
-            }
-            en={
-              <>
-                You have the most philosophical shower thoughts while skiing downhill.
-                <br />
-                Select the best option below:
-              </>
-            }
+            pt="Você tem os pensamentos mais filosóficos quando você está esquiando ladeira abaixo.<br/>Selecione a opção apropriada para a questão séria:"
+            en="You have the most philosophical shower thoughts while skiing downhill.<br/>Select the best option below:"
           />
         </RuleInstruction>
 

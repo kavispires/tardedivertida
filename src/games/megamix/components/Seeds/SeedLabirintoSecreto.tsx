@@ -38,19 +38,9 @@ export function SeedLabirintoSecreto({ seed, updateData, user }: SeedLabirintoSe
       <Space orientation="vertical">
         <Surface className="seed-instruction">
           <Translate
-            pt={
-              <>
-                Para não pensarem mal de você, você escolheu <TextHighlight>{seed.tree.text}</TextHighlight>{' '}
-                como a legenda de impacto da sua postagem. Agora escolha o melhor adjetivo que vai bem com
-                ela.
-              </>
-            }
-            en={
-              <>
-                Thinking about the haters, you chose <TextHighlight>{seed.tree.text}</TextHighlight> as a
-                caption. Now select the best adjective to go with it.
-              </>
-            }
+            pt="Para não pensarem mal de você, você escolheu {caption} como a legenda de impacto da sua postagem. Agora escolha o melhor adjetivo que vai bem com ela."
+            en="Thinking about the haters, you chose {caption} as a caption. Now select the best adjective to go with it."
+            values={{ caption: <TextHighlight>{seed.tree.text}</TextHighlight> }}
           />
         </Surface>
 

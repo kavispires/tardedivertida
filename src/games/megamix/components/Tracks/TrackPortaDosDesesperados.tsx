@@ -37,20 +37,8 @@ export const TrackPortaDosDesesperados = ({ track, onSubmitAnswer, user }: Track
       <MinigameTitle title={{ pt: 'Porta dos Desesperados', en: 'Obscure Doors' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              A pista está nas páginas do livro.
-              <br />
-              Selecione a porta correta que mais se relaciona com o livro.
-            </>
-          }
-          en={
-            <>
-              The clue is in the pages of the book.
-              <br />
-              Select the door that best fits the clue.
-            </>
-          }
+          pt="A pista está nas páginas do livro.<br/>Selecione a porta correta que mais se relaciona com o livro."
+          en="The clue is in the pages of the book.<br/>Select the door that best fits the clue."
         />
       </RuleInstruction>
 

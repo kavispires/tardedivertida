@@ -36,22 +36,8 @@ export function SeedOndaTelepatica({ seed, updateData }: SeedOndaTelepaticaProps
       <SpaceContainer vertical>
         <Surface className="seed-instruction">
           <Translate
-            pt={
-              <>
-                A tarefa é escrever algo simples relacionado ao tema abaixo, pode ser uma palavra, duas, uma
-                expressão.
-                <br />
-                Vamos tira 10!
-              </>
-            }
-            en={
-              <>
-                The task is easy: Write something simple that matches the theme below. It could be a word,
-                two, or a phrase.
-                <br />
-                Let's get that A+!
-              </>
-            }
+            pt="A tarefa é escrever algo simples relacionado ao tema abaixo, pode ser uma palavra, duas, uma expressão.<br/>Vamos tira 10!"
+            en="The task is easy: Write something simple that matches the theme below. It could be a word, two, or a phrase.<br/>Let's get that A+!"
           />
         </Surface>
 

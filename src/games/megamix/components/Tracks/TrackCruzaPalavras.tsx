@@ -36,23 +36,9 @@ export const TrackCruzaPalavras = ({ track, onSubmitAnswer, user }: TrackProps) 
       <RuleInstruction type="action">
         <Translate
           pt={
-            <>
-              Bob, o robot, escreveu a dica péssima abaixo usando sua "inteligência artificial", e agora?
-              <br />
-              Aonde ela se encaixa na grade para que combine com a linha e a coluna?
-              <br />
-              Selecione na célula apropriada!
-            </>
+            'Bob, o robot, escreveu a dica péssima abaixo usando sua "inteligência artificial", e agora?<br/>Aonde ela se encaixa na grade para que combine com a linha e a coluna?<br/>Selecione na célula apropriada!'
           }
-          en={
-            <>
-              Bob the bot wrote this terrible clue below using its AI.
-              <br />
-              Where does it fit in the grid where it would match the column and row?
-              <br />
-              Select the appropriate grid cell!
-            </>
-          }
+          en="Bob the bot wrote this terrible clue below using its AI.<br/>Where does it fit in the grid where it would match the column and row?<br/>Select the appropriate grid cell!"
         />
       </RuleInstruction>
 

@@ -39,17 +39,9 @@ export const TrackGaleriaDeSonhos = ({ track, onSubmitAnswer, user }: TrackProps
       <MinigameTitle title={{ pt: 'Galeria dos Sonhos', en: 'Dream Gallery' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Com o tema abaixo, qual <CardHighlight>carta-sonho</CardHighlight> é a mais provável dos outros
-              jogadores também visitarem?
-            </>
-          }
-          en={
-            <>
-              With the theme below, which <CardHighlight>Dream Card</CardHighlight> best relates to it?
-            </>
-          }
+          pt="Com o tema abaixo, qual <card>carta-sonho</card> é a mais provável dos outros jogadores também visitarem?"
+          en="With the theme below, which <card>Dream Card</card> best relates to it?"
+          values={{ card: (text) => <CardHighlight>{text}</CardHighlight> }}
         />
       </RuleInstruction>
 

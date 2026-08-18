@@ -96,12 +96,7 @@ export function StepResult({
         {scoringType === 'TIE' && (
           <Translate
             pt="Empate entre 2 ou mais respostas. Quem já estava na Área VIP fica e ganha ponto."
-            en={
-              <>
-                It's a tie for 2 or more answers. Whoever was already in the VIP Area stays there and get
-                points.
-              </>
-            }
+            en="It's a tie for 2 or more answers. Whoever was already in the VIP Area stays there and get points."
           />
         )}
         {scoringType === 'DRAW' && (

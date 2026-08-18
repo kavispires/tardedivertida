@@ -1,7 +1,6 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
@@ -14,7 +13,6 @@ import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackProps) => {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
   const onSelect = (index: number) => {
@@ -36,12 +34,7 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
         align="center"
         className="contained margin"
       >
-        <TextCard
-          header={translate({ pt: 'Pergunta', en: 'Question' })}
-          color="orange"
-        >
-          {track.data.card.question}
-        </TextCard>
+        <TextCard color="orange">{track.data.card.question}</TextCard>
 
         <SpaceContainer>
           <TransparentButton
