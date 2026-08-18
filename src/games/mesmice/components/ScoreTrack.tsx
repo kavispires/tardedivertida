@@ -82,19 +82,8 @@ export function ScoreTrack({ history, hideInstructions = false }: ScoreTrackProp
       {!hideInstructions && (
         <RuleInstruction type="tip">
           <Translate
-            en={
-              <>
-                From left to write, this is how many features we have to eliminate and how many points we get
-                for each one. As you can see, we must eliminate some before we even get any points.
-              </>
-            }
-            pt={
-              <>
-                Da esquerda para a direita, este é o número de características que temos que eliminar e
-                quantos pontos ganhamos para cada uma delas. Como você pode ver, temos que eliminar algumas
-                antes mesmo de ganhar pontos.
-              </>
-            }
+            en="From left to write, this is how many features we have to eliminate and how many points we get for each one. As you can see, we must eliminate some before we even get any points."
+            pt="Da esquerda para a direita, este é o número de características que temos que eliminar e quantos pontos ganhamos para cada uma delas. Como você pode ver, temos que eliminar algumas antes mesmo de ganhar pontos."
           />
         </RuleInstruction>
       )}

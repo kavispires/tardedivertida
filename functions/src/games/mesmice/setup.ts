@@ -97,6 +97,7 @@ export const prepareClueWritingPhase = async (
         phase: MESMICE_PHASES.CLUE_WRITING,
         features: keyBy(
           features.map((feature: ObjectFeatureCardData) => ({ ...feature, eliminated: false })),
+          'id',
         ),
         players,
         outcome: OUTCOME.NEW,

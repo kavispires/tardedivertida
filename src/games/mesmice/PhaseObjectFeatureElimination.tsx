@@ -47,12 +47,7 @@ export function PhaseObjectFeatureElimination({
       <Surface>
         <Translate
           pt="Neste jogo, você escreverá uma dica que melhor conecta seu objeto com a característica sorteada."
-          en={
-            <>
-              In this game, you will write a clue that best connects your object with the assigned
-              characteristic.
-            </>
-          }
+          en="In this game, you will write a clue that best connects your object with the assigned characteristic."
         />
       </Surface>
     </PhaseAnnouncement>
@@ -86,17 +81,11 @@ export function PhaseObjectFeatureElimination({
           time={5}
         >
           <Translate
-            pt={
-              <>
-                Vamos analisar os objetos de <PlayerAvatarName player={activePlayer} />.
-              </>
-            }
-            en={
-              <>
-                Let's analyze <PlayerAvatarName player={activePlayer} />
-                's objects.
-              </>
-            }
+            pt="Vamos analisar os objetos de {player}."
+            en="Let's analyze {player}'s objects."
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
           />
           <PlayersTurnOrder
             players={players}
