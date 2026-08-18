@@ -82,10 +82,7 @@ export function PhaseTweetSelection({ state, players, meta }: PhaseProps<PhaseTw
           onPressButton={goToNextStep}
           time={4}
         >
-          <Surface
-            contained
-            className="my-4"
-          >
+          <Surface contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."
               en="Every round a new tweet, your opinion and everybody else's."
