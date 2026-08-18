@@ -33,20 +33,8 @@ export function PhaseResolution({ state, players }: PhaseProps<PhaseResolutionSt
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Agora podemos saber quem deve ser linchado porque não combina com o grupo!
-              <br />
-              Graças a Deus, mais espaço!
-            </>
-          }
-          en={
-            <>
-              Now we will know who can be moved because they don't match with the group!
-              <br />
-              Thank God, more room!
-            </>
-          }
+          pt="Agora podemos saber quem deve ser linchado porque não combina com o grupo!<br/>Graças a Deus, mais espaço!"
+          en="Now we will know who can be moved because they don't match with the group!<br/>Thank God, more room!"
         />
       </Surface>
     </PhaseAnnouncement>

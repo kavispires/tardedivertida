@@ -413,11 +413,11 @@
     opacity: 1;
   }
   50% {
-    transform: scale(0.1) translateY(600%);
+    transform: scale(0.4) translateY(500%);
     opacity: 0.2;
   }
   100% {
-    transform: scale(0.1) translateY(700%);
+    transform: scale(0.1) translateY(1800%);
     opacity: 0;
   }
 }

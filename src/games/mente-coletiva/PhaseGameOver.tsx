@@ -1,3 +1,5 @@
+// Ant Design Resources
+import { Flex } from 'antd';
 // Types
 import type { PhaseProps, GamePlayer } from 'types/game';
 // Icons
@@ -5,7 +7,7 @@ import { TheEndIcon } from '@icons/TheEndIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
 import { Translate } from '@components/language/Translate';
-import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TitledContainer } from '@components/layout/TitledContainer';
 import { GameOverWrapper } from '@components/results/GameOverWrapper';
 import { Title } from '@components/text/Title';
 // Internal
@@ -54,19 +56,19 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       />
 
       {Boolean(state.gallery) && (
-        <>
-          <Title
-            size="x-small"
-            level={3}
-          >
+        <TitledContainer
+          className="gallery"
+          wrap
+          title={
             <Translate
               pt="Melhores Respostas"
               en="Best Answers"
             />
-          </Title>
-          <SpaceContainer
-            className="gallery"
+          }
+        >
+          <Flex
             wrap
+            gap={8}
           >
             {state.gallery.map(({ question, answers }: GalleryEntry) => {
               return (
@@ -97,8 +99,8 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
                 </div>
               );
             })}
-          </SpaceContainer>
-        </>
+          </Flex>
+        </TitledContainer>
       )}
     </GameOverWrapper>
   );
