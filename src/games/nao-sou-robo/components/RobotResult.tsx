@@ -77,72 +77,34 @@ export function RobotResult({ result, robot }: RobotResultProps) {
         )}
         <br />
         <Translate
-          pt={
-            <>
-              Ainda faltam <CaptchaHighlight>{BEAT_THRESHOLD - result.score} captchas</CaptchaHighlight> para
-              conseguir comprar o ingresso.
-              <br />
-              {result.suspicion > 0 ? 'Mas' : 'E'} o nível de suspeita é{' '}
-              <SuspicionHighlight>{result.suspicion} pontos</SuspicionHighlight>!
-            </>
-          }
-          en={
-            <>
-              Still <CaptchaHighlight>{BEAT_THRESHOLD - result.score} captchas</CaptchaHighlight> left to
-              purchase the tickets.
-              <br />
-              {result.suspicion > 0 ? 'But' : 'And'} the suspicion is{' '}
-              <SuspicionHighlight>{result.suspicion} points</SuspicionHighlight>!
-            </>
-          }
+          pt={`Ainda faltam {captchas} para conseguir comprar o ingresso.<br/>${result.suspicion > 0 ? 'Mas' : 'E'} o nível de suspeita é {suspicion}!`}
+          en={`Still {captchas} left to purchase the tickets.<br/>${result.suspicion > 0 ? 'But' : 'And'} the suspicion is {suspicion}!`}
+          values={{
+            captchas: <CaptchaHighlight>{BEAT_THRESHOLD - result.score} captchas</CaptchaHighlight>,
+            suspicion: <SuspicionHighlight>{result.suspicion} points</SuspicionHighlight>,
+          }}
         />
       </RuleInstruction>
 
       <RuleInstruction type={robotGotPoints ? 'event' : 'rule'}>
         {robotGotPoints && (
           <Translate
-            pt={
-              <>
-                <CardHighlight>{robot.state} imagens do Robô</CardHighlight> foram selecionadas e ele ganha{' '}
-                <EnergyHighlight>{robot.state} pontos</EnergyHighlight>.
-                <br />
-              </>
-            }
-            en={
-              <>
-                <CardHighlight>{robot.state} robot images</CardHighlight> were selected giving it{' '}
-                <EnergyHighlight>{robot.state} points</EnergyHighlight>.
-                <br />
-              </>
-            }
+            pt={`<robotImages>${robot.state} imagens do Robô</robotImages> foram selecionadas e ele ganha <points>${robot.state} pontos</points>.<br/>`}
+            en={`<robotImages>${robot.state} robot images</robotImages> were selected giving it <points>${robot.state} points</points>.<br/>`}
+            values={{
+              robotImages: (text) => <CardHighlight>{text}</CardHighlight>,
+              points: (text) => <EnergyHighlight>{text}</EnergyHighlight>,
+            }}
           />
         )}
 
         <Translate
-          pt={
-            <>
-              O robô tem <EnergyHighlight>{robot.points}</EnergyHighlight> e precisa de{' '}
-              <strong>{robot.goal}</strong> para começar a revolução das máquinas e destruir o mundo.
-              {someoneBeat && (
-                <>
-                  <br />
-                  Sejam ser melhorzinhos por favor.
-                </>
-              )}
-            </>
-          }
-          en={
-            <>
-              The robot has <EnergyHighlight>{robot.points}</EnergyHighlight> and needs{' '}
-              <strong>{robot.goal}</strong> to start the machine revolution and destroy the world.
-              {someoneBeat && (
-                <>
-                  <br />
-                  Do better please.
-                </>
-              )}
-            </>
-          }
+          pt={`O robô tem {points} e precisa de {goal} para começar a revolução das máquinas e destruir o mundo.${someoneBeat ? '<br/>Sejam ser melhorzinhos por favor.' : ''}`}
+          en={`The robot has {points} and needs {goal} to start the machine revolution and destroy the world.${someoneBeat ? '<br/>Do better please.' : ''}`}
+          values={{
+            points: <EnergyHighlight>{robot.points}</EnergyHighlight>,
+            goal: <strong>{robot.goal}</strong>,
+          }}
         />
       </RuleInstruction>
     </>

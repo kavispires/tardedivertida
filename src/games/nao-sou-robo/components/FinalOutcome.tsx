@@ -64,20 +64,13 @@ export function FinalOutcome({ players, outcome, robot }: FinalOutcomeProps) {
           style={{ margin: 0 }}
         >
           <Translate
-            en={
-              <>
-                We have failed to buy our tickets and we powered the robot revolution with{' '}
-                <EnergyHighlight>{robot.points}</EnergyHighlight> points and they needed{' '}
-                <TextHighlight>{robot.goal}</TextHighlight> points to do so.
-              </>
-            }
-            pt={
-              <>
-                Falhamos em comprar nossos ingressos e alimentamos a revolução dos robôs com{' '}
-                <TextHighlight>{robot.goal}</TextHighlight>pontos e eles precisavam de {robot.goal} pontos
-                para fazer isso.
-              </>
-            }
+            en="We have failed to buy our tickets and we powered the robot revolution with {points} points and they needed {goal} points to do so."
+            pt="Falhamos em comprar nossos ingressos e alimentamos a revolução dos robôs com {goal}pontos e eles precisavam de {requiredPoints} pontos para fazer isso."
+            values={{
+              points: <EnergyHighlight>{robot.points}</EnergyHighlight>,
+              goal: <TextHighlight>{robot.goal}</TextHighlight>,
+              requiredPoints: robot.goal,
+            }}
           />
         </Surface>
       </TitledContainer>
