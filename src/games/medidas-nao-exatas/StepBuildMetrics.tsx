@@ -116,19 +116,8 @@ export function StepBuildMetrics({
           </StepTitle>
           <RuleInstruction type="action">
             <Translate
-              en={
-                <>
-                  First, from these four words, select the one you want to create the metrics for.
-                  <br />
-                  The game is easier if you select a tangible noun here.
-                </>
-              }
-              pt={
-                <>
-                  Primeiro, dentre estas quatro palavras, selecione a que você quer usar para suas métricas.
-                  <br />O jogo fica mais fácil se você selecionar um substantivo tangível aqui.
-                </>
-              }
+              en="First, from these four words, select the one you want to create the metrics for.<br/>The game is easier if you select a tangible noun here."
+              pt="Primeiro, dentre estas quatro palavras, selecione a que você quer usar para suas métricas.<br/>O jogo fica mais fácil se você selecionar um substantivo tangível aqui."
             />
           </RuleInstruction>
           <SpaceContainer>
@@ -176,22 +165,9 @@ export function StepBuildMetrics({
           </StepTitle>
           <RuleInstruction type="action">
             <Translate
-              en={
-                <>
-                  Now that you have the keyword (<strong>{selectedCard.text}</strong>), from these other words
-                  select <strong>4 words</strong> to be part of the pool.
-                  <br />
-                  Choose words that won't conflict with your keyword.
-                </>
-              }
-              pt={
-                <>
-                  Agora que você tem a palavra-chave (<strong>{selectedCard.text}</strong>), selecione{' '}
-                  <strong>4 palavras</strong> para fazer parte do jogo.
-                  <br />
-                  Escolha palavras que não entrem em conflito com sua palavra-chave.
-                </>
-              }
+              en="Now that you have the keyword ({keyword}), from these other words select <strong>4 words</strong> to be part of the pool.<br/>Choose words that won't conflict with your keyword."
+              pt="Agora que você tem a palavra-chave ({keyword}), selecione <strong>4 palavras</strong> para fazer parte do jogo.<br/>Escolha palavras que não entrem em conflito com sua palavra-chave."
+              values={{ keyword: <strong>{selectedCard.text}</strong> }}
             />
           </RuleInstruction>
           <TextCard
@@ -249,22 +225,8 @@ export function StepBuildMetrics({
           </StepTitle>
           <RuleInstruction type="action">
             <Translate
-              en={
-                <>
-                  Finally, evaluate each of the 5 metrics by distributing the 6 pips between the 2 descriptors
-                  that best describes your keyword so the players can try to guess it.
-                  <br />
-                  Just click on the descriptor or on the pip to move them.
-                </>
-              }
-              pt={
-                <>
-                  Por fim, avalie cada uma das 5 métricas distribuindo as 6 bolinhas entre os 2 descritores
-                  que melhor descrevem sua palavra-chave para que os jogadores possam tentar adivinhá-la.
-                  <br />
-                  Basta clicar no descritor ou na bolinha para movê-las.
-                </>
-              }
+              en="Finally, evaluate each of the 5 metrics by distributing the 6 pips between the 2 descriptors that best describes your keyword so the players can try to guess it.<br/>Just click on the descriptor or on the pip to move them."
+              pt="Por fim, avalie cada uma das 5 métricas distribuindo as 6 bolinhas entre os 2 descritores que melhor descrevem sua palavra-chave para que os jogadores possam tentar adivinhá-la.<br/>Basta clicar no descritor ou na bolinha para movê-las."
             />
           </RuleInstruction>
 

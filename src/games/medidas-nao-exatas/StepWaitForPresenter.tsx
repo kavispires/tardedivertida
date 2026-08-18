@@ -38,16 +38,9 @@ export function StepWaitForPresenter({
         players={players}
         title={
           <Translate
-            pt={
-              <>
-                Aguarde enquanto <PlayerAvatarName player={presenter} /> cria as métricas.
-              </>
-            }
-            en={
-              <>
-                Wait while <PlayerAvatarName player={presenter} /> creates the metrics.
-              </>
-            }
+            pt="Aguarde enquanto {presenter} cria as métricas."
+            en="Wait while {presenter} creates the metrics."
+            values={{ presenter: <PlayerAvatarName player={presenter} /> }}
           />
         }
         instruction={

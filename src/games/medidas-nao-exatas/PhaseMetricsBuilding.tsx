@@ -42,17 +42,9 @@ export function PhaseMetricsBuilding({ state, players }: PhaseProps<PhaseMetrics
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              O apresentador <PlayerAvatarName player={presenter} /> vai construir as métricas para essa
-              rodada.
-            </>
-          }
-          en={
-            <>
-              The presenter <PlayerAvatarName player={presenter} /> will build the metrics for this round.
-            </>
-          }
+          pt="O apresentador {presenter} vai construir as métricas para essa rodada."
+          en="The presenter {presenter} will build the metrics for this round."
+          values={{ presenter: <PlayerAvatarName player={presenter} /> }}
         />
       </Surface>
     </PhaseAnnouncement>

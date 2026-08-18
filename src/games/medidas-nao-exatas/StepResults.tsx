@@ -41,60 +41,31 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
     >
       <StepTitle size="small">
         <Translate
-          pt={
-            <>
-              Resultados para apresentador(a) <PlayerAvatarName player={presenter} />
-            </>
-          }
-          en={
-            <>
-              Results for presenter <PlayerAvatarName player={presenter} />
-            </>
-          }
+          pt="Resultados para apresentador(a) {presenter}"
+          en="Results for presenter {presenter}"
+          values={{ presenter: <PlayerAvatarName player={presenter} /> }}
         />
       </StepTitle>
 
       <RuleInstruction type="action">
         <Translate
-          en={
-            <>
-              The guessers get <PointsHighlight value="points" /> based on the bracket their last guess falls
-              into, if correct.
-              <br />
-              They also lose{' '}
+          en="The guessers get {points} based on the bracket their last guess falls into, if correct.<br/>They also lose {penalty} if they made more than one guess.<br/>The presenter gets {presenterPoints} for each who guessed correctly."
+          pt="Os adivinhadores ganham {points} baseados no quadrado em que a última adivinhação está, se o palpite estiver correto.<br/>Mas eles também perdem {penalty} se fizeram mais de um palpite.<br/>O apresentador ganha {presenterPoints} por cada adivinhador que acertou."
+          values={{
+            points: <PointsHighlight value="pontos" />,
+            penalty: (
               <PointsHighlight
                 type="negative"
                 value={1}
-              />{' '}
-              if they made more than one guess.
-              <br />
-              The presenter gets{' '}
+              />
+            ),
+            presenterPoints: (
               <PointsHighlight
                 type="positive"
                 value={2}
-              />{' '}
-              for each who guessed correctly.
-            </>
-          }
-          pt={
-            <>
-              Os adivinhadores ganham <PointsHighlight value="pontos" /> baseados no quadrado em que a última
-              adivinhação está, se o palpite estiver correto.
-              <br />
-              Mas eles também perdem{' '}
-              <PointsHighlight
-                type="negative"
-                value={1}
-              />{' '}
-              se fizeram mais de um palpite.
-              <br />O apresentador ganha{' '}
-              <PointsHighlight
-                type="positive"
-                value={2}
-              />{' '}
-              por cada adivinhador que acertou.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 

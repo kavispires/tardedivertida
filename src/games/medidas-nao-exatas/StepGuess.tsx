@@ -107,28 +107,16 @@ export function StepGuess({
           )}
           {guesses.length === 1 && (
             <Translate
-              en={
-                <>
-                  If you change your mind, you can choose a different word, but you will lower your points and
-                  receive a{' '}
-                  <PointsHighlight
-                    type="negative"
-                    value={1}
-                  />{' '}
-                  penalty.
-                </>
-              }
-              pt={
-                <>
-                  Se você mudar de ideia, pode escolher uma palavra diferente, mas perderá pontos e receberá
-                  uma penalidade de{' '}
+              en="If you change your mind, you can choose a different word, but you will lower your points and receive a {penalty} penalty."
+              pt="Se você mudar de ideia, pode escolher uma palavra diferente, mas perderá pontos e receberá uma penalidade de {penalty}."
+              values={{
+                penalty: (
                   <PointsHighlight
                     type="negative"
                     value={1}
                   />
-                  .
-                </>
-              }
+                ),
+              }}
             />
           )}
           {guesses.length === 2 && (
@@ -189,6 +177,7 @@ export function StepGuess({
         value={timeLeft}
         total={GUESSING_TIME}
         status="normal"
+        className="my-4"
       />
 
       <NextPhaseIfAllPlayersHaveGuessed

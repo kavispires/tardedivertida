@@ -8,43 +8,25 @@ import { SecretWordHighlight, WordsHighlight } from './Highlights';
 export function GuessingRules() {
   return (
     <Translate
-      en={
-        <>
-          Among the <WordsHighlight>5 words</WordsHighlight>, you must guess the{' '}
-          <SecretWordHighlight>secret word</SecretWordHighlight>. Every{' '}
-          <TimeHighlight>10 seconds</TimeHighlight> one of the 5 metrics shows up to help you! You can make a
-          guess at any moment. The earlier you make the guess,{' '}
+      en="Among the <words>5 words</words>, you must guess the <secretWord>secret word</secretWord>.<br/>Every <time>10 seconds</time> one of the 5 metrics shows up to help you! You can make a guess at any moment.<br/>The earlier you make the guess, <morePoints>more points</morePoints> you get.<br/>If you decide to change your guess, you can do it once, but that will be your new score and {penalty}."
+      pt="Entre as <words>5 palavras</words>, você deve adivinhar a <secretWord>palavra secreta</secretWord>.<br/>A cada <time>10 segundos</time> uma das 5 métricas aparece para ajudar. Você pode fazer um palpite a qualquer momento.<br/>Quanto mais cedo você fizer o palpite, <morePoints>mais pontos</morePoints> você ganha.<br/>Se decidir mudar seu palpite, você pode fazê-lo uma vez, mas isso resultará em uma nova pontuação e {penalty}."
+      values={{
+        words: (text) => <WordsHighlight>{text}</WordsHighlight>,
+        secretWord: (text) => <SecretWordHighlight>{text}</SecretWordHighlight>,
+        time: (text) => <TimeHighlight>{text}</TimeHighlight>,
+        morePoints: (text) => (
           <PointsHighlight
             type="positive"
-            value="more points"
-          />{' '}
-          you get. If you decide to change your guess, you can do it once, but that will be your new score and{' '}
+            value={text}
+          />
+        ),
+        penalty: (
           <PointsHighlight
             type="negative"
             value={-1}
           />
-          .
-        </>
-      }
-      pt={
-        <>
-          Entre as <WordsHighlight>5 palavras</WordsHighlight>, você deve adivinhar a{' '}
-          <SecretWordHighlight>palavra secreta</SecretWordHighlight>. A cada{' '}
-          <TimeHighlight>10 segundos</TimeHighlight> uma das 5 métricas aparece para ajudar. Você pode fazer
-          um palpite a qualquer momento. Quanto mais cedo você fizer o palpite,{' '}
-          <PointsHighlight
-            type="positive"
-            value="mais pontos"
-          />{' '}
-          você ganha. Se decidir mudar seu palpite, você pode fazê-lo uma vez, mas isso resultará em uma nova
-          pontuação e{' '}
-          <PointsHighlight
-            type="negative"
-            value={-1}
-          />
-          .
-        </>
-      }
+        ),
+      }}
     />
   );
 }
