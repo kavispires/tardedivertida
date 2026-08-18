@@ -2,6 +2,7 @@
 import { Flex } from 'antd';
 // Icons
 import { DeckIcon } from '@icons/DeckIcon';
+import { DeskIcon } from '@icons/DeskIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { DualTranslate } from '@components/language/DualTranslate';
@@ -80,5 +81,15 @@ export function DeckCountHighlight({ children }: HighlightProps) {
     >
       {children}
     </MetricHighlight>
+  );
+}
+
+export function TellerHighlight(props: HighlightProps) {
+  return (
+    <MetricHighlight
+      icon={<DeskIcon />}
+      iconPlacement="before"
+      {...props}
+    />
   );
 }

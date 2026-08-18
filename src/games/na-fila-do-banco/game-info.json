@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "na-fila-do-banco",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "release": "stable",
   "releaseDate": "2026-04-16",
-  "updatedAt": 1786820761277,
+  "updatedAt": 1787018391167,
   "available": true,
   "title": {
     "pt": "Na Fila do Banco",

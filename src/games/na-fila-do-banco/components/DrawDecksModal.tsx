@@ -8,10 +8,9 @@ import { ImageCard } from '@components/image-cards/ImageCard';
 import { ImageCardButton } from '@components/image-cards/ImageCardButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { TextHighlight } from '@components/text/TextHighlight';
 // Internal
 import type { ClientCard, SubmitPlayCardPayload } from '../utils/types';
-import { ClientHighlight, DecksColorsHighlight } from './Highlights';
+import { ClientHighlight, DecksColorsHighlight, TellerHighlight } from './Highlights';
 
 type DrawDecksModalProps = {
   open: boolean;
@@ -77,20 +76,17 @@ export function DrawDecksModal({
     >
       <Typography.Paragraph>
         <Translate
-          pt={
-            <>
-              Você selecionou <ClientHighlight clientId={cardType ?? ''} /> do baralho{' '}
-              <DecksColorsHighlight deckColors={[cardColor ?? '']} /> para o{' '}
-              <TextHighlight>Caixa {selectedTellerId}</TextHighlight>.
-            </>
-          }
-          en={
-            <>
-              You selected <ClientHighlight clientId={cardType ?? ''} /> from the{' '}
-              <DecksColorsHighlight deckColors={[cardColor ?? '']} /> deck for{' '}
-              <TextHighlight>Teller {selectedTellerId}</TextHighlight>.
-            </>
-          }
+          pt="Você selecionou {client} do baralho {deck} para o <teller>Caixa</teller>."
+          en="You selected {client} from the {deck} deck for <teller>Teller</teller>."
+          values={{
+            client: <ClientHighlight clientId={cardType ?? ''} />,
+            deck: <DecksColorsHighlight deckColors={[cardColor ?? '']} />,
+            teller: (text) => (
+              <TellerHighlight>
+                {text} {selectedTellerId}
+              </TellerHighlight>
+            ),
+          }}
         />
       </Typography.Paragraph>
 

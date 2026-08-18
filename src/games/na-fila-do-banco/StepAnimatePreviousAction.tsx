@@ -97,6 +97,7 @@ export function StepAnimatePreviousAction({
           duration={duration}
           disabled
           onExpire={() => goToNextStep()}
+          className="my-4"
         >
           <Translate
             pt="Continuando em..."

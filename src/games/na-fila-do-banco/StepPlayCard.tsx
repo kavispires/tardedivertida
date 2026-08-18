@@ -65,17 +65,11 @@ export function StepPlayCard({
         wait
       >
         <Translate
-          pt={
-            <>
-              É a vez de <PlayerAvatarName player={activePlayer} /> colocar uma carta em uma fila.
-            </>
-          }
-          en={
-            <>
-              It's <PlayerAvatarName player={activePlayer} />
-              's turn to place a card in a queue.
-            </>
-          }
+          pt="É a vez de {player} colocar uma carta em uma fila."
+          en="It's {player}'s turn to place a card in a queue."
+          values={{
+            player: <PlayerAvatarName player={activePlayer} />,
+          }}
         />
       </StepTitle>
 
@@ -93,38 +87,16 @@ export function StepPlayCard({
       <RuleInstruction type={isTheActivePlayer ? 'action' : 'rule'}>
         {isTheActivePlayer ? (
           <Translate
-            pt={
-              <>
-                Selecione uma de suas duas cartas para colocar em uma fila.
-                <br />
-                Preste atenção às regras de prioridade, porque elas podem fazer você furar a fila e entrar na
-                frente de outra pessoa (independente da cor).
-              </>
-            }
-            en={
-              <>
-                Select one of your two cards to place in a queue.
-                <br />
-                Pay attention to the priority rules.
-              </>
-            }
+            pt="Selecione uma de suas duas cartas para colocar em uma fila.<br/>Preste atenção às regras de prioridade, porque elas podem fazer você furar a fila e entrar na frente de outra pessoa (independente da cor)."
+            en="Select one of your two cards to place in a queue.<br/>Pay attention to the priority rules."
           />
         ) : (
           <Translate
-            pt={
-              <>
-                O(a) jogador(a) <PlayerAvatarName player={activePlayer} /> deve selecionar uma de suas cartas
-                e colocá-la em uma das 3 filas, e então selecionar uma nova para colocar em sua mão para a
-                próxima rodada.
-              </>
-            }
-            en={
-              <>
-                The player <PlayerAvatarName player={activePlayer} /> must select one of their cards and place
-                it in one of the 3 queues, and then select a new one to place in their hand for the next
-                round.
-              </>
-            }
+            pt="O(a) jogador(a) {player} deve selecionar uma de suas cartas e colocá-la em uma das 3 filas, e então selecionar uma nova para colocar em sua mão para a próxima rodada."
+            en="The player {player} must select one of their cards and place it in one of the 3 queues, and then select a new one to place in their hand for the next round."
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+            }}
           />
         )}
       </RuleInstruction>
