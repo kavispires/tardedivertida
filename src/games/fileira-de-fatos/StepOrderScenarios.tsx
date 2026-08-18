@@ -34,37 +34,20 @@ export function StepOrderScenarios({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Ordene os cenários de acordo com <PlayerAvatarName player={activePlayer} />
-            </>
-          }
-          en={
-            <>
-              Order the scenarios according to <PlayerAvatarName player={activePlayer} />
-            </>
-          }
+          pt="Ordene os cenários de acordo com {player}"
+          en="Order the scenarios according to {player}"
+          values={{ player: <PlayerAvatarName player={activePlayer} /> }}
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Dados os cenários abaixo, tente adivinhar como o juiz <PlayerAvatarName player={activePlayer} />{' '}
-              da rodada vai ordená-los do melhor para o pior.
-              <br />
-              Você ganha <PointsHighlight value={1} /> para cada combinação!
-            </>
-          }
-          en={
-            <>
-              Given the scenarios below, try to guess how the judge <PlayerAvatarName player={activePlayer} />{' '}
-              will order them from best to worst.
-              <br />
-              You get <PointsHighlight value={1} /> for each match!
-            </>
-          }
+          pt="Dados os cenários abaixo, tente adivinhar como o juiz {player} da rodada vai ordená-los do melhor para o pior.<br/>Você ganha {points} para cada combinação!"
+          en="Given the scenarios below, try to guess how the judge {player} will order them from best to worst.<br/>You get {points} for each match!"
+          values={{
+            player: <PlayerAvatarName player={activePlayer} />,
+            points: <PointsHighlight value={1} />,
+          }}
         />
       </RuleInstruction>
 

@@ -47,26 +47,16 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, roundTy
     >
       <RuleInstruction type="alert">
         <Translate
-          pt={
-            <>
-              Acertar todos os cenários da rodada dá{' '}
+          pt="Acertar todos os cenários da rodada dá {bonusPoints}."
+          en="Matching all scenarios in the round gives {bonusPoints}."
+          values={{
+            bonusPoints: (
               <PointsHighlight
                 value={2}
                 bonus
               />
-              .
-            </>
-          }
-          en={
-            <>
-              Matching all scenarios in the round gives{' '}
-              <PointsHighlight
-                value={2}
-                bonus
-              />
-              .
-            </>
-          }
+            ),
+          }}
         />
         <br />
       </RuleInstruction>

@@ -28,7 +28,7 @@ type ResultsProps = {
   roundType: string;
 };
 
-export function Results({ players, correctOrder, roundType }: ResultsProps) {
+export function Results({ players, correctOrder, roundType, activePlayerId }: ResultsProps) {
   const width = useCardWidth(8, {
     gap: 16,
     minWidth: 100,
@@ -36,7 +36,9 @@ export function Results({ players, correctOrder, roundType }: ResultsProps) {
     margin: 32,
   });
 
-  const sortedPlayers = useSortedPlayers(players);
+  const sortedPlayers = useSortedPlayers(players, {
+    filter: (p) => p.id !== activePlayerId,
+  });
 
   return (
     <SpaceContainer vertical>
@@ -72,26 +74,18 @@ export function Results({ players, correctOrder, roundType }: ResultsProps) {
                     <Tooltip
                       title={
                         <Translate
-                          pt={
-                            <>
+                          pt="{player} achou que esse cenário era na posição #{position}"
+                          en="{player} thought this scenario would go in position #{position}"
+                          values={{
+                            player: (
                               <PlayerAvatarName
                                 player={player}
                                 addressUser
                                 size="small"
-                              />{' '}
-                              achou que esse cenário era na posição #{correctOrder.indexOf(cardId) + 1}
-                            </>
-                          }
-                          en={
-                            <>
-                              <PlayerAvatarName
-                                player={player}
-                                addressUser
-                                size="small"
-                              />{' '}
-                              thought this scenario would go in position #{correctOrder.indexOf(cardId) + 1}
-                            </>
-                          }
+                              />
+                            ),
+                            position: correctOrder.indexOf(cardId) + 1,
+                          }}
                         />
                       }
                     >

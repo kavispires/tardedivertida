@@ -20,10 +20,11 @@ import { useOnSubmitOrderingAPIRequest } from './utils/api-requests';
 import { FILEIRA_DE_FATOS_PHASES } from './utils/constants';
 import type { PhaseOrderingState } from './utils/types';
 import { FirstRoundIntroduction } from './components/RulesExplanation';
+import { PlayerSelection } from './components/PlayerSelection';
 import { StepOrderScenarios } from './StepOrderScenarios';
 import { StepJudgeScenarios } from './StepJudgeScenarios';
 
-export function PhaseOrdering({ state, players }: PhaseProps<PhaseOrderingState>) {
+export function PhaseOrdering({ state, players, user }: PhaseProps<PhaseOrderingState>) {
   const { step, setStep } = useStep();
   const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -46,24 +47,16 @@ export function PhaseOrdering({ state, players }: PhaseProps<PhaseOrderingState>
       <Surface>
         <FirstRoundIntroduction />
         <Translate
-          pt={
-            <>
-              O juiz da rodada é{' '}
+          pt="O juiz da rodada é {judge}"
+          en="The judge for the round is {judge}"
+          values={{
+            judge: (
               <PlayerAvatarName
                 player={activePlayer}
                 addressUser
               />
-            </>
-          }
-          en={
-            <>
-              The judge for the round is{' '}
-              <PlayerAvatarName
-                player={activePlayer}
-                addressUser
-              />
-            </>
-          }
+            ),
+          }}
         />
       </Surface>
 
@@ -83,6 +76,14 @@ export function PhaseOrdering({ state, players }: PhaseProps<PhaseOrderingState>
       <StepSwitcher
         step={step}
         players={players}
+        waitingRoom={{
+          content: (
+            <PlayerSelection
+              scenarios={state.scenarios}
+              user={user}
+            />
+          ),
+        }}
       >
         {/* Step 0 */}
         <Fragment>
