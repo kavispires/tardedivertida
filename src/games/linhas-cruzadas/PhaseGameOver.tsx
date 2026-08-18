@@ -2,14 +2,12 @@
 import type { PhaseProps } from 'types/game';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
-// Utils
-import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { TheEndIcon } from '@icons/TheEndIcon';
 // Components
 import { Achievements } from '@components/achievements/Achievements';
 import { CanvasSVG } from '@components/canvas/CanvasSVG';
-import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
+import { PlayerAvatarStrip } from '@components/player/PlayerAvatarStrip';
 import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
 import type { AlbumEntry, PhaseGameOverState } from './utils/types';
@@ -37,12 +35,11 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
             key={`album-strip-${albumEntry.id}`}
             className="l-album-strip-entry"
           >
-            <div
-              className="l-album-strip-entry__author"
-              style={{ backgroundColor: getAvatarColorById(players[albumEntry.id].avatarId) }}
-            >
-              <PlayerAvatarName player={players[albumEntry.id]} />
-            </div>
+            <PlayerAvatarStrip
+              player={players[albumEntry.id]}
+              withName
+            />
+
             <ul
               className="l-album-strip"
               style={{ gridTemplateColumns: `repeat(${albumEntry.slides.length - 1}, 1fr)` }}
