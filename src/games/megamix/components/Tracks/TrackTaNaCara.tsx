@@ -51,7 +51,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         header={translate({ pt: 'Pergunta', en: 'Question' })}
         color="orange"
       >
-        {track.data.question.question}
+        {track.data.question.statement}
       </TextCard>
 
       <SpaceContainer orientation="vertical">

@@ -41,20 +41,8 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
         <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Estamos indo de porta em porta buscar doces...
-                <br />
-                Mas qual rua devemos ir? A rua com mais doces? A rua com menos medo?
-              </>
-            }
-            en={
-              <>
-                We're trick-or-treating...
-                <br />
-                Which street should we hit first? The one with more candy? The one with less horror?
-              </>
-            }
+            pt="Estamos indo de porta em porta buscar doces...<br/>Mas qual rua devemos ir? A rua com mais doces? A rua com menos medo?"
+            en="We're trick-or-treating...<br/>Which street should we hit first? The one with more candy? The one with less horror?"
           />
         </RuleInstruction>
 
@@ -124,18 +112,8 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
       <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Você estava tranquilo em casa e <strong>6 crianças</strong> apareceram na sua porta. Qual das
-              opções você escolheria para dar pra eles? Assustar ou guloseimas?
-            </>
-          }
-          en={
-            <>
-              You are hanging out at home and <strong>6 kids</strong> showed up at our door. Which of the
-              options do you choose to give to them? Scare 'em or give treats?
-            </>
-          }
+          pt="Você estava tranquilo em casa e <strong>6 crianças</strong> apareceram na sua porta. Qual das opções você escolheria para dar pra eles? Assustar ou guloseimas?"
+          en="You are hanging out at home and <strong>6 kids</strong> showed up at our door. Which of the options do you choose to give to them? Scare 'em or give treats?"
         />
       </RuleInstruction>
 

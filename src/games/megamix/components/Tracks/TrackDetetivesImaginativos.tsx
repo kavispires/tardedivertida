@@ -38,18 +38,8 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
         <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Você é o impostor e não sabe a palavra-secreta. Os outros jogadores escolheram as cartas
-                abaixo que supostamente combinam com a palavra-secreta.
-              </>
-            }
-            en={
-              <>
-                You are the impostor and don't know the secret clue. The other players played the cards below
-                and they all supposed to match the secret clue.
-              </>
-            }
+            pt="Você é o impostor e não sabe a palavra-secreta. Os outros jogadores escolheram as cartas abaixo que supostamente combinam com a palavra-secreta."
+            en="You are the impostor and don't know the secret clue. The other players played the cards below and they all supposed to match the secret clue."
           />
         </RuleInstruction>
 
@@ -159,20 +149,8 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
       <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Dentre as cartas abaixo, uma delas é do impostor! Você sabe qual é?
-              <br />
-              Selecione a carta que você acha <strong>NÃO</strong> combina com as outras duas.
-            </>
-          }
-          en={
-            <>
-              Among the cards below, one belongs to the impostor! Do you know which one?
-              <br />
-              Select the card that does <strong>NOT</strong> match the others.
-            </>
-          }
+          pt="Dentre as cartas abaixo, uma delas é do impostor! Você sabe qual é?<br/>Selecione a carta que você acha <strong>NÃO</strong> combina com as outras duas."
+          en="Among the cards below, one belongs to the impostor! Do you know which one?<br/>Select the card that does <strong>NOT</strong> match the others."
         />
       </RuleInstruction>
 

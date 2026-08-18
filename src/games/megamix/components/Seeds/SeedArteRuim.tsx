@@ -63,18 +63,9 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
       <Space orientation="vertical">
         <Surface className="seed-instruction">
           <Translate
-            pt={
-              <>
-                Você tem <TimeHighlight>10 segundos</TimeHighlight> para desenhar a carta abaixo. Quando
-                estiver pronto, aperte o botão, o texto irá aparecer, então desenhe rápido!
-              </>
-            }
-            en={
-              <>
-                You have <TimeHighlight>10 seconds</TimeHighlight> to draw the card below. When you're ready,
-                press the button so the text will show up and then draw fast!
-              </>
-            }
+            pt="Você tem {time} para desenhar a carta abaixo. Quando estiver pronto, aperte o botão, o texto irá aparecer, então desenhe rápido!"
+            en="You have {time} to draw the card below. When you're ready, press the button so the text will show up and then draw fast!"
+            values={{ time: <TimeHighlight>10 seconds</TimeHighlight> }}
           />
         </Surface>
         <Button

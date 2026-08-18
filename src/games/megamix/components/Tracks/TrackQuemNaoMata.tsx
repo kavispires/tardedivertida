@@ -43,12 +43,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
       >
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Estamos num impasse! O primeiro a se mexer leva bala! Em quem você atira primeiro? (Pode ser
-                você mesmo)
-              </>
-            }
+            pt="Estamos num impasse! O primeiro a se mexer leva bala! Em quem você atira primeiro? (Pode ser você mesmo)"
             en="A standoff! Who are you going to shoot first? (It could be yourself)"
           />
         </RuleInstruction>

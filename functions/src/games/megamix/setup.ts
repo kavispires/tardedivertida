@@ -220,7 +220,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winningPlayers = getListOfPlayers(players).filter((player) => state.winningTeam.includes(player.id));
 
-  const winners = determineWinners(keyBy(winningPlayers));
+  const winners = determineWinners(keyBy(winningPlayers, 'id'));
   const fairWinners = determineWinners(players);
 
   calculateAllAchievements(players, store);

@@ -41,20 +41,13 @@ export const TrackOndaTelepatica = ({ track, onSubmitAnswer, user }: TrackProps)
       <MinigameTitle title={{ pt: 'Onda Telepática', en: 'Telepathic Waves' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Com a carta de as duas ideias opostas e a dica abaixo, você acha que o Medidor de Ondas
-              Telepáticas apontaria para a <TextHighlight>Esquerda</TextHighlight>,{' '}
-              <TextHighlight>Centro</TextHighlight> ou <TextHighlight>Direita</TextHighlight>?
-            </>
-          }
-          en={
-            <>
-              With the card of the two opposing ideas and the clue below, do you think the Wavelength
-              Measuring device would point to the <TextHighlight>Left</TextHighlight>,{' '}
-              <TextHighlight>Center</TextHighlight>, or <TextHighlight>Right</TextHighlight>?
-            </>
-          }
+          pt="Com a carta de as duas ideias opostas e a dica abaixo, você acha que o Medidor de Ondas Telepáticas apontaria para a <left>Esquerda</left>, <center>Centro</center> ou <right>Direita</right>?"
+          en="With the card of the two opposing ideas and the clue below, do you think the Wavelength Measuring device would point to the <left>Left</left>, <center>Center</center>, or <right>Right</right>?"
+          values={{
+            left: (text) => <TextHighlight>{text}</TextHighlight>,
+            center: (text) => <TextHighlight>{text}</TextHighlight>,
+            right: (text) => <TextHighlight>{text}</TextHighlight>,
+          }}
         />
       </RuleInstruction>
 

@@ -55,6 +55,7 @@ export const TrackSuperCampeonato = ({ track, onSubmitAnswer, user }: TrackProps
             <Space
               orientation="vertical"
               key={contender.id}
+              align="center"
             >
               <ImageBlurButtonContainer cardId={contender.id}>
                 <CharacterCard
