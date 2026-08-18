@@ -58,32 +58,16 @@ export function StepResolution({ tellers, deckDict, goToNextStep, cardWidth, rou
       <RuleInstruction type="scoring">
         <Translate
           pt={
-            <>
-              Cada jogador ganha <PointsHighlight value="pontos" /> por cada cliente da sua própria cor que
-              conseguiu atendimento e dependendo de quantos pontos a posição dá.
-              <br />
-              Cada caixa tem dois tipos de clientes que gosta mais e dobra os pontos deles
-              <br />
-              Se você ativou um "Dá pra fazer isso online", você ganha <PointsHighlight value={1} /> (ou{' '}
-              <PointsHighlight value={2} /> para crianças).
-              <br />
-              Crianças nunca podem ser atendidas.
-            </>
+            'Cada jogador ganha {points} por cada cliente da sua própria cor que conseguiu atendimento e dependendo de quantos pontos a posição dá.<br/>Cada caixa tem dois tipos de clientes que gosta mais e dobra os pontos deles<br/>Se você ativou um "Dá pra fazer isso online", você ganha {onlinePoints} (ou {kidPoints} para crianças).<br/>Crianças nunca podem ser atendidas.'
           }
           en={
-            <>
-              Each player scores <PointsHighlight value="points" /> for each customer of their own color that
-              got served, depending on how many points the position gives.
-              <br />
-              Each teller has two types of customers they like more and they double the points of those
-              customers.
-              <br />
-              If you activated a "You can do this online", you score <PointsHighlight value={1} /> (or{' '}
-              <PointsHighlight value={2} /> for kids).
-              <br />
-              Children can never be served.
-            </>
+            'Each player scores {points} for each customer of their own color that got served, depending on how many points the position gives.<br/>Each teller has two types of customers they like more and they double the points of those customers.<br/>If you activated a "You can do this online", you score {onlinePoints} (or {kidPoints} for kids).<br/>Children can never be served.'
           }
+          values={{
+            points: <PointsHighlight value="pontos" />,
+            onlinePoints: <PointsHighlight value={1} />,
+            kidPoints: <PointsHighlight value={2} />,
+          }}
         />
       </RuleInstruction>
     </Step>

@@ -58,17 +58,11 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              É a vez do(a) <PlayerAvatarName player={activePlayer} /> colocar uma carta em uma fila.
-            </>
-          }
-          en={
-            <>
-              It's <PlayerAvatarName player={activePlayer} />
-              's turn to place a card in a queue.
-            </>
-          }
+          pt="É a vez do(a) {player} colocar uma carta em uma fila."
+          en="It's {player}'s turn to place a card in a queue."
+          values={{
+            player: <PlayerAvatarName player={activePlayer} />,
+          }}
         />
       </Surface>
     </PhaseAnnouncement>
