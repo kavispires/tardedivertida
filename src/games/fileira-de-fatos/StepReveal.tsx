@@ -57,36 +57,17 @@ export function StepReveal({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Resultado para <PlayerAvatarName player={activePlayer} />
-            </>
-          }
-          en={
-            <>
-              Results for <PlayerAvatarName player={activePlayer} />
-            </>
-          }
+          pt="Resultado para {player}"
+          en="Results for {player}"
+          values={{ player: <PlayerAvatarName player={activePlayer} /> }}
         />
       </StepTitle>
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Essa é a ordem que o(a) juiz(a) {activePlayer.name} escolheu os cenários, do ruim para o pior.
-              <br />
-              Abaixo de cada cenário você pode ver a posição que cada jogador escolheu e se eles ganharam
-              pontos.
-            </>
-          }
-          en={
-            <>
-              This is the order that {activePlayer.name} chose the scenarios, from bad to worst.
-              <br />
-              Below each scenario you can see the position that each player chose and if they got any points.
-            </>
-          }
+          pt="Essa é a ordem que o(a) juiz(a) {player} escolheu os cenários, do ruim para o pior.<br/>Abaixo de cada cenário você pode ver a posição que cada jogador escolheu e se eles ganharam pontos."
+          en="This is the order that {player} chose the scenarios, from bad to worst.<br/>Below each scenario you can see the position that each player chose and if they got any points."
+          values={{ player: activePlayer.name }}
         />
       </RuleInstruction>
 

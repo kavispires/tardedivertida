@@ -48,6 +48,8 @@
     background: get-color("red", 6);
     padding: get-unit(2);
     border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
   }
 
   &__incorrect-result {
@@ -71,5 +73,25 @@
     @include box-shadow;
     font-family: "Ubuntu Mono", monospace;
     flex: 1;
+  }
+}
+
+.waiting-room-scenarios {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(64px, 10vw));
+  gap: get-unit(2);
+
+  &__entry {
+    background: get-color("red", 6);
+    color: get-color("white");
+    padding: get-unit(2 4);
+    border-radius: var(--border-radius);
+    border: get-unit(1) solid get-color("red", 7);
+    @include box-shadow;
+    font-family: "Ubuntu Mono", monospace;
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
   }
 }

@@ -24,18 +24,12 @@ export function RoundTypeExplanation({ roundType }: RoundTypeProps) {
       <RuleInstruction type="event">
         <SpecialRule>
           <Translate
-            pt={
-              <>
-                Nesta rodada, jogadores que <strong>acertarem</strong> o cenário da posição{' '}
-                <Avatar>{POSITIONS[roundType]}</Avatar> ganham <PointsHighlight value={3} /> ao invés de 1.
-              </>
-            }
-            en={
-              <>
-                This round, players who <strong>match</strong> the scenario in position{' '}
-                <Avatar>{POSITIONS[roundType]}</Avatar> get <PointsHighlight value={3} /> instead of 1.
-              </>
-            }
+            pt="Nesta rodada, jogadores que <strong>acertarem</strong> o cenário da posição {position} ganham {points} ao invés de 1."
+            en="This round, players who <strong>match</strong> the scenario in position {position} get {points} instead of 1."
+            values={{
+              position: <Avatar>{POSITIONS[roundType]}</Avatar>,
+              points: <PointsHighlight value={3} />,
+            }}
           />
         </SpecialRule>
       </RuleInstruction>
@@ -47,28 +41,17 @@ export function RoundTypeExplanation({ roundType }: RoundTypeProps) {
       <RuleInstruction type="event">
         <SpecialRule>
           <Translate
-            pt={
-              <>
-                Nesta rodada, jogadores que <strong>errarem</strong> o cenário da posição{' '}
-                <Avatar>{POSITIONS[roundType]}</Avatar> perdem{' '}
+            pt="Nesta rodada, jogadores que <strong>errarem</strong> o cenário da posição {position} perdem {penalty}."
+            en="This round, players who <strong>miss</strong> the scenario in position {position} lose {penalty}."
+            values={{
+              position: <Avatar>{POSITIONS[roundType]}</Avatar>,
+              penalty: (
                 <PointsHighlight
                   type="negative"
                   value={1}
                 />
-                .
-              </>
-            }
-            en={
-              <>
-                This round, players who <strong>miss</strong> the scenario in position{' '}
-                <Avatar>{POSITIONS[roundType]}</Avatar> lose{' '}
-                <PointsHighlight
-                  type="negative"
-                  value={1}
-                />
-                .
-              </>
-            }
+              ),
+            }}
           />
         </SpecialRule>
       </RuleInstruction>
