@@ -35,20 +35,8 @@ export function PhaseGuessing({ players, state, user }: PhaseProps<PhaseGuessing
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Agora combine as dicas de cada jogador com as coordenadas corretas!
-              <br />
-              Basta clicar em uma das dicas no topo e então em uma das células da grade.
-            </>
-          }
-          en={
-            <>
-              Now match the clues from each player with the correct coordinates
-              <br />
-              Just click on one of the clues on top then in one of the cells in the grid.
-            </>
-          }
+          pt="Agora combine as dicas de cada jogador com as coordenadas corretas!<br/>Basta clicar em uma das dicas no topo e então em uma das células da grade."
+          en="Now match the clues from each player with the correct coordinates<br/>Just click on one of the clues on top then in one of the cells in the grid."
         />
       </Surface>
     </PhaseAnnouncement>

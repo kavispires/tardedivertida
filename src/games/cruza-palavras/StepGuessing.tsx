@@ -219,7 +219,7 @@ export function StepGuessing({
         />
       </DndContext>
 
-      <SpaceFloat>
+      <SpaceFloat className="mt-4">
         <Button
           size="large"
           type="dashed"

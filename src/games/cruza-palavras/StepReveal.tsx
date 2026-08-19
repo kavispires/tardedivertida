@@ -105,28 +105,17 @@ export function StepReveal({
       {Boolean(whoGotNoPoints.length) && (
         <RuleInstruction type="alert">
           <Translate
-            pt={
-              <>
-                Ninguém acertou a(s) dica(s) dadas por
-                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, então ele(s) perde(m){' '}
+            pt="Ninguém acertou a(s) dica(s) dadas por {players}, então ele(s) perde(m) {penalty} pontos."
+            en="Nobody got the clues given by {players}, so they lose {penalty} points."
+            values={{
+              players: <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />,
+              penalty: (
                 <PointsHighlight
                   type="negative"
                   value={-playerCount}
-                />{' '}
-                pontos.
-              </>
-            }
-            en={
-              <>
-                Nobody got the clues given by
-                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, so they lose{' '}
-                <PointsHighlight
-                  type="negative"
-                  value={-playerCount}
-                />{' '}
-                points.
-              </>
-            }
+                />
+              ),
+            }}
           />
         </RuleInstruction>
       )}
