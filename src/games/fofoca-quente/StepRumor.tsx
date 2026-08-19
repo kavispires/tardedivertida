@@ -91,24 +91,8 @@ export function StepRumor({
                 className="text-left"
               >
                 <Translate
-                  en={
-                    <>
-                      Now you should spread the nastiest rumor possible to drive that student to leave the
-                      school! Remember, you win if you can spread 5 rumors before getting caught.
-                      <br />
-                      <strong>Click</strong> on the student you want to spread the rumor about and that
-                      follows your motivation, select a rumor then submit!
-                    </>
-                  }
-                  pt={
-                    <>
-                      Agora você deve espalhar o boato mais maldoso possível para fazer com que esse estudante
-                      saia da escola! Lembre-se, você vence se conseguir espalhar 5 boatos antes de ser pego.
-                      <br />
-                      <strong>Clique</strong> no estudante sobre o qual você deseja espalhar o boato e que
-                      siga sua motivação, selecione um boato e envie!
-                    </>
-                  }
+                  en="Now you should spread the nastiest rumor possible to drive that student to leave the school! Remember, you win if you can spread 5 rumors before getting caught.<br/><strong>Click</strong> on the student you want to spread the rumor about and that follows your motivation, select a rumor then submit!"
+                  pt="Agora você deve espalhar o boato mais maldoso possível para fazer com que esse estudante saia da escola! Lembre-se, você vence se conseguir espalhar 5 boatos antes de ser pego.<br/><strong>Clique</strong> no estudante sobre o qual você deseja espalhar o boato e que siga sua motivação, selecione um boato e envie!"
                 />
 
                 <br />
@@ -176,26 +160,8 @@ export function StepRumor({
                 className="text-left"
               >
                 <Translate
-                  en={
-                    <>
-                      The gossiper is intimidating 2 students this round (leaving a nasty note in their
-                      locker), they will be scared and won't be able to answer any questions for you this
-                      round.
-                      <br />
-                      The gossiper cannot intimidate any student in the same location as you or that is
-                      already intimidated but he can intimidate even himself (just pretend if you ask him any
-                      question)
-                      <br />
-                      Intimidated students will be turned grayscale on the board.
-                    </>
-                  }
-                  pt={
-                    <>
-                      O fofoqueiro está intimidando 2 estudantes nesta rodada (deixando um bilhete maldoso no
-                      armário deles), eles ficarão com medo e não poderão responder a nenhuma pergunta sua
-                      nesta rodada.
-                    </>
-                  }
+                  en="The gossiper is intimidating 2 students this round (leaving a nasty note in their locker), they will be scared and won't be able to answer any questions for you this round.<br/>The gossiper cannot intimidate any student in the same location as you or that is already intimidated but he can intimidate even himself (just pretend if you ask him any question)<br/>Intimidated students will be turned grayscale on the board."
+                  pt="O fofoqueiro está intimidando 2 estudantes nesta rodada (deixando um bilhete maldoso no armário deles), eles ficarão com medo e não poderão responder a nenhuma pergunta sua nesta rodada."
                 />
               </RuleInstruction>
             </div>

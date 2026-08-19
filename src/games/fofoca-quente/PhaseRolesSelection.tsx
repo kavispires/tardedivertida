@@ -50,18 +50,8 @@ export function PhaseRolesSelection({ state, players }: PhaseProps) {
 
   const ruleInstruction = (
     <Translate
-      en={
-        <>
-          The gossiper will have to intimidate students and spread rumors about them while the detective tries
-          to figure out who the gossiper is.
-        </>
-      }
-      pt={
-        <>
-          O fofoqueiro terá que intimidar estudantes e espalhar rumores sobre eles enquanto o detetive tenta
-          descobrir quem é o fofoqueiro.
-        </>
-      }
+      en="The gossiper will have to intimidate students and spread rumors about them while the detective tries to figure out who the gossiper is."
+      pt="O fofoqueiro terá que intimidar estudantes e espalhar rumores sobre eles enquanto o detetive tenta descobrir quem é o fofoqueiro."
     />
   );
 

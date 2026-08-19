@@ -15,16 +15,8 @@ export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
       className="text-left"
     >
       <Translate
-        en={
-          <>
-            You are detective and must <strong>find out which student is the gossiper</strong>.
-          </>
-        }
-        pt={
-          <>
-            Você é o detetive e deve descobrir <strong>qual aluno é o fofoqueiro.</strong>
-          </>
-        }
+        en="You are detective and must <strong>find out which student is the gossiper</strong>."
+        pt="Você é o detetive e deve descobrir <strong>qual aluno é o fofoqueiro.</strong>"
       />
       <br />
       <Tag color="red">
@@ -36,16 +28,8 @@ export function DetectiveGoals({ bestFriendId }: DetectiveGoalsProps) {
       <Button size="small">?</Button>
       <br />
       <Translate
-        en={
-          <>
-            You will also need to figure out <strong>which of the 6 motivations</strong> the gossiper has.
-          </>
-        }
-        pt={
-          <>
-            Você também precisará descobrir <strong>qual das 6 motivações</strong> o fofoqueiro tem.
-          </>
-        }
+        en="You will also need to figure out <strong>which of the 6 motivations</strong> the gossiper has."
+        pt="Você também precisará descobrir <strong>qual das 6 motivações</strong> o fofoqueiro tem."
       />
       <br />
       <Tag color="red">
