@@ -64,20 +64,8 @@ export function StepSelectWords({ deck, onSubmitWords, user, announcement }: Ste
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              <strong>Selecione</strong> pelo menos 10 cartas para estar no jogo.
-              <br />
-              Quanto mais melhor!
-            </>
-          }
-          en={
-            <>
-              <strong>Select</strong> at least 10 cards to be in the game.
-              <br />
-              The more the merrier!
-            </>
-          }
+          pt="<strong>Selecione</strong> pelo menos 10 cartas para estar no jogo.<br/>Quanto mais melhor!"
+          en="<strong>Select</strong> at least 10 cards to be in the game.<br/>The more the merrier!"
         />
       </RuleInstruction>
 
