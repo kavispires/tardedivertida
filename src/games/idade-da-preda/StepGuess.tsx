@@ -92,18 +92,8 @@ export function StepGuess({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Faça pares de nomes e items. Escolha um nome e depois o item que ele representa ou vice-versa, e
-              então aperte enviar!
-            </>
-          }
-          en={
-            <>
-              Make pairs of names and items. Choose a name and then the item it represents or vice versa, and
-              then press send!
-            </>
-          }
+          pt="Faça pares de nomes e items. Escolha um nome e depois o item que ele representa ou vice-versa, e então aperte enviar!"
+          en="Make pairs of names and items. Choose a name and then the item it represents or vice versa, and then press send!"
         />
       </RuleInstruction>
 

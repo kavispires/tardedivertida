@@ -143,7 +143,7 @@ function ConceptsContent({
   const [sortBy, setSortBy] = useState('default');
   const { cache } = useCache<Dictionary<string>>({});
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: on functions as dependencies
   const list = useMemo(() => {
     if (sortBy === 'default') {
       return concepts;
