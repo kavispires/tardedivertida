@@ -55,16 +55,9 @@ export function PhaseCreatingConcepts({ state, players, user }: PhaseProps<Phase
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Crie até <TextHighlight>{state.maxProposals}</TextHighlight> novos conceitos
-                </>
-              }
-              en={
-                <>
-                  Create up to <TextHighlight>{state.maxProposals}</TextHighlight> new concepts
-                </>
-              }
+              pt="Crie até {count} novos conceitos"
+              en="Create up to {count} new concepts"
+              values={{ count: <TextHighlight>{state.maxProposals}</TextHighlight> }}
             />
           </Surface>
         </PhaseAnnouncement>
