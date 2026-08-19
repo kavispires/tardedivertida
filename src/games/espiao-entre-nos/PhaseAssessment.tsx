@@ -52,20 +52,8 @@ export function PhaseAssessment({ state, players, user }: PhaseProps) {
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Alguém foi acusado! Bafo!
-                  <br />
-                  Apenas se a votação for unanime que o resultado é revelado.
-                </>
-              }
-              en={
-                <>
-                  Someone was accused! Drama!!!
-                  <br />
-                  The solution is revealed only if the voting is unanimous.
-                </>
-              }
+              pt="Alguém foi acusado! Nossa!<br/>Apenas se a votação for unanime que o resultado é revelado."
+              en="Someone was accused! Drama!!!<br/>The solution is revealed only if the voting is unanimous."
             />
           </Surface>
         </PhaseAnnouncement>
