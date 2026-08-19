@@ -43,7 +43,6 @@ export function StepInvestigation({
   timer,
   onGuessLocation,
   onMakeAccusation,
-  onSendLastQuestioner,
   outcome,
   setStep,
 }: StepInvestigationProps) {
