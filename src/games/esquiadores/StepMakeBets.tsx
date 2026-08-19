@@ -88,47 +88,25 @@ export function StepMakeBets({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              O(A) skier <PlayerAvatarName player={skier} /> está descendo essa montanha e finalizará em uma
-              das cabanas. Qual cabana você acha que ele(a) vai escolher?
-              <br />
-              Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar. Cada ficha vale{' '}
-              <PointsHighlight value={1} /> se você acertar a cabana escolhida.
-              <br />
-              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight value={1} /> para cada cabana que
-              você não aposta nada, então você vai preferir distribuir os pontos ou focar em somente algumas?
-            </>
-          }
-          en={
-            <>
-              The skier <PlayerAvatarName player={skier} /> is skiing down this mountain and will finish in
-              one of the lodges. Which lodge do you think they will choose?
-              <br />
-              You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet. Each chip is worth{' '}
-              <PointsHighlight value={1} /> if you guess the chosen lodge.
-              <br />
-              <strong>BONUS:</strong> You also earn <PointsHighlight value={1} /> for each lodge you don't bet
-              on, so will you prefer to distribute the points or focus on just a few?
-            </>
-          }
+          pt="O(A) skier {skier} está descendo essa montanha e finalizará em uma das cabanas. Qual cabana você acha que ele(a) vai escolher?<br/>Você tem {chips} fichas para apostar. Cada ficha vale {points} se você acertar a cabana escolhida.<br/><strong>BÔNUS:</strong> Você também ganha {bonusPoints} para cada cabana que você não aposta nada, então você vai preferir distribuir os pontos ou focar em somente algumas?"
+          en="The skier {skier} is skiing down this mountain and will finish in one of the lodges. Which lodge do you think they will choose?<br/>You have {chips} chips to bet. Each chip is worth {points} if you guess the chosen lodge.<br/><strong>BONUS:</strong> You also earn {bonusPoints} for each lodge you don't bet on, so will you prefer to distribute the points or focus on just a few?"
+          values={{
+            skier: <PlayerAvatarName player={skier} />,
+            chips: <ChipsHighlight>{user.chips}</ChipsHighlight>,
+            points: <PointsHighlight value={1} />,
+            bonusPoints: <PointsHighlight value={1} />,
+          }}
         />
         {betType === BET_TYPES.INITIAL && catchUp && catchUp.length > 0 && (
           <>
             <br />
             <Translate
-              pt={
-                <>
-                  <strong>ATENÇÃO:</strong> Já que {catchUp.map((pId) => players[pId].name).join(', ')}{' '}
-                  está(ão) em último, ele(s) tem <ChipsHighlight>2 fichas</ChipsHighlight> a mais.
-                </>
-              }
-              en={
-                <>
-                  <strong>ATTENTION:</strong> Since {catchUp.map((pId) => players[pId].name).join(', ')} are
-                  last, they have <ChipsHighlight>2 more chips</ChipsHighlight>.
-                </>
-              }
+              pt="<strong>ATENÇÃO:</strong> Já que {players} está(ão) em último, ele(s) tem {boost} a mais."
+              en="<strong>ATTENTION:</strong> Since {players} are last, they have {boost}."
+              values={{
+                players: catchUp.map((pId) => players[pId].name).join(', '),
+                boost: <ChipsHighlight>2 fichas</ChipsHighlight>,
+              }}
             />
           </>
         )}

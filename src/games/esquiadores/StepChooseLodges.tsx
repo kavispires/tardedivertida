@@ -9,6 +9,7 @@ import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
+import { Title } from '@components/text/Title';
 // Internal
 import type { PhaseBetsState, SubmitBetsPayload } from './utils/types';
 import { mockSkierBets } from './utils/mock';
@@ -97,29 +98,13 @@ export function StepChooseLodges({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Como esquiador você aposta em qual cabana terá o maior número total de fichas apostadas por
-              todos os jogadores.
-              <br />
-              Você tem <ChipsHighlight>{user.chips}</ChipsHighlight> fichas para apostar. Cada ficha vale{' '}
-              <PointsHighlight value={1} /> se você apostar na cabana mais popular.
-              <br />
-              <strong>BÔNUS:</strong> Você também ganha <PointsHighlight value={1} /> para cada cabana que
-              você não coloca nenhuma ficha durante o jogo.
-            </>
-          }
-          en={
-            <>
-              As a skier you bet on which lodge will have the most total chips bet by all players.
-              <br />
-              You have <ChipsHighlight>{user.chips}</ChipsHighlight> chips to bet. Each chip is worth{' '}
-              <PointsHighlight value={1} /> if you bet on the most popular lodge.
-              <br />
-              <strong>BONUS:</strong> You also earn <PointsHighlight value={1} /> for each lodge you don't
-              place any chips on during the game.
-            </>
-          }
+          pt="Como esquiador você aposta em qual cabana terá o maior número total de fichas apostadas por todos os jogadores.<br/>Você tem {chips} fichas para apostar. Cada ficha vale {points} se você apostar na cabana mais popular.<br/><strong>BÔNUS:</strong> Você também ganha {bonusPoints} para cada cabana que você não coloca nenhuma ficha durante o jogo."
+          en="As a skier you bet on which lodge will have the most total chips bet by all players.<br/>You have {chips} chips to bet. Each chip is worth {points} if you bet on the most popular lodge.<br/><strong>BONUS:</strong> You also earn {bonusPoints} for each lodge you don't place any chips on during the game."
+          values={{
+            chips: <ChipsHighlight>{user.chips}</ChipsHighlight>,
+            points: <PointsHighlight value={1} />,
+            bonusPoints: <PointsHighlight value={1} />,
+          }}
         />
       </RuleInstruction>
 
@@ -138,6 +123,17 @@ export function StepChooseLodges({
         user={user}
         betType={betType}
       />
+
+      <Title
+        size="xx-small"
+        style={{ marginBottom: 0 }}
+      >
+        <Translate
+          en="Your popular lodge bets"
+          pt="Suas apostas de cabana popular"
+        />
+        :
+      </Title>
 
       <SkierBets
         key={user.chips}

@@ -41,7 +41,7 @@ export function Mountain({ mountain, skier, animateFrom = 0, animateTo, betType,
   const controls = useAnimation();
   const initialRef = refs[animateFrom];
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: no functions as dependencies
   useEffect(() => {
     if (initialRef?.current) {
       const fromBox = initialRef.current.getBoundingClientRect();
