@@ -51,31 +51,18 @@ export function StepReveal({
       <RuleInstruction type="event">
         {impostorVotes > 1 ? (
           <Translate
-            pt={
-              <>
-                Ele(a) recebeu mais de dois votos! Quem votou nele(a) ganha <PointsHighlight value={3} />!
-              </>
-            }
-            en={
-              <>
-                They received more than 2 votes! Who voted for them gets <PointsHighlight value={3} />!
-              </>
-            }
+            pt="Ele(a) recebeu mais de dois votos! Quem votou nele(a) ganha {points}!"
+            en="They received more than 2 votes! Who voted for them gets {points}!"
+            values={{ points: <PointsHighlight value={3} /> }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Ele(a) não recebeu mais de 2 votos: <b>Impostor</b> ganha <PointsHighlight value={5} /> e{' '}
-                <b>Líder</b> ganha <PointsHighlight value={4} />!
-              </>
-            }
-            en={
-              <>
-                They did not get enough votes: the <b>Impostor</b> gets <PointsHighlight value={5} /> and the{' '}
-                <b>Lead Detective</b> gets <PointsHighlight value={4} />!
-              </>
-            }
+            pt="Ele(a) não recebeu mais de 2 votos: <b>Impostor</b> ganha {impostorPoints} e <b>Líder</b> ganha {leaderPoints}!"
+            en="They did not get enough votes: the <b>Impostor</b> gets {impostorPoints} and the <b>Lead Detective</b> gets {leaderPoints}!"
+            values={{
+              impostorPoints: <PointsHighlight value={5} />,
+              leaderPoints: <PointsHighlight value={4} />,
+            }}
           />
         )}
       </RuleInstruction>

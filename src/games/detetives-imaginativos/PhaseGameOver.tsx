@@ -35,7 +35,7 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       >
         {state.gallery.map((entry) => (
           <GalleryEntry
-            key={entry.playerId}
+            key={`gallery-pair-${entry.clue}-${entry.playerId}`}
             entry={entry}
             players={players}
           />

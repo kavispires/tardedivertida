@@ -48,17 +48,8 @@ export function StepVoting({
       <ViewIf condition={isUserTheLeader}>
         <RuleInstruction type="wait">
           <Translate
-            pt={
-              <>
-                Aguarde enquanto os outros jogadores votam em quem eles acham ser o impostor.{' '}
-                <strong>Como Líder, você não vota.</strong>
-              </>
-            }
-            en={
-              <>
-                Wait while the other detectives vote. <strong>As Lead Detective, you don't vote.</strong>
-              </>
-            }
+            pt="Aguarde enquanto os outros jogadores votam em quem eles acham ser o impostor. <strong>Como Líder, você não vota.</strong>"
+            en="Wait while the other detectives vote. <strong>As Lead Detective, you don't vote.</strong>"
           />
         </RuleInstruction>
       </ViewIf>
@@ -66,19 +57,12 @@ export function StepVoting({
       <ViewIf condition={!isUserTheLeader && !user.vote}>
         <RuleInstruction type="action">
           <Translate
-            pt={
-              <>
-                Vote para quem você acha que pode ser o <ImpostorHighlight>impostor</ImpostorHighlight>!
-                Lembre-se, o impostor só perde se <PlayersHighlight>2+</PlayersHighlight> detetives votarem
-                nele.
-              </>
-            }
-            en={
-              <>
-                Vote for who you think is the impostor! Remember, the impostor only goes down if they get{' '}
-                <PlayersHighlight>2+</PlayersHighlight> votes.
-              </>
-            }
+            pt="Vote para quem você acha que pode ser o {impostor}! Lembre-se, o impostor só perde se {votes} detetives votarem nele."
+            en="Vote for who you think is the impostor! Remember, the impostor only goes down if they get {votes} votes."
+            values={{
+              impostor: <ImpostorHighlight>impostor</ImpostorHighlight>,
+              votes: <PlayersHighlight>2+</PlayersHighlight>,
+            }}
           />
         </RuleInstruction>
       </ViewIf>

@@ -45,21 +45,16 @@ export function StepPlayCardWaiting({
 
       <RuleInstruction type="wait">
         <Translate
-          pt={
-            <>
-              Aguarde enquanto{' '}
+          pt="Aguarde enquanto {player} escolhe uma carta."
+          en="Wait while {player} picks a card."
+          values={{
+            player: (
               <PlayerAvatarName
                 player={currentPlayer}
                 addressUser
-              />{' '}
-              escolhe uma carta.
-            </>
-          }
-          en={
-            <>
-              Wait while <PlayerAvatarName player={currentPlayer} /> picks a card.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 
