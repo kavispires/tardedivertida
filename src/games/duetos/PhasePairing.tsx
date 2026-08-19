@@ -62,12 +62,14 @@ export function PhasePairing({ players, state, user }: PhaseProps<PhasePairingSt
           ),
         }}
       >
+        {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
           time={3}
           onPressButton={goToNextStep}
         />
-        {/* Step 0 */}
+
+        {/* Step 1 */}
         <StepMakePairs
           user={user}
           announcement={announcement}
