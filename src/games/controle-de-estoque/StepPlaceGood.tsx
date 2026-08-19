@@ -196,21 +196,16 @@ export function StepPlaceGood({
       <RuleInstruction type="lore">
         <strong>
           <Translate
-            pt={
-              <>
+            pt="{supervisor} é o(a) supervisor(a) da vez e colocará a mercadoria no galpão."
+            en="{supervisor} is the supervisor of the turn and will place the good in the warehouse."
+            values={{
+              supervisor: (
                 <PlayerAvatarName
                   player={supervisor}
                   size="small"
-                />{' '}
-                é o(a) supervisor(a) da vez e colocará a mercadoria no galpão.
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName player={supervisor} /> is the supervisor of the turn and will place the good
-                in the warehouse.
-              </>
-            }
+                />
+              ),
+            }}
           />
         </strong>
         <Divider className="my-1" />

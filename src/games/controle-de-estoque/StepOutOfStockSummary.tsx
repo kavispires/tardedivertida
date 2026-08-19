@@ -40,40 +40,22 @@ export function StepOutOfStockSummary({
 
       <RuleInstruction type="scoring">
         <Translate
-          pt={
-            <>
-              Você ganha{' '}
+          pt="Você ganha {correctPoints} para cada produto que realmente não estava disponível no galpão.<br/>Você perde {penalty} para cada produto que marcou como fora de estoque incorretamente."
+          en="You earn {correctPoints} for each product that was actually out of stock.<br/>You lose {penalty} for each product you incorrectly marked as out of stock."
+          values={{
+            correctPoints: (
               <PointsHighlight
                 type="positive"
                 value={3}
-              />{' '}
-              para cada produto que realmente não estava disponível no galpão.
-              <br />
-              Você perde{' '}
+              />
+            ),
+            penalty: (
               <PointsHighlight
                 type="negative"
                 value={-1}
-              />{' '}
-              para cada produto que marcou como fora de estoque incorretamente.
-            </>
-          }
-          en={
-            <>
-              You earn{' '}
-              <PointsHighlight
-                type="positive"
-                value={3}
-              />{' '}
-              for each product that was actually out of stock.
-              <br />
-              You lose{' '}
-              <PointsHighlight
-                type="negative"
-                value={-1}
-              />{' '}
-              for each product you incorrectly marked as out of stock.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 

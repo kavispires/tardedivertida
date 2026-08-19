@@ -95,66 +95,23 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
         >
           <Surface>
             <Translate
-              pt={
-                <>
-                  Você receberá um número de pedidos para atender.
-                  <br />
-                  Você ganha{' '}
+              pt="Você receberá um número de pedidos para atender.<br/>Você ganha {correctPoints} para cada produto que colocou no local correto.<br/>Alguns produtos nunca foram colocados no galpão e você pode marcá-los como fora de estoque e ganhar {correctPoints} se estiver correto.<br/>Você perde {penalty} para cada produto colocado no local errado.<br/>Deixar um produto sem atender não te faz perder pontos. Você tem {time}!"
+              en="You will receive a number of orders to fulfill.<br/>You earn {correctPoints} for each product you placed in the correct location.<br/>Some products were never placed in the warehouse and you can mark them as out of stock and earn {correctPoints} if you're correct.<br/>You lose {penalty} for each product placed in the wrong location.<br/>Leaving a product unfulfilled doesn't make you lose points. You have {time}!"
+              values={{
+                correctPoints: (
                   <PointsHighlight
                     type="positive"
                     value={3}
-                  />{' '}
-                  para cada produto que colocou no local correto.
-                  <br />
-                  Alguns produtos nunca foram colocados no galpão e você pode marcá-los como fora de estoque e
-                  ganhar{' '}
-                  <PointsHighlight
-                    type="positive"
-                    value={3}
-                  />{' '}
-                  se estiver correto.
-                  <br />
-                  Você perde{' '}
+                  />
+                ),
+                penalty: (
                   <PointsHighlight
                     type="negative"
                     value={-1}
-                  />{' '}
-                  para cada produto colocado no local errado.
-                  <br />
-                  Deixar um produto sem atender não te faz perder pontos. Você tem{' '}
-                  <TimeHighlight>2 minutos</TimeHighlight>!
-                </>
-              }
-              en={
-                <>
-                  You will receive a number of orders to fulfill.
-                  <br />
-                  You earn{' '}
-                  <PointsHighlight
-                    type="positive"
-                    value={3}
-                  />{' '}
-                  for each product you placed in the correct location.
-                  <br />
-                  Some products were never placed in the warehouse and you can mark them as out of stock and
-                  earn{' '}
-                  <PointsHighlight
-                    type="positive"
-                    value={3}
-                  />{' '}
-                  if you're correct.
-                  <br />
-                  You lose{' '}
-                  <PointsHighlight
-                    type="negative"
-                    value={-1}
-                  />{' '}
-                  for each product placed in the wrong location.
-                  <br />
-                  Leaving a product unfulfilled doesn't make you lose points. You have{' '}
-                  <TimeHighlight>2 minutes</TimeHighlight>!
-                </>
-              }
+                  />
+                ),
+                time: <TimeHighlight>2 minutes</TimeHighlight>,
+              }}
             />
           </Surface>
         </PhaseAnnouncement>
@@ -172,18 +129,9 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
             />
             <br />
             <Translate
-              pt={
-                <>
-                  Para essa rodada você tem <OrdersHighlight>{user?.orders?.length ?? '?'}</OrdersHighlight>{' '}
-                  pedidos para atender!
-                </>
-              }
-              en={
-                <>
-                  For this round, you have <OrdersHighlight>{user?.orders?.length ?? '?'}</OrdersHighlight>{' '}
-                  orders to fulfill!
-                </>
-              }
+              pt="Para essa rodada você tem {orders} pedidos para atender!"
+              en="For this round, you have {orders} orders to fulfill!"
+              values={{ orders: <OrdersHighlight>{user?.orders?.length ?? '?'}</OrdersHighlight> }}
             />
           </Surface>
         </RoundAnnouncement>

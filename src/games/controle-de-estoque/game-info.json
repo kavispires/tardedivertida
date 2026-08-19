@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "controle-de-estoque",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "release": "beta",
   "releaseDate": "2026-06-14",
-  "updatedAt": 1786820758160,
+  "updatedAt": 1787155185091,
   "available": false,
   "title": {
     "pt": "Controle De Estoque",
