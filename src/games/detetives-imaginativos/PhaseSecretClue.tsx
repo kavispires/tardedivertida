@@ -44,26 +44,16 @@ export function PhaseSecretClue({ state, players, user }: PhaseProps<PhaseSecret
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Para essa rodada,{' '}
+          pt="Para essa rodada, {leader} será o(a) Detetive Líder."
+          en="For this round, {leader} will be the Lead Detective."
+          values={{
+            leader: (
               <PlayerAvatarName
                 player={leader}
                 addressUser
-              />{' '}
-              será o(a) Detetive Líder.
-            </>
-          }
-          en={
-            <>
-              For this round,{' '}
-              <PlayerAvatarName
-                player={leader}
-                addressUser
-              />{' '}
-              will be the Lead Detective.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </Surface>
       <ImageCardPreloadHand hand={user?.hand} />

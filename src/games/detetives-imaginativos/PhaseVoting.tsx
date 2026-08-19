@@ -41,20 +41,9 @@ export function PhaseVoting({ state, players, user }: PhaseProps<PhaseVotingStat
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Agora você vota! Escolha o jogador que você acredita ser o impostor. Você pode discutir com os
-              outros antes de votar, porque uma vez votado, você não pode mudar. O impostor só pede se
-              <PlayersHighlight>2+</PlayersHighlight> pessoas votarem nele.
-            </>
-          }
-          en={
-            <>
-              Now it's time to vote! Vote for the player you think is the impostor. You can discuss before you
-              vote because you can't change your vote. The impostor only loses if at least{' '}
-              <PlayersHighlight>2+</PlayersHighlight> people voted for them.
-            </>
-          }
+          pt="Agora você vota! Escolha o jogador que você acredita ser o impostor. Você pode discutir com os outros antes de votar, porque uma vez votado, você não pode mudar. O impostor só pede se {votes} pessoas votarem nele."
+          en="Now it's time to vote! Vote for the player you think is the impostor. You can discuss before you vote because you can't change your vote. The impostor only loses if at least {votes} people voted for them."
+          values={{ votes: <PlayersHighlight>2+</PlayersHighlight> }}
         />
       </Surface>
     </PhaseAnnouncement>

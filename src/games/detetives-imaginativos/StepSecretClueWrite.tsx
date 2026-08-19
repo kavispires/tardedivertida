@@ -58,16 +58,9 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Escreva uma pista que relacione com <CardHighlight>2</CardHighlight> cartas suas.
-            </>
-          }
-          en={
-            <>
-              Write a clue that relates to <CardHighlight>2</CardHighlight> of your cards.
-            </>
-          }
+          pt="Escreva uma pista que relacione com {cards} cartas suas."
+          en="Write a clue that relates to {cards} of your cards."
+          values={{ cards: <CardHighlight>2</CardHighlight> }}
         />
         <br />
         <Translate
@@ -76,20 +69,9 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
         />
         <br />
         <Translate
-          pt={
-            <>
-              Você ganha pontos somente se o <ImpostorHighlight>Impostor</ImpostorHighlight>{' '}
-              <strong>NÃO</strong> for encontrado, então escolha algo fácil e generalizado para que haja
-              cartas que se encaixem.
-            </>
-          }
-          en={
-            <>
-              You only get points if the <ImpostorHighlight>Impostor</ImpostorHighlight>{' '}
-              <strong>is NOT</strong> found by the others, so choose something easy and general that may
-              possibly fit the cards.
-            </>
-          }
+          pt="Você ganha pontos somente se o {impostor} <strong>NÃO</strong> for encontrado, então escolha algo fácil e generalizado para que haja cartas que se encaixem."
+          en="You only get points if the {impostor} <strong>is NOT</strong> found by the others, so choose something easy and general that may possibly fit the cards."
+          values={{ impostor: <ImpostorHighlight>Impostor</ImpostorHighlight> }}
         />
       </RuleInstruction>
 

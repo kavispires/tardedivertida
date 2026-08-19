@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { motion } from 'motion/react';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Types
 import type { GamePlayers } from 'types/game';
 // Hooks
@@ -9,10 +11,13 @@ import { getAnimation } from '@utils/animations';
 import { getAvatarColorById } from '@utils/helpers';
 // Icons
 import { AnimatedLoaderIcon } from '@icons/AnimatedLoaderIcon';
+import { BossIcon } from '@icons/BossIcon';
+import { TraitorIcon } from '@icons/TraitorIcon';
 // Components
 import { Icon } from '@components/general/Icon';
 import { ImageBlurButtonContainer } from '@components/image-cards/ImageBlurButtonContainer';
 import { ImageCard } from '@components/image-cards/ImageCard';
+import { Translate } from '@components/language/Translate';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 // Internal
 import type { FinalGalleryEntry } from '../utils/types';
@@ -27,7 +32,7 @@ export function GalleryEntry({ entry, players }: GalleryEntryProps) {
 
   const baseClass = 'd-table';
 
-  if (!entry || !entry.cards) {
+  if (!entry.cards) {
     return (
       <div className={clsx(baseClass, `${baseClass}--center`)}>
         <Icon icon={<AnimatedLoaderIcon />} />
@@ -71,7 +76,31 @@ export function GalleryEntry({ entry, players }: GalleryEntryProps) {
             style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
           />
           <span className="d-table__player-name">
-            "{entry.clue}" by {player.name}
+            <Translate
+              en={`"${entry.clue}" by ${player.name}`}
+              pt={`"${entry.clue}" por ${player.name}`}
+            />{' '}
+            <Tooltip
+              title={
+                <Translate
+                  en={
+                    entry.isLeader
+                      ? 'This player was the leader of the round'
+                      : 'This player was the impostor of the round'
+                  }
+                  pt={
+                    entry.isLeader
+                      ? 'Este jogador foi o líder da rodada'
+                      : 'Este jogador foi o impostor da rodada'
+                  }
+                />
+              }
+            >
+              <Icon
+                icon={entry.isLeader ? <BossIcon /> : <TraitorIcon />}
+                size="small"
+              />
+            </Tooltip>
           </span>
         </div>
       </div>

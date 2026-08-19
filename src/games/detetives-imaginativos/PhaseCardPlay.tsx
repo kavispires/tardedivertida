@@ -42,21 +42,12 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlay
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Agora, jogadores selecionarão <CardHighlight>2</CardHighlight> cartas, uma de cada vez, como
-              evidência que eles não são o impostor. Enquanto isso, o{' '}
-              <ImpostorHighlight>Impostor</ImpostorHighlight> está prestando bastante atenção nas cartas
-              selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
-            </>
-          }
-          en={
-            <>
-              Now players will play <CardHighlight>2</CardHighlight> cards, one at a time, as evidence that
-              they are not the impostor while the <ImpostorHighlight>Impostor</ImpostorHighlight> is looking
-              closely to what others are playing and trying to go unnoticed.
-            </>
-          }
+          pt="Agora, jogadores selecionarão {cards} cartas, uma de cada vez, como evidência que eles não são o impostor. Enquanto isso, o {impostor} está prestando bastante atenção nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido."
+          en="Now players will play {cards} cards, one at a time, as evidence that they are not the impostor while the {impostor} is looking closely to what others are playing and trying to go unnoticed."
+          values={{
+            cards: <CardHighlight>2</CardHighlight>,
+            impostor: <ImpostorHighlight>Impostor</ImpostorHighlight>,
+          }}
         />
       </Surface>
     </PhaseAnnouncement>

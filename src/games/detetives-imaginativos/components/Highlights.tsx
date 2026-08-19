@@ -5,7 +5,14 @@ import { DisguiseIcon } from '@icons/DisguiseIcon';
 import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
 export function ImpostorHighlight({ children }: HighlightProps) {
-  return <MetricHighlight icon={<DisguiseIcon />}>{children}</MetricHighlight>;
+  return (
+    <MetricHighlight
+      icon={<DisguiseIcon />}
+      iconPlacement="before"
+    >
+      {children}
+    </MetricHighlight>
+  );
 }
 
 export function WrongGuessHighlight({ children }: HighlightProps) {
