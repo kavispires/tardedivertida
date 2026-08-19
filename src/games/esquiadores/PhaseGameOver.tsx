@@ -29,8 +29,8 @@ export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>
       <TitledContainer
         title={
           <Translate
-            pt="Montanhas Pares"
-            en="Best Pairs"
+            pt="Montanhas"
+            en="Mountains"
           />
         }
         className="mt-4"

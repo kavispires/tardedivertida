@@ -69,44 +69,23 @@ export function StepResults({
       <RuleInstruction type="event">
         {betType === 'initial' && (
           <Translate
-            pt={
-              <>
-                E <PlayerAvatarName player={skier} /> desceu a primeira descida...
-              </>
-            }
-            en={
-              <>
-                And <PlayerAvatarName player={skier} /> finished the first slope...
-              </>
-            }
+            pt="E {skier} desceu a primeira descida..."
+            en="And {skier} finished the first slope..."
+            values={{ skier: <PlayerAvatarName player={skier} /> }}
           />
         )}
         {betType === 'boost' && (
           <Translate
-            pt={
-              <>
-                E lá vai <PlayerAvatarName player={skier} /> de novo...
-              </>
-            }
-            en={
-              <>
-                And there goes <PlayerAvatarName player={skier} /> again...
-              </>
-            }
+            pt="E lá vai {skier} de novo..."
+            en="And there goes {skier} again..."
+            values={{ skier: <PlayerAvatarName player={skier} /> }}
           />
         )}
         {betType === 'final' && (
           <Translate
-            pt={
-              <>
-                <PlayerAvatarName player={skier} /> finalizou a descida e foi para uma cabana.
-              </>
-            }
-            en={
-              <>
-                <PlayerAvatarName player={skier} /> finished the slope and went to a lodge.
-              </>
-            }
+            pt="{skier} finalizou a descida e foi para uma cabana."
+            en="{skier} finished the slope and went to a lodge."
+            values={{ skier: <PlayerAvatarName player={skier} /> }}
           />
         )}
       </RuleInstruction>
