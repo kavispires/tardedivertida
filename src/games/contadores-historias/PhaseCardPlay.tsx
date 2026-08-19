@@ -38,19 +38,15 @@ export function PhaseCardPlay({ state, players, user }: PhaseProps<PhaseCardPlay
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Agora, jogadores verão a história da rodada e selecionarão uma de suas cartas que mais se
-              aproxime da história. Na próxima fase, se algum outro jogador selecionar sua carta, você ganha{' '}
-              <PointsHighlight value={1} />!
-            </>
-          }
-          en={
-            <>
-              Now players will see the story for the round and select one of their cards that best match the
-              story. If any other player vote for your card later, you will get <PointsHighlight value={1} />.
-            </>
-          }
+          en="Now players will see the story for the round and select one of their cards that best match the story.
+          <br/>
+          If any other player vote for your card later, you will get {points}."
+          pt="Agora, jogadores verão a história da rodada e selecionarão uma de suas cartas que mais se aproxime da história.
+          <br/>
+          Na próxima fase, se algum outro jogador selecionar sua carta, você ganha {points}!"
+          values={{
+            points: <PointsHighlight value={1} />,
+          }}
         />
       </Surface>
     </PhaseAnnouncement>

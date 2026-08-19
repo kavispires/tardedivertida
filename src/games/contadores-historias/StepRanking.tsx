@@ -69,59 +69,32 @@ export function StepRanking({
         <RuleInstruction type={outcome === 'NORMAL' ? 'event' : 'alert'}>
           {outcome === 'EVERYBODY_GOT' && (
             <Translate
-              pt={
-                <>
-                  Todo mundo acertou! <PlayerAvatarName player={storyteller} />, da próxima vez, seja menos
-                  óbvio(a).
-                </>
-              }
-              en={
-                <>
-                  Everybody guessed it right! <PlayerAvatarName player={storyteller} />, be less obvious next
-                  time.
-                </>
-              }
+              pt="Todo mundo acertou! {storyteller}, da próxima vez, seja menos óbvio(a)."
+              en="Everybody guessed it right! {storyteller}, be less obvious next time."
+              values={{ storyteller: <PlayerAvatarName player={storyteller} /> }}
             />
           )}
           {outcome === 'NOBODY_GOT' && (
             <Translate
-              pt={
-                <>
-                  Ninguém acertou! <PlayerAvatarName player={storyteller} />, da próxima vez, seja menos
-                  obscuro.
-                </>
-              }
-              en={
-                <>
-                  Nobody guessed it right! <PlayerAvatarName player={storyteller} />, next time be less
-                  obscure.
-                </>
-              }
+              pt="Ninguém acertou! {storyteller}, da próxima vez, seja menos obscuro."
+              en="Nobody guessed it right! {storyteller}, next time be less obscure."
+              values={{ storyteller: <PlayerAvatarName player={storyteller} /> }}
             />
           )}
 
           {outcome === 'NORMAL' && (
             <Translate
-              pt={
-                <>
-                  Quem acertou ganha{' '}
+              pt="Quem acertou ganha {points}! Bom trabalho, {storyteller}."
+              en="Whoever guessed it right got {points}! Good job, {storyteller}"
+              values={{
+                points: (
                   <PointsHighlight
                     type="positive"
                     value={3}
                   />
-                  ! Bom trabalho, <PlayerAvatarName player={storyteller} />.
-                </>
-              }
-              en={
-                <>
-                  Whoever guessed it right got{' '}
-                  <PointsHighlight
-                    type="positive"
-                    value={3}
-                  />
-                  ! Good job, <PlayerAvatarName player={storyteller} />
-                </>
-              }
+                ),
+                storyteller: <PlayerAvatarName player={storyteller} />,
+              }}
             />
           )}
         </RuleInstruction>

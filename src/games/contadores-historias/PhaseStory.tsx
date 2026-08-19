@@ -45,28 +45,19 @@ export function PhaseStory({ state, players, user }: PhaseProps<PhaseStoryState>
     >
       <Surface>
         <Translate
-          pt={
-            <>
-              Para essa rodada,{' '}
+          en="In this round, {playerName} will be the Storyteller."
+          pt="Nessa rodada, {playerName} será o(a) Contador(a) de Histórias."
+          values={{
+            playerName: (
               <PlayerAvatarName
                 player={storyteller}
                 addressUser
                 size="small"
-              />{' '}
-              será o(a) Contador(a) de Histórias.
-            </>
-          }
-          en={
-            <>
-              For this round,{' '}
-              <PlayerAvatarName
-                player={storyteller}
-                addressUser
-              />{' '}
-              will be the Storyteller.
-            </>
-          }
+              />
+            ),
+          }}
         />
+
         <PlayersTurnOrder
           players={players}
           order={state.gameOrder}

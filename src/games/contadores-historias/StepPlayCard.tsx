@@ -64,27 +64,14 @@ export function StepPlayCard({
       <RuleInstruction type={isUserTheStoryTeller ? 'wait' : 'action'}>
         <ViewIf condition={isUserTheStoryTeller}>
           <Translate
-            pt="Agora, cada jogador escolhará uma carta em mão que mais combine com a história que você escreveu."
+            pt="Agora, cada jogador escolherá uma carta em mão que mais combine com a história que você escreveu."
             en="Now every other player will play a card that best matches the story you wrote."
           />
         </ViewIf>
         <ViewIf condition={!isUserTheStoryTeller}>
           <Translate
-            pt={
-              <>
-                Agora, escolha uma carta que mais combine com a história da rodada.
-                <br />
-                Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta
-                correta.
-              </>
-            }
-            en={
-              <>
-                Now you select a card that matches the story the best.
-                <br />
-                You are trying to convince other players that your card is the correct one.
-              </>
-            }
+            pt="Agora, escolha uma carta que mais combine com a história da rodada.<br/>Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta correta."
+            en="Now you select a card that matches the story the best.<br/>You are trying to convince other players that your card is the correct one."
           />
         </ViewIf>
       </RuleInstruction>
