@@ -40,40 +40,22 @@ export function StepFulfillmentSummary({
 
       <RuleInstruction type="scoring">
         <Translate
-          pt={
-            <>
-              Você ganha{' '}
+          pt="Você ganha {correctPoints} para cada produto que colocou no local correto.<br/>Você perde {penalty} para cada produto colocado no local errado."
+          en="You earn {correctPoints} for each product you placed in the correct location.<br/>You lose {penalty} for each product placed in the wrong location."
+          values={{
+            correctPoints: (
               <PointsHighlight
                 type="positive"
                 value={3}
-              />{' '}
-              para cada produto que colocou no local correto.
-              <br />
-              Você perde{' '}
+              />
+            ),
+            penalty: (
               <PointsHighlight
                 type="negative"
                 value={-1}
-              />{' '}
-              para cada produto colocado no local errado.
-            </>
-          }
-          en={
-            <>
-              You earn{' '}
-              <PointsHighlight
-                type="positive"
-                value={3}
-              />{' '}
-              for each product you placed in the correct location.
-              <br />
-              You lose{' '}
-              <PointsHighlight
-                type="negative"
-                value={-1}
-              />{' '}
-              for each product placed in the wrong location.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </RuleInstruction>
 
