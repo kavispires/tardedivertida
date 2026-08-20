@@ -83,20 +83,8 @@ export function StepReveal({
       <PopoverRule content={<ScoringMessage round={round} />} />
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Veja aqui como todos os jogadores foram. Passe o mouse nos ícones para saber mais detalhes.
-              <br />
-              As colunas são os crimes e as linhas são os chutes dessa rodada de cada jogador.
-            </>
-          }
-          en={
-            <>
-              See how all players did. Hover the icons to see details.
-              <br />
-              The columns are the crimes and the rows are the guesses for each player.
-            </>
-          }
+          pt="Veja aqui como todos os jogadores foram. Passe o mouse nos ícones para saber mais detalhes.<br/>As colunas são os crimes e as linhas são os chutes dessa rodada de cada jogador."
+          en="See how all players did. Hover the icons to see details.<br/>The columns are the crimes and the rows are the guesses for each player."
         />
       </RuleInstruction>
 
@@ -107,18 +95,12 @@ export function StepReveal({
         />
 
         <Translate
-          pt={
-            <>
-              Você acertou {user.correctCrimes} pares e está com um total (secreto) de{' '}
-              <PointsHighlight value={user.score + user.secretScore} />.
-            </>
-          }
-          en={
-            <>
-              You guesses {user.correctCrimes} crimes and have a (secret) total of{' '}
-              <PointsHighlight value={user.score + user.secretScore} />.
-            </>
-          }
+          pt="Você acertou {crimes} pares e está com um total (secreto) de {points}."
+          en="You guesses {crimes} crimes and have a (secret) total of {points}."
+          values={{
+            crimes: user.correctCrimes,
+            points: <PointsHighlight value={user.score + user.secretScore} />,
+          }}
         />
       </Surface>
 

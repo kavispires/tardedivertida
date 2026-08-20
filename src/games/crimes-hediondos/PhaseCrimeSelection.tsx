@@ -220,12 +220,14 @@ export function PhaseCrimeSelection({ players, state, user }: PhaseProps<PhaseCr
             isVictimGame={isVictimGame}
             cardWidth={cardWidth}
           />
-          <DevButton
-            onClick={onMockCrime}
-            type="default"
-          >
-            Random Crime
-          </DevButton>
+          <Surface>
+            <DevButton
+              onClick={onMockCrime}
+              type="default"
+            >
+              Random Crime
+            </DevButton>
+          </Surface>
         </div>
 
         {/* Step 2 */}

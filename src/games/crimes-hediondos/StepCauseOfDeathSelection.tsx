@@ -47,18 +47,9 @@ export function StepCauseOfDeathSelection({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Baseado somente no <WeaponHighlight>meio do crime (carta azul)</WeaponHighlight>, selecione a
-              causa da morte de sua vítima.
-            </>
-          }
-          en={
-            <>
-              Based solely on the <WeaponHighlight>mean of murder (blue card)</WeaponHighlight> you've chosen,
-              select your victim's cause of death.
-            </>
-          }
+          pt="Baseado somente no <weapon>meio do crime (carta azul)</weapon>, selecione a causa da morte de sua vítima."
+          en="Based solely on the <weapon>mean of murder (blue card)</weapon> you've chosen, select your victim's cause of death."
+          values={{ weapon: (text) => <WeaponHighlight>{text}</WeaponHighlight> }}
         />
       </RuleInstruction>
 

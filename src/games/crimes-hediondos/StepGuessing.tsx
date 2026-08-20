@@ -201,28 +201,8 @@ export function StepGuessing({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Selecione cada jogador abaixo, analise suas respostas sobre o crime, e selecione as cartas que
-              compõem o crime.
-              <br />
-              As cartas sempre estarão no mesmo quadrante, mas elas não são exclusivas a um jogador e
-              diferentes crimes podem usar as mesmas cartas.
-              <br />
-              Crimes que já tem todas as cartas selecionados são indicados por uma faca.
-            </>
-          }
-          en={
-            <>
-              Select each player below, analyze their answers about the crime, and select the cards that make
-              up the crime.
-              <br />
-              The cards will always be in the same quadrant, but they are not exclusive to one player and
-              different crimes can use the same cards.
-              <br />
-              Crimes that already have all cards selected are indicated by a knife.
-            </>
-          }
+          pt="Selecione cada jogador abaixo, analise suas respostas sobre o crime, e selecione as cartas que compõem o crime.<br/>As cartas sempre estarão no mesmo quadrante, mas elas não são exclusivas a um jogador e diferentes crimes podem usar as mesmas cartas.<br/>Crimes que já tem todas as cartas selecionados são indicados por uma faca."
+          en="Select each player below, analyze their answers about the crime, and select the cards that make up the crime.<br/>The cards will always be in the same quadrant, but they are not exclusive to one player and different crimes can use the same cards.<br/>Crimes that already have all cards selected are indicated by a knife."
         />
       </RuleInstruction>
 
