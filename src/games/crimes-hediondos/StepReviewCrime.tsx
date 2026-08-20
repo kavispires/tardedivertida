@@ -89,7 +89,7 @@ export function StepReviewCrime({
         />
       </div>
 
-      <SpaceFloat>
+      <SpaceFloat className="mt-4">
         <SendButton
           onClick={onSubmitCrime}
           size="large"

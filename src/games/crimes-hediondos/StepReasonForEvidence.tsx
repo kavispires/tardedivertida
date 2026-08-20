@@ -47,18 +47,9 @@ export function StepReasonForEvidence({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Baseado somente em seu <EvidenceHighlight>objeto (carta vermelha)</EvidenceHighlight>, selecione
-              o que o objeto significa para o crime.
-            </>
-          }
-          en={
-            <>
-              Based solely on the <EvidenceHighlight>object (red card)</EvidenceHighlight> you've chosen,
-              select the meaning of it to the crime.
-            </>
-          }
+          pt="Baseado somente em seu <evidence>objeto (carta vermelha)</evidence>, selecione o que o objeto significa para o crime."
+          en="Based solely on the <evidence>object (red card)</evidence> you've chosen, select the meaning of it to the crime."
+          values={{ evidence: (text) => <EvidenceHighlight>{text}</EvidenceHighlight> }}
         />
       </RuleInstruction>
 

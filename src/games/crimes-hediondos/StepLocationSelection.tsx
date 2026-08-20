@@ -59,25 +59,8 @@ export function StepLocationSelection({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              {isLocationGame
-                ? 'Baseado em sua carta do local (verde), selecione uma dica de onde o crime aconteceu.'
-                : 'Baseado em qualquer uma das suas cartas (ou ambas), selecione o local onde o crime aconteceu.'}
-              <br />
-              Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja
-              inteligente!
-            </>
-          }
-          en={
-            <>
-              {isLocationGame
-                ? 'Based on your location card (green), select a hint about where the crime happened.'
-                : 'Based on any of your cards (or both), select the location where the crime happened.'}
-              <br />
-              Remember you are trying to help the players guess your crime, so be smart!
-            </>
-          }
+          pt={`${isLocationGame ? 'Baseado em sua carta do local (verde), selecione uma dica de onde o crime aconteceu.' : 'Baseado em qualquer uma das suas cartas (ou ambas), selecione o local onde o crime aconteceu.'}<br/>Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja inteligente!`}
+          en={`${isLocationGame ? 'Based on your location card (green), select a hint about where the crime happened.' : 'Based on any of your cards (or both), select the location where the crime happened.'}<br/>Remember you are trying to help the players guess your crime, so be smart!`}
         />
       </RuleInstruction>
 
