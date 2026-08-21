@@ -14,7 +14,7 @@
 ### Migrations
 
 - PlayersReadyState verification: 🔘
-- Translate Migration: 🔘
+- Translate Migration: ✅
 - Phase Delegator Migration: ✅
 - PhaseProps Migration: ✅
 - Float Submit Migration: ✅

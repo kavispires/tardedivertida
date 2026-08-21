@@ -62,22 +62,21 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, gallery
       {fullyIncorrectLocations > 0 && (
         <RuleInstruction type="event">
           <Translate
-            pt={
-              <>
-                O prefeito não gosta quando seus funcionários não sabem o que estão fazendo!{' '}
-                <ConstructionHighlight>{fullyIncorrectLocations} construções</ConstructionHighlight> não
+            pt="O prefeito não gosta quando seus funcionários não sabem o que estão fazendo!{' '}
+                <construction>construções</construction> não
                 tiveram um consenso com o engenheiro-chefe, então o prefeito vai colocá-las em lugares
-                aleatórios da cidade para a próxima rodada.
-              </>
-            }
-            en={
-              <>
-                The mayor doesn't like it when his employees don't know what they're doing!{' '}
-                <ConstructionHighlight>{fullyIncorrectLocations} constructions</ConstructionHighlight> had no
+                aleatórios da cidade para a próxima rodada."
+            en="The mayor doesn't like it when his employees don't know what they're doing!{' '}
+                <construction>constructions</construction> had no
                 consensus with the lead engineer, so the mayor will place them in random locations in the city
-                for the next round.
-              </>
-            }
+                for the next round."
+            values={{
+              construction: (children) => (
+                <ConstructionHighlight>
+                  {fullyIncorrectLocations} {children}
+                </ConstructionHighlight>
+              ),
+            }}
           />
         </RuleInstruction>
       )}

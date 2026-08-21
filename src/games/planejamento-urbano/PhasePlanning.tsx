@@ -45,26 +45,16 @@ export function PhasePlanning({ state, players }: PhaseProps<PhasePlanningState>
         <PlanningRules />
         <br />
         <Translate
-          pt={
-            <>
-              Para essa rodada,{' '}
+          pt="Para essa rodada, {architect} é o engenheiro chefe."
+          en="In this round, {architect} is the lead engineer."
+          values={{
+            architect: (
               <PlayerAvatarName
                 player={architect}
                 addressUser
-              />{' '}
-              é o engenheiro chefe.
-            </>
-          }
-          en={
-            <>
-              In this round,{' '}
-              <PlayerAvatarName
-                player={architect}
-                addressUser
-              />{' '}
-              is the lead engineer.
-            </>
-          }
+              />
+            ),
+          }}
         />
       </Surface>
     </PhaseAnnouncement>

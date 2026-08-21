@@ -40,37 +40,21 @@ export function StepWaitForPlanning({
         wait
       >
         <Translate
-          pt={
-            <>
-              <PlayerAvatarName player={architect} /> está planejando a cidade.
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName player={architect} /> is planning the city.
-            </>
-          }
+          pt="{architect} está planejando a cidade."
+          en="{architect} is planning the city."
+          values={{
+            architect: <PlayerAvatarName player={architect} />,
+          }}
         />
       </StepTitle>
 
       <RuleInstruction type="wait">
         <Translate
-          pt={
-            <>
-              No mapa, existem <ConeHighlight>{placements} cones</ConeHighlight> representando onde as
-              terrenos onde projetos podem ser construídos.
-              <br />
-              Aguarde enquanto o engenheiro chefe planeja a cidade.
-            </>
-          }
-          en={
-            <>
-              On the map, there are <ConeHighlight>{placements} cones</ConeHighlight> representing the land
-              where projects can be built.
-              <br />
-              Wait while the lead engineer plans the city.
-            </>
-          }
+          pt="No mapa, existem {placements} cones representando onde os terrenos onde projetos podem ser construídos.<br/>Aguarde enquanto o engenheiro chefe planeja a cidade."
+          en="On the map, there are {placements} cones representing the land where projects can be built.<br/>Wait while the lead engineer plans the city."
+          values={{
+            placements: <ConeHighlight>{placements}</ConeHighlight>,
+          }}
         />
       </RuleInstruction>
 

@@ -75,12 +75,7 @@ export function StepPlaceLocations({
         {isTheArchitect ? (
           <Translate
             en="Wait while the players try to match where each project should go with your planning."
-            pt={
-              <>
-                Aguarde enquanto os jogadores tentam fazer cada projeto deve ir de acordo com seu
-                planejamento.
-              </>
-            }
+            pt="Aguarde enquanto os jogadores tentam fazer cada projeto ir de acordo com seu planejamento."
           />
         ) : (
           <Translate
@@ -92,22 +87,12 @@ export function StepPlaceLocations({
 
       <RuleInstruction type={isTheArchitect ? 'wait' : 'action'}>
         <Translate
-          pt={
-            <>
-              No mapa, existem <ConeHighlight>{placements} cones</ConeHighlight> representando onde as
-              terrenos onde os projetos podem ser feitos. <br />O objetivo é fazer as construções de acordo
-              com o que
-              <PlayerAvatarName player={architect} /> planejou.
-            </>
-          }
-          en={
-            <>
-              On the map, there are <ConeHighlight>{placements} cones</ConeHighlight> representing the land
-              where the projects can be built. <br />
-              The goal is to make the constructions according to what
-              <PlayerAvatarName player={architect} /> planned.
-            </>
-          }
+          pt="No mapa, existem {placements} cones representando onde os terrenos onde os projetos podem ser feitos.<br/>O objetivo é fazer as construções de acordo com o que {architect} planejou."
+          en="On the map, there are {placements} cones representing the land where the projects can be built.<br/>The goal is to make the constructions according to what {architect} planned."
+          values={{
+            placements: <ConeHighlight>{placements}</ConeHighlight>,
+            architect: <PlayerAvatarName player={architect} />,
+          }}
         />
       </RuleInstruction>
 
