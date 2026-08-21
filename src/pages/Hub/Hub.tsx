@@ -10,7 +10,7 @@ import type { GameInfo } from 'types/game-info';
 import { useGameList } from '@hooks/useGameList';
 import { useLanguage } from '@hooks/useLanguage';
 // Utils
-import { SEPARATOR } from '@utils/constants';
+import { SEPARATOR, LETTERS } from '@utils/constants';
 import { calculateGameAverageDuration, isDevEnv } from '@utils/helpers';
 // Components
 import { LogoutButton } from '@components/auth/LogoutButton';
@@ -54,15 +54,23 @@ function Hub() {
   const statsCountsArray = useMemo(() => {
     return orderBy(
       Object.entries(
-        Object.values(gameListData).reduce((acc: Record<string, number>, game) => {
-          if (acc[game.gameCode] === undefined) {
-            acc[game.gameCode] = 0;
-          }
-          acc[game.gameCode]++;
-          return acc;
-        }, {}),
-      ).map(([gameCode, count]) => `${gameCode}: ${count}`),
-    );
+        Object.values(gameListData).reduce(
+          (acc: Record<string, number>, game) => {
+            if (acc[game.gameCode] === undefined) {
+              acc[game.gameCode] = 0;
+            }
+            acc[game.gameCode]++;
+            return acc;
+          },
+          LETTERS.split('').reduce((acc: Record<string, number>, letter) => {
+            acc[letter] = 0;
+            return acc;
+          }, {}),
+        ),
+      ),
+      [(o) => o[1]],
+      ['desc'],
+    ).map(([gameCode, count]) => `${gameCode}: ${count}`);
   }, [gameListData]);
 
   const gameList = useMemo(
@@ -200,6 +208,9 @@ function Hub() {
   const sortGamesByLanguage = (games: GameInfo[]) => {
     if (filters.sortBy === 'release-date') {
       return orderBy(games, ['releaseDate'], ['desc']); // Most recent first
+    }
+    if (filters.sortBy === 'last-updated') {
+      return orderBy(games, ['updatedAt'], ['desc']); // Most recent first
     }
     return orderBy(games, [`title.${language}`], ['asc']);
   };
