@@ -121,18 +121,11 @@ export function StepDeliver({
             />
           ) : (
             <Translate
-              en={
-                <>
-                  You have delivered <Tag>{latestHistoryEntry.deliverables?.length}</Tag> things this round.
-                  You may stop now and skip to the next turn
-                </>
-              }
-              pt={
-                <>
-                  Você entregou <Tag>{latestHistoryEntry.deliverables?.length}</Tag> coisas essa rodada. Você
-                  pode parar agora e pular para a próxima rodada
-                </>
-              }
+              en="You have delivered {tag} things this round. You may stop now and skip to the next turn"
+              pt="Você entregou {tag} coisas essa rodada. Você pode parar agora e pular para a próxima rodada"
+              values={{
+                tag: <Tag>{latestHistoryEntry.deliverables?.length}</Tag>,
+              }}
             />
           )}
           <br />

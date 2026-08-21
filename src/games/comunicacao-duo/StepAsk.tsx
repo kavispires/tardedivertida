@@ -16,6 +16,7 @@ import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { Step, type StepProps } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
+import { Text } from '@components/text/Text';
 import { ViewIf } from '@components/views/ViewIf';
 // Internal
 import type { DeckEntry, HistoryEntry, SubmitRequestPayload, Summary } from './utils/types';
@@ -79,16 +80,11 @@ export function StepAsk({
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Aguarde <PlayerAvatarName player={requester} /> pedir algo
-              </>
-            }
-            en={
-              <>
-                Wait for <PlayerAvatarName player={requester} /> to ask for something
-              </>
-            }
+            pt="Aguarde {player} pedir algo"
+            en="Wait for {player} to ask for something"
+            values={{
+              player: <PlayerAvatarName player={requester} />,
+            }}
           />
         )}
       </StepTitle>
@@ -144,13 +140,13 @@ export function StepAsk({
                 value={sentence}
                 withTranslation
               />
-              <strong>
+              <Text strong>
                 <Translate
                   en="Quantity"
                   pt="Quantidade"
                 />
                 :
-              </strong>
+              </Text>
               <InputNumber
                 value={clueQuantity}
                 onChange={(v) => setQuantity(v ?? 1)}
@@ -201,13 +197,13 @@ export function StepAsk({
                 en: 'Type your request here',
               })}
             />
-            <strong>
+            <Text strong>
               <Translate
                 en="Quantity"
                 pt="Quantidade"
               />
               :
-            </strong>
+            </Text>
             <InputNumber
               value={clueQuantity}
               onChange={(v) => setQuantity(v ?? 1)}

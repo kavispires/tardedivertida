@@ -2,11 +2,11 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "comunicacao-duo",
-  "version": "1.0.73",
+  "version": "1.0.74",
   "release": "stable",
   "releaseDate": "2024-12-28",
-  "updatedAt": 1786820757732,
-  "available": false,
+  "updatedAt": 1787332501387,
+  "available": true,
   "title": {
     "pt": "Comunicação Alienígena Duo",
     "en": "Alien Communication Duo"
