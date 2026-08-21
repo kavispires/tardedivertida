@@ -24,8 +24,8 @@ export function CardResolutionAnimation({
   players,
   // play,
   activePlayer,
-  cardsSetAside,
-  ongoingEffects,
+  // cardsSetAside,
+  // ongoingEffects,
   cardsDict,
   logEntry,
 }: CardResolutionAnimationProps) {
@@ -33,22 +33,14 @@ export function CardResolutionAnimation({
   const actor = players[logEntry.actorPlayerId];
   const targets = logEntry.targetPlayersIds.map((id) => players[id]);
 
-  console.log(logEntry);
-
   const everyPrefix = (
     <Translate
-      en={
-        <>
-          <PlayerAvatarName player={activePlayer} /> played{' '}
-          <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>
-        </>
-      }
-      pt={
-        <>
-          <PlayerAvatarName player={activePlayer} /> jogou{' '}
-          <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>
-        </>
-      }
+      en="{player} played {card}!"
+      pt="{player} jogou {card}!"
+      values={{
+        player: <PlayerAvatarName player={activePlayer} />,
+        card: <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>,
+      }}
     />
   );
 
@@ -68,28 +60,17 @@ export function CardResolutionAnimation({
       return (
         <RuleInstruction type="event">
           <Translate
-            en={
-              <>
-                <PlayerAvatarName player={activePlayer} /> chose{' '}
+            en="{player} chose {target} and tried to guess that it was {guessedCard} and it wasn't. Life goes on..."
+            pt="{player} escolheu {target} e tentou adivinhar que era {guessedCard} e não era. A vida segue..."
+            values={{
+              player: <PlayerAvatarName player={activePlayer} />,
+              target: (
                 <TargetHighlight>
                   <PlayerAvatarName player={targets[0]} />
-                </TargetHighlight>{' '}
-                and tried to guess that it was{' '}
-                <CardHighlight color={guessedCard.color}>{guessedCard.name}</CardHighlight> and it wasn't.
-                Life goes on...
-              </>
-            }
-            pt={
-              <>
-                <PlayerAvatarName player={activePlayer} /> escolheu{' '}
-                <TargetHighlight>
-                  <PlayerAvatarName player={targets[0]} />
-                </TargetHighlight>{' '}
-                e tentou adivinhar que era{' '}
-                <CardHighlight color={guessedCard.color}>{guessedCard.name}</CardHighlight> e não era. A vida
-                segue...
-              </>
-            }
+                </TargetHighlight>
+              ),
+              guessedCard: <CardHighlight color={guessedCard.color}>{guessedCard.name}</CardHighlight>,
+            }}
           />
         </RuleInstruction>
       );
@@ -110,14 +91,8 @@ export function CardResolutionAnimation({
         <RuleInstruction type="event">
           {everyPrefix}
           <Translate
-            en={
-              <>
-                {' '}
-                and must choose a player to compare hands, the player with the lower ranked card will be
-                eliminated.
-              </>
-            }
-            pt="e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada."
+            en=" and must choose a player to compare hands, the player with the lower ranked card will be eliminated."
+            pt=" e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada."
           />
         </RuleInstruction>
       );
@@ -126,14 +101,8 @@ export function CardResolutionAnimation({
         <RuleInstruction type="event">
           {everyPrefix}
           <Translate
-            en={
-              <>
-                {' '}
-                and must choose a player to compare hands, the player with the higher ranked card will be
-                eliminated.
-              </>
-            }
-            pt="e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada."
+            en=" and must choose a player to compare hands, the player with the higher ranked card will be eliminated."
+            pt=" e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada."
           />
         </RuleInstruction>
       );

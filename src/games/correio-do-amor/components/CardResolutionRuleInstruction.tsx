@@ -29,18 +29,12 @@ export function CardResolutionRuleInstruction({
   return (
     <RuleInstruction type="event">
       <Translate
-        en={
-          <>
-            <PlayerAvatarName player={actor} /> played{' '}
-            <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>!
-          </>
-        }
-        pt={
-          <>
-            <PlayerAvatarName player={actor} /> jogou{' '}
-            <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>!
-          </>
-        }
+        en="{player} played {card}!"
+        pt="{player} jogou {card}!"
+        values={{
+          player: <PlayerAvatarName player={actor} />,
+          card: <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>,
+        }}
       />
     </RuleInstruction>
   );
