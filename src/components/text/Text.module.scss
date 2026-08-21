@@ -1,0 +1,13 @@
+@use "styles/sass" as *;
+
+.text {
+  $self: &;
+
+  &#{$self}Light {
+    color: get-color("black");
+  }
+
+  &#{$self}Dark {
+    color: get-color("white");
+  }
+}
