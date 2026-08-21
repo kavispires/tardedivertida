@@ -1,8 +1,8 @@
-import { cloneDeep, orderBy, shuffle } from 'lodash';
+import { cloneDeep, orderBy, sampleSize, shuffle } from 'lodash';
 // Constants
 import { AVATARS_COLORS } from '../constants/avatars';
 // Utils
-import { getRandomUniqueItem, stringRemoveAccents } from '../utils';
+import { stringRemoveAccents } from '../utils';
 
 // ===========================================================
 // PLAYER MECHANICS UTILITIES
@@ -215,9 +215,27 @@ export const createPlayer = (
   isGuest?: boolean,
 ): Player => {
   const usedAvatars = Object.values(players).map((player) => player.avatarId);
-  const newAvatarId = usedAvatars.includes(avatarId)
-    ? getRandomUniqueItem(Object.keys(AVATARS_COLORS), usedAvatars)
-    : avatarId;
+  const availableAvatars: string[] = orderBy(
+    Object.keys(AVATARS_COLORS),
+    [(key) => AVATARS_COLORS[key].hue],
+    ['asc'],
+  );
+  // For every avatar in usedAvatars, removed from available the one before and after as well, to avoid similar colors being used by different players
+  usedAvatars.forEach((usedAvatar) => {
+    const index = availableAvatars.indexOf(usedAvatar);
+    if (index > -1) {
+      availableAvatars.splice(index, 1);
+      if (index > 0) {
+        availableAvatars.splice(index - 1, 1);
+      }
+      if (index < availableAvatars.length) {
+        availableAvatars.splice(index, 1);
+      }
+    }
+  });
+
+  const newAvatarId =
+    usedAvatars.includes(avatarId) || avatarId === 'N' ? sampleSize(availableAvatars, 1)[0] : avatarId;
 
   return {
     id,
