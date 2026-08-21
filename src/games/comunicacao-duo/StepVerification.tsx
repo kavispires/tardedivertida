@@ -53,78 +53,65 @@ export function StepVerification({
   entryIdToAnimate,
   nextPhase,
 }: StepDeliverProps) {
-  const results = useMemo(() => {
+  const eventInstruction = useMemo(() => {
     // Delivered nothing / skipped
     if (status === STATUS.CONTINUE && !entryIdToAnimate) {
-      return {
-        en: (
-          <>
-            <strong>Skip!</strong> All done for this round, let's try another clue
-          </>
-        ),
-        pt: (
-          <>
-            <strong>Passa!</strong> Tudo certo para esta rodada, vamos tentar outra dica
-          </>
-        ),
-      };
+      return (
+        <Translate
+          en="<strong>Skip!</strong> All done for this round, let's try another clue"
+          pt="<strong>Passa!</strong> Tudo certo para esta rodada, vamos tentar outra dica"
+        />
+      );
     }
 
     // All delivered
     if (status === STATUS.WIN) {
-      return {
-        en: <>All items have been found!</>,
-        pt: <>Todos os itens foram encontrados!</>,
-      };
+      return (
+        <Translate
+          en="All items have been found!"
+          pt="Todos os itens foram encontrados!"
+        />
+      );
     }
 
     // Delivered taboo
     if (status === STATUS.LOSE) {
-      return {
-        en: (
-          <>
-            Nooooo, a <TextHighlight>taboo</TextHighlight> item has been selected!
-          </>
-        ),
-        pt: (
-          <>
-            Nãããão, um item <TextHighlight>taboo</TextHighlight> foi selecionado!
-          </>
-        ),
-      };
+      return (
+        <Translate
+          en="Nooooo, a <highlight>taboo</highlight> item has been selected!"
+          pt="Nãããão, um item <highlight>tabu</highlight> foi selecionado!"
+          values={{
+            highlight: (children) => <TextHighlight>{children}</TextHighlight>,
+          }}
+        />
+      );
     }
 
     // Delivered incorrectly
     if (status === STATUS.CONTINUE) {
       if (nextPhase === COMUNICACAO_DUO_PHASES.ASKING_FOR_SOMETHING) {
-        return {
-          en: (
-            <>
-              <TextHighlight>Neutral!</TextHighlight> All done fir this round, let's try another clue.
-            </>
-          ),
-          pt: (
-            <>
-              <TextHighlight>Neutro!</TextHighlight> Vamos para a próxima rodada.
-            </>
-          ),
-        };
+        return (
+          <Translate
+            en="<highlight>Neutral!</highlight> All done for this round, let's try another clue."
+            pt="<highlight>Neutro!</highlight> Vamos para a próxima rodada."
+            values={{
+              highlight: (children) => <TextHighlight>{children}</TextHighlight>,
+            }}
+          />
+        );
       }
     }
 
     // Delivered correct
-    return {
-      en: (
-        <>
-          <TextHighlight>Correct!</TextHighlight> Want to try one more item?
-        </>
-      ),
-      pt: (
-        <>
-          <TextHighlight>Correto!</TextHighlight> Quer tentar outro item?
-        </>
-      ),
-    };
+    return (
+      <Translate
+        en="<highlight>Correct!</highlight> Want to try one more item?"
+        pt="<highlight>Correto!</highlight> Quer tentar outro item?"
+        values={{
+          highlight: (children) => <TextHighlight>{children}</TextHighlight>,
+        }}
+      />
+    );
   }, [status, entryIdToAnimate, nextPhase]);
 
   return (
@@ -139,12 +126,7 @@ export function StepVerification({
         />
       </StepTitle>
 
-      <RuleInstruction type="event">
-        <Translate
-          en={results.en}
-          pt={results.pt}
-        />
-      </RuleInstruction>
+      <RuleInstruction type="event">{eventInstruction}</RuleInstruction>
 
       <HostNextPhaseButton
         round={round}
