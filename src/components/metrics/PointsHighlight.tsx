@@ -23,7 +23,6 @@ export function PointsHighlight({
   return (
     <MetricHighlight
       icon={<StarIcon />}
-      iconPlacement={iconPlacement ?? 'before'}
       {...props}
     >
       {value}

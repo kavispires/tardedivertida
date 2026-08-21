@@ -39,7 +39,7 @@ export function MetricHighlight({
   type,
   className,
   iconSize = 'small',
-  iconPlacement = 'after',
+  iconPlacement = 'before',
 }: MetricHighlightProps) {
   return (
     <span
