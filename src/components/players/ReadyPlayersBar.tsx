@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { LikeFilled } from '@ant-design/icons';
 import { Avatar, Typography } from 'antd';
@@ -26,7 +27,7 @@ type ReadyPlayersBarProps = {
    * Whether to hide player names
    */
   hideNames?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Component that displays the count and list of players who are ready versus not ready
@@ -36,6 +37,8 @@ export function ReadyPlayersBar({
   readyText,
   readyTextPlural,
   hideNames = false,
+  className,
+  ...rest
 }: ReadyPlayersBarProps) {
   const { readyPlayers, notReadyPlayers }: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] } =
     Object.values(players).reduce(
@@ -58,7 +61,10 @@ export function ReadyPlayersBar({
   }
 
   return (
-    <div className={styles.readyPlayerBar}>
+    <div
+      className={clsx(styles.readyPlayerBar, className)}
+      {...rest}
+    >
       <div className={styles.readyPlayerBarBar}>
         <Avatar.Group size="small">
           {readyPlayers.map((player) => (
