@@ -66,6 +66,16 @@ export const Translate = memo(function Translate({ en, pt, values = {}, custom }
   const text = language === 'pt' ? pt : en;
   const allValues = { ...DEFAULT_VALUES, ...values };
 
+  // TODO: Temporary debug
+  if (typeof text !== 'string') {
+    const errorMessage = 'Translation text is not a string';
+    return (
+      <span>
+        <span style={{ color: 'red' }}>ERROR: {errorMessage}</span> {text}
+      </span>
+    );
+  }
+
   // Regex matches: <tag>content</tag> OR <tag/> OR {var}
   const regex = /(<\w+>.*?<\/\w+>|<\w+\s*\/>|\{\w+\})/g;
   const parts = text.split(regex);
