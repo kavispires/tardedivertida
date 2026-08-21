@@ -23,6 +23,15 @@ import { HostOnlyContainer, hostOnlyContainerStyles } from './HostOnlyContainer'
 import { HostButton } from './HostButton';
 
 function ButtonLabel({ round }: { round?: GameRound }) {
+  if (!round) {
+    return (
+      <Translate
+        pt="Próxima fase"
+        en="Next Phase"
+      />
+    );
+  }
+
   if (!round || round.current === round.total || round.forceLastRound) {
     return (
       <Translate
