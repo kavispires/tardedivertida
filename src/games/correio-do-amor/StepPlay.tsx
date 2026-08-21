@@ -74,20 +74,8 @@ export function StepPlay({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              O objetivo é terminar a rodada com a carta de maior valor na mão. E você consegue isso muito
-              mais rápido se você eliminar os outros jogadores. Cada rodada você compra uma carta nova e
-              escolhe uma delas para aplicar o efeito!
-            </>
-          }
-          en={
-            <>
-              The goal is to end the round with the highest value card in hand. And you can achieve that much
-              faster if you eliminate the other players. Each round you draw a new card and choose one of them
-              to apply the effect!
-            </>
-          }
+          pt="O objetivo é terminar a rodada com a carta de maior valor na mão. E você consegue isso muito mais rápido se você eliminar os outros jogadores. Cada rodada você compra uma carta nova e escolhe uma delas para aplicar o efeito!"
+          en="The goal is to end the round with the highest value card in hand. And you can achieve that much faster if you eliminate the other players. Each round you draw a new card and choose one of them to apply the effect!"
         />
       </RuleInstruction>
 
@@ -134,28 +122,16 @@ export function StepPlay({
         {isTheActivePlayer ? (
           <RuleInstruction type="action">
             <Translate
-              pt={
-                <>
-                  Escolha uma das duas cartar para jogar.
+              pt="Escolha uma das duas cartas para jogar.
                   <br />
-                  Lembre-se que se você quer manter na sua mão uma carta que te ajude a ganhar no final da
-                  rodada (carta de maior valor).
+                  Lembre-se que se você quer manter na sua mão uma carta que te ajude a ganhar no final da rodada (carta de maior valor).
                   <br />
-                  Qualquer efeito que faça alguém (incluindo você) descartar a carta em mão faz você perder a
-                  rodada, então escolha com cuidado!"
-                </>
-              }
-              en={
-                <>
-                  Pick one of the two cards to play.
+                  Qualquer efeito que faça alguém (incluindo você) descartar a carta em mão faz você perder a rodada, então escolha com cuidado!"
+              en="Pick one of the two cards to play.
                   <br />
-                  Remember that if you want to keep in your hand a card that helps you win by the end of the
-                  round(highest value card).
+                  Remember that if you want to keep in your hand a card that helps you win by the end of the round(highest value card).
                   <br />
-                  Any effect that makes someone (including you) discard the card in hand makes you lose the
-                  round, so choose carefully!"
-                </>
-              }
+                  Any effect that makes someone (including you) discard the card in hand makes you lose the round, so choose carefully!"
             />
           </RuleInstruction>
         ) : (
@@ -168,18 +144,15 @@ export function StepPlay({
               icon={<AnimatedWaitingDotsIcon />}
               size="large"
             />
-            <Translate
-              en={
-                <p>
-                  Waiting for <PlayerAvatarName player={activePlayer} />
-                </p>
-              }
-              pt={
-                <p>
-                  Aguardando <PlayerAvatarName player={activePlayer} />
-                </p>
-              }
-            />
+            <p>
+              <Translate
+                en="Waiting for {player}"
+                pt="Aguardando {player}"
+                values={{
+                  player: <PlayerAvatarName player={activePlayer} />,
+                }}
+              />
+            </p>
           </Flex>
         )}
       </PlayArea>

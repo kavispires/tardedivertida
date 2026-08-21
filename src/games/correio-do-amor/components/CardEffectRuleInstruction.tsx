@@ -73,42 +73,24 @@ export function CardEffectRuleInstruction({
     case 'COMPARE_LOWER':
       content = (
         <Translate
-          en={
-            <>
-              {' '}
-              and must choose a player to compare hands, the player with the lower ranked card will be
-              eliminated.
-            </>
-          }
-          pt="e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada."
+          en=" and must choose a player to compare hands, the player with the lower ranked card will be eliminated."
+          pt=" e deve escolher um jogador para comparar as mãos. A carta de menor valor será eliminada."
         />
       );
       break;
     case 'COMPARE_HIGHER':
       content = (
         <Translate
-          en={
-            <>
-              {' '}
-              and must choose a player to compare hands, the player with the higher ranked card will be
-              eliminated.
-            </>
-          }
-          pt="e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada."
+          en=" and must choose a player to compare hands, the player with the higher ranked card will be eliminated."
+          pt=" e deve escolher um jogador para comparar as mãos. A carta de maior valor será eliminada."
         />
       );
       break;
     case 'DISCARD_REDRAW':
       content = (
         <Translate
-          en="and must choose a player (including themselves) to discard their card and draw a new one."
-          pt={
-            <>
-              {' '}
-              e deve escolher um jogador (includindo ele(a) mesmo(a)) para descartar a mão e comprar uma nova
-              carta.
-            </>
-          }
+          en=" and must choose a player (including themselves) to discard their card and draw a new one."
+          pt=" e deve escolher um jogador (incluindo ele(a) mesmo(a)) para descartar a mão e comprar uma nova carta."
         />
       );
       break;
@@ -127,20 +109,14 @@ export function CardEffectRuleInstruction({
   return (
     <RuleInstruction type="event">
       <Translate
-        en={
-          <>
-            <PlayerAvatarName player={activePlayer} /> played{' '}
-            <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>
-          </>
-        }
-        pt={
-          <>
-            <PlayerAvatarName player={activePlayer} /> jogou{' '}
-            <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>
-          </>
-        }
+        en="{player} played {card} {content}"
+        pt="{player} jogou {card} {content}"
+        values={{
+          player: <PlayerAvatarName player={activePlayer} />,
+          card: <CardHighlight color={playedCard.color}>{playedCard.name}</CardHighlight>,
+          content,
+        }}
       />
-      {content}
     </RuleInstruction>
   );
 }
