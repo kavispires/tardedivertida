@@ -33,8 +33,8 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll, 
         size="xx-small"
       >
         <Translate
-          pt="Itens"
           en="Items"
+          pt="Itens"
         />
       </Title>
       <div className="objects-grid">

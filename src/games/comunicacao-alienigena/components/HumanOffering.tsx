@@ -79,28 +79,17 @@ export function HumanOffering({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Você já entregou{' '}
+          en="You already delivered {deliveries} objects and have {chances} chances left. Among the objects there are {cursed} cursed objects that will cause the lost of one additional chance."
+          pt="Você já entregou {deliveries} objetos e tem {chances} chances sobrando. Dentre os objetos há {cursed} objetos amaldiçoados que causará você perder uma chance adicional."
+          values={{
+            deliveries: (
               <ItemsHighlight type="positive">
                 {status.found}/{status.needed}
-              </ItemsHighlight>{' '}
-              objetos e tem <TimeHighlight>{status.timeLeft}</TimeHighlight> chances sobrando. Dentre os
-              objetos há <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight> objetos amaldiçoados
-              que causará você perder uma chance adicional.
-            </>
-          }
-          en={
-            <>
-              You already delivered{' '}
-              <ItemsHighlight type="positive">
-                {status.found}/{status.needed}
-              </ItemsHighlight>{' '}
-              objects and have <TimeHighlight>{status.timeLeft}</TimeHighlight> chances left. Among the
-              objects there are <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight> cursed objects
-              that will cause the lost of one additional chance.
-            </>
-          }
+              </ItemsHighlight>
+            ),
+            chances: <TimeHighlight>{status.timeLeft}</TimeHighlight>,
+            cursed: <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight>,
+          }}
         />
       </RuleInstruction>
     </SpaceContainer>

@@ -23,8 +23,8 @@ export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAli
     >
       <StepTitle>
         <Translate
-          pt="Análise de Objetos"
           en="Objects analyses"
+          pt="Análise de Objetos"
         />
       </StepTitle>
 
@@ -32,21 +32,8 @@ export function StepSeedAlien({ user, announcement, onSubmitSeeds }: StepSeedAli
 
       <RuleInstruction type="lore">
         <Translate
-          pt={
-            <>
-              Você passou sua vida analisando as propriedades de diversos objetos.
-              <br />
-              Agora, para cada um dos atributos dados, determine se os itens têm ou não a propriedade.
-            </>
-          }
-          en={
-            <>
-              You have spent your life analyzing the properties of various items.
-              <br />
-              Now, for each of the attributes given to you, determine whether the items have the property or
-              not.
-            </>
-          }
+          en="You have spent your life analyzing the properties of various items.<br/>Now, for each of the attributes given to you, determine whether the items have the property or not."
+          pt="Você passou sua vida analisando as propriedades de diversos objetos.<br/>Agora, para cada um dos atributos dados, determine se os itens têm ou não a propriedade."
         />
       </RuleInstruction>
 

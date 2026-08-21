@@ -82,8 +82,8 @@ export function InquirySuggestions({
               shape="round"
             >
               <Translate
-                pt="Usar"
                 en="Use"
+                pt="Usar"
               />
             </Button>
           </li>
@@ -97,8 +97,8 @@ export function InquirySuggestions({
       content={content}
       title={
         <Translate
-          pt="Sugestões de Pergunta"
           en="Ask Suggestions"
+          pt="Sugestões de Pergunta"
         />
       }
     >
@@ -107,8 +107,8 @@ export function InquirySuggestions({
         ghost
       >
         <Translate
-          pt="Sugestões?"
           en="Suggestions?"
+          pt="Sugestões?"
         />
       </Button>
     </Popover>
@@ -152,8 +152,8 @@ export function AnswerSuggestions({ attributesDict, suggestions, onSelect }: Ans
                 shape="round"
               >
                 <Translate
-                  pt="Usar"
                   en="Use"
+                  pt="Usar"
                 />
               </Button>
             </Flex>
@@ -168,8 +168,8 @@ export function AnswerSuggestions({ attributesDict, suggestions, onSelect }: Ans
       content={content}
       title={
         <Translate
-          pt="Sugestões de Resposta"
           en="Answer Suggestions"
+          pt="Sugestões de Resposta"
         />
       }
     >
@@ -179,8 +179,8 @@ export function AnswerSuggestions({ attributesDict, suggestions, onSelect }: Ans
         size="small"
       >
         <Translate
-          pt="Sugestões?"
           en="Suggestions?"
+          pt="Sugestões?"
         />
       </Button>
     </Popover>

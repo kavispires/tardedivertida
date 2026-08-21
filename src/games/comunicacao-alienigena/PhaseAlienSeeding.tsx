@@ -33,8 +33,8 @@ export function PhaseAlienSeeding({ players, state, user }: PhaseProps<PhaseAlie
       icon={<BooksIcon />}
       title={
         <Translate
-          pt="Análise de Objetos"
           en="Objects analyses"
+          pt="Análise de Objetos"
         />
       }
       currentRound={state?.round?.current}

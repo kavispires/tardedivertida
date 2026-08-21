@@ -69,16 +69,11 @@ export function StepAlienRequests({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Alienígena <PlayerAvatarName player={alien} /> deve pedir um item
-            </>
-          }
-          en={
-            <>
-              Alien <PlayerAvatarName player={alien} /> must request an item
-            </>
-          }
+          pt="O alienígena {player} deve pedir um item"
+          en="Alien {player} must request an item"
+          values={{
+            player: <PlayerAvatarName player={alien} />,
+          }}
         />
       </StepTitle>
 
@@ -86,32 +81,24 @@ export function StepAlienRequests({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              <strong>Selecione</strong> um dos objetos desejados (verde).
+          pt="<strong>Selecione</strong> um dos objetos desejados (verde).
               <br />
               Então, <strong>descreva</strong> o objeto usando quantos símbolos você quiser.
               <br />
-              Se você precisar inferir negação, coloque um traço horizontal em cima do{' '}
-              <span style={{ textDecoration: 'overline' }}>símbolo</span>.
+              Se você precisar inferir negação, coloque um traço horizontal em cima do <overline>símbolo</overline>.
               <br />
-              Se você precisa inferir ênfase, coloque um traço horizontal embaixo do{' '}
-              <span style={{ textDecoration: 'underline' }}>símbolo</span>.
-            </>
-          }
-          en={
-            <>
-              <strong>Select</strong> one of the desired objects (green).
+              Se você precisa inferir ênfase, coloque um traço horizontal embaixo do <underline>símbolo</underline>."
+          en="<strong>Select</strong> one of the desired objects (green).
               <br />
               Then, <strong>describe</strong> the object using as many symbols you wish.
               <br />
-              If you need to infer negation or the contrary, draw an horizontal line on top of the{' '}
-              <span style={{ textDecoration: 'overline' }}>symbol</span>.
+              If you need to infer negation or the contrary, draw an horizontal line on top of the <overline>symbol</overline>.
               <br />
-              If you need to infer emphasis, draw an horizontal line below the{' '}
-              <span style={{ textDecoration: 'underline' }}>symbol</span>.
-            </>
-          }
+              If you need to infer emphasis, draw an horizontal line below the <underline>symbol</underline>."
+          values={{
+            overline: (children) => <span style={{ textDecoration: 'overline' }}>{children}</span>,
+            underline: (children) => <span style={{ textDecoration: 'underline' }}>{children}</span>,
+          }}
         />
       </RuleInstruction>
 

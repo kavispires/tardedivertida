@@ -51,8 +51,8 @@ export function SelectableObjectsGrid({
         size="xx-small"
       >
         <Translate
-          pt="Itens"
           en="Items"
+          pt="Itens"
         />
       </Title>
       <div className="objects-grid">

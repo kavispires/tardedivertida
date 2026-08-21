@@ -133,14 +133,14 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
           marginBottom={0}
         >
           <Translate
-            pt="Análise"
             en="Analysis"
+            pt="Análise"
           />
         </Title>
         <RuleInstruction type="action">
           <Translate
-            pt="Ative o botão de todos os itens que possuem a característica:"
             en="Activate the switch of all items that have the attribute"
+            pt="Ative o botão de todos os itens que possuem a característica:"
           />
         </RuleInstruction>
 
@@ -183,14 +183,14 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
                 <Switch
                   checkedChildren={
                     <Translate
-                      pt="Sim"
                       en="Yes"
+                      pt="Sim"
                     />
                   }
                   unCheckedChildren={
                     <Translate
-                      pt="Não"
                       en="No"
+                      pt="Não"
                     />
                   }
                   onChange={() => updateSelected(key)}
@@ -203,8 +203,8 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
 
         <Surface>
           <Translate
-            pt="Se nenhum item combina com a característica, apenas vá para o próximo."
             en="If no item matches the attribute, just go to the next one."
+            pt="Se nenhum item combina com a característica, apenas vá para o próximo."
           />
         </Surface>
 
@@ -223,8 +223,8 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
               disabled={isLoading || currentStep === 0}
             >
               <Translate
-                pt="Atributo anterior"
                 en="Previous attribute"
+                pt="Atributo anterior"
               />
             </Button>
           )}
@@ -237,8 +237,8 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
               disabled={user.ready}
             >
               <Translate
-                pt="Próximo atributo"
                 en="Next attribute"
+                pt="Próximo atributo"
               />
             </Button>
           ) : (
@@ -249,8 +249,8 @@ export function HumanSeedingSteps({ user, onSubmitSeeds }: HumanSeedingStepsProp
               disabled={isLoading}
             >
               <Translate
-                pt="Enviar análises"
                 en="Submit Analyses"
+                pt="Enviar análises"
               />
             </Button>
           )}

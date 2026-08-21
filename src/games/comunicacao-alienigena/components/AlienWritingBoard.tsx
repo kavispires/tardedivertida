@@ -32,8 +32,8 @@ export function AlienWritingBoard({ onSubmit, disabled }: HumanSignBoardProps) {
         onClick={() => onSubmit(JSON.stringify(lines))}
       >
         <Translate
-          pt="Enviar"
           en="Submit"
+          pt="Enviar"
         />
       </SendButton>
     </SpaceContainer>

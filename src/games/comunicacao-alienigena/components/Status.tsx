@@ -21,8 +21,8 @@ export function Status({ status }: StatusProps) {
       <ul>
         <li>
           <Translate
-            pt="Objetos entregues/queridos"
             en="Delivered/Needed objects"
+            pt="Objetos entregues/queridos"
           />
           :{' '}
           <ItemsHighlight>
@@ -31,22 +31,22 @@ export function Status({ status }: StatusProps) {
         </li>
         <li>
           <Translate
-            pt="Tempo Sobrando"
             en="Remaining Time"
+            pt="Tempo Sobrando"
           />
           : <TimeHighlight>{status.timeLeft}</TimeHighlight>
         </li>
         <li>
           <Translate
-            pt="Objetos disponíveis"
             en="Remaining Objects"
+            pt="Objetos disponíveis"
           />
           : <MetricHighlight icon={<BoxQuestionMarkIcon />}>{status.total}</MetricHighlight>
         </li>
         <li>
           <Translate
-            pt="Objetos amaldiçoados"
             en="Cursed Objects"
+            pt="Objetos amaldiçoados"
           />
           : <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight>
         </li>

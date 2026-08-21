@@ -64,16 +64,11 @@ export function StepAlienRequestsWait({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Alienígena <PlayerAvatarName player={alien} /> deve pedir um item
-            </>
-          }
-          en={
-            <>
-              Alien <PlayerAvatarName player={alien} /> must request an item
-            </>
-          }
+          pt="O alienígena {player} deve pedir um item"
+          en="The alien {player} must request an item"
+          values={{
+            player: <PlayerAvatarName player={alien} />,
+          }}
         />
       </StepTitle>
 
@@ -81,16 +76,11 @@ export function StepAlienRequestsWait({
 
       <RuleInstruction type="wait">
         <Translate
-          pt={
-            <>
-              Aguarde enquanto <PlayerAvatarName player={alien} /> escreve o objeto que ele(a) quer.
-            </>
-          }
-          en={
-            <>
-              Wait while <PlayerAvatarName player={alien} /> describes a desired object.
-            </>
-          }
+          pt="Aguarde enquanto {player} escreve o objeto que ele(a) quer."
+          en="Wait while {player} describes a desired object."
+          values={{
+            player: <PlayerAvatarName player={alien} />,
+          }}
         />
       </RuleInstruction>
 

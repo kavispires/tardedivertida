@@ -33,8 +33,8 @@ export function PhaseHumansAsks({ players, state, user }: PhaseProps<PhaseHumans
       icon={<QuestionIcon />}
       title={
         <Translate
-          pt="Pergunte ao alienígena"
           en="Ask the Alien"
+          pt="Pergunte ao alienígena"
         />
       }
       currentRound={state?.round?.current}

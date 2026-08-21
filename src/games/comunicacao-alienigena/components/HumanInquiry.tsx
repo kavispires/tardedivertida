@@ -87,8 +87,8 @@ export function HumanInquiry({
               value: '',
               label: (
                 <Translate
-                  pt="Selecione um atributo"
                   en="Select an attribute"
+                  pt="Selecione um atributo"
                 />
               ),
             },
@@ -115,8 +115,8 @@ export function HumanInquiry({
             onClick={() => submitInquiry({ objectsIds, intention: attribute })}
           >
             <Translate
-              pt="Enviar Objetos"
               en="Submit Objects"
+              pt="Enviar Objetos"
             />
           </SendButton>
         </Badge>

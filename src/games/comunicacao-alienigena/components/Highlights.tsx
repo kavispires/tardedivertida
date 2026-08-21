@@ -5,41 +5,29 @@ import { PlayerIconsIcon } from '@icons/PlayerIconsIcon';
 // Components
 import { type HighlightProps, MetricHighlight } from '@components/metrics/MetricHighlight';
 
-export function ItemsHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function ItemsHighlight(props: Omit<HighlightProps, 'icon'>) {
   return (
     <MetricHighlight
       icon={<PlayerIconsIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }
 
-export function HieroglyphHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function HieroglyphHighlight(props: Omit<HighlightProps, 'icon'>) {
   return (
     <MetricHighlight
       icon={<HieroglyphIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }
 
-export function CurseItemHighlight({ children, type, iconSize, className }: HighlightProps) {
+export function CurseItemHighlight(props: Omit<HighlightProps, 'icon'>) {
   return (
     <MetricHighlight
       icon={<MagicSkullIcon />}
-      type={type}
-      iconSize={iconSize}
-      className={className}
-    >
-      {children}
-    </MetricHighlight>
+      {...props}
+    />
   );
 }

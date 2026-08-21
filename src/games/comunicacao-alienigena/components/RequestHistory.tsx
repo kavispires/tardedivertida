@@ -36,8 +36,8 @@ export function RequestHistory({
       key: 'request',
       title: (
         <Translate
-          pt="Pedido"
           en="Request"
+          pt="Pedido"
         />
       ),
       dataIndex: 'request',
@@ -55,8 +55,8 @@ export function RequestHistory({
       key: 'offers',
       title: (
         <Translate
-          pt="Oferendas"
           en="Offerings"
+          pt="Oferendas"
         />
       ),
       dataIndex: 'offers',
@@ -75,8 +75,8 @@ export function RequestHistory({
       key: 'intention',
       title: (
         <Translate
-          pt="Intenção"
           en="Intention"
+          pt="Intenção"
         />
       ),
       dataIndex: 'intention',
@@ -86,9 +86,7 @@ export function RequestHistory({
             itemId={`${intention}`}
             width={50}
           />
-        ) : (
-          <></>
-        ),
+        ) : null,
     });
   }
 

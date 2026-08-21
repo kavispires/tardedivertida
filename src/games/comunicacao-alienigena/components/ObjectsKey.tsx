@@ -16,8 +16,8 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
         <span className="objects-key__example objects-key__example--UNKNOWN"></span>
         <span className="objects-key__text">
           <Translate
-            pt="Desconhecido"
             en="Unknown"
+            pt="Desconhecido"
           />
         </span>
         {/* TODO: add to status */}
@@ -29,14 +29,14 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
         <span className="objects-key__example objects-key__example--ITEM"></span>
         <span className="objects-key__text">
           <Translate
-            pt="O alienígena quer"
             en="Alien wants it"
+            pt="O alienígena quer"
           />
         </span>
         <span>
           <Translate
-            pt="Entregues / Necessários"
             en="Delivered / Needed"
+            pt="Entregues / Necessários"
           />
           :{' '}
           <Tag>
@@ -48,8 +48,8 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
         <span className="objects-key__example objects-key__example--CURSE"></span>
         <span className="objects-key__text">
           <Translate
-            pt="O alienígena tem medo"
             en="Alien is afraid of it"
+            pt="O alienígena tem medo"
           />
         </span>
         <span>
@@ -63,14 +63,14 @@ export function ObjectsKey({ status }: ObjectsKeyProps) {
         <span className="objects-key__example objects-key__example--BLANK"></span>
         <span className="objects-key__text">
           <Translate
-            pt="Alienígena não quis"
             en="Alien did not want it"
+            pt="Alienígena não quis"
           />
         </span>
         <span>
           <Translate
-            pt="Rodadas restantes"
             en="Rounds left"
+            pt="Rodadas restantes"
           />
           : <Tag>{status.timeLeft}</Tag>
         </span>

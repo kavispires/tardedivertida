@@ -36,8 +36,8 @@ export function History({
       key: 'inquiries',
       label: (
         <Translate
-          pt="Histórico de Perguntas dos Humanos"
           en="Human Inquiry History"
+          pt="Histórico de Perguntas dos Humanos"
         />
       ),
       children: (
@@ -51,8 +51,8 @@ export function History({
           />
           {inquiryHistory.length === 0 && (
             <Translate
-              pt="Nenhuma pergunta ainda."
               en="No questions yet."
+              pt="Nenhuma pergunta ainda."
             />
           )}
         </>
@@ -62,8 +62,8 @@ export function History({
       key: 'requests',
       label: (
         <Translate
-          pt="Histórico de Pedidos dos Alienígenas"
           en="Alien Request History"
+          pt="Histórico de Pedidos dos Alienígenas"
         />
       ),
       children: (
@@ -78,8 +78,8 @@ export function History({
           />
           {requestHistory.length === 0 && (
             <Translate
-              pt="Nenhum pedido ainda."
               en="No requests yet."
+              pt="Nenhum pedido ainda."
             />
           )}
         </>
