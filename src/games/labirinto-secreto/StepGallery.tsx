@@ -37,36 +37,20 @@ export function StepGallery({ players, gallery, user, forest, slideShowConfig }:
     <Step fullWidth>
       <Title>
         <Translate
-          pt={
-            <>
-              Mapa do(a) <PlayerAvatarName player={currentPlayer} />
-            </>
-          }
-          en={
-            <>
-              <PlayerAvatarName player={currentPlayer} />
-              's map
-            </>
-          }
+          pt="Mapa do(a) {player}"
+          en="{player}'s map"
+          values={{ player: <PlayerAvatarName player={currentPlayer} /> }}
         />
       </Title>
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Você ganha pontos ao acertar o caminho do mapa. <br />
-              Cada árvore correta vale <PointsHighlight value={1} /> por jogador que acertar. <br />
-              Se você for o único que acertou, você ganha <PointsHighlight value={playerCount} />.
-            </>
-          }
-          en={
-            <>
-              You get points by guessing the map path. <br />
-              Each correct tree is worth <PointsHighlight value={1} /> per player who guesses it. <br />
-              If you are the only one who guessed it, you get <PointsHighlight value={playerCount} />.
-            </>
-          }
+          pt="Você ganha pontos ao acertar o caminho do mapa.<br/>Cada árvore correta vale {points} por jogador que acertar.<br/>Se você for o único que acertou, você ganha {playerPoints}."
+          en="You get points by guessing the map path.<br/>Each correct tree is worth {points} per player who guesses it.<br/>If you are the only one who guessed it, you get {playerPoints}."
+          values={{
+            points: <PointsHighlight value={1} />,
+            playerPoints: <PointsHighlight value={playerCount} />,
+          }}
         />
       </RuleInstruction>
 

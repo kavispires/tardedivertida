@@ -38,50 +38,22 @@ export function StepFollowPath({
     >
       <StepTitle>
         <Translate
-          pt={
-            <>
-              Siga o mapa de <PlayerAvatarName player={activePlayer} />
-            </>
-          }
-          en={
-            <>
-              Follow <PlayerAvatarName player={activePlayer} />
-              's map
-            </>
-          }
+          pt="Siga o mapa de {activePlayer}"
+          en="Follow {activePlayer}'s map"
+          values={{ activePlayer: <PlayerAvatarName player={activePlayer} /> }}
         />
       </StepTitle>
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Baseado no <MapHighlight>mapa de adjetivos</MapHighlight>, clique nas{' '}
-              <TreeHighlight>árvores</TreeHighlight> circuladas de pontinhos brancos para escolher aquele
-              caminho.
-              <br />
-              Cada árvore correta vale <PointsHighlight value={1} /> por jogador que acertar (Por exemplo, 3
-              jogadores = 3 pontos).
-              <br />
-              Então, talvez valha a pena discutir! Porém, se somente um jogador acertar o caminho, ele ganha{' '}
-              <PointsHighlight value={playerCount} />.
-              <br />O criador do mapa ganha o mesmo número de pontos que os jogadores.
-            </>
-          }
-          en={
-            <>
-              Based on the <MapHighlight>adjectives map</MapHighlight>, click on the{' '}
-              <TreeHighlight>circled trees</TreeHighlight> with white dots to choose that path.
-              <br />
-              Each correct tree is worth <PointsHighlight value={1} /> per player that guesses it (For
-              example, 3 players = 3 points).
-              <br />
-              So, it might be worth discussing out loud! However, if only one player guesses the path, they
-              earn <PointsHighlight value={playerCount} />.
-              <br />
-              The map creator also earns the same number of points as the players.
-            </>
-          }
+          pt="Baseado no <mapa>mapa de adjetivos</mapa>, clique nas <arvores>árvores</arvores> circuladas de pontinhos brancos para escolher aquele caminho.<br/>Cada árvore correta vale {points} por jogador que acertar (Por exemplo, 3 jogadores = 3 pontos).<br/>Então, talvez valha a pena discutir! Porém, se somente um jogador acertar o caminho, ele ganha {playerPoints}.<br/>O criador do mapa ganha o mesmo número de pontos que os jogadores."
+          en="Based on the <mapa>adjectives map</mapa>, click on the <arvores>circled trees</arvores> with white dots to choose that path.<br/>Each correct tree is worth {points} per player that guesses it (For example, 3 players = 3 points).<br/>So, it might be worth discussing out loud! However, if only one player guesses the path, they earn {playerPoints}.<br/>The map creator also earns the same number of points as the players."
+          values={{
+            mapa: (text: string) => <MapHighlight>{text}</MapHighlight>,
+            arvores: (text: string) => <TreeHighlight>{text}</TreeHighlight>,
+            points: <PointsHighlight value={1} />,
+            playerPoints: <PointsHighlight value={playerCount} />,
+          }}
         />
       </RuleInstruction>
 
