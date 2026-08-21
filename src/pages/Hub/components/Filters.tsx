@@ -47,7 +47,7 @@ export type FilterState = {
   /**
    * Sort by (title or release date)
    */
-  sortBy: 'title' | 'release-date';
+  sortBy: 'title' | 'release-date' | 'last-updated';
 };
 
 type FiltersProps = {
@@ -160,6 +160,10 @@ export function Filters({ availabilityCount, filters, setFilters }: FiltersProps
     {
       label: translate({ pt: 'Data de Lançamento', en: 'Release Date' }),
       value: 'release-date',
+    },
+    {
+      label: translate({ en: 'Last updated', pt: 'Última atualização' }),
+      value: 'last-updated',
     },
   ];
 
