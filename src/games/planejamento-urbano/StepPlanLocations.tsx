@@ -68,28 +68,28 @@ export function StepPlanLocations({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              No mapa, existem <ConeHighlight>{placements} cones</ConeHighlight> representando onde as
-              terrenos onde os projetos podem ser feitos.
-              <br />À direita, você tem os{' '}
-              <ConstructionHighlight>{availableProjectsIds.length} projetos</ConstructionHighlight>, em
-              segredo, decida qual projeto vai para qual cone.
+          pt="No mapa, existem <cones>cones</cones> representando onde as terrenos onde os projetos podem ser feitos.
               <br />
-              Arraste o projeto para o cone desejado. Para remove um projeto de um cone, baste clicar nele.
-            </>
-          }
-          en={
-            <>
-              On the map, there are <ConeHighlight>{placements} cones</ConeHighlight> representing the land
-              where the projects can be built.
+              À direita, você tem os <projects>projetos</projects>, em segredo, decida qual projeto vai para qual cone.
               <br />
-              On the right of the screen, you have{' '}
-              <ConstructionHighlight>{availableProjectsIds.length} projects</ConstructionHighlight>, in
-              secret, decide which project goes to which cone.
-              <br /> Drag the project to the desired cone. To remove a project from a cone, just click on it.
-            </>
-          }
+              Arraste o projeto para o cone desejado. Para remove um projeto de um cone, baste clicar nele."
+          en="On the map, there are <cones>cones</cones> representing the land where the projects can be built.
+              <br />
+              On the right of the screen, you have <projects>projects</projects>, in secret, decide which project goes to which cone.
+              <br />
+              Drag the project to the desired cone. To remove a project from a cone, just click on it."
+          values={{
+            cones: (children) => (
+              <ConeHighlight>
+                {placements} {children}
+              </ConeHighlight>
+            ),
+            projects: (children) => (
+              <ConstructionHighlight>
+                {availableProjectsIds.length} {children}
+              </ConstructionHighlight>
+            ),
+          }}
         />
       </RuleInstruction>
 
