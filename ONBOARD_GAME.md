@@ -1,5 +1,7 @@
 # ONBOARD GAME
 
+> Use `yarn onboard` as the source of truth for onboarding. Select the required step from its four-step CLI; this document supplements the CLI with the files and manual follow-up work involved.
+
 ## Cloud functions
 
 All file paths here are relative to `functions/src`.

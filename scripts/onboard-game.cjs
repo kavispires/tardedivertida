@@ -5,7 +5,13 @@ const path = require('path');
 const readline = require('readline');
 
 // Import enhanced backend setup
-const { runBackendSetup: runEnhancedBackendSetup } = require('./onboard-game/index.cjs');
+const { runBackendSetup } = require('./onboard-game/index.cjs');
+const {
+  convertNameToKey,
+  convertToPascalCase,
+  validateGameName,
+  validateGameCode,
+} = require('./onboard-game/utils.cjs');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -18,22 +24,6 @@ function prompt(question) {
       resolve(answer.trim());
     });
   });
-}
-
-function convertNameToKey(name) {
-  return name.toUpperCase().replace(/-/g, '_');
-}
-
-function validateGameName(name) {
-  // Check if name is lowercase, single string with optional hyphens
-  const regex = /^[a-z]+(-[a-z]+)*$/;
-  return regex.test(name);
-}
-
-function validateGameCode(code) {
-  // Check if code is a single capital letter
-  const regex = /^[A-Z]$/;
-  return regex.test(code);
 }
 
 // Backend setup is now handled by the enhanced module
@@ -288,13 +278,6 @@ async function runFrontendGameInfo() {
   console.log('   1. You must create and add the images for the banner, strip, and logo.');
   console.log('   2. Create and add the video backend.');
   console.log('   3. Implement the frontend game components in src/games/${gameName}/\n');
-}
-
-function convertToPascalCase(name) {
-  return name
-    .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
 }
 
 function copyDirRecursive(src, dest, excludeFiles = []) {
@@ -627,7 +610,7 @@ async function main() {
 
   try {
     if (choice === '1') {
-      await runEnhancedBackendSetup(prompt);
+      await runBackendSetup(prompt);
     } else if (choice === '2') {
       await runBackendEngineHookup();
     } else if (choice === '3') {

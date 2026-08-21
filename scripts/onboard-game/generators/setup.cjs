@@ -135,7 +135,7 @@ export const prepareGameOverPhase = async (
 
   // Save game to each user's profile
   await utils.user.saveGameToUsers({
-    gameName: GAME_NAMES.CONTROLE_DE_ESTOQUE,
+    gameName: GAME_NAMES.${gameKey},
     gameId,
     startedAt: store.createdAt,
     players,

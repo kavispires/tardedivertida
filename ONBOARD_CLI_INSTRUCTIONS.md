@@ -1,5 +1,7 @@
 # ONBOARD GAME CLI INSTRUCTIONS
 
+> The supported onboarding workflow is `yarn onboard`. It provides the complete four-step CLI: backend setup, backend engine hookup, frontend game-info setup, and frontend setup. This document describes the generated backend portion of that workflow.
+
 ## Backend/functions instructions
 
 - Greet the user that you will set up the backend of the game
