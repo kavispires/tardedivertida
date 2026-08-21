@@ -1,4 +1,3 @@
-// scripts/checks/achievements.cjs
 const fs = require('fs');
 const path = require('path');
 
@@ -11,17 +10,17 @@ module.exports = {
     const fail = (error) => ({ label, passed: false, error });
 
     // --- Path Resolution ---
-    // Assuming your script runs from /scripts/checks, we traverse up to the root to find the backend
+    // Assuming your script runs from /scripts/audit, we traverse up to the root to find the backend
     const backendDir = path.resolve(__dirname, '../../functions/src/games', gameDir);
     const frontendDir = gameFolderPath; // This is already resolving to src/games/<game-name>
 
     // -------------------------------------------------------------------------
-    // BACKEND CHECKS
+    // BACKEND AUDITS
     // -------------------------------------------------------------------------
     const beAchievementsPath = path.join(backendDir, 'achievements.ts');
     const beSetupPath = path.join(backendDir, 'setup.ts');
 
-    // 1. Backend: achievements.ts checks
+    // 1. Backend: achievements.ts audit
     if (!fs.existsSync(beAchievementsPath)) return fail('Backend: achievements.ts is missing');
     const beAchContent = fs.readFileSync(beAchievementsPath, 'utf8');
 
@@ -31,7 +30,7 @@ module.exports = {
       return fail('Backend: achievements.ts missing setupAchievements or calculateAchievements export');
     }
 
-    // 2. Backend: setup.ts setupAchievements initialization check
+    // 2. Backend: setup.ts setupAchievements initialization audit
     if (!fs.existsSync(beSetupPath)) return fail('Backend: setup.ts is missing');
     const setupContent = fs.readFileSync(beSetupPath, 'utf8');
 
@@ -50,7 +49,7 @@ module.exports = {
       return fail('Backend: setup.ts missing calculateAchievements called with store.achievements');
     }
 
-    // 4. Backend: saveGameToUsers checks
+    // 4. Backend: saveGameToUsers audit
     if (!setupContent.includes('await utils.user.saveGameToUsers')) {
       return fail('Backend: setup.ts missing saveGameToUsers call');
     }
@@ -65,11 +64,11 @@ module.exports = {
     }
 
     // -------------------------------------------------------------------------
-    // FRONTEND CHECKS
+    // FRONTEND AUDITS
     // -------------------------------------------------------------------------
     const feUtilsAchPath = path.join(frontendDir, 'utils/achievements.ts');
 
-    // 1 & 2. Frontend: utils/achievements.ts checks
+    // 1 & 2. Frontend: utils/achievements.ts audits
     if (!fs.existsSync(feUtilsAchPath)) return fail('Frontend: utils/achievements.ts is missing');
     const feUtilsAchContent = fs.readFileSync(feUtilsAchPath, 'utf8');
 
@@ -115,7 +114,7 @@ module.exports = {
     }
 
     // -------------------------------------------------------------------------
-    // ALL CHECKS PASSED
+    // ALL AUDITS PASSED
     // -------------------------------------------------------------------------
     return {
       label,

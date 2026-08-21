@@ -54,28 +54,18 @@ function getGameMetadata(gameDir) {
   }
 }
 
-// -----------------------------------------------------------------------------
-// Action 1: Add Missing Metadata
-// -----------------------------------------------------------------------------
+/**
+ * Creates the default metadata document content for a game.
+ * @param {string} gameDir - The game directory name
+ * @returns {string} The default metadata document
+ */
+function getMetadataTemplate(gameDir) {
+  const gameInfo = getGameMetadata(gameDir) || {};
+  const titlePt = gameInfo.title?.pt || gameInfo.gameName || gameDir;
+  const gameName = gameInfo.gameName || gameDir;
+  const gameCode = gameInfo.gameCode || 'N/A';
 
-async function addMissingMetadata() {
-  console.log('\n🔍 Scanning for missing metadata files...');
-  const games = getValidGames();
-  const gamesDir = path.resolve(__dirname, '../src/games');
-
-  let addedCount = 0;
-
-  for (const gameDir of games) {
-    const gameFolderPath = path.join(gamesDir, gameDir);
-    const metadataPath = path.join(gameFolderPath, 'metadata.md');
-
-    if (!fs.existsSync(metadataPath)) {
-      const gameInfo = getGameMetadata(gameDir) || {};
-      const titlePt = gameInfo.title?.pt || gameInfo.gameName || gameDir;
-      const gameName = gameInfo.gameName || gameDir;
-      const gameCode = gameInfo.gameCode || 'N/A';
-
-      const template = `## Metadata for ${titlePt}
+  return `## Metadata for ${titlePt}
 
 ### Basic Info
 
@@ -96,9 +86,42 @@ async function addMissingMetadata() {
 
 - TBD
 `;
+}
 
-      fs.writeFileSync(metadataPath, template, 'utf8');
-      console.log(`✅ Created missing metadata.md for ${gameDir}`);
+/**
+ * Creates a metadata document when one does not exist.
+ * @param {string} gameDir - The game directory name
+ * @param {string} gamesDir - The absolute games directory path
+ * @returns {boolean} Whether a metadata document was created
+ */
+function ensureMetadataFile(gameDir, gamesDir) {
+  const metadataPath = path.join(gamesDir, gameDir, 'metadata.md');
+
+  if (fs.existsSync(metadataPath)) {
+    return false;
+  }
+
+  fs.writeFileSync(metadataPath, getMetadataTemplate(gameDir), 'utf8');
+  console.log(`✅ Created missing metadata.md for ${gameDir}`);
+  return true;
+}
+
+// -----------------------------------------------------------------------------
+// Action 1: Add Missing Metadata
+// -----------------------------------------------------------------------------
+
+async function addMissingMetadata() {
+  console.log('\n🔍 Scanning for missing metadata files...');
+  const games = getValidGames();
+  const gamesDir = path.resolve(__dirname, '../src/games');
+
+  let addedCount = 0;
+
+  for (const gameDir of games) {
+    const gameFolderPath = path.join(gamesDir, gameDir);
+    const metadataPath = path.join(gameFolderPath, 'metadata.md');
+
+    if (ensureMetadataFile(gameDir, gamesDir)) {
       addedCount++;
     }
   }
@@ -134,7 +157,7 @@ async function addMigrationItem() {
   for (const gameDir of games) {
     const metadataPath = path.join(gamesDir, gameDir, 'metadata.md');
 
-    if (fs.existsSync(metadataPath)) {
+    if (ensureMetadataFile(gameDir, gamesDir) || fs.existsSync(metadataPath)) {
       let content = fs.readFileSync(metadataPath, 'utf8');
 
       // Extract existing migration items to check for duplicates
@@ -189,21 +212,21 @@ async function addMigrationItem() {
 // Action 3: Run Report
 // -----------------------------------------------------------------------------
 
-const checksDir = path.resolve(__dirname, 'checks');
+const auditDir = path.resolve(__dirname, 'audit');
 
-function runAllChecks(gameInfo, gameDir, gameFolderPath) {
-  if (!fs.existsSync(checksDir)) return [];
+function runAllAudits(gameInfo, gameDir, gameFolderPath) {
+  if (!fs.existsSync(auditDir)) return [];
 
-  const checkFiles = fs.readdirSync(checksDir).filter(f => f.endsWith('.cjs'));
+  const auditFiles = fs.readdirSync(auditDir).filter(f => f.endsWith('.cjs'));
   const reportLines = [];
   const results = { passed: [], failed: [] };
 
-  for (const file of checkFiles) {
-    const check = require(path.join(checksDir, file));
+  for (const file of auditFiles) {
+    const audit = require(path.join(auditDir, file));
     try {
       // Failsafe if the JSON doesn't exist at all
     if (!gameInfo) {
-      const label = check.id || file;
+      const label = audit.id || file;
       reportLines.push(`- ${label}: ❌ game-info.json is missing or invalid`);
       results.failed.push({
         label: label,
@@ -212,10 +235,10 @@ function runAllChecks(gameInfo, gameDir, gameFolderPath) {
       continue;
     }
 
-      const result = check.run(gameInfo, gameDir, gameFolderPath);
+      const result = audit.run(gameInfo, gameDir, gameFolderPath);
       const emoji = result.passed ? '✅' : '❌';
 
-      // Append the error reason if the check failed
+      // Append the error reason if the audit failed
       const errorText = (!result.passed && result.error) ? ` (${result.error})` : '';
 
       reportLines.push(`- ${result.label}: ${emoji}${errorText}`);
@@ -229,10 +252,10 @@ function runAllChecks(gameInfo, gameDir, gameFolderPath) {
         });
       }
     } catch (err) {
-      console.error(`❌ Error running check ${file} on ${gameDir}:`, err.message);
+      console.error(`❌ Error running audit ${file} on ${gameDir}:`, err.message);
 
-      // Catch fatal errors within the module itself
-      const label = check.id || file;
+      // Catch fatal errors within the audit module itself
+      const label = audit.id || file;
       reportLines.push(`- ${label}: ⚠️ Error (${err.message})`);
       results.failed.push({
         label: label,
@@ -261,13 +284,15 @@ async function runReport() {
   console.log(`\n📊 Running report for ${gamesToProcess.length} game(s)...`);
   const gamesDir = path.resolve(__dirname, '../src/games');
   let updatedCount = 0;
-  const allCheckTypes = new Set();
+  const allAuditTypes = new Set();
   const failedGames = [];
   const skippedGames = [];
 
   for (const gameDir of gamesToProcess) {
     const gameInfo = getGameMetadata(gameDir);
     const metadataPath = path.join(gamesDir, gameDir, 'metadata.md');
+
+    ensureMetadataFile(gameDir, gamesDir);
 
     // Skip games that are not beta or stable
     if (gameInfo && gameInfo.release && !['beta', 'stable'].includes(gameInfo.release)) {
@@ -285,20 +310,20 @@ async function runReport() {
       let content = fs.readFileSync(metadataPath, 'utf8');
       const gameFolderPath = path.join(gamesDir, gameDir);
 
-      // 1. Run all modular checks
-      const { reportLines, results } = runAllChecks(gameInfo, gameDir, gameFolderPath);
+      // 1. Run all modular audits
+      const { reportLines, results } = runAllAudits(gameInfo, gameDir, gameFolderPath);
       const newReportLines = reportLines.join('\n');
 
-      // Track check types
-      results.passed.forEach(check => allCheckTypes.add(check));
-      results.failed.forEach(check => allCheckTypes.add(check.label));
+      // Track audit types
+      results.passed.forEach(audit => allAuditTypes.add(audit));
+      results.failed.forEach(audit => allAuditTypes.add(audit.label));
 
       // Track failed games
       if (results.failed.length > 0) {
         failedGames.push({
           name: gameDir,
           path: `src/games/${gameDir}/metadata.md`,
-          failedChecks: results.failed,
+          failedAudits: results.failed,
         });
       }
 
@@ -350,9 +375,9 @@ async function runReport() {
     });
   }
 
-  console.log(`\n🔍 Report Types Run (${allCheckTypes.size}):`);
-  Array.from(allCheckTypes).sort().forEach(check => {
-    console.log(`   - ${check}`);
+  console.log(`\n🔍 Audit Types Run (${allAuditTypes.size}):`);
+  Array.from(allAuditTypes).sort().forEach(audit => {
+    console.log(`   - ${audit}`);
   });
 
   if (failedGames.length > 0) {
@@ -360,13 +385,13 @@ async function runReport() {
     failedGames.forEach(game => {
       console.log(`\n   ${game.name}`);
       console.log(`   Path: ${game.path}`);
-      console.log(`   Failed checks:`);
-      game.failedChecks.forEach(check => {
-        console.log(`      - ${check.label}: ${check.error}`);
+      console.log(`   Failed audits:`);
+      game.failedAudits.forEach(audit => {
+        console.log(`      - ${audit.label}: ${audit.error}`);
       });
     });
   } else {
-    console.log('\n✅ All games passed all checks!');
+    console.log('\n✅ All games passed all audits!');
   }
 
   console.log('\n====================================\n');
@@ -382,7 +407,7 @@ async function main() {
   console.log('====================================');
   console.log('1. Add Missing Metadata (Creates missing files)');
   console.log('2. Add Migration Item (Appends to Migrations section)');
-  console.log('3. Run Report (Checks game data and updates Report section)');
+  console.log('3. Run Report (Audits game data and updates Report section)');
   console.log('0. Exit');
 
   const choice = await prompt('\nSelect an option (0-3): ');
