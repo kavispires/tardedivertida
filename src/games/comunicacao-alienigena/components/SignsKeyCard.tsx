@@ -48,14 +48,14 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], inquiryHi
         marginBottom={0}
       >
         <Translate
-          pt="Atributos e Símbolos"
           en="Attributes and Symbols"
+          pt="Atributos e Símbolos"
         />
         <Tooltip
           title={
             <Translate
-              pt="Passando o mouse sobre os nomes dos atributos dá dicas de significados adicionais que eles tem"
               en="Hovering over the attribute names gives additional meaning hints"
+              pt="Passando o mouse sobre os nomes dos atributos dá dicas de significados adicionais que eles tem"
             />
           }
         >
@@ -84,8 +84,8 @@ export function SignsKeyCard({ attributes, startingAttributesIds = [], inquiryHi
                     <DualTranslate>{attribute.name}</DualTranslate>{' '}
                     {isStarting && (
                       <Translate
-                        pt=" (Atributo inicial)"
                         en=" (Starting attribute)"
+                        pt=" (Atributo inicial)"
                       />
                     )}
                   </>

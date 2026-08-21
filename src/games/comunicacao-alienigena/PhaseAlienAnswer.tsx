@@ -35,8 +35,8 @@ export function PhaseAlienAnswer({ players, state, user }: PhaseProps<PhaseAlien
       icon={<HieroglyphIcon />}
       title={
         <Translate
-          pt="Resposta do Alienígena"
           en="Alien Answer"
+          pt="Resposta do Alienígena"
         />
       }
       currentRound={state?.round?.current}

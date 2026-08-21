@@ -31,8 +31,8 @@ export function PhaseOfferings({ players, state, user }: PhaseProps<PhaseOfferin
       icon={<OfferingIcon />}
       title={
         <Translate
-          pt="Oferendas"
           en="Offerings"
+          pt="Oferendas"
         />
       }
       currentRound={state?.round?.current}

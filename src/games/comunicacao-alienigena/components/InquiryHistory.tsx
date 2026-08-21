@@ -36,8 +36,8 @@ export function InquiryHistory({
       key: 'player',
       title: (
         <Translate
-          pt="Jogador"
           en="Player"
+          pt="Jogador"
         />
       ),
       dataIndex: 'playerId',
@@ -52,8 +52,8 @@ export function InquiryHistory({
       key: 'items',
       title: (
         <Translate
-          pt="Objetos"
           en="Objects"
+          pt="Objetos"
         />
       ),
       dataIndex: 'objectIds',
@@ -63,8 +63,8 @@ export function InquiryHistory({
       key: 'answer',
       title: (
         <Translate
-          pt="Resposta"
           en="Answer"
+          pt="Resposta"
         />
       ),
       dataIndex: 'answer',
@@ -83,8 +83,8 @@ export function InquiryHistory({
       key: 'intention',
       title: (
         <Translate
-          pt="Intenção"
           en="Intention"
+          pt="Intenção"
         />
       ),
       dataIndex: 'intention',
@@ -101,8 +101,8 @@ export function InquiryHistory({
       key: 'assumption',
       title: (
         <Translate
-          pt="Suposição"
           en="Assumption"
+          pt="Suposição"
         />
       ),
       dataIndex: 'assumption',

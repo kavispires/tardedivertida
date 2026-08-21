@@ -31,8 +31,8 @@ export function PhaseAlienRequest({ players, state, user }: PhaseProps<PhaseAlie
       icon={<AlienCommunicationIcon />}
       title={
         <Translate
-          pt="O Alienígena faz um pedido"
           en="The Alien makes a request"
+          pt="O Alienígena faz um pedido"
         />
       }
       currentRound={state?.round?.current}

@@ -9,11 +9,13 @@ export function BotsRules() {
   return (
     <Surface contained>
       <Translate
-        pt={
-          <>
-            Entenda como o alienígena pensa:
-            <ul>
-              <li>
+        en="Learn how the alien thinks:"
+        pt="Entenda como o alienígena pensa:"
+      />
+      <ul></ul>
+
+      <Translate
+        pt="<li>
                 Ele vai sempre tentar de falar um símbolo que você não sabe, então, se você perguntar algo
                 similar a algo perguntando anteriormente, ele não repete e sim te dá o mais próximo.
               </li>
@@ -24,19 +26,14 @@ export function BotsRules() {
               <li>Defesa: proteção</li>
               <li>Força: energia, poder</li>
               <li>Longo: comprido, alto</li>
-              <li>Máquina: tem engrenagens, usa energia, "funciona"</li>
+              <li>Máquina: tem engrenagens, usa energia, 'funciona'</li>
               <li>Metal: se a ilustração tiver coisas metálicas, pode ser metal</li>
               <li>Pesado: pode ser carregado por alguém ou alguma coisa e é pesado</li>
               <li>Segurável: você normalmente segura ou tem alça pra segurar</li>
               <li>Sólido: duro, contrário de frágil ou macio</li>
             </ul>
-          </>
-        }
-        en={
-          <>
-            Learn how the alien thinks:
-            <ul>
-              <li>
+          "
+        en="<li>
                 They will always give you a symbol you don't know yet, so if you ask for something similar to
                 a previous ask, they will give you the second best symbol.
               </li>
@@ -48,13 +45,12 @@ export function BotsRules() {
               <li>Holdable: you normally holds it or have a handle</li>
               <li>Knowledge: wisdom, smarts, technology, idea</li>
               <li>Long: tall, lengthy</li>
-              <li>Machine: it has gears, uses powers, "works"</li>
+              <li>Machine: it has gears, uses powers, 'works'</li>
               <li>Metal: if the illustrator has anything metal, it may be metal</li>
               <li>Power: force, energy</li>
               <li>Solid: hard, very hard</li>
-            </ul>
-          </>
-        }
+          "
+        values={{ li: (chunks) => <li>{chunks}</li> }}
       />
     </Surface>
   );
@@ -69,8 +65,8 @@ export function BotPopupRule() {
       content={<BotsRules />}
       label={
         <Translate
-          pt=" Bots"
           en=" Bots"
+          pt=" Bots"
         />
       }
     />

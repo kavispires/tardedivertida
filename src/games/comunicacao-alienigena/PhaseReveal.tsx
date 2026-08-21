@@ -61,8 +61,8 @@ export function PhaseReveal({ players, state, user }: PhaseProps<PhaseRevealStat
       icon={icon}
       title={
         <Translate
-          pt="E as oferendas foram..."
           en="And the offerings were..."
+          pt="E as oferendas foram..."
         />
       }
       currentRound={state?.round?.current}

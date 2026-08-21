@@ -63,8 +63,8 @@ export function StepHumansAsk({
     >
       <StepTitle>
         <Translate
-          pt="Pergunte ao Alienígena!"
           en="Ask the Alien!"
+          pt="Pergunte ao Alienígena!"
         />
       </StepTitle>
 
@@ -74,19 +74,11 @@ export function StepHumansAsk({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              Escolha um dos atributos que você deseja desvendar, então, selecione{' '}
-              <ItemsHighlight>1-5 itens</ItemsHighlight>
-              relacionados a esse atributo para que o alienígena diga qual é o símbolo correspondente.
-            </>
-          }
-          en={
-            <>
-              Choose one of the atributes you want to unveil, then select{' '}
-              <ItemsHighlight>1-5 items</ItemsHighlight> below to ask the alien what its symbol.
-            </>
-          }
+          en="Choose one of the atributes you want to unveil, then select <objectsNeeded>1-5 items</objectsNeeded> below to ask the alien what its symbol."
+          pt="Escolha um dos atributos que você deseja desvendar, então, selecione <objectsNeeded>1-5 itens</objectsNeeded> relacionados a esse atributo para que o alienígena diga qual é o símbolo correspondente."
+          values={{
+            objectsNeeded: (children) => <ItemsHighlight>{children}</ItemsHighlight>,
+          }}
         />
       </RuleInstruction>
 

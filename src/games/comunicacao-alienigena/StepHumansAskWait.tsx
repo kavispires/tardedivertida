@@ -61,8 +61,8 @@ export function StepHumansAskWait({
     >
       <StepTitle wait>
         <Translate
-          pt="Os humanos estão se preparando para contato"
           en="Humans are preparing for contact"
+          pt="Os humanos estão se preparando para contato"
         />
       </StepTitle>
 
@@ -70,18 +70,12 @@ export function StepHumansAskWait({
 
       <RuleInstruction type="wait">
         <Translate
-          pt={
-            <>
-              Aguarde enquanto os jogadores selecionam <ItemsHighlight>1-5 itens</ItemsHighlight> para
-              perguntar ao alienígena <PlayerAvatarName player={alien} /> qual o símbolo relacionado a eles.
-            </>
-          }
-          en={
-            <>
-              Please wait while the players select <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien{' '}
-              <PlayerAvatarName player={alien} /> what symbol is related to them.
-            </>
-          }
+          pt="Aguarde enquanto os jogadores selecionam <highlight>1-5 itens</highlight> para perguntar ao alienígena {player} qual o símbolo relacionado a eles."
+          en="Please wait while the players select <highlight>1-5 items</highlight> to ask the alien {player} what symbol is related to them."
+          values={{
+            highlight: (children) => <ItemsHighlight>{children}</ItemsHighlight>,
+            player: <PlayerAvatarName player={alien} />,
+          }}
         />
       </RuleInstruction>
 

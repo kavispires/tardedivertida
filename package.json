@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.483",
+	"version": "50.13.484",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -58,8 +58,8 @@
 		"sort-imports": "node scripts/sort-imports-in-folder.cjs",
 		"sort-functions-imports": "node scripts/sort-functions-imports-in-folder.cjs",
 		"revert-versions": "node scripts/revert-game-versions.cjs",
-		"predev": "npm run sync:types",
-		"clean": "rm -rf node_modules & yarn cache clean"
+		"predev": "yarn sync:types",
+		"clean": "rm -rf node_modules && yarn cache clean"
 	},
 	"browserslist": {
 		"production": [

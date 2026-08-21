@@ -4,17 +4,13 @@ import { Space } from 'antd';
 import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
 import { useGlobalState } from '@hooks/useGlobalState';
-// Icons
-import { ClockIcon } from '@icons/ClockIcon';
-import { PlayerIconsIcon } from '@icons/PlayerIconsIcon';
 // Components
 import { ItemCard } from '@components/cards/ItemCard';
 import { DebugOnly } from '@components/debug/DebugOnly';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
-import { Surface } from '@components/layout/Surface';
-import { MetricHighlight } from '@components/metrics/MetricHighlight';
+import { TimeHighlight } from '@components/metrics/TimeHighlight';
 import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
 import { PopoverRule } from '@components/rules/PopoverRule';
 import { Step, type StepProps } from '@components/steps/Step';
@@ -37,6 +33,7 @@ import { History } from './components/History';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
+import { ItemsHighlight } from './components/Highlights';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -105,50 +102,38 @@ export function StepReveal({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={
-            <>
-              Faltam <MetricHighlight icon={<PlayerIconsIcon />}>{objectsRemaining}</MetricHighlight> objetos
-              a serem oferecidos.
-              <br />
-              Temos <MetricHighlight icon={<ClockIcon />}>{status.timeLeft} </MetricHighlight> chances.
-            </>
-          }
-          en={
-            <>
-              <MetricHighlight icon={<PlayerIconsIcon />}>{objectsRemaining}</MetricHighlight> objects left to
-              be offered.
-              <br />
-              We have <MetricHighlight icon={<ClockIcon />}>{status.timeLeft} </MetricHighlight> attempts
-              left.
-            </>
-          }
+          en="{objectsRemaining} objects left to be offered. We have {time} attempts left."
+          pt="Faltam {objectsRemaining} objetos a serem oferecidos. Temos {time} chances."
+          values={{
+            objectsRemaining: <ItemsHighlight>{objectsRemaining}</ItemsHighlight>,
+            time: <TimeHighlight>{status.timeLeft}</TimeHighlight>,
+          }}
         />
       </RuleInstruction>
 
-      <Surface contained>
-        <SpaceContainer wrap>
-          {Boolean(latestRequest) &&
-            latestRequest.offers.map((entry) => {
-              return (
-                <SpaceContainer
-                  key={`offer-${entry.playerId}-${entry.objectId}`}
-                  vertical
-                >
-                  <ItemCard
-                    itemId={`${entry.objectId}`}
-                    className={''}
-                    width={48}
-                  />
-                  <PlayerAvatarName player={players[entry.playerId]} />
-                  <ItemResolution
-                    itemId={entry.objectId}
-                    items={items}
-                  />
-                </SpaceContainer>
-              );
-            })}
-        </SpaceContainer>
-      </Surface>
+      <SpaceContainer wrap>
+        {Boolean(latestRequest) &&
+          latestRequest.offers.map((entry) => {
+            return (
+              <SpaceContainer
+                key={`offer-${entry.playerId}-${entry.objectId}`}
+                vertical
+                contained
+              >
+                <ItemCard
+                  itemId={`${entry.objectId}`}
+                  className={''}
+                  width={48}
+                />
+                <PlayerAvatarName player={players[entry.playerId]} />
+                <ItemResolution
+                  itemId={entry.objectId}
+                  items={items}
+                />
+              </SpaceContainer>
+            );
+          })}
+      </SpaceContainer>
 
       <HostNextPhaseButton
         round={round}

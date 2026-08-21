@@ -59,8 +59,8 @@ export function StepHumansOfferWait({
     >
       <StepTitle wait>
         <Translate
-          pt="Agora aguarde enquanto os humanos escolhem objetos para oferecer."
           en="Now wait while the humans choose objects to offer."
+          pt="Agora aguarde enquanto os humanos escolhem objetos para oferecer."
         />
       </StepTitle>
 
@@ -70,8 +70,8 @@ export function StepHumansOfferWait({
 
       <RuleInstruction type="wait">
         <Translate
-          pt="Aguarde enquanto os humanos escolhem um objeto para te oferecer."
           en="Wait while the humans choose an object to offer."
+          pt="Aguarde enquanto os humanos escolhem um objeto para te oferecer."
         />
       </RuleInstruction>
 

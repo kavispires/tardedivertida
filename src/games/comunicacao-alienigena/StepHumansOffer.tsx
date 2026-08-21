@@ -68,8 +68,8 @@ export function StepHumansOffer({
     >
       <StepTitle>
         <Translate
-          pt="Ofereça um objeto"
           en="Offer an object"
+          pt="Ofereça um objeto"
         />
       </StepTitle>
 
@@ -79,29 +79,28 @@ export function StepHumansOffer({
 
       <RuleInstruction type="action">
         <Translate
-          pt={
-            <>
-              O(A) alienígena <PlayerAvatarName player={alien} /> fez esse pedido. Você consegue decifrar qual
-              objeto ele(a) quer?
-              <br />
-              Um símbolo sublinhado significa "muito" e um símbolo sobrelinhado significa "não".
-              <br />
-              <strong>Selecione</strong> um (ou mais) objeto(s) e aperte enviar. Lembre-se que que você tem
-              que entregar <ItemsHighlight type="negative">{status.needed}</ItemsHighlight>
-              objetos.
-            </>
-          }
-          en={
-            <>
-              The alien <PlayerAvatarName player={alien} /> made this request. Can you decipher what object
-              they want?
-              <br />
-              An underlined symbol means "very" and an overscore symbol means "not".
-              <br />
-              <strong>Select</strong> one (or more) object(s) then press Submit. Remember that you must
-              deliver <ItemsHighlight type="negative">{status.needed}</ItemsHighlight> objects.
-            </>
-          }
+          en="The alien {player} made this request. Can you decipher what object they want?
+          <br/>
+          An underlined symbol means 'very' and an overscore symbol means 'not'.
+          <br/>
+          Select one (or more) object(s) then press Submit.
+          <br/>
+          Remember that you must deliver <neededObjects>objects</neededObjects>."
+          pt="O(A) alienígena {player} fez esse pedido. Você consegue decifrar qual objeto ele(a) quer?
+          <br/>
+          Um símbolo sublinhado significa 'muito' e um símbolo sobrelinhado significa 'não'.
+          <br/>
+          Selecione um (ou mais) objeto(s) e aperte enviar.
+          <br/>
+          Lembre-se que que você tem que entregar <neededObjects>objetos</neededObjects>."
+          values={{
+            player: <PlayerAvatarName player={alien} />,
+            neededObjects: (children) => (
+              <ItemsHighlight type="negative">
+                {status.needed} {children}
+              </ItemsHighlight>
+            ),
+          }}
         />
       </RuleInstruction>
 

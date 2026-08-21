@@ -118,29 +118,19 @@ export function StepAlienAnswers({
       <StepTitle wait={hasAlienResponse}>
         {hasAlienResponse ? (
           <Translate
-            pt={
-              <>
-                Alienígena <PlayerAvatarName player={alien} /> respondeu
-              </>
-            }
-            en={
-              <>
-                Alien <PlayerAvatarName player={alien} /> answered
-              </>
-            }
+            pt="O alienígena {player} respondeu"
+            en="The alien {player} answered"
+            values={{
+              player: <PlayerAvatarName player={alien} />,
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Alienígena <PlayerAvatarName player={alien} /> responde
-              </>
-            }
-            en={
-              <>
-                Alien <PlayerAvatarName player={alien} /> answers
-              </>
-            }
+            pt="O alienígena {player} está respondendo"
+            en="The alien {player} is answering"
+            values={{
+              player: <PlayerAvatarName player={alien} />,
+            }}
           />
         )}
       </StepTitle>
@@ -152,17 +142,17 @@ export function StepAlienAnswers({
       {!hasAlienResponse ? (
         <RuleInstruction type="rule">
           <Translate
-            pt="Para cada jogador humano, o alienígena deve dizer qual símbolo o grupo de objetos dado
-                representa"
             en="For each human player, the alien must say which symbol best represents the given group of
                 objects"
+            pt="Para cada jogador humano, o alienígena deve dizer qual símbolo o grupo de objetos dado
+              representa"
           />
         </RuleInstruction>
       ) : (
         <RuleInstruction type="wait">
           <Translate
-            pt="Aguarde enquanto os outros jogadores anotam os símbolos."
             en="Wait while the other players take note of the symbols."
+            pt="Aguarde enquanto os outros jogadores anotam os símbolos."
           />
         </RuleInstruction>
       )}
@@ -283,8 +273,8 @@ export function StepAlienAnswers({
           className="mt-4"
         >
           <Translate
-            pt="Enviar respostas"
             en="Submit answers"
+            pt="Enviar respostas"
           />
         </SendButton>
       </ViewIf>

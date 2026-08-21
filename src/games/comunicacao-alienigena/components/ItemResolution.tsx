@@ -25,8 +25,8 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
           size="small"
         />{' '}
         <Translate
-          pt="Amaldiçoado"
           en="Cursed"
+          pt="Amaldiçoado"
         />
       </div>
     );
@@ -40,8 +40,8 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
           size="small"
         />{' '}
         <Translate
-          pt="Correto"
           en="Correct"
+          pt="Correto"
         />
       </div>
     );
@@ -54,8 +54,8 @@ export function ItemResolution({ itemId, items }: ItemResolutionProps) {
         size="small"
       />{' '}
       <Translate
-        pt="Irrelevante"
         en="Irrelevant"
+        pt="Irrelevante"
       />
     </div>
   );

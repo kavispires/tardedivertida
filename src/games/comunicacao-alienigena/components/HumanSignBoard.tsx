@@ -57,20 +57,20 @@ export function HumanSignBoard({
         marginBottom={0}
       >
         <Translate
-          pt="Atributos e Símbolos"
           en="Attributes and Symbols"
+          pt="Atributos e Símbolos"
         />
         <Popover
           content={
             <Translate
-              pt="Você pode clicar no título do atributo para apagar o que você desenhou"
               en="You may click on the title of an attribute to erase what you drew"
+              pt="Você pode clicar no título do atributo para apagar o que você desenhou"
             />
           }
           title={
             <Translate
-              pt="Dica"
               en="Hint"
+              pt="Dica"
             />
           }
           arrow
@@ -100,8 +100,8 @@ export function HumanSignBoard({
                       <>
                         <DualTranslate>{attribute.description}</DualTranslate> (
                         <Translate
-                          pt="ItemData inicial"
                           en="Starting item"
+                          pt="ItemData inicial"
                         />
                         )
                       </>
@@ -135,8 +135,8 @@ export function HumanSignBoard({
                 <Popover
                   title={
                     <Translate
-                      pt="Selecionar símbolo"
                       en="Select symbol"
+                      pt="Selecionar símbolo"
                     />
                   }
                   trigger="click"
@@ -171,8 +171,8 @@ export function HumanSignBoard({
                         onClick={() => updateCache(attribute.id, undefined)}
                       >
                         <Translate
-                          pt="Nenhum desses"
                           en="None of these"
+                          pt="Nenhum desses"
                         />
                       </Button>
                     </Flex>
@@ -262,8 +262,8 @@ export function HumanPlayerFinalSignBoard({
                       <>
                         <DualTranslate>{attribute.description}</DualTranslate> (
                         <Translate
-                          pt="ItemData inicial"
                           en="Starting item"
+                          pt="ItemData inicial"
                         />
                         )
                       </>

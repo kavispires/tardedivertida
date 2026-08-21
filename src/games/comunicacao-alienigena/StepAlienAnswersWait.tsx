@@ -99,29 +99,19 @@ export function StepAlienAnswersWait({
       <StepTitle wait={!hasAlienResponse}>
         {hasAlienResponse ? (
           <Translate
-            pt={
-              <>
-                Alienígena <PlayerAvatarName player={alien} /> respondeu
-              </>
-            }
-            en={
-              <>
-                Alien <PlayerAvatarName player={alien} /> answered
-              </>
-            }
+            pt="O alienígena {player} respondeu"
+            en="The alien {player} answered"
+            values={{
+              player: <PlayerAvatarName player={alien} />,
+            }}
           />
         ) : (
           <Translate
-            pt={
-              <>
-                Alienígena <PlayerAvatarName player={alien} /> deve responder
-              </>
-            }
-            en={
-              <>
-                Alien <PlayerAvatarName player={alien} /> must answer
-              </>
-            }
+            pt="O alienígena {player} deve responder"
+            en="Alien {player} must answer"
+            values={{
+              player: <PlayerAvatarName player={alien} />,
+            }}
           />
         )}
       </StepTitle>
@@ -133,17 +123,17 @@ export function StepAlienAnswersWait({
       {!hasAlienResponse ? (
         <RuleInstruction type="wait">
           <Translate
-            pt="Para cada jogador humano, o alienígena deve dizer qual símbolo o grupo de objetos dado
-                representa"
             en="For each human player, the alien must say which symbol best represents the given group of
                 objects"
+            pt="Para cada jogador humano, o alienígena deve dizer qual símbolo o grupo de objetos dado
+              representa"
           />
         </RuleInstruction>
       ) : (
         <RuleInstruction type="action">
           <Translate
-            pt="Anote os símbolos nos atributes que você acha que o alienígena quis dizer."
             en="Take note of the symbols on the attributes you think the alien meant."
+            pt="Anote os símbolos nos atributes que você acha que o alienígena quis dizer."
           />
         </RuleInstruction>
       )}
@@ -235,8 +225,8 @@ export function StepAlienAnswersWait({
             disabled={isLoading || user.ready}
           >
             <Translate
-              pt="Anotei os símbolos e estou pronto"
               en="I took note of the symbols and I'm ready"
+              pt="Anotei os símbolos e estou pronto"
             />
           </SendButton>
         </SpaceFloat>
