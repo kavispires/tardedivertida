@@ -10,7 +10,6 @@ export function TimeHighlight(props: HighlightProps) {
   return (
     <MetricHighlight
       icon={<ClockIcon />}
-      iconPlacement="before"
       {...props}
     />
   );
