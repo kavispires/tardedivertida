@@ -72,8 +72,16 @@ export function StepDeclaration({
 
       <RuleInstruction type="action">
         <Translate
-          en="Declare how many <strong>red wires</strong> and how many <strong>bombs</strong> you want the other players to know you have.<br/>Lie as much as you want!<br/>{nextInvestigator} will be the next investigator (in case this information influences your decision)."
-          pt="Declare quantos <strong>fios vermelhos</strong> e quantas <strong>bombas</strong> você quer que os outros jogadores saibam que você tem.<br/>Minta à vontade!<br/>{nextInvestigator} será o próximo investigador (caso isso influencie sua decisão)."
+          en="Declare how many <strong>red wires</strong> and how many <strong>bombs</strong> you want the other players to know you have.
+          <br/>
+          Lie as much as you want!
+          <br/>
+          {nextInvestigator} will be the next investigator (in case this information influences your decision)."
+          pt="Declare quantos <strong>fios vermelhos</strong> e quantas <strong>bombas</strong> você quer que os outros jogadores saibam que você tem.
+          <br/>
+          Minta à vontade!
+          <br/>
+          {nextInvestigator} será o próximo investigador (caso isso influencie sua decisão)."
           values={{
             nextInvestigator: (
               <PlayerAvatarName

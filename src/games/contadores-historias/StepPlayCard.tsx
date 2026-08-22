@@ -70,8 +70,12 @@ export function StepPlayCard({
         </ViewIf>
         <ViewIf condition={!isUserTheStoryTeller}>
           <Translate
-            pt="Agora, escolha uma carta que mais combine com a história da rodada.<br/>Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta correta."
-            en="Now you select a card that matches the story the best.<br/>You are trying to convince other players that your card is the correct one."
+            pt="Agora, escolha uma carta que mais combine com a história da rodada.
+            <br/>
+            Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta correta."
+            en="Now you select a card that matches the story the best.
+            <br/>
+            You are trying to convince other players that your card is the correct one."
           />
         </ViewIf>
       </RuleInstruction>

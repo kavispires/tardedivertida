@@ -19,16 +19,16 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
       <Translate
         en="All players must like or dislike a tweet then must vote how trendy it is (how many players liked the
           tweet).
-          <br/>
-           If you guess correctly you get {correctGuess}.
-          <br />
-          If you got 1 number off (more or less), you get {closeGuess}."
+        <br/>
+        If you guess correctly you get {correctGuess}.
+        <br/>
+        If you got 1 number off (more or less), you get {closeGuess}."
         pt="Todos vão curtir ou des-curtir a polêmica da vez e então devem tentar adivinhar quantas curtidas o
           assunto vai ganhar.
-          <br />
-          Se você adivinhar corretamente, você ganha {correctGuess}.
-          <br />
-          Se você escolheu um número a menos ou a mais, você ganha {closeGuess}."
+        <br/>
+        Se você adivinhar corretamente, você ganha {correctGuess}.
+        <br/>
+        Se você escolheu um número a menos ou a mais, você ganha {closeGuess}."
         values={{
           correctGuess: <PointsHighlight value={3} />,
           closeGuess: <PointsHighlight value={1} />,
@@ -37,15 +37,23 @@ export function ScoringRules({ round, activePlayer, isFixedRounds }: ScoringRule
 
       {isFixedRounds ? (
         <Translate
-          pt="<br/>O jogo tem {total} rodadas."
-          en="<br/>The game will have {total} rounds."
+          pt="
+          <br/>
+          O jogo tem {total} rodadas."
+          en="
+          <br/>
+          The game will have {total} rounds."
           values={{ total: round.total }}
         />
       ) : (
         <Translate
-          pt="<br/>O primeiro jogador a receber {target} pontos ganha o jogo (ou no
+          pt="
+          <br/>
+          O primeiro jogador a receber {target} pontos ganha o jogo (ou no
               máximo {total} rodadas)."
-          en="<br/>The first player to get {target} points wins the game (or a maximum of {total} rounds)."
+          en="
+          <br/>
+          The first player to get {target} points wins the game (or a maximum of {total} rounds)."
           values={{ target: <TargetHighlight>10</TargetHighlight>, total: round.total }}
         />
       )}

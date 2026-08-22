@@ -49,8 +49,16 @@ export function StepResults({ players, presenter, result, goToNextStep, announce
 
       <RuleInstruction type="action">
         <Translate
-          en="The guessers get {points} based on the bracket their last guess falls into, if correct.<br/>They also lose {penalty} if they made more than one guess.<br/>The presenter gets {presenterPoints} for each who guessed correctly."
-          pt="Os adivinhadores ganham {points} baseados no quadrado em que a última adivinhação está, se o palpite estiver correto.<br/>Mas eles também perdem {penalty} se fizeram mais de um palpite.<br/>O apresentador ganha {presenterPoints} por cada adivinhador que acertou."
+          en="The guessers get {points} based on the bracket their last guess falls into, if correct.
+          <br/>
+          They also lose {penalty} if they made more than one guess.
+          <br/>
+          The presenter gets {presenterPoints} for each who guessed correctly."
+          pt="Os adivinhadores ganham {points} baseados no quadrado em que a última adivinhação está, se o palpite estiver correto.
+          <br/>
+          Mas eles também perdem {penalty} se fizeram mais de um palpite.
+          <br/>
+          O apresentador ganha {presenterPoints} por cada adivinhador que acertou."
           values={{
             points: <PointsHighlight value="pontos" />,
             penalty: (

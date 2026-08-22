@@ -36,8 +36,12 @@ export function PhaseReveal({ state, players }: PhaseProps<PhaseRevealState>) {
     >
       <Surface>
         <Translate
-          pt="Se o impostor recebeu 2 ou mais votos ele(a) é desmascarado. Quem votou nele ganha {voterPoints}.<br/>Se o impostor recebeu menos de 2 votos, ele ganha {impostorPoints} e o detetive líder ganha {leaderPoints}."
-          en="If the impostor gets 2 or more votes, they are exposed. Whoever voted for him get {voterPoints}.<br/>If the impostor gets fewer than 2 votes, he gets {impostorPoints} and the Lead detective gets {leaderPoints}."
+          pt="Se o impostor recebeu 2 ou mais votos ele(a) é desmascarado. Quem votou nele ganha {voterPoints}.
+          <br/>
+          Se o impostor recebeu menos de 2 votos, ele ganha {impostorPoints} e o detetive líder ganha {leaderPoints}."
+          en="If the impostor gets 2 or more votes, they are exposed. Whoever voted for him get {voterPoints}.
+          <br/>
+          If the impostor gets fewer than 2 votes, he gets {impostorPoints} and the Lead detective gets {leaderPoints}."
           values={{
             voterPoints: <PointsHighlight value={3} />,
             impostorPoints: <PointsHighlight value={5} />,

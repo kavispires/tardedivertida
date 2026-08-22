@@ -98,8 +98,12 @@ export function StepSelectPages({
 
       <RuleInstruction type="action">
         <Translate
-          pt="Acima está a porta que você deve ajudar os outros jogadores a selecionar.<br/>Consulte as páginas do livro (cartas) abaixo e <strong>selecione</strong> as que você acha que mais vão ajudar!"
-          en="Above it's the door you need to help the other players to find.<br/>Check the book pages(cards) below and <strong>select</strong> the one you think will help them best!"
+          pt="Acima está a porta que você deve ajudar os outros jogadores a selecionar.
+          <br/>
+          Consulte as páginas do livro (cartas) abaixo e <strong>selecione</strong> as que você acha que mais vão ajudar!"
+          en="Above it's the door you need to help the other players to find.
+          <br/>
+          Check the book pages(cards) below and <strong>select</strong> the one you think will help them best!"
         />
 
         {trap === TRAPS.MORE_CLUES && (

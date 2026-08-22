@@ -50,8 +50,12 @@ export function StepWaitForPlanning({
 
       <RuleInstruction type="wait">
         <Translate
-          pt="No mapa, existem {placements} cones representando onde os terrenos onde projetos podem ser construídos.<br/>Aguarde enquanto o engenheiro chefe planeja a cidade."
-          en="On the map, there are {placements} cones representing the land where projects can be built.<br/>Wait while the lead engineer plans the city."
+          pt="No mapa, existem {placements} cones representando onde os terrenos onde projetos podem ser construídos.
+          <br/>
+          Aguarde enquanto o engenheiro chefe planeja a cidade."
+          en="On the map, there are {placements} cones representing the land where projects can be built.
+          <br/>
+          Wait while the lead engineer plans the city."
           values={{
             placements: <ConeHighlight>{placements}</ConeHighlight>,
           }}

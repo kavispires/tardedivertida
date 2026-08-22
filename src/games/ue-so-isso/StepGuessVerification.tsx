@@ -87,8 +87,12 @@ export function StepGuessVerification({
 
       <RuleInstruction type="alert">
         <Translate
-          pt="O sistema não pode verificar se a resposta está correta.<br/>Por favor, confirme se {guesser} acertou ou não."
-          en="The system wasn't able to verify the guess.<br/>Please confirm if {guesser} got it right or not."
+          pt="O sistema não pode verificar se a resposta está correta.
+          <br/>
+          Por favor, confirme se {guesser} acertou ou não."
+          en="The system wasn't able to verify the guess.
+          <br/>
+          Please confirm if {guesser} got it right or not."
           values={{
             guesser: <PlayerAvatarName player={guesser} />,
           }}

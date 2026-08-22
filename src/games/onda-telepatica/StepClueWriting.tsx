@@ -64,8 +64,12 @@ export function StepClueWriting({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt="O ponteiro está no {wavelength} {side}.<br/><strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse número!"
-          en="The needle is pointing at {wavelength} {side}.<br/><strong>Write</strong> a clue that will help the other players to choose this exact number!"
+          pt="O ponteiro está no {wavelength} {side}.
+          <br/>
+          <strong>Escreva</strong> uma dica que ajude os outros jogadores a escolher exatamente esse número!"
+          en="The needle is pointing at {wavelength} {side}.
+          <br/>
+          <strong>Write</strong> a clue that will help the other players to choose this exact number!"
           values={{
             wavelength: <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>,
             side: (

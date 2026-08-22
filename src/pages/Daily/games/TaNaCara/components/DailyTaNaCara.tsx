@@ -260,8 +260,16 @@ export function DailyTaNaCara({ data }: DailyTaNaCaraProps) {
           <>
             <RegionText>
               <Translate
-                pt="Avalie se cada personagem se encaixa ou não na pergunta.<br />Se você estiver em dúvida, deixe em branco.<br />Considere talvez, como &quot;sim&quot;."
-                en="Select all characters that you think fit the question.<br />If none fits, select &quot;None&quot;.<br />Consider maybe, as &quot;yes&quot;."
+                pt="Avalie se cada personagem se encaixa ou não na pergunta.
+                <br/>
+                Se você estiver em dúvida, deixe em branco.
+                <br/>
+                Considere talvez, como &quot;sim&quot;."
+                en="Select all characters that you think fit the question.
+                <br/>
+                If none fits, select &quot;None&quot;.
+                <br/>
+                Consider maybe, as &quot;yes&quot;."
               />
             </RegionText>
 

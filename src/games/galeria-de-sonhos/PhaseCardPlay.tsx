@@ -118,8 +118,16 @@ export function PhaseCardPlay({ state, players, meta, user }: PhaseProps<PhaseCa
         >
           <Surface>
             <Translate
-              pt="{player} selecionou {cards}, o maior número de cartas da rodada!<br/>Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas selecionadas, ele perde {penalty} por carta que você ganhou ponto.<br/>"
-              en="{player} selected {cards}, the largest number of cards for this round!<br/>If they are not able to match every single dream, they will lose {penalty} per card you previously scored.<br/>"
+              pt="{player} selecionou {cards}, o maior número de cartas da rodada!
+              <br/>
+              Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas selecionadas, ele perde {penalty} por carta que você ganhou ponto.
+              <br/>
+              "
+              en="{player} selected {cards}, the largest number of cards for this round!
+              <br/>
+              If they are not able to match every single dream, they will lose {penalty} per card you previously scored.
+              <br/>
+              "
               values={{
                 player: (
                   <PlayerAvatarName

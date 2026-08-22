@@ -41,8 +41,20 @@ export function SeedParty({ seed, updateData }: SeedPartyProps) {
       <SpaceContainer vertical>
         <RuleInstruction type="rule">
           <Translate
-            pt={`Seja criativo nas respostas, porém evite palavras que possam entregar sua identidade.${seed.cards.length > 1 ? '<br/>Nem todas as repostar serão utilizadas no jogo.' : ''}`}
-            en={`Be creative, but avoid words that may give away your identity.${seed.cards.length > 1 ? '<br/>Not all answers will be used in the game.' : ''}`}
+            pt={`Seja criativo nas respostas, porém evite palavras que possam entregar sua identidade.${
+              seed.cards.length > 1
+                ? `
+              <br/>
+              Nem todas as repostar serão utilizadas no jogo.`
+                : ''
+            }`}
+            en={`Be creative, but avoid words that may give away your identity.${
+              seed.cards.length > 1
+                ? `
+              <br/>
+              Not all answers will be used in the game.`
+                : ''
+            }`}
           />
         </RuleInstruction>
 

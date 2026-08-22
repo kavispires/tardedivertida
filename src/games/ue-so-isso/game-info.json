@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "4.0.83",
+  "version": "4.0.84",
   "release": "stable",
   "releaseDate": "2021-05-18",
-  "updatedAt": 1786910774040,
+  "updatedAt": 1787431637921,
   "available": true,
   "title": {
     "pt": "Ué, Só Isso?",

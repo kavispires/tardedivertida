@@ -28,8 +28,20 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
       {isSpark ? (
         <p>
           <Translate
-            pt={`E encontrou {count} ${pluralize(matchCount, 'jogador')} lá!${isSuperSpark ? '<br/>Brilho total!' : ''}{fireworks}{points}`}
-            en={`And met {count} ${pluralize(matchCount, 'player')} there!${isSuperSpark ? '<br/>Super Spark!' : ''}{fireworks}{points}`}
+            pt={`E encontrou {count} ${pluralize(matchCount, 'jogador')} lá!${
+              isSuperSpark
+                ? `
+              <br/>
+              Brilho total!`
+                : ''
+            }{fireworks}{points}`}
+            en={`And met {count} ${pluralize(matchCount, 'player')} there!${
+              isSuperSpark
+                ? `
+              <br/>
+              Super Spark!`
+                : ''
+            }{fireworks}{points}`}
             values={{
               count:
                 matchCount > 1 ? (
@@ -57,8 +69,24 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
           </h2>
           <p>
             <Translate
-              pt={`Não sei o que dizer... Ninguém visitou esse sonho e {player} está fora da rodada.<br/><small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>${isPlayerInNightmare ? '<br/>Para piorar, {player} vai perder {penalty} por sonho usado até então.' : ''}`}
-              en={`I don't know what to say... no one has visited this dream and {player} is/are out of the round.<br/><small>(the remaining cards will still count towards scoring for other players)</small>${isPlayerInNightmare ? '<br/>To make this worse, {player} will lose {penalty} for each scored dream.' : ''}`}
+              pt={`Não sei o que dizer... Ninguém visitou esse sonho e {player} está fora da rodada.
+              <br/>
+              <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>${
+                isPlayerInNightmare
+                  ? `
+                <br/>
+                Para piorar, {player} vai perder {penalty} por sonho usado até então.`
+                  : ''
+              }`}
+              en={`I don't know what to say... no one has visited this dream and {player} is/are out of the round.
+              <br/>
+              <small>(the remaining cards will still count towards scoring for other players)</small>${
+                isPlayerInNightmare
+                  ? `
+                <br/>
+                To make this worse, {player} will lose {penalty} for each scored dream.`
+                  : ''
+              }`}
               values={{
                 player: (
                   <PlayerAvatarName

@@ -110,8 +110,16 @@ export function StepVoteForFinalElimination({
       {!isUserTheWitness ? (
         <RuleInstruction type="action">
           <Translate
-            en="In a crazy turn of events, every detective needs to evaluate the two final suspects.<br/>And now {select}!<br/>In case of a tie, both are released and the group loses the game."
-            pt="Em uma reviravolta maluca, todos os detetives precisam avaliar os dois suspeitos finais.<br/>E agora {select}!<br/>Em caso de empate, ambos são liberados e o grupo perde o jogo."
+            en="In a crazy turn of events, every detective needs to evaluate the two final suspects.
+            <br/>
+            And now {select}!
+            <br/>
+            In case of a tie, both are released and the group loses the game."
+            pt="Em uma reviravolta maluca, todos os detetives precisam avaliar os dois suspeitos finais.
+            <br/>
+            E agora {select}!
+            <br/>
+            Em caso de empate, ambos são liberados e o grupo perde o jogo."
             values={{
               select: (text) => (
                 <TextHighlight style={{ fontStyle: 'italic', fontSize: '1.2em' }}>{text}</TextHighlight>
@@ -122,8 +130,16 @@ export function StepVoteForFinalElimination({
       ) : (
         <RuleInstruction type="wait">
           <Translate
-            pt="Os jogadores agora devem individualmente votar pra quem é o criminoso!<br/>O suspeito mais votado será preso.<br/>Em caso de empate, ambos são liberados."
-            en="Players must now individually vote for who the criminal is!<br/>The suspect with the most votes will be arrested!<br/>In case of a tie, both are released."
+            pt="Os jogadores agora devem individualmente votar pra quem é o criminoso!
+            <br/>
+            O suspeito mais votado será preso.
+            <br/>
+            Em caso de empate, ambos são liberados."
+            en="Players must now individually vote for who the criminal is!
+            <br/>
+            The suspect with the most votes will be arrested!
+            <br/>
+            In case of a tie, both are released."
           />
         </RuleInstruction>
       )}

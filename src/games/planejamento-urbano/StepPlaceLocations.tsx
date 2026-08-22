@@ -87,8 +87,12 @@ export function StepPlaceLocations({
 
       <RuleInstruction type={isTheArchitect ? 'wait' : 'action'}>
         <Translate
-          pt="No mapa, existem {placements} cones representando onde os terrenos onde os projetos podem ser feitos.<br/>O objetivo é fazer as construções de acordo com o que {architect} planejou."
-          en="On the map, there are {placements} cones representing the land where the projects can be built.<br/>The goal is to make the constructions according to what {architect} planned."
+          pt="No mapa, existem {placements} cones representando onde os terrenos onde os projetos podem ser feitos.
+          <br/>
+          O objetivo é fazer as construções de acordo com o que {architect} planejou."
+          en="On the map, there are {placements} cones representing the land where the projects can be built.
+          <br/>
+          The goal is to make the constructions according to what {architect} planned."
           values={{
             placements: <ConeHighlight>{placements}</ConeHighlight>,
             architect: <PlayerAvatarName player={architect} />,

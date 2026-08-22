@@ -50,8 +50,12 @@ export function StepEvaluateGroup({
 
       <RuleInstruction type="rule">
         <Translate
-          en="If you think any of the answers is wrong, <strong>hit</strong> the check mark switch and submit wrong answers. <br/> Everyone who answered earns {letterPoints} and the first player who answered correctly earns additional {topicPoints}."
-          pt="Se você acha que alguma não está certa dentro da categoria e letra, <strong>aperte</strong> o botãozinho para marcar como errado. <br/> Todos que responderam ganham {letterPoints} e o primeiro jogador que respondeu corretamente ganha {topicPoints} adicionais."
+          en="If you think any of the answers is wrong, <strong>hit</strong> the check mark switch and submit wrong answers.
+          <br/>
+          Everyone who answered earns {letterPoints} and the first player who answered correctly earns additional {topicPoints}."
+          pt="Se você acha que alguma não está certa dentro da categoria e letra, <strong>aperte</strong> o botãozinho para marcar como errado.
+          <br/>
+          Todos que responderam ganham {letterPoints} e o primeiro jogador que respondeu corretamente ganha {topicPoints} adicionais."
           values={{
             br: <br />,
             strong: (text) => <strong>{text}</strong>,

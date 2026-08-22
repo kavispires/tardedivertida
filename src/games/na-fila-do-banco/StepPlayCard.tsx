@@ -87,8 +87,12 @@ export function StepPlayCard({
       <RuleInstruction type={isTheActivePlayer ? 'action' : 'rule'}>
         {isTheActivePlayer ? (
           <Translate
-            pt="Selecione uma de suas duas cartas para colocar em uma fila.<br/>Preste atenção às regras de prioridade, porque elas podem fazer você furar a fila e entrar na frente de outra pessoa (independente da cor)."
-            en="Select one of your two cards to place in a queue.<br/>Pay attention to the priority rules."
+            pt="Selecione uma de suas duas cartas para colocar em uma fila.
+            <br/>
+            Preste atenção às regras de prioridade, porque elas podem fazer você furar a fila e entrar na frente de outra pessoa (independente da cor)."
+            en="Select one of your two cards to place in a queue.
+            <br/>
+            Pay attention to the priority rules."
           />
         ) : (
           <Translate

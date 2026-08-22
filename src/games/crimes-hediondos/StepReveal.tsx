@@ -83,8 +83,12 @@ export function StepReveal({
       <PopoverRule content={<ScoringMessage round={round} />} />
       <RuleInstruction type="rule">
         <Translate
-          pt="Veja aqui como todos os jogadores foram. Passe o mouse nos ícones para saber mais detalhes.<br/>As colunas são os crimes e as linhas são os chutes dessa rodada de cada jogador."
-          en="See how all players did. Hover the icons to see details.<br/>The columns are the crimes and the rows are the guesses for each player."
+          pt="Veja aqui como todos os jogadores foram. Passe o mouse nos ícones para saber mais detalhes.
+          <br/>
+          As colunas são os crimes e as linhas são os chutes dessa rodada de cada jogador."
+          en="See how all players did. Hover the icons to see details.
+          <br/>
+          The columns are the crimes and the rows are the guesses for each player."
         />
       </RuleInstruction>
 

@@ -67,8 +67,20 @@ export function StepCreateCategory({
 
       <RuleInstruction type="action">
         <Translate
-          pt="Escreva a categoria que conecte <strong>pelo menos 2 de suas coisas.</strong><br/>Tente ser bem específico para que outros jogadores não consigam adicionar coisas facilmente à sua categoria!<br/>• A categoria não pode ser 'meta', do tipo 'coisas que os outros jogadores não tem', 'coisas que comi ontem', etc.<br/>• Também tem que ser relacionada ao significado da coisa, não à imagem dela <em>(durante a votação, apenas o nome da coisa será mostrado)</em>."
-          en="Write a category that matches <strong>at least 2 of your things.</strong><br/>Try to be very specific so that other players can't easily add things to your category!<br/>• The category can't be 'meta', like 'things that other players don't have', 'things I ate yesterday', etc.<br/>• The category also has to be related to the meaning of the thing, not its image <em>(during voting, only the name of the thing will be shown)</em>."
+          pt="Escreva a categoria que conecte <strong>pelo menos 2 de suas coisas.</strong>
+          <br/>
+          Tente ser bem específico para que outros jogadores não consigam adicionar coisas facilmente à sua categoria!
+          <br/>
+          • A categoria não pode ser 'meta', do tipo 'coisas que os outros jogadores não tem', 'coisas que comi ontem', etc.
+          <br/>
+          • Também tem que ser relacionada ao significado da coisa, não à imagem dela <em>(durante a votação, apenas o nome da coisa será mostrado)</em>."
+          en="Write a category that matches <strong>at least 2 of your things.</strong>
+          <br/>
+          Try to be very specific so that other players can't easily add things to your category!
+          <br/>
+          • The category can't be 'meta', like 'things that other players don't have', 'things I ate yesterday', etc.
+          <br/>
+          • The category also has to be related to the meaning of the thing, not its image <em>(during voting, only the name of the thing will be shown)</em>."
         />
       </RuleInstruction>
 

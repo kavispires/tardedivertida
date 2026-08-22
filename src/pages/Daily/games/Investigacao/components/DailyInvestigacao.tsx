@@ -90,17 +90,17 @@ export function DailyInvestigacao({ data }: DailyInvestigacaoProps) {
               {isLose && (
                 <Translate
                   pt="<strong>Você liberou o culpado!</strong>
-                      <br />
-                      Agora crimes continuarão acontecendo.
-                      <br />
-                      <em>
+                  <br/>
+                  Agora crimes continuarão acontecendo.
+                  <br/>
+                  <em>
                         Se você discorda das respostas e está revoltado, ajude a melhorar o jogo participando
                         do
                         'Tá Na Cara' na seção Contribua do TD!
                       </em>
                     "
                   en="You released the culprit!
-                  <br />
+                  <br/>
                   Now crimes will keep happening."
                 />
               )}

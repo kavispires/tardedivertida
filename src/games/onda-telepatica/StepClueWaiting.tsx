@@ -68,8 +68,12 @@ export function StepClueWaiting({
               </SpaceContainer>
               <p>
                 <Translate
-                  pt="Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super pra esquerda {left} e super pra direita {right}.<br/><strong>Isso ajuda o medium!</strong>"
-                  en="Now it's a good idea to discuss with the group out loud what you guys think it's extreme left {left} and extreme right {right}.<br/><strong>This might help the psychic!</strong>"
+                  pt="Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super pra esquerda {left} e super pra direita {right}.
+                  <br/>
+                  <strong>Isso ajuda o medium!</strong>"
+                  en="Now it's a good idea to discuss with the group out loud what you guys think it's extreme left {left} and extreme right {right}.
+                  <br/>
+                  <strong>This might help the psychic!</strong>"
                   values={{
                     left: <TextHighlight>{card.left}</TextHighlight>,
                     right: <TextHighlight>{card.right}</TextHighlight>,

@@ -148,8 +148,12 @@ export function StepMakeDecision({
       ) : (
         <RuleInstruction type="wait">
           <Translate
-            pt="Essa é a nova casa! Mas você já voltou para sua casa, então, apenas observe.<br/>Você não tem que fazer nada."
-            en="A new house! But you are already home, so, just chill.<br/>You don't have to do anything."
+            pt="Essa é a nova casa! Mas você já voltou para sua casa, então, apenas observe.
+            <br/>
+            Você não tem que fazer nada."
+            en="A new house! But you are already home, so, just chill.
+            <br/>
+            You don't have to do anything."
           />
         </RuleInstruction>
       )}

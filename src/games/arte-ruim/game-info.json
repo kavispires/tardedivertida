@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "6.1.29",
+  "version": "6.1.30",
   "release": "stable",
   "releaseDate": "2021-05-05",
-  "updatedAt": 1786894682879,
+  "updatedAt": 1787431631844,
   "available": true,
   "title": {
     "pt": "Arte Ruim Pra Dedéu",

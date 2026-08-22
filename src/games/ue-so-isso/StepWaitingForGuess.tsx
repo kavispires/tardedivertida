@@ -66,8 +66,16 @@ export function StepWaitingForGuess({
 
       <RuleInstruction type="wait">
         <Translate
-          pt="{guesserName} tem uma única chance de adivinhar a palavra secreta!<br/>Se acertar, o grupo ganha {positivePoints} mas se errar, o grupo perde {negativePoint}.<br/>Há a opção de pular a rodada, mas só faz o grupo perder tempo."
-          en="{guesserName} has a single chance to guess the secret word!<br/>If they get it right, the group wins {positivePoints} but if they get it wrong, the group loses {negativePoint}.<br/>There's the option to skip the round, but it only wastes time."
+          pt="{guesserName} tem uma única chance de adivinhar a palavra secreta!
+          <br/>
+          Se acertar, o grupo ganha {positivePoints} mas se errar, o grupo perde {negativePoint}.
+          <br/>
+          Há a opção de pular a rodada, mas só faz o grupo perder tempo."
+          en="{guesserName} has a single chance to guess the secret word!
+          <br/>
+          If they get it right, the group wins {positivePoints} but if they get it wrong, the group loses {negativePoint}.
+          <br/>
+          There's the option to skip the round, but it only wastes time."
           values={{
             guesserName: guesser.name,
             positivePoints: (

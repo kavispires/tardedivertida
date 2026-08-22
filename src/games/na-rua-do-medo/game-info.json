@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "3.1.118",
+  "version": "3.1.119",
   "release": "stable",
   "releaseDate": "2022-02-09",
-  "updatedAt": 1787031617264,
+  "updatedAt": 1787431635359,
   "available": true,
   "title": {
     "pt": "Na Rua do Medo",

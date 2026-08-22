@@ -142,15 +142,31 @@ export function StepPlaceItem({
       {isTheJudge ? (
         <RuleInstruction type="action">
           <Translate
-            en="As the judge, place one of your things on the diagram to help the other players.<br/><strong>Simply choose one thing</strong>, it will be evaluated in the next phase.<br />Clin on each area of the diagram to see each secret rule on the left."
-            pt="Como juiz, coloque uma de suas coisas no diagrama para ajudar os outros jogadores.<br/><strong>Escolha uma coisa</strong>, ela será avaliada na próxima fase.<br/>Clique em cada area do diagrama para ver cada regra secreta à esquerda."
+            en="As the judge, place one of your things on the diagram to help the other players.
+            <br/>
+            <strong>Simply choose one thing</strong>, it will be evaluated in the next phase.
+            <br/>
+            Clin on each area of the diagram to see each secret rule on the left."
+            pt="Como juiz, coloque uma de suas coisas no diagrama para ajudar os outros jogadores.
+            <br/>
+            <strong>Escolha uma coisa</strong>, ela será avaliada na próxima fase.
+            <br/>
+            Clique em cada area do diagrama para ver cada regra secreta à esquerda."
           />
         </RuleInstruction>
       ) : (
         <RuleInstruction type="action">
           <Translate
-            en="Select one of your things and place them in one of the areas of the diagram. If there are already things there, you can try to base your placement off of them.<br/>The goal is to correctly place your things in the diagram based on the secret rules of each area.<br/>If you place it right, you can place another thing. If you place it wrong, you will receive a new thing and it will be the next player's turn."
-            pt="Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas lá, você pode tentar basear sua colocação nelas.<br/>O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas de cada área.<br/>Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova coisa e será a vez do próximo jogador."
+            en="Select one of your things and place them in one of the areas of the diagram. If there are already things there, you can try to base your placement off of them.
+            <br/>
+            The goal is to correctly place your things in the diagram based on the secret rules of each area.
+            <br/>
+            If you place it right, you can place another thing. If you place it wrong, you will receive a new thing and it will be the next player's turn."
+            pt="Selecione uma de suas coisas e coloque-as em uma das áreas do diagrama. Se já houver coisas lá, você pode tentar basear sua colocação nelas.
+            <br/>
+            O objetivo é colocar corretamente suas coisas no diagrama com base nas regras secretas de cada área.
+            <br/>
+            Se você colocar certo, poderá colocar outra coisa. Se você colocar errado, receberá uma nova coisa e será a vez do próximo jogador."
           />
         </RuleInstruction>
       )}

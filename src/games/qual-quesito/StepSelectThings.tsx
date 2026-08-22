@@ -68,8 +68,16 @@ export function StepSelectThings({
 
   const orderRule = (
     <Translate
-      pt="A ordem que você seleciona as coisas também é importante!<br/>Elas serão avaliadas em ordem e então, assim que uma coisa não é aprovada, as outras nem serão consideradas.<br/>Se suas coisas forem rejeitadas por duas rodadas seguidas, você perde pontos!"
-      en="The order in which you select the things is also important!<br/>They will be evaluated in order and as soon as one thing is not approved, the others won't even be considered.<br/><strong>If your things get rejected for two rounds in a row, you lose points!</strong>"
+      pt="A ordem que você seleciona as coisas também é importante!
+      <br/>
+      Elas serão avaliadas em ordem e então, assim que uma coisa não é aprovada, as outras nem serão consideradas.
+      <br/>
+      Se suas coisas forem rejeitadas por duas rodadas seguidas, você perde pontos!"
+      en="The order in which you select the things is also important!
+      <br/>
+      They will be evaluated in order and as soon as one thing is not approved, the others won't even be considered.
+      <br/>
+      <strong>If your things get rejected for two rounds in a row, you lose points!</strong>"
     />
   );
 

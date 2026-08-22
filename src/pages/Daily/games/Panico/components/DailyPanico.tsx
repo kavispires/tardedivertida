@@ -69,8 +69,12 @@ export function DailyPanico({ data }: DailyPanicoProps) {
       >
         <RegionText className="mt-8 panic-invert">
           <Translate
-            en="Follow the instructions to when and how to press the button.<br/>Press 'Start' to begin and good luck!"
-            pt="Siga as instruções de quando e como apertar o botão.<br/>Aperte 'Iniciar' para começar e boa sorte!"
+            en="Follow the instructions to when and how to press the button.
+            <br/>
+            Press 'Start' to begin and good luck!"
+            pt="Siga as instruções de quando e como apertar o botão.
+            <br/>
+            Aperte 'Iniciar' para começar e boa sorte!"
           />
         </RegionText>
 

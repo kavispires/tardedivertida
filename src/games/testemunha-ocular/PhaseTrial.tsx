@@ -41,8 +41,12 @@ export function PhaseTrial({ state, players }: PhaseProps<PhaseTrialState>) {
     >
       <Surface>
         <Translate
-          pt="Precisamos eliminar suspeitos! Para cada pergunta, pelo menos um suspeito tem que se eliminado. Lembre-se que estamos tentando liberar testemunhas. Desvendamos o caso se o último suspeito for o criminoso!<br/>{questioner} está encarregado(a) de selecionar os inocentes."
-          en="We need to eliminate suspects! For each question we must eliminate at least one suspect. Remember we are trying to release witnesses. We solve the case if the last man (or woman) standing is the perpetrator!<br/>{questioner} is in charge of selecting the innocent people."
+          pt="Precisamos eliminar suspeitos! Para cada pergunta, pelo menos um suspeito tem que se eliminado. Lembre-se que estamos tentando liberar testemunhas. Desvendamos o caso se o último suspeito for o criminoso!
+          <br/>
+          {questioner} está encarregado(a) de selecionar os inocentes."
+          en="We need to eliminate suspects! For each question we must eliminate at least one suspect. Remember we are trying to release witnesses. We solve the case if the last man (or woman) standing is the perpetrator!
+          <br/>
+          {questioner} is in charge of selecting the innocent people."
           values={{
             questioner: (
               <PlayerAvatarName

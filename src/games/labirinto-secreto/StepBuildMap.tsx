@@ -64,8 +64,16 @@ export function StepBuildMap({
 
       <RuleInstruction type="rule">
         <Translate
-          pt="Você precisa ajudar os outros jogadores a descobrirem o seu caminho pela floresta.<br/>Começando da <compass>bússola</compass>, escolha 1 carta para cada árvore do caminho.<br/>Você ganha {points} se jogadores adivinharem seu caminho, então tente fazer um bom trabalho."
-          en="You need to help the other players to discover your path through the forest.<br/>Starting from the <compass>compass</compass>, choose 1 card for each tree of the path.<br/>You earn {points} if players guess your path correctly, so try to do a good job."
+          pt="Você precisa ajudar os outros jogadores a descobrirem o seu caminho pela floresta.
+          <br/>
+          Começando da <compass>bússola</compass>, escolha 1 carta para cada árvore do caminho.
+          <br/>
+          Você ganha {points} se jogadores adivinharem seu caminho, então tente fazer um bom trabalho."
+          en="You need to help the other players to discover your path through the forest.
+          <br/>
+          Starting from the <compass>compass</compass>, choose 1 card for each tree of the path.
+          <br/>
+          You earn {points} if players guess your path correctly, so try to do a good job."
           values={{
             compass: (text: string) => <CompassHighlight>{text}</CompassHighlight>,
             points: <PointsHighlight value="pontos" />,
@@ -85,8 +93,24 @@ export function StepBuildMap({
 
       <RuleInstruction type="action">
         <Translate
-          pt="1. Clique nas cartas em sequência para definir seu mapa, uma carta por árvore.<br/>2. Você pode fazer quantos segmentos quiser desde que pelo menos uma carta esteja em cada árvore (dessa rodada ou de uma rodada anterior já que as cartas são cumulativas).<br/>3. Na barra abaixo, se quiser negar <noIcon/> um adjectivo selecionado, clique nele acima da árvore para trocar.<br/>4. Se quiser refazer uma árvore <treeIcon/>, clique nela.<br/>5. Quando você estiver pronto, aperte Enviar Mapa."
-          en="Click on the cards in sequence to define your map, you can't skip any tree.<br/>You can build as many segments you with as long as there is at least one card on each tree (from this round or a previous one since the cards are cumulative).<br/>If you want to negate <noIcon/> an adjective you selected, click on it below the tree to change.<br/>If you want to redo a tree <treeIcon/>, click on it.<br/>When you are ready, press Submit Map."
+          pt="1. Clique nas cartas em sequência para definir seu mapa, uma carta por árvore.
+          <br/>
+          2. Você pode fazer quantos segmentos quiser desde que pelo menos uma carta esteja em cada árvore (dessa rodada ou de uma rodada anterior já que as cartas são cumulativas).
+          <br/>
+          3. Na barra abaixo, se quiser negar <noIcon/> um adjectivo selecionado, clique nele acima da árvore para trocar.
+          <br/>
+          4. Se quiser refazer uma árvore <treeIcon/>, clique nela.
+          <br/>
+          5. Quando você estiver pronto, aperte Enviar Mapa."
+          en="Click on the cards in sequence to define your map, you can't skip any tree.
+          <br/>
+          You can build as many segments you with as long as there is at least one card on each tree (from this round or a previous one since the cards are cumulative).
+          <br/>
+          If you want to negate <noIcon/> an adjective you selected, click on it below the tree to change.
+          <br/>
+          If you want to redo a tree <treeIcon/>, click on it.
+          <br/>
+          When you are ready, press Submit Map."
           values={{
             noIcon: (
               <Icon

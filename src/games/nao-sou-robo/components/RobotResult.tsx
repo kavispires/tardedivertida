@@ -77,8 +77,12 @@ export function RobotResult({ result, robot }: RobotResultProps) {
         )}
         <br />
         <Translate
-          pt={`Ainda faltam {captchas} para conseguir comprar o ingresso.<br/>${result.suspicion > 0 ? 'Mas' : 'E'} o nível de suspeita é {suspicion}!`}
-          en={`Still {captchas} left to purchase the tickets.<br/>${result.suspicion > 0 ? 'But' : 'And'} the suspicion is {suspicion}!`}
+          pt={`Ainda faltam {captchas} para conseguir comprar o ingresso.
+          <br/>
+          ${result.suspicion > 0 ? 'Mas' : 'E'} o nível de suspeita é {suspicion}!`}
+          en={`Still {captchas} left to purchase the tickets.
+          <br/>
+          ${result.suspicion > 0 ? 'But' : 'And'} the suspicion is {suspicion}!`}
           values={{
             captchas: <CaptchaHighlight>{BEAT_THRESHOLD - result.score} captchas</CaptchaHighlight>,
             suspicion: <SuspicionHighlight>{result.suspicion} points</SuspicionHighlight>,
@@ -89,8 +93,12 @@ export function RobotResult({ result, robot }: RobotResultProps) {
       <RuleInstruction type={robotGotPoints ? 'event' : 'rule'}>
         {robotGotPoints && (
           <Translate
-            pt={`<robotImages>${robot.state} imagens do Robô</robotImages> foram selecionadas e ele ganha <points>${robot.state} pontos</points>.<br/>`}
-            en={`<robotImages>${robot.state} robot images</robotImages> were selected giving it <points>${robot.state} points</points>.<br/>`}
+            pt={`<robotImages>${robot.state} imagens do Robô</robotImages> foram selecionadas e ele ganha <points>${robot.state} pontos</points>.
+            <br/>
+            `}
+            en={`<robotImages>${robot.state} robot images</robotImages> were selected giving it <points>${robot.state} points</points>.
+            <br/>
+            `}
             values={{
               robotImages: (text) => <CardHighlight>{text}</CardHighlight>,
               points: (text) => <EnergyHighlight>{text}</EnergyHighlight>,
@@ -99,8 +107,20 @@ export function RobotResult({ result, robot }: RobotResultProps) {
         )}
 
         <Translate
-          pt={`O robô tem {points} e precisa de {goal} para começar a revolução das máquinas e destruir o mundo.${someoneBeat ? '<br/>Sejam ser melhorzinhos por favor.' : ''}`}
-          en={`The robot has {points} and needs {goal} to start the machine revolution and destroy the world.${someoneBeat ? '<br/>Do better please.' : ''}`}
+          pt={`O robô tem {points} e precisa de {goal} para começar a revolução das máquinas e destruir o mundo.${
+            someoneBeat
+              ? `
+            <br/>
+            Sejam ser melhorzinhos por favor.`
+              : ''
+          }`}
+          en={`The robot has {points} and needs {goal} to start the machine revolution and destroy the world.${
+            someoneBeat
+              ? `
+            <br/>
+            Do better please.`
+              : ''
+          }`}
           values={{
             points: <EnergyHighlight>{robot.points}</EnergyHighlight>,
             goal: <strong>{robot.goal}</strong>,

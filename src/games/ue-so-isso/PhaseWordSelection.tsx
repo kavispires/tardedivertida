@@ -70,15 +70,27 @@ export function PhaseWordSelection({ state, players }: PhaseProps<PhaseWordSelec
       {isUserTheGuesser ? (
         <Surface>
           <Translate
-            pt="Os outros jogadores escolherão a palavra secreta.<br/>Aguarde..."
-            en="The other players will now choose the secret word.<br/>Just wait..."
+            pt="Os outros jogadores escolherão a palavra secreta.
+            <br/>
+            Aguarde..."
+            en="The other players will now choose the secret word.
+            <br/>
+            Just wait..."
           />
         </Surface>
       ) : (
         <Surface>
           <Translate
-            pt="Selecione a palavra secreta para essa rodada.<br/>Você pode selecionar quantas quiser.<br/>A palavra mais votada será usada nessa rodada!"
-            en="Choose the secret word for this round.<br/>You may select as many as you wish.<br/>The most voted word would be used this round!"
+            pt="Selecione a palavra secreta para essa rodada.
+            <br/>
+            Você pode selecionar quantas quiser.
+            <br/>
+            A palavra mais votada será usada nessa rodada!"
+            en="Choose the secret word for this round.
+            <br/>
+            You may select as many as you wish.
+            <br/>
+            The most voted word would be used this round!"
           />
         </Surface>
       )}

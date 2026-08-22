@@ -59,8 +59,12 @@ export function StepAboutTheVictim({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={`${isVictimGame ? 'Baseado em sua carta da vítima (amarela), selecione  algo sobre quem morreu.' : 'Baseado em qualquer uma de suas cartas, selecione dicas sobre a vítima.'}<br/>Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja inteligente!`}
-          en={`${isVictimGame ? 'Based on your victim card (yellow), select something about who died.' : 'Based on any of your cards, select hints about the victim.'}<br/>Remember you are trying to help the players guess your crime, so be smart!`}
+          pt={`${isVictimGame ? 'Baseado em sua carta da vítima (amarela), selecione  algo sobre quem morreu.' : 'Baseado em qualquer uma de suas cartas, selecione dicas sobre a vítima.'}
+          <br/>
+          Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja inteligente!`}
+          en={`${isVictimGame ? 'Based on your victim card (yellow), select something about who died.' : 'Based on any of your cards, select hints about the victim.'}
+          <br/>
+          Remember you are trying to help the players guess your crime, so be smart!`}
         />
       </RuleInstruction>
 

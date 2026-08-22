@@ -75,15 +75,15 @@ export function FulfillingPhase({
         <RegionText>
           <Translate
             en="We have received 5 orders and 4 of them are in stock!
-                <br />
-                Select the orders one by one and place them on the correct shelf.
-                <br />
-                <strong>Orders Placed </strong>{fulfillments}."
+            <br/>
+            Select the orders one by one and place them on the correct shelf.
+            <br/>
+            <strong>Orders Placed </strong>{fulfillments}."
             pt="Recebemos 5 pedidos e 4 deles estão em estoque!
-                <br />
-                Selecione os pedidos um a um e coloque-nos na prateleira correta.
-                <br />
-                <strong>Pedidos Posicionados </strong>{fulfillments}."
+            <br/>
+            Selecione os pedidos um a um e coloque-nos na prateleira correta.
+            <br/>
+            <strong>Pedidos Posicionados </strong>{fulfillments}."
             values={{
               fulfillments: <strong>({fulfillments.length}/4)</strong>,
             }}
@@ -125,11 +125,11 @@ export function FulfillingPhase({
             <RegionText>
               <Translate
                 pt="Se tudo estiver nos confirmes, aperte o botão de enviar.
-                    <br />
-                    Você perde um coração se qualquer um deles estiver errado."
+                <br/>
+                Você perde um coração se qualquer um deles estiver errado."
                 en="If everything is in order, press the delivery button.
-                    <br />
-                    You lose a heart if any of them are wrong."
+                <br/>
+                You lose a heart if any of them are wrong."
               />
             </RegionText>
           </>
@@ -185,11 +185,11 @@ export function FulfillingPhase({
           <br />
           <Translate
             en="If everything is in order, press the delivery button.
-                <br />
-                You lose a heart if any of them are wrong."
+            <br/>
+            You lose a heart if any of them are wrong."
             pt="Se tudo estiver nos confirmes, aperte o botão de enviar.
-                <br />
-                Você perde um coração se qualquer um deles estiver errado."
+            <br/>
+            Você perde um coração se qualquer um deles estiver errado."
           />
         </RegionText>
       </>

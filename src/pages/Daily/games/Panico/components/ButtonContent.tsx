@@ -95,8 +95,12 @@ export function ButtonContent({ button, pressCount, buttonIndex }: ButtonContent
       return (
         <ContentTextLabel>
           <Translate
-            en="Quickly!<br />Do not press"
-            pt="Rápido!<br />Não aperte"
+            en="Quickly!
+            <br/>
+            Do not press"
+            pt="Rápido!
+            <br/>
+            Não aperte"
           />
         </ContentTextLabel>
       );

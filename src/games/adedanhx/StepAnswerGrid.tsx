@@ -109,8 +109,12 @@ export function StepAnswerGrid({ grid, onSubmitAnswers, user, players, stoppedBy
 
       <RuleInstruction type="rule">
         <Translate
-          en="Write the answers in the order you think is best. You have a total of <time>minutes</time>!<br/>Don't forget to press the {lockIcon} lock button after each answer, pressing tab will auto-lock for you!"
-          pt="Escreva na ordem que achar melhor. Você tem um total de <time>minutos</time>!<br/>Não se esqueça de apertar o botão {lockIcon} cadeado após cada resposta, apertando tab ele vai auto-travar pra você!"
+          en="Write the answers in the order you think is best. You have a total of <time>minutes</time>!
+          <br/>
+          Don't forget to press the {lockIcon} lock button after each answer, pressing tab will auto-lock for you!"
+          pt="Escreva na ordem que achar melhor. Você tem um total de <time>minutos</time>!
+          <br/>
+          Não se esqueça de apertar o botão {lockIcon} cadeado após cada resposta, apertando tab ele vai auto-travar pra você!"
           values={{
             lockIcon: (
               <Icon

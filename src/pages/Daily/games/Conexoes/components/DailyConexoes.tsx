@@ -194,23 +194,25 @@ export function DailyConexoes({ data }: DailyConexoesProps) {
             <Surface contained>
               <Translate
                 pt="Você receberá pares de imagens para avaliar.
-                    <br />
-                    Você simplesmente tem que dizer se elas estão relacionadas ou não!
-                    <br />
-                    Pode ser pela cor, por um objeto em comum, tema parecido, forma, ou qualquer coisa que
+                <br/>
+                Você simplesmente tem que dizer se elas estão relacionadas ou não!
+                <br/>
+                Pode ser pela cor, por um objeto em comum, tema parecido, forma, ou qualquer coisa que
                     faça sentido pra você!
-                    <br />
-                    <br />
-                    Clique em Começar para avaliar os pares de imagens!"
+                <br/>
+                
+                <br/>
+                Clique em Começar para avaliar os pares de imagens!"
                 en="You will receive pairs of images to evaluate.
-                    <br />
-                    You just have to say if they are related or not!
-                    <br />
-                    It can be by color, by a common object, similar theme, shape, or anything that makes sense
+                <br/>
+                You just have to say if they are related or not!
+                <br/>
+                It can be by color, by a common object, similar theme, shape, or anything that makes sense
                     to you!
-                    <br />
-                    <br />
-                    Click Begin to start evaluating the image pairs!"
+                <br/>
+                
+                <br/>
+                Click Begin to start evaluating the image pairs!"
               />
             </Surface>
             <Button

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "2.1.98",
+  "version": "2.1.99",
   "release": "stable",
   "releaseDate": "2021-12-23",
-  "updatedAt": 1786998880283,
+  "updatedAt": 1787431636940,
   "available": true,
   "title": {
     "pt": "Retrato Falado Monstruoso",

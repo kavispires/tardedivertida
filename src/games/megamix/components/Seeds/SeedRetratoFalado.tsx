@@ -73,8 +73,12 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
       <Space orientation="vertical">
         <Surface className="seed-instruction">
           <Translate
-            pt="Você tem <strong>30 segundos</strong> para desenhar a carta abaixo.<br/>Desenhá-lo é a única coisa que te acalma. Quando estiver pronto, aperte o botão!"
-            en="You have <strong>30 seconds</strong> to draw the card below.<br/>Drawing it is the only thing that calms you down. When you're ready, press the button!"
+            pt="Você tem <strong>30 segundos</strong> para desenhar a carta abaixo.
+            <br/>
+            Desenhá-lo é a única coisa que te acalma. Quando estiver pronto, aperte o botão!"
+            en="You have <strong>30 seconds</strong> to draw the card below.
+            <br/>
+            Drawing it is the only thing that calms you down. When you're ready, press the button!"
           />
         </Surface>
         <Button

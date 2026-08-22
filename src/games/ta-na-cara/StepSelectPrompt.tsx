@@ -65,16 +65,16 @@ export function StepSelectPrompt({
       <RuleInstruction type="action">
         <Translate
           en="Write a vibe question that will help you identify your opponent {player}'s characters.
-              <br />
-              For example: 'Would they be a good villain in a horror movie?', 'Do they know how to whistle?'
-              <br />
-              Your question cannot be about their character's physical traits, but about their vibe or
+          <br/>
+          For example: 'Would they be a good villain in a horror movie?', 'Do they know how to whistle?'
+          <br/>
+          Your question cannot be about their character's physical traits, but about their vibe or
               personality."
           pt="Escreva uma pergunta de vibe que te ajude a identificar os personagens do seu oponente {player}
-              <br />
-              Por exemplo: 'Eles seriam um bom vilão em um filme de terror?, ou 'Eles sabem assobiar?'
-              <br />
-              Sua pergunta não pode ser sobre traços físicos do personagem, mas sobre a vibe ou personalidade
+          <br/>
+          Por exemplo: 'Eles seriam um bom vilão em um filme de terror?, ou 'Eles sabem assobiar?'
+          <br/>
+          Sua pergunta não pode ser sobre traços físicos do personagem, mas sobre a vibe ou personalidade
               dele."
           values={{
             player: <PlayerAvatarName player={players[targetPlayerId]} />,
@@ -151,10 +151,11 @@ export function StepSelectPrompt({
             description={
               <Translate
                 en="All players will be given a chance to make their guess.
-                    <br />
-                    The game will end after this round."
+                <br/>
+                The game will end after this round."
                 pt="Todos os jogadores terão a chance de fazer sua adivinhação.
-                    <br />O jogo terminará após esta rodada."
+                <br/>
+                O jogo terminará após esta rodada."
               />
             }
             onConfirm={onTriggerGuessing}

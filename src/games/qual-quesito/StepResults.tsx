@@ -60,8 +60,20 @@ export function StepResults({
 
       <RuleInstruction type="wait">
         <Translate
-          pt="• Cada coisa aceita do criador vale {creatorPoints}<br/>• Se o criador tem duas coisas aceitas, ele ganha {bonusPoints}<br/>• Cada coisa aceita dos outros jogadores vale {otherPoints}<br/>• Se você tem coisas rejeitadas por 2 rodadas seguidas, você perde {penaltyPoints}"
-          en="• Each accepted thing from the creator is worth {creatorPoints}<br/>• If the creator has two accepted things, they earn {bonusPoints}<br/>• Each accepted thing from other players is worth {otherPoints}<br/>• If you have things rejected for 2 consecutive rounds, you lose {penaltyPoints}"
+          pt="• Cada coisa aceita do criador vale {creatorPoints}
+          <br/>
+          • Se o criador tem duas coisas aceitas, ele ganha {bonusPoints}
+          <br/>
+          • Cada coisa aceita dos outros jogadores vale {otherPoints}
+          <br/>
+          • Se você tem coisas rejeitadas por 2 rodadas seguidas, você perde {penaltyPoints}"
+          en="• Each accepted thing from the creator is worth {creatorPoints}
+          <br/>
+          • If the creator has two accepted things, they earn {bonusPoints}
+          <br/>
+          • Each accepted thing from other players is worth {otherPoints}
+          <br/>
+          • If you have things rejected for 2 consecutive rounds, you lose {penaltyPoints}"
           values={{
             creatorPoints: <PointsHighlight value={CREATOR_SCORE_POINTS} />,
             bonusPoints: (
