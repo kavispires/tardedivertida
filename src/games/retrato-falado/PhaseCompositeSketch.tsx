@@ -48,11 +48,11 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps<PhaseComposi
           <Surface contained>
             <Translate
               pt="Um meliante monstruoso está a solta!
-                  <br />
-                  A testemunha {witness} tentará relembrar o incidente!"
+              <br/>
+              A testemunha {witness} tentará relembrar o incidente!"
               en="A monstrous miscreant is on the loose!
-                  <br />
-                  The witness {witness} must recall all of its features!"
+              <br/>
+              The witness {witness} must recall all of its features!"
               values={{
                 witness: <PlayerAvatarName player={witness} />,
               }}
@@ -79,15 +79,15 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps<PhaseComposi
             {isUserTheWitness ? (
               <Translate
                 pt="Você terá {memoryTime} segundos para memorizar as características do monstro.
-                    <br />
-                    Assim que esse tempo acabar, você terá {sketchTime} minutos para descrevê-lo para os outros jogadores.
-                    <br />
-                    Boa sorte!"
+                <br/>
+                Assim que esse tempo acabar, você terá {sketchTime} minutos para descrevê-lo para os outros jogadores.
+                <br/>
+                Boa sorte!"
                 en="You'll have {memoryTime} seconds to memorize the monster's features.
-                    <br />
-                    When the time is up, you will have {sketchTime} minutes to describe it to the other players.
-                    <br />
-                    Good luck!"
+                <br/>
+                When the time is up, you will have {sketchTime} minutes to describe it to the other players.
+                <br/>
+                Good luck!"
                 values={{
                   memoryTime: <TimeHighlight>{TIMES.MEMORY}</TimeHighlight>,
                   sketchTime: <TimeHighlight>{TIMES.SKETCH / 60}</TimeHighlight>,
@@ -96,15 +96,15 @@ export function PhaseCompositeSketch({ state, players }: PhaseProps<PhaseComposi
             ) : (
               <Translate
                 pt="A testemunha {witness} terá {memoryTime} segundos para memorizar as características do monstro.
-                    <br />
-                    Assim que esse tempo acabar, você terá {sketchTime} minutos para desenhá-lo enquanto a testemunha o descreve.
-                    <br />
-                    Boa sorte!"
+                <br/>
+                Assim que esse tempo acabar, você terá {sketchTime} minutos para desenhá-lo enquanto a testemunha o descreve.
+                <br/>
+                Boa sorte!"
                 en="The witness {witness} will have {memoryTime} seconds to memorize the monster's features.
-                    <br />
-                    When the time is up, you will have {sketchTime}{ minutes to draw the monster while the witness describes it.
-                    <br />
-                    Good luck!"
+                <br/>
+                When the time is up, you will have {sketchTime}{ minutes to draw the monster while the witness describes it.
+                <br/>
+                Good luck!"
                 values={{
                   witness: <PlayerAvatarName player={witness} />,
                   memoryTime: <TimeHighlight>{TIMES.MEMORY}</TimeHighlight>,

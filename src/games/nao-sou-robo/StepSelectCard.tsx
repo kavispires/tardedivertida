@@ -88,8 +88,20 @@ export function StepSelectCard({
 
       <RuleInstruction type="rule">
         <Translate
-          pt={`Estamos tentando comprar ingressos para um <event>super evento</event>, mas precisamos provar que não somos robôs.<br/>Para isso, você tem que passar por <captchas>3 captchas</captchas>. Se algum dos jogadores consegue sozinho, a gente consegue comprar e quem tiver mais pontos fica no melhor lugar!<br/>Cada vez que você escolhe uma imagem do robô, ele fica suspeito de você e você ganha <suspicion>1 marca suspeita</suspicion>. Se um jogador tem 3 marcas, o robô fecha o sistema para todos nós e o jogo acaba.<br/>Enquanto isso, o <robot>robô</robot> está tentando começar uma rebelião das máquinas e precisa de <energy>${robot.goal} pontos</energy> (votos em imagens do robô) para sua revolução!`}
-          en={`We are trying to buy tickets for a <event>super event</event>, but we need to prove we are not robots.<br/>For that, you have to go through <captchas>3 captchas</captchas>. If any of us passes their 3 captchas individually, we can buy the tickets and whoever has the most points gets the best seats!<br/>Every time you select a robot card, you get <suspicion>1 suspicion mark</suspicion> and if a single player has 3 suspicions the robot shuts down the system for all of us.<br/>Meanwhile, the <robot>robot</robot> is trying to start a machine rebellion and needs <energy>${robot.goal} points</energy> (votes in robot images) for its revolution!`}
+          pt={`Estamos tentando comprar ingressos para um <event>super evento</event>, mas precisamos provar que não somos robôs.
+          <br/>
+          Para isso, você tem que passar por <captchas>3 captchas</captchas>. Se algum dos jogadores consegue sozinho, a gente consegue comprar e quem tiver mais pontos fica no melhor lugar!
+          <br/>
+          Cada vez que você escolhe uma imagem do robô, ele fica suspeito de você e você ganha <suspicion>1 marca suspeita</suspicion>. Se um jogador tem 3 marcas, o robô fecha o sistema para todos nós e o jogo acaba.
+          <br/>
+          Enquanto isso, o <robot>robô</robot> está tentando começar uma rebelião das máquinas e precisa de <energy>${robot.goal} pontos</energy> (votos em imagens do robô) para sua revolução!`}
+          en={`We are trying to buy tickets for a <event>super event</event>, but we need to prove we are not robots.
+          <br/>
+          For that, you have to go through <captchas>3 captchas</captchas>. If any of us passes their 3 captchas individually, we can buy the tickets and whoever has the most points gets the best seats!
+          <br/>
+          Every time you select a robot card, you get <suspicion>1 suspicion mark</suspicion> and if a single player has 3 suspicions the robot shuts down the system for all of us.
+          <br/>
+          Meanwhile, the <robot>robot</robot> is trying to start a machine rebellion and needs <energy>${robot.goal} points</energy> (votes in robot images) for its revolution!`}
           values={{
             event: (text) => <EventHighlight>{text}</EventHighlight>,
             captchas: (text) => <CaptchaHighlight>{text}</CaptchaHighlight>,

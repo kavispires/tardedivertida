@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "6.0.30",
+  "version": "6.0.31",
   "release": "stable",
   "releaseDate": "2021-08-27",
-  "updatedAt": 1787031635178,
+  "updatedAt": 1787431634845,
   "available": true,
   "title": {
     "pt": "Mente Coletiva",

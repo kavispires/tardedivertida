@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "teste-de-elenco",
-  "version": "2.0.113",
+  "version": "2.0.114",
   "release": "stable",
   "releaseDate": "2023-11-04",
-  "updatedAt": 1787333262812,
+  "updatedAt": 1787431637684,
   "available": false,
   "title": {
     "pt": "Teste De Elenco",

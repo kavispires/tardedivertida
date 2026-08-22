@@ -98,8 +98,12 @@ export function StepExamine({
 
       <RuleInstruction type="action">
         <Translate
-          en="If you are an agent, you want to find out where the <redWiresNeeded>red wires</redWiresNeeded> are to defuse the bomb!<br/>If you are a terrorist, you want to mislead the agents so they reveal the bomb or fail to find the red wires until the game ends."
-          pt="Se você é um agente, você quer descobrir onde estão os <redWiresNeeded>fios vermelhos</redWiresNeeded> para desarmar a bomba!<br/>Se você é um terrorista, você quer enganar os agentes para que eles revelem a bomba ou não encontrem os fios vermelhos até o jogo acabar."
+          en="If you are an agent, you want to find out where the <redWiresNeeded>red wires</redWiresNeeded> are to defuse the bomb!
+          <br/>
+          If you are a terrorist, you want to mislead the agents so they reveal the bomb or fail to find the red wires until the game ends."
+          pt="Se você é um agente, você quer descobrir onde estão os <redWiresNeeded>fios vermelhos</redWiresNeeded> para desarmar a bomba!
+          <br/>
+          Se você é um terrorista, você quer enganar os agentes para que eles revelem a bomba ou não encontrem os fios vermelhos até o jogo acabar."
           values={{
             redWiresNeeded: (text) => (
               <RedWireHighlight>

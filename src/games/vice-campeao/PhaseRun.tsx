@@ -52,8 +52,12 @@ export function PhaseRun({ state, players }: PhaseProps<PhaseRunState>) {
     >
       <Surface>
         <Translate
-          pt="Vamos avaliar cada carta que os jogadores escolheram.<br />Especiais acontecem primeiro e então movimentos."
-          en="Let's evaluate each card that the players chose.<br />Effect cards happen first and then Movements."
+          pt="Vamos avaliar cada carta que os jogadores escolheram.
+          <br/>
+          Especiais acontecem primeiro e então movimentos."
+          en="Let's evaluate each card that the players chose.
+          <br/>
+          Effect cards happen first and then Movements."
         />
       </Surface>
       <ImageCardPreloadHand hand={imagesIds} />

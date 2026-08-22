@@ -142,8 +142,40 @@ export function StepItemsSelection({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt={`<strong>Selecione</strong> uma carta azul que representa o meio que a morte aconteceu no seu último crime, normalmente uma arma.<br/><strong>Selecione</strong> uma carta vermelha que representa uma evidência que estava na cena do crime.${isVictimGame ? '<br/><strong>Selecione</strong> uma carta amarela que representa a vítima do crime.' : ''}${isLocationGame ? '<br/><strong>Selecione</strong> uma carta verde que representa o local do crime.' : ''}<br/>O jogo contém {counts}, mas para essa parte, você vê apenas 4 opções de cada.`}
-          en={`<strong>Select</strong> a blue card that represents the means by which the death occurred in your last crime, usually a weapon.<br/><strong>Select</strong> a red card that represents evidence that was at the crime scene.${isVictimGame ? '<br/><strong>Select</strong> a yellow card that represents the victim of the crime.' : ''}${isLocationGame ? '<br/><strong>Select</strong> a green card that represents the crime scene.' : ''}<br/>The game contains {counts}, but for this part, you only see 4 options of each.`}
+          pt={`<strong>Selecione</strong> uma carta azul que representa o meio que a morte aconteceu no seu último crime, normalmente uma arma.
+          <br/>
+          <strong>Selecione</strong> uma carta vermelha que representa uma evidência que estava na cena do crime.${
+            isVictimGame
+              ? `
+            <br/>
+            <strong>Selecione</strong> uma carta amarela que representa a vítima do crime.`
+              : ''
+          }${
+            isLocationGame
+              ? `
+            <br/>
+            <strong>Selecione</strong> uma carta verde que representa o local do crime.`
+              : ''
+          }
+          <br/>
+          O jogo contém {counts}, mas para essa parte, você vê apenas 4 opções de cada.`}
+          en={`<strong>Select</strong> a blue card that represents the means by which the death occurred in your last crime, usually a weapon.
+          <br/>
+          <strong>Select</strong> a red card that represents evidence that was at the crime scene.${
+            isVictimGame
+              ? `
+            <br/>
+            <strong>Select</strong> a yellow card that represents the victim of the crime.`
+              : ''
+          }${
+            isLocationGame
+              ? `
+            <br/>
+            <strong>Select</strong> a green card that represents the crime scene.`
+              : ''
+          }
+          <br/>
+          The game contains {counts}, but for this part, you only see 4 options of each.`}
           values={{ counts: getCountsInstructions() }}
         />
       </RuleInstruction>

@@ -71,8 +71,20 @@ export function StepWaitDoorSelection({
         className="i-sand-timer-container"
       >
         <Translate
-          pt="Silêncio e poker face!<br/>Eles tem {timeLimit} minutos para decidir qual(quais) porta(s) entrar.<br/>Cada porta visitada custará {crystalCost} cristal, portanto, escolha sabiamente.<br/>Vocês tem {magic} cristais sobrando e {doorsLeft} portas para achar a saída."
-          en="Silence and poker face!<br/>You have {timeLimit} minutes to decide what door(s) to visit.<br/>Each door a player visits costs {crystalCost} crystal, so choose wisely.<br/>You all have {magic} remaining crystals and {doorsLeft} doors to find the exit."
+          pt="Silêncio e poker face!
+          <br/>
+          Eles tem {timeLimit} minutos para decidir qual(quais) porta(s) entrar.
+          <br/>
+          Cada porta visitada custará {crystalCost} cristal, portanto, escolha sabiamente.
+          <br/>
+          Vocês tem {magic} cristais sobrando e {doorsLeft} portas para achar a saída."
+          en="Silence and poker face!
+          <br/>
+          You have {timeLimit} minutes to decide what door(s) to visit.
+          <br/>
+          Each door a player visits costs {crystalCost} crystal, so choose wisely.
+          <br/>
+          You all have {magic} remaining crystals and {doorsLeft} doors to find the exit."
           values={{
             timeLimit: <TimeHighlight>{timeLimit}</TimeHighlight>,
             crystalCost: <CrystalHighlight>{crystalCost}</CrystalHighlight>,

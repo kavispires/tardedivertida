@@ -148,19 +148,19 @@ export function StepEvaluate({
         <Translate
           pt="Faça pares com as cartas e os desenhos. Cada desenho tem um sujeito e um descritor
               correspondente.
-              <br />
-              Basta clicar em uma carta e depois em seu desenho correspondente.
-              <br />
-              Para refazer, basta reselecionar o desenho ou carta normalmente.
-              <br />
-              Quando estiver pronto, clique em <b>Enviar sua avaliação</b>."
+          <br/>
+          Basta clicar em uma carta e depois em seu desenho correspondente.
+          <br/>
+          Para refazer, basta reselecionar o desenho ou carta normalmente.
+          <br/>
+          Quando estiver pronto, clique em <b>Enviar sua avaliação</b>."
           en="Match the cards and drawings. Each drawing has a corresponding subject and descriptor.
-              <br />
-              Simply click on a card and then on its corresponding drawing.
-              <br />
-              To redo, just reselect the drawing or card normally.
-              <br />
-              When you're ready, click <b>Send evaluation</b>."
+          <br/>
+          Simply click on a card and then on its corresponding drawing.
+          <br/>
+          To redo, just reselect the drawing or card normally.
+          <br/>
+          When you're ready, click <b>Send evaluation</b>."
         />
         <br />
         <CanvasResizerButton />

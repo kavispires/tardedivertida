@@ -82,21 +82,27 @@ export function StepSelectChallenge({
         )}
         {userContenders.length > 1 && round.current < 5 ? (
           <Translate
-            en="<br />Select a challenge you think one of your contenders have the best chance of winning because you get {points} if they win."
-            pt="<br /> Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer. porque você ganha {points} se ele(a) vencer."
+            en="
+            <br/>
+            Select a challenge you think one of your contenders have the best chance of winning because you get {points} if they win."
+            pt="
+            <br/>
+            Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer. porque você ganha {points} se ele(a) vencer."
             values={{ points: <PointsHighlight value={2} /> }}
           />
         ) : (
           <Translate
-            pt="<br />
-                Este é uma rodada de semifinalistas, então somente competidores que chegaram na semi-final
+            pt="
+            <br/>
+            Este é uma rodada de semifinalistas, então somente competidores que chegaram na semi-final
                 participam.
-                <br />
-                Você não selecionará um competidor dessa vez."
-            en="<br />
-                This is a semifinalist round, so only contenders that got to the semifinals will participate.
-                <br />
-                You won't select a contender this time."
+            <br/>
+            Você não selecionará um competidor dessa vez."
+            en="
+            <br/>
+            This is a semifinalist round, so only contenders that got to the semifinals will participate.
+            <br/>
+            You won't select a contender this time."
           />
         )}
       </RuleInstruction>

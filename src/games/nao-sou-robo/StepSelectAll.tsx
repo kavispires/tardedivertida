@@ -152,8 +152,12 @@ export function StepSelectAll({
 
       <RuleInstruction type="event">
         <Translate
-          pt={`São <cards>${selectionCount} cartas</cards> no total a serem selecionadas.<br/>Você ganha {positivePoints} por cada carta que não é do robô e perde {negativePoints} por cada carta que é do robô.`}
-          en={`There are <cards>${selectionCount} cards</cards> in total to be selected.<br/>You get {positivePoints} for each card that is not from the robot and lose {negativePoints} for each card that is from the robot.`}
+          pt={`São <cards>${selectionCount} cartas</cards> no total a serem selecionadas.
+          <br/>
+          Você ganha {positivePoints} por cada carta que não é do robô e perde {negativePoints} por cada carta que é do robô.`}
+          en={`There are <cards>${selectionCount} cards</cards> in total to be selected.
+          <br/>
+          You get {positivePoints} for each card that is not from the robot and lose {negativePoints} for each card that is from the robot.`}
           values={{
             cards: (text) => <CardHighlight>{text}</CardHighlight>,
             positivePoints: (

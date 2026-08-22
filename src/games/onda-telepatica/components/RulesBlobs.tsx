@@ -36,8 +36,20 @@ export function ScoringRules() {
   return (
     <Surface contained>
       <Translate
-        pt="Jogadores ganham {exactPoints} se acertarem na mosca!<br/>Mas {nearPoints} e {farPoints} se votaram 1 ou 2 espaços de distância.<br/>O Medium ganha {playerPoints} para cada jogador que ganhou ponto (máximo 3 pontos) e se ele(a) chutou a quantidade certa de jogadores que iam acertar, ele ganha mais {bonusPoints}.<br/>O Medium nunca ganha mais pontos que os outros jogadores."
-        en="Players get {exactPoints} if they get it exactly right!<br/>If one or two spaces away from the needle, they get {nearPoints} and {farPoints} respectively.<br/>The psychic gets {playerPoints} for every player that got points this turn (maximum of 3 points) and may get {bonusPoints} extra point if they guessed the correct number of player who would get the clue right.<br/>The psychic may never get more points than the other players."
+        pt="Jogadores ganham {exactPoints} se acertarem na mosca!
+        <br/>
+        Mas {nearPoints} e {farPoints} se votaram 1 ou 2 espaços de distância.
+        <br/>
+        O Medium ganha {playerPoints} para cada jogador que ganhou ponto (máximo 3 pontos) e se ele(a) chutou a quantidade certa de jogadores que iam acertar, ele ganha mais {bonusPoints}.
+        <br/>
+        O Medium nunca ganha mais pontos que os outros jogadores."
+        en="Players get {exactPoints} if they get it exactly right!
+        <br/>
+        If one or two spaces away from the needle, they get {nearPoints} and {farPoints} respectively.
+        <br/>
+        The psychic gets {playerPoints} for every player that got points this turn (maximum of 3 points) and may get {bonusPoints} extra point if they guessed the correct number of player who would get the clue right.
+        <br/>
+        The psychic may never get more points than the other players."
         values={{
           exactPoints: <PointsHighlight value={4} />,
           nearPoints: <PointsHighlight value={3} />,

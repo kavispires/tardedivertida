@@ -133,8 +133,12 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
           <br />
           <strong>
             <Translate
-              en="The agents cut all the <RedWireHighlight>red wires</RedWireHighlight>!<br />Congratulations agents, the world is safe!"
-              pt="Os agentes cortaram todos os <RedWireHighlight>fios vermelhos</RedWireHighlight>!<br />Parabéns agentes, o mundo está salvo!"
+              en="The agents cut all the <RedWireHighlight>red wires</RedWireHighlight>!
+              <br/>
+              Congratulations agents, the world is safe!"
+              pt="Os agentes cortaram todos os <RedWireHighlight>fios vermelhos</RedWireHighlight>!
+              <br/>
+              Parabéns agentes, o mundo está salvo!"
               values={{
                 RedWireHighlight: (text: string) => (
                   <RedWireHighlight>
@@ -158,8 +162,12 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
           <br />
           <strong>
             <Translate
-              en="The agents cut only <RedWireHighlight>red wires</RedWireHighlight>...<br />It was just a matter of time until the bomb exploded... The Terrorists win!"
-              pt="Os agentes contaram apenas <RedWireHighlight>fios vermelhos</RedWireHighlight>...<br />Foi só uma questão de tempo até a bomba explodir... Os Terroristas vencem!"
+              en="The agents cut only <RedWireHighlight>red wires</RedWireHighlight>...
+              <br/>
+              It was just a matter of time until the bomb exploded... The Terrorists win!"
+              pt="Os agentes contaram apenas <RedWireHighlight>fios vermelhos</RedWireHighlight>...
+              <br/>
+              Foi só uma questão de tempo até a bomba explodir... Os Terroristas vencem!"
               values={{
                 RedWireHighlight: (text: string) => (
                   <RedWireHighlight>
@@ -182,8 +190,12 @@ const getResolution = (status: Status, dataCounts: DataCounts) => {
           <br />
           <strong>
             <Translate
-              en="Kaboom!!! An agent cut the bomb! Everybody is dead!<br />The Terrorists win, even though everybody is dead, the cause has won!"
-              pt="Cabum!!! Um agente cortou a bomba!!! Todo mundo morreu!<br />Os Terroristas vencem, mesmo mortos, porque o que importa é a causa!"
+              en="Kaboom!!! An agent cut the bomb! Everybody is dead!
+              <br/>
+              The Terrorists win, even though everybody is dead, the cause has won!"
+              pt="Cabum!!! Um agente cortou a bomba!!! Todo mundo morreu!
+              <br/>
+              Os Terroristas vencem, mesmo mortos, porque o que importa é a causa!"
             />
           </strong>
           <ConfettiEffect />

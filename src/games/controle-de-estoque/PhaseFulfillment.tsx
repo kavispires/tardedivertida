@@ -95,8 +95,24 @@ export function PhaseFulfillment({ players, state, user }: PhaseProps<PhaseFulfi
         >
           <Surface>
             <Translate
-              pt="Você receberá um número de pedidos para atender.<br/>Você ganha {correctPoints} para cada produto que colocou no local correto.<br/>Alguns produtos nunca foram colocados no galpão e você pode marcá-los como fora de estoque e ganhar {correctPoints} se estiver correto.<br/>Você perde {penalty} para cada produto colocado no local errado.<br/>Deixar um produto sem atender não te faz perder pontos. Você tem {time}!"
-              en="You will receive a number of orders to fulfill.<br/>You earn {correctPoints} for each product you placed in the correct location.<br/>Some products were never placed in the warehouse and you can mark them as out of stock and earn {correctPoints} if you're correct.<br/>You lose {penalty} for each product placed in the wrong location.<br/>Leaving a product unfulfilled doesn't make you lose points. You have {time}!"
+              pt="Você receberá um número de pedidos para atender.
+              <br/>
+              Você ganha {correctPoints} para cada produto que colocou no local correto.
+              <br/>
+              Alguns produtos nunca foram colocados no galpão e você pode marcá-los como fora de estoque e ganhar {correctPoints} se estiver correto.
+              <br/>
+              Você perde {penalty} para cada produto colocado no local errado.
+              <br/>
+              Deixar um produto sem atender não te faz perder pontos. Você tem {time}!"
+              en="You will receive a number of orders to fulfill.
+              <br/>
+              You earn {correctPoints} for each product you placed in the correct location.
+              <br/>
+              Some products were never placed in the warehouse and you can mark them as out of stock and earn {correctPoints} if you're correct.
+              <br/>
+              You lose {penalty} for each product placed in the wrong location.
+              <br/>
+              Leaving a product unfulfilled doesn't make you lose points. You have {time}!"
               values={{
                 correctPoints: (
                   <PointsHighlight

@@ -136,8 +136,16 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
           {...leftColProps}
         >
           <Translate
-            en="For {infoPlayerCountMin}-{infoPlayerCountMax} players<br />Best with {infoPlayerCountBest || '?'} players<br />Recommended to play with {recommendedPlayers}"
-            pt="Para {infoPlayerCountMin}-{infoPlayerCountMax} jogadores<br />Melhor com {infoPlayerCountBest || '?'} jogadores<br />Recomendado jogar com {recommendedPlayers}"
+            en="For {infoPlayerCountMin}-{infoPlayerCountMax} players
+            <br/>
+            Best with {infoPlayerCountBest || '?'} players
+            <br/>
+            Recommended to play with {recommendedPlayers}"
+            pt="Para {infoPlayerCountMin}-{infoPlayerCountMax} jogadores
+            <br/>
+            Melhor com {infoPlayerCountBest || '?'} jogadores
+            <br/>
+            Recomendado jogar com {recommendedPlayers}"
             values={{
               infoPlayerCountMin: info.playerCount.min,
               infoPlayerCountMax: info.playerCount.max,

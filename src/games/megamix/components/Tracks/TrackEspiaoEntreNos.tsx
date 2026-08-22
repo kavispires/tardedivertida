@@ -41,8 +41,12 @@ export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps)
       <MinigameTitle title={{ pt: '', en: '' }} />
       <RuleInstruction type="action">
         <Translate
-          pt="Você está em um(a) {location}. Você é um(a) {role}.<br/>Agora, responda à pergunta abaixo com uma resposta simples."
-          en="You are at/in/on a {location}. You are a {role}.<br/>Now, simply answer the following question."
+          pt="Você está em um(a) {location}. Você é um(a) {role}.
+          <br/>
+          Agora, responda à pergunta abaixo com uma resposta simples."
+          en="You are at/in/on a {location}. You are a {role}.
+          <br/>
+          Now, simply answer the following question."
           values={{
             location: <TextHighlight>{track.data.location.name}</TextHighlight>,
             role: <TextHighlight>{track.data.location.roles[track.data.roleIndex]}</TextHighlight>,

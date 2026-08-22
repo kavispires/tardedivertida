@@ -41,8 +41,12 @@ export function PhaseReact({ state, players }: PhaseProps<PhaseReactState>) {
     >
       <Surface>
         <Translate
-          pt="Um assunto polêmico está abalando as redes sociais!<br/>Curta (ou não) e tente descobrir quantas curtidas ele vai receber."
-          en="A topic is trending in all social media!<br/>Like (or not) and try to guess how many likes it will get!"
+          pt="Um assunto polêmico está abalando as redes sociais!
+          <br/>
+          Curta (ou não) e tente descobrir quantas curtidas ele vai receber."
+          en="A topic is trending in all social media!
+          <br/>
+          Like (or not) and try to guess how many likes it will get!"
         />
       </Surface>
     </PhaseAnnouncement>

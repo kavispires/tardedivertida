@@ -60,8 +60,12 @@ export function Achievements({ players, achievements, reference, colorScheme }: 
       {achievements.length === 0 && (
         <Surface contained>
           <Translate
-            en="No achievements were achieved in this game.<br />To win a medal, only one player can meet the condition."
-            pt="Nenhuma medalha foi conquistada nesse jogo.<br />Para ganhar uma medalha, apenas uma jogador pode atender o pré-requisito."
+            en="No achievements were achieved in this game.
+            <br/>
+            To win a medal, only one player can meet the condition."
+            pt="Nenhuma medalha foi conquistada nesse jogo.
+            <br/>
+            Para ganhar uma medalha, apenas uma jogador pode atender o pré-requisito."
           />
         </Surface>
       )}

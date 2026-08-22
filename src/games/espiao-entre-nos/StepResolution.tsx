@@ -78,8 +78,12 @@ export function StepResolution({
           )}
           {resolutionStatus.wasABadVoting && (
             <Translate
-              en="<br/>Next time, discuss more before making a rash decision."
-              pt="<br/>Da próxima vez, discutam mais antes de fazerem uma votação precipitada."
+              en="
+              <br/>
+              Next time, discuss more before making a rash decision."
+              pt="
+              <br/>
+              Da próxima vez, discutam mais antes de fazerem uma votação precipitada."
             />
           )}
         </Surface>
@@ -95,8 +99,12 @@ export function StepResolution({
             }}
           />
           <Translate
-            en="<br/>All agency secrets were revealed and the world will end..."
-            pt="<br/>Todos os segredos da agência foram revelados e o mundo vai acabar..."
+            en="
+            <br/>
+            All agency secrets were revealed and the world will end..."
+            pt="
+            <br/>
+            Todos os segredos da agência foram revelados e o mundo vai acabar..."
           />
         </Surface>
       )}

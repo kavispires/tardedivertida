@@ -84,8 +84,12 @@ export function StepResult({
 
       <RuleInstruction type="rule">
         <Translate
-          pt="Lembre-se que vocês o objetivo é conseguir {goalPoints} em até 10 rodadas, mas vocês perdem imediatamente se tiverem <wrongGuesses>erros</wrongGuesses>.<br/>Vocês ganham {positivePoints} para cada acerto e perdem {negativePoint} para cada erro."
-          en="Remember that the goal is to get {goalPoints} within 10 rounds, but you immediately lose if you get <wrongGuesses>errors</wrongGuesses>.<br/>You gain {positivePoints} for each correct guess and lose {negativePoint} for each mistake."
+          pt="Lembre-se que vocês o objetivo é conseguir {goalPoints} em até 10 rodadas, mas vocês perdem imediatamente se tiverem <wrongGuesses>erros</wrongGuesses>.
+          <br/>
+          Vocês ganham {positivePoints} para cada acerto e perdem {negativePoint} para cada erro."
+          en="Remember that the goal is to get {goalPoints} within 10 rounds, but you immediately lose if you get <wrongGuesses>errors</wrongGuesses>.
+          <br/>
+          You gain {positivePoints} for each correct guess and lose {negativePoint} for each mistake."
           values={{
             goalPoints: <PointsHighlight value={7} />,
             wrongGuesses: (content) => <WrongGuessHighlight>3 {content}</WrongGuessHighlight>,

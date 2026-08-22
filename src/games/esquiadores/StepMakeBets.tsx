@@ -88,8 +88,16 @@ export function StepMakeBets({
 
       <RuleInstruction type="rule">
         <Translate
-          pt="O(A) skier {skier} está descendo essa montanha e finalizará em uma das cabanas. Qual cabana você acha que ele(a) vai escolher?<br/>Você tem {chips} fichas para apostar. Cada ficha vale {points} se você acertar a cabana escolhida.<br/><strong>BÔNUS:</strong> Você também ganha {bonusPoints} para cada cabana que você não aposta nada, então você vai preferir distribuir os pontos ou focar em somente algumas?"
-          en="The skier {skier} is skiing down this mountain and will finish in one of the lodges. Which lodge do you think they will choose?<br/>You have {chips} chips to bet. Each chip is worth {points} if you guess the chosen lodge.<br/><strong>BONUS:</strong> You also earn {bonusPoints} for each lodge you don't bet on, so will you prefer to distribute the points or focus on just a few?"
+          pt="O(A) skier {skier} está descendo essa montanha e finalizará em uma das cabanas. Qual cabana você acha que ele(a) vai escolher?
+          <br/>
+          Você tem {chips} fichas para apostar. Cada ficha vale {points} se você acertar a cabana escolhida.
+          <br/>
+          <strong>BÔNUS:</strong> Você também ganha {bonusPoints} para cada cabana que você não aposta nada, então você vai preferir distribuir os pontos ou focar em somente algumas?"
+          en="The skier {skier} is skiing down this mountain and will finish in one of the lodges. Which lodge do you think they will choose?
+          <br/>
+          You have {chips} chips to bet. Each chip is worth {points} if you guess the chosen lodge.
+          <br/>
+          <strong>BONUS:</strong> You also earn {bonusPoints} for each lodge you don't bet on, so will you prefer to distribute the points or focus on just a few?"
           values={{
             skier: <PlayerAvatarName player={skier} />,
             chips: <ChipsHighlight>{user.chips}</ChipsHighlight>,

@@ -40,8 +40,12 @@ export const TrackRetratoFalado = ({ track, onSubmitAnswer, user }: TrackProps) 
       >
         <RuleInstruction type="action">
           <Translate
-            pt="Dentre as ilustrações abaixo, qual melhor ilustra o mostro?<br/>Foi você quem desenhou? Você pode votar em si mesmo se quiser."
-            en="Among the illustrations below, which one best illustrates the monster?<br/>Is that your drawing? You may vote for yourself if you want."
+            pt="Dentre as ilustrações abaixo, qual melhor ilustra o mostro?
+            <br/>
+            Foi você quem desenhou? Você pode votar em si mesmo se quiser."
+            en="Among the illustrations below, which one best illustrates the monster?
+            <br/>
+            Is that your drawing? You may vote for yourself if you want."
           />
         </RuleInstruction>
 

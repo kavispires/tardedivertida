@@ -75,8 +75,12 @@ export function StepMakeChoices({
 
       <RuleInstruction type="action">
         <Translate
-          pt="Responda as perguntas abaixo. Suas respostas determinará qual cabana seu esquiador irá parar quando descer a montanha.<br/>A ordem aqui não é importante."
-          en="Answer the questions below. Your answers will determine which lodge your skier will stop when descending the mountain.<br/>The order here is not important."
+          pt="Responda as perguntas abaixo. Suas respostas determinará qual cabana seu esquiador irá parar quando descer a montanha.
+          <br/>
+          A ordem aqui não é importante."
+          en="Answer the questions below. Your answers will determine which lodge your skier will stop when descending the mountain.
+          <br/>
+          The order here is not important."
         />
       </RuleInstruction>
 

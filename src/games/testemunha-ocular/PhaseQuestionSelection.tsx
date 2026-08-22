@@ -62,8 +62,12 @@ export function PhaseQuestionSelection({ state, players }: PhaseProps<PhaseQuest
           />
         ) : (
           <Translate
-            en="Now that we have our witness {witness}, it's time to question them.<br/>We only have time for {roundsLeft} questions. So {questioner}, choose the right question."
-            pt="Agora que encontramos nossa testemunha {witness}, é hora de questioná-la.<br/>Só temos tempo para {roundsLeft} perguntas. Portanto, {questioner}, escolha a pergunta certa."
+            en="Now that we have our witness {witness}, it's time to question them.
+            <br/>
+            We only have time for {roundsLeft} questions. So {questioner}, choose the right question."
+            pt="Agora que encontramos nossa testemunha {witness}, é hora de questioná-la.
+            <br/>
+            Só temos tempo para {roundsLeft} perguntas. Portanto, {questioner}, escolha a pergunta certa."
             values={{
               witness: <PlayerAvatarName player={witness} />,
               questioner: <PlayerAvatarName player={questioner} />,

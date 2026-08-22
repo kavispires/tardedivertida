@@ -36,8 +36,20 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, announcement }:
 
       <RuleInstruction type="action">
         <Translate
-          pt="Você escreveu: {clue}<br/>Você como Medium agora pode tentar adivinhar quantas pessoas irão ganhar pontos com sua dica.<br/>Ganhar pontos significa acertar o numero ou qualquer um dos dois espaços em cada lado do ponteiro.<br/><i>Por exemplo, se a resposta for 3, jogadores que escolherem 1, 2, 3, 4, 5 ganham pontos.</i>"
-          en="You wrote: {clue}<br/>As the Psychic, you can now try to guess how many people will get points with your clue.<br/>Players get points by getting the right number or any of the two neighboring numbers on each side.<br/><i>For example, if the answer is #3, players who voted for #1, #2, #3, #4, #5 will get points.</i>"
+          pt="Você escreveu: {clue}
+          <br/>
+          Você como Medium agora pode tentar adivinhar quantas pessoas irão ganhar pontos com sua dica.
+          <br/>
+          Ganhar pontos significa acertar o numero ou qualquer um dos dois espaços em cada lado do ponteiro.
+          <br/>
+          <i>Por exemplo, se a resposta for 3, jogadores que escolherem 1, 2, 3, 4, 5 ganham pontos.</i>"
+          en="You wrote: {clue}
+          <br/>
+          As the Psychic, you can now try to guess how many people will get points with your clue.
+          <br/>
+          Players get points by getting the right number or any of the two neighboring numbers on each side.
+          <br/>
+          <i>For example, if the answer is #3, players who voted for #1, #2, #3, #4, #5 will get points.</i>"
           values={{
             clue: <TextHighlight>{currentCategory.clue}</TextHighlight>,
           }}

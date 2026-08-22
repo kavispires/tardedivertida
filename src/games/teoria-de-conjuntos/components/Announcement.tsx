@@ -59,8 +59,24 @@ export function Announcement({
       >
         <Surface>
           <Translate
-            en="Every turn a player will be placing one of their things in the correct area of the Venn diagram.<br/>If you get it right, you may place another thing.<br/>If you get it wrong, you will receive a new thing, and it's the next player's turn.<br/>The themes of each area are secret and it's up to you to figure out the logic!<br/>Let's start with {player}."
-            pt="A cada rodada um jogador irá colocar uma das suas coisas na área correta do diagrama.<br/>Se você acertar, poderá colocar outra outra.<br/>Se você errar, receberá uma coisa nova, e será a vez do próximo jogador.<br/>Os temas de cada área são secretos e cabe a você descobrir a lógica!<br/>Vamos começar com {player}."
+            en="Every turn a player will be placing one of their things in the correct area of the Venn diagram.
+            <br/>
+            If you get it right, you may place another thing.
+            <br/>
+            If you get it wrong, you will receive a new thing, and it's the next player's turn.
+            <br/>
+            The themes of each area are secret and it's up to you to figure out the logic!
+            <br/>
+            Let's start with {player}."
+            pt="A cada rodada um jogador irá colocar uma das suas coisas na área correta do diagrama.
+            <br/>
+            Se você acertar, poderá colocar outra outra.
+            <br/>
+            Se você errar, receberá uma coisa nova, e será a vez do próximo jogador.
+            <br/>
+            Os temas de cada área são secretos e cabe a você descobrir a lógica!
+            <br/>
+            Vamos começar com {player}."
             values={{
               player: (
                 <PlayerAvatarName

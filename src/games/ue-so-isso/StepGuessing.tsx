@@ -99,8 +99,16 @@ export function StepGuessing({
 
       <RuleInstruction type="action">
         <Translate
-          pt="<strong>Escreva</strong> sua adivinhação abaixo.<br/>Se você acertar, o grupo ganha {positivePoints} mas se você errar, o grupo perde {negativePoint}.<br/>Você pode pular se não estiver se sentindo seguro."
-          en="<strong>Write</strong> your guess below.<br/>If you get it right, the group wins {positivePoints} but if you get it wrong, the group loses {negativePoint}.<br/>You can skip if you're not feeling confident."
+          pt="<strong>Escreva</strong> sua adivinhação abaixo.
+          <br/>
+          Se você acertar, o grupo ganha {positivePoints} mas se você errar, o grupo perde {negativePoint}.
+          <br/>
+          Você pode pular se não estiver se sentindo seguro."
+          en="<strong>Write</strong> your guess below.
+          <br/>
+          If you get it right, the group wins {positivePoints} but if you get it wrong, the group loses {negativePoint}.
+          <br/>
+          You can skip if you're not feeling confident."
           values={{
             positivePoints: (
               <PointsHighlight

@@ -91,8 +91,16 @@ export function StepWordSelection({
 
       <RuleInstruction type="rule">
         <Translate
-          en="The word with the most votes will be selected for the round. <br/> <strong>You can choose as many as you wish!</strong> <br/> If you fail to select any of them, the first one will be submitted as your choice."
-          pt="A palavra com mais votos será escolhida para essa rodada. <br/> <strong>Você pode selecionar quantas quiser!</strong> <br/> Se você não selecionar nenhuma, a primeira palavra será enviada como sua escolha."
+          en="The word with the most votes will be selected for the round.
+          <br/>
+          <strong>You can choose as many as you wish!</strong>
+          <br/>
+          If you fail to select any of them, the first one will be submitted as your choice."
+          pt="A palavra com mais votos será escolhida para essa rodada.
+          <br/>
+          <strong>Você pode selecionar quantas quiser!</strong>
+          <br/>
+          Se você não selecionar nenhuma, a primeira palavra será enviada como sua escolha."
         />
       </RuleInstruction>
 

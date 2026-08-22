@@ -88,8 +88,16 @@ export function StepSetupDetective({
               className="text-left"
             >
               <Translate
-                en="To start the game, first select which location on the school map you want to start.<br/>On the school map, click on the compass icon {compass} next to the location name to select it, then come back here to confirm.<br/>Your position on the map will be represented by the icon {detectiveIcon} and the gossiper will be able to see where you are at all times."
-                pt="Para começar o jogo, primeiro selecione qual local no mapa da escola você quer começar.<br/>No mapa da escola, clique no ícone de bússola {compass} ao lado do nome do local para selecioná-lo, depois volte aqui para confirmar.<br/>Sua posição no mapa será representada pelo ícone {detectiveIcon} e o fofoqueiro poderá ver onde você está o tempo todo."
+                en="To start the game, first select which location on the school map you want to start.
+                <br/>
+                On the school map, click on the compass icon {compass} next to the location name to select it, then come back here to confirm.
+                <br/>
+                Your position on the map will be represented by the icon {detectiveIcon} and the gossiper will be able to see where you are at all times."
+                pt="Para começar o jogo, primeiro selecione qual local no mapa da escola você quer começar.
+                <br/>
+                No mapa da escola, clique no ícone de bússola {compass} ao lado do nome do local para selecioná-lo, depois volte aqui para confirmar.
+                <br/>
+                Sua posição no mapa será representada pelo ícone {detectiveIcon} e o fofoqueiro poderá ver onde você está o tempo todo."
                 values={{
                   compass: <CompassOutlined />,
                   detectiveIcon: (

@@ -51,8 +51,8 @@ export function StepWaitingForPrompt({
       <RuleInstruction type="rule">
         <Translate
           en="Every player have a secret character, but your goal is to figure out who is {target}'s secret character, while answering questions about your character to help {guesser} figure out who your secret character is.
-              <br />
-              But the question cannot be about their character's physical traits, but about their vibe or
+          <br/>
+          But the question cannot be about their character's physical traits, but about their vibe or
               personality."
           pt="Cada jogador tem um personagem secreto, mas seu objetivo é descobrir quem é o personagem secreto
               de {target}, enquanto responde perguntas sobre seu

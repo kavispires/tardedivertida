@@ -166,15 +166,23 @@ export function StepReveal({
 
         <ViewIf condition={outcome !== 'DONE' && mistakes.length === 0}>
           <Translate
-            en=" <br/> We're doing well."
-            pt=" <br/> Estamos indo bem."
+            en="
+            <br/>
+            We're doing well."
+            pt="
+            <br/>
+            Estamos indo bem."
           />
         </ViewIf>
 
         <ViewIf condition={outcome !== 'DONE' && mistakes.length === 1}>
           <Translate
-            en="<br/>You already made <mistake>1 mistake</mistake>, if another movie selected by another player is eliminated, the round ends immediately."
-            pt="<br/>Vocês já cometeram <mistake>1 erro</mistake>! Se um filme selecionado por outro jogador é eliminado, a rodada termina imediatamente."
+            en="
+            <br/>
+            You already made <mistake>1 mistake</mistake>, if another movie selected by another player is eliminated, the round ends immediately."
+            pt="
+            <br/>
+            Vocês já cometeram <mistake>1 erro</mistake>! Se um filme selecionado por outro jogador é eliminado, a rodada termina imediatamente."
             values={{
               mistake: (text) => <MistakeCountHighlight>{text}</MistakeCountHighlight>,
             }}
@@ -184,8 +192,12 @@ export function StepReveal({
         <ViewIf condition={mistakes.length === 2}>
           <strong>
             <Translate
-              en="<br/> Nooooooo.... we couldn't decide on a movie, let's just go home. The round is over.... We got {points}."
-              pt="<br/> Nãaaaaaaaooo.... não conseguimos decidir o filme, vamos voltar pra casa. A rodada acabou... Recebemos {points}."
+              en="
+              <br/>
+              Nooooooo.... we couldn't decide on a movie, let's just go home. The round is over.... We got {points}."
+              pt="
+              <br/>
+              Nãaaaaaaaooo.... não conseguimos decidir o filme, vamos voltar pra casa. A rodada acabou... Recebemos {points}."
               values={{
                 points: (
                   <PointsHighlight

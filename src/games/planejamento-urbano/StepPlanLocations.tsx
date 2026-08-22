@@ -69,15 +69,15 @@ export function StepPlanLocations({
       <RuleInstruction type="action">
         <Translate
           pt="No mapa, existem <cones>cones</cones> representando onde as terrenos onde os projetos podem ser feitos.
-              <br />
-              À direita, você tem os <projects>projetos</projects>, em segredo, decida qual projeto vai para qual cone.
-              <br />
-              Arraste o projeto para o cone desejado. Para remove um projeto de um cone, baste clicar nele."
+          <br/>
+          À direita, você tem os <projects>projetos</projects>, em segredo, decida qual projeto vai para qual cone.
+          <br/>
+          Arraste o projeto para o cone desejado. Para remove um projeto de um cone, baste clicar nele."
           en="On the map, there are <cones>cones</cones> representing the land where the projects can be built.
-              <br />
-              On the right of the screen, you have <projects>projects</projects>, in secret, decide which project goes to which cone.
-              <br />
-              Drag the project to the desired cone. To remove a project from a cone, just click on it."
+          <br/>
+          On the right of the screen, you have <projects>projects</projects>, in secret, decide which project goes to which cone.
+          <br/>
+          Drag the project to the desired cone. To remove a project from a cone, just click on it."
           values={{
             cones: (children) => (
               <ConeHighlight>

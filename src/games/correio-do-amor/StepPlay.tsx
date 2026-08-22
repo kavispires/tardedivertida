@@ -123,15 +123,15 @@ export function StepPlay({
           <RuleInstruction type="action">
             <Translate
               pt="Escolha uma das duas cartas para jogar.
-                  <br />
-                  Lembre-se que se você quer manter na sua mão uma carta que te ajude a ganhar no final da rodada (carta de maior valor).
-                  <br />
-                  Qualquer efeito que faça alguém (incluindo você) descartar a carta em mão faz você perder a rodada, então escolha com cuidado!"
+              <br/>
+              Lembre-se que se você quer manter na sua mão uma carta que te ajude a ganhar no final da rodada (carta de maior valor).
+              <br/>
+              Qualquer efeito que faça alguém (incluindo você) descartar a carta em mão faz você perder a rodada, então escolha com cuidado!"
               en="Pick one of the two cards to play.
-                  <br />
-                  Remember that if you want to keep in your hand a card that helps you win by the end of the round(highest value card).
-                  <br />
-                  Any effect that makes someone (including you) discard the card in hand makes you lose the round, so choose carefully!"
+              <br/>
+              Remember that if you want to keep in your hand a card that helps you win by the end of the round(highest value card).
+              <br/>
+              Any effect that makes someone (including you) discard the card in hand makes you lose the round, so choose carefully!"
             />
           </RuleInstruction>
         ) : (

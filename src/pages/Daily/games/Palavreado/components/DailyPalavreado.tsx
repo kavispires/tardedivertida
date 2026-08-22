@@ -237,8 +237,12 @@ export function DailyPalavreado({ data }: DailyPalavreadoProps) {
               </div>
               <Typography.Text>
                 <Translate
-                  en="Positions that have already been tested with a specific letter appear like this (dotted black border).<br/>Avoid submitting with letters like this, they will remain wrong."
-                  pt="Posições que já foram testadas com a letra específica aparecem assim (borda preta pontilhada).<br/>Evite enviar com letras assim, elas continuarão erradas."
+                  en="Positions that have already been tested with a specific letter appear like this (dotted black border).
+                  <br/>
+                  Avoid submitting with letters like this, they will remain wrong."
+                  pt="Posições que já foram testadas com a letra específica aparecem assim (borda preta pontilhada).
+                  <br/>
+                  Evite enviar com letras assim, elas continuarão erradas."
                 />
               </Typography.Text>
             </Flex>

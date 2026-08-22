@@ -89,8 +89,12 @@ export function StepNameAThing({
 
       <RuleInstruction type="action">
         <Translate
-          pt="Escolha um dos seus três itens e crie um nome para ele usando as sílabas disponíveis (clique na sílaba para adicionar).<br/>Seu nome deve ter pelo menos duas sílabas."
-          en="Choose one of your three items and create a name for it using the available syllables (click on the syllable to add it).<br/>Your name must have at least two syllables."
+          pt="Escolha um dos seus três itens e crie um nome para ele usando as sílabas disponíveis (clique na sílaba para adicionar).
+          <br/>
+          Seu nome deve ter pelo menos duas sílabas."
+          en="Choose one of your three items and create a name for it using the available syllables (click on the syllable to add it).
+          <br/>
+          Your name must have at least two syllables."
         />
       </RuleInstruction>
 

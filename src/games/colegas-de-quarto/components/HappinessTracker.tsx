@@ -33,13 +33,25 @@ export function HappinessTracker({ happiness }: HappinessTrackerProps) {
             >
               <Translate
                 en="Happiness Level indicates how the housemates are in harmony and respectful of each other's
-                    choices.<br/>You can increase it when someone gets your clue correctly and when each player
-                    gets the final item correctly.<br/>Reaching the happiness goal will lead to a successful game
-                    ending!<br/>You have up to 4 rounds to reach it."
+                    choices.
+                <br/>
+                You can increase it when someone gets your clue correctly and when each player
+                    gets the final item correctly.
+                <br/>
+                Reaching the happiness goal will lead to a successful game
+                    ending!
+                <br/>
+                You have up to 4 rounds to reach it."
                 pt="O Nível de Felicidade indica o quão harmoniosos e respeitosos os colegas de quarto estão
-                    com as escolhas uns dos outros.<br/>Você pode aumentá-lo quando alguém acerta sua pista e
-                    quando cada jogador acerta o item final.<br/>Alcançar a meta de felicidade levará a um final
-                    de jogo bem-sucedido!<br/>Vocês têm até 4 rodadas para alcançá-la."
+                    com as escolhas uns dos outros.
+                <br/>
+                Você pode aumentá-lo quando alguém acerta sua pista e
+                    quando cada jogador acerta o item final.
+                <br/>
+                Alcançar a meta de felicidade levará a um final
+                    de jogo bem-sucedido!
+                <br/>
+                Vocês têm até 4 rodadas para alcançá-la."
               />
               <br />
               <Translate

@@ -49,8 +49,16 @@ export function PhaseMovieElimination({ state, players, user }: PhaseProps<Phase
       >
         <Surface>
           <Translate
-            en="One by one, we eliminate movies until only the movie that all of us have chosen is left! <br/> If we make <mistake>1 mistake</mistake>, it's okay, but if a second movie chosen by another player is eliminated, the round is over. <br/> {player} begins by choosing the first movie."
-            pt="De um em um, vamos eliminando filmes até o filme que todos escolheram seja o único que sobrou! <br/> Se cometermos <mistake>1 erro</mistake>, tudo bem, mas se um segundo filme escolhido por outro jogador for eliminado, a rodada acaba. <br/> {player} começa escolhendo o primeiro filme."
+            en="One by one, we eliminate movies until only the movie that all of us have chosen is left!
+            <br/>
+            If we make <mistake>1 mistake</mistake>, it's okay, but if a second movie chosen by another player is eliminated, the round is over.
+            <br/>
+            {player} begins by choosing the first movie."
+            pt="De um em um, vamos eliminando filmes até o filme que todos escolheram seja o único que sobrou!
+            <br/>
+            Se cometermos <mistake>1 erro</mistake>, tudo bem, mas se um segundo filme escolhido por outro jogador for eliminado, a rodada acaba.
+            <br/>
+            {player} começa escolhendo o primeiro filme."
             values={{
               mistake: (text) => <MistakeCountHighlight>{text}</MistakeCountHighlight>,
               player: (

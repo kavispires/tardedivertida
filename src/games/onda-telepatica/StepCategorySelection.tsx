@@ -44,8 +44,12 @@ export function StepCategorySelection({
       </StepTitle>
       <RuleInstruction type="action">
         <Translate
-          pt="Como medium, seu objetivo é ajudar as pessoas escolherem a posição correta do medidor de ondas telepáticas.<br/>Primeiro, escolha uma das duas cartas que você acredita ser capaz de criar uma boa dica."
-          en="As the Psychic, your goal is to help the other players to find the correct position of the needle in the wavelength measuring device.<br/>But first, choose one of these cards that you believe you will be able to write a good clue."
+          pt="Como medium, seu objetivo é ajudar as pessoas escolherem a posição correta do medidor de ondas telepáticas.
+          <br/>
+          Primeiro, escolha uma das duas cartas que você acredita ser capaz de criar uma boa dica."
+          en="As the Psychic, your goal is to help the other players to find the correct position of the needle in the wavelength measuring device.
+          <br/>
+          But first, choose one of these cards that you believe you will be able to write a good clue."
         />
         {isLoading && (
           <div>

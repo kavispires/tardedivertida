@@ -93,11 +93,13 @@ export function StepWriteClues({
         <Translate
           pt="Para cada um dos {value} pares atribuídos a você, escreva uma pista de palavra
               única.
-              <br /> Essa pista deve ser relacionada ao significado da palavra, não pode conter nenhuma
+          <br/>
+          Essa pista deve ser relacionada ao significado da palavra, não pode conter nenhuma
               palavra na loja ou variações dessas palavras (porta ➜ portão), e não fazer referência à imagem
               ou posição da palavra da grade."
-          en="For each of your {value} assigned pairs, write a single-word clue. <br />
-              This clue must be related to the meaning of the word, cannot contain any word in the store or
+          en="For each of your {value} assigned pairs, write a single-word clue.
+          <br/>
+          This clue must be related to the meaning of the word, cannot contain any word in the store or
               variations of those words (door ➜ doorway), and cannot refer to the image or position of the
               word on the board."
           values={{

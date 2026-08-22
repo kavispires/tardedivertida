@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fofoca-quente",
-  "version": "0.0.67",
+  "version": "0.0.68",
   "release": "dev",
   "releaseDate": "0000-00-00",
-  "updatedAt": 1787155110473,
+  "updatedAt": 1787431633945,
   "available": false,
   "title": {
     "pt": "Fofoca Quente",

@@ -39,8 +39,12 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
       <MinigameTitle title={{ pt: 'Crimes Hediondos', en: 'Horrific Crimes' }} />
       <RuleInstruction type="action">
         <Translate
-          pt={`O médico legista examinou o crime e chegou às conclusões abaixo.<br/>Selecione qual <metric>${track.variant === 'weapon' ? 'arma' : 'evidencia'}</metric> você acha que foi usada no crime.`}
-          en={`The forensic scientist examined the body and came to those conclusions below.<br/>Select the one <metric>${track.variant === 'weapon' ? 'weapon' : 'evidence'}</metric> you think took part in the crime.`}
+          pt={`O médico legista examinou o crime e chegou às conclusões abaixo.
+          <br/>
+          Selecione qual <metric>${track.variant === 'weapon' ? 'arma' : 'evidencia'}</metric> você acha que foi usada no crime.`}
+          en={`The forensic scientist examined the body and came to those conclusions below.
+          <br/>
+          Select the one <metric>${track.variant === 'weapon' ? 'weapon' : 'evidence'}</metric> you think took part in the crime.`}
           values={{
             metric: (text) => (
               <MetricHighlight

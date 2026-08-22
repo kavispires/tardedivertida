@@ -98,8 +98,16 @@ export function StepChooseLodges({
 
       <RuleInstruction type="rule">
         <Translate
-          pt="Como esquiador você aposta em qual cabana terá o maior número total de fichas apostadas por todos os jogadores.<br/>Você tem {chips} fichas para apostar. Cada ficha vale {points} se você apostar na cabana mais popular.<br/><strong>BÔNUS:</strong> Você também ganha {bonusPoints} para cada cabana que você não coloca nenhuma ficha durante o jogo."
-          en="As a skier you bet on which lodge will have the most total chips bet by all players.<br/>You have {chips} chips to bet. Each chip is worth {points} if you bet on the most popular lodge.<br/><strong>BONUS:</strong> You also earn {bonusPoints} for each lodge you don't place any chips on during the game."
+          pt="Como esquiador você aposta em qual cabana terá o maior número total de fichas apostadas por todos os jogadores.
+          <br/>
+          Você tem {chips} fichas para apostar. Cada ficha vale {points} se você apostar na cabana mais popular.
+          <br/>
+          <strong>BÔNUS:</strong> Você também ganha {bonusPoints} para cada cabana que você não coloca nenhuma ficha durante o jogo."
+          en="As a skier you bet on which lodge will have the most total chips bet by all players.
+          <br/>
+          You have {chips} chips to bet. Each chip is worth {points} if you bet on the most popular lodge.
+          <br/>
+          <strong>BONUS:</strong> You also earn {bonusPoints} for each lodge you don't place any chips on during the game."
           values={{
             chips: <ChipsHighlight>{user.chips}</ChipsHighlight>,
             points: <PointsHighlight value={1} />,

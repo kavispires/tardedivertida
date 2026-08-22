@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "labirinto-secreto",
-  "version": "3.2.38",
+  "version": "3.2.39",
   "release": "stable",
   "releaseDate": "2023-06-24",
-  "updatedAt": 1787332683477,
+  "updatedAt": 1787431634333,
   "available": false,
   "title": {
     "pt": "Labirinto Secreto",

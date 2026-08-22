@@ -18,8 +18,12 @@ export function SeedPolemicaDaVez({ seed, updateData }: SeedPolemicaDaVezProps) 
         colorScheme="light"
       >
         <Translate
-          pt="Vamos procrastinar:<br/>Você abre o Twitter e vê esse tópico. Curte ou não curte?"
-          en="Let's procrastinate:<br/>You open twitter and see this tweet. Like or Dislike?"
+          pt="Vamos procrastinar:
+          <br/>
+          Você abre o Twitter e vê esse tópico. Curte ou não curte?"
+          en="Let's procrastinate:
+          <br/>
+          You open twitter and see this tweet. Like or Dislike?"
         />
       </Title>
 

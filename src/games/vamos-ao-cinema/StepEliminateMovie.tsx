@@ -86,8 +86,12 @@ export function StepEliminateMovie({
         />
         {mistakes.length === 1 && (
           <Translate
-            en="<br/> You already made <mistake>1 mistake</mistake>, if another movie selected by another player is eliminated, the round ends immediately."
-            pt="<br/> Vocês já cometeram <mistake>1 erro</mistake>! Se um filme selecionado por outro jogador é eliminado, a rodada termina imediatamente."
+            en="
+            <br/>
+            You already made <mistake>1 mistake</mistake>, if another movie selected by another player is eliminated, the round ends immediately."
+            pt="
+            <br/>
+            Vocês já cometeram <mistake>1 erro</mistake>! Se um filme selecionado por outro jogador é eliminado, a rodada termina imediatamente."
             values={{
               mistake: (text) => <MistakeCountHighlight>{text}</MistakeCountHighlight>,
             }}

@@ -63,15 +63,23 @@ export function StepCreatePattern({ announcement, sequence, onSubmitPattern }: S
       <RuleInstruction type="rule">
         <Translate
           pt="A sequência abaixo é formata de cartas que tem 3 atributos diferentes:
-              <br />O <highlight>gênero</highlight> do livro: Romance, Infantil ou Técnico.
-              <br />A <highlight>cor</highlight> da capa: Vermelha, Azul ou Amarela.
-              <br />A <highlight>letra</highlight> inicial do título: A, B, C, D ou E.
-              <br />Porém um livro está faltando!"
+          <br/>
+          O <highlight>gênero</highlight> do livro: Romance, Infantil ou Técnico.
+          <br/>
+          A <highlight>cor</highlight> da capa: Vermelha, Azul ou Amarela.
+          <br/>
+          A <highlight>letra</highlight> inicial do título: A, B, C, D ou E.
+          <br/>
+          Porém um livro está faltando!"
           en="The sequence below is made up of cards that have 3 different attributes:
-              <br />The book <highlight>genre</highlight>: Romance, Children or Technical.
-              <br />The cover <highlight>color</highlight>: Red, Blue or Yellow.
-              <br />The initial <highlight>letter</highlight> of the title: A, B, C, D or E.
-              <br />But one book is missing!"
+          <br/>
+          The book <highlight>genre</highlight>: Romance, Children or Technical.
+          <br/>
+          The cover <highlight>color</highlight>: Red, Blue or Yellow.
+          <br/>
+          The initial <highlight>letter</highlight> of the title: A, B, C, D or E.
+          <br/>
+          But one book is missing!"
           values={{
             highlight: (text) => <TextHighlight>{text}</TextHighlight>,
           }}

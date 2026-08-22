@@ -36,8 +36,12 @@ export function StepJudgeScenarios({
 
       <RuleInstruction type="rule">
         <Translate
-          pt="Dados os cenários abaixo, ordene-os do melhor para o pior.<br/>Os outros jogadores tentaram adivinhar a ordem que você escolher e você ganha pontos se os outros jogadores acertarem suas escolhas, então seja sincero!"
-          en="Given the scenarios below, order them from best to worst.<br/>The other players will try to guess the order you choose and you get points if the other players get your choices right, so be honest!"
+          pt="Dados os cenários abaixo, ordene-os do melhor para o pior.
+          <br/>
+          Os outros jogadores tentaram adivinhar a ordem que você escolher e você ganha pontos se os outros jogadores acertarem suas escolhas, então seja sincero!"
+          en="Given the scenarios below, order them from best to worst.
+          <br/>
+          The other players will try to guess the order you choose and you get points if the other players get your choices right, so be honest!"
         />
         <br />
       </RuleInstruction>

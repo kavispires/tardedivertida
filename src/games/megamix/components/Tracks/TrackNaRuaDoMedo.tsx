@@ -41,8 +41,12 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
         <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
         <RuleInstruction type="action">
           <Translate
-            pt="Estamos indo de porta em porta buscar doces...<br/>Mas qual rua devemos ir? A rua com mais doces? A rua com menos medo?"
-            en="We're trick-or-treating...<br/>Which street should we hit first? The one with more candy? The one with less horror?"
+            pt="Estamos indo de porta em porta buscar doces...
+            <br/>
+            Mas qual rua devemos ir? A rua com mais doces? A rua com menos medo?"
+            en="We're trick-or-treating...
+            <br/>
+            Which street should we hit first? The one with more candy? The one with less horror?"
           />
         </RuleInstruction>
 

@@ -55,8 +55,20 @@ export function StepClueWriting({
 
       <RuleInstruction type="action">
         <Translate
-          pt="Clique em um dos ícones na grade e escreva sua dica.<br/>Você só precisa escrever a dica para uma das coordenadas.<br/>Sua dica deve conter apenas <strong>uma palavra única</strong>.<br/>Você <strong>NÃO</strong> pode usar nenhuma palavra que esteja na grade."
-          en="Click on the icon on either of the table cell and write your clue.<br/>You only need to write the clue for one of the coordinates.<br/>Your clue must be a <strong>single-word</strong> clue.<br/>You can <strong>NOT</strong> use any words already in the table."
+          pt="Clique em um dos ícones na grade e escreva sua dica.
+          <br/>
+          Você só precisa escrever a dica para uma das coordenadas.
+          <br/>
+          Sua dica deve conter apenas <strong>uma palavra única</strong>.
+          <br/>
+          Você <strong>NÃO</strong> pode usar nenhuma palavra que esteja na grade."
+          en="Click on the icon on either of the table cell and write your clue.
+          <br/>
+          You only need to write the clue for one of the coordinates.
+          <br/>
+          Your clue must be a <strong>single-word</strong> clue.
+          <br/>
+          You can <strong>NOT</strong> use any words already in the table."
         />
       </RuleInstruction>
 

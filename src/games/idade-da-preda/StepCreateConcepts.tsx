@@ -134,8 +134,20 @@ export function StepCreateConcepts({
 
       <RuleInstruction type="action">
         <Translate
-          en="Select 2-10 items to create a concept, then propose a meaning for it.<br/>The meaning is secret to you and will be only revealed at the end of the game.<br/>A syllable/sound will be assigned to the concept, which you can use to refer to it later.<br/>You can create up to {count} concepts this round."
-          pt="Selecione 3-10 itens para criar um conceito e proponha um significado para ele.<br/>O significado é secreto para você e só será revelado no final do jogo.<br/>Uma sílaba/som será atribuída ao conceito que você usará para se referir a ele mais tarde.<br/>Você pode criar até {count} conceitos nesta rodada."
+          en="Select 2-10 items to create a concept, then propose a meaning for it.
+          <br/>
+          The meaning is secret to you and will be only revealed at the end of the game.
+          <br/>
+          A syllable/sound will be assigned to the concept, which you can use to refer to it later.
+          <br/>
+          You can create up to {count} concepts this round."
+          pt="Selecione 3-10 itens para criar um conceito e proponha um significado para ele.
+          <br/>
+          O significado é secreto para você e só será revelado no final do jogo.
+          <br/>
+          Uma sílaba/som será atribuída ao conceito que você usará para se referir a ele mais tarde.
+          <br/>
+          Você pode criar até {count} conceitos nesta rodada."
           values={{ count: maxProposals }}
         />
       </RuleInstruction>
