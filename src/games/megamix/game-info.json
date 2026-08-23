@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.1.57",
+  "version": "4.1.61",
   "release": "stable",
   "releaseDate": "2022-12-17",
-  "updatedAt": 1787431634679,
+  "updatedAt": 1787677616127,
   "available": true,
   "title": {
     "pt": "Megamix",
@@ -95,7 +95,7 @@
       "key": "moreTracks",
       "kind": "switch",
       "label": "TD Based Tracks",
-      "description": "3-5 special tracks vs 5-9 special tracks (Select Track types below)",
+      "description": "3-5 special tracks vs All types selected up to 12 (Select Track types below)",
       "values": [
         {
           "label": "Normal",

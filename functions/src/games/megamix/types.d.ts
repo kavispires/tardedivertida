@@ -1,6 +1,16 @@
 // Types
 import type { MEGAMIX_ACTIONS } from './constants';
 
+export type MegamixTrackType =
+  | 'images'
+  | 'characters'
+  | 'opinions'
+  | 'drawing'
+  | 'words'
+  | 'judging'
+  | 'special'
+  | 'unpopular';
+
 export type MegamixGameOptions = {
   /**
    * Use not safe for work games and cards
@@ -11,13 +21,13 @@ export type MegamixGameOptions = {
    */
   partyMode: boolean;
   /**
-   * Adds more special tracks to the game (default: 3-5, more: 6-8)
+   * Adds more special tracks to the game (default: 3-5, more: all selected special tracks)
    */
   moreTracks: boolean;
   /**
-   *
+   * Track categories to include in the game
    */
-  tracks: 'images' | 'characters' | 'opinions' | 'drawing' | 'words' | 'judging' | 'special' | 'unpopular';
+  tracks: MegamixTrackType[];
 };
 
 export interface TrackCandidate {

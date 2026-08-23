@@ -167,14 +167,6 @@ export const WORDS_TRACKS: TrackCandidate[] = [
     weight: 1,
     needsSeeding: true,
   },
-  {
-    game: GAME_NAMES.MENTE_COLETIVA,
-    type: 'special',
-    nsfw: false,
-    variant: 'default',
-    weight: 2,
-    needsSeeding: true,
-  },
 ];
 
 export const JUDGING_TRACKS: TrackCandidate[] = [
@@ -216,6 +208,14 @@ export const SPECIAL_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+  },
+  {
+    game: GAME_NAMES.MENTE_COLETIVA,
+    type: 'special',
+    nsfw: false,
+    variant: 'default',
+    weight: 2,
+    needsSeeding: true,
   },
 ];
 
@@ -363,7 +363,6 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     card: {
       id: 'fact',
       text: {
-        // eslint-disable-next-line quotes
         en: "Write a curious fact about yourself that others generally don't know. It can be something related to your personality, your past, or even a secret talent. Try to be gender neutral.",
         pt: 'Um fato curioso sobre você que os outros geralmente não sabem pode ser algo relacionado à sua personalidade, seu passado ou até mesmo um talento secreto. Tente ser neutro em relação ao gênero.',
       },

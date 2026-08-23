@@ -96,7 +96,7 @@ export const getData = async (
   }
 
   // Select tracks to be used
-  const customTrackCandidatesQuantity = Math.min(possibleTracks.length, moreGameTracks ? 8 : 5);
+  const customTrackCandidatesQuantity = Math.min(possibleTracks.length, moreGameTracks ? 12 : 5);
   const customTrackCandidates = sampleSize(possibleTracks, customTrackCandidatesQuantity);
 
   // Get data for custom tracks data
@@ -608,58 +608,72 @@ export const getData = async (
     });
   }
 
-  // Get default megamix tracks
-  const allChoices = Object.values(
-    await fetchResource<Dictionary<ChoiceCardData>>(TDR_RESOURCES.CHOICES, language),
-  ) as PlainObject[];
-  const shuffledChoices = shuffle(allChoices);
-
-  const selectedChoices = new Array(TOTAL_ROUNDS).fill(null);
-  let thisThatIndex = 0;
-  let bestOfThreeIndex = 1;
-  for (let i = 0; i < shuffledChoices.length; i++) {
-    const choice = shuffledChoices[i];
-    if (choice.type === 'this-that' && thisThatIndex <= TOTAL_ROUNDS) {
-      selectedChoices[thisThatIndex] = choice;
-      thisThatIndex += 2;
-    }
-    if (choice.type === 'best-of-three' && bestOfThreeIndex <= TOTAL_ROUNDS) {
-      selectedChoices[bestOfThreeIndex] = choice;
-      bestOfThreeIndex += 2;
-    }
-    if (bestOfThreeIndex >= TOTAL_ROUNDS + 3) {
-      break;
-    }
-  }
-  selectedChoices.reverse();
-
+  // Equally distribute the custom track, first
+  const preliminaryTracks: (Track | null)[] = Array.from({ length: TOTAL_ROUNDS - 3 }, () => null);
   const filteredCustomTracks = shuffle(customTracks.filter((track) => !!track?.game));
-  // Build track order
-  const tracks: Track[] = [];
-  const customTrackInterval = Math.ceil(TOTAL_ROUNDS / filteredCustomTracks.length);
-  for (let i = 0; i < TOTAL_ROUNDS; i++) {
-    if (i > 0 && i % customTrackInterval === 1 && filteredCustomTracks.length > 0) {
-      const track = filteredCustomTracks.pop() as Track;
-      tracks.push(track);
-    } else {
-      const card = selectedChoices.pop() as PlainObject;
-      tracks.push({
-        game: `${GAME_NAMES.MEGAMIX}-${card.type}`,
-        data: {
-          card: card,
-        },
-      });
+  const interval = Math.floor(preliminaryTracks.length / filteredCustomTracks.length);
+  filteredCustomTracks.forEach((track, index) => {
+    const position = index * interval + Math.floor(interval / 2);
+    preliminaryTracks[position] = track;
+  });
+
+  // Get default megamix tracks
+  const allChoices = shuffle(
+    Object.values(await fetchResource<Dictionary<ChoiceCardData>>(TDR_RESOURCES.CHOICES, language)),
+  );
+  // Re-order choices alternating types
+  const alternatingChoicesTracks: Track[] = [];
+  const choicesByType: Record<string, ChoiceCardData[]> = {};
+  allChoices.forEach((choice) => {
+    if (!choicesByType[choice.type]) {
+      choicesByType[choice.type] = [];
     }
+    choicesByType[choice.type].push(choice);
+  });
+  let choicesIndex = 0;
+  while (
+    alternatingChoicesTracks.length < TOTAL_ROUNDS &&
+    Object.values(choicesByType).some((choices) => choices.length > 0)
+  ) {
+    // Grabs all available different types of choices, shuffle and add to the alternating choices tracks
+    // This may cause that two track choices are the same type when the grouped types start a new cycle but it's expected
+    const options: Track[] = shuffle(
+      Object.values(choicesByType)
+        .map((choices) => choices[choicesIndex])
+        .filter((choice) => choice !== undefined),
+    ).map((choice) => ({
+      game: `${GAME_NAMES.MEGAMIX}-${choice.type}`,
+      data: {
+        card: choice,
+      },
+    }));
+    if (options.length > 0) {
+      alternatingChoicesTracks.push(...options);
+    }
+
+    choicesIndex++;
   }
 
-  /**
-   * Games not represented here:
-   * espiao-entre-nos
-   * linhas-cruzadas
-   * vendaval-de-palpite
-   */
+  // Track 0, 7, and 14 are always from choices, so insert a new entry 'null' into those positions in preliminary tracks to ensure that the custom tracks are not placed in those positions
+  [0, 7, 14].forEach((index) => {
+    preliminaryTracks.splice(index, 0, null);
+  });
 
-  // Get full deck
+  const tracks: Track[] = preliminaryTracks
+    .map((track) => {
+      if (track) {
+        return track;
+      }
+
+      const nextChoiceTrack = alternatingChoicesTracks.shift();
+      if (nextChoiceTrack) {
+        return nextChoiceTrack;
+      }
+
+      return null;
+    })
+    .filter(Boolean) as Track[];
+
   return {
     tracks,
   };
