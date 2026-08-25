@@ -13,8 +13,8 @@ import { Voters } from '../Voters';
 export function VoteCrimesHediondos({ playersList, track }: VoteComponentProps) {
   const width = useCardWidth(playersList.length + 4, {
     gap: 8,
-    minWidth: 50,
-    maxWidth: 120,
+    minWidth: 48,
+    maxWidth: 96,
     margin: 8,
   });
 

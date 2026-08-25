@@ -64,6 +64,10 @@ export interface TrackCandidate {
    * If the track is disabled and should not be used (default: false)
    */
   disabled?: boolean;
+  /**
+   * TODO: Temp
+   */
+  verified?: true;
 }
 
 export interface PartyTrackCandidate extends TrackCandidate {

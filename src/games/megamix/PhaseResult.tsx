@@ -13,10 +13,11 @@ import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import { MEGAMIX_PHASES } from './utils/constants';
+import type { PhaseResultState } from './utils/types';
 import { StepResult } from './StepResult';
 import { StepRanking } from './StepRanking';
 
-export function PhaseResult({ state, players, user }: PhaseProps) {
+export function PhaseResult({ state, players, user }: PhaseProps<PhaseResultState>) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
 
@@ -79,6 +80,8 @@ export function PhaseResult({ state, players, user }: PhaseProps) {
           goToPreviousStep={goToPreviousStep}
           round={state.round}
           user={user}
+          penaltyPlayers={state.penaltyPlayers}
+          bonusPlayers={state.bonusPlayers}
         />
       </StepSwitcher>
     </PhaseContainer>

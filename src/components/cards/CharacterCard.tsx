@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import type { HTMLAttributes } from 'react';
 // Ant Design Resources
 import { Image, Tooltip } from 'antd';
 // Types
@@ -36,12 +37,19 @@ type CharacterCardProps = {
    * Whether the name should be hidden or not
    */
   hideName?: boolean;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 /**
  * Displays a character/contender card with optional color overlay and blur support
  */
-export function CharacterCard({ size, overlayColor, character, className, hideName }: CharacterCardProps) {
+export function CharacterCard({
+  size,
+  overlayColor,
+  character,
+  className,
+  hideName,
+  ...divProps
+}: CharacterCardProps) {
   const { translate } = useLanguage();
   const { shouldBeBlurred } = useBlurCards();
   const imagesBaseUrl = useTDBaseUrl('images');
@@ -65,6 +73,7 @@ export function CharacterCard({ size, overlayColor, character, className, hideNa
         <div
           className={clsx(styles.characterCard, className)}
           style={{ width: `${size}px` }}
+          {...divProps}
         >
           {!hideName && (
             <span

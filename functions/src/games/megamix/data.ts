@@ -397,12 +397,16 @@ export const getData = async (
   const cruzaPalavrasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRUZA_PALAVRAS);
   if (cruzaPalavrasTrack) {
     const words = await getSingleWords(language);
+    // Available cells (one of them must be false)
+    const cells = [true, true, true, true];
+    cells[sample([0, 1, 2, 3])] = false;
 
     customTracks.push({
       game: GAME_NAMES.CRUZA_PALAVRAS,
       data: {
         cards: sampleSize(words, 4),
         clue: sample(words),
+        cells,
       },
     });
   }

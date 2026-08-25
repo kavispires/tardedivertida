@@ -10,6 +10,8 @@ import { BouncerIcon } from '@icons/BouncerIcon';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { ListOfPlayers } from '@components/players/ListOfPlayers';
 import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -23,9 +25,19 @@ type StepRankingProps = {
   ranking: GameRanking;
   goToPreviousStep: UseStep['goToPreviousStep'];
   round: GameRound;
+  penaltyPlayers: UID[];
+  bonusPlayers: UID[];
 };
 
-export function StepRanking({ ranking, players, goToPreviousStep, round, user }: StepRankingProps) {
+export function StepRanking({
+  ranking,
+  players,
+  goToPreviousStep,
+  round,
+  user,
+  penaltyPlayers,
+  bonusPlayers,
+}: StepRankingProps) {
   // Dynamic background
   useColorizeBackground(user, round.current + 1);
 
@@ -89,6 +101,16 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
           pt="Pontos por entrar a Área VIP."
           en="Points for joining the VIP Area."
         />,
+        <Translate
+          key="3"
+          pt="Pontos bônus por ser o jogador em último lugar e conseguir entrar na Área VIP."
+          en="Bonus points for being the last player and managing to enter the VIP Area."
+        />,
+        <Translate
+          key="4"
+          pt="Penalidade por ser o melhor jogador de todos e conseguir sair da área VIP."
+          en="Penalty for being the best player and managing to leave the VIP Area."
+        />,
       ]}
       title={
         <Translate
@@ -96,9 +118,57 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, user }:
           en="VIP Ranking"
         />
       }
-      // TODO: white
       subtitle={innerContent}
     >
+      {penaltyPlayers.length > 0 && (
+        <RuleInstruction type="event">
+          <Translate
+            pt={`{penalizedPlayers} ${penaltyPlayers.length === 1 ? 'estava' : 'estavam'} em primeiro lugar e ${penaltyPlayers.length === 1 ? 'foi' : 'foram'} tirado da Área VIP e perdeu {points}!`}
+            en={`{penalizedPlayers} ${penaltyPlayers.length === 1 ? 'was' : 'were'} in first place and got kicked out of the VIP Area and lost {points}!`}
+            values={{
+              penalizedPlayers: (
+                <ListOfPlayers
+                  players={players}
+                  list={penaltyPlayers}
+                  prefix="penalized"
+                />
+              ),
+              points: (
+                <PointsHighlight
+                  type="negative"
+                  value={2}
+                />
+              ),
+            }}
+          />
+        </RuleInstruction>
+      )}
+
+      {bonusPlayers.length > 0 && (
+        <RuleInstruction type="event">
+          <Translate
+            pt={`{bonusPlayers} ${bonusPlayers.length === 1 ? 'estava' : 'estavam'} em último lugar e ${bonusPlayers.length === 1 ? 'conseguiu' : 'conseguiram'} entrar na Área VIP e ganhou {points}!`}
+            en={`{bonusPlayers} ${bonusPlayers.length === 1 ? 'was' : 'were'} in last place and managed to enter the VIP Area and gained {points}!`}
+            values={{
+              bonusPlayers: (
+                <ListOfPlayers
+                  players={players}
+                  list={bonusPlayers}
+                  prefix="bonus"
+                />
+              ),
+              points: (
+                <PointsHighlight
+                  type="positive"
+                  value={2}
+                  bonus
+                />
+              ),
+            }}
+          />
+        </RuleInstruction>
+      )}
+
       {actions}
     </StepRankingWrapper>
   );

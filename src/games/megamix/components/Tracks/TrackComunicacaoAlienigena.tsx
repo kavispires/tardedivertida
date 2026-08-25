@@ -33,7 +33,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
 
   // DEV Mock
   useMock(() => {
-    onSelect(String(mockSelection(track.data.items)));
+    onSelect(String(mockSelection(track.data.items.map((item: ItemData) => item.id))));
   });
 
   return (
@@ -58,7 +58,7 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
         <SpaceContainer>
           <Icon
             icon={<AlienIcon />}
-            size="large"
+            size={64}
           />{' '}
           <SpeechBubble shadow>
             <SpaceContainer>

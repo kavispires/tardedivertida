@@ -22,12 +22,16 @@ type SceneTileProps = {
    * Optional callback when a value is selected
    */
   onSelectValue?: ({ tileId, value }: { tileId: string; value: number }) => void;
+  /**
+   * Optional flag to display only the answer without the other options
+   */
+  displayAnswerOnly?: boolean;
 };
 
 /**
  * Scene tile component
  */
-export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
+export function SceneTile({ tile, index, onSelectValue, displayAnswerOnly }: SceneTileProps) {
   const { language } = useLanguage();
   return (
     <div
@@ -43,12 +47,17 @@ export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
         {tile.values.map((entry, i) => {
           const isActive = i === index;
           const isInative = index !== undefined && !isActive;
+
+          if (displayAnswerOnly && !isActive) {
+            return null;
+          }
           return (
             <li key={`${tile.id}-value-${i}`}>
               <Button
                 className={clsx(styles.sceneTileButton, isInative && styles.sceneTileButtonInactive)}
                 icon={isActive ? <CheckCircleFilled className={styles.sceneTileIcon} /> : undefined}
                 onClick={onSelectValue ? () => onSelectValue({ tileId: tile.id, value: i }) : () => {}}
+                type="link"
               >
                 {entry[language]}
               </Button>

@@ -1,13 +1,11 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Components
 import { TransparentButton } from '@components/buttons/TransparentButton';
 import { CharacterCard } from '@components/cards/CharacterCard';
-import { TextCard } from '@components/cards/TextCard';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -17,7 +15,6 @@ import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps) => {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
   const onSelect = (color: string) => {
@@ -46,16 +43,13 @@ export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps)
           />
         </RuleInstruction>
 
-        <TextCard
-          header={translate({ pt: 'Dica', en: 'Clue' })}
-          color="red"
-        >
-          <CharacterCard
-            character={track.data.card}
-            className="grayscale"
-            size={200}
-          />
-        </TextCard>
+        <CharacterCard
+          character={track.data.card}
+          style={{
+            filter: 'grayscale(1)',
+          }}
+          size={200}
+        />
 
         <SpaceContainer
           className="k-palette"

@@ -19,6 +19,10 @@
     gap: get-unit(2);
     align-items: center;
 
+    &--checkboxes {
+      grid-template-columns: 1fr auto;
+    }
+
     &--disabled {
       opacity: 0.4;
     }

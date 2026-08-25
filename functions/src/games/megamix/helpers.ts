@@ -7,7 +7,7 @@ import type {
   TextCardData,
 } from '../../types/tdr';
 import type { HouseCard } from '../na-rua-do-medo/types';
-import type { AvailableTrack, FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
+import type { FirebaseStoreData, MostScoring, Track, TrackCandidate } from './types';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
 import { AVATAR_SPRITE_LIBRARIES } from '../../constants/sprites';
@@ -16,6 +16,7 @@ import {
   PARTY_GAMES,
   PARTY_GAMES_NAMES,
   PARTY_TRACKS,
+  SCORING_POINTS,
   SIDES,
   TOTAL_ROUNDS,
   WINNING_CONDITION,
@@ -542,53 +543,98 @@ export const getMostVotes = (players: Players, property = 'cardId'): MostScoring
   };
 };
 
-export const getRanking = (players: Players, scoring: MostScoring, currentRound: number): NewScore[] => {
-  // Gained points: [already on Winning team, joining Winning team]
-  const scores = new Scores(players, [0, 0]);
+export const getRanking = (players: Players, scoring: MostScoring, round: Round): NewScore[] => {
+  const currentRound = round.current;
+  // Gained points: [already on Winning team, joining Winning team, bonus for being the worst player, penalty for being the best player]
+  const scores = new Scores(players, [0, 0, 0, 0]);
+
+  // Award catchup bonus and penalty points only after halfway through the game
+  const isHalfwayThroughGame = currentRound >= Math.ceil(round.total / 2);
+  const highestScore = Math.max(...getListOfPlayers(players).map((player) => player.score));
+  const lowestScore = Math.min(...getListOfPlayers(players).map((player) => player.score));
+  const highestScoreVIPPlayersIds = getListOfPlayers(players)
+    .filter(
+      (player) =>
+        isHalfwayThroughGame &&
+        highestScore !== 0 &&
+        player.score === highestScore &&
+        player.team[currentRound - 1] === SIDES.WINNER,
+    )
+    .map((player) => player.id);
+  const lowestScoreGAPlayersIds = getListOfPlayers(players)
+    .filter(
+      (player) =>
+        isHalfwayThroughGame &&
+        highestScore !== 0 &&
+        player.score === lowestScore &&
+        player.team[currentRound - 1] === SIDES.LOSER,
+    )
+    .map((player) => player.id);
 
   // Full on tie, nobody scores, everybody is kicked out
   if (scoring.scoringType === 'DRAW') {
     getListOfPlayers(players).forEach((player) => {
       player.team.push(SIDES.LOSER);
+      // When the top player leaves the VIP team, they get a penalty for being the best player
+      if (highestScoreVIPPlayersIds.includes(player.id)) {
+        scores.add(player.id, SCORING_POINTS.CATCHUP_PENALTY, 3);
+        player.catchupPenalty = true;
+      }
     });
     return scores.rank(players);
   }
 
   getListOfPlayers(players).forEach((player) => {
     const previousTeam = player.team[currentRound - 1];
+    const isOnWinningTeamNow = scoring.winningTeam.includes(player.id);
     if (scoring.scoringType === 'TIE') {
       // Is on the new winning team
-      if (scoring.winningTeam.includes(player.id)) {
+      if (isOnWinningTeamNow) {
         // Was in the winning team
         if (previousTeam === SIDES.WINNER) {
-          scores.add(player.id, 2, 0);
+          scores.add(player.id, SCORING_POINTS.ALREADY_ON_VIP, 0);
           player.team.push(SIDES.WINNER);
         } else {
           player.team.push(SIDES.LOSER);
+          scores.add(player.id, SCORING_POINTS.JOIN_VIP, 1);
         }
       } else {
         // Was in the winning team
         if (previousTeam === SIDES.WINNER) {
           player.team.push(SIDES.LOSER);
+          if (highestScoreVIPPlayersIds.includes(player.id)) {
+            scores.add(player.id, SCORING_POINTS.CATCHUP_PENALTY, 3);
+            player.catchupPenalty = true;
+          }
         } else {
           player.team.push(SIDES.LOSER);
         }
       }
     } else {
       // Is on the new winning team
-      if (scoring.winningTeam.includes(player.id)) {
+      if (isOnWinningTeamNow) {
         // Was in the winning team
         if (previousTeam === SIDES.WINNER) {
-          scores.add(player.id, 2, 0);
+          scores.add(player.id, SCORING_POINTS.ALREADY_ON_VIP, 0);
           player.team.push(SIDES.WINNER);
         } else {
-          scores.add(player.id, 1, 1);
+          scores.add(player.id, SCORING_POINTS.JOIN_VIP, 1);
           player.team.push(SIDES.WINNER);
+          // Bonus for the last player to join the winning team
+          if (lowestScoreGAPlayersIds.includes(player.id)) {
+            scores.add(player.id, SCORING_POINTS.CATCHUP_BONUS, 2);
+            player.catchupBonus = true;
+          }
         }
       } else {
         // Was in the winning team
         if (previousTeam === SIDES.WINNER) {
           player.team.push(SIDES.LOSER);
+          // Penalty for the top player for leaving the winning team
+          if (highestScoreVIPPlayersIds.includes(player.id)) {
+            scores.add(player.id, SCORING_POINTS.CATCHUP_PENALTY, 3);
+            player.catchupPenalty = true;
+          }
         } else {
           player.team.push(SIDES.LOSER);
         }
@@ -908,10 +954,6 @@ export const getCandidateOnList = (list: TrackCandidate[], name: string): TrackC
   return list.find((game) => game && game.game === name);
 };
 
-export const getGameOnList = (list: AvailableTrack[], gameName: string): AvailableTrack[] => {
-  return list.filter((game) => game.game === gameName);
-};
-
 export const getNaRuaDoMedoScenario = (playerCount: number) => {
   const decks = buildDecks(true);
   const [lowCandy, mediumCandy, highCandy] = decks.candyDeck.reduce(
@@ -938,20 +980,14 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
 
   const scenarios: HouseCard[][] = [];
   // Scenarios
-  // 1) 3 monsters, 1 low card, 1 jackpot
-  scenarios.push([
-    ...sampleSize(horrorDeck, 3),
-    ...sampleSize(lowCandy, 1),
-    ...sampleSize(decks.jackpotDeck, 1),
-  ]);
-  // 2) 2 monsters, 2 low card, 1 medium cards
-  scenarios.push([...sampleSize(horrorDeck, 2), ...sampleSize(lowCandy, 2), ...sampleSize(mediumCandy, 1)]);
-  // 3) 3 monsters, 2 medium cards
+  // 1) 4 monsters, 1 high card
+  scenarios.push([...sampleSize(horrorDeck, 4), ...sampleSize(highCandy, 1)]);
+  // 2) 3 monsters, 2 medium cards
   scenarios.push([...sampleSize(horrorDeck, 3), ...sampleSize(mediumCandy, 2)]);
-  // 4) 1 monster, 4 low cards
+  // 3) 1 monster, 4 low cards
   scenarios.push([...sampleSize(horrorDeck, 1), ...sampleSize(lowCandy, 4)]);
-  // 5) 2 monsters, 1 low, 2 high
-  scenarios.push([...sampleSize(horrorDeck, 2), ...sampleSize(lowCandy, 1), ...sampleSize(highCandy, 2)]);
+  // 4) Only low cards
+  scenarios.push([...sampleSize(lowCandy, 5)]);
 
   return {
     scenarios: shuffle(scenarios),

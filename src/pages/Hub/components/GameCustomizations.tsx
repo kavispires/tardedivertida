@@ -47,10 +47,10 @@ export function GameCustomizations({
         {(options ?? []).map((option) => (
           <Typography.Paragraph
             key={`option-${option.label}`}
-            className={clsx(
-              'create-game-modal-options__option',
-              option.disabled && 'create-game-modal-options__option--disabled',
-            )}
+            className={clsx('create-game-modal-options__option', {
+              'create-game-modal-options__option--disabled': disabled || option.disabled,
+              'create-game-modal-options__option--checkboxes': option.kind === 'checkbox',
+            })}
           >
             <div className="create-game-modal-options__label">
               <span>{option.label}</span>

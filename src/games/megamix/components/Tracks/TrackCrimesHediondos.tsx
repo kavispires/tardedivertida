@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Flex } from 'antd';
 // Types
 import type { CrimesHediondosCardData } from 'types/tdr';
 // Hooks
@@ -58,71 +58,87 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
         />
       </RuleInstruction>
 
-      <ul className="h-table">
-        {Boolean(track.data.scenes.causeOfDeath) && (
+      <Flex
+        gap={12}
+        align="center"
+      >
+        <Flex vertical>
+          {Boolean(track.data.scenes.causeOfDeath) && (
+            <SceneTile
+              tile={track.data.scenes.causeOfDeath}
+              index={track.data.crimeIndexes.causeOfDeath}
+              displayAnswerOnly
+            />
+          )}
+          {Boolean(track.data.scenes.reasonForEvidence) && (
+            <SceneTile
+              tile={track.data.scenes.reasonForEvidence}
+              index={track.data.crimeIndexes.reasonForEvidence}
+              displayAnswerOnly
+            />
+          )}
+
           <SceneTile
-            tile={track.data.scenes.causeOfDeath}
-            index={track.data.crimeIndexes.causeOfDeath}
+            tile={track.data.scenes.location}
+            index={track.data.crimeIndexes.location}
+            displayAnswerOnly
           />
-        )}
-        {Boolean(track.data.scenes.reasonForEvidence) && (
           <SceneTile
-            tile={track.data.scenes.reasonForEvidence}
-            index={track.data.crimeIndexes.reasonForEvidence}
+            tile={track.data.scenes.sceneA}
+            index={track.data.crimeIndexes.sceneA}
+            displayAnswerOnly
           />
-        )}
+          <SceneTile
+            tile={track.data.scenes.sceneB}
+            index={track.data.crimeIndexes.sceneB}
+            displayAnswerOnly
+          />
+          <SceneTile
+            tile={track.data.scenes.sceneC}
+            index={track.data.crimeIndexes.sceneC}
+            displayAnswerOnly
+          />
+        </Flex>
 
-        <SceneTile
-          tile={track.data.scenes.location}
-          index={track.data.crimeIndexes.location}
-        />
-        <SceneTile
-          tile={track.data.scenes.sceneA}
-          index={track.data.crimeIndexes.sceneA}
-        />
-        <SceneTile
-          tile={track.data.scenes.sceneB}
-          index={track.data.crimeIndexes.sceneB}
-        />
-        <SceneTile
-          tile={track.data.scenes.sceneC}
-          index={track.data.crimeIndexes.sceneC}
-        />
-      </ul>
-
-      <ul className="h-cards">
-        {track.data.cards.map((card: CrimesHediondosCardData) => {
-          return (
-            <li
-              key={card.id}
-              className="margin"
-            >
-              <CrimeItemCard
-                item={card}
-                cardWidth={cardWidth}
-                isSelected={user?.data?.value === card.id}
-              />
-
-              <Button
-                shape="round"
-                type="primary"
-                disabled={user.ready}
-                loading={isLoading}
-                onClick={() =>
-                  onSubmitAnswer({
-                    data: { value: card.id },
-                  })
-                }
+        <Flex
+          component="ul"
+          gap={12}
+        >
+          {track.data.cards.map((card: CrimesHediondosCardData) => {
+            return (
+              <Flex
+                component="li"
+                vertical
+                key={card.id}
+                gap={8}
               >
-                <Translate
-                  pt="Selecionar"
-                  en="Select"
+                <CrimeItemCard
+                  item={card}
+                  cardWidth={cardWidth}
+                  isSelected={user?.data?.value === card.id}
                 />
-              </Button>
-            </li>
-          );
-        })}
-      </ul>
+
+                <Button
+                  shape="round"
+                  type="primary"
+                  disabled={user.ready}
+                  loading={isLoading}
+                  onClick={() =>
+                    onSubmitAnswer({
+                      data: { value: card.id },
+                    })
+                  }
+                >
+                  <Translate
+                    pt="Selecionar"
+                    en="Select"
+                  />
+                </Button>
+              </Flex>
+            );
+          })}
+        </Flex>
+      </Flex>
     </>
   );
 };

@@ -48,6 +48,14 @@ const megamixAchievements = achievementBuilder(GAME_KEYS.MEGAMIX)
     doc: 'Times moved from VIP to loser',
     most: 'MOST_LEFT',
   })
+  .counter('catchupBonus', {
+    doc: 'Points gained from catchup bonus',
+    most: 'MOST_CATCHUP_BONUS',
+  })
+  .counter('catchupPenalty', {
+    doc: 'Points lost from catchup penalty',
+    most: 'MOST_CATCHUP_PENALTY',
+  })
   .build();
 
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =

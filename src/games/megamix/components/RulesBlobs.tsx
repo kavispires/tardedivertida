@@ -5,7 +5,11 @@ import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
 
-export function DJInstructions({ round }: { round: GameRound }) {
+type DJInstructionsProps = {
+  round: GameRound;
+};
+
+export function DJInstructions({ round }: DJInstructionsProps) {
   if (round.current <= 1) {
     return (
       <Surface contained>
@@ -16,7 +20,7 @@ export function DJInstructions({ round }: { round: GameRound }) {
           <br/>
           Você consegue isso se você sempre responder com a maioria! Não importa se está certo ou errado.
           <br/>
-          Ao responder com a maioria, você ganha {joinPoints} por entrar na área VIP ou {stayPoints} se você estiver lá.
+          Ao responder com a maioria, você ganha {joinPoints} por entrar na área VIP ou {stayPoints} se você já estiver lá.
           <br/>
           Vamos aos hits!"
           en="Yo my party people! I'm DJ PruPruPru!
@@ -47,16 +51,35 @@ export function DJInstructions({ round }: { round: GameRound }) {
     );
   }
 
-  if (round.current === Math.round(round.total / 2)) {
+  if (round.current === Math.ceil(round.total / 2)) {
     return (
       <Surface contained>
         <Translate
-          pt="DJ PruPruPru está de volta!
+          pt="DJ PruPruPru está de volta! Estamos no meio da noite!
           <br/>
-          Estamos no meio da noite! Você está conseguindo ficar na área VIP?"
-          en="DJ PruPruPru back here!
+          Plot twist: a partir de agora, se você for o jogador com mais pontos e tiver que sair da área VIP, você perde {catchupPenalty}!
           <br/>
-          We're halfway. Are you able to stay in the VIP area?"
+          Mas se você for o jogador com menos pontos e conseguir entrar na área VIP, você ganha {catchupBonus}!"
+          en="DJ PruPruPru back here! We're halfway through the night.
+          <br/>
+          Plot twist: from now on, if you're the player with the most points and you have to leave the VIP area, you lose {catchupPenalty}!
+          <br/>
+          But if you're the player with the least points and you manage to enter the VIP area, you gain {catchupBonus}!"
+          values={{
+            catchupPenalty: (
+              <PointsHighlight
+                type="negative"
+                value={2}
+              />
+            ),
+            catchupBonus: (
+              <PointsHighlight
+                type="positive"
+                value={2}
+                bonus
+              />
+            ),
+          }}
         />
       </Surface>
     );

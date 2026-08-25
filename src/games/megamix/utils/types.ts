@@ -1,5 +1,5 @@
 // Types
-import type { GameRound, GamePlayer, GamePlayers } from 'types/game';
+import type { GameRound, GamePlayer, GamePlayers, GameRanking } from 'types/game';
 import type { GroupQuestionCardData, SpectrumCardData, TextCardData } from 'types/tdr';
 
 export type Track = {
@@ -159,3 +159,26 @@ export type VoteComponentProps = {
 };
 
 export type ResultComponentProps = VoteComponentProps & { containerWidth: number };
+
+export type MostScoring = {
+  condition: string;
+  winningTeam: UID[];
+  losingTeam: UID[];
+  winningValues: string[];
+  scoringType: 'NORMAL' | 'TIE' | 'DRAW';
+};
+
+export type PhaseSeedingState = {};
+
+export type PhaseTrackState = {
+  track: Track;
+} & MostScoring;
+
+export type PhaseResultState = {
+  track: Track;
+  bonusPlayers: UID[];
+  penaltyPlayers: UID[];
+  ranking: GameRanking;
+} & MostScoring;
+
+export type PhaseGameOverState = {};

@@ -1,10 +1,11 @@
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useAnimate, useAnimation, motion } from 'motion/react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
+import { useMouseDirection } from '@hooks/useMouseDirection';
 // Icons
 import { SkiingIcon } from '@icons/SkiingIcon';
 import { SnowHillIcon } from '@icons/SnowHillIcon';
@@ -22,6 +23,9 @@ import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
+  const [refSkier] = useAnimate();
+  const controls = useAnimation();
+  const skierDirection = useMouseDirection(refSkier, 'horizontal');
 
   const onSelect = (value: string) => {
     onSubmitAnswer({
@@ -33,35 +37,6 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
   useMock(() => {
     onSelect(mockSelection([track.data.dilemma.left, track.data.dilemma.right]));
   });
-
-  const [mouseX, setMouseX] = useState<number | null>(null);
-  const [direction, setDirection] = useState<'left' | 'right'>('left');
-  // TODO: Use useMouseDirection hook
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouseX(e.clientX);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Check if the mouse is on the left or right side of the screen
-    if (mouseX !== null) {
-      const screenWidth = window.innerWidth;
-      const threshold = screenWidth / 2;
-
-      if (mouseX <= threshold) {
-        setDirection('left');
-      } else {
-        setDirection('right');
-      }
-    }
-  }, [mouseX]);
 
   return (
     <>
@@ -83,13 +58,17 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
         </RuleInstruction>
 
         <SpaceContainer vertical>
-          <div className="dd-animated-skiier">
+          <motion.span
+            ref={refSkier}
+            className="ski-mountain__skier"
+            animate={controls}
+          >
             <Icon
               icon={<SkiingIcon />}
               size={84}
-              className={clsx('dd-animated-skiier__skiier', `dd-animated-skiier__skiier--${direction}`)}
+              className={clsx('dd-animated-skiier__skiier', `dd-animated-skiier__skiier--${skierDirection}`)}
             />
-          </div>
+          </motion.span>
           <TextCard>{track.data.dilemma.prompt}</TextCard>
 
           <SpaceContainer>

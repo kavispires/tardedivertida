@@ -2,6 +2,32 @@
 import type { AchievementReference } from 'types/game';
 
 export const achievementsReference: AchievementReference = {
+  MOST_CATCHUP_BONUS: {
+    id: 'MOST_CATCHUP_BONUS',
+    doc: 'Points gained from catchup bonus',
+    icon: 'foot-prints',
+    title: {
+      en: 'Comeback Climber',
+      pt: 'Escalador da Virada',
+    },
+    description: {
+      en: 'Got the most catch up bonus points for joining the VIP area while being the player with the fewest points in the game',
+      pt: 'Recebeu a maior pontuação de bônus por entrar na área VIP enquanto era o jogador com menos pontos no jogo',
+    },
+  },
+  MOST_CATCHUP_PENALTY: {
+    id: 'MOST_CATCHUP_PENALTY',
+    doc: 'Points lost from catchup penalty',
+    icon: 'star',
+    title: {
+      en: 'Falling Star',
+      pt: 'Estrela Cadente',
+    },
+    description: {
+      en: 'Got the most penalty for leaving the VIP area while being the player with the most points in the game',
+      pt: 'Recebeu a maior penalidade por sair da área VIP enquanto era o jogador com mais pontos no jogo',
+    },
+  },
   MOST_JOIN: {
     id: 'MOST_JOIN',
     doc: 'Times moved from loser to VIP',

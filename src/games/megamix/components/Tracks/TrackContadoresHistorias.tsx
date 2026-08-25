@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Image } from 'antd';
+import { Button, Flex, Image } from 'antd';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLoading } from '@hooks/useLoading';
@@ -49,14 +49,18 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
         <BookPages
           className="c-book-pages"
           leftPage={
-            <SpaceContainer vertical>
+            <Flex
+              vertical
+              align="center"
+              className="c-book-content"
+            >
               <ImageCard
                 cardId="back-question"
-                cardWidth={100}
+                cardWidth={120}
               />
-            </SpaceContainer>
+            </Flex>
           }
-          rightPage={<div className="c-book-content">{track.data?.prompt ?? track.data?.options ?? '?'}</div>}
+          rightPage={<div className="c-book-content">{track.data?.prompt?.text ?? '?'}</div>}
         />
 
         <Image.PreviewGroup>

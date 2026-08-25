@@ -14,6 +14,7 @@ import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
 import { PhaseContainer } from '@components/phases/PhaseContainer';
 import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
+import type { PhaseTrackState } from './utils/types';
 import { useOnSubmitTrackAnswerAPIRequest } from './utils/api-requests';
 import { useColorizeBackground } from './utils/useColorizeBackground';
 import { showDJPruPruPruStep } from './utils/helpers';
@@ -24,7 +25,7 @@ import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
 import { StepTrack } from './StepTrack';
 
-export function PhaseTrack({ state, players, user }: PhaseProps) {
+export function PhaseTrack({ state, players, user }: PhaseProps<PhaseTrackState>) {
   const { step, setStep, goToNextStep } = useStep(showDJPruPruPruStep(state.round));
 
   // Dynamic background
@@ -70,7 +71,10 @@ export function PhaseTrack({ state, players, user }: PhaseProps) {
           title={<DJAnnouncementTitle round={state.round} />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={state?.round?.current < 2 ? 20 : 7}
+          // Special duration to read the text on rounds 1, middle and last
+          duration={
+            [1, Math.ceil(state.round.total / 2), state.round.total].includes(state?.round?.current) ? 18 : 70
+          }
           unskippable
           type="block"
         >

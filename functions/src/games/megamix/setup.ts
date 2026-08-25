@@ -150,7 +150,7 @@ export const prepareTrackPhase = async (
     };
   }
 
-  removePropertiesFromPlayers(players, ['data']);
+  removePropertiesFromPlayers(players, ['data', 'catchupBonus', 'catchupPenalty']);
 
   // Save
   return {
@@ -161,6 +161,15 @@ export const prepareTrackPhase = async (
         round: increaseRound(state.round),
         players,
       },
+      stateCleanup: [
+        'penaltyPlayers',
+        'bonusPlayers',
+        'winningTeam',
+        'losingTeam',
+        'ranking',
+        'winningValues',
+        'condition',
+      ],
     },
   };
 };
@@ -178,7 +187,7 @@ export const prepareResultPhase = async (
 ): Promise<SaveGamePayload> => {
   const scoring = getMostVotes(players, 'value');
 
-  const ranking = getRanking(players, scoring, state.round.current);
+  const ranking = getRanking(players, scoring, state.round);
 
   if (scoring.losingTeam.length === 1) {
     increaseAchievement(store.achievements, scoring.losingTeam[0], 'solitaryLoser', 1);
@@ -186,6 +195,19 @@ export const prepareResultPhase = async (
   if (scoring.winningTeam.length === 1) {
     increaseAchievement(store.achievements, scoring.winningTeam[0], 'solitaryWinner', 1);
   }
+
+  const bonusPlayers: UID[] = [];
+  const penaltyPlayers: UID[] = [];
+  getListOfPlayers(players).forEach((player) => {
+    if (player.catchupBonus) {
+      bonusPlayers.push(player.id);
+      increaseAchievement(store.achievements, player.id, 'catchupBonus', 1);
+    }
+    if (player.catchupPenalty) {
+      penaltyPlayers.push(player.id);
+      increaseAchievement(store.achievements, player.id, 'catchupPenalty', 1);
+    }
+  });
 
   setPlayersReadyState(players, false);
 
@@ -200,6 +222,8 @@ export const prepareResultPhase = async (
         ...scoring,
         ranking: ranking.filter((rankEntry) => players[rankEntry.playerId].team[state.round.current] === 'W'),
         players,
+        bonusPlayers,
+        penaltyPlayers,
       },
     },
   };

@@ -26,7 +26,15 @@ export const TOTAL_ROUNDS = 15;
 export const SIDES = {
   LOSER: 'L',
   WINNER: 'W',
-};
+} as const;
+
+export const SCORING_POINTS = {
+  JOIN_VIP: 1,
+  TIED_WITH_VIP: 1,
+  ALREADY_ON_VIP: 2,
+  CATCHUP_BONUS: 2,
+  CATCHUP_PENALTY: -2,
+} as const;
 
 export const IMAGES_TRACKS: TrackCandidate[] = [
   {
@@ -42,6 +50,7 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'detective',
     weight: 2,
+    verified: true,
   },
   {
     game: GAME_NAMES.GALERIA_DE_SONHOS,
@@ -64,6 +73,7 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.NAO_SOU_ROBO,
@@ -82,6 +92,7 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 2,
+    verified: true,
   },
   {
     game: GAME_NAMES.QUEM_SOU_EU,
@@ -89,6 +100,7 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 2,
+    verified: true,
   },
   {
     game: GAME_NAMES.PALHETA_DE_CORES,
@@ -107,6 +119,7 @@ export const DRAWING_TRACKS: TrackCandidate[] = [
     variant: 'cards',
     weight: 2,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.ARTE_RUIM,
@@ -149,6 +162,7 @@ export const PEOPLE_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 2,
+    verified: true,
   },
   {
     game: GAME_NAMES.TESTE_DE_ELENCO,
@@ -167,6 +181,7 @@ export const ICONS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.DUETOS,
@@ -217,6 +232,7 @@ export const WORDS_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.COLEGAS_DE_QUARTO,
@@ -262,6 +278,7 @@ export const CONSENSUS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.PLANEJAMENTO_URBANO,
@@ -297,6 +314,7 @@ export const INPUT_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.ONDA_TELEPATICA,
@@ -305,8 +323,8 @@ export const INPUT_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
-
   {
     game: GAME_NAMES.MENTE_COLETIVA,
     type: 'input',
@@ -314,6 +332,7 @@ export const INPUT_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 2,
     needsSeeding: true,
+    verified: true,
   },
 ];
 
@@ -325,6 +344,7 @@ export const OPINIONS_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.FILEIRA_DE_FATOS,
@@ -339,6 +359,7 @@ export const OPINIONS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
 ];
 
@@ -356,6 +377,7 @@ export const SPECIAL_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'evidence',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.NA_RUA_DO_MEDO,
@@ -388,6 +410,7 @@ export const OTHER_TRACKS: TrackCandidate[] = [
     nsfw: true,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
 ];
 

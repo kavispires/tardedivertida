@@ -422,7 +422,7 @@
 
 .c-book-pages {
   max-width: var(--max-width);
-  width: 50vw;
+  min-width: 480px;
 }
 
 .c-book-content.c-book-content {
