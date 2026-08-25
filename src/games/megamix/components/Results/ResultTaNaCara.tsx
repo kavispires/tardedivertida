@@ -1,8 +1,10 @@
-// Icons
-import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
-import { Icon } from '@components/general/Icon';
+import {
+  AnswerKindaNoButton,
+  AnswerMaybeYesButton,
+  AnswerNoButton,
+  AnswerYesButton,
+} from '@components/buttons/AnswerButtons';
 import { Translate } from '@components/language/Translate';
 import { Surface } from '@components/layout/Surface';
 // Internal
@@ -31,10 +33,10 @@ export function ResultTaNaCara({ winningValues }: ResultComponentProps) {
             key={`answer-${value}`}
             className="track-result-values__text-value"
           >
-            <Icon
-              size="large"
-              icon={value === 'yes' ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
-            />
+            {value === '-2' && <AnswerNoButton />}
+            {value === '-1' && <AnswerKindaNoButton />}
+            {value === '1' && <AnswerMaybeYesButton />}
+            {value === '2' && <AnswerYesButton />}
           </div>
         ))}
       </div>

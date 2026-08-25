@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
 // Icons
@@ -22,7 +21,6 @@ import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
 export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) => {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
   const onSelect = (value: string) => {
@@ -71,7 +69,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
       <Space
         orientation="vertical"
         align="center"
-        className="contained margin"
+        className="margin"
       >
         <RuleInstruction type="action">
           <Translate
@@ -92,12 +90,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
               className={clsx('dd-animated-skiier__skiier', `dd-animated-skiier__skiier--${direction}`)}
             />
           </div>
-          <TextCard
-            header={translate({ pt: 'Dica', en: 'Clue' })}
-            color="red"
-          >
-            {track.data.dilemma.prompt}
-          </TextCard>
+          <TextCard>{track.data.dilemma.prompt}</TextCard>
 
           <SpaceContainer>
             <div className="dd-buttons">

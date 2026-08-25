@@ -33,6 +33,7 @@
 .phaseAnnouncementIcon {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 40vh;
   max-height: 200px;
   margin-bottom: get-unit(1);

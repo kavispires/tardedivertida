@@ -64,6 +64,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
             <Space
               orientation="vertical"
               key={contender.id}
+              align="center"
             >
               <CharacterCard
                 size={cardWidth}

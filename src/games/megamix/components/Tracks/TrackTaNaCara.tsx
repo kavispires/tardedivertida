@@ -1,17 +1,17 @@
-// Ant Design Resources
-import { Button } from 'antd';
 // Hooks
 import { useCardWidth } from '@hooks/useCardWidth';
 import { useLanguage } from '@hooks/useLanguage';
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
-// Icons
-import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
 // Components
+import {
+  AnswerKindaNoButton,
+  AnswerMaybeYesButton,
+  AnswerNoButton,
+  AnswerYesButton,
+} from '@components/buttons/AnswerButtons';
 import { SuspectCard } from '@components/cards/SuspectCard';
 import { TextCard } from '@components/cards/TextCard';
-import { Icon } from '@components/general/Icon';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { RuleInstruction } from '@components/text/RuleInstruction';
@@ -25,7 +25,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
 
-  const onSelect = (value: string) => {
+  const onSelect = (value: -2 | -1 | 1 | 2) => {
     onSubmitAnswer({
       data: { value },
     });
@@ -33,7 +33,7 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
 
   // DEV Mock
   useMock(() => {
-    onSelect(mockSelection([true, false]));
+    onSelect(mockSelection([-2, -1, 1, 2]));
   });
 
   return (
@@ -54,39 +54,27 @@ export const TrackTaNaCara = ({ track, onSubmitAnswer }: TrackProps) => {
         {track.data.question.statement}
       </TextCard>
 
-      <SpaceContainer orientation="vertical">
+      <SpaceContainer>
+        <AnswerNoButton
+          onClick={() => onSelect(-2)}
+          disabled={isLoading}
+        />
+        <AnswerKindaNoButton
+          onClick={() => onSelect(-1)}
+          disabled={isLoading}
+        />
         <SuspectCard
           suspect={track.data.suspect}
           width={cardWidth}
         />
-      </SpaceContainer>
-
-      <SpaceContainer>
-        <Button
-          size="large"
-          icon={<Icon icon={<SpeechBubbleDeclinedIcon />} />}
-          onClick={() => onSelect('no')}
+        <AnswerMaybeYesButton
+          onClick={() => onSelect(1)}
           disabled={isLoading}
-          shape="round"
-        >
-          <Translate
-            en="NO"
-            pt="NÃO"
-          />
-        </Button>
-
-        <Button
-          size="large"
-          icon={<Icon icon={<SpeechBubbleAcceptedIcon />} />}
-          onClick={() => onSelect('yes')}
+        />
+        <AnswerYesButton
+          onClick={() => onSelect(2)}
           disabled={isLoading}
-          shape="round"
-        >
-          <Translate
-            en="YES"
-            pt="SIM"
-          />
-        </Button>
+        />
       </SpaceContainer>
     </>
   );

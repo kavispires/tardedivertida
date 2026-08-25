@@ -15,31 +15,31 @@ export const buildSeedingSteps = (
       case 'arte-ruim':
         return {
           title: translate({ pt: 'Hobby Artístico', en: 'Artistic Hobby' }),
-          description: translate({ pt: 'Se expresse!', en: 'Express yourself!' }),
+          content: translate({ pt: 'Se expresse!', en: 'Express yourself!' }),
         };
 
       case 'contadores-historias':
         return {
           title: translate({ pt: 'Torpedo da sua mãe', en: 'Text from your mom' }),
-          description: translate({ pt: 'O que ela quer agora?', en: 'What does she want now?' }),
+          content: translate({ pt: 'O que ela quer agora?', en: 'What does she want now?' }),
         };
 
       case 'labirinto-secreto':
         return {
           title: translate({ pt: 'Postando no Insta', en: 'Instagram post' }),
-          description: translate({ pt: 'Não existe sexy demais!', en: 'Do it for the likes!' }),
+          content: translate({ pt: 'Não existe sexy demais!', en: 'Do it for the likes!' }),
         };
 
       case 'mente-coletiva':
         return {
           title: translate({ pt: 'Tik Tok', en: 'Tik Tok' }),
-          description: translate({ pt: 'Sempre temos um tempinho!', en: "There's always time!" }),
+          content: translate({ pt: 'Sempre temos um tempinho!', en: "There's always time!" }),
         };
       case 'party':
       case 'onda-telepatica':
         return {
           title: translate({ pt: 'Tarefa de Casa', en: 'Homework' }),
-          description: translate({
+          content: translate({
             pt: 'Não pode deixar pra depois!',
             en: "You can't leave it for tomorrow!",
           }),
@@ -47,22 +47,22 @@ export const buildSeedingSteps = (
       case 'polemica-da-vez':
         return {
           title: translate({ pt: 'Redes sociais', en: 'Social Media' }),
-          description: translate({ pt: 'Dê uma olhada no twitter', en: 'Check it out twitter' }),
+          content: translate({ pt: 'Dê uma olhada no twitter', en: 'Check it out twitter' }),
         };
       case 'retrato-falado':
         return {
           title: translate({ pt: 'Flashback', en: 'Flashback' }),
-          description: translate({ pt: 'Um evento traumatizante', en: 'A traumatizing event' }),
+          content: translate({ pt: 'Um evento traumatizante', en: 'A traumatizing event' }),
         };
       case 'ue-so-isso':
         return {
           title: translate({ pt: 'Torpedo do Amigo', en: "A friend's text" }),
-          description: translate({ pt: 'Responda!', en: 'Reply!' }),
+          content: translate({ pt: 'Responda!', en: 'Reply!' }),
         };
       case 'clubber':
         return {
           title: translate({ pt: 'Look', en: 'Outfit' }),
-          description: translate({ pt: 'Como ir pra balada', en: 'How to be cool' }),
+          content: translate({ pt: 'Como ir pra balada', en: 'How to be cool' }),
         };
       default:
         return {};

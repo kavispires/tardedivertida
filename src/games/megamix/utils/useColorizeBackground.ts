@@ -8,18 +8,18 @@ export function useColorizeBackground(user: GamePlayer, currentRound = 0) {
   // Colorize background
   useEffect(() => {
     if (team) {
-      const appElement = document.getElementById('app');
-      if (appElement) {
+      const backgroundElement = document.getElementById('session-background-image');
+      if (backgroundElement) {
         if (team === 'L') {
-          appElement.classList.add('background-sad');
+          backgroundElement.classList.add('background-image-sad');
         } else {
-          appElement.classList.remove('background-sad');
+          backgroundElement.classList.remove('background-image-sad');
         }
       }
     }
     return () => {
-      const appElement = document.getElementById('app');
-      appElement?.classList.remove('background-sad');
+      const backgroundElement = document.getElementById('session-background-image');
+      backgroundElement?.classList.remove('background-image-sad');
     };
   }, [team]);
 }

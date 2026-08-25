@@ -227,7 +227,13 @@ function SessionBackgroundImage({ phase }: SessionBackgroundImageProps) {
     opacity: 0.55,
     zIndex: -1,
     pointerEvents: 'none',
+    transition: 'filter 2s ease, opacity 2s ease',
   };
 
-  return <div style={backgroundStyle} />;
+  return (
+    <div
+      id="session-background-image"
+      style={backgroundStyle}
+    />
+  );
 }

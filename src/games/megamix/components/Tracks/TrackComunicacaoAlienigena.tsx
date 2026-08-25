@@ -42,16 +42,16 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
       <Space
         orientation="vertical"
         align="center"
-        className="contained margin"
+        className=" margin"
       >
         <RuleInstruction type="lore">
           <Translate
-            pt="Um alienígena que não fala nossa língua está pedindo um objeto.
+            pt="Um alienígena que não fala nossa língua está pedindo um objeto com a língua dele!
             <br/>
-            Qual o objeto que ele quer?"
-            en="An alien who doesn't speak our language is asking for an object.
+            Mas para nossa sorte, sabemos em geral o que cada símbolo significa."
+            en="An alien that doesn't speak our language is asking for an object in their language!
             <br/>
-            What object do they want?"
+            But luckily, we know generally what each symbol means."
           />
         </RuleInstruction>
 
@@ -76,8 +76,8 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
 
         <RuleInstruction type="action">
           <Translate
-            pt="Selecione o objeto que tem a ver com a palavra que o alienígena está pedindo."
-            en="Select the object that has to do with the word the alien is asking for."
+            pt="Selecione o objeto que tem a ver com o que o alienígena está pedindo."
+            en="Select the object that has to do with what the alien is asking for."
           />
         </RuleInstruction>
 

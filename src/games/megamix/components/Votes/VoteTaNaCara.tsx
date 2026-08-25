@@ -1,6 +1,10 @@
-// Icons
-import { SpeechBubbleAcceptedIcon } from '@icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from '@icons/SpeechBubbleDeclinedIcon';
+// Components
+import {
+  AnswerKindaNoButton,
+  AnswerMaybeYesButton,
+  AnswerNoButton,
+  AnswerYesButton,
+} from '@components/buttons/AnswerButtons';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';
@@ -22,7 +26,10 @@ export function VoteTaNaCara({ playersList }: VoteComponentProps) {
             className="vote-groups__group"
           >
             <div className="vote-groups__target">
-              {voteValue === 'yes' ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
+              {voteValue === '-2' && <AnswerNoButton />}
+              {voteValue === '-1' && <AnswerKindaNoButton />}
+              {voteValue === '1' && <AnswerMaybeYesButton />}
+              {voteValue === '2' && <AnswerYesButton />}
             </div>
 
             <Voters voters={voters} />
