@@ -4,12 +4,16 @@ import type { MEGAMIX_ACTIONS } from './constants';
 export type MegamixTrackType =
   | 'images'
   | 'characters'
-  | 'opinions'
   | 'drawing'
+  | 'people'
+  | 'icons'
   | 'words'
-  | 'judging'
+  | 'pattern'
+  | 'consensus'
+  | 'input'
+  | 'opinions'
   | 'special'
-  | 'unpopular';
+  | 'other';
 
 export type MegamixGameOptions = {
   /**
@@ -31,12 +35,35 @@ export type MegamixGameOptions = {
 };
 
 export interface TrackCandidate {
+  /**
+   * The game name that this track belongs to
+   */
   game: string;
+  /**
+   * The type of track
+   */
   type: string;
+  /**
+   * If it's a not safe for work track
+   */
   nsfw: boolean;
+  /**
+   * The variant of the track (some tracks have variants)
+   * @deprecated
+   */
   variant: string;
-  weight: number;
+  /**
+   * How likely this track is to be selected (higher weight = more likely)
+   */
+  weight: 1 | 2;
+  /**
+   * If the track needs to be seeded with data before it can be used (default: false)
+   */
   needsSeeding?: boolean;
+  /**
+   * If the track is disabled and should not be used (default: false)
+   */
+  disabled?: boolean;
 }
 
 export interface PartyTrackCandidate extends TrackCandidate {

@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "4.1.62",
+  "version": "4.2.1",
   "release": "stable",
   "releaseDate": "2022-12-17",
-  "updatedAt": 1787677840222,
+  "updatedAt": 1787679595120,
   "available": true,
   "title": {
     "pt": "Megamix",
@@ -114,36 +114,52 @@
       "description": "Select the tracks you want to play with",
       "values": [
         {
-          "label": "Images (Detective Agency, Dream Gallery, Obscure Doors, Storytellers)",
+          "label": "Images (Games that use Image cards)",
           "value": "images"
         },
         {
-          "label": "Characters (Who Am I, Ultimate Championship)",
+          "label": "Characters (Games that use Contenders cards)",
           "value": "characters"
         },
         {
-          "label": "Opinions (That's Polemic, Facts Lineup, The Skier's Dilemma)",
-          "value": "opinions"
-        },
-        {
-          "label": "Drawing (Questionable Art or Monster Sketch",
+          "label": "Drawing (Games that use Drawings)",
           "value": "drawing"
         },
         {
-          "label": "Words (That's It, Mixed Clues, or Herd Mind)",
+          "label": "People (Games you judge people)",
+          "value": "people"
+        },
+        {
+          "label": "Icons (Games that use Icon cards)",
+          "value": "icons"
+        },
+        {
+          "label": "Words (Games that use the Single Word library)",
           "value": "words"
         },
         {
-          "label": "Judging (Eye Witness or Guess Who What. (NSFW))",
-          "value": "judging"
+          "label": "Pattern (Games that use visual pattern)",
+          "value": "pattern"
         },
         {
-          "label": "Special (Alien Communication, or Telepathic Waves)",
+          "label": "Consensus (Games that require group logic)",
+          "value": "consensus"
+        },
+        {
+          "label": "Input (Games that require player input)",
+          "value": "input"
+        },
+        {
+          "label": "Opinions (Games that opinions matter)",
+          "value": "opinions"
+        },
+        {
+          "label": "Special (Oddly specific games)",
           "value": "special"
         },
         {
-          "label": "Unpopular (Horrific Crimes, Movie Night, or Fear Street)",
-          "value": "unpopular"
+          "label": "Other (Unclassified games)",
+          "value": "other"
         }
       ]
     }

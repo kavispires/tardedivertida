@@ -41,29 +41,37 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
     type: 'images',
     nsfw: false,
     variant: 'detective',
-    weight: 3,
+    weight: 2,
   },
   {
     game: GAME_NAMES.GALERIA_DE_SONHOS,
     type: 'images',
     nsfw: false,
     variant: 'default',
-    weight: 4,
+    weight: 2,
   },
   {
     game: GAME_NAMES.PORTA_DOS_DESESPERADOS,
     type: 'images',
     nsfw: false,
     variant: 'default',
-    weight: 4,
+    weight: 2,
   },
   {
     game: GAME_NAMES.CONTADORES_HISTORIAS,
     type: 'images',
     nsfw: false,
     variant: 'default',
-    weight: 2,
+    weight: 1,
     needsSeeding: true,
+  },
+  {
+    game: GAME_NAMES.NAO_SOU_ROBO,
+    type: 'images',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
   },
 ];
 
@@ -73,7 +81,7 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
     type: 'characters',
     nsfw: false,
     variant: 'default',
-    weight: 3,
+    weight: 2,
   },
   {
     game: GAME_NAMES.QUEM_SOU_EU,
@@ -85,31 +93,6 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.PALHETA_DE_CORES,
     type: 'characters',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-  },
-];
-
-export const OPINIONS_TRACKS: TrackCandidate[] = [
-  {
-    game: GAME_NAMES.POLEMICA_DA_VEZ,
-    type: 'opinions',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-    needsSeeding: true,
-  },
-  {
-    game: GAME_NAMES.FILEIRA_DE_FATOS,
-    type: 'opinions',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-  },
-  {
-    game: GAME_NAMES.ESQUIADORES,
-    type: 'opinions',
     nsfw: false,
     variant: 'default',
     weight: 1,
@@ -141,6 +124,82 @@ export const DRAWING_TRACKS: TrackCandidate[] = [
     weight: 1,
     needsSeeding: true,
   },
+  {
+    game: GAME_NAMES.SINAIS_DE_ALERTA,
+    type: 'drawing',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    needsSeeding: true,
+    disabled: true,
+  },
+];
+
+export const PEOPLE_TRACKS: TrackCandidate[] = [
+  {
+    game: GAME_NAMES.TESTEMUNHA_OCULAR,
+    type: 'people',
+    nsfw: true,
+    variant: 'default',
+    weight: 2,
+  },
+  {
+    game: GAME_NAMES.TA_NA_CARA,
+    type: 'people',
+    nsfw: false,
+    variant: 'default',
+    weight: 2,
+  },
+  {
+    game: GAME_NAMES.TESTE_DE_ELENCO,
+    type: 'people',
+    nsfw: true,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+];
+
+export const ICONS_TRACKS: TrackCandidate[] = [
+  {
+    game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
+    type: 'icons',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+  },
+  {
+    game: GAME_NAMES.DUETOS,
+    type: 'icons',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.METALINGUAGEM,
+    type: 'icons',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.TEORIA_DE_CONJUNTOS,
+    type: 'icons',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.QUAL_QUESITO,
+    type: 'icons',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
 ];
 
 export const WORDS_TRACKS: TrackCandidate[] = [
@@ -156,38 +215,128 @@ export const WORDS_TRACKS: TrackCandidate[] = [
     type: 'words',
     nsfw: false,
     variant: 'default',
-    weight: 2,
+    weight: 1,
     needsSeeding: true,
   },
   {
-    game: GAME_NAMES.LABIRINTO_SECRETO,
+    game: GAME_NAMES.COLEGAS_DE_QUARTO,
     type: 'words',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+];
+
+export const PATTERN_TRACKS: TrackCandidate[] = [
+  {
+    game: GAME_NAMES.CONTROLE_DE_ESTOQUE,
+    type: 'pattern',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.SENSO_LITERARIO,
+    type: 'pattern',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.NA_FILA_DO_BANCO,
+    type: 'pattern',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+];
+
+export const CONSENSUS_TRACKS: TrackCandidate[] = [
+  {
+    game: GAME_NAMES.VAMOS_AO_CINEMA,
+    type: 'consensus',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+  },
+  {
+    game: GAME_NAMES.PLANEJAMENTO_URBANO,
+    type: 'consensus',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.MEDIDAS_NAO_EXATAS,
+    type: 'consensus',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+  {
+    game: GAME_NAMES.MESMICE,
+    type: 'consensus',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    disabled: true,
+  },
+];
+
+export const INPUT_TRACKS: TrackCandidate[] = [
+  {
+    game: GAME_NAMES.LABIRINTO_SECRETO,
+    type: 'input',
     nsfw: false,
     variant: 'default',
     weight: 1,
     needsSeeding: true,
   },
+  {
+    game: GAME_NAMES.ONDA_TELEPATICA,
+    type: 'input',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    needsSeeding: true,
+  },
+
+  {
+    game: GAME_NAMES.MENTE_COLETIVA,
+    type: 'input',
+    nsfw: false,
+    variant: 'default',
+    weight: 2,
+    needsSeeding: true,
+  },
 ];
 
-export const JUDGING_TRACKS: TrackCandidate[] = [
+export const OPINIONS_TRACKS: TrackCandidate[] = [
   {
-    game: GAME_NAMES.NAMORO_OU_AMIZADE,
-    type: 'judging',
-    nsfw: true,
+    game: GAME_NAMES.POLEMICA_DA_VEZ,
+    type: 'opinions',
+    nsfw: false,
+    variant: 'default',
+    weight: 1,
+    needsSeeding: true,
+  },
+  {
+    game: GAME_NAMES.FILEIRA_DE_FATOS,
+    type: 'opinions',
+    nsfw: false,
     variant: 'default',
     weight: 1,
   },
   {
-    game: GAME_NAMES.TESTEMUNHA_OCULAR,
-    type: 'judging',
-    nsfw: true,
-    variant: 'default',
-    weight: 1,
-  },
-  {
-    game: GAME_NAMES.TA_NA_CARA,
-    type: 'judging',
-    nsfw: true,
+    game: GAME_NAMES.ESQUIADORES,
+    type: 'opinions',
+    nsfw: false,
     variant: 'default',
     weight: 1,
   },
@@ -195,64 +344,49 @@ export const JUDGING_TRACKS: TrackCandidate[] = [
 
 export const SPECIAL_TRACKS: TrackCandidate[] = [
   {
-    game: GAME_NAMES.ONDA_TELEPATICA,
-    type: 'special',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-    needsSeeding: true,
-  },
-  {
-    game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
-    type: 'special',
-    nsfw: false,
-    variant: 'default',
-    weight: 1,
-  },
-  {
-    game: GAME_NAMES.MENTE_COLETIVA,
-    type: 'special',
-    nsfw: false,
-    variant: 'default',
-    weight: 2,
-    needsSeeding: true,
-  },
-];
-
-export const UNPOPULAR_TRACKS: TrackCandidate[] = [
-  {
     game: GAME_NAMES.CRIMES_HEDIONDOS,
-    type: 'unpopular',
+    type: 'special',
     nsfw: false,
     variant: 'weapon',
-    weight: 2,
+    weight: 1,
   },
   {
     game: GAME_NAMES.CRIMES_HEDIONDOS,
-    type: 'unpopular',
+    type: 'special',
     nsfw: false,
     variant: 'evidence',
-    weight: 2,
-  },
-  {
-    game: GAME_NAMES.VAMOS_AO_CINEMA,
-    type: 'unpopular',
-    nsfw: false,
-    variant: 'default',
-    weight: 4,
+    weight: 1,
   },
   {
     game: GAME_NAMES.NA_RUA_DO_MEDO,
-    type: 'unpopular',
+    type: 'special',
     nsfw: false,
     variant: 'default',
-    weight: 2,
+    weight: 1,
   },
   {
     game: GAME_NAMES.QUEM_NAO_MATA,
-    type: 'unpopular',
+    type: 'special',
     nsfw: false,
     variant: 'kill',
+    weight: 1,
+  },
+  {
+    game: GAME_NAMES.BOMBA_RELOGIO,
+    type: 'special',
+    nsfw: false,
+    variant: 'kill',
+    weight: 1,
+    disabled: true,
+  },
+];
+
+export const OTHER_TRACKS: TrackCandidate[] = [
+  {
+    game: GAME_NAMES.NAMORO_OU_AMIZADE,
+    type: 'other',
+    nsfw: true,
+    variant: 'default',
     weight: 1,
   },
 ];

@@ -24,15 +24,19 @@ import { GAME_NAMES } from '../../constants/games';
 import { TDR_RESOURCES } from '../../constants/resources';
 import { SPRITE_LIBRARIES } from '../../constants/sprites';
 import {
+  IMAGES_TRACKS,
   CHARACTERS_TRACKS,
   DRAWING_TRACKS,
-  IMAGES_TRACKS,
-  JUDGING_TRACKS,
-  OPINIONS_TRACKS,
-  SPECIAL_TRACKS,
-  TOTAL_ROUNDS,
-  UNPOPULAR_TRACKS,
+  PEOPLE_TRACKS,
+  ICONS_TRACKS,
   WORDS_TRACKS,
+  CONSENSUS_TRACKS,
+  INPUT_TRACKS,
+  SPECIAL_TRACKS,
+  OTHER_TRACKS,
+  PATTERN_TRACKS,
+  OPINIONS_TRACKS,
+  TOTAL_ROUNDS,
 } from './constants';
 // Services
 import { fetchResource } from '../../services/resource';
@@ -71,28 +75,76 @@ export const getData = async (
   // Get all custom tracks
   const possibleTracks: TrackCandidate[] = [];
   if (options.tracks.includes('images')) {
-    possibleTracks.push(getRandomTrackGame(IMAGES_TRACKS, allowNSFW)!);
+    const selection = getRandomTrackGame(IMAGES_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
   if (options.tracks.includes('characters')) {
-    possibleTracks.push(getRandomTrackGame(CHARACTERS_TRACKS, allowNSFW)!);
-  }
-  if (options.tracks.includes('opinions')) {
-    possibleTracks.push(getRandomTrackGame(OPINIONS_TRACKS, allowNSFW)!);
+    const selection = getRandomTrackGame(CHARACTERS_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
   if (options.tracks.includes('drawing')) {
-    possibleTracks.push(getRandomTrackGame(DRAWING_TRACKS, allowNSFW)!);
+    const selection = getRandomTrackGame(DRAWING_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
+  }
+  if (options.tracks.includes('people') && allowNSFW) {
+    const selection = getRandomTrackGame(PEOPLE_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
+  }
+  if (options.tracks.includes('icons')) {
+    const selection = getRandomTrackGame(ICONS_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
   if (options.tracks.includes('words')) {
-    possibleTracks.push(getRandomTrackGame(WORDS_TRACKS, allowNSFW)!);
+    const selection = getRandomTrackGame(WORDS_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
-  if (options.tracks.includes('judging') && allowNSFW) {
-    possibleTracks.push(getRandomTrackGame(JUDGING_TRACKS, allowNSFW)!);
+  if (options.tracks.includes('pattern')) {
+    const selection = getRandomTrackGame(PATTERN_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
+  }
+  if (options.tracks.includes('consensus')) {
+    const selection = getRandomTrackGame(CONSENSUS_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
+  }
+  if (options.tracks.includes('input')) {
+    const selection = getRandomTrackGame(INPUT_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
+  }
+  if (options.tracks.includes('opinions')) {
+    const selection = getRandomTrackGame(OPINIONS_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
   if (options.tracks.includes('special')) {
-    possibleTracks.push(getRandomTrackGame(SPECIAL_TRACKS, allowNSFW)!);
+    const selection = getRandomTrackGame(SPECIAL_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
-  if (options.tracks.includes('unpopular')) {
-    possibleTracks.push(getRandomTrackGame(UNPOPULAR_TRACKS, allowNSFW)!);
+  if (options.tracks.includes('other')) {
+    const selection = getRandomTrackGame(OTHER_TRACKS, allowNSFW);
+    if (selection) {
+      possibleTracks.push(selection);
+    }
   }
 
   // Select tracks to be used
@@ -683,10 +735,15 @@ const getRandomTrackGame = (candidates: TrackCandidate[], allowNSFW: boolean) =>
   const options: TrackCandidate[] = [];
 
   candidates.forEach((candidate) => {
-    if (!candidate.nsfw || allowNSFW) {
-      for (let i = 0; i < candidate.weight; i++) {
-        options.push(candidate);
-      }
+    if (candidate.disabled) {
+      return;
+    }
+    if (!allowNSFW && candidate.nsfw) {
+      return;
+    }
+
+    for (let i = 0; i < candidate.weight; i++) {
+      options.push(candidate);
     }
   });
 
