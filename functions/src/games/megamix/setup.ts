@@ -169,6 +169,7 @@ export const prepareTrackPhase = async (
         'ranking',
         'winningValues',
         'condition',
+        'scoringType',
       ],
     },
   };

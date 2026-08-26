@@ -36,7 +36,7 @@ export const TrackCrimesHediondos = ({ track, onSubmitAnswer, user }: TrackProps
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Crimes Hediondos', en: 'Horrific Crimes' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt={`O médico legista examinou o crime e chegou às conclusões abaixo.

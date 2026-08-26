@@ -82,6 +82,7 @@ export function PhaseResult({ state, players, user }: PhaseProps<PhaseResultStat
           user={user}
           penaltyPlayers={state.penaltyPlayers}
           bonusPlayers={state.bonusPlayers}
+          winningTeam={state.winningTeam}
         />
       </StepSwitcher>
     </PhaseContainer>

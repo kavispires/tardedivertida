@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import type { TextCardData } from 'types/tdr';
 // Internal
 import { Pip } from './Pip';
+// Sass
+import '../utils/styles.scss';
 
 type MetricsBoardProps = {
   metricsDescriptors: Record<string, TextCardData[]>;

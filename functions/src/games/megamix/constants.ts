@@ -43,6 +43,7 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'impostor',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.DETETIVES_IMAGINATIVOS,
@@ -65,6 +66,7 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 2,
+    verified: true,
   },
   {
     game: GAME_NAMES.CONTADORES_HISTORIAS,
@@ -108,6 +110,7 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
 ];
 
@@ -128,6 +131,7 @@ export const DRAWING_TRACKS: TrackCandidate[] = [
     variant: 'drawings',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.RETRATO_FALADO,
@@ -136,6 +140,7 @@ export const DRAWING_TRACKS: TrackCandidate[] = [
     variant: 'default',
     weight: 1,
     needsSeeding: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.SINAIS_DE_ALERTA,
@@ -155,6 +160,7 @@ export const PEOPLE_TRACKS: TrackCandidate[] = [
     nsfw: true,
     variant: 'default',
     weight: 2,
+    verified: true,
   },
   {
     game: GAME_NAMES.TA_NA_CARA,
@@ -189,7 +195,7 @@ export const ICONS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
-    disabled: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.METALINGUAGEM,
@@ -224,6 +230,7 @@ export const WORDS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.UE_SO_ISSO,
@@ -259,7 +266,7 @@ export const PATTERN_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
-    disabled: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.NA_FILA_DO_BANCO,
@@ -294,7 +301,7 @@ export const CONSENSUS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
-    disabled: true,
+    verified: true,
   },
   {
     game: GAME_NAMES.MESMICE,
@@ -352,6 +359,7 @@ export const OPINIONS_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.ESQUIADORES,
@@ -370,6 +378,7 @@ export const SPECIAL_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'weapon',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.CRIMES_HEDIONDOS,
@@ -385,6 +394,7 @@ export const SPECIAL_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'default',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.QUEM_NAO_MATA,
@@ -392,6 +402,7 @@ export const SPECIAL_TRACKS: TrackCandidate[] = [
     nsfw: false,
     variant: 'kill',
     weight: 1,
+    verified: true,
   },
   {
     game: GAME_NAMES.BOMBA_RELOGIO,
@@ -433,6 +444,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'good-food',
     weight: 1,
+
     card: {
       id: 'good-food',
       text: {
@@ -447,6 +459,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'bad-food',
     weight: 1,
+
     card: {
       id: 'bad-food',
       text: {
@@ -461,6 +474,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'object',
     weight: 1,
+
     card: {
       id: 'object',
       text: {
@@ -475,6 +489,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'sport',
     weight: 1,
+
     card: {
       id: 'sport',
       text: {
@@ -489,6 +504,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'skill',
     weight: 1,
+
     card: {
       id: 'skill',
       text: {
@@ -503,6 +519,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'hobby',
     weight: 1,
+
     card: {
       id: 'hobby',
       text: {
@@ -517,6 +534,7 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
     nsfw: false,
     variant: 'fact',
     weight: 1,
+
     card: {
       id: 'fact',
       text: {

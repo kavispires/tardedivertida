@@ -20,7 +20,7 @@ import { useColorizeBackground } from './utils/useColorizeBackground';
 import { showDJPruPruPruStep } from './utils/helpers';
 import { MEGAMIX_PHASES } from './utils/constants';
 import { TrackIcon } from './components/TrackIcon';
-import { TrackInstructions } from './components/TrackInstructions';
+import { TrackTagline } from './components/TrackTagline';
 import { TrackTitle } from './components/TrackTitle';
 import { DJInstructions } from './components/RulesBlobs';
 import { StepTrack } from './StepTrack';
@@ -51,7 +51,7 @@ export function PhaseTrack({ state, players, user }: PhaseProps<PhaseTrackState>
       type="overlay"
     >
       <Surface>
-        <TrackInstructions track={state.track} />
+        <TrackTagline track={state.track} />
       </Surface>
     </PhaseAnnouncement>
   );

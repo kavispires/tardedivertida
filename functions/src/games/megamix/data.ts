@@ -47,6 +47,7 @@ import { getImageCards } from '../../mechanics/image-cards';
 // Utils
 import { makeArray, sliceInParts } from '../../utils';
 // Internal
+import { buildBookDeck, buildBookSequence } from '../senso-literario/helpers';
 import {
   getCandidateOnList,
   getCandidatePersonality,
@@ -237,6 +238,9 @@ export const getData = async (
     });
   }
 
+  // IMAGE_TRACKS: NAO_SOU_ROBO
+  // TODO
+
   // CHARACTERS_TRACKS: SUPER_CAMPEONATO
   const superCampeonatoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.SUPER_CAMPEONATO);
   if (superCampeonatoTrack) {
@@ -284,50 +288,6 @@ export const getData = async (
           ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'hotPink', 'gray', 'black', 'white'],
           4,
         ),
-      },
-    });
-  }
-
-  // OPINIONS_TRACKS: POLEMICA_DA_VEZ
-  const polemicaDaVezTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.POLEMICA_DA_VEZ);
-  if (polemicaDaVezTrack) {
-    type CustomTweet = TextCardData & { custom?: boolean };
-    const tweets = Object.values(
-      await fetchResource<Dictionary<CustomTweet>>(TDR_RESOURCES.TWEETS, { language }),
-    ).filter((tweet) => !tweet.custom);
-
-    customTracks.push({
-      game: GAME_NAMES.POLEMICA_DA_VEZ,
-      data: {
-        card: sample(tweets),
-      },
-    });
-  }
-
-  // OPINIONS_TRACKS: FILEIRA_DE_FATOS
-  const fileiraDeFatosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.FILEIRA_DE_FATOS);
-  if (fileiraDeFatosTrack) {
-    const allScenarios = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.SCENARIOS, { language });
-    customTracks.push({
-      game: GAME_NAMES.FILEIRA_DE_FATOS,
-      data: {
-        scenarios: sampleSize(Object.values(allScenarios), 3),
-      },
-    });
-  }
-
-  // OPINIONS_TRACKS: ESQUIADORES
-  const esquiadoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ESQUIADORES);
-  if (esquiadoresTrack) {
-    const dilemmas: DilemmaCardData[] = Object.values(
-      await fetchResource<Dictionary<DilemmaCardData>>(TDR_RESOURCES.DILEMMAS, { language }),
-    );
-    const selectedDilemas = allowNSFW ? dilemmas : dilemmas.filter((dilemma) => !dilemma.nsfw);
-
-    customTracks.push({
-      game: GAME_NAMES.ESQUIADORES,
-      data: {
-        dilemma: sample(selectedDilemas),
       },
     });
   }
@@ -393,6 +353,136 @@ export const getData = async (
     });
   }
 
+  // DRAWING_TRACKS: SINAIS_DE_ALERTA
+  // TODO
+
+  // PEOPLE_TRACKS: TESTEMUNHA_OCULAR
+  const testemunhaOcularTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TESTEMUNHA_OCULAR);
+  if (testemunhaOcularTrack) {
+    const testimonyQuestions = Object.values(
+      await fetchResource<Dictionary<TestimonyStatementCardData>>(TDR_RESOURCES.TESTIMONY_STATEMENTS, {
+        language,
+      }),
+    );
+    const suspects = await getSuspects({
+      randomStyleVariant: true,
+      quantity: 3,
+      cleanup: true,
+      decks: ['adult'],
+    });
+
+    customTracks.push({
+      game: GAME_NAMES.TESTEMUNHA_OCULAR,
+      data: {
+        question: sample(testimonyQuestions),
+        suspects: suspects,
+        answer: Boolean(sample([true, false])),
+      },
+    });
+  }
+
+  // PEOPLE_TRACKS: TA_NA_CARA
+  const taNaCaraTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TA_NA_CARA);
+  if (taNaCaraTrack) {
+    const testimonyQuestions = Object.values(
+      await fetchResource<Dictionary<TestimonyStatementCardData>>(TDR_RESOURCES.TESTIMONY_STATEMENTS, {
+        language,
+      }),
+    );
+
+    const suspects = await getSuspects({
+      randomStyleVariant: true,
+      quantity: 1,
+      cleanup: true,
+      decks: ['adult'],
+    });
+
+    customTracks.push({
+      game: GAME_NAMES.TA_NA_CARA,
+      variant: 'witness',
+      data: {
+        question: sampleSize(testimonyQuestions, 1)[0],
+        suspect: suspects[0],
+      },
+    });
+  }
+
+  // PEOPLE_TRACKS: TESTE_DE_ELENCO
+  // TODO
+
+  // ICONS_TRACKS: COMUNICACAO_ALIENIGENA
+  const comunicacaoAlienigenaTrack = getCandidateOnList(
+    customTrackCandidates,
+    GAME_NAMES.COMUNICACAO_ALIENIGENA,
+  );
+  if (comunicacaoAlienigenaTrack) {
+    const attributes = Object.values(
+      await fetchResource<Dictionary<ItemAttributeData>>(TDR_RESOURCES.ITEMS_ATTRIBUTES),
+    );
+    const selectedAttributes = sampleSize(Object.values(attributes), 2);
+
+    const selectedAlienItems = await getItems(5, {
+      allowNSFW,
+      decks: ['alien'],
+      cleanUp: itemUtils.cleanupDecks,
+    });
+
+    customTracks.push({
+      game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
+      data: {
+        items: selectedAlienItems,
+        attributes: selectedAttributes,
+        signs: sampleSize(makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
+      },
+    });
+  }
+
+  // ICONS_TRACKS: DUETOS
+  const duetosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.DUETOS);
+  if (duetosTrack) {
+    const shortlistItems = await getItems(6, {
+      allowNSFW,
+      decks: ['alien', 'dream', 'manufactured', 'thing'],
+      cleanUp: itemUtils.cleanupDecks,
+    });
+
+    customTracks.push({
+      game: GAME_NAMES.DUETOS,
+      data: {
+        pairs: sliceInParts(shortlistItems, 3).map((pair) => ({
+          id: `${pair[0].id}-${pair[1].id}`,
+          pair,
+        })),
+      },
+    });
+  }
+
+  // ICONS_TRACKS: METALINGUAGEM
+  // TODO
+
+  // ICONS_TRACKS: TEORIA_DE_CONJUNTOS
+  const teoriaDeConjuntosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TEORIA_DE_CONJUNTOS);
+  if (teoriaDeConjuntosTrack) {
+    const shortlistItems = await getItems(4, {
+      allowNSFW,
+      decks: ['thing'],
+      cleanUp: itemUtils.cleanupDecks,
+    });
+
+    customTracks.push({
+      game: GAME_NAMES.TEORIA_DE_CONJUNTOS,
+      data: {
+        left: shortlistItems[0],
+        center: shortlistItems[1],
+        right: shortlistItems[2],
+        item: shortlistItems[3],
+      },
+    });
+  }
+
+  // ICONS_TRACKS: QUAL_QUESITO
+  // TODO
+
   // WORDS_TRACKS: CRUZA_PALAVRAS
   const cruzaPalavrasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRUZA_PALAVRAS);
   if (cruzaPalavrasTrack) {
@@ -423,7 +513,90 @@ export const getData = async (
     });
   }
 
-  // WORDS_TRACKS: LABIRINTO_SECRETO
+  // WORDS_TRACKS: COLEGAS_DE_QUARTO
+  // TODO
+
+  // PATTERN_TRACKS: SENSO_LITERARIO
+  const sensoLiterarioTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.SENSO_LITERARIO);
+  if (sensoLiterarioTrack) {
+    const bookDeck = buildBookDeck();
+    const sequence = buildBookSequence(bookDeck, 1);
+    const options = sampleSize(bookDeck, 3);
+
+    customTracks.push({
+      game: GAME_NAMES.SENSO_LITERARIO,
+      data: {
+        sequence,
+        options,
+      },
+    });
+  }
+
+  // PATTERN_TRACKS: SENSO_LITERARIO
+  // TODO
+
+  // PATTERN_TRACKS: NA_FILA_DO_BANCO
+  // TODO
+
+  // CONSENSUS_TRACKS: VAMOS_AO_CINEMA
+  const vamosAoCinemaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.VAMOS_AO_CINEMA);
+  if (vamosAoCinemaTrack) {
+    const movies = Object.values(
+      await fetchResource<Dictionary<MovieCardData>>(TDR_RESOURCES.MOVIES, { language }),
+    );
+    const allReviews = Object.values(
+      await fetchResource<Dictionary<MovieReviewCardData>>(TDR_RESOURCES.MOVIE_REVIEWS, { language }),
+    );
+    const reviews = getMovieReviews(allReviews);
+
+    customTracks.push({
+      game: GAME_NAMES.VAMOS_AO_CINEMA,
+      data: {
+        movies: sampleSize(movies, 6),
+        reviews,
+      },
+    });
+  }
+
+  // CONSENSUS_TRACKS: PLANEJAMENTO_URBANO
+  // TODO
+
+  // CONSENSUS_TRACKS: MEDIDAS_NAO_EXATAS
+  const medidasNaoExatasTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.MEDIDAS_NAO_EXATAS);
+  if (medidasNaoExatasTrack) {
+    // Text cards to make the pool
+    const words = await getSingleWords(language);
+    // Descriptors to make the metrics
+    const allDescriptors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.DESCRIPTORS, {
+      language,
+    });
+    const descriptors = shuffle(Object.values(allDescriptors));
+    const values = Array(12)
+      .fill(0)
+      .map((v, index) => v + index - 6);
+
+    const options = sampleSize(words, 2);
+
+    customTracks.push({
+      game: GAME_NAMES.MEDIDAS_NAO_EXATAS,
+      data: {
+        metricsDescriptors: {
+          0: [descriptors[0], descriptors[1]],
+          1: [descriptors[2], descriptors[3]],
+        },
+        evaluations: {
+          0: sample(values),
+          1: sample(values),
+        },
+        options,
+      },
+    });
+  }
+
+  // CONSENSUS_TRACKS: MESMICE
+  // TODO
+
+  // INPUT_TRACKS: LABIRINTO_SECRETO
   const labirintoSecretoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.LABIRINTO_SECRETO);
   if (labirintoSecretoTrack) {
     const trees = Object.values(
@@ -442,82 +615,7 @@ export const getData = async (
     });
   }
 
-  // JUDGING_TRACKS: TESTEMUNHA_OCULAR
-  const testemunhaOcularTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TESTEMUNHA_OCULAR);
-  if (testemunhaOcularTrack) {
-    const testimonyQuestions = Object.values(
-      await fetchResource<Dictionary<TestimonyStatementCardData>>(TDR_RESOURCES.TESTIMONY_STATEMENTS, {
-        language,
-      }),
-    );
-    const suspects = await getSuspects({
-      randomStyleVariant: true,
-      quantity: 3,
-      cleanup: true,
-      decks: ['adult'],
-    });
-
-    customTracks.push({
-      game: GAME_NAMES.TESTEMUNHA_OCULAR,
-      data: {
-        question: sample(testimonyQuestions),
-        suspects: suspects,
-        answer: Boolean(sample([true, false])),
-      },
-    });
-  }
-
-  // JUDGING_TRACKS: TA_NA_CARA
-  const taNaCaraTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.TA_NA_CARA);
-  if (taNaCaraTrack) {
-    const testimonyQuestions = Object.values(
-      await fetchResource<Dictionary<TestimonyStatementCardData>>(TDR_RESOURCES.TESTIMONY_STATEMENTS, {
-        language,
-      }),
-    );
-
-    const suspects = await getSuspects({
-      randomStyleVariant: true,
-      quantity: 1,
-      cleanup: true,
-      decks: ['adult'],
-    });
-
-    customTracks.push({
-      game: GAME_NAMES.TA_NA_CARA,
-      variant: 'witness',
-      data: {
-        question: sampleSize(testimonyQuestions, 1)[0],
-        suspect: suspects[0],
-      },
-    });
-  }
-
-  // JUDGING_TRACKS: NAMORO_OU_AMIZADE
-  const namoroOuAmizadeTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.NAMORO_OU_AMIZADE);
-  if (namoroOuAmizadeTrack) {
-    const heads = Object.values(
-      await fetchResource<Dictionary<DatingCandidateImageCardData>>(TDR_RESOURCES.DATING_CANDIDATE_HEADS),
-    );
-    const bodies = Object.values(
-      await fetchResource<Dictionary<DatingCandidateImageCardData>>(TDR_RESOURCES.DATING_CANDIDATE_BODIES),
-    );
-    const candidatePersonalities = Object.values(
-      await fetchResource<Dictionary<DatingCandidateCardData>>(TDR_RESOURCES.DATING_CANDIDATE, { language }),
-    );
-    const selectedPersonalities = getCandidatePersonality(candidatePersonalities);
-
-    customTracks.push({
-      game: GAME_NAMES.NAMORO_OU_AMIZADE,
-      data: {
-        heads: sampleSize(heads, 3),
-        bodies: sampleSize(bodies, 3),
-        ...selectedPersonalities,
-      },
-    });
-  }
-
-  // SPECIAL_TRACKS: ONDA_TELEPATICA
+  // INPUT_TRACKS: ONDA_TELEPATICA
   const ondaTelepaticaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ONDA_TELEPATICA);
   if (ondaTelepaticaTrack) {
     const opposingIdeas = Object.values(
@@ -533,34 +631,7 @@ export const getData = async (
     });
   }
 
-  // SPECIAL_TRACKS: COMUNICACAO_ALIENIGENA
-  const comunicacaoAlienigenaTrack = getCandidateOnList(
-    customTrackCandidates,
-    GAME_NAMES.COMUNICACAO_ALIENIGENA,
-  );
-  if (comunicacaoAlienigenaTrack) {
-    const attributes = Object.values(
-      await fetchResource<Dictionary<ItemAttributeData>>(TDR_RESOURCES.ITEMS_ATTRIBUTES),
-    );
-    const selectedAttributes = sampleSize(Object.values(attributes), 2);
-
-    const selectedAlienItems = await getItems(5, {
-      allowNSFW,
-      decks: ['alien'],
-      cleanUp: itemUtils.cleanupDecks,
-    });
-
-    customTracks.push({
-      game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
-      data: {
-        items: selectedAlienItems,
-        attributes: selectedAttributes,
-        signs: sampleSize(makeArray(SPRITE_LIBRARIES.ALIEN_SIGNS, 0), 2),
-      },
-    });
-  }
-
-  // SPECIAL_TRACKS: MENTE_COLETIVA
+  // INPUT_TRACKS: MENTE_COLETIVA
   const menteColetivaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.MENTE_COLETIVA);
   if (menteColetivaTrack) {
     const groupQuestions = Object.values(
@@ -575,7 +646,51 @@ export const getData = async (
     });
   }
 
-  // UNPOPULAR_TRACKS: CRIMES_HEDIONDOS
+  // OPINIONS_TRACKS: POLEMICA_DA_VEZ
+  const polemicaDaVezTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.POLEMICA_DA_VEZ);
+  if (polemicaDaVezTrack) {
+    type CustomTweet = TextCardData & { custom?: boolean };
+    const tweets = Object.values(
+      await fetchResource<Dictionary<CustomTweet>>(TDR_RESOURCES.TWEETS, { language }),
+    ).filter((tweet) => !tweet.custom);
+
+    customTracks.push({
+      game: GAME_NAMES.POLEMICA_DA_VEZ,
+      data: {
+        card: sample(tweets),
+      },
+    });
+  }
+
+  // OPINIONS_TRACKS: FILEIRA_DE_FATOS
+  const fileiraDeFatosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.FILEIRA_DE_FATOS);
+  if (fileiraDeFatosTrack) {
+    const allScenarios = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.SCENARIOS, { language });
+    customTracks.push({
+      game: GAME_NAMES.FILEIRA_DE_FATOS,
+      data: {
+        scenarios: sampleSize(Object.values(allScenarios), 3),
+      },
+    });
+  }
+
+  // OPINIONS_TRACKS: ESQUIADORES
+  const esquiadoresTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.ESQUIADORES);
+  if (esquiadoresTrack) {
+    const dilemmas: DilemmaCardData[] = Object.values(
+      await fetchResource<Dictionary<DilemmaCardData>>(TDR_RESOURCES.DILEMMAS, { language }),
+    );
+    const selectedDilemas = allowNSFW ? dilemmas : dilemmas.filter((dilemma) => !dilemma.nsfw);
+
+    customTracks.push({
+      game: GAME_NAMES.ESQUIADORES,
+      data: {
+        dilemma: sample(selectedDilemas),
+      },
+    });
+  }
+
+  // SPECIAL_TRACKS: CRIMES_HEDIONDOS
   const crimesHediondosTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.CRIMES_HEDIONDOS);
   if (crimesHediondosTrack) {
     const allWeapons = await fetchResource<Dictionary<CrimesHediondosCardData>>(TDR_RESOURCES.CRIME_WEAPONS);
@@ -614,27 +729,7 @@ export const getData = async (
     }
   }
 
-  // UNPOPULAR_TRACKS: VAMOS_AO_CINEMA
-  const vamosAoCinemaTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.VAMOS_AO_CINEMA);
-  if (vamosAoCinemaTrack) {
-    const movies = Object.values(
-      await fetchResource<Dictionary<MovieCardData>>(TDR_RESOURCES.MOVIES, { language }),
-    );
-    const allReviews = Object.values(
-      await fetchResource<Dictionary<MovieReviewCardData>>(TDR_RESOURCES.MOVIE_REVIEWS, { language }),
-    );
-    const reviews = getMovieReviews(allReviews);
-
-    customTracks.push({
-      game: GAME_NAMES.VAMOS_AO_CINEMA,
-      data: {
-        movies: sampleSize(movies, 6),
-        reviews,
-      },
-    });
-  }
-
-  // UNPOPULAR_TRACKS: NA_RUA_DO_MEDO
+  // SPECIAL_TRACKS: NA_RUA_DO_MEDO
   const naRuaDoMedoTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.NA_RUA_DO_MEDO);
   if (naRuaDoMedoTrack) {
     const streetData = getNaRuaDoMedoScenario(playerCount);
@@ -652,13 +747,40 @@ export const getData = async (
     });
   }
 
-  // UNPOPULAR_TRACKS: QUEM_NAO_MATA
+  // SPECIAL_TRACKS: QUEM_NAO_MATA
   const quemNaoMataTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.QUEM_NAO_MATA);
   if (quemNaoMataTrack) {
     customTracks.push({
       game: GAME_NAMES.QUEM_NAO_MATA,
       variant: 'kill',
       data: {},
+    });
+  }
+
+  // SPECIAL_TRACKS: BOMBA_RELOGIO
+  // TODO
+
+  // OTHER_TRACKS: NAMORO_OU_AMIZADE
+  const namoroOuAmizadeTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.NAMORO_OU_AMIZADE);
+  if (namoroOuAmizadeTrack) {
+    const heads = Object.values(
+      await fetchResource<Dictionary<DatingCandidateImageCardData>>(TDR_RESOURCES.DATING_CANDIDATE_HEADS),
+    );
+    const bodies = Object.values(
+      await fetchResource<Dictionary<DatingCandidateImageCardData>>(TDR_RESOURCES.DATING_CANDIDATE_BODIES),
+    );
+    const candidatePersonalities = Object.values(
+      await fetchResource<Dictionary<DatingCandidateCardData>>(TDR_RESOURCES.DATING_CANDIDATE, { language }),
+    );
+    const selectedPersonalities = getCandidatePersonality(candidatePersonalities);
+
+    customTracks.push({
+      game: GAME_NAMES.NAMORO_OU_AMIZADE,
+      data: {
+        heads: sampleSize(heads, 3),
+        bodies: sampleSize(bodies, 3),
+        ...selectedPersonalities,
+      },
     });
   }
 
@@ -740,6 +862,12 @@ const getRandomTrackGame = (candidates: TrackCandidate[], allowNSFW: boolean) =>
     if (candidate.disabled) {
       return;
     }
+
+    // DEV
+    // if (candidate.verified) {
+    //   return;
+    // }
+
     if (!allowNSFW && candidate.nsfw) {
       return;
     }

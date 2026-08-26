@@ -17,7 +17,7 @@ import { increaseRound } from '../../mechanics/round';
 import { determineWinners } from '../../mechanics/scoring';
 // Internal
 import { setupAchievements, calculateAchievements } from './achievements';
-import { buildDeck, buildRanking, buildSequence } from './helpers';
+import { buildBookDeck, buildRanking, buildBookSequence } from './helpers';
 
 /**
  * Setup
@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Build deck
-  const deck = buildDeck();
+  const deck = buildBookDeck();
 
   const achievements = setupAchievements(getListOfPlayersIds(players));
 
@@ -75,7 +75,7 @@ export const preparePatternCreationPhase = async (
   removePropertiesFromPlayers(players, ['patternId']);
 
   // Build sequence
-  const sequence = buildSequence(store.deck, round.current);
+  const sequence = buildBookSequence(store.deck, round.current);
 
   // Save
   return {

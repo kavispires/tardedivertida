@@ -9,240 +9,338 @@ export const MEGAMIX_ACTIONS = {
   SUBMIT_TRACK_ANSWER: 'SUBMIT_TRACK_ANSWER',
 } as const;
 
-export const TITLES: Record<string, DualLanguageValue> = {
-  'arte-ruim': {
-    pt: 'Arte Ruim Pra Dedéu',
-    en: 'Questionable Art',
-  },
-  'comunicacao-alienigena': {
-    pt: 'Comunicação Alienígena',
-    en: 'Alien Communication',
-  },
-  'contadores-historias': {
-    pt: 'Contadores de Histórias',
-    en: 'Storytellers',
-  },
-  'crimes-hediondos': {
-    pt: 'Crimes Hediondos',
-    en: 'Horrific Crimes',
-  },
-  'cruza-palavras': {
-    pt: 'Cruza Palavras',
-    en: 'Mixed Clues',
-  },
-  'detetives-imaginativos': {
-    pt: 'Detetives Imaginativos',
-    en: 'Detective Agency',
-  },
-  esquiadores: {
-    pt: 'Esquiadores',
-    en: 'Ski Resort',
-  },
-  'espiao-entre-nos': {
-    pt: 'Espião Entre Nós',
-    en: 'Spy the Spies',
-  },
-  'fileira-de-fatos': {
-    pt: 'Fileira de Fatos',
-    en: 'Facts Lineup',
-  },
-  'galeria-de-sonhos': {
-    pt: 'Galeria de Sonhos',
-    en: 'Dream Gallery',
-  },
-  'labirinto-secreto': {
-    pt: 'Labirinto Secreto',
-    en: 'Secret Labyrinth',
-  },
-  'megamix-best-of-three': {
-    pt: 'Melhor de 3',
-    en: 'Best of 3',
-  },
-  'megamix-this-that': {
-    pt: 'Isso ou Aquilo?',
-    en: 'This or That?',
-  },
-  'megamix-who-said-this': {
-    pt: 'Quem Disse Isso?',
-    en: 'Who Said This?',
-  },
-  'mente-coletiva': {
-    pt: 'Mente Coletiva',
-    en: 'Herd Mind',
-  },
-  'na-rua-do-medo': {
-    pt: 'Na Rua do Medo',
-    en: 'Fear Street',
-  },
-  'namoro-ou-amizade': {
-    pt: 'Namoro ou Amizade',
-    en: 'Awkward Dates',
-  },
-  'onda-telepatica': {
-    pt: 'Ondas Telepáticas',
-    en: 'Telepathic Waves',
-  },
-  'palheta-de-cores': {
-    pt: 'Palheta de Cores',
-    en: 'Color Palette',
-  },
-  'polemica-da-vez': {
-    pt: 'Polêmica da Vez',
-    en: "That's Polemic!",
-  },
-  'porta-dos-desesperados': {
-    pt: 'Porta dos Desesperados',
-    en: 'Obscure Doors',
-  },
-  'retrato-falado': {
-    pt: 'Retrato Falado Monstruoso',
-    en: 'Monster Sketch',
-  },
-  'quem-nao-mata': {
-    pt: 'Quem Não Mata, Morre',
-    en: 'Mortal Standoff',
-  },
-  'quem-sou-eu': {
-    pt: 'Quem Sou Eu?',
-    en: 'Who Am I?',
-  },
-  'super-campeonato': {
-    pt: 'Super Campeonato',
-    en: 'Ultimate Championship',
-  },
-  'ta-na-cara': {
-    pt: 'Tá Na Cara',
-    en: 'Guess Who What?',
-  },
-  'testemunha-ocular': {
-    pt: 'Testemunha Ocular',
-    en: 'Eye Witness',
-  },
-  'ue-so-isso': {
-    pt: 'Ué, só isso?',
-    en: "That's it?",
-  },
-  'vamos-ao-cinema': {
-    pt: 'Vamos no cinema?',
-    en: 'Movie night!',
-  },
-};
+export const SIDES = {
+  LOSER: 'L',
+  WINNER: 'W',
+} as const;
 
-export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
+export const SCORING_POINTS = {
+  JOIN_VIP: 1,
+  TIED_WITH_VIP: 1,
+  ALREADY_ON_VIP: 2,
+  CATCHUP_BONUS: 2,
+  CATCHUP_PENALTY: -2,
+} as const;
+
+export const MEGAMIX_TRACKS: Dictionary<{ title: DualLanguageValue; tagline: DualLanguageValue }> = {
   'arte-ruim': {
-    pt: 'Uma imagem vale mais que mil palavras',
-    en: "That's art!",
+    title: {
+      pt: 'Arte Ruim Pra Dedéu',
+      en: 'Questionable Art',
+    },
+    tagline: {
+      pt: 'Uma imagem vale mais que mil palavras',
+      en: "That's art!",
+    },
   },
   'comunicacao-alienigena': {
-    pt: 'Vamos falar com os ETs',
-    en: 'Let us talk to the aliens',
+    title: {
+      pt: 'Comunicação Alienígena',
+      en: 'Alien Communication',
+    },
+    tagline: {
+      pt: 'Vamos falar com os ETs',
+      en: 'Let us talk to the aliens',
+    },
   },
   'contadores-historias': {
-    pt: 'Conte uma história',
-    en: 'Tell us a story',
+    title: {
+      pt: 'Contadores de Histórias',
+      en: 'Storytellers',
+    },
+    tagline: {
+      pt: 'Conte uma história',
+      en: 'Tell us a story',
+    },
   },
   'crimes-hediondos': {
-    pt: 'Desvenda o crime!',
-    en: 'Solve the crime!',
+    title: {
+      pt: 'Crimes Hediondos',
+      en: 'Horrific Crimes',
+    },
+    tagline: {
+      pt: 'Desvenda o crime!',
+      en: 'Solve the crime!',
+    },
   },
   'cruza-palavras': {
-    pt: 'Coloque a dica na grade de palavras!',
-    en: 'Place the clue in the word grid!',
+    title: {
+      pt: 'Cruza Palavras',
+      en: 'Mixed Clues',
+    },
+    tagline: {
+      pt: 'Coloque a dica na grade de palavras!',
+      en: 'Place the clue in the word grid!',
+    },
   },
   'detetives-imaginativos': {
-    pt: 'Há um impostor entre a gente!',
-    en: 'There is an impostor among us!',
+    title: {
+      pt: 'Detetives Imaginativos',
+      en: 'Detective Agency',
+    },
+    tagline: {
+      pt: 'Há um impostor entre a gente!',
+      en: 'There is an impostor among us!',
+    },
+  },
+  duetos: {
+    title: {
+      pt: 'Duetos',
+      en: 'Duets',
+    },
+    tagline: {
+      pt: 'Faça pares com as cartas como os outros jogadores',
+      en: 'Pair the cards like the other players',
+    },
   },
   esquiadores: {
-    pt: 'Escolha uma montanha para esquiar!',
-    en: 'Choose a mountain to ski!',
+    title: {
+      pt: 'Esquiadores',
+      en: 'Ski Resort',
+    },
+    tagline: {
+      pt: 'Escolha uma montanha para esquiar!',
+      en: 'Choose a mountain to ski!',
+    },
   },
   'espiao-entre-nos': {
-    pt: 'Onde você está?',
-    en: 'Where are we?',
+    title: {
+      pt: 'Espião Entre Nós',
+      en: 'Spy the Spies',
+    },
+    tagline: {
+      pt: 'Onde você está?',
+      en: 'Where are we?',
+    },
   },
   'fileira-de-fatos': {
-    pt: 'Coloque a fila de números na ordem!',
-    en: 'Place the line of numbers in order!',
+    title: {
+      pt: 'Fileira de Fatos',
+      en: 'Facts Lineup',
+    },
+    tagline: {
+      pt: 'Coloque a fila de números na ordem!',
+      en: 'Place the line of numbers in order!',
+    },
   },
   'galeria-de-sonhos': {
-    pt: 'Um tema, um sonho, várias images',
-    en: 'A theme, a dream, many images',
+    title: {
+      pt: 'Galeria de Sonhos',
+      en: 'Dream Gallery',
+    },
+    tagline: {
+      pt: 'Um tema, um sonho, várias images',
+      en: 'A theme, a dream, many images',
+    },
   },
   'labirinto-secreto': {
-    pt: 'Vamos andar pela floresta',
-    en: "Let's walk into the woods",
+    title: {
+      pt: 'Labirinto Secreto',
+      en: 'Secret Labyrinth',
+    },
+    tagline: {
+      pt: 'Vamos andar pela floresta',
+      en: "Let's walk into the woods",
+    },
+  },
+  'medidas-nao-exatas': {
+    title: {
+      pt: 'Medidas Não Exatas',
+      en: 'Creative Metrics',
+    },
+    tagline: {
+      pt: 'Avalie sua palavra secreta com métricas malucas e veja se outros jogadores conseguem adivinhá-la.',
+      en: 'Evaluate your secret word with crazy metrics and see if other players can guess it.',
+    },
   },
   'megamix-best-of-three': {
-    pt: 'Qual opção você escolhe?',
-    en: 'Which option do you choose?',
+    title: {
+      pt: 'Melhor de 3',
+      en: 'Best of 3',
+    },
+    tagline: {
+      pt: 'Qual opção você escolhe?',
+      en: 'Which option do you choose?',
+    },
   },
   'megamix-this-that': {
-    pt: 'Qual opção você escolhe?',
-    en: 'Which option do you choose?',
+    title: {
+      pt: 'Isso ou Aquilo?',
+      en: 'This or That?',
+    },
+    tagline: {
+      pt: 'Qual opção você escolhe?',
+      en: 'Which option do you choose?',
+    },
   },
   'megamix-who-said-this': {
-    pt: 'Quem tem mais cara de ter disso isso?',
-    en: "Who could've possibly said this?",
+    title: {
+      pt: 'Quem Disse Isso?',
+      en: 'Who Said This?',
+    },
+    tagline: {
+      pt: 'Quem tem mais cara de ter disso isso?',
+      en: "Who could've possibly said this?",
+    },
   },
   'mente-coletiva': {
-    pt: 'Junte-se as ovelhas!',
-    en: 'Join the herd!',
+    title: {
+      pt: 'Mente Coletiva',
+      en: 'Herd Mind',
+    },
+    tagline: {
+      pt: 'Junte-se as ovelhas!',
+      en: 'Join the herd!',
+    },
   },
   'na-rua-do-medo': {
-    pt: 'Gostosuras ou travessuras?',
-    en: 'Trick or treat?',
+    title: {
+      pt: 'Na Rua do Medo',
+      en: 'Fear Street',
+    },
+    tagline: {
+      pt: 'Gostosuras ou travessuras?',
+      en: 'Trick or treat?',
+    },
   },
   'namoro-ou-amizade': {
-    pt: 'Selecione o melhor partido',
-    en: "Who's the best catch?",
+    title: {
+      pt: 'Namoro ou Amizade',
+      en: 'Awkward Dates',
+    },
+    tagline: {
+      pt: 'Selecione o melhor partido',
+      en: "Who's the best catch?",
+    },
   },
   'onda-telepatica': {
-    pt: 'Para onde o ponteiro está apontando?',
-    en: 'Where is the pointer pointing to?',
+    title: {
+      pt: 'Ondas Telepáticas',
+      en: 'Telepathic Waves',
+    },
+    tagline: {
+      pt: 'Para onde o ponteiro está apontando?',
+      en: 'Where is the pointer pointing to?',
+    },
   },
   'palheta-de-cores': {
-    pt: 'Selecione a melhor cor',
-    en: 'Select the best color swatch',
+    title: {
+      pt: 'Palheta de Cores',
+      en: 'Color Palette',
+    },
+    tagline: {
+      pt: 'Selecione a melhor cor',
+      en: 'Select the best color swatch',
+    },
   },
   'polemica-da-vez': {
-    pt: 'Quantas curtidas isso ganha?',
-    en: 'How many likes, huh?',
+    title: {
+      pt: 'Polêmica da Vez',
+      en: "That's Polemic!",
+    },
+    tagline: {
+      pt: 'Quantas curtidas isso ganha?',
+      en: 'How many likes, huh?',
+    },
   },
   'porta-dos-desesperados': {
-    pt: 'Qual a porta é a saída?',
-    en: 'What door is the exit?',
-  },
-  'quem-nao-mata': {
-    pt: 'Mate alguém...',
-    en: 'Kill someone...',
-  },
-  'quem-sou-eu': {
-    pt: 'Decifre os símbolos!',
-    en: 'Decipher the glyphs',
+    title: {
+      pt: 'Porta dos Desesperados',
+      en: 'Obscure Doors',
+    },
+    tagline: {
+      pt: 'Qual a porta é a saída?',
+      en: 'What door is the exit?',
+    },
   },
   'retrato-falado': {
-    pt: 'Qual o melhor monstro?',
-    en: 'What is the best monster?',
+    title: {
+      pt: 'Retrato Falado Monstruoso',
+      en: 'Monster Sketch',
+    },
+    tagline: {
+      pt: 'Qual o melhor monstro?',
+      en: 'What is the best monster?',
+    },
+  },
+  'quem-nao-mata': {
+    title: {
+      pt: 'Quem Não Mata, Morre',
+      en: 'Mortal Standoff',
+    },
+    tagline: {
+      pt: 'Mate alguém...',
+      en: 'Kill someone...',
+    },
+  },
+  'quem-sou-eu': {
+    title: {
+      pt: 'Quem Sou Eu?',
+      en: 'Who Am I?',
+    },
+    tagline: {
+      pt: 'Decifre os símbolos!',
+      en: 'Decipher the glyphs',
+    },
+  },
+  'senso-literario': {
+    title: {
+      pt: 'Senso Literário',
+      en: 'Book Sense',
+    },
+    tagline: {
+      pt: 'Qual é a ordem dos livros?',
+      en: 'What is the order of the books?',
+    },
   },
   'super-campeonato': {
-    pt: 'Quem ganha essa batalha?',
-    en: 'Who will win this battle?',
+    title: {
+      pt: 'Super Campeonato',
+      en: 'Ultimate Championship',
+    },
+    tagline: {
+      pt: 'Quem ganha essa batalha?',
+      en: 'Who will win this battle?',
+    },
   },
   'ta-na-cara': {
-    pt: 'E esse aí? O que acha?',
-    en: 'What about this one? What do you think?',
+    title: {
+      pt: 'Tá Na Cara',
+      en: 'Guess Who What?',
+    },
+    tagline: {
+      pt: 'E esse aí? O que acha?',
+      en: 'What about this one? What do you think?',
+    },
   },
   'testemunha-ocular': {
-    pt: 'Quem é o criminoso?',
-    en: 'Who is the perpetrator?',
+    title: {
+      pt: 'Testemunha Ocular',
+      en: 'Eye Witness',
+    },
+    tagline: {
+      pt: 'Quem é o criminoso?',
+      en: 'Who is the perpetrator?',
+    },
   },
   'ue-so-isso': {
-    pt: 'Escreva uma dica para ser eliminada',
-    en: 'Write a clue to be eliminated',
+    title: {
+      pt: 'Ué, só isso?',
+      en: "That's it?",
+    },
+    tagline: {
+      pt: 'Escreva uma dica para ser eliminada',
+      en: 'Write a clue to be eliminated',
+    },
   },
   'vamos-ao-cinema': {
-    pt: 'Vamos ver qual filme?',
-    en: 'But what movie?',
+    title: {
+      pt: 'Vamos no cinema?',
+      en: 'Movie night!',
+    },
+    tagline: {
+      pt: 'Vamos ver qual filme?',
+      en: 'But what movie?',
+    },
   },
 };

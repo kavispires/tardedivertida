@@ -1,16 +1,20 @@
+// Hooks
+import { useCardWidth } from '@hooks/useCardWidth';
+// Components
+import { BookPatternCard } from '@components/cards/BookPatternCard';
 // Internal
 import type { VoteComponentProps } from '../../utils/types';
 import { useGroupedVotes } from '../../utils/useGroupedVotes';
 import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
-export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
-  const cheatSheet: PlainObject = {
-    0: [track.data.cards[0].text, track.data.cards[2].text],
-    1: [track.data.cards[0].text, track.data.cards[3].text],
-    2: [track.data.cards[1].text, track.data.cards[2].text],
-    3: [track.data.cards[1].text, track.data.cards[3].text],
-  };
+export function VoteSensoLiterario({ playersList }: VoteComponentProps) {
+  const width = useCardWidth(playersList.length + 4, {
+    gap: 8,
+    minWidth: 48,
+    maxWidth: 96,
+    margin: 8,
+  });
 
   const groupedVotes = useGroupedVotes(playersList);
 
@@ -20,15 +24,16 @@ export function VoteCruzaPalavras({ track, playersList }: VoteComponentProps) {
       paths={['data.value']}
     >
       <div className="vote-groups">
-        {groupedVotes.map(([voteValue, voters]) => (
+        {groupedVotes.map(([cardId, voters]) => (
           <div
-            key={`vote-group-${voteValue}`}
+            key={`vote-group-${cardId}`}
             className="vote-groups__group"
           >
             <div className="vote-groups__target">
-              <div className="track-result-values__text-value">
-                {cheatSheet[voteValue][0]} {'+'} {cheatSheet[voteValue][1]}
-              </div>
+              <BookPatternCard
+                patternId={cardId}
+                cardWidth={width}
+              />
             </div>
 
             <Voters voters={voters} />

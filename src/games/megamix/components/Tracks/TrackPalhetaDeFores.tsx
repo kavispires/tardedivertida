@@ -30,7 +30,7 @@ export const TrackPalhetaDeCores = ({ track, onSubmitAnswer, user }: TrackProps)
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Palheta de Cores', en: 'Color Palette' }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"

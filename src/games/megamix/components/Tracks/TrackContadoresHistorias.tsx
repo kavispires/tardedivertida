@@ -33,7 +33,7 @@ export const TrackContadoresHistorias = ({ track, onSubmitAnswer, user }: TrackP
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Contadores de Histórias', en: 'Storytellers' }} />
+      <MinigameTitle track={track} />
       <SpaceContainer
         className="margin"
         vertical

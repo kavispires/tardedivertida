@@ -48,7 +48,7 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
   if (track.variant === 'cards') {
     return (
       <>
-        <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
+        <MinigameTitle track={track} />
         <RuleInstruction type="action">
           <Translate
             pt="Dentre as cartas abaixo, qual melhor descreve essa linda ilustração?
@@ -94,7 +94,7 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Arte Ruim Pra Dedéu', en: 'Questionable Art' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Dentre as ilustrações abaixo, qual melhor descreve a carta?
@@ -118,7 +118,7 @@ export const TrackArteRuim = ({ track, onSubmitAnswer, user }: TrackProps) => {
       <div className="a-drawings">
         {track.data.options.map((entry: PlainObject) => (
           <div
-            key={String(entry)}
+            key={String(entry.drawing)}
             className="a-drawings__entry"
           >
             <CanvasSVG

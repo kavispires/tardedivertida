@@ -38,7 +38,7 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
   if (track.variant === 'kids') {
     return (
       <>
-        <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
+        <MinigameTitle track={track} />
         <RuleInstruction type="action">
           <Translate
             pt="Estamos indo de porta em porta buscar doces...
@@ -113,7 +113,7 @@ export const TrackNaRuaDoMedo = ({ track, onSubmitAnswer, user }: TrackProps) =>
   // TODO: This variant does not exist yet
   return (
     <>
-      <MinigameTitle title={{ pt: 'Na Rua do Medo', en: 'Fear Street' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Você estava tranquilo em casa e <strong>6 crianças</strong> apareceram na sua porta. Qual das opções você escolheria para dar pra eles? Assustar ou guloseimas?"

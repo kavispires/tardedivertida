@@ -43,7 +43,7 @@ export const TrackQuemSouEu = ({ track, onSubmitAnswer, user }: TrackProps) => {
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Quem Sou Eu?', en: 'Who Am I?' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Decifre os símbolos e selecione o personagem que mais tem aver com eles."

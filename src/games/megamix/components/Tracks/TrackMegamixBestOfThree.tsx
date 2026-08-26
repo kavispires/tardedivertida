@@ -28,7 +28,7 @@ export const TrackMegamixBestOfThree = ({ track, onSubmitAnswer, user }: TrackPr
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Melhor de 3', en: 'Best of 3' }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"

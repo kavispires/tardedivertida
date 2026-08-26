@@ -6,6 +6,7 @@ import { TDIcon } from '@icons/TDIcon';
 import { GameBanner } from '@components/game-identity/GameBanner';
 // Internal
 import type { Track } from '../utils/types';
+import { MEGAMIX_TRACKS } from '../utils/constants';
 import { SpinningVinylRecordIcon } from './VinylRecordIcon';
 
 type TrackIconProps = {
@@ -24,36 +25,7 @@ export const TrackIcon = ({ track }: TrackIconProps) => {
   }
 
   // Vinyl Icon (TD Games)
-  if (
-    [
-      'arte-ruim',
-      'comunicacao-alienigena',
-      'contadores-historias',
-      'crimes-hediondos',
-      'cruza-palavras',
-      'detetives-imaginativos',
-      'esquiadores',
-      'espiao-entre-nos',
-      'fileira-de-fatos',
-      'galeria-de-sonhos',
-      'labirinto-secreto',
-      'mente-coletiva',
-      'namoro-ou-amizade',
-      'na-rua-do-medo',
-      'onda-telepatica',
-      'palheta-de-cores',
-      'polemica-da-vez',
-      'porta-dos-desesperados',
-      'quem-nao-mata',
-      'quem-sou-eu',
-      'retrato-falado',
-      'super-campeonato',
-      'testemunha-ocular',
-      'ta-na-cara',
-      'ue-so-isso',
-      'vamos-ao-cinema',
-    ].includes(track.game)
-  ) {
+  if (MEGAMIX_TRACKS?.[track.game]) {
     return (
       <SpinningVinylRecordIcon
         cover={
@@ -68,6 +40,4 @@ export const TrackIcon = ({ track }: TrackIconProps) => {
 
   // All others
   return <TDIcon />;
-
-  // if ()
 };

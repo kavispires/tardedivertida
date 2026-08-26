@@ -29,7 +29,7 @@ export const TrackMegamixWhoSaidThis = ({ track, onSubmitAnswer, user, players }
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Quem disse isso?', en: 'Who Said This?' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Selecione qual jogador você acha que disse esse fato:"

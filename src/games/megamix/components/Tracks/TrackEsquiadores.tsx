@@ -40,7 +40,7 @@ export const TrackEsquiadores = ({ track, onSubmitAnswer, user }: TrackProps) =>
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'O Esquiador', en: 'Ski Resorte' }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"

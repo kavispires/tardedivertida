@@ -1,8 +1,9 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Badge, Button, Flex } from 'antd';
 // Types
 import type { GameRound, GameRanking, GamePlayer, GamePlayers } from 'types/game';
 // Hooks
+import { useSortedPlayers } from '@hooks/useSortedPlayers';
 import type { UseStep } from '@hooks/useStep';
 // Icons
 import { BouncerIcon } from '@icons/BouncerIcon';
@@ -10,14 +11,18 @@ import { BouncerIcon } from '@icons/BouncerIcon';
 import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
+import { TitledContainer } from '@components/layout/TitledContainer';
 import { PointsHighlight } from '@components/metrics/PointsHighlight';
+import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { ListOfPlayers } from '@components/players/ListOfPlayers';
 import { StepRankingWrapper } from '@components/results/StepRankingWrapper';
 import { Step } from '@components/steps/Step';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 import { StepTitle } from '@components/text/StepTitle';
+import { Text } from '@components/text/Text';
 // Internal
 import { useColorizeBackground } from './utils/useColorizeBackground';
+import { SIDES } from './utils/constants';
 
 type StepRankingProps = {
   user: GamePlayer;
@@ -27,6 +32,7 @@ type StepRankingProps = {
   round: GameRound;
   penaltyPlayers: UID[];
   bonusPlayers: UID[];
+  winningTeam: UID[];
 };
 
 export function StepRanking({
@@ -37,9 +43,16 @@ export function StepRanking({
   user,
   penaltyPlayers,
   bonusPlayers,
+  winningTeam,
 }: StepRankingProps) {
   // Dynamic background
   useColorizeBackground(user, round.current + 1);
+
+  const nonVIPPlayers = useSortedPlayers(players, {
+    sortBy: ['score', 'name'],
+    orders: ['desc', 'asc'],
+    filter: (player) => player.team[round.current] === SIDES.LOSER && winningTeam.includes(player.id),
+  });
 
   const innerContent = (
     <>
@@ -54,7 +67,7 @@ export function StepRanking({
 
   const actions = (
     <>
-      <SpaceContainer>
+      <SpaceContainer className="my-8">
         <Button onClick={goToPreviousStep}>
           <Translate
             pt="Ver resultado novamente"
@@ -170,6 +183,35 @@ export function StepRanking({
       )}
 
       {actions}
+
+      {nonVIPPlayers.length > 0 && (
+        <TitledContainer
+          title={
+            <Translate
+              pt="Jogadores fora da Área VIP que ganharam pontos no empate"
+              en="Players outside the VIP Area who gained points in the tie"
+            />
+          }
+        >
+          {nonVIPPlayers.map((player) => (
+            <Flex
+              vertical
+              key={player.id}
+              gap={5}
+              align="center"
+            >
+              <Badge count={player.score}>
+                <PlayerAvatar
+                  avatarId={player.avatarId}
+                  shape="square"
+                  size="large"
+                />
+              </Badge>
+              <Text>{player.name}</Text>
+            </Flex>
+          ))}
+        </TitledContainer>
+      )}
     </StepRankingWrapper>
   );
 }

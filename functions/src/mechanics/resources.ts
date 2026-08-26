@@ -212,8 +212,11 @@ export const getContenders = async (
   allowNSFW: boolean,
   decks: string[],
   quantity?: number,
+  cache?: boolean,
 ): Promise<ContenderCardData[]> => {
-  const contendersResponse: Dictionary<ContenderCardData> = await fetchResource(TDR_RESOURCES.CONTENDERS);
+  const contendersResponse: Dictionary<ContenderCardData> = await fetchResource(TDR_RESOURCES.CONTENDERS, {
+    cache,
+  });
 
   const priorityDecks: Dictionary<ContenderCardData> = {};
   const includeSpecialDecks = decks.includes('special-td') || decks.includes('special-td-bg');

@@ -33,12 +33,12 @@ export const TrackComunicacaoAlienigena = ({ track, onSubmitAnswer }: TrackProps
 
   // DEV Mock
   useMock(() => {
-    onSelect(String(mockSelection(track.data.items.map((item: ItemData) => item.id))));
+    onSelect(String(mockSelection(track.data.items, 'id')));
   });
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Comunicação Alienígena', en: 'Alien Communication' }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"

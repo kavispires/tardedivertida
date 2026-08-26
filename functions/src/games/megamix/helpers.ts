@@ -420,7 +420,7 @@ export const handleSeedingData = (
 
     return distributeTracksEvenly(partyTracks, TOTAL_ROUNDS, playerCount);
   }
-  return distributeTracksEvenly(tracks, TOTAL_ROUNDS, playerCount);
+  return tracks;
 };
 
 export const parseCrimeTiles = (sceneTiles: CrimeSceneTileData[]) => {
@@ -961,10 +961,17 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
       // Low cards are 4 or less or less than players - 2
       if (card.value < 4 || card.value <= playerCount - 2) {
         acc[0].push(card);
-      } else if (card.value > 10) {
+        return acc;
+      }
+
+      if (card.value > 10) {
         acc[2].push(card);
-      } else {
+        return acc;
+      }
+
+      if (card.value > 4 && card.value < 8) {
         acc[1].push(card);
+        return acc;
       }
 
       return acc;

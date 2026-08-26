@@ -9,10 +9,10 @@ import { SpacePlayerCheckWrapper } from '../SpacePlayerCheckWrapper';
 import { Voters } from '../Voters';
 
 export function VoteArteRuim({ track, playersList }: VoteComponentProps) {
-  const width = useCardWidth(playersList.length + 1, {
+  const width = useCardWidth(playersList.length + 2, {
     gap: 9,
     minWidth: 80,
-    maxWidth: 200,
+    maxWidth: 128,
   });
 
   const groupedVotes = useGroupedVotes(playersList);

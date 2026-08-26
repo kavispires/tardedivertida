@@ -4,7 +4,10 @@ import { Button, type ButtonProps } from 'antd';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
+// Icons
+import { BoxXIcon } from '@icons/BoxXIcon';
 // Components
+import { Icon } from '@components/general/Icon';
 import { SpreadsheetCell, SpreadsheetGrid } from '@components/general/SpreadsheetGrid';
 import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
@@ -19,20 +22,35 @@ import { MinigameTitle } from '../MinigameTitle';
 export const TrackCruzaPalavras = ({ track, onSubmitAnswer, user }: TrackProps) => {
   const { isLoading } = useLoading();
 
-  const onSelect = (position: number) => {
+  const availability: boolean[] = track.data.cells;
+
+  const selectionOptions = {
+    0: availability[0] ? `${track.data.cards[0].text} + ${track.data.cards[2].text}` : null,
+    1: availability[1] ? `${track.data.cards[1].text} + ${track.data.cards[2].text}` : null,
+    2: availability[2] ? `${track.data.cards[0].text} + ${track.data.cards[3].text}` : null,
+    3: availability[3] ? `${track.data.cards[1].text} + ${track.data.cards[3].text}` : null,
+  };
+
+  const onSelect = (position: 0 | 1 | 2 | 3) => {
     onSubmitAnswer({
-      data: { value: String(position) },
+      data: { value: String(selectionOptions[position]) },
     });
   };
 
   // DEV Mock
   useMock(() => {
-    onSelect(mockSelection([0, 1, 2, 3]));
+    onSelect(
+      mockSelection(
+        availability.map((available, index) => (available ? index : null)).filter((v) => v !== null),
+      ),
+    );
   });
+
+  const unavailableCell = <Icon icon={<BoxXIcon />} />;
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Cruza Palavras', en: 'Mixed Clues' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt={
@@ -64,33 +82,49 @@ export const TrackCruzaPalavras = ({ track, onSubmitAnswer, user }: TrackProps) 
           <SpreadsheetCell header>{track.data.cards[1].text}</SpreadsheetCell>
           <SpreadsheetCell header>{track.data.cards[2].text}</SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton
-              onClick={() => onSelect(0)}
-              disabled={user.ready}
-              loading={isLoading}
-            />
+            {availability[0] ? (
+              <CellPlusButton
+                onClick={() => onSelect(0)}
+                disabled={user.ready}
+                loading={isLoading}
+              />
+            ) : (
+              unavailableCell
+            )}
           </SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton
-              onClick={() => onSelect(1)}
-              disabled={user.ready}
-              loading={isLoading}
-            />
+            {availability[1] ? (
+              <CellPlusButton
+                onClick={() => onSelect(1)}
+                disabled={user.ready}
+                loading={isLoading}
+              />
+            ) : (
+              unavailableCell
+            )}
           </SpreadsheetCell>
           <SpreadsheetCell header>{track.data.cards[3].text}</SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton
-              onClick={() => onSelect(2)}
-              disabled={user.ready}
-              loading={isLoading}
-            />
+            {availability[2] ? (
+              <CellPlusButton
+                onClick={() => onSelect(2)}
+                disabled={user.ready}
+                loading={isLoading}
+              />
+            ) : (
+              unavailableCell
+            )}
           </SpreadsheetCell>
           <SpreadsheetCell>
-            <CellPlusButton
-              onClick={() => onSelect(3)}
-              disabled={user.ready}
-              loading={isLoading}
-            />
+            {availability[3] ? (
+              <CellPlusButton
+                onClick={() => onSelect(3)}
+                disabled={user.ready}
+                loading={isLoading}
+              />
+            ) : (
+              unavailableCell
+            )}
           </SpreadsheetCell>
         </SpreadsheetGrid>
       </SpaceContainer>

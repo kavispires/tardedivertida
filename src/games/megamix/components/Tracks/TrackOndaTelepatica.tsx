@@ -38,7 +38,7 @@ export const TrackOndaTelepatica = ({ track, onSubmitAnswer, user }: TrackProps)
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Onda Telepática', en: 'Telepathic Waves' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Com a carta de as duas ideias opostas e a dica abaixo, você acha que o Medidor de Ondas Telepáticas apontaria para a <left>Esquerda</left>, <center>Centro</center> ou <right>Direita</right>?"

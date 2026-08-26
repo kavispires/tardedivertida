@@ -1,9 +1,12 @@
-import clsx from 'clsx';
+import { useAnimate, useAnimation, motion } from 'motion/react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Types
+import type { GamePlayer } from 'types/game';
 // Hooks
 import { useLoading } from '@hooks/useLoading';
 import { useMock } from '@hooks/useMock';
+import { useMouseDirection } from '@hooks/useMouseDirection';
 import { useSortedPlayers } from '@hooks/useSortedPlayers';
 // Icons
 import { ShooterIcon } from '@icons/ShooterIcon';
@@ -18,7 +21,7 @@ import type { TrackProps } from '../../utils/types';
 import { mockSelection } from '../../utils/mock';
 import { MinigameTitle } from '../MinigameTitle';
 
-export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) => {
+export const TrackQuemNaoMata = ({ track, onSubmitAnswer, players }: TrackProps) => {
   const { isLoading } = useLoading();
   const sortedPlayers = useSortedPlayers(players);
 
@@ -35,7 +38,7 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Quem Não Mata, Morre!', en: 'Mortal Standoff' }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"
@@ -49,32 +52,14 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
         </RuleInstruction>
 
         <SpaceContainer wrap>
-          {sortedPlayers.map((player, index, arr) => {
+          {sortedPlayers.map((player) => {
             return (
-              <div
+              <PlayerShooter
                 key={player.id}
-                className="qnm-shooter"
-              >
-                <Icon
-                  icon={<ShooterIcon />}
-                  size={48}
-                  className={clsx(index >= arr.length / 2 && 'qnm-shooter__reverse')}
-                />
-                <Button
-                  icon={
-                    <PlayerAvatar
-                      avatarId={player.avatarId}
-                      size="small"
-                    />
-                  }
-                  onClick={() => onSelect(player.id)}
-                  type="primary"
-                  loading={isLoading}
-                  disabled={user.ready}
-                >
-                  {player.name}
-                </Button>
-              </div>
+                player={player}
+                onSelect={onSelect}
+                isLoading={isLoading}
+              />
             );
           })}
         </SpaceContainer>
@@ -82,3 +67,46 @@ export const TrackQuemNaoMata = ({ onSubmitAnswer, user, players }: TrackProps) 
     </>
   );
 };
+
+type PlayerShooterProps = {
+  player: GamePlayer;
+  onSelect: (value: string) => void;
+  isLoading: boolean;
+};
+
+function PlayerShooter({ player, onSelect, isLoading }: PlayerShooterProps) {
+  const [refShooter] = useAnimate();
+  const controls = useAnimation();
+  const shooterDirection = useMouseDirection(refShooter, 'horizontal');
+
+  return (
+    <motion.div
+      ref={refShooter}
+      className="qnm-shooter"
+      animate={controls}
+    >
+      <Icon
+        icon={<ShooterIcon />}
+        size={48}
+        style={{
+          transform: `scaleX(${shooterDirection === 'left' ? -1 : 1})`,
+          transition: 'transform 0.2s ease-in-out',
+        }}
+      />
+      <Button
+        icon={
+          <PlayerAvatar
+            avatarId={player.avatarId}
+            size="small"
+          />
+        }
+        onClick={() => onSelect(player.id)}
+        type="primary"
+        loading={isLoading}
+        disabled={isLoading}
+      >
+        {player.name}
+      </Button>
+    </motion.div>
+  );
+}

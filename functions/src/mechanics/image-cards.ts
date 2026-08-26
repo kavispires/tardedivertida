@@ -39,7 +39,7 @@ const generateDeck = (deckPrefix: string, quantity: number) => {
 async function fetchImageDecksCardsData(
   minimumQuantity: number,
 ): Promise<{ decks: string[]; cardInfo: ImageDecksData }> {
-  const cardInfo = await fetchResource<ImageDecksData>('images-decks');
+  const cardInfo = await fetchResource<ImageDecksData>('images-decks', { cache: true });
 
   const decks = Object.keys(cardInfo);
   const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: number, num) => acc + num, 0));

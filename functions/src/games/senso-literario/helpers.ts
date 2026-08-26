@@ -42,7 +42,7 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * Each card ID is formatted as `${color}-${genre}-${letter}`.
  * @returns A shuffled array of card IDs representing the complete deck
  */
-export function buildDeck() {
+export function buildBookDeck() {
   const deck: UID[] = [];
   COLORS.forEach((color) => {
     GENRES.forEach((genre) => {
@@ -65,7 +65,7 @@ export function buildDeck() {
  * @param currentRound - The current round number (1-indexed) used to determine which cards to select
  * @returns A shuffled array containing 4 round-specific cards plus one wildcard
  */
-export function buildSequence(deck: UID[], currentRound: number) {
+export function buildBookSequence(deck: UID[], currentRound: number) {
   const sequence: UID[] = [];
   // Get 4 cards for the sequence (it should get a chunk from the deck based on the round)
   const cardsInRound = currentRound < 4 ? 4 : 5;

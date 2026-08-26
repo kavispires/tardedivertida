@@ -29,12 +29,15 @@ import { TrackSuperCampeonato } from './components/Tracks/TrackSuperCampeonato';
 import { TrackTestemunhaOcular } from './components/Tracks/TrackTestemunhaOcular';
 import { TrackUeSoIsso } from './components/Tracks/TrackUeSoIsso';
 import { TrackVamosAoCinema } from './components/Tracks/TrackVamosAoCinema';
+import { TrackSensoLiterario } from './components/Tracks/TrackSensoLiterario';
 import { TrackMegamixBestOfThree } from './components/Tracks/TrackMegamixBestOfThree';
 import { TrackMegamixThisThat } from './components/Tracks/TrackMegamixThisThat';
 import { TrackComunicacaoAlienigena } from './components/Tracks/TrackComunicacaoAlienigena';
 import { TrackQuemSouEu } from './components/Tracks/TrackQuemSouEu';
 import { TrackTaNaCara } from './components/Tracks/TrackTaNaCara';
 import { TrackMegamixWhoSaidThis } from './components/Tracks/TrackMegamixWhoSaidThis';
+import { TrackMedidasNaoExatas } from './components/Tracks/TrackMedidasNaoExatas';
+import { TrackDuetos } from './components/Tracks/TrackDuetos';
 
 type StepTrackProps = {
   round: GameRound;
@@ -53,11 +56,13 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'crimes-hediondos': TrackCrimesHediondos,
       'cruza-palavras': TrackCruzaPalavras,
       'detetives-imaginativos': TrackDetetivesImaginativos,
+      duetos: TrackDuetos,
       esquiadores: TrackEsquiadores,
       'espiao-entre-nos': TrackEspiaoEntreNos,
       'fileira-de-fatos': TrackFileiraDeFatos,
       'galeria-de-sonhos': TrackGaleriaDeSonhos,
       'labirinto-secreto': TrackLabirintoSecreto,
+      'medidas-nao-exatas': TrackMedidasNaoExatas,
       'megamix-best-of-three': TrackMegamixBestOfThree,
       'megamix-this-that': TrackMegamixThisThat,
       'megamix-who-said-this': TrackMegamixWhoSaidThis,
@@ -71,6 +76,7 @@ export const StepTrack = ({ announcement, ...rest }: StepTrackProps) => {
       'quem-nao-mata': TrackQuemNaoMata,
       'quem-sou-eu': TrackQuemSouEu,
       'retrato-falado': TrackRetratoFalado,
+      'senso-literario': TrackSensoLiterario,
       'super-campeonato': TrackSuperCampeonato,
       'testemunha-ocular': TrackTestemunhaOcular,
       'ta-na-cara': TrackTaNaCara,

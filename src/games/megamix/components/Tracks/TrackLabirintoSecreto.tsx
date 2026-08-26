@@ -37,7 +37,7 @@ export const TrackLabirintoSecreto = ({ track, onSubmitAnswer, user }: TrackProp
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Labirinto Secreto', en: 'Secret Labyrinth' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           en="To cross the woods, your friend is waiting on your instructions on what 3 trees they must reach.

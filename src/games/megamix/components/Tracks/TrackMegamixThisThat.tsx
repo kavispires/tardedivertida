@@ -32,7 +32,7 @@ export const TrackMegamixThisThat = ({ track, onSubmitAnswer, user }: TrackProps
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Isso ou Aquilo?', en: 'This or That?' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Selecione qual você prefere:"

@@ -35,7 +35,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
   if (track.variant === 'impostor') {
     return (
       <>
-        <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
+        <MinigameTitle track={track} />
         <RuleInstruction type="action">
           <Translate
             pt="Você é o impostor e não sabe a palavra-secreta. Os outros jogadores escolheram as cartas abaixo que supostamente combinam com a palavra-secreta."
@@ -54,10 +54,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                 >
                   <ImageBlurButtonContainer
                     cardId={cardId}
-                    className={clsx(
-                      'd-table__card',
-                      user?.data?.value === cardId && 'd-table__card--selected',
-                    )}
+                    className="d-table__card"
                   >
                     <ImageCard
                       key={`table-focus-${cardId}`}
@@ -84,6 +81,32 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
                 </div>
               );
             })}
+
+            <div className="d-table__player-entry">
+              <div
+                className="d-table__card grayscale"
+                style={{ opacity: 0.25 }}
+              >
+                <ImageCard
+                  cardId="back-question"
+                  cardWidth={cardWidth * 0.6}
+                  className="d-table__image-card "
+                />
+              </div>
+
+              <div className="d-table__player-info">
+                <PlayerAvatar
+                  avatarId={user.avatarId}
+                  className="d-table__player-avatar"
+                  size="default"
+                />
+                <span
+                  className="d-table__player-bar"
+                  style={{ backgroundColor: AVATARS[user.avatarId].color }}
+                />
+                <span className="d-table__player-name">{user.name}</span>
+              </div>
+            </div>
           </ul>
         </Image.PreviewGroup>
 
@@ -146,7 +169,7 @@ export const TrackDetetivesImaginativos = ({ track, onSubmitAnswer, user }: Trac
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Detetives Imaginativos', en: 'Detective Agency' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Dentre as cartas abaixo, uma delas é do impostor! Você sabe qual é?

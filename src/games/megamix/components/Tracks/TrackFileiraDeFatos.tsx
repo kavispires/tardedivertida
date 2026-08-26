@@ -67,11 +67,11 @@ export const TrackFileiraDeFatos = ({ track, onSubmitAnswer }: TrackProps) => {
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Fileira de Fatos', en: 'Facts Lineup' }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"
-        className="contained margin"
+        className="margin"
       >
         <RuleInstruction type="action">
           <Translate

@@ -38,7 +38,7 @@ export const TrackEspiaoEntreNos = ({ track, onSubmitAnswer, user }: TrackProps)
 
   return (
     <>
-      <MinigameTitle title={{ pt: '', en: '' }} />
+      <MinigameTitle track={track} />
       <RuleInstruction type="action">
         <Translate
           pt="Você está em um(a) {location}. Você é um(a) {role}.

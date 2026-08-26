@@ -3,7 +3,6 @@ import type { ResultComponentProps } from '../utils/types';
 import { WinningCount } from './WinningCount';
 import { FallbackComponent } from './FallbackComponent';
 import { ResultArteRuim } from './Results/ResultArteRuim';
-import { ResultCruzaPalavras } from './Results/ResultCruzaPalavras';
 import { ResultNamoroOuAmizade } from './Results/ResultNamoroOuAmizade';
 import { ResultNaRuaDoMedo } from './Results/ResultNaRuaDoMedo';
 import { ResultRetratoFalado } from './Results/ResultRetratoFalado';
@@ -20,6 +19,8 @@ import { ResultPalhetaDeCores } from './Results/ResultPalhetaDeCores';
 import { ResultQuemNaoMata } from './Results/ResultQuemNaoMata';
 import { ResultWhoSaidThis } from './Results/ResultWhoSaidThis';
 import { ResultCrimesHediondos } from './Results/ResultCrimesHediondos';
+import { ResultDuetos } from './Results/ResultDuetos';
+import { ResultSensoLiterario } from './Results/ResultSensoLiterario';
 
 export const ResultValueDelegator = (props: ResultComponentProps) => {
   const ResultComponent =
@@ -28,13 +29,15 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'comunicacao-alienigena': ResultComunicacaoAlienigena,
       'contadores-historias': ResultImage,
       'crimes-hediondos': ResultCrimesHediondos,
-      'cruza-palavras': ResultCruzaPalavras,
+      'cruza-palavras': ResultText,
       'detetives-imaginativos': ResultImage,
+      duetos: ResultDuetos,
       esquiadores: ResultText,
       'espiao-entre-nos': ResultText,
       'fileira-de-fatos': ResultText,
       'galeria-de-sonhos': ResultImage,
       'labirinto-secreto': ResultLabirintoSecreto,
+      'medidas-nao-exatas': ResultText,
       'megamix-best-of-three': ResultMegamix,
       'megamix-this-that': ResultMegamix,
       'megamix-who-said-this': ResultWhoSaidThis,
@@ -48,6 +51,7 @@ export const ResultValueDelegator = (props: ResultComponentProps) => {
       'quem-nao-mata': ResultQuemNaoMata,
       'quem-sou-eu': ResultCharacter,
       'retrato-falado': ResultRetratoFalado,
+      'senso-literario': ResultSensoLiterario,
       'super-campeonato': ResultCharacter,
       'testemunha-ocular': ResultImage,
       'ta-na-cara': ResultTaNaCara,

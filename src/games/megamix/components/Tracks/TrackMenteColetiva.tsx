@@ -30,7 +30,7 @@ export const TrackMenteColetiva = ({ track, onSubmitAnswer }: TrackProps) => {
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Mente Coletiva', en: 'Herd Mind' }} />
+      <MinigameTitle track={track} />
       <SpaceContainer
         vertical
         contained

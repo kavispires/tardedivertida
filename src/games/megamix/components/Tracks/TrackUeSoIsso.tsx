@@ -35,7 +35,7 @@ export const TrackUeSoIsso = ({ track, onSubmitAnswer }: TrackProps) => {
 
   return (
     <>
-      <MinigameTitle title={{ pt: 'Ué, só isso?', en: "That's it?" }} />
+      <MinigameTitle track={track} />
       <Space
         orientation="vertical"
         align="center"
