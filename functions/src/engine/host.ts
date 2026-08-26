@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import * as admin from 'firebase-admin';
+import { getFirestore } from 'firebase-admin/firestore';
 import { orderBy } from 'lodash';
 // Types
 import type { CallableRequest, FirebaseAuth } from '../types/reference';
@@ -83,7 +83,7 @@ const createGame = async (data: CreateGamePayload, auth: FirebaseAuth) => {
   const usedGameIds = Object.keys(usedGameIdsData ?? {});
 
   // Get list of code ids present in database
-  const gameRef = admin.firestore().collection('games').doc(gameName);
+  const gameRef = getFirestore().collection('games').doc(gameName);
 
   // Generate unique 4 digit code starting with game code letter
   let gameId: string = generateGameId(gameCode, language as Language, usedGameIds);

@@ -40,7 +40,7 @@ export const saveDrawings = async (finalGallery: FinalGalleryEntry[], language: 
 
   try {
     await updateGlobalTrackerDocumentData(docName, finalGallery);
-  } catch (_e) {
+  } catch {
     // Ignore
   }
 };
