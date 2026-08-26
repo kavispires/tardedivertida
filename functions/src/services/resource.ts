@@ -7,6 +7,10 @@ type FetchResourceOptions = {
    * Whether to cache the fetched resource for subsequent requests
    */
   cache?: boolean;
+  /**
+   * Optional language code for localized resources
+   */
+  language?: string;
 };
 
 // Use an LRU cache to prevent memory leaks across serverless invocations
@@ -23,12 +27,8 @@ const inFlightRequests = new Map<string, Promise<unknown>>();
  * @param language - Optional language code for localized resources
  * @param options - Optional resource fetching options
  */
-export const fetchResource = async <T>(
-  resourceName: string,
-  language?: string,
-  options?: FetchResourceOptions,
-): Promise<T> => {
-  const resourceUrl = `${process.env.TD_RESOURCES}${resourceName}${language ? `-${language}` : ''}.json`;
+export const fetchResource = async <T>(resourceName: string, options?: FetchResourceOptions): Promise<T> => {
+  const resourceUrl = `${process.env.TD_RESOURCES}${resourceName}${options?.language ? `-${options.language}` : ''}.json`;
   const shouldCache = options?.cache === true;
 
   if (shouldCache && resourceCache.has(resourceUrl)) {

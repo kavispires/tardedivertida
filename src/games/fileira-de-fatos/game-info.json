@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "F",
   "gameName": "fileira-de-fatos",
-  "version": "1.0.75",
+  "version": "1.0.76",
   "release": "stable",
   "releaseDate": "2023-07-21",
-  "updatedAt": 1787431633832,
+  "updatedAt": 1787715769962,
   "available": true,
   "title": {
     "pt": "Fileira De Fatos",

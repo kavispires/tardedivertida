@@ -22,7 +22,9 @@ import { buildBooleanDictionary, filterOutByIds } from '../../utils';
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allCategories = await fetchResource<Dictionary<SpectrumCardData>>(TDR_RESOURCES.SPECTRUMS, language);
+  const allCategories = await fetchResource<Dictionary<SpectrumCardData>>(TDR_RESOURCES.SPECTRUMS, {
+    language,
+  });
   // Get used deck
   const usedCategories = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 

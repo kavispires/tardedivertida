@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.117",
+  "version": "0.10.118",
   "release": "paused",
   "releaseDate": "2021-05-23",
-  "updatedAt": 1787431633572,
+  "updatedAt": 1787715769722,
   "available": false,
   "title": {
     "pt": "Espião Entre Nós",

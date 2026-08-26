@@ -17,13 +17,12 @@ import { fetchResource } from '../../services/resource';
 export const getCards = async (language: string): Promise<ResourceData> => {
   const allDescriptors = await fetchResource<Dictionary<TextCardData>>(
     TDR_RESOURCES.WARNING_SIGNS_DESCRIPTORS,
-    language,
+    { language },
   );
 
-  const allSubjects = await fetchResource<Dictionary<TextCardData>>(
-    TDR_RESOURCES.WARNING_SIGNS_SUBJECTS,
+  const allSubjects = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.WARNING_SIGNS_SUBJECTS, {
     language,
-  );
+  });
 
   return { allDescriptors: Object.values(allDescriptors), allSubjects: Object.values(allSubjects) };
 };

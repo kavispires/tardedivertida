@@ -11,5 +11,5 @@ import { fetchResource } from '../../services/resource';
  * @returns Custom deck of tweet cards
  */
 export const getTweets = async (language: string) => {
-  return await fetchResource<CustomDeck>(TDR_RESOURCES.TWEETS, language);
+  return await fetchResource<CustomDeck>(TDR_RESOURCES.TWEETS, { language });
 };

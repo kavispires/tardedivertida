@@ -14,7 +14,7 @@ import { fetchResource } from '../../services/resource';
  */
 export const getDilemmas = async (language: string, options: EsquiadoresOptions): Promise<ResourceData> => {
   // Get full deck
-  const allDilemmas = await fetchResource<Dictionary<DilemmaCardData>>(TDR_RESOURCES.DILEMMAS, language);
+  const allDilemmas = await fetchResource<Dictionary<DilemmaCardData>>(TDR_RESOURCES.DILEMMAS, { language });
 
   return {
     dilemmas: Object.values(allDilemmas).filter((scenario) => (options.nsfw ? true : !scenario.nsfw)),

@@ -19,7 +19,7 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
   // Get full deck
   const allCards = await fetchResource<Dictionary<TestimonyStatementCardData>>(
     TDR_RESOURCES.TESTIMONY_STATEMENTS,
-    language,
+    { language },
   );
   // Get images info
   const allActors = await getSuspects({
@@ -32,7 +32,7 @@ export const getData = async (language: string, options: TesteDeElencoOptions): 
   const availableCards = Object.values(allCards).filter((card) => (options.nsfw ? card : !card.nsfw));
 
   // Get full movies deck
-  const allMovies = await fetchResource<Dictionary<MovieCardData>>(TDR_RESOURCES.MOVIES, language);
+  const allMovies = await fetchResource<Dictionary<MovieCardData>>(TDR_RESOURCES.MOVIES, { language });
 
   const items = await getItems(6, {
     allowNSFW: !!options.nsfw,

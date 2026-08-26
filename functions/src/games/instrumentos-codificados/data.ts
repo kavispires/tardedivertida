@@ -11,5 +11,5 @@ import { fetchResource } from '../../services/resource';
  * @returns Dictionary of thing prompt cards
  */
 export const getThemes = async (language: string) => {
-  return await fetchResource<Dictionary<ThingPromptCardData>>(TDR_RESOURCES.THING_PROMPTS, language);
+  return await fetchResource<Dictionary<ThingPromptCardData>>(TDR_RESOURCES.THING_PROMPTS, { language });
 };

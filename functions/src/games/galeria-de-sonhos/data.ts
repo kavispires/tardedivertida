@@ -19,7 +19,7 @@ import { getImageCards } from '../../mechanics/image-cards';
  */
 export const getWords = async (language: Language): Promise<ResourceData> => {
   // Get full deck
-  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THEME_WORDS, language);
+  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THEME_WORDS, { language });
 
   const imageCardIds = await getImageCards(TABLE_DECK_TOTAL);
 

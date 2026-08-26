@@ -24,7 +24,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   // Get full deck
   const allCards = await fetchResource<Dictionary<TestimonyStatementCardData>>(
     TDR_RESOURCES.TESTIMONY_STATEMENTS,
-    language,
+    { language },
   );
   // Get used deck
   const usedCards = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.TESTIMONY_STATEMENTS, {});

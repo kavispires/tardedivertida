@@ -25,7 +25,9 @@ export const getWords = async (language: Language, options?: CruzaPalavrasOption
   const quantityNeeded = options?.gridType === 'imageCards' ? 15 : 28;
 
   if (options?.gridType === 'properties') {
-    const allCards = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THINGS_QUALITIES, language);
+    const allCards = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THINGS_QUALITIES, {
+      language,
+    });
     // Does not need type because it is just text
     return { deck: sampleSize(Object.values(allCards), quantityNeeded) };
   }

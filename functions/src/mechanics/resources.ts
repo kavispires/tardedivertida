@@ -318,7 +318,7 @@ export const getUnusedResources = async <T extends { id: string; nsfw?: boolean 
   quantity?: number,
 ): Promise<T[]> => {
   // Get full deck
-  const allResources: Dictionary<T> = await fetchResource(resourceKey, language);
+  const allResources: Dictionary<T> = await fetchResource(resourceKey, { language });
 
   // Filter out NSFW resources if not allowed
   const safeResources = Object.values(allResources).reduce((acc: Dictionary<T>, resource) => {
@@ -395,7 +395,9 @@ export const getSuspects = async ({
    */
   sortBy?: string;
 }): Promise<SuspectCardData[]> => {
-  const allSuspects = await fetchResource<Dictionary<SuspectCardData>>(TDR_RESOURCES.SUSPECTS);
+  const allSuspects = await fetchResource<Dictionary<SuspectCardData>>(TDR_RESOURCES.SUSPECTS, {
+    cache: true,
+  });
   const suspectsArray = Object.values(allSuspects);
 
   /**

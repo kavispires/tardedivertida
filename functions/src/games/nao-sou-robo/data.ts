@@ -35,11 +35,11 @@ export const getResourceData = async (language: Language, playerCount: number): 
   const quantityNeeded = Math.ceil(MAX_ROUNDS / 3);
 
   // Colors
-  const allColors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.COLORS, language);
+  const allColors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.COLORS, { language });
   const colors = sampleSize(Object.values(allColors), quantityNeeded);
 
   // Emotions
-  const allEmotions = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.EMOTIONS, language);
+  const allEmotions = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.EMOTIONS, { language });
   const emotions = sampleSize(Object.values(allEmotions), quantityNeeded);
 
   // Words

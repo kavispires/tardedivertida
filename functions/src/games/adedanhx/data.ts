@@ -14,7 +14,7 @@ import { fetchResource } from '../../services/resource';
  */
 export const getTopics = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allTopics = await fetchResource<Dictionary<TopicCardData>>(TDR_RESOURCES.TOPICS, language);
+  const allTopics = await fetchResource<Dictionary<TopicCardData>>(TDR_RESOURCES.TOPICS, { language });
 
   return { allTopics: Object.values(allTopics), allLetters: LETTERS_ENTRIES_BY_LANGUAGE[language] };
 };

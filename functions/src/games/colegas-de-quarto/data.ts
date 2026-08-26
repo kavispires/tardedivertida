@@ -26,7 +26,9 @@ export const getWords = async (
   const quantityNeeded = WORDS_IN_POOL * TOTAL_ROUNDS;
 
   if (options?.wordsSource === 'properties') {
-    const allCards = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THINGS_QUALITIES, language);
+    const allCards = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.THINGS_QUALITIES, {
+      language,
+    });
     // Does not need type because it is just text
     return { deck: sampleSize(Object.values(allCards), quantityNeeded) };
   }

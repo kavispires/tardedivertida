@@ -30,10 +30,9 @@ export const getResourceData = async (
   options: SuperCampeonatoOptions,
 ): Promise<ResourceData> => {
   // Get full challenges deck
-  const challengesResponse = await fetchResource<Dictionary<TextCardData>>(
-    TDR_RESOURCES.CHALLENGES,
+  const challengesResponse = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.CHALLENGES, {
     language,
-  );
+  });
   // Get used challenges deck
   const usedChallenges = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 

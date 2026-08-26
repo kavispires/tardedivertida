@@ -44,7 +44,7 @@ export const getData = async (
   }
 
   // Get cards
-  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.TREE_WORDS, language);
+  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.TREE_WORDS, { language });
 
   const filtered = options.includePrivateTrees
     ? Object.values(allWords)

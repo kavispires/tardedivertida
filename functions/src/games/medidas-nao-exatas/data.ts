@@ -17,7 +17,9 @@ export const getResourceData = async (language: Language): Promise<ResourceData>
   // Text cards to make the pool
   const allWords = await getSingleWords(language);
   // Descriptors to make the metrics
-  const allDescriptors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.DESCRIPTORS, language);
+  const allDescriptors = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.DESCRIPTORS, {
+    language,
+  });
 
   return { allWords: Object.values(allWords), allDescriptors: Object.values(allDescriptors) };
 };

@@ -12,13 +12,12 @@ import { fetchResource } from '../../services/resource';
  * @returns Resource data containing drawing words and arte ruim expressions
  */
 export const getData = async (language: string): Promise<ResourceData> => {
-  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.DRAWING_WORDS, language);
+  const allWords = await fetchResource<Dictionary<TextCardData>>(TDR_RESOURCES.DRAWING_WORDS, { language });
 
   // Get full deck
-  const allExpressions = await fetchResource<Dictionary<ArteRuimCardData>>(
-    TDR_RESOURCES.ARTE_RUIM_CARDS,
+  const allExpressions = await fetchResource<Dictionary<ArteRuimCardData>>(TDR_RESOURCES.ARTE_RUIM_CARDS, {
     language,
-  );
+  });
 
   return {
     allWords: Object.values(allWords),

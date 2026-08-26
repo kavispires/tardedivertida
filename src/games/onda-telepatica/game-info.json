@@ -2,9 +2,9 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.129",
+  "version": "4.0.130",
   "releaseDate": "2021-05-18",
-  "updatedAt": 1787431635816,
+  "updatedAt": 1787715771146,
   "release": "stable",
   "available": true,
   "title": {

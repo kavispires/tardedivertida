@@ -22,10 +22,9 @@ import { buildBooleanDictionary, filterOutByIds } from '../../utils';
  */
 export const getQuestions = async (language: string): Promise<ResourceData> => {
   // Get full deck
-  const allQuestions = await fetchResource<Dictionary<GroupQuestionCardData>>(
-    TDR_RESOURCES.GROUP_QUESTIONS,
+  const allQuestions = await fetchResource<Dictionary<GroupQuestionCardData>>(TDR_RESOURCES.GROUP_QUESTIONS, {
     language,
-  );
+  });
   // Get used deck
   const usedQuestions = await fetchGlobalTrackerDocumentData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
 
