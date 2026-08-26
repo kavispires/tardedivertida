@@ -3,7 +3,7 @@ import { useGameActionRequest } from '@hooks/useGameActionRequest';
 import { useLanguage } from '@hooks/useLanguage';
 import type { UseStep } from '@hooks/useStep';
 // Internal
-import type { SubmitAnswerPayload } from './types';
+import type { SubmitAnswerPayload, SubmitSeedPayload } from './types';
 import { MEGAMIX_ACTIONS } from './constants';
 
 export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
@@ -19,7 +19,7 @@ export function useOnSubmitSeedAPIRequest(setStep: UseStep['setStep']) {
     }),
   });
 
-  return (payload: SubmitAnswerPayload) => {
+  return (payload: SubmitSeedPayload) => {
     request({
       action: MEGAMIX_ACTIONS.SUBMIT_SEEDS,
       ...payload,

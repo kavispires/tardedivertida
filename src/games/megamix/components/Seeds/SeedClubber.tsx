@@ -14,13 +14,13 @@ import { Translate } from '@components/language/Translate';
 import { SpaceContainer } from '@components/layout/SpaceContainer';
 import { Title } from '@components/text/Title';
 // Internal
-import type { SeedEntryClubberOutfit, SubmitAnswerPayload } from '../../utils/types';
+import type { SeedEntryClubberOutfit, SubmitSeedPayload } from '../../utils/types';
 
 type SeedClubberProps = {
   seed: SeedEntryClubberOutfit;
   updateData: GenericComponent;
   user: GamePlayer;
-  onSubmitData: (payload: SubmitAnswerPayload) => void;
+  onSubmitData: (payload: SubmitSeedPayload) => void;
   data: PlainObject;
 };
 

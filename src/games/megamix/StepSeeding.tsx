@@ -12,7 +12,7 @@ import { Translate } from '@components/language/Translate';
 import { Step, type StepProps } from '@components/steps/Step';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type { SeedEntry, SubmitAnswerPayload } from './utils/types';
+import type { SeedEntry, SubmitSeedPayload } from './utils/types';
 import { buildSeedingSteps } from './utils/helpers';
 import { mockSeeding } from './utils/mock';
 import { SeedArteRuim } from './components/Seeds/SeedArteRuim';
@@ -29,7 +29,7 @@ import { SeedParty } from './components/Seeds/SeedParty';
 type StepSeedingProps = {
   players: GamePlayers;
   user: GamePlayer;
-  onSubmitData: (payload: SubmitAnswerPayload) => void;
+  onSubmitData: (payload: SubmitSeedPayload) => void;
 } & Pick<StepProps, 'announcement'>;
 
 export const StepSeeding = ({ announcement, user, onSubmitData }: StepSeedingProps) => {

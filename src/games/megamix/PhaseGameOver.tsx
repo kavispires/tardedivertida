@@ -14,9 +14,10 @@ import { TitledContainer } from '@components/layout/TitledContainer';
 import { PlayerAvatar } from '@components/player/PlayerAvatar';
 import { GameOverWrapper } from '@components/results/GameOverWrapper';
 // Internal
+import type { PhaseGameOverState } from './utils/types';
 import { achievementsReference } from './utils/achievements';
 
-export function PhaseGameOver({ state, players }: PhaseProps) {
+export function PhaseGameOver({ state, players }: PhaseProps<PhaseGameOverState>) {
   return (
     <GameOverWrapper
       state={state}

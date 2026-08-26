@@ -1,5 +1,5 @@
 // Types
-import type { GameRound, GamePlayer, GamePlayers, GameRanking } from 'types/game';
+import type { GameRound, GamePlayer, GamePlayers, GameRanking, Achievement } from 'types/game';
 import type { GroupQuestionCardData, SpectrumCardData, TextCardData } from 'types/tdr';
 
 export type Track = {
@@ -14,11 +14,15 @@ export type TrackProps = {
   round: GameRound;
   players: GamePlayers;
   user: GamePlayer;
-  onSubmitAnswer: GenericFunction;
+  onSubmitAnswer: (payload: SubmitAnswerPayload) => void;
+};
+
+export type SubmitSeedPayload = {
+  data: unknown;
 };
 
 export type SubmitAnswerPayload = {
-  data: any;
+  data: { value: string | number };
 };
 
 export type AlienSign = {
@@ -172,7 +176,7 @@ export type PhaseSeedingState = {};
 
 export type PhaseTrackState = {
   track: Track;
-} & MostScoring;
+};
 
 export type PhaseResultState = {
   track: Track;
@@ -181,4 +185,21 @@ export type PhaseResultState = {
   ranking: GameRanking;
 } & MostScoring;
 
-export type PhaseGameOverState = {};
+export type PhaseGameOverState = {
+  /**
+   * Timestamp when the game ended
+   */
+  gameEndedAt: number;
+  /**
+   * Winners of the game
+   */
+  winners: GamePlayer[];
+  /**
+   * Achievements earned during the game
+   */
+  achievements: Achievement[];
+  /**
+   * Fair winners of the game (only populated when the player with the highest points is not in the VIP area)
+   */
+  fairWinners: GamePlayer[];
+};
