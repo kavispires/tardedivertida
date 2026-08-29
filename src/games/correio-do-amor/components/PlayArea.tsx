@@ -1,9 +1,13 @@
 import clsx from 'clsx';
 import { type ReactNode, useMemo } from 'react';
+// Ant Design Resources
+import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
 // Icons
+import { AnimatedWaitingDotsIcon } from '@icons/AnimatedWaitingDotsIcon';
 import { NoIcon } from '@icons/NoIcon';
+import { SecurityIcon } from '@icons/SecurityIcon';
 import { SpeechBubbleHeartIcon } from '@icons/SpeechBubbleHeartIcon';
 // Components
 import { Icon } from '@components/general/Icon';
@@ -20,9 +24,18 @@ type PlayAreaProps = {
   user: GamePlayer;
   children?: ReactNode;
   userArea?: ReactNode;
+  waitingForPlayerId?: UID | null;
 };
 
-export function PlayArea({ players, gameOrder, activePlayerId, user, children, userArea }: PlayAreaProps) {
+export function PlayArea({
+  players,
+  gameOrder,
+  activePlayerId,
+  user,
+  children,
+  userArea,
+  waitingForPlayerId,
+}: PlayAreaProps) {
   // Using the turn order, move the order under user is the one right before the middle, divide the players into two groups (left and right) and render them on the sides of the play area, with the active player in the middle
   const { leftIds, rightIds } = useMemo(() => {
     if (!gameOrder || gameOrder.length === 0) {
@@ -78,6 +91,7 @@ export function PlayArea({ players, gameOrder, activePlayerId, user, children, u
             key={id}
             player={players[id]}
             isActive={id === activePlayerId}
+            waitingFor={id === waitingForPlayerId}
           />
         ))}
       </div>
@@ -88,6 +102,7 @@ export function PlayArea({ players, gameOrder, activePlayerId, user, children, u
             key={id}
             player={players[id]}
             isActive={id === activePlayerId}
+            waitingFor={id === waitingForPlayerId}
           />
         ))}
       </div>
@@ -105,7 +120,13 @@ export function PlayArea({ players, gameOrder, activePlayerId, user, children, u
   );
 }
 
-function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boolean }) {
+type PlayerEntryProps = {
+  player: GamePlayer;
+  isActive: boolean;
+  waitingFor?: boolean;
+};
+
+function PlayerEntry({ player, isActive, waitingFor }: PlayerEntryProps) {
   return (
     <PlayerFlex
       className={clsx('a-play-area__player-entry', { 'a-play-area__player-entry--active': isActive })}
@@ -113,12 +134,20 @@ function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boole
       withBorder
       vertical
     >
-      <PlayerAvatarName
-        player={player}
-        contrastText
-      />
+      <Flex justify="space-between">
+        <PlayerAvatarName
+          player={player}
+          contrastText
+        />
+        {waitingFor && (
+          <Icon
+            icon={<AnimatedWaitingDotsIcon />}
+            size="small"
+          />
+        )}
+      </Flex>
       <div className="a-play-area__player-entry-content">
-        {player.status === PLAYER_STATUS.ELIMINATED ? (
+        {player.status === PLAYER_STATUS.ELIMINATED && (
           <span
             className={clsx(
               'a-play-area__player-entry-status',
@@ -134,7 +163,9 @@ function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boole
               en="Eliminated"
             />
           </span>
-        ) : (
+        )}
+
+        {player.status === PLAYER_STATUS.ACTIVE && (
           <span
             className={clsx('a-play-area__player-entry-status', 'a-play-area__player-entry-status--ACTIVE')}
           >
@@ -145,6 +176,21 @@ function PlayerEntry({ player, isActive }: { player: GamePlayer; isActive: boole
             <Translate
               pt="Ainda no jogo"
               en="Still Playing"
+            />
+          </span>
+        )}
+
+        {player.status === PLAYER_STATUS.IMMUNE && (
+          <span
+            className={clsx('a-play-area__player-entry-status', 'a-play-area__player-entry-status--IMMUNE')}
+          >
+            <Icon
+              icon={<SecurityIcon />}
+              size="small"
+            />
+            <Translate
+              pt="No jogo, mas imune"
+              en="Still Playing, but Immune"
             />
           </span>
         )}

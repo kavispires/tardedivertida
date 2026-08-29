@@ -11,8 +11,8 @@ export type CorreioDoAmorOptions = {
   chaoticDeck: boolean;
 };
 
-export type CardTier = 'core' | 'plus' | 'advanced' | 'variant';
-export type SetSelectionRule = 'COMBINE' | 'SINGLE';
+export type SetupCardTier = 'core' | 'plus' | 'advanced' | 'variant';
+export type SetupSelectionRule = 'COMBINE' | 'SINGLE';
 
 export type FestaJuninaDatabaseEntry = {
   /**
@@ -36,6 +36,10 @@ export type FestaJuninaDatabaseEntry = {
    */
   effect: DualLanguageValue;
   /**
+   * The description of the passive effect (if any)
+   */
+  passiveEffect?: DualLanguageValue;
+  /**
    * A short flavor text describing the card within the theme
    */
   flavorText: DualLanguageValue;
@@ -48,6 +52,10 @@ export type FestaJuninaDatabaseEntry = {
    */
   keyword: string;
   /**
+   * Some cards will require the player to take an additional action after playing the card (e.g. selecting a target player)
+   */
+  requiresEffectInteraction?: boolean;
+  /**
    * The color of the card for UI purposes
    */
   color: string;
@@ -57,22 +65,30 @@ export type FestaJuninaDatabaseEntry = {
    * 'advanced' = Adds complexity; recommended for 5+ players.
    * 'variant' = Optional modifiers (like Rank 0).
    */
-  tier: CardTier;
-  /**
-   * Name of the group the card belongs to like gender pairs
-   */
-  setName: string;
+  setupTier: SetupCardTier;
   /**
    * How the deck builder should treat this set.
    * 'COMBINE' = Add all specific quantities together up to the setLimit.
-   * 'RANDOM_SINGLE' = Pick exactly 1 card from this set randomly.
+   * 'SINGLE' = Pick exactly 1 card from this set.
    */
-  setRule: SetSelectionRule;
+  setupRule: SetupSelectionRule;
+  /**
+   * Whether the card is currently disabled and should not be used in the game
+   */
+  disabled?: boolean;
 };
 
 export type FestaJuninaCard = Pick<
   FestaJuninaDatabaseEntry,
-  'id' | 'rank' | 'imageId' | 'quantity' | 'keyword' | 'color' | 'setName' | 'setRule' | 'tier'
+  | 'id'
+  | 'rank'
+  | 'imageId'
+  | 'quantity'
+  | 'keyword'
+  | 'requiresEffectInteraction'
+  | 'color'
+  | 'setupRule'
+  | 'setupTier'
 > & {
   /**
    * The name of the card
@@ -82,6 +98,10 @@ export type FestaJuninaCard = Pick<
    * The description of the power
    */
   effect: string;
+  /**
+   * The description of the passive effect (if any)
+   */
+  passiveEffect?: string;
   /**
    * A short flavor text describing the card within the theme
    */
@@ -117,16 +137,6 @@ export type PlaySelections = {
 };
 
 /**
- * Current play information for the current turn
- */
-export type Play = {
-  activeCardId: UID | null;
-  effectKeyword: string | null;
-  options?: (string | number)[];
-  selections?: PlaySelections;
-};
-
-/**
  * Entry for ongoing effect that persist on a full turn or round
  */
 export type OngoingEffect = {
@@ -138,15 +148,28 @@ export type OngoingEffect = {
 /**
  * Results of the current round, including ongoing effects and eliminated players
  */
-export type ResolutionLog = {
-  playedCardId: UID;
-  actorPlayerId: UID;
+export type LogEntry = {
+  actorId: UID;
+  cardId: UID;
+  cardKey: string;
+  cardKeyword: string;
+  // Card Effect Actions
+  options?: (string | number)[];
+  selections?: PlaySelections;
+  // Resolution Effects
   targetPlayersIds: UID[];
-  ongoingEffect: OngoingEffect | null;
-  eliminatedPlayersIds: UID[];
   resolutionKeyword: string | null;
+  newOngoingEffect: OngoingEffect | null;
   effectInput?: UID | null;
+  discardedCardId?: UID | null;
+  eliminatedPlayersIds: UID[];
+  eliminatedByPlayerId?: UID | null;
 };
+
+export type Play = Pick<
+  LogEntry,
+  'actorId' | 'cardId' | 'cardKey' | 'cardKeyword' | 'options' | 'selections'
+>;
 
 /**
  * Game store persisting across phases

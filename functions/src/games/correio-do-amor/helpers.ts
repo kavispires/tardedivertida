@@ -16,7 +16,7 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   outcome: string,
-  effectKeyword?: string | null,
+  shouldTakeAction?: boolean | null,
 ): string => {
   const { SETUP, CARD_PLAY, CARD_EFFECTS, CARD_RESOLUTION, ROUND_RANKING, GAME_OVER } =
     CORREIO_DO_AMOR_PHASES;
@@ -37,21 +37,7 @@ export const determineNextPhase = (
 
   // Define if we need to go to card effects phase based on active effect keyword
   if (currentPhase === CARD_PLAY) {
-    switch (effectKeyword) {
-      case 'GUESS_RANK':
-      case 'GUESS_NAME':
-      case 'PEEK':
-      case 'SWAP_ASIDE':
-      case 'COMPARE_LOWER':
-      case 'COMPARE_HIGHER':
-      case 'DISCARD_REDRAW':
-      case 'TRADE_HANDS':
-      case 'FORCE_TRADE':
-        return CARD_EFFECTS;
-
-      default:
-        return CARD_RESOLUTION;
-    }
+    return shouldTakeAction ? CARD_EFFECTS : CARD_RESOLUTION;
   }
 
   return nextPhaseDelegator(currentPhase, order);
@@ -118,8 +104,8 @@ export function buildRoundDeck(
     return rank1Deck;
   };
 
-  const selectedDeck = Object.values(cardsDict)
-    .filter((card) => card.tier === 'core')
+  const selectedDeck: UID[] = Object.values(cardsDict)
+    .filter((card) => card.setupTier === 'core')
     .flatMap((card) => Array(card.quantity).fill(card.id));
 
   // From Round 2 on - Introduce Rank 0 and from now on alternate the selection of the ZERO group
@@ -130,20 +116,20 @@ export function buildRoundDeck(
   }
 
   // From Round 4 on - Add an advanced card from advancedCardsRotation (all cards are only 1 copy)
-  // If from a group already in the deck that has the setRule 'COMBINE', simply add it.
-  // If from a group already in the deck that has the setRule 'SINGLE', replaced the existing card in the group with this one
+  // If from a group already in the deck that has the setupRule 'COMBINE', simply add it.
+  // If from a group already in the deck that has the setupRule 'SINGLE', replaced the existing card in the group with this one
   if (currentRound >= 4) {
     const advancedCardId = advancedCardsRotation[currentRound % advancedCardsRotation.length];
     const advancedCard = cardsDict[advancedCardId];
     const existingCardIndex = selectedDeck.findIndex((cardId) => {
       const card = cardsDict[cardId];
-      return card.setName === advancedCard.setName;
+      return card.rank === advancedCard.rank;
     });
     if (existingCardIndex !== -1) {
       const existingCard = cardsDict[selectedDeck[existingCardIndex]];
-      if (existingCard.setRule === 'SINGLE') {
+      if (existingCard.setupRule === 'SINGLE') {
         selectedDeck[existingCardIndex] = advancedCard.id;
-      } else if (existingCard.setRule === 'COMBINE') {
+      } else if (existingCard.setupRule === 'COMBINE') {
         selectedDeck.push(advancedCard.id);
       }
     } else {
@@ -157,4 +143,33 @@ export function buildRoundDeck(
   // Update counts
   updateCardsCount(cardsDict, selectedDeck);
   return shuffle(buildCardUniqueIds(selectedDeck));
+
+  // TODO: REMOVE TEMPORARY TESTING
+  //   const ALL_CARD_IDS: UID[] = [
+  //   '0_SANFONEIRO',
+  //   '0_PAU_DE_SEBO',
+  //   '0_CRIANCA',
+  //   '0_BEBADO',
+  //   '1_CAIPIRA_HOMEM',
+  //   '1_CAIPIRA_MULHER',
+  //   '2_PADRE',
+  //   '2_CARTOMANTE',
+  //   '3_NOIVO',
+  //   '3_NOIVA',
+  //   '4_DANCARINA',
+  //   '4_DANCARINO',
+  //   '5_DELEGADO',
+  //   '6_BARRAQUINHA_A',
+  //   '6_BARRAQUINHA_B',
+  //   '6_BARRAQUINHA_C',
+  //   '7_PUXADOR_A',
+  //   '7_PUXADOR_B',
+  //   '7_PUXADOR_C',
+  //   '8_FAZENDEIRO',
+  //   '9_COMILAO',
+  //   '10_GOAL',
+  //   '11_EXS',
+  // ];
+  //  updateCardsCount(cardsDict, ALL_CARD_IDS);
+  //   return shuffle(buildCardUniqueIds(ALL_CARD_IDS));
 }

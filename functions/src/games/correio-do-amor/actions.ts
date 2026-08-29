@@ -1,8 +1,9 @@
 // Types
-import type { PlaySelections } from './types';
+import type { Play, PlaySelections } from './types';
 // Services
 import { updateState } from '../../services/game-session';
 // Internal
+import { getCardKeyFromId } from './helpers';
 import { getNextPhase } from './index';
 
 /**
@@ -22,16 +23,20 @@ export const handleCard = async (
     playedEffect: string;
   },
 ) => {
+  const play: Play = {
+    actorId: playerId,
+    cardId: payload.playedCardId,
+    cardKey: getCardKeyFromId(payload.playedCardId),
+    cardKeyword: payload.playedEffect,
+  };
+
   return await updateState({
     gameName,
     gameId,
     playerId,
     actionText: 'submit your card',
     change: {
-      play: {
-        activeCardId: payload.playedCardId,
-        effectKeyword: payload.playedEffect,
-      },
+      play,
       [`players.${playerId}.hand`]: [payload.keptCardId],
     },
     nextPhaseFunction: getNextPhase,

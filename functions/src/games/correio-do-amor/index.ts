@@ -28,6 +28,7 @@ import {
   prepareCardEffectsPhase,
   prepareCardResolutionPhase,
   prepareGameOverPhase,
+  prepareRoundRankingPhase,
 } from './setup';
 
 /**
@@ -79,12 +80,13 @@ export const getNextPhase = async (
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
 
-  // Determine next phase
+  const playedCard = state.play?.cardKey ? state.cardsDict?.[state.play.cardKey] : undefined;
+
   const nextPhase = determineNextPhase(
     state.phase,
     state.round,
     state.outcome,
-    state.play?.effectKeyword ?? null,
+    playedCard?.requiresEffectInteraction ?? false,
   );
 
   // LOBBY -> SETUP
@@ -117,7 +119,13 @@ export const getNextPhase = async (
     return saveGame(sessionRef, newPhase);
   }
 
-  // CARD_RESOLUTION -> GAME_OVER
+  if (nextPhase === CORREIO_DO_AMOR_PHASES.ROUND_RANKING) {
+    // Prepare round ranking phase
+    const newPhase = await prepareRoundRankingPhase(store, state, players);
+    return saveGame(sessionRef, newPhase);
+  }
+
+  // ROUND_RANKING -> GAME_OVER
   if (nextPhase === CORREIO_DO_AMOR_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return saveGame(sessionRef, newPhase);

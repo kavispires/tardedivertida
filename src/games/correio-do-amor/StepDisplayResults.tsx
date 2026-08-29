@@ -1,38 +1,21 @@
-import { motion } from 'motion/react';
-// Ant Design Resources
-import { Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-// Hooks
-import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
-import { AnimatedWaitingDotsIcon } from '@icons/AnimatedWaitingDotsIcon';
+import { BlackmailIcon } from '@icons/BlackmailIcon';
 // Components
-import { Icon } from '@components/general/Icon';
+import { HostNextPhaseButton } from '@components/host/HostNextPhaseButton';
 import { Translate } from '@components/language/Translate';
-import { PlayerAvatarName } from '@components/player/PlayerAvatarName';
-import { Step, type StepProps } from '@components/steps/Step';
-import { RuleInstruction } from '@components/text/RuleInstruction';
+import { PhaseAnnouncement } from '@components/phases/PhaseAnnouncement';
+import { Step } from '@components/steps/Step';
 import { StepTitle } from '@components/text/StepTitle';
 // Internal
-import type {
-  OngoingEffect,
-  Play,
-  ResolutionLog,
-  SubmitSelectionsPayload,
-  FestaJuninaCard,
-  SubmitCardPayload,
-} from './utils/types';
+import type { OngoingEffect, LogEntry, FestaJuninaCard } from './utils/types';
 import { PLAYER_STATUS } from './utils/constants';
 import { Summary } from './components/Summary';
 import { PlayArea } from './components/PlayArea';
 import { DeckExplanation } from './components/DeckExplanation';
-import { NonPlayingUserArea, PlayingUserArea, EliminatedUserArea } from './components/UserAreas';
-import { CardEffectRuleInstruction } from './components/CardEffectRuleInstruction';
-import { CardEffectSelection } from './components/CardEffectSelection';
-import { FestaJuninaCardImage } from './components/FestaJuninaCardImage';
+import { NonPlayingUserArea, EliminatedUserArea } from './components/UserAreas';
 import { CardResolutionAnimation } from './components/CardResolutionAnimation';
-import { CardResolutionRuleInstruction } from './components/CardResolutionRuleInstruction';
 
 type StepDisplayResultsProps = {
   players: GamePlayers;
@@ -45,19 +28,15 @@ type StepDisplayResultsProps = {
   cardsSetAside: UID[];
   effectKeyword: string | null;
   activePlayerId: UID;
-  nextDrawnCardId: UID;
   targetPlayersIds: UID[];
   outcome: string;
   activePlayer: GamePlayer;
-  isTheActivePlayer: boolean;
   deck: UID[];
   ongoingEffects: OngoingEffect[];
-  play: Play;
-  log: ResolutionLog[];
-} & Pick<StepProps, 'announcement'>;
+  log: LogEntry[];
+};
 
 export function StepDisplayResults({
-  announcement,
   cardsDict,
   user,
   deck,
@@ -67,16 +46,26 @@ export function StepDisplayResults({
   players,
   cardsSetAside,
   discardPile,
-  nextDrawnCardId,
-  isTheActivePlayer,
   ongoingEffects,
   log,
 }: StepDisplayResultsProps) {
-  const cardWidth = useCardWidth(8, { minWidth: 128 });
   const latestLogEntry = log[0];
-  const playedCard = cardsDict?.[latestLogEntry?.playedCardId ?? ''] ?? null;
+  const playedCard = cardsDict?.[latestLogEntry?.cardKey ?? ''] ?? null;
 
-  console.log(playedCard);
+  const announcement = latestLogEntry?.eliminatedPlayersIds.includes(user.id) ? (
+    <PhaseAnnouncement
+      icon={<BlackmailIcon />}
+      title={
+        <Translate
+          pt="Você está eliminado!"
+          en="You are eliminated!"
+        />
+      }
+      // currentRound={state?.round?.current}
+      type="overlay"
+      duration={3}
+    />
+  ) : undefined;
 
   return (
     <Step
@@ -91,12 +80,6 @@ export function StepDisplayResults({
           />
         )}
       </StepTitle>
-
-      <CardResolutionRuleInstruction
-        players={players}
-        logEntry={latestLogEntry}
-        cardsDict={cardsDict}
-      />
 
       <Summary
         user={user}
@@ -116,32 +99,31 @@ export function StepDisplayResults({
         user={user}
         userArea={
           <>
-            {user.hand && user.status !== PLAYER_STATUS.ELIMINATED && !isTheActivePlayer && (
+            {user.hand && user.status !== PLAYER_STATUS.ELIMINATED && (
               <NonPlayingUserArea
                 cardsDict={cardsDict}
-                cardWidth={cardWidth / 2}
                 user={user}
               />
             )}
 
-            {user.status === PLAYER_STATUS.ELIMINATED && <EliminatedUserArea user={user} />}
+            {user.status === PLAYER_STATUS.ELIMINATED && <EliminatedUserArea />}
           </>
         }
       >
         <CardResolutionAnimation
           players={players}
           activePlayer={activePlayer}
-          cardsSetAside={cardsSetAside}
-          ongoingEffects={ongoingEffects}
           cardsDict={cardsDict}
           logEntry={latestLogEntry}
         />
       </PlayArea>
 
-      <DeckExplanation
-        cardsDict={cardsDict}
-        cardWidth={cardWidth}
+      <HostNextPhaseButton
+        autoTriggerTime={45}
+        withWaitingTimeBar
       />
+
+      <DeckExplanation cardsDict={cardsDict} />
     </Step>
   );
 }

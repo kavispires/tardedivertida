@@ -60,6 +60,27 @@ const achievements = achievementBuilder(GAME_KEYS.CORREIO_DO_AMOR)
     doc: 'Number of plays of rank 11 cards',
     most: 'MOST_PLAYED_RANK_11',
   })
+  .counter('playedCards', {
+    doc: 'Total number of cards played',
+    most: 'MOST_CARDS_PLAYED',
+    least: 'LEAST_CARDS_PLAYED',
+  })
+  .counter('eliminations', {
+    doc: 'Total number of players eliminated',
+    most: 'MOST_ELIMINATIONS',
+  })
+  .counter('selfEliminations', {
+    doc: 'Total number of time they got eliminated by their own card',
+    most: 'MOST_SELF_ELIMINATIONS',
+  })
+  .counter('survivedSolo', {
+    doc: 'Total number of times it was the only player in the ranking',
+    most: 'MOST_SURVIVED_SOLO',
+  })
+  .counter('ranked', {
+    doc: 'Total number of times it participated in the final ranking',
+    most: 'MOST_RANKED',
+  })
   .build();
 
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

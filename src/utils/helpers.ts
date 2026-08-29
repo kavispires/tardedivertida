@@ -102,6 +102,8 @@ const methods = {
   table: console.table.bind(console),
   // biome-ignore lint/suspicious/noConsole: on purpose
   warn: console.warn.bind(console),
+  // biome-ignore lint/suspicious/noConsole: on purpose
+  debug: console.debug.bind(console),
 };
 
 /**

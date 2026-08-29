@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash';
+import { orderBy, shuffle } from 'lodash';
 // Types
 import type {
   FestaJuninaCard,
@@ -6,7 +6,7 @@ import type {
   FirebaseStoreData,
   OngoingEffect,
   Play,
-  ResolutionLog,
+  LogEntry,
   ResourceData,
 } from './types';
 // Constants
@@ -14,12 +14,12 @@ import { GAME_NAMES } from '../../constants/games';
 import {
   CORREIO_DO_AMOR_PHASES,
   DECK_INFO_BY_PLAYER_COUNT,
+  KEYWORDS,
   MAX_ROUNDS,
   ONGOING_EFFECT_TYPE,
   OUTCOME,
   PLAYER_STATUS,
-  POINTS_GOAL,
-  POINTS_PER_ROUND,
+  POINTS,
   RESOLUTION_KEYWORD,
 } from './constants';
 // Services
@@ -37,7 +37,7 @@ import { increaseRound } from '../../mechanics/round';
 import { determineWinners, Scores } from '../../mechanics/scoring';
 import { turnOrderUtils } from '../../mechanics/turn-order';
 // Internal
-import { setupAchievements, calculateAchievements } from './achievements';
+import { setupAchievements, calculateAchievements, increaseAchievement } from './achievements';
 import { buildRoundDeck, getCardKeyFromId } from './helpers';
 
 /**
@@ -100,10 +100,13 @@ export const prepareCardPlayPhase = async (
       return acc;
     }, {});
 
+    // Increase round
+    const round = increaseRound(state.round);
+
     // Generate deck
     const deck = buildRoundDeck(
       cardsDict,
-      state.round.current,
+      round.current,
       getPlayerCount(players),
       store.plusRotation,
       store.advancedRotation,
@@ -117,9 +120,6 @@ export const prepareCardPlayPhase = async (
       player.keywords = [];
       player.status = PLAYER_STATUS.ACTIVE;
     });
-
-    // Increase round
-    const round = increaseRound(state.round);
 
     // Determine the starting player for the round, and active player
     const startingPlayerId = turnOrderUtils.getNextPlayerId(state.gameOrder, state.startingPlayerId);
@@ -144,7 +144,6 @@ export const prepareCardPlayPhase = async (
     const turnUpdate = {
       outcome: OUTCOME.CONTINUE,
       nextDrawnCardId: deck.pop() ?? null,
-      // TODO: maybe add play here
       ongoingEffects: [],
     };
 
@@ -164,6 +163,7 @@ export const prepareCardPlayPhase = async (
           cardsSetAside,
           deck,
           discardPile: [],
+          log: [],
           newCardsInDeck,
           ...turnUpdate,
         },
@@ -175,7 +175,11 @@ export const prepareCardPlayPhase = async (
   }
 
   // NEXT TURN
-  const activePlayerId = turnOrderUtils.getNextPlayerId(state.turnOrder, state.activePlayerId);
+  const newTurnOrder = state.turnOrder.filter(
+    (playerId: UID) => players[playerId].status !== PLAYER_STATUS.ELIMINATED,
+  );
+
+  const activePlayerId = turnOrderUtils.getNextPlayerId(newTurnOrder, state.activePlayerId);
 
   // Ready players
   setPlayersReadyState(players, true, { excludeIds: [activePlayerId] });
@@ -191,6 +195,25 @@ export const prepareCardPlayPhase = async (
     return true;
   });
 
+  // Handle discards
+  const logEntry: LogEntry | null = state.log?.[0] ?? null;
+  const discardPile: UID[] = state.discardPile ?? [];
+  if (logEntry) {
+    if (!discardPile.includes(logEntry.cardId)) {
+      discardPile.push(logEntry.cardId);
+    }
+    if (logEntry.discardedCardId && !discardPile.includes(logEntry.discardedCardId)) {
+      discardPile.push(logEntry.discardedCardId);
+    }
+  }
+
+  const deck: UID[] = state.deck ?? [];
+  // Prepare turn: card to be drawn
+  const turnUpdate = {
+    outcome: OUTCOME.CONTINUE,
+    nextDrawnCardId: deck.pop() ?? null,
+  };
+
   return {
     update: {
       state: {
@@ -199,6 +222,10 @@ export const prepareCardPlayPhase = async (
         players,
         activePlayerId,
         ongoingEffects,
+        discardPile,
+        turnOrder: newTurnOrder,
+        deck,
+        ...turnUpdate,
       },
       stateCleanup: ['play'],
     },
@@ -239,7 +266,7 @@ export const prepareCardEffectsPhase = async (
  * @param players - The players object
  */
 export const prepareCardResolutionPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -249,38 +276,76 @@ export const prepareCardResolutionPhase = async (
   const deck: UID[] = state.deck ?? [];
   const discardPile: UID[] = state.discardPile ?? [];
   const cardsDict: Dictionary<FestaJuninaCard> = state.cardsDict;
-  const cardsSetAside: UID[] = state.cardsSetAside ?? [];
+  let cardsSetAside: UID[] = state.cardsSetAside ?? [];
 
-  const play: Play = state.play;
-  const activePlayerId = state.activePlayerId;
-  const targetPlayerId = play.selections?.targetPlayerId ?? null;
+  const results: LogEntry = {
+    ...(state.play as Play),
+    targetPlayersIds: [],
+    newOngoingEffect: null,
+    resolutionKeyword: null,
+    effectInput: null,
+    discardedCardId: null,
+    eliminatedPlayersIds: [],
+    eliminatedByPlayerId: null,
+  };
+
+  increaseAchievement(store.achievements, results.actorId, 'playedCards', 1);
+  const playedCard = cardsDict[results.cardKey];
+  if (playedCard && playedCard.rank >= 0 && playedCard.rank <= 11) {
+    type CardRank = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+    type PlayedRankAchievement = `playedRank${CardRank}`;
+
+    const achievementKey = `playedRank${playedCard.rank}`;
+    increaseAchievement(store.achievements, results.actorId, achievementKey as PlayedRankAchievement, 1);
+  }
+
+  const targetPlayerId = results.selections?.targetPlayerId ?? null;
   const targetPlayer = players[targetPlayerId ?? ''] ?? null;
 
   const ongoingEffects: OngoingEffect[] = state.ongoingEffects ?? [];
 
-  const results: ResolutionLog = {
-    playedCardId: play.activeCardId ?? '',
-    actorPlayerId: activePlayerId,
-    targetPlayersIds: [],
-    ongoingEffect: null,
-    resolutionKeyword: null,
-    eliminatedPlayersIds: [],
-  };
+  const actorCardInHandId = players[results.actorId]?.hand?.[0] ?? null;
+  const actorCardInHand = cardsDict[getCardKeyFromId(actorCardInHandId ?? '')] ?? null;
 
-  const activePlayerCard = cardsDict[getCardKeyFromId(results.playedCardId)] ?? null;
   let targetPlayerCard: FestaJuninaCard | null = null;
+  let targetPlayerCardId: UID | null = null;
   if (targetPlayerId) {
-    targetPlayerCard = cardsDict[getCardKeyFromId(targetPlayer.hand[0])] ?? null;
+    targetPlayerCardId = targetPlayer.hand[0] ?? null;
+    targetPlayerCard = cardsDict[getCardKeyFromId(targetPlayerCardId ?? '')] ?? null;
     results.targetPlayersIds.push(targetPlayerId);
   }
 
+  // TODO: Remove when game is released
+  console.debug('Card Resolution Phase', {
+    round: state.round?.current,
+    cardId: results.cardId,
+    playedCard: actorCardInHand?.name ?? 'Unknown',
+    actorId: results.actorId,
+    actorName: players[results.actorId]?.name ?? 'Unknown',
+    actorCardInHand: players[results.actorId]?.hand?.[0] ?? 'None',
+    actorStatus: players[results.actorId]?.status ?? 'Unknown',
+    targetPlayerId,
+    targetPlayerName: targetPlayer?.name ?? 'None',
+    targetCardInHand: targetPlayerCardId ?? 'None',
+    targetStatus: targetPlayer?.status ?? 'Unknown',
+    effectKeyword: results.cardKeyword,
+    selectedEffectInput: results.selections?.effectInput ?? null,
+    effectInput: results.effectInput ?? null,
+    deckLength: deck.length,
+    nextCardInDeck: deck.at(-1) ?? 'None',
+    discardLength: discardPile.length,
+    cardsSetAsideCount: cardsSetAside.length,
+  });
+
   // INTERNAL PHASE HELPER FUNCTIONS
   function performCounterAttackCheck(): boolean {
-    if (targetPlayerCard?.keyword === 'COUNTER_ATTACK') {
+    if (targetPlayerCard?.keyword === KEYWORDS.COUNTER_ATTACK) {
       results.resolutionKeyword = RESOLUTION_KEYWORD.COUNTER_ATTACK;
-      results.eliminatedPlayersIds = [activePlayerId];
+      results.eliminatedPlayersIds = [results.actorId];
       targetPlayer.status = PLAYER_STATUS.ACTIVE; // Target is protected
-      players[activePlayerId].status = PLAYER_STATUS.ELIMINATED; // Active player is eliminated
+      players[results.actorId].status = PLAYER_STATUS.ELIMINATED; // Active player is eliminated
+      results.discardedCardId = actorCardInHandId;
+      results.eliminatedByPlayerId = targetPlayerId;
       return true;
     }
 
@@ -288,11 +353,22 @@ export const prepareCardResolutionPhase = async (
   }
 
   function performCompareAutoWinCheck(): boolean {
-    if (targetPlayerCard?.keyword === 'AUTO_WIN_COMPARE') {
+    if (targetPlayerCard?.keyword === KEYWORDS.AUTO_WIN_COMPARE) {
       results.resolutionKeyword = RESOLUTION_KEYWORD.AUTO_WIN_COMPARE;
-      results.eliminatedPlayersIds = [activePlayerId];
-      targetPlayer.status = PLAYER_STATUS.ACTIVE; // Target is protected
-      players[activePlayerId].status = PLAYER_STATUS.ELIMINATED; // Active player is eliminated
+      results.eliminatedPlayersIds = [results.actorId];
+      results.eliminatedByPlayerId = targetPlayerId;
+      results.discardedCardId = actorCardInHandId;
+      targetPlayer.status = PLAYER_STATUS.ACTIVE;
+      players[results.actorId].status = PLAYER_STATUS.ELIMINATED;
+      return true;
+    }
+
+    return false;
+  }
+
+  function performNoAvailableTargetCheck(): boolean {
+    if (results.selections?.effectInput === RESOLUTION_KEYWORD.NO_TARGET_AVAILABLE) {
+      results.resolutionKeyword = RESOLUTION_KEYWORD.NO_TARGET_AVAILABLE;
       return true;
     }
 
@@ -315,14 +391,26 @@ export const prepareCardResolutionPhase = async (
       .map((playerId: UID) => players[playerId]);
   }
 
-  switch (play.effectKeyword) {
-    // CASES WITH ACTIVE EFFECTS THAT REQUIRE RESOLUTION LOGIC
-    case 'GUESS_RANK': {
+  switch (results.cardKeyword) {
+    // RANK 0 - Passive or counter interaction cards
+    case KEYWORDS.COUNTER_ATTACK:
+    case KEYWORDS.SURVIVE_SOLO:
+    case KEYWORDS.AUTO_WIN_COMPARE:
+    case KEYWORDS.GAIN_POINT_ON_ELIMINATION:
+      results.resolutionKeyword = RESOLUTION_KEYWORD.PLAYED;
+      break;
+
+    // RANK 1 - Guessing cards
+    case KEYWORDS.GUESS_RANK: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
       if (!targetPlayer) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
 
-      results.effectInput = play.selections?.effectInput ?? null;
+      results.effectInput = results.selections?.effectInput ?? null;
 
       // If counter attack, the target is protected
       if (performCounterAttackCheck()) {
@@ -330,23 +418,29 @@ export const prepareCardResolutionPhase = async (
       }
 
       // Verify guessing
-      const guessedCard = cardsDict[play.selections?.effectInput ?? ''] ?? null;
+      const guessedCard = cardsDict[results.selections?.effectInput ?? ''] ?? null;
       const guessedRank = guessedCard?.rank ?? -1;
       if (guessedRank !== 1 && targetPlayerCard?.rank === guessedRank) {
-        results.resolutionKeyword = RESOLUTION_KEYWORD.ELIMINATED;
+        results.resolutionKeyword = RESOLUTION_KEYWORD.TARGET_ELIMINATED;
         results.eliminatedPlayersIds = [targetPlayer.id];
         targetPlayer.status = PLAYER_STATUS.ELIMINATED;
+        results.discardedCardId = targetPlayerCardId;
+        results.eliminatedByPlayerId = results.actorId;
       } else {
         results.resolutionKeyword = RESOLUTION_KEYWORD.INCORRECT;
       }
       break;
     }
-    case 'GUESS_NAME': {
+    case KEYWORDS.GUESS_NAME: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
       if (!targetPlayer) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
 
-      results.effectInput = play.selections?.effectInput ?? null;
+      results.effectInput = results.selections?.effectInput ?? null;
 
       // If counter attack, the target is protected
       if (performCounterAttackCheck()) {
@@ -354,29 +448,35 @@ export const prepareCardResolutionPhase = async (
       }
 
       // Verify guessing
-      const guessedCard = cardsDict[play.selections?.effectInput ?? ''] ?? null;
+      const guessedCard = cardsDict[results.selections?.effectInput ?? ''] ?? null;
       const guessedName = guessedCard?.name ?? '';
 
       if (guessedName !== '' && targetPlayerCard?.name === guessedName) {
-        results.resolutionKeyword = RESOLUTION_KEYWORD.ELIMINATED;
+        results.resolutionKeyword = RESOLUTION_KEYWORD.TARGET_ELIMINATED;
         results.eliminatedPlayersIds = [targetPlayer.id];
         targetPlayer.status = PLAYER_STATUS.ELIMINATED;
+        results.discardedCardId = targetPlayerCardId;
+        results.eliminatedByPlayerId = results.actorId;
       } else {
         results.resolutionKeyword = RESOLUTION_KEYWORD.INCORRECT;
       }
       break;
     }
-    case 'SWAP_ASIDE': {
-      results.effectInput = play.selections?.effectInput ?? null;
-
-      if (play.selections?.effectInput === 'SWAP') {
-        results.resolutionKeyword = RESOLUTION_KEYWORD.SWAP_ASIDE;
-      } else {
-        results.resolutionKeyword = RESOLUTION_KEYWORD.NO_SWAP;
-      }
+    // RANK 2 - Peek cards
+    case KEYWORDS.PEEK: {
+      results.resolutionKeyword = RESOLUTION_KEYWORD.PEEK;
       break;
     }
-    case 'COMPARE_LOWER': {
+    case KEYWORDS.PEEK_ASIDE: {
+      results.resolutionKeyword = RESOLUTION_KEYWORD.PEEK_ASIDE;
+      break;
+    }
+    // RANK 3 - Compare cards
+    case KEYWORDS.COMPARE_LOWER: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
       if (!targetPlayer || !targetPlayerCard) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
@@ -385,21 +485,25 @@ export const prepareCardResolutionPhase = async (
         break;
       }
 
-      results.resolutionKeyword = RESOLUTION_KEYWORD.ELIMINATED;
-
       // Verify comparison win
-      if (targetPlayerCard?.rank < activePlayerCard.rank) {
+      if (targetPlayerCard?.rank < actorCardInHand.rank) {
         results.eliminatedPlayersIds = [targetPlayer.id];
-        players[activePlayerId].status = PLAYER_STATUS.ACTIVE; // Active player is protected
+        players[results.actorId].status = PLAYER_STATUS.ACTIVE; // Active player is protected
         targetPlayer.status = PLAYER_STATUS.ELIMINATED; // Target is eliminated
+        results.discardedCardId = targetPlayerCardId;
+        results.resolutionKeyword = RESOLUTION_KEYWORD.TARGET_ELIMINATED;
+        results.eliminatedByPlayerId = results.actorId;
         break;
       }
 
       // Verify comparison loss
-      if (targetPlayerCard?.rank > activePlayerCard.rank) {
-        results.eliminatedPlayersIds = [activePlayerId];
+      if (targetPlayerCard?.rank > actorCardInHand.rank) {
+        results.eliminatedPlayersIds = [results.actorId];
         targetPlayer.status = PLAYER_STATUS.ACTIVE; // Target is protected
-        players[activePlayerId].status = PLAYER_STATUS.ELIMINATED; // Active player is eliminated
+        players[results.actorId].status = PLAYER_STATUS.ELIMINATED; // Active player is eliminated
+        results.discardedCardId = actorCardInHandId;
+        results.resolutionKeyword = RESOLUTION_KEYWORD.ACTOR_ELIMINATED;
+        results.eliminatedByPlayerId = results.targetPlayersIds[0] ?? null;
         break;
       }
 
@@ -407,7 +511,11 @@ export const prepareCardResolutionPhase = async (
       results.resolutionKeyword = RESOLUTION_KEYWORD.TIE;
       break;
     }
-    case 'COMPARE_HIGHER': {
+    case KEYWORDS.COMPARE_HIGHER: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
       if (!targetPlayer || !targetPlayerCard) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
@@ -416,20 +524,24 @@ export const prepareCardResolutionPhase = async (
         break;
       }
 
-      results.resolutionKeyword = RESOLUTION_KEYWORD.ELIMINATED;
-
       // Verify comparison win
-      if (targetPlayerCard?.rank > activePlayerCard.rank) {
+      if (targetPlayerCard?.rank > actorCardInHand.rank) {
         results.eliminatedPlayersIds = [targetPlayer.id];
         targetPlayer.status = PLAYER_STATUS.ELIMINATED; // Target is eliminated
+        results.discardedCardId = targetPlayerCardId;
+        results.resolutionKeyword = RESOLUTION_KEYWORD.TARGET_ELIMINATED;
+        results.eliminatedByPlayerId = results.actorId;
         break;
       }
 
       // Verify comparison loss
-      if (targetPlayerCard?.rank < activePlayerCard.rank) {
-        results.eliminatedPlayersIds = [activePlayerId];
+      if (targetPlayerCard?.rank < actorCardInHand.rank) {
+        results.eliminatedPlayersIds = [results.actorId];
         targetPlayer.status = PLAYER_STATUS.ACTIVE; // Target is protected
-        players[activePlayerId].status = PLAYER_STATUS.ELIMINATED;
+        players[results.actorId].status = PLAYER_STATUS.ELIMINATED;
+        results.discardedCardId = actorCardInHandId;
+        results.resolutionKeyword = RESOLUTION_KEYWORD.ACTOR_ELIMINATED;
+        results.eliminatedByPlayerId = results.targetPlayersIds[0] ?? null;
         break;
       }
 
@@ -438,16 +550,51 @@ export const prepareCardResolutionPhase = async (
       break;
     }
 
-    case 'DISCARD_REDRAW': {
-      if (!targetPlayer || !targetPlayerCard) {
+    // RANK 4 - Immunity cards
+    case KEYWORDS.IMMUNITY: {
+      const newOngoingEffect: OngoingEffect = {
+        affectedPlayerId: results.actorId,
+        effectKeyword: RESOLUTION_KEYWORD.IMMUNITY,
+        type: 'TURN',
+      };
+      ongoingEffects.push(newOngoingEffect);
+      results.newOngoingEffect = newOngoingEffect;
+      results.resolutionKeyword = RESOLUTION_KEYWORD.IMMUNITY;
+      players[results.actorId].status = PLAYER_STATUS.IMMUNE;
+
+      break;
+    }
+    case KEYWORDS.IMMUNITY_BONUS: {
+      const newOngoingEffect: OngoingEffect = {
+        affectedPlayerId: results.actorId,
+        effectKeyword: RESOLUTION_KEYWORD.IMMUNITY,
+        type: 'TURN',
+      };
+      ongoingEffects.push(newOngoingEffect);
+      results.newOngoingEffect = newOngoingEffect;
+      results.resolutionKeyword = RESOLUTION_KEYWORD.IMMUNITY;
+      players[results.actorId].status = PLAYER_STATUS.IMMUNE;
+
+      break;
+    }
+
+    // RANK 5 - Force discard
+    case KEYWORDS.DISCARD_REDRAW: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
+      if (!targetPlayer || !targetPlayerCard || !targetPlayerCardId) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
 
       // Check if target has #10 that gets eliminated if discarded
-      if (targetPlayerCard?.keyword === 'DISCARD_AUTO_ELIMINATE') {
+      if (targetPlayerCard?.keyword === KEYWORDS.AUTO_ELIMINATE) {
         results.resolutionKeyword = RESOLUTION_KEYWORD.AUTO_ELIMINATE;
         results.eliminatedPlayersIds = [targetPlayer.id];
         targetPlayer.status = PLAYER_STATUS.ELIMINATED;
+        results.eliminatedByPlayerId = results.actorId;
+        results.discardedCardId = targetPlayerCardId;
         break;
       }
 
@@ -457,35 +604,45 @@ export const prepareCardResolutionPhase = async (
         results.resolutionKeyword = RESOLUTION_KEYWORD.NO_CARD_TO_DRAW;
         results.eliminatedPlayersIds = [targetPlayer.id];
         targetPlayer.status = PLAYER_STATUS.ELIMINATED;
+        results.eliminatedByPlayerId = results.actorId;
         break;
       }
 
-      const discardedCardId = targetPlayer.hand[0];
-      discardPile.push(discardedCardId);
+      discardPile.push(targetPlayerCardId);
       targetPlayer.hand[0] = newCardId;
       results.resolutionKeyword = RESOLUTION_KEYWORD.DISCARDED_AND_REDRAWN;
+      results.discardedCardId = targetPlayerCardId;
 
       break;
     }
-    case 'TRADE_HANDS': {
+
+    // RANK 6 - Trade hands in different ways
+    case KEYWORDS.TRADE_HANDS: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
       if (!targetPlayer || !targetPlayerCard) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
       results.resolutionKeyword = RESOLUTION_KEYWORD.TRADE_HANDS;
-      const activePlayerCardId = activePlayerCard?.id ?? '';
       const targetPlayerCardId = targetPlayerCard?.id ?? '';
-      targetPlayer.hand[0] = activePlayerCardId;
-      players[activePlayerId].hand[0] = targetPlayerCardId;
+      targetPlayer.hand[0] = actorCardInHandId;
+      players[results.actorId].hand[0] = targetPlayerCardId;
 
       break;
     }
-    case 'FORCE_TRADE': {
+    case KEYWORDS.FORCE_TRADE: {
+      if (performNoAvailableTargetCheck()) {
+        break;
+      }
+
       if (!targetPlayer || !targetPlayerCard) {
         throw new Error(`Target player with ID ${targetPlayerId} not found.`);
       }
 
       results.resolutionKeyword = RESOLUTION_KEYWORD.TRADE_HANDS;
-      const secondTargetPlayerId = play.selections?.effectInput ?? '';
+      const secondTargetPlayerId = results.selections?.effectInput ?? '';
       const secondTargetPlayer = players[secondTargetPlayerId];
       const secondTargetPlayerCard = secondTargetPlayer
         ? cardsDict[getCardKeyFromId(secondTargetPlayer.hand[0])]
@@ -501,24 +658,38 @@ export const prepareCardResolutionPhase = async (
 
       break;
     }
-    case 'EXCHANGE_TOP': {
+    case KEYWORDS.TRADE_ASIDE: {
+      results.resolutionKeyword = RESOLUTION_KEYWORD.TRADE_ASIDE;
+      cardsSetAside.push(actorCardInHandId);
+      const selectedAsideCard = results.selections?.effectInput ?? '';
+      cardsSetAside = cardsSetAside.filter((cardId) => cardId !== selectedAsideCard);
+      players[results.actorId].hand = [selectedAsideCard];
+      break;
+    }
+
+    // RANK 7 - Random card changes
+    case KEYWORDS.EXCHANGE_TOP: {
+      const actor = players[results.actorId];
+      if (!actor) {
+        throw new Error(`Actor with ID ${results.actorId} not found.`);
+      }
+
       const newCardId = deck.pop();
       // Rare case the card doesn't exist, it just eliminates the player and doesn't redraw
       if (!newCardId) {
         results.resolutionKeyword = RESOLUTION_KEYWORD.NO_CARD_TO_DRAW;
-        results.eliminatedPlayersIds = [targetPlayer.id];
-        targetPlayer.status = PLAYER_STATUS.ELIMINATED;
+        results.eliminatedPlayersIds = [actor.id];
+        actor.status = PLAYER_STATUS.ELIMINATED;
         break;
       }
 
-      const discardedCardId = targetPlayer.hand[0];
-      targetPlayer.hand[0] = newCardId;
-      deck.push(discardedCardId);
+      actor.hand[0] = newCardId;
+      deck.push(actorCardInHandId);
       results.resolutionKeyword = RESOLUTION_KEYWORD.EXCHANGE_TOP;
 
       break;
     }
-    case 'PASS_LEFT': {
+    case KEYWORDS.PASS_LEFT: {
       const nonImmunePlayers = getNonImmunePlayers();
 
       const allHands = nonImmunePlayers.map((player) => player.hand[0]);
@@ -531,7 +702,7 @@ export const prepareCardResolutionPhase = async (
 
       break;
     }
-    case 'SHUFFLE': {
+    case KEYWORDS.SHUFFLE: {
       const nonImmunePlayers = getNonImmunePlayers();
 
       const allShuffledCards = shuffle(nonImmunePlayers.map((player) => player.hand[0]));
@@ -543,75 +714,94 @@ export const prepareCardResolutionPhase = async (
 
       break;
     }
-    case 'AUTO_ELIMINATE': {
+
+    // RANK 8 - Forced played that may give information to other players
+    case KEYWORDS.FORCE_PLAY:
+      results.resolutionKeyword = RESOLUTION_KEYWORD.PLAYED;
+      break;
+
+    // RANK 9 - Does nothing when played (penalty during win)
+    case KEYWORDS.WIN_PENALTY:
+      results.resolutionKeyword = RESOLUTION_KEYWORD.PLAYED;
+      break;
+
+    // RANK 10 - Auto elimination when played
+    case KEYWORDS.AUTO_ELIMINATE: {
       results.resolutionKeyword = RESOLUTION_KEYWORD.AUTO_ELIMINATE;
-      results.eliminatedPlayersIds = [activePlayerId];
-      players[activePlayerId].status = PLAYER_STATUS.ELIMINATED;
+      results.eliminatedPlayersIds = [results.actorId];
+      players[results.actorId].status = PLAYER_STATUS.ELIMINATED;
+      results.discardedCardId = results.cardId;
+      results.eliminatedByPlayerId = results.actorId;
       break;
     }
 
-    // Cases hat trigger ongoing effect
-    case 'IMMUNITY': {
-      const newOngoingEffect: OngoingEffect = {
-        affectedPlayerId: activePlayerId,
-        effectKeyword: RESOLUTION_KEYWORD.IMMUNITY,
-        type: 'TURN',
-      };
-      ongoingEffects.push(newOngoingEffect);
-      results.ongoingEffect = newOngoingEffect;
-      results.resolutionKeyword = RESOLUTION_KEYWORD.IMMUNITY;
-      players[activePlayerId].status = PLAYER_STATUS.IMMUNE;
-
-      break;
-    }
-    case 'IMMUNITY_BONUS': {
-      const newOngoingEffect: OngoingEffect = {
-        affectedPlayerId: activePlayerId,
-        effectKeyword: RESOLUTION_KEYWORD.IMMUNITY,
-        type: 'TURN',
-      };
-      ongoingEffects.push(newOngoingEffect);
-      results.ongoingEffect = newOngoingEffect;
-
-      // const newOngoingBonusEffect: OngoingEffect = {
-      //   affectedPlayerId: activePlayerId,
-      //   effectKeyword: 'BONUS',
-      //   type: 'ROUND',
-      // };
-      // ongoingEffects.push(newOngoingBonusEffect);
-      // results.ongoingEffect = newOngoingBonusEffect;
-      // results.resolutionKeyword = 'IMMUNITY_BONUS';
-      break;
-    }
-
-    // Case with actions that do not require resolution logic
-    case 'PEEK': {
-      results.resolutionKeyword = RESOLUTION_KEYWORD.PEEK;
-      break;
-    }
-
-    case 'COUNTER_ATTACK':
-    case 'FORCE_PLAY':
-    case 'SURVIVE_SOLO':
-    case 'WIN_PENALTY':
-    case 'AUTO_WIN_COMPARE':
-    case 'CONDITIONAL_WIN':
-      results.resolutionKeyword = 'PLAYED';
+    // RANK 11 - Does nothing when played (conditional win)
+    case KEYWORDS.CONDITIONAL_WIN:
+      results.resolutionKeyword = RESOLUTION_KEYWORD.PLAYED;
       break;
 
     default:
       // Nothing happens
-      results.resolutionKeyword = 'ERROR';
+      results.resolutionKeyword = RESOLUTION_KEYWORD.ERROR;
   }
 
+  // Award "drunk" bonus points when eliminated by other players
+  if (results.eliminatedByPlayerId) {
+    for (const playerId of results.eliminatedPlayersIds) {
+      if (playerId === results.eliminatedByPlayerId) {
+        continue; // Skip the player who eliminated themselves
+      }
+
+      const player = players[playerId];
+
+      if (!player || player.hand.length === 0) {
+        continue; // Skip if player not found or has no cards
+      }
+
+      const card = cardsDict[getCardKeyFromId(player.hand[0])];
+
+      if (card?.keyword === KEYWORDS.GAIN_POINT_ON_ELIMINATION) {
+        const newOngoingEffect = {
+          type: ONGOING_EFFECT_TYPE.ROUND,
+          affectedPlayerId: player.id,
+          effectKeyword: RESOLUTION_KEYWORD.GAIN_POINT_ON_ELIMINATION,
+        };
+        results.newOngoingEffect = newOngoingEffect;
+        ongoingEffects.push(newOngoingEffect);
+      }
+    }
+  }
+
+  // Existing hand cleanup follows
   for (const playerId in players) {
     if (players[playerId].status === PLAYER_STATUS.ELIMINATED) {
       if (players[playerId].hand.length > 0) {
         discardPile.push(...players[playerId].hand);
         players[playerId].hand = [];
       }
+      increaseAchievement(store.achievements, playerId, 'eliminations', 1);
+      if (results.eliminatedByPlayerId === results.actorId && results.actorId === playerId) {
+        increaseAchievement(store.achievements, playerId, 'selfEliminations', 1);
+      }
     }
   }
+
+  // TODO: Remove when game is released
+  console.debug('After Switch', {
+    actorId: results.actorId,
+    actorName: players[results.actorId]?.name ?? 'Unknown',
+    actorCardInHand: players[results.actorId]?.hand?.[0] ?? 'None',
+    actorStatus: players[results.actorId]?.status ?? 'Unknown',
+    targetPlayerId,
+    targetPlayerName: targetPlayer?.name ?? 'None',
+    targetCardInHand: targetPlayerCardId ?? 'None',
+    targetStatus: targetPlayer?.status ?? 'Unknown',
+    resolutionKeyword: results.resolutionKeyword,
+    newOngoingEffect: results.newOngoingEffect ? results.newOngoingEffect.type : null,
+    eliminatedPlayersIds: results.eliminatedPlayersIds,
+    effectInput: results.effectInput,
+    discardedCardId: results.discardedCardId,
+  });
 
   // Update outcome
   let outcome: string = OUTCOME.CONTINUE;
@@ -620,15 +810,18 @@ export const prepareCardResolutionPhase = async (
     outcome = OUTCOME.END_ROUND;
   }
   // If there's only one player left, the round ends
-  const activePlayersCount = getListOfPlayers(players).filter(
-    (player) => player.status === PLAYER_STATUS.ACTIVE,
-  ).length;
-  if (activePlayersCount <= 1) {
+  const playersStillActive = getListOfPlayers(players).filter(
+    (player) => player.status !== PLAYER_STATUS.ELIMINATED,
+  );
+  if (playersStillActive.length <= 1) {
     outcome = OUTCOME.END_ROUND;
   }
 
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: CORREIO_DO_AMOR_PHASES.CARD_RESOLUTION,
         players,
@@ -639,9 +832,7 @@ export const prepareCardResolutionPhase = async (
         outcome,
         discardPile,
       },
-      stateCleanup: [
-        /* TODO: List properties to clean up from previous phase */
-      ],
+      stateCleanup: ['play'],
     },
   };
 };
@@ -653,7 +844,7 @@ export const prepareCardResolutionPhase = async (
  * @param players - The players object
  */
 export const prepareRoundRankingPhase = async (
-  _store: FirebaseStoreData,
+  store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
@@ -662,31 +853,47 @@ export const prepareRoundRankingPhase = async (
 
   const listOfPlayers = getListOfPlayers(players);
   const cardsDict: Dictionary<FestaJuninaCard> = state.cardsDict;
+  const ongoingEffects: OngoingEffect[] = state.ongoingEffects ?? [];
 
   let highestRank = -1;
   // Score based on card rank
-  listOfPlayers.forEach((player) => {
-    if (player.status === PLAYER_STATUS.ACTIVE) {
+  const orderedPlayersByCardRank = orderBy(
+    listOfPlayers.filter((player) => player.status !== PLAYER_STATUS.ELIMINATED),
+    (player) => {
       const cardInHand = cardsDict[getCardKeyFromId(player.hand[0])];
-
-      if (cardInHand && cardInHand.rank > highestRank) {
+      return cardInHand ? cardInHand.rank : -1;
+    },
+    'asc',
+  );
+  orderedPlayersByCardRank.forEach((player) => {
+    const cardInHand = cardsDict[getCardKeyFromId(player.hand[0])];
+    if (cardInHand) {
+      // Since Rank 11 cannot win if Rank 10 is in play
+      if (cardInHand.rank > 10 && highestRank === 10) {
+        return; // Skip this player's card
+      }
+      if (cardInHand.rank > highestRank) {
         highestRank = cardInHand.rank;
       }
     }
   });
 
-  // Gained Points: [win, bonus]
-  const scores = new Scores(players, [0, 0]);
+  // Gained Points: [win, bonus, penalty, eliminationBonus]
+  const scores = new Scores(players, [0, 0, 0, 0]);
   listOfPlayers.forEach((player) => {
     if (player.status === PLAYER_STATUS.ACTIVE) {
       const cardIdInHand = getCardKeyFromId(player.hand[0]);
       const cardInHand = cardsDict[cardIdInHand];
       if (cardInHand) {
         if (cardInHand.rank === highestRank) {
-          scores.add(player.id, POINTS_PER_ROUND, 0);
+          scores.add(player.id, POINTS.WIN_ROUND, 0);
 
-          if (cardInHand.keyword === 'IMMUNITY_BONUS') {
-            scores.add(player.id, 1, 1); // Add bonus point
+          if (cardInHand.keyword === KEYWORDS.IMMUNITY_BONUS) {
+            scores.add(player.id, POINTS.BONUS, 1); // Add bonus point
+          }
+
+          if (cardInHand.keyword === KEYWORDS.WIN_PENALTY) {
+            scores.add(player.id, POINTS.PENALTY, 2); // Add penalty point for having WIN_PENALTY
           }
         }
       }
@@ -695,37 +902,48 @@ export const prepareRoundRankingPhase = async (
 
   // Award bonus for SURVIVE_SOLO
   const playersWithSurviveSolo = listOfPlayers.filter((player) => {
-    const cardInHand = cardsDict[getCardKeyFromId(player.hand[0])];
-    return cardInHand?.keyword === 'SURVIVE_SOLO' && player.status === PLAYER_STATUS.ACTIVE;
+    if (player.status !== PLAYER_STATUS.ELIMINATED) {
+      const cardInHand = cardsDict[getCardKeyFromId(player.hand[0])];
+      return cardInHand?.keyword === KEYWORDS.SURVIVE_SOLO;
+    }
+    return false;
   });
 
   if (playersWithSurviveSolo.length === 1) {
     const soloPlayer = playersWithSurviveSolo[0];
-    scores.add(soloPlayer.id, 1, 1); // Add bonus point for surviving solo
+    scores.add(soloPlayer.id, POINTS.BONUS, 1); // Add bonus point for surviving solo
   }
 
-  // Award penalty for WIN_PENALTY
-  const playersWithWinPenalty = listOfPlayers.filter((player) => {
-    const cardInHand = cardsDict[getCardKeyFromId(player.hand[0])];
-    return cardInHand?.keyword === 'WIN_PENALTY' && player.status === PLAYER_STATUS.ACTIVE;
+  // Award bonus for GAIN_POINT_ON_ELIMINATION
+  ongoingEffects.forEach((effect) => {
+    if (effect.effectKeyword === RESOLUTION_KEYWORD.GAIN_POINT_ON_ELIMINATION) {
+      scores.add(effect.affectedPlayerId, POINTS.BONUS, 3); // Add bonus point for GAIN_POINT_ON_ELIMINATION
+    }
   });
-
-  if (playersWithWinPenalty.length > 0) {
-    playersWithWinPenalty.forEach((player) => {
-      scores.subtract(player.id, -1, 1); // Subtract penalty point for having WIN_PENALTY
-    });
-  }
 
   const ranking = scores.rank(players);
 
   // If any player has achieved the goal, end the game
   let outcome: string = OUTCOME.SETUP;
-  if (listOfPlayers.some((player) => player.score >= POINTS_GOAL)) {
+  if (listOfPlayers.some((player) => player.score >= POINTS.GOAL)) {
     outcome = OUTCOME.END_GAME;
+  }
+
+  // Achievements
+  if (ranking.length === 1) {
+    increaseAchievement(store.achievements, ranking[0].playerId, 'survivedSolo', 1);
+  }
+  if (ranking.length > 0) {
+    ranking.forEach((rank) => {
+      increaseAchievement(store.achievements, rank.playerId, 'ranked', 1);
+    });
   }
 
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: CORREIO_DO_AMOR_PHASES.ROUND_RANKING,
         players,
@@ -790,7 +1008,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         achievements,
         winners,
-        // TODO: Add game over specific data, like gallery
+        cardsDict: state.cardsDict,
       },
     },
   };

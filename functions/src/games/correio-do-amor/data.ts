@@ -1,83 +1,120 @@
 import { keyBy, shuffle } from 'lodash';
 // Types
 import type { ResourceData, FestaJuninaDatabaseEntry, CorreioDoAmorOptions, FestaJuninaCard } from './types';
+// Constants
+import { KEYWORDS } from './constants';
 
 const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
-  SANFONEIRO: {
-    id: 'SANFONEIRO',
+  '0_SANFONEIRO': {
+    id: '0_SANFONEIRO',
     rank: 0,
-    imageId: 'ffc-r0a',
+    imageId: 'fj-r0a',
     name: {
       en: 'The Accordion Player',
       pt: 'O Sanfoneiro',
     },
     effect: {
-      en: 'Does nothing when played. If a Rank 1 targets you with a guess, they are knocked out of the round instead.',
-      pt: 'Não faz nada ao ser jogada, mas se uma carta de Valor 1 te acatar, quem a jogou é eliminado da rodada no seu lugar.',
+      en: 'Does nothing when played.',
+      pt: 'Não faz nada ao ser jogada.',
+    },
+    passiveEffect: {
+      en: 'If a Rank 1 targets you with a guess, they are knocked out of the round instead.',
+      pt: 'Se uma carta de Valor 1 te acatar, quem a jogou é eliminado da rodada no seu lugar.',
     },
     flavorText: {
       en: 'The music never stops, especially not for gossips.',
       pt: 'A música não para, muito menos por causa de fofoca.',
     },
     quantity: 2,
-    keyword: 'COUNTER_ATTACK',
+    keyword: KEYWORDS.COUNTER_ATTACK,
     color: '#E8D68A',
-    tier: 'plus',
-    setName: 'ZEROS',
-    setRule: 'SINGLE',
+    setupTier: 'plus',
+    setupRule: 'SINGLE',
   },
-  PAU_DE_SEBO: {
-    id: 'PAU_DE_SEBO',
+  '0_PAU_DE_SEBO': {
+    id: '0_PAU_DE_SEBO',
     rank: 0,
-    imageId: 'ffc-r0b',
+    imageId: 'fj-r0b',
     name: {
       en: 'The Grease Pole Climber',
       pt: 'O Pião no Pau de Sebo',
     },
     effect: {
-      en: 'Does nothing when played. If you are the only one with this card during the final Rank comparison in the end of the round, you get 1 bonus point.',
-      pt: 'Não faz nada ao ser jogada, mas se você for o único com esta carta durante a comparação final de Valores no fim da rodada, ganha 1 ponto extra.',
+      en: 'Does nothing when played.',
+      pt: 'Não faz nada ao ser jogada.',
+    },
+    passiveEffect: {
+      en: 'If you are the only one with this card during the final Rank comparison in the end of the round, you get 1 bonus point.',
+      pt: 'Se você for o único com esta carta durante a comparação final de Valores no fim da rodada, ganha 1 ponto bônus.',
     },
     flavorText: {
       en: "It's slippery, but that prize up there? Worth it!",
       pt: 'Escorrega, mas o prêmio lá em cima compensa!',
     },
     quantity: 2,
-    keyword: 'SURVIVE_SOLO',
+    keyword: KEYWORDS.SURVIVE_SOLO,
     color: '#E8D68A',
-    tier: 'plus',
-    setName: 'ZEROS',
-    setRule: 'SINGLE',
+    setupTier: 'plus',
+    setupRule: 'SINGLE',
   },
-  CRIANCA: {
-    id: 'CRIANCA',
+  '0_CRIANCA': {
+    id: '0_CRIANCA',
     rank: 0,
-    imageId: 'ffc-r0c',
+    imageId: 'fj-r0c',
     name: {
-      en: 'The Mischievous Kid',
+      en: 'The Kid',
       pt: 'A Criança',
     },
     effect: {
-      en: 'Does nothing when played. When comparing hands with another player, you automatically win the comparison and they are eliminated.',
-      pt: 'Não faz nada ao ser jogada, mas ao comparar cartas com outro jogador, você vence automaticamente e ele é eliminado.',
+      en: 'Does nothing when played.',
+      pt: 'Não faz nada ao ser jogada.',
+    },
+    passiveEffect: {
+      en: 'When a player compares hands with you, you automatically win the comparison and they are eliminated.',
+      pt: 'Quando um jogador compara cartas com você, a Criança vence automaticamente e ele é eliminado.',
     },
     flavorText: {
-      en: 'I can do whatever I want!',
-      pt: 'Posso fazer o que quiser!',
+      en: "You're not my mommy!",
+      pt: 'Você não é minha mamãe!',
     },
     quantity: 2,
-    keyword: 'AUTO_WIN_COMPARE',
+    keyword: KEYWORDS.AUTO_WIN_COMPARE,
     color: '#E8D68A',
-    tier: 'plus',
-    setName: 'ZEROS',
-    setRule: 'SINGLE',
+    setupTier: 'plus',
+    setupRule: 'SINGLE',
   },
-  CAIPIRA_HOMEM: {
-    id: 'CAIPIRA_HOMEM',
-    rank: 1,
-    imageId: 'ffc-r1a',
+  '0_BEBADO': {
+    id: '0_BEBADO',
+    rank: 0,
+    imageId: 'fj-r0d',
     name: {
-      en: 'The Party-Goer (Man)',
+      en: 'The Drunkard',
+      pt: 'O Bêbado',
+    },
+    effect: {
+      en: 'Does nothing when played.',
+      pt: 'Não faz nada ao ser jogada.',
+    },
+    passiveEffect: {
+      en: 'When eliminated by another player, you gain a point.',
+      pt: 'Quando for eliminado por outro jogador, você ganha 1 ponto.',
+    },
+    flavorText: {
+      en: 'The more I drink, the better I play!',
+      pt: 'Quanto mais eu bebo, melhor eu jogo!',
+    },
+    quantity: 2,
+    keyword: KEYWORDS.GAIN_POINT_ON_ELIMINATION,
+    color: '#E8D68A',
+    setupTier: 'plus',
+    setupRule: 'SINGLE',
+  },
+  '1_CAIPIRA_HOMEM': {
+    id: '1_CAIPIRA_HOMEM',
+    rank: 1,
+    imageId: 'fj-r1a',
+    name: {
+      en: 'Country Bumpkin',
       pt: 'O Caipira',
     },
     effect: {
@@ -89,18 +126,18 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Cê num é o fi da tia do vizinho da vó do meu padrinho?',
     },
     quantity: 2,
-    keyword: 'GUESS_RANK',
+    keyword: KEYWORDS.GUESS_RANK,
+    requiresEffectInteraction: true,
     color: '#A52A2A',
-    tier: 'core',
-    setName: 'CAIPIRAS',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-  CAIPIRA_MULHER: {
-    id: 'CAIPIRA_MULHER',
+  '1_CAIPIRA_MULHER': {
+    id: '1_CAIPIRA_MULHER',
     rank: 1,
-    imageId: 'ffc-r1b',
+    imageId: 'fj-r1b',
     name: {
-      en: 'The Party-Goer (Woman)',
+      en: 'Country Belle',
       pt: 'A Caipira',
     },
     effect: {
@@ -112,16 +149,16 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Uai, eu te conheço...?',
     },
     quantity: 2,
-    keyword: 'GUESS_NAME',
+    keyword: KEYWORDS.GUESS_NAME,
+    requiresEffectInteraction: true,
     color: '#A52A2A',
-    tier: 'core',
-    setName: 'CAIPIRAS',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-  PADRE: {
-    id: 'PADRE',
+  '2_PADRE': {
+    id: '2_PADRE',
     rank: 2,
-    imageId: 'ffc-r2a',
+    imageId: 'fj-r2a',
     name: {
       en: 'The Priest',
       pt: 'O Padre',
@@ -135,39 +172,39 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Me conte seus segredos...',
     },
     quantity: 2,
-    keyword: 'PEEK',
+    keyword: KEYWORDS.PEEK,
+    requiresEffectInteraction: true,
     color: '#b169e6',
-    tier: 'core',
-    setName: 'MYSTIC',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-  CARTOMANTE: {
-    id: 'CARTOMANTE',
+  '2_CARTOMANTE': {
+    id: '2_CARTOMANTE',
     rank: 2,
-    imageId: 'ffc-r2b',
+    imageId: 'fj-r2b',
     name: {
       en: 'The Fortune Teller',
       pt: 'A Cartomante',
     },
     effect: {
-      en: 'Secretly look at the face-down set-aside card. You may swap your hand card with it.',
-      pt: 'Olhe secretamente a carta separada no início da rodada. Você pode trocá-la com a sua carta da mão.',
+      en: 'Secretly look at the set-aside cards.',
+      pt: 'Olhe secretamente as cartas separadas no início da rodada.',
     },
     flavorText: {
       en: 'The spirits reveal what comes next!',
       pt: 'Os espíritos revelam o que vem por aí!',
     },
     quantity: 1,
-    keyword: 'SWAP_ASIDE',
+    keyword: KEYWORDS.PEEK_ASIDE,
+    requiresEffectInteraction: true,
     color: '#b169e6',
-    tier: 'advanced',
-    setName: 'MYSTIC',
-    setRule: 'COMBINE',
+    setupTier: 'advanced',
+    setupRule: 'COMBINE',
   },
-  NOIVO: {
-    id: 'NOIVO',
+  '3_NOIVO': {
+    id: '3_NOIVO',
     rank: 3,
-    imageId: 'ffc-r3a',
+    imageId: 'fj-r3a',
     name: {
       en: 'The Groom',
       pt: 'O Noivo',
@@ -181,16 +218,16 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Alguém me tira daqui!',
     },
     quantity: 1,
-    keyword: 'COMPARE_LOWER',
+    keyword: KEYWORDS.COMPARE_LOWER,
+    requiresEffectInteraction: true,
     color: '#FFF8DC',
-    tier: 'core',
-    setName: 'WEDDING',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-  NOIVA: {
-    id: 'NOIVA',
+  '3_NOIVA': {
+    id: '3_NOIVA',
     rank: 3,
-    imageId: 'ffc-r3b',
+    imageId: 'fj-r3b',
     name: {
       en: 'The Bride',
       pt: 'A Noiva',
@@ -204,39 +241,42 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Já basta de fazer jogo de cintura!',
     },
     quantity: 1,
-    keyword: 'COMPARE_HIGHER',
+    keyword: KEYWORDS.COMPARE_HIGHER,
+    requiresEffectInteraction: true,
     color: '#FFF8DC',
-    tier: 'core',
-    setName: 'WEDDING',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-  DANCARINA: {
-    id: 'DANCARINA',
+  '4_DANCARINA': {
+    id: '4_DANCARINA',
     rank: 4,
-    imageId: 'ffc-r4a',
+    imageId: 'fj-r4a',
     name: {
       en: 'The Female Dancer',
       pt: 'A Dançarina de Quadrilha',
     },
     effect: {
-      en: 'You will be immune to all card effects until your next turn. If you win the round holding this, gain 1 extra point.',
-      pt: 'Você ficará imune aos efeitos de outras cartas até sua próxima vez. Se vencer a rodada com esta carta, ganha 1 ponto extra.',
+      en: 'You will be immune to all card effects until your next turn.',
+      pt: 'Você ficará imune aos efeitos de outras cartas até sua próxima vez.',
+    },
+    passiveEffect: {
+      en: 'If you win the round holding this card, gain 1 extra point.',
+      pt: 'Se vencer a rodada com esta carta, ganha 1 ponto extra.',
     },
     flavorText: {
       en: 'Watch me shine!',
       pt: 'Olhem só pra mim!',
     },
     quantity: 1,
-    keyword: 'IMMUNITY_BONUS',
+    keyword: KEYWORDS.IMMUNITY_BONUS,
     color: '#e35d84',
-    tier: 'core',
-    setName: 'DANCERS',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-  DANCARINO: {
-    id: 'DANCARINO',
+  '4_DANCARINO': {
+    id: '4_DANCARINO',
     rank: 4,
-    imageId: 'ffc-r4b',
+    imageId: 'fj-r4b',
     name: {
       en: 'The Male Dancer',
       pt: 'O Dançarino de Quadrilha',
@@ -250,17 +290,15 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Nada me alcança agora!',
     },
     quantity: 1,
-    keyword: 'IMMUNITY',
+    keyword: KEYWORDS.IMMUNITY,
     color: '#e35d84',
-    tier: 'core',
-    setName: 'DANCERS',
-    setRule: 'COMBINE',
+    setupTier: 'core',
+    setupRule: 'COMBINE',
   },
-
-  DELEGADO: {
-    id: 'DELEGADO',
+  '5_DELEGADO': {
+    id: '5_DELEGADO',
     rank: 5,
-    imageId: 'ffc-r5a',
+    imageId: 'fj-r5a',
     name: {
       en: 'The Sheriff',
       pt: 'O Delegado',
@@ -270,22 +308,22 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Escolha qualquer jogador (incluindo você) para descartar a mão e comprar uma nova carta.',
     },
     flavorText: {
-      en: 'New cards for everyone!',
-      pt: 'Cartas novas pra todo mundo!',
+      en: 'You are under arrest in the name of the law!',
+      pt: 'Você está preso em nome da lei!',
     },
     quantity: 2,
-    keyword: 'DISCARD_REDRAW',
+    keyword: KEYWORDS.DISCARD_REDRAW,
+    requiresEffectInteraction: true,
     color: '#1875d0',
-    tier: 'core',
-    setName: 'POLICE',
-    setRule: 'SINGLE',
+    setupTier: 'core',
+    setupRule: 'SINGLE',
   },
-  BARRAQUINHA_A: {
-    id: 'BARRAQUINHA_A',
+  '6_BARRAQUINHA_A': {
+    id: '6_BARRAQUINHA_A',
     rank: 6,
-    imageId: 'ffc-r6a',
+    imageId: 'fj-r6a',
     name: {
-      en: 'Carnival Games Attendant',
+      en: 'Fishing Game Stand',
       pt: 'A Moça da Pescaria',
     },
     effect: {
@@ -297,19 +335,19 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Vem tentar a sorte!',
     },
     quantity: 1,
-    keyword: 'TRADE_HANDS',
+    keyword: KEYWORDS.TRADE_HANDS,
+    requiresEffectInteraction: true,
     color: '#20B2AA',
-    tier: 'core',
-    setName: 'STAFF',
-    setRule: 'SINGLE',
+    setupTier: 'core',
+    setupRule: 'SINGLE',
   },
-  BARRAQUINHA_B: {
-    id: 'BARRAQUINHA_B',
+  '6_BARRAQUINHA_B': {
+    id: '6_BARRAQUINHA_B',
     rank: 6,
-    imageId: 'ffc-r6b',
+    imageId: 'fj-r6b',
     name: {
-      en: 'Carnival Games Attendant',
-      pt: 'A Moça da Pescaria',
+      en: 'Throwing Ball Stand',
+      pt: 'A Moça das Latas',
     },
     effect: {
       en: 'Choose 2 OTHER players. They immediately swap hands with each other.',
@@ -320,16 +358,39 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Troca! Troca! Troca!',
     },
     quantity: 1,
-    keyword: 'FORCE_TRADE',
+    keyword: KEYWORDS.FORCE_TRADE,
+    requiresEffectInteraction: true,
     color: '#20B2AA',
-    tier: 'advanced',
-    setName: 'STAFF',
-    setRule: 'SINGLE',
+    setupTier: 'advanced',
+    setupRule: 'SINGLE',
   },
-  PUXADOR_A: {
-    id: 'PUXADOR_A',
+  '6_BARRAQUINHA_C': {
+    id: '6_BARRAQUINHA_C',
+    rank: 6,
+    imageId: 'fj-r6c',
+    name: {
+      en: 'Bingo Stand',
+      pt: 'A Moça do Bingo',
+    },
+    effect: {
+      en: 'Swap your hand with one of the cards set aside.',
+      pt: 'Troque sua mão com uma das cartas separadas.',
+    },
+    flavorText: {
+      en: 'You never know what your prize will be!',
+      pt: 'Nunca se sabe qual será o prêmio!',
+    },
+    quantity: 1,
+    keyword: KEYWORDS.TRADE_ASIDE,
+    requiresEffectInteraction: true,
+    color: '#20B2AA',
+    setupTier: 'advanced',
+    setupRule: 'SINGLE',
+  },
+  '7_PUXADOR_A': {
+    id: '7_PUXADOR_A',
     rank: 7,
-    imageId: 'ffc-r7a',
+    imageId: 'fj-r7a',
     name: {
       en: 'The Caller',
       pt: 'O Puxador da Quadrilha',
@@ -343,16 +404,15 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Que toque a música!',
     },
     quantity: 1,
-    keyword: 'EXCHANGE_TOP',
+    keyword: KEYWORDS.EXCHANGE_TOP,
     color: '#FFB347',
-    tier: 'core',
-    setName: 'HOST',
-    setRule: 'SINGLE',
+    setupTier: 'core',
+    setupRule: 'SINGLE',
   },
-  PUXADOR_B: {
-    id: 'PUXADOR_B',
+  '7_PUXADOR_B': {
+    id: '7_PUXADOR_B',
     rank: 7,
-    imageId: 'ffc-r7b',
+    imageId: 'fj-r7b',
     name: {
       en: 'The Caller',
       pt: 'O Puxador da Quadrilha',
@@ -366,16 +426,15 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Passem adiante!',
     },
     quantity: 1,
-    keyword: 'PASS_LEFT',
+    keyword: KEYWORDS.PASS_LEFT,
     color: '#FFB347',
-    tier: 'advanced',
-    setName: 'HOST',
-    setRule: 'SINGLE',
+    setupTier: 'advanced',
+    setupRule: 'SINGLE',
   },
-  PUXADOR_C: {
-    id: 'PUXADOR_C',
+  '7_PUXADOR_C': {
+    id: '7_PUXADOR_C',
     rank: 7,
-    imageId: 'ffc-r7c',
+    imageId: 'fj-r7c',
     name: {
       en: 'The Caller',
       pt: 'O Puxador da Quadrilha',
@@ -389,16 +448,15 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Embaralha e distribui!',
     },
     quantity: 1,
-    keyword: 'SHUFFLE',
+    keyword: KEYWORDS.SHUFFLE,
     color: '#FFB347',
-    tier: 'advanced',
-    setName: 'HOST',
-    setRule: 'SINGLE',
+    setupTier: 'advanced',
+    setupRule: 'SINGLE',
   },
-  FAZENDEIRO: {
-    id: 'FAZENDEIRO',
+  '8_FAZENDEIRO': {
+    id: '8_FAZENDEIRO',
     rank: 8,
-    imageId: 'ffc-r8a',
+    imageId: 'fj-r8a',
     name: {
       en: 'The Landowner',
       pt: 'O Fazendeiro',
@@ -412,39 +470,41 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Minha família tem padrão!',
     },
     quantity: 1,
-    keyword: 'FORCE_PLAY',
+    keyword: KEYWORDS.FORCE_PLAY,
     color: '#754a1a',
-    tier: 'core',
-    setName: 'LANDOWNERS',
-    setRule: 'SINGLE',
+    setupTier: 'core',
+    setupRule: 'SINGLE',
   },
-  COMILAO: {
-    id: 'COMILAO',
+  '9_COMILAO': {
+    id: '9_COMILAO',
     rank: 9,
-    imageId: 'ffc-r9a',
+    imageId: 'fj-r9a',
     name: {
       en: 'The Foodie',
       pt: 'O Comilão',
     },
     effect: {
-      en: 'Does nothing when played. If you win the round holding this card, you gain 1 less point.',
-      pt: 'Não faz nada ao ser jogada. Se você vencer a rodada com esta carta, ganha 1 ponto a menos.',
+      en: 'Does nothing when played.',
+      pt: 'Não faz nada ao ser jogada.',
+    },
+    passiveEffect: {
+      en: 'If you win the round holding this card, you gain 1 less point.',
+      pt: 'Se você vencer a rodada com esta carta, ganha 1 ponto a menos.',
     },
     flavorText: {
       en: 'This food is amazing!',
       pt: 'Que delícia de comida!',
     },
     quantity: 1,
-    keyword: 'WIN_PENALTY',
+    keyword: KEYWORDS.WIN_PENALTY,
     color: '#228B22',
-    tier: 'advanced',
-    setName: 'FOODIE',
-    setRule: 'SINGLE',
+    setupTier: 'advanced',
+    setupRule: 'SINGLE',
   },
-  GOAL: {
-    id: 'GOAL',
+  '10_GOAL': {
+    id: '10_GOAL',
     rank: 10,
-    imageId: 'ffc-r10a',
+    imageId: 'fj-r10a',
     name: {
       en: 'The Ideal Match',
       pt: 'O Par Ideal',
@@ -458,21 +518,24 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Meu coração é o prêmio!',
     },
     quantity: 1,
-    keyword: 'AUTO_ELIMINATE',
+    keyword: KEYWORDS.AUTO_ELIMINATE,
     color: '#FF6B6B',
-    tier: 'core',
-    setName: 'GOAL',
-    setRule: 'SINGLE',
+    setupTier: 'core',
+    setupRule: 'SINGLE',
   },
-  EXS: {
-    id: 'EXS',
+  '11_EXS': {
+    id: '11_EXS',
     rank: 11,
-    imageId: 'ffc-r11a',
+    imageId: 'fj-r11a',
     name: {
       en: 'The Jealous Exes',
       pt: 'O Ex / A Ex',
     },
     effect: {
+      en: 'Does nothing when played.',
+      pt: 'Não faz nada ao ser jogada.',
+    },
+    passiveEffect: {
       en: 'You cannot win with this card, unless the Ideal Match (Rank 10) has been played or discarded.',
       pt: 'Você não pode vencer com esta carta, a menos que o Par Ideal (Valor 10) tenha sido jogado ou descartado.',
     },
@@ -481,37 +544,18 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
       pt: 'Se eu não tenho, ninguém tem!',
     },
     quantity: 1,
-    keyword: 'CONDITIONAL_WIN',
+    keyword: KEYWORDS.CONDITIONAL_WIN,
     color: '#8B1A1A',
-    tier: 'advanced',
-    setName: 'EXS',
-    setRule: 'SINGLE',
+    setupTier: 'advanced',
+    setupRule: 'SINGLE',
   },
 };
 
 // console.log(Object.keys(CARDS));
 // console.log(
-//   'CORE CARDS:',
 //   Object.values(CARDS)
-//     .filter((card) => card.tier === 'core')
-//     .map((card) => card.id),
-// );
-// console.log(
-//   'PLUS CARDS:',
-//   Object.values(CARDS)
-//     .filter((card) => card.tier === 'plus')
-//     .map((card) => card.id),
-// );
-// console.log(
-//   'ADVANCED CARDS:',
-//   Object.values(CARDS)
-//     .filter((card) => card.tier === 'advanced')
-//     .map((card) => card.id),
-// );
-// console.log(
-//   Object.values(CARDS)
-//     .map((card) => `// case '${card.keyword}': `)
-//     .join('\n'),
+//     .map((card) => `${card.keyword}: '${card.keyword}',`)
+//     .join(' '),
 // );
 
 /**
@@ -529,6 +573,7 @@ export const getData = async (language: Language, options: CorreioDoAmorOptions)
       name: card.name[language],
       effect: card.effect[language],
       flavorText: card.flavorText[language],
+      passiveEffect: card.passiveEffect?.[language] ?? '',
       count: 0,
     })),
     'id',
@@ -540,14 +585,14 @@ export const getData = async (language: Language, options: CorreioDoAmorOptions)
   // Determine plus rotation
   const plusRotation = shuffle(
     Object.values(cardsDict)
-      .filter((card) => card.tier === 'plus')
+      .filter((card) => card.setupTier === 'plus')
       .flatMap((card) => (isChaoticDeck ? [card.id] : Array(3).fill(card.id))),
   );
 
   // Determine advanced rotation
   const advancedRotation = shuffle(
     Object.values(cardsDict)
-      .filter((card) => card.tier === 'advanced')
+      .filter((card) => card.setupTier === 'advanced')
       .flatMap((card) => (isChaoticDeck ? [card.id] : Array(2).fill(card.id))),
   );
 

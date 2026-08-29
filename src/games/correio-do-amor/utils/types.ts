@@ -1,3 +1,6 @@
+// Types
+import type { Achievement, GamePlayer, GameRanking } from 'types/game';
+
 export type CardTier = 'core' | 'plus' | 'advanced' | 'variant';
 export type SetSelectionRule = 'COMBINE' | 'SINGLE';
 
@@ -23,6 +26,10 @@ export type FestaJuninaCard = {
    */
   effect: string;
   /**
+   * The description of the passive effect (if any)
+   */
+  passiveEffect?: string;
+  /**
    * A short flavor text describing the card within the theme
    */
   flavorText: string;
@@ -39,36 +46,26 @@ export type FestaJuninaCard = {
    */
   color: string;
   /**
+   * Some cards will require the player to take an additional action after playing the card (e.g. selecting a target player)
+   */
+  requiresEffectInteraction?: boolean;
+  /**
    * Determines when this card is allowed in the deck.
    * 'core' = Always included in the base game.
    * 'advanced' = Adds complexity; recommended for 5+ players.
    * 'variant' = Optional modifiers (like Rank 0).
    */
-  tier: CardTier;
-  /**
-   * Name of the group the card belongs to like gender pairs
-   */
-  setName: string;
+  setupTier: CardTier;
   /**
    * How the deck builder should treat this set.
    * 'COMBINE' = Add all specific quantities together up to the setLimit.
-   * 'RANDOM_SINGLE' = Pick exactly 1 card from this set randomly.
+   * 'SINGLE' = Pick exactly 1 card from this set randomly.
    */
-  setRule: SetSelectionRule;
+  setupRule: SetSelectionRule;
   /**
    * How many cards are currently in the round's deck
    */
   count: number;
-};
-
-/**
- * Current play information for the current turn
- */
-export type Play = {
-  activeCardId: UID | null;
-  effectKeyword: string | null;
-  options?: (string | number)[];
-  selections?: PlaySelections;
 };
 
 /**
@@ -83,15 +80,27 @@ export type OngoingEffect = {
 /**
  * Results of the current round, including ongoing effects and eliminated players
  */
-export type ResolutionLog = {
-  playedCardId: UID;
-  actorPlayerId: UID;
+export type LogEntry = {
+  actorId: UID;
+  cardId: UID;
+  cardKey: string;
+  cardKeyword: string;
+  // Card Effect Actions
+  options?: (string | number)[];
+  selections?: PlaySelections;
+  // Resolution Effects
   targetPlayersIds: UID[];
-  ongoingEffect: OngoingEffect | null;
-  eliminatedPlayersIds: UID[];
   resolutionKeyword: string | null;
+  newOngoingEffect: OngoingEffect | null;
+  eliminatedPlayersIds: UID[];
   effectInput?: UID | null;
+  discardedCardId?: UID | null;
 };
+
+export type Play = Pick<
+  LogEntry,
+  'actorId' | 'cardId' | 'cardKey' | 'cardKeyword' | 'options' | 'selections'
+>;
 
 export type SubmitCardPayload = {
   payload: {
@@ -112,6 +121,7 @@ export type PlaySelections = {
    * - verify name for GUESS_NAME
    * - verify 'SWAP' for SWAP_ASIDE
    * - verify the second target player id for FORCE_TRADE
+   * - NO_TARGET_AVAILABLE when there is no available target player for the effect
    */
   effectInput?: UID;
 };
@@ -167,6 +177,35 @@ export type PhaseCardResolutionState = {
   targetPlayersIds: UID[];
   outcome: string;
   ongoingEffects: OngoingEffect[];
-  play: Play;
-  log: ResolutionLog[];
+  log: LogEntry[];
+};
+
+export type PhaseRoundRankingState = {
+  cardsDict: Dictionary<FestaJuninaCard>;
+  ongoingEffects: OngoingEffect[];
+  ranking: GameRanking;
+  cardsSetAside: UID[];
+  outcome: string;
+};
+
+/**
+ * State for the game over phase showing final results
+ */
+export type PhaseGameOverState = {
+  /**
+   * Timestamp when the game ended
+   */
+  gameEndedAt: number;
+  /**
+   * Array of winning players
+   */
+  winners: GamePlayer[];
+  /**
+   * List of achievements earned by players
+   */
+  achievements: Achievement[];
+  /**
+   * Dictionary of all cards in the game, used for displaying card information in the results
+   */
+  cardsDict: Dictionary<FestaJuninaCard>;
 };

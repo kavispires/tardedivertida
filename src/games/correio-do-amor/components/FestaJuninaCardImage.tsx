@@ -24,6 +24,22 @@ function FestaJuninaCardImageBase({ card, cardId, width, isPreviewOpen = false }
     return null;
   }
 
+  const tooltipContent = isPreviewOpen ? undefined : (
+    <>
+      {card.name.toLocaleUpperCase()} {'['}
+      {card.rank}
+      {'] '}
+      <br />
+      {card.effect}
+      {card.passiveEffect && (
+        <>
+          <br />
+          {card.passiveEffect}
+        </>
+      )}
+    </>
+  );
+
   return (
     <DynamicCard
       key={cardId}
@@ -72,7 +88,7 @@ function FestaJuninaCardImageBase({ card, cardId, width, isPreviewOpen = false }
         width="90cqw"
         className="a-festa-junina-card__name"
       >
-        <Tooltip title={isPreviewOpen ? undefined : card.name}>
+        <Tooltip title={tooltipContent}>
           <span>{card.name}</span>
         </Tooltip>
       </DynamicCard.Span>
@@ -86,8 +102,14 @@ function FestaJuninaCardImageBase({ card, cardId, width, isPreviewOpen = false }
         className="a-festa-junina-card__effect"
         aspectRatio="3 / 1"
       >
-        <Tooltip title={isPreviewOpen ? undefined : card.effect}>
+        <Tooltip title={tooltipContent}>
           <span>{card.effect}</span>
+          {card.passiveEffect && (
+            <>
+              <br />
+              <span className="a-festa-junina-card__passive-effect">{card.passiveEffect}</span>
+            </>
+          )}
         </Tooltip>
       </DynamicCard.Span>
 

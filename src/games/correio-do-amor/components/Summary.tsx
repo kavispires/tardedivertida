@@ -1,14 +1,17 @@
+import clsx from 'clsx';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
 // Types
 import type { GamePlayer, GamePlayers } from 'types/game';
+// Utils
+import { getAnimationClass } from '@utils/helpers';
 // Components
 import { StatusBar } from '@components/general/StatusBar';
 import { Translate } from '@components/language/Translate';
 import { PlayersTurnOrder } from '@components/players/PlayersTurnOrder';
 // Internal
-import { PLAYER_STATUS, POINTS_GOAL } from '../utils/constants';
+import { PLAYER_STATUS, POINTS } from '../utils/constants';
 import type { OngoingEffect } from '../utils/types';
 import {
   DeckHighlight,
@@ -61,7 +64,7 @@ function RoundSummary({ user, ongoingEffects, players }: RoundSummaryProps) {
         ),
         value: (
           <ScoreHighlight>
-            {user.score} / {POINTS_GOAL}
+            {user.score} / {POINTS.GOAL}
           </ScoreHighlight>
         ),
       },
@@ -101,7 +104,15 @@ function PilesSummary({ cardsSetAside, discardPile, deck }: PilesSummaryProps) {
             en="Cards remaining in deck"
           />
         ),
-        value: <DeckHighlight>{deck.length}</DeckHighlight>,
+        value: (
+          <div
+            className={clsx({
+              [getAnimationClass('tada', { infinite: true })]: deck.length === 0,
+            })}
+          >
+            <DeckHighlight type={deck.length === 0 ? 'negative' : 'default'}>{deck.length}</DeckHighlight>
+          </div>
+        ),
       },
       {
         key: 'aside-pile',

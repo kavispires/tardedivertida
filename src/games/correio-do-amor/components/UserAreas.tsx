@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex } from 'antd';
@@ -12,25 +12,23 @@ import { TitledContainer } from '@components/layout/TitledContainer';
 // Internal
 import type { FestaJuninaCard, SubmitCardPayload } from '../utils/types';
 import { getCardKeyFromId } from '../utils/helpers';
+import { useCustomCardWidth } from '../utils/useCustomCardWidth';
 import { FestaJuninaCardImage } from './FestaJuninaCardImage';
 
 type PlayingUserAreaProps = {
   cardsDict: Dictionary<FestaJuninaCard>;
-  cardWidth: number;
   user: GamePlayer;
   nextDrawnCardId: UID;
   onSubmitCard: (payload: SubmitCardPayload) => void;
 };
 
-export function PlayingUserArea({
-  cardsDict,
-  cardWidth,
-  user,
-  nextDrawnCardId,
-  onSubmitCard,
-}: PlayingUserAreaProps) {
-  const cardInHand = cardsDict[getCardKeyFromId(user.hand?.[0])];
-  const drawnCard = cardsDict[getCardKeyFromId(nextDrawnCardId)];
+export function PlayingUserArea({ cardsDict, user, nextDrawnCardId, onSubmitCard }: PlayingUserAreaProps) {
+  const { cardWidth } = useCustomCardWidth();
+
+  const cardInHandId: string = user.hand?.[0];
+  const drawnCardId = nextDrawnCardId;
+  const cardInHand = cardsDict[getCardKeyFromId(cardInHandId)];
+  const drawnCard = cardsDict[getCardKeyFromId(drawnCardId)];
 
   // Verify FORCE_PLAY
   const [disableLeft, disableRight] = useMemo(() => {
@@ -73,15 +71,34 @@ export function PlayingUserArea({
         }
         titleProps={{ size: 'xx-small', colorScheme: 'light' }}
       >
-        {cardInHand ? (
-          <FestaJuninaCardImage
-            card={cardInHand}
-            cardId={cardInHand.id}
-            width={cardWidth}
-          />
-        ) : (
-          <div>?</div>
-        )}
+        <AnimatePresence mode="wait">
+          {cardInHand ? (
+            <motion.div
+              key={cardInHand.id}
+              layoutId={cardInHand.id}
+              layout
+              initial={{ opacity: 0, x: cardWidth }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                transition: { type: 'spring', stiffness: 300, damping: 25 },
+              }}
+              exit={{
+                opacity: 0,
+                x: -cardWidth,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <FestaJuninaCardImage
+                card={cardInHand}
+                cardId={cardInHand.id}
+                width={cardWidth}
+              />
+            </motion.div>
+          ) : (
+            <div>?</div>
+          )}
+        </AnimatePresence>
         <Popconfirm
           type="yes-no"
           title={
@@ -94,8 +111,8 @@ export function PlayingUserArea({
             if (cardInHand) {
               onSubmitCard({
                 payload: {
-                  playedCardId: cardInHand.id,
-                  keptCardId: drawnCard.id,
+                  playedCardId: cardInHandId,
+                  keptCardId: drawnCardId,
                   playedEffect: cardInHand.keyword,
                 },
               });
@@ -124,6 +141,7 @@ export function PlayingUserArea({
             initial={{ opacity: 0, x: cardWidth }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25, delay: 3 }}
+            layoutId={drawnCardId}
           >
             <FestaJuninaCardImage
               card={drawnCard}
@@ -144,8 +162,8 @@ export function PlayingUserArea({
               if (drawnCard) {
                 onSubmitCard({
                   payload: {
-                    playedCardId: drawnCard.id,
-                    keptCardId: cardInHand?.id ?? '',
+                    playedCardId: drawnCardId,
+                    keptCardId: cardInHandId ?? '',
                     playedEffect: drawnCard.keyword,
                   },
                 });
@@ -167,11 +185,12 @@ export function PlayingUserArea({
 
 type NonPlayingUserAreaProps = {
   cardsDict: Dictionary<FestaJuninaCard>;
-  cardWidth: number;
   user: GamePlayer;
 };
 
-export function NonPlayingUserArea({ cardsDict, cardWidth, user }: NonPlayingUserAreaProps) {
+export function NonPlayingUserArea({ cardsDict, user }: NonPlayingUserAreaProps) {
+  const { passiveCardWidth } = useCustomCardWidth();
+
   const cardInHand = cardsDict[getCardKeyFromId(user.hand?.[0])];
   return (
     <Flex gap={12}>
@@ -184,24 +203,44 @@ export function NonPlayingUserArea({ cardsDict, cardWidth, user }: NonPlayingUse
         }
         titleProps={{ size: 'xx-small', colorScheme: 'light' }}
       >
-        {cardInHand ? (
-          <FestaJuninaCardImage
-            card={cardInHand}
-            cardId={cardInHand.id}
-            width={cardWidth}
-          />
-        ) : (
-          <div>?</div>
-        )}
+        <AnimatePresence mode="wait">
+          {cardInHand ? (
+            <motion.div
+              key={cardInHand.id}
+              layoutId={cardInHand.id}
+              layout
+              initial={{ opacity: 0, x: passiveCardWidth }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                transition: { type: 'spring', stiffness: 300, damping: 25 },
+              }}
+              exit={{
+                opacity: 0,
+                x: -passiveCardWidth,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <FestaJuninaCardImage
+                card={cardInHand}
+                cardId={cardInHand.id}
+                width={passiveCardWidth}
+              />
+            </motion.div>
+          ) : (
+            <div>?</div>
+          )}
+        </AnimatePresence>
       </TitledContainer>
     </Flex>
   );
 }
 
-type EliminatedUserAreaProps = {
-  user: GamePlayer;
-};
-
-export function EliminatedUserArea({ user }: EliminatedUserAreaProps) {
-  return <>ELIMINATED PLAYER: {user.name}</>;
+export function EliminatedUserArea() {
+  return (
+    <Translate
+      en="You have been eliminated from this round."
+      pt="Você foi eliminado desta rodada."
+    />
+  );
 }

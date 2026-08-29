@@ -54,6 +54,11 @@
     place-items: center;
   }
 
+  &__passive-effect {
+    opacity: 0.7;
+    font-style: italic;
+  }
+
   &__count {
     letter-spacing: 0.2em;
     font-size: 4.5cqw;
@@ -79,6 +84,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    margin-top: get-unit(10);
   }
 
   &__players-left {
@@ -151,4 +157,17 @@
       font-style: italic;
     }
   }
+}
+
+
+.card-resolution-area {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  place-items: center;
+}
+
+.card-interaction-area {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  place-items: center;
 }

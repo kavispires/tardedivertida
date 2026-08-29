@@ -37,7 +37,6 @@ export function PhaseCardEffects({ players, state, user }: PhaseProps<PhaseCardE
           cardsSetAside={state.cardsSetAside}
           effectKeyword={state.effectKeyword}
           activePlayerId={state.activePlayerId}
-          nextDrawnCardId={state.nextDrawnCardId}
           targetPlayersIds={state.targetPlayersIds}
           outcome={state.outcome}
           activePlayer={activePlayer}

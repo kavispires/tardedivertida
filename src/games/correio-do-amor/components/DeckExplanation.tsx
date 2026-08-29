@@ -6,14 +6,15 @@ import { Translate } from '@components/language/Translate';
 import { CollapsibleRule } from '@components/rules/CollapsibleRule';
 // Internal
 import type { FestaJuninaCard } from '../utils/types';
+import { useCustomCardWidth } from '../utils/useCustomCardWidth';
 import { FestaJuninaCardImage } from './FestaJuninaCardImage';
 
 type DeckExplanationProps = {
   cardsDict: Dictionary<FestaJuninaCard>;
-  cardWidth: number;
 };
 
-export function DeckExplanation({ cardsDict, cardWidth }: DeckExplanationProps) {
+export function DeckExplanation({ cardsDict }: DeckExplanationProps) {
+  const { passiveCardWidth } = useCustomCardWidth();
   const cards = useMemo(() => Object.values(cardsDict).filter((c) => c.count > 0), [cardsDict]);
 
   return (
@@ -39,7 +40,7 @@ export function DeckExplanation({ cardsDict, cardWidth }: DeckExplanationProps) 
             <FestaJuninaCardImage
               card={card}
               cardId={card.id}
-              width={cardWidth / 1.5}
+              width={passiveCardWidth}
             />
             <Flex justify="center">
               <Tag>{card.count}×</Tag>

@@ -2,11 +2,11 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "correio-do-amor",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "release": "dev",
   "releaseDate": "0000-00-00",
-  "updatedAt": 1787431632683,
-  "available": false,
+  "updatedAt": 1788046758569,
+  "available": true,
   "title": {
     "pt": "Correio do Amor",
     "en": "Love Mail"

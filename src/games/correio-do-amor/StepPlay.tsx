@@ -2,8 +2,6 @@
 import { Flex } from 'antd';
 // Types
 import type { GamePlayers, GamePlayer } from 'types/game';
-// Hooks
-import { useCardWidth } from '@hooks/useCardWidth';
 // Icons
 import { AnimatedWaitingDotsIcon } from '@icons/AnimatedWaitingDotsIcon';
 // Components
@@ -58,8 +56,6 @@ export function StepPlay({
   ongoingEffects,
   onSubmitCard,
 }: StepPlayProps) {
-  const cardWidth = useCardWidth(8, { minWidth: 128 });
-
   return (
     <Step
       fullWidth
@@ -71,13 +67,6 @@ export function StepPlay({
           en="Elegant Mail Time"
         />
       </StepTitle>
-
-      <RuleInstruction type="rule">
-        <Translate
-          pt="O objetivo é terminar a rodada com a carta de maior valor na mão. E você consegue isso muito mais rápido se você eliminar os outros jogadores. Cada rodada você compra uma carta nova e escolhe uma delas para aplicar o efeito!"
-          en="The goal is to end the round with the highest value card in hand. And you can achieve that much faster if you eliminate the other players. Each round you draw a new card and choose one of them to apply the effect!"
-        />
-      </RuleInstruction>
 
       <Summary
         user={user}
@@ -94,13 +83,13 @@ export function StepPlay({
         players={players}
         gameOrder={gameOrder}
         activePlayerId={activePlayer.id}
+        waitingForPlayerId={activePlayer.id}
         user={user}
         userArea={
           <>
             {user.hand && isTheActivePlayer && (
               <PlayingUserArea
                 cardsDict={cardsDict}
-                cardWidth={cardWidth}
                 user={user}
                 nextDrawnCardId={nextDrawnCardId}
                 onSubmitCard={onSubmitCard}
@@ -110,12 +99,11 @@ export function StepPlay({
             {user.hand && user.status !== PLAYER_STATUS.ELIMINATED && !isTheActivePlayer && (
               <NonPlayingUserArea
                 cardsDict={cardsDict}
-                cardWidth={cardWidth}
                 user={user}
               />
             )}
 
-            {user.status === PLAYER_STATUS.ELIMINATED && <EliminatedUserArea user={user} />}
+            {user.status === PLAYER_STATUS.ELIMINATED && <EliminatedUserArea />}
           </>
         }
       >
@@ -126,19 +114,19 @@ export function StepPlay({
               <br/>
               Lembre-se que se você quer manter na sua mão uma carta que te ajude a ganhar no final da rodada (carta de maior valor).
               <br/>
-              Qualquer efeito que faça alguém (incluindo você) descartar a carta em mão faz você perder a rodada, então escolha com cuidado!"
+              Qualquer efeito que faça alguém (incluindo você) descartar a carta que você deixou em mãos, sem poder comprar uma nova, faz você perder a rodada!"
               en="Pick one of the two cards to play.
               <br/>
               Remember that if you want to keep in your hand a card that helps you win by the end of the round(highest value card).
               <br/>
-              Any effect that makes someone (including you) discard the card in hand makes you lose the round, so choose carefully!"
+              Any effect that makes someone (including you) discard the card in hand without being able to draw a new one makes you lose the round!"
             />
           </RuleInstruction>
         ) : (
           <Flex
             vertical
             align="center"
-            className="my-10"
+            className="my-10 contained"
           >
             <Icon
               icon={<AnimatedWaitingDotsIcon />}
@@ -146,8 +134,8 @@ export function StepPlay({
             />
             <p>
               <Translate
-                en="Waiting for {player}"
-                pt="Aguardando {player}"
+                en="Waiting for {player} to play their card"
+                pt="Aguardando {player} jogar a carta"
                 values={{
                   player: <PlayerAvatarName player={activePlayer} />,
                 }}
@@ -157,10 +145,7 @@ export function StepPlay({
         )}
       </PlayArea>
 
-      <DeckExplanation
-        cardsDict={cardsDict}
-        cardWidth={cardWidth}
-      />
+      <DeckExplanation cardsDict={cardsDict} />
     </Step>
   );
 }

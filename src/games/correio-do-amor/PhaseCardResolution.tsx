@@ -8,11 +8,10 @@ import { StepSwitcher } from '@components/steps/StepSwitcher';
 // Internal
 import type { PhaseCardResolutionState } from './utils/types';
 import { CORREIO_DO_AMOR_PHASES } from './utils/constants';
-import { StepMakeDecision } from './StepMakeDecision';
 import { StepDisplayResults } from './StepDisplayResults';
 
 export function PhaseCardResolution({ players, state, user }: PhaseProps<PhaseCardResolutionState>) {
-  const [activePlayer, isTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
+  const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   return (
     <PhaseContainer
@@ -35,14 +34,11 @@ export function PhaseCardResolution({ players, state, user }: PhaseProps<PhaseCa
           cardsSetAside={state.cardsSetAside}
           effectKeyword={state.effectKeyword}
           activePlayerId={state.activePlayerId}
-          nextDrawnCardId={state.nextDrawnCardId}
           targetPlayersIds={state.targetPlayersIds}
           outcome={state.outcome}
           activePlayer={activePlayer}
-          isTheActivePlayer={isTheActivePlayer}
           deck={state.deck}
           ongoingEffects={state.ongoingEffects}
-          play={state.play}
           log={state.log}
         />
       </StepSwitcher>

@@ -47,6 +47,12 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
             player: <PlayerAvatarName player={activePlayer} />,
           }}
         />
+        {activePlayer?.id === user?.id && (
+          <Translate
+            pt=" (Você)"
+            en=" (You)"
+          />
+        )}
       </Surface>
     </PhaseAnnouncement>
   );
@@ -67,7 +73,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
           buttonText=" "
           time={5}
         >
-          <Surface>
+          <Surface contained>
             <Translate
               en="Chegue mais perto do seu par ideal!"
               pt="Chegue mais perto do seu par ideal!"

@@ -1,6 +1,57 @@
 // Internal
 import { isDevelopmentEnvironment } from './environment';
 
+type PrintArguments = unknown[];
+
+const log = (...content: PrintArguments): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.log(...content);
+  }
+};
+
+const debug = (...content: PrintArguments): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.debug(...content);
+  }
+};
+
+const info = (...content: PrintArguments): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.info(...content);
+  }
+};
+
+const warn = (...content: PrintArguments): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.warn(...content);
+  }
+};
+
+const error = (...content: PrintArguments): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.error(...content);
+  }
+};
+
+const table = (tabularData?: unknown, properties?: string[]): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.table(tabularData, properties);
+  }
+};
+
+const count = (label?: string): void => {
+  if (isDevelopmentEnvironment()) {
+    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
+    console.count(label);
+  }
+};
+
 /**
  * Development utility functions for debugging and testing
  *
@@ -10,21 +61,28 @@ import { isDevelopmentEnvironment } from './environment';
  */
 
 /**
- * Prints content to console in formatted JSON when running in development mode
+ * Prints content to the console when running in development mode
  *
  * Only outputs when NODE_ENV is 'development'. Useful for debugging
  * during local development without cluttering production logs.
  *
- * @param content - The content to print to console (will be JSON stringified)
+ * Use the attached methods to select a console level, such as `print.debug()`
+ * or `print.warn()`. Calling `print()` directly is equivalent to `print.log()`.
+ *
  * @example
- * print({ userId: '123', action: 'submit' }) // Logs formatted JSON in dev only
+ * print({ userId: '123', action: 'submit' })
+ * print.debug('Current state', state)
+ * print.warn('Unexpected value', value)
  */
-export const print = (content: unknown) => {
-  if (isDevelopmentEnvironment()) {
-    // biome-ignore lint/suspicious/noConsole: Intentional console usage for development debugging
-    console.log(JSON.stringify(content, null, 2));
-  }
-};
+export const print = Object.assign(log, {
+  count,
+  debug,
+  error,
+  info,
+  log,
+  table,
+  warn,
+});
 
 /**
  * Simulates a delay during development for testing loading states and async behavior

@@ -4,13 +4,14 @@ import type { GameState } from 'types/game';
 import { GAME_COLLECTION } from '@utils/constants';
 // Components
 import { PhaseError } from '@components/phases/PhaseError';
-import { PhasePlaceholder } from '@components/phases/PhasePlaceholder';
 import { Session } from '@components/session/Session';
 // Internal
 import { CORREIO_DO_AMOR_PHASES } from './utils/constants';
 import { PhaseCardPlay } from './PhaseCardPlay';
 import { PhaseCardResolution } from './PhaseCardResolution';
 import { PhaseCardEffects } from './PhaseCardEffects';
+import { PhaseRoundRanking } from './PhaseRoundRanking';
+import { PhaseGameOver } from './PhaseGameOver';
 // Sass
 import './utils/styles.scss';
 
@@ -22,8 +23,10 @@ function getActiveComponent(state: GameState) {
       return PhaseCardEffects;
     case CORREIO_DO_AMOR_PHASES.CARD_RESOLUTION:
       return PhaseCardResolution;
+    case CORREIO_DO_AMOR_PHASES.ROUND_RANKING:
+      return PhaseRoundRanking;
     case CORREIO_DO_AMOR_PHASES.GAME_OVER:
-      return PhasePlaceholder;
+      return PhaseGameOver;
     default:
       return PhaseError;
   }
