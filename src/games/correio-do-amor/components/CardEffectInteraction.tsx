@@ -11,13 +11,7 @@ import { TimedButton } from '@components/buttons/TimedButton';
 import { Translate } from '@components/language/Translate';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
-import type {
-  FestaJuninaCard,
-  OngoingEffect,
-  Play,
-  PlaySelections,
-  SubmitSelectionsPayload,
-} from '../utils/types';
+import type { FestaJuninaCard, Play, PlaySelections, SubmitSelectionsPayload } from '../utils/types';
 import { KEYWORDS, PLAYER_STATUS } from '../utils/constants';
 import { useCustomCardWidth } from '../utils/useCustomCardWidth';
 import { getCardKeyFromId } from '../utils/helpers';

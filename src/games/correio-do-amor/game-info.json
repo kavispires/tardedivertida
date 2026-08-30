@@ -2,10 +2,10 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "correio-do-amor",
-  "version": "0.0.17",
-  "release": "dev",
+  "version": "1.0.0",
+  "release": "beta",
   "releaseDate": "0000-00-00",
-  "updatedAt": 1788046758569,
+  "updatedAt": 1788102989144,
   "available": true,
   "title": {
     "pt": "Correio do Amor",
@@ -30,8 +30,22 @@
     "imageBackground": true
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Correio do Amor, o objetivo é chegar mais próximo do amor verdadeiro! Para isso você deve eliminar outros jogadores ou ter a carta de maior valor no final da rodada.",
+      "Cada jogador começa a rodada com 1 carta e na sua vez, você compra uma carta, escolhe entre as duas para jogar e mantenha a outra na mão.",
+      "Resolva o efeito da carta jogada. Os efeitos podem revelar, trocar ou descartar cartas — e até eliminar jogadores.",
+      "A rodada termina quando o baralho acaba ou resta apenas um jogador.",
+      "Entre os sobreviventes, quem tiver a carta de maior valor ganha 3 pontos. Empates também recebem os pontos.",
+      "O jogo termina quando alguém alcança 7 pontos. Quem tiver mais pontos vence."
+    ],
+    "en": [
+      "In Love Mail, the goal is to get closer to true love! To do this you must eliminate other players or have the highest value card at the end of the round.",
+      "Each player starts the round with 1 card and on your turn, you draw a card, choose between the two to play and keep the other in your hand.",
+      "Resolve the effect of the played card. The effects can reveal, swap or discard cards — and even eliminate players.",
+      "The round ends when the deck runs out or only one player remains.",
+      "Among the survivors, whoever has the highest value card earns 3 points. Ties also receive points.",
+      "The game ends when someone reaches 7 points. Whoever has the most points wins."
+    ]
   },
   "playerCount": {
     "recommended": [3, 4, 5],

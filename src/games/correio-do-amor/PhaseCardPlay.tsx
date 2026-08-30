@@ -31,7 +31,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
       icon={<SpeechBubbleHeartIcon />}
       title={
         <Translate
-          pt="Anarrië!"
+          pt="Anarriê!"
           en="Card Play!"
         />
       }

@@ -36,6 +36,8 @@ import {
 import { increaseRound } from '../../mechanics/round';
 import { determineWinners, Scores } from '../../mechanics/scoring';
 import { turnOrderUtils } from '../../mechanics/turn-order';
+// Utils
+import { print } from '../../utils';
 // Internal
 import { setupAchievements, calculateAchievements, increaseAchievement } from './achievements';
 import { buildRoundDeck, getCardKeyFromId } from './helpers';
@@ -316,26 +318,26 @@ export const prepareCardResolutionPhase = async (
   }
 
   // TODO: Remove when game is released
-  console.debug('Card Resolution Phase', {
-    round: state.round?.current,
-    cardId: results.cardId,
-    playedCard: actorCardInHand?.name ?? 'Unknown',
-    actorId: results.actorId,
-    actorName: players[results.actorId]?.name ?? 'Unknown',
-    actorCardInHand: players[results.actorId]?.hand?.[0] ?? 'None',
-    actorStatus: players[results.actorId]?.status ?? 'Unknown',
-    targetPlayerId,
-    targetPlayerName: targetPlayer?.name ?? 'None',
-    targetCardInHand: targetPlayerCardId ?? 'None',
-    targetStatus: targetPlayer?.status ?? 'Unknown',
-    effectKeyword: results.cardKeyword,
-    selectedEffectInput: results.selections?.effectInput ?? null,
-    effectInput: results.effectInput ?? null,
-    deckLength: deck.length,
-    nextCardInDeck: deck.at(-1) ?? 'None',
-    discardLength: discardPile.length,
-    cardsSetAsideCount: cardsSetAside.length,
-  });
+  // print.debug('Card Resolution Phase', {
+  //   round: state.round?.current,
+  //   cardId: results.cardId,
+  //   playedCard: actorCardInHand?.name ?? 'Unknown',
+  //   actorId: results.actorId,
+  //   actorName: players[results.actorId]?.name ?? 'Unknown',
+  //   actorCardInHand: players[results.actorId]?.hand?.[0] ?? 'None',
+  //   actorStatus: players[results.actorId]?.status ?? 'Unknown',
+  //   targetPlayerId,
+  //   targetPlayerName: targetPlayer?.name ?? 'None',
+  //   targetCardInHand: targetPlayerCardId ?? 'None',
+  //   targetStatus: targetPlayer?.status ?? 'Unknown',
+  //   effectKeyword: results.cardKeyword,
+  //   selectedEffectInput: results.selections?.effectInput ?? null,
+  //   effectInput: results.effectInput ?? null,
+  //   deckLength: deck.length,
+  //   nextCardInDeck: deck.at(-1) ?? 'None',
+  //   discardLength: discardPile.length,
+  //   cardsSetAsideCount: cardsSetAside.length,
+  // });
 
   // INTERNAL PHASE HELPER FUNCTIONS
   function performCounterAttackCheck(): boolean {
@@ -787,21 +789,21 @@ export const prepareCardResolutionPhase = async (
   }
 
   // TODO: Remove when game is released
-  console.debug('After Switch', {
-    actorId: results.actorId,
-    actorName: players[results.actorId]?.name ?? 'Unknown',
-    actorCardInHand: players[results.actorId]?.hand?.[0] ?? 'None',
-    actorStatus: players[results.actorId]?.status ?? 'Unknown',
-    targetPlayerId,
-    targetPlayerName: targetPlayer?.name ?? 'None',
-    targetCardInHand: targetPlayerCardId ?? 'None',
-    targetStatus: targetPlayer?.status ?? 'Unknown',
-    resolutionKeyword: results.resolutionKeyword,
-    newOngoingEffect: results.newOngoingEffect ? results.newOngoingEffect.type : null,
-    eliminatedPlayersIds: results.eliminatedPlayersIds,
-    effectInput: results.effectInput,
-    discardedCardId: results.discardedCardId,
-  });
+  // print.debug('After Switch', {
+  //   actorId: results.actorId,
+  //   actorName: players[results.actorId]?.name ?? 'Unknown',
+  //   actorCardInHand: players[results.actorId]?.hand?.[0] ?? 'None',
+  //   actorStatus: players[results.actorId]?.status ?? 'Unknown',
+  //   targetPlayerId,
+  //   targetPlayerName: targetPlayer?.name ?? 'None',
+  //   targetCardInHand: targetPlayerCardId ?? 'None',
+  //   targetStatus: targetPlayer?.status ?? 'Unknown',
+  //   resolutionKeyword: results.resolutionKeyword,
+  //   newOngoingEffect: results.newOngoingEffect ? results.newOngoingEffect.type : null,
+  //   eliminatedPlayersIds: results.eliminatedPlayersIds,
+  //   effectInput: results.effectInput,
+  //   discardedCardId: results.discardedCardId,
+  // });
 
   // Update outcome
   let outcome: string = OUTCOME.CONTINUE;
@@ -881,7 +883,7 @@ export const prepareRoundRankingPhase = async (
   // Gained Points: [win, bonus, penalty, eliminationBonus]
   const scores = new Scores(players, [0, 0, 0, 0]);
   listOfPlayers.forEach((player) => {
-    if (player.status === PLAYER_STATUS.ACTIVE) {
+    if (player.status !== PLAYER_STATUS.ELIMINATED) {
       const cardIdInHand = getCardKeyFromId(player.hand[0]);
       const cardInHand = cardsDict[cardIdInHand];
       if (cardInHand) {

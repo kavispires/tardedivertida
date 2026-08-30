@@ -119,7 +119,7 @@ export function StepDisplayResults({
       </PlayArea>
 
       <HostNextPhaseButton
-        autoTriggerTime={45}
+        autoTriggerTime={30}
         withWaitingTimeBar
       />
 
