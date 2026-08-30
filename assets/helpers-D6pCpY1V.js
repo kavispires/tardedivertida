@@ -1,1 +1,0 @@
-import{r as e}from"./rolldown-runtime-Cyuzqnbw.js";import{V as t}from"./vendor-CaNCjSGC.js";import{M as n,S as r}from"./DailyChrome-C2OulAcO.js";var i=e({getInitialState:()=>s}),a=t(),o={id:``,number:0,played:!1},s=e=>{let t=r({key:n.KEY,gameId:e.id,defaultValue:(0,a.cloneDeep)(o)});return{id:e.id,number:e.number,played:t.played}};export{i as n,s as t};

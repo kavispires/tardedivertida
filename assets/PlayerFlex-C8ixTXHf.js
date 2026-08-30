@@ -1,0 +1,1 @@
+import{Gn as e}from"./antd-vendor-BsTm-H7e.js";import{V as t}from"./react-vendor-52PM-WVT.js";import{O as n}from"./helpers-el396qHH.js";var r=t(),i=({avatarId:t,withBorder:i,...a})=>{let o=n[t];return(0,r.jsx)(e,{...a,style:{...a.style,backgroundColor:a.style?.backgroundColor||o?.color,border:a.style?.border||(i?`3px solid ${o?.color}`:`none`)}})};export{i as t};

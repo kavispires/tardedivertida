@@ -1,1 +1,0 @@
-import"./helpers-Yc96aaUZ.js";import{r as e}from"./useGlobalState-IHvVPVp1.js";function t(){let[t,n]=e(`isDebugEnabled`);return{isDevEnv:!1,isDebugEnabled:t,toggleDevFeatures:()=>{n(!t)}}}export{t};

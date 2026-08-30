@@ -1,0 +1,1 @@
+import{r as e}from"./useLanguage-_Nf9_jlw.js";function t(){let[t,n]=e(`blurredCards`),[r]=e(`blurEnabled`);return{blurredCards:t,shouldBeBlurred:e=>!!(e&&r&&t?.[e]),blurCard:e=>{n({...t,[e]:!t?.[e]})},isBlurEnabled:r}}export{t};

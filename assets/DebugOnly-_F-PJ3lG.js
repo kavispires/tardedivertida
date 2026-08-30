@@ -1,0 +1,1 @@
+import{V as e}from"./react-vendor-52PM-WVT.js";import{t}from"./useDevFeatures-t7l1Td01.js";var n=e();function r({children:e,div:r=!1,dev:i=!1,devOnly:a=!1}){let{isDebugEnabled:o,isDevEnv:s}=t();return a?r&&s?(0,n.jsx)(`div`,{children:e}):s?e:null:i&&s||o?r?(0,n.jsx)(`div`,{children:e}):(0,n.jsx)(n.Fragment,{children:e}):null}export{r as t};

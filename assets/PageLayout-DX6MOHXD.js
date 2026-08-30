@@ -1,0 +1,1 @@
+import{Ar as e,Mn as t}from"./antd-vendor-BsTm-H7e.js";import{V as n}from"./react-vendor-52PM-WVT.js";var r={pageLayout:`_pageLayout_1ghgm_1`},i=n(),a=({className:n,...a})=>(0,i.jsx)(t,{className:e(r.pageLayout,n),...a}),o=e=>(0,i.jsx)(t,{...e});export{a as n,o as t};
