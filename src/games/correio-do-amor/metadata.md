@@ -7,7 +7,7 @@
 
 ### External Dependencies
 
-- Rules Images: 🔘
+- Rules Images: ✅
 - Image Background: ✅
 - Video Background: ✅
 

@@ -12,7 +12,7 @@ import { Translate } from '@components/language/Translate';
 import { RuleInstruction } from '@components/text/RuleInstruction';
 // Internal
 import type { FestaJuninaCard, Play, PlaySelections, SubmitSelectionsPayload } from '../utils/types';
-import { KEYWORDS, PLAYER_STATUS } from '../utils/constants';
+import { KEYWORDS, PLAYER_STATUS, RESOLUTION_KEYWORD } from '../utils/constants';
 import { useCustomCardWidth } from '../utils/useCustomCardWidth';
 import { getCardKeyFromId } from '../utils/helpers';
 import { PlayedCardAnimation } from './PlayedCardAnimation';
@@ -523,7 +523,9 @@ function NoAvailableTarget({ handleSelectionsSubmit }: NoAvailableTargetProps) {
         pt="Não há jogadores disponíveis para escolher."
       />
       <br />
-      <SendButton onClick={() => handleSelectionsSubmit({ effectInput: 'NO_TARGET_AVAILABLE' })}>
+      <SendButton
+        onClick={() => handleSelectionsSubmit({ effectInput: RESOLUTION_KEYWORD.NO_TARGET_AVAILABLE })}
+      >
         <Translate
           en="Skip Turn"
           pt="Pular Vez"

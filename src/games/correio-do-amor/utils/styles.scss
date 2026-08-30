@@ -171,3 +171,14 @@
   grid-template-columns: 4fr 1fr;
   place-items: center;
 }
+
+.deck-explanation-card {
+  position: relative;
+}
+
+.deck-explanation-card__new-badge {
+  position: absolute;
+  top: -12%;
+  right: -5%;
+  rotate: -5deg;
+}

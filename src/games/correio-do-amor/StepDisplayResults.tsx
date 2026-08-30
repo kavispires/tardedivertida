@@ -34,6 +34,7 @@ type StepDisplayResultsProps = {
   deck: UID[];
   ongoingEffects: OngoingEffect[];
   log: LogEntry[];
+  newCardsInDeck: UID[];
 };
 
 export function StepDisplayResults({
@@ -48,6 +49,7 @@ export function StepDisplayResults({
   discardPile,
   ongoingEffects,
   log,
+  newCardsInDeck,
 }: StepDisplayResultsProps) {
   const latestLogEntry = log[0];
   const playedCard = cardsDict?.[latestLogEntry?.cardKey ?? ''] ?? null;
@@ -123,7 +125,10 @@ export function StepDisplayResults({
         withWaitingTimeBar
       />
 
-      <DeckExplanation cardsDict={cardsDict} />
+      <DeckExplanation
+        cardsDict={cardsDict}
+        newCardsInDeck={newCardsInDeck}
+      />
     </Step>
   );
 }

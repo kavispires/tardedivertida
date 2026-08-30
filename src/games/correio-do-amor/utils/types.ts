@@ -144,6 +144,7 @@ export type PhaseCardPlayState = {
   targetPlayersIds: UID[];
   outcome: string;
   ongoingEffects: OngoingEffect[];
+  newCardsInDeck: UID[];
 };
 
 export type PhaseCardEffectsState = {
@@ -161,6 +162,7 @@ export type PhaseCardEffectsState = {
   outcome: string;
   ongoingEffects: OngoingEffect[];
   play: Play;
+  newCardsInDeck: UID[];
 };
 
 export type PhaseCardResolutionState = {
@@ -178,6 +180,7 @@ export type PhaseCardResolutionState = {
   outcome: string;
   ongoingEffects: OngoingEffect[];
   log: LogEntry[];
+  newCardsInDeck: UID[];
 };
 
 export type PhaseRoundRankingState = {
@@ -186,6 +189,7 @@ export type PhaseRoundRankingState = {
   ranking: GameRanking;
   cardsSetAside: UID[];
   outcome: string;
+  newCardsInDeck: UID[];
 };
 
 /**

@@ -11,9 +11,10 @@ import { FestaJuninaCardImage } from './FestaJuninaCardImage';
 
 type DeckExplanationProps = {
   cardsDict: Dictionary<FestaJuninaCard>;
+  newCardsInDeck?: UID[];
 };
 
-export function DeckExplanation({ cardsDict }: DeckExplanationProps) {
+export function DeckExplanation({ cardsDict, newCardsInDeck }: DeckExplanationProps) {
   const { passiveCardWidth } = useCustomCardWidth();
   const cards = useMemo(() => Object.values(cardsDict).filter((c) => c.count > 0), [cardsDict]);
 
@@ -36,7 +37,18 @@ export function DeckExplanation({ cardsDict }: DeckExplanationProps) {
           <Flex
             vertical
             key={card.id}
+            className="deck-explanation-card"
           >
+            {newCardsInDeck?.includes(card.id) && (
+              <span className="deck-explanation-card__new-badge">
+                <Tag color="gold-inverse">
+                  <Translate
+                    en="New"
+                    pt="Nova"
+                  />
+                </Tag>
+              </span>
+            )}
             <FestaJuninaCardImage
               card={card}
               cardId={card.id}

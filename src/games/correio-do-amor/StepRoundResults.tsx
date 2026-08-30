@@ -29,6 +29,7 @@ type StepRoundResultsProps = {
   ongoingEffects: OngoingEffect[];
   cardsSetAside: UID[];
   goToNextStep: () => void;
+  newCardsInDeck: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepRoundResults({
@@ -38,6 +39,7 @@ export function StepRoundResults({
   cardsSetAside,
   ongoingEffects,
   goToNextStep,
+  newCardsInDeck,
 }: StepRoundResultsProps) {
   const { cardWidth, passiveCardWidth } = useCustomCardWidth();
 
@@ -165,7 +167,10 @@ export function StepRoundResults({
         </TimedButton>
       </SpaceContainer>
 
-      <DeckExplanation cardsDict={cardsDict} />
+      <DeckExplanation
+        cardsDict={cardsDict}
+        newCardsInDeck={newCardsInDeck}
+      />
     </Step>
   );
 }

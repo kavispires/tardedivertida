@@ -1,4 +1,4 @@
-import { orderBy, shuffle } from 'lodash';
+import { orderBy, shuffle, uniq } from 'lodash';
 // Types
 import type {
   FestaJuninaCard,
@@ -36,8 +36,6 @@ import {
 import { increaseRound } from '../../mechanics/round';
 import { determineWinners, Scores } from '../../mechanics/scoring';
 import { turnOrderUtils } from '../../mechanics/turn-order';
-// Utils
-import { print } from '../../utils';
 // Internal
 import { setupAchievements, calculateAchievements, increaseAchievement } from './achievements';
 import { buildRoundDeck, getCardKeyFromId } from './helpers';
@@ -97,8 +95,10 @@ export const prepareCardPlayPhase = async (
 
   // NEW ROUND
   if (state.outcome === OUTCOME.SETUP) {
-    const previousDeck = (state.deck ?? []).reduce((acc: Dictionary<true>, cardId: string) => {
-      acc[getCardKeyFromId(cardId)] = true;
+    const previousDeck = Object.values(cardsDict).reduce((acc: Dictionary<true>, card) => {
+      if (card.count > 0) {
+        acc[card.id] = true;
+      }
       return acc;
     }, {});
 
@@ -114,7 +114,11 @@ export const prepareCardPlayPhase = async (
       store.advancedRotation,
     );
 
-    const newCardsInDeck = deck.filter((newCardId) => !previousDeck[getCardKeyFromId(newCardId)]);
+    const newCardsInDeck = uniq(
+      deck
+        .filter((newCardId) => !previousDeck[getCardKeyFromId(newCardId)])
+        .map((cardId) => getCardKeyFromId(cardId)),
+    );
 
     // Deal cards to players
     getListOfPlayers(players).forEach((player) => {

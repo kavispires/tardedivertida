@@ -38,6 +38,7 @@ type StepPlayProps = {
   deck: UID[];
   ongoingEffects: OngoingEffect[];
   onSubmitCard: (payload: SubmitCardPayload) => void;
+  newCardsInDeck: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepPlay({
@@ -55,6 +56,7 @@ export function StepPlay({
   isTheActivePlayer,
   ongoingEffects,
   onSubmitCard,
+  newCardsInDeck,
 }: StepPlayProps) {
   return (
     <Step
@@ -145,7 +147,10 @@ export function StepPlay({
         )}
       </PlayArea>
 
-      <DeckExplanation cardsDict={cardsDict} />
+      <DeckExplanation
+        cardsDict={cardsDict}
+        newCardsInDeck={newCardsInDeck}
+      />
     </Step>
   );
 }

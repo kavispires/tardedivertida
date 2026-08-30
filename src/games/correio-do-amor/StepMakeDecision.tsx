@@ -33,6 +33,7 @@ type StepMakeDecisionProps = {
   ongoingEffects: OngoingEffect[];
   onSubmitSelections: (payload: SubmitSelectionsPayload) => void;
   play: Play;
+  newCardsInDeck: UID[];
 } & Pick<StepProps, 'announcement'>;
 
 export function StepMakeDecision({
@@ -50,6 +51,7 @@ export function StepMakeDecision({
   ongoingEffects,
   onSubmitSelections,
   play,
+  newCardsInDeck,
 }: StepMakeDecisionProps) {
   const playedCard = cardsDict?.[play?.cardKey ?? ''] ?? null;
 
@@ -119,7 +121,10 @@ export function StepMakeDecision({
         )}
       </PlayArea>
 
-      <DeckExplanation cardsDict={cardsDict} />
+      <DeckExplanation
+        cardsDict={cardsDict}
+        newCardsInDeck={newCardsInDeck}
+      />
     </Step>
   );
 }

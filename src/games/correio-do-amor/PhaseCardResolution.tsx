@@ -40,6 +40,7 @@ export function PhaseCardResolution({ players, state, user }: PhaseProps<PhaseCa
           deck={state.deck}
           ongoingEffects={state.ongoingEffects}
           log={state.log}
+          newCardsInDeck={state.newCardsInDeck}
         />
       </StepSwitcher>
     </PhaseContainer>

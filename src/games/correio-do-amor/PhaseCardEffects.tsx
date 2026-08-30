@@ -45,6 +45,7 @@ export function PhaseCardEffects({ players, state, user }: PhaseProps<PhaseCardE
           ongoingEffects={state.ongoingEffects}
           onSubmitSelections={onSubmitSelections}
           play={state.play}
+          newCardsInDeck={state.newCardsInDeck}
         />
       </StepSwitcher>
     </PhaseContainer>

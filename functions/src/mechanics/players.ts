@@ -262,7 +262,7 @@ export const createDevPlayer = (players: Players = {}, id: UID = 'dev-player'): 
     { name: 'Lola', avatarIds: ['25', '26', '27'] },
     { name: 'Juca', avatarIds: ['30', '29', '32'] },
     { name: 'Cici', avatarIds: ['36', '37', '38'] },
-    { name: 'Tiana', avatarIds: ['44', '53', '42'] },
+    // { name: 'Tiana', avatarIds: ['44', '53', '42'] },
   ];
   const availableNames = names.filter((n) => !Object.values(players).some((p) => p.name === n.name));
 

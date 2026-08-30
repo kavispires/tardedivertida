@@ -38,6 +38,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}
+      unskippable
     >
       <Surface>
         <Translate
@@ -102,6 +103,7 @@ export function PhaseCardPlay({ players, state, user }: PhaseProps<PhaseCardPlay
           deck={state.deck}
           ongoingEffects={state.ongoingEffects}
           onSubmitCard={onSubmitCard}
+          newCardsInDeck={state.newCardsInDeck}
         />
       </StepSwitcher>
     </PhaseContainer>

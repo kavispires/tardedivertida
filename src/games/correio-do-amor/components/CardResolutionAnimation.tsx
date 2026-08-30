@@ -48,6 +48,18 @@ export function CardResolutionAnimation({
     />
   );
 
+  if (logEntry.resolutionKeyword === RESOLUTION_KEYWORD.NO_TARGET_AVAILABLE) {
+    return (
+      <PlayAreaWithCard playedCard={playedCard}>
+        {everyPrefix}
+        <Translate
+          en=", but there were no available players to target."
+          pt=", mas não havia jogadores disponíveis para escolher."
+        />
+      </PlayAreaWithCard>
+    );
+  }
+
   switch (logEntry.cardKeyword) {
     // RANK 0
     case KEYWORDS.COUNTER_ATTACK:

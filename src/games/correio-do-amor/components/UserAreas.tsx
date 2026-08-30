@@ -13,6 +13,7 @@ import { TitledContainer } from '@components/layout/TitledContainer';
 import type { FestaJuninaCard, SubmitCardPayload } from '../utils/types';
 import { getCardKeyFromId } from '../utils/helpers';
 import { useCustomCardWidth } from '../utils/useCustomCardWidth';
+import { KEYWORDS } from '../utils/constants';
 import { FestaJuninaCardImage } from './FestaJuninaCardImage';
 
 type PlayingUserAreaProps = {
@@ -37,12 +38,12 @@ export function PlayingUserArea({ cardsDict, user, nextDrawnCardId, onSubmitCard
     }
 
     // If neither card is FORCE_PLAY, enable both buttons
-    if (cardInHand.keyword !== 'FORCE_PLAY' && drawnCard.keyword !== 'FORCE_PLAY') {
+    if (cardInHand.keyword !== KEYWORDS.FORCE_PLAY && drawnCard.keyword !== KEYWORDS.FORCE_PLAY) {
       return [false, false];
     }
 
     // If the card in hand is FORCE_PLAY
-    if (cardInHand.keyword === 'FORCE_PLAY') {
+    if (cardInHand.keyword === KEYWORDS.FORCE_PLAY) {
       // If the other card is rank higher than 5, disable the drawn card button
       if (drawnCard.rank >= 6) {
         return [false, true];
@@ -50,7 +51,7 @@ export function PlayingUserArea({ cardsDict, user, nextDrawnCardId, onSubmitCard
     }
 
     // If the drawn card is FORCE_PLAY
-    if (drawnCard.keyword === 'FORCE_PLAY') {
+    if (drawnCard.keyword === KEYWORDS.FORCE_PLAY) {
       // If the other card is rank higher than 5, disable the card in hand button
       if (cardInHand.rank >= 6) {
         return [true, false];
@@ -71,61 +72,66 @@ export function PlayingUserArea({ cardsDict, user, nextDrawnCardId, onSubmitCard
         }
         titleProps={{ size: 'xx-small', colorScheme: 'light' }}
       >
-        <AnimatePresence mode="wait">
-          {cardInHand ? (
-            <motion.div
-              key={cardInHand.id}
-              layoutId={cardInHand.id}
-              layout
-              initial={{ opacity: 0, x: cardWidth }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                transition: { type: 'spring', stiffness: 300, damping: 25 },
-              }}
-              exit={{
-                opacity: 0,
-                x: -cardWidth,
-                transition: { duration: 0.2 },
-              }}
-            >
-              <FestaJuninaCardImage
-                card={cardInHand}
-                cardId={cardInHand.id}
-                width={cardWidth}
-              />
-            </motion.div>
-          ) : (
-            <div>?</div>
-          )}
-        </AnimatePresence>
-        <Popconfirm
-          type="yes-no"
-          title={
-            <Translate
-              pt="Tem certeza que deseja jogar esta carta?"
-              en="Are you sure you want to play this card?"
-            />
-          }
-          onConfirm={() => {
-            if (cardInHand) {
-              onSubmitCard({
-                payload: {
-                  playedCardId: cardInHandId,
-                  keptCardId: drawnCardId,
-                  playedEffect: cardInHand.keyword,
-                },
-              });
-            }
-          }}
+        <Flex
+          vertical
+          align="center"
         >
-          <SendButton disabled={disableLeft}>
-            <Translate
-              pt="Jogar carta"
-              en="Play card"
-            />
-          </SendButton>
-        </Popconfirm>
+          <AnimatePresence mode="wait">
+            {cardInHand ? (
+              <motion.div
+                key={cardInHand.id}
+                layoutId={cardInHand.id}
+                layout
+                initial={{ opacity: 0, x: cardWidth }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                  transition: { type: 'spring', stiffness: 300, damping: 25 },
+                }}
+                exit={{
+                  opacity: 0,
+                  x: -cardWidth,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                <FestaJuninaCardImage
+                  card={cardInHand}
+                  cardId={cardInHand.id}
+                  width={cardWidth}
+                />
+              </motion.div>
+            ) : (
+              <div>?</div>
+            )}
+          </AnimatePresence>
+          <Popconfirm
+            type="yes-no"
+            title={
+              <Translate
+                pt="Tem certeza que deseja jogar esta carta?"
+                en="Are you sure you want to play this card?"
+              />
+            }
+            onConfirm={() => {
+              if (cardInHand) {
+                onSubmitCard({
+                  payload: {
+                    playedCardId: cardInHandId,
+                    keptCardId: drawnCardId,
+                    playedEffect: cardInHand.keyword,
+                  },
+                });
+              }
+            }}
+          >
+            <SendButton disabled={disableLeft}>
+              <Translate
+                pt="Jogar carta"
+                en="Play card"
+              />
+            </SendButton>
+          </Popconfirm>
+        </Flex>
       </TitledContainer>
       {drawnCard && (
         <TitledContainer
@@ -137,46 +143,51 @@ export function PlayingUserArea({ cardsDict, user, nextDrawnCardId, onSubmitCard
           }
           titleProps={{ size: 'xx-small', colorScheme: 'light' }}
         >
-          <motion.div
-            initial={{ opacity: 0, x: cardWidth }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 25, delay: 3 }}
-            layoutId={drawnCardId}
+          <Flex
+            vertical
+            align="center"
           >
-            <FestaJuninaCardImage
-              card={drawnCard}
-              cardId={drawnCard.id}
-              width={cardWidth}
-            />
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: cardWidth }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25, delay: 3 }}
+              layoutId={drawnCardId}
+            >
+              <FestaJuninaCardImage
+                card={drawnCard}
+                cardId={drawnCard.id}
+                width={cardWidth}
+              />
+            </motion.div>
 
-          <Popconfirm
-            type="yes-no"
-            title={
-              <Translate
-                pt="Tem certeza que deseja jogar esta carta?"
-                en="Are you sure you want to play this card?"
-              />
-            }
-            onConfirm={() => {
-              if (drawnCard) {
-                onSubmitCard({
-                  payload: {
-                    playedCardId: drawnCardId,
-                    keptCardId: cardInHandId ?? '',
-                    playedEffect: drawnCard.keyword,
-                  },
-                });
+            <Popconfirm
+              type="yes-no"
+              title={
+                <Translate
+                  pt="Tem certeza que deseja jogar esta carta?"
+                  en="Are you sure you want to play this card?"
+                />
               }
-            }}
-          >
-            <SendButton disabled={disableRight}>
-              <Translate
-                pt="Jogar carta"
-                en="Play card"
-              />
-            </SendButton>
-          </Popconfirm>
+              onConfirm={() => {
+                if (drawnCard) {
+                  onSubmitCard({
+                    payload: {
+                      playedCardId: drawnCardId,
+                      keptCardId: cardInHandId ?? '',
+                      playedEffect: drawnCard.keyword,
+                    },
+                  });
+                }
+              }}
+            >
+              <SendButton disabled={disableRight}>
+                <Translate
+                  pt="Jogar carta"
+                  en="Play card"
+                />
+              </SendButton>
+            </Popconfirm>
+          </Flex>
         </TitledContainer>
       )}
     </Flex>

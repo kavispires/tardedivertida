@@ -50,6 +50,7 @@ export function PhaseRoundRanking({ players, state }: PhaseProps<PhaseRoundRanki
           cardsSetAside={state.cardsSetAside}
           ongoingEffects={state.ongoingEffects}
           goToNextStep={goToNextStep}
+          newCardsInDeck={state.newCardsInDeck}
         />
 
         {/* Step 1 */}
