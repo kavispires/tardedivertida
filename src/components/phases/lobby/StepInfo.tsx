@@ -49,7 +49,7 @@ export function StepInfo({ players, setStep }: StepInfoProps) {
     (currentUser?.avatars?.[0] ?? isDevEnv) ? 'N' : getRandomItem(AVAILABLE_AVATAR_IDS),
   );
 
-  const [name, setName] = useState(((currentUser?.names ?? []).at(-1) ?? isDevEnv) ? '<dev>' : '');
+  const [name, setName] = useState(isDevEnv ? '<dev>' : ((currentUser?.names ?? []).at(-1) ?? ''));
   const [lsAvatarId] = useLocalStorage('avatarId', '');
   const [lsUsername] = useLocalStorage('username', '');
 
