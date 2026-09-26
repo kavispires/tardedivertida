@@ -1,6 +1,6 @@
 # Tarde Divertida — Changelog
 
-A multiplayer party game platform built with React, Firebase, and TypeScript. Current version: **50.13.25**
+A multiplayer party game platform built with React, Firebase, and TypeScript. Current version: **50.13.519**
 
 Games are listed by their Portuguese names. Game folder keys used in commits are noted in parentheses where helpful.
 
@@ -8,11 +8,76 @@ Games are listed by their Portuguese names. Game folder keys used in commits are
 
 ## 2026
 
+### September 2026
+
+#### Daily Challenges
+
+- **Investigação** (`investigacao`) — Updated feature translations with missing gender/race/age keys
+- **Daily** — Fixed a type error; prepared games for new response type
+
+#### Game Updates
+
+- **Correio do Amor** (`correio-do-amor`) — Optimized waiting times and card order display
+
+#### Platform & Infrastructure
+
+- **Functions** — Fixed a try/catch block
+- **Lobby** — Corrected how names are added during development
+
+---
+
+### August 2026
+
+#### Game Updates
+
+- **Tá Na Cara** (`ta-na-cara`) — Converted from 2 players only into multiplayer; improved character elimination process; updated game to use new Suspect interface
+- **Testemunha Ocular** (`testemunha-ocular`) — Updated game with new Suspect and Testimony interfaces; upgraded SuspectCard to use DynamicCard
+- **Bomba Relógio** (`bomba-relogio`) — Fixed final phase issues and lying detection
+- **Fileira De Fatos** (`fileira-de-fatos`) — Verified game and tweaked some instructions
+- **Super Campeonato** (`super-campeonato`) — Re-enabled game; cleared bets before final battle; disabled other games using the GridMap
+- **Vice Campeão** (`vice-campeao`) — Updated how deck is dealt so players never have identical cards in hand
+- **Megamix** (`megamix`) — Fixed distribution and API payload types for tracks; redistributed tracks; added Vinyl icon for custom tracks; organized and added new tracks (Duetos, Medidas Não Exatas, Senso Literário); V5 improved scoring with catch-up mechanisms for the second half of the game
+- **Correio do Amor** (`correio-do-amor`) — New game in development; added icons; fixed newCardsInDeck function; updated UI and rules; released in beta
+- **Teste De Elenco** (`teste-de-elenco`) — Fixed keyBy usage in functions
+- **Polêmica da Vez** (`polemica-da-vez`) — Tweaked UI
+
+#### Platform & Infrastructure
+
+- **Translate Migration** — Created `TranslateTemplate` component for complex JSX interpolations; migrated nearly every game and shared component to the new `Translate` props interface (string + `values` based); updated Translate to handle html tags and edge cases; refactored string-only Translate uses to remove useless fragments
+- **Components** — Added background image preload during setup for a smoother experience; added `isPreviewOpen` prop to `ComponentPreview`; migrated all components to the new `PointsHighlight` interface; created `CanvasResizer` and `Text` components; added `div` props to `ReadyPlayersBar`; changed `HostNextPhaseButton` to show continue when no round data is given; changed `MetricHighlight` icon placement default to 'before'; moved visual assets for games into a game-identity folder; renamed some component folders
+- **Functions** — Lazy loaded games in functions delegators; bumped Firebase dependencies; improved resource service to use native fetch; refactored `fetchResource` to accept language in options; updated `createPlayer` to give a random avatar when player submits 'N'
+- **App** — Simplified how mock players are added during development; removed page animations; updated copilot-instructions with TranslateTemplate rules
+- **Scripts** — Added script to sync and reorder list of icons; fixed bugs in onboard script
+- **Hub** — Added option to list games by last updated
+- **Dependencies** — Bumped dependencies, including Firebase; updated tdr types to latest
+
+#### Icons & Organization
+
+- Added icons for Correio do Amor
+
+---
+
+### July 2026
+
+#### Game Updates
+
+- **Duetos** (`duetos`) — Improved difficulty on Round 5 by selecting the least paired items in previous rounds
+- **Mente Coletiva** (`mente-coletiva`) — Fixed types of answers and alignment
+
+#### Daily Challenges
+
+- **Mapeamento** — Fixed issue where a guessed letter with an accent showed as 'used' instead of correct in the keyboard
+- **Pirralhos** — Fixed results message when nobody is a liar
+- **Investigação** (`investigacao`) — Updated with missing features translations
+
+#### Platform & Infrastructure
+
+- **Functions** — Updated store type in the legacy deck utils
+- **Dev** — Created Dynamic Card Crafting page
+
+---
+
 ### June 2026
-
-#### New Games
-
-- **Pirralhos** — Released daily game evaluating kid portraits
 
 #### Game Updates
 
@@ -47,6 +112,7 @@ Games are listed by their Portuguese names. Game folder keys used in commits are
 
 #### Platform & Infrastructure
 
+- **Pirralhos** — Released daily game evaluating kid portraits
 - **i18n Refactor** — Changed translate function to use object parameters instead of ordered arguments
 - **Hooks** — New version of useCache with improved functionality
 - **Functions** — Added JSDoc comments to all functions in `functions/src/utils` and `functions/src/engine`; cleanup 'any' types from collections file; removed deprecated merge function in favor of lodash merge
