@@ -9,7 +9,7 @@ import { logAnalyticsEvent } from '@services/firebase';
 // Utils
 import { getToday, print } from '@utils/helpers';
 // Internal
-import type { DailyResponse, RawDailyResponse, normalizeDailyResponse } from '../utils/types';
+import { type DailyResponse, type RawDailyResponse, normalizeDailyResponse } from '../utils/types';
 import { getSourceName } from '../utils';
 
 export type DailyContextType = Pick<

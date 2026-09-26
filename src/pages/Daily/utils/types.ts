@@ -115,17 +115,9 @@ function isNewDailyResponse(data: RawDailyResponse): data is NewDailyResponse {
  * the flat `DailyResponse` shape consumed by the rest of the app.
  */
 export function normalizeDailyResponse(data: RawDailyResponse): DailyResponse {
-  console.log('HERE', JSON.parse(JSON.stringify(data)));
   if (!isNewDailyResponse(data)) {
-    console.log('Returning the old type');
     return data;
   }
-  console.log('Normalizing new daily response', {
-    id: data.id,
-    ...data.challenges,
-    ...data.contributions,
-    dictionary: data.metadata?.dictionary,
-  });
 
   return {
     id: data.id,
