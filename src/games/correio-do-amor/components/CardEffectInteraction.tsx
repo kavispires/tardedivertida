@@ -1,3 +1,4 @@
+import { orderBy } from 'lodash';
 import { type ReactNode, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Alert, Divider, Flex, Space, Tag, Typography } from 'antd';
@@ -451,7 +452,7 @@ type CardSelectionOptionsProps = {
 function CardSelectionOptions({ cardsDict, onSubmit, property }: CardSelectionOptionsProps) {
   const cards = useMemo(
     () =>
-      Object.values(cardsDict)
+      orderBy(Object.values(cardsDict), ['rank'], ['asc'])
         .filter((card) => card.count > 0 && card.rank !== 1)
         .map((card) => ({
           id: card.id,

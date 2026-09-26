@@ -156,7 +156,7 @@ export function StepRoundResults({
 
       <SpaceContainer>
         <TimedButton
-          duration={45}
+          duration={25}
           onExpire={goToNextStep}
           icon={<TrophyOutlined />}
         >

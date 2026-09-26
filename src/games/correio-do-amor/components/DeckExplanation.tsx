@@ -1,3 +1,4 @@
+import { orderBy } from 'lodash';
 import { useMemo } from 'react';
 // Ant Design Resources
 import { Flex, Tag } from 'antd';
@@ -16,7 +17,15 @@ type DeckExplanationProps = {
 
 export function DeckExplanation({ cardsDict, newCardsInDeck }: DeckExplanationProps) {
   const { passiveCardWidth } = useCustomCardWidth();
-  const cards = useMemo(() => Object.values(cardsDict).filter((c) => c.count > 0), [cardsDict]);
+  const cards = useMemo(
+    () =>
+      orderBy(
+        Object.values(cardsDict).filter((c) => c.count > 0),
+        ['rank'],
+        ['asc'],
+      ),
+    [cardsDict],
+  );
 
   return (
     <CollapsibleRule
