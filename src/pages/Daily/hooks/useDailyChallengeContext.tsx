@@ -9,7 +9,7 @@ import { logAnalyticsEvent } from '@services/firebase';
 // Utils
 import { getToday, print } from '@utils/helpers';
 // Internal
-import type { DailyResponse } from '../utils/types';
+import type { DailyResponse, RawDailyResponse, normalizeDailyResponse } from '../utils/types';
 import { getSourceName } from '../utils';
 
 export type DailyContextType = Pick<
@@ -59,7 +59,7 @@ export const DailyContextProvider = ({ children }: DailyContextProviderProps) =>
         date: getToday(),
         document: collectionName,
       });
-      const responseData = response.data as DailyResponse;
+      const responseData = normalizeDailyResponse(response.data as RawDailyResponse);
       print({ [collectionName]: responseData }, 'table');
       logAnalyticsEvent('daily_challenges_fetched');
       return responseData;

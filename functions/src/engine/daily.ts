@@ -59,13 +59,7 @@ const getDaily = async (data: DailyGetterPayload, auth: FirebaseAuth) => {
 
   const dailyData = dailyDoc.data();
 
-  if (dailyData?.['arte-ruim']) {
-    return dailyData;
-  }
-
-  return {
-    'arte-ruim': dailyData,
-  };
+  return dailyData;
 };
 
 /**

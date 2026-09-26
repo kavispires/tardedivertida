@@ -21,6 +21,40 @@ import type { DailyPirralhosEntry } from '../games/Pirralhos/utils/types';
 
 export type DateKey = string; // Format YYYY-MM-DD
 
+/**
+ * Games entries as delivered by the new nested server response shape.
+ */
+type ChallengesEntries = {
+  'arte-ruim'?: DailyArteRuimEntry;
+  'aqui-o'?: DailyAquiOEntry;
+  alienado?: DailyAlienadoEntry;
+  investigacao?: DailyInvestigacaoEntry;
+  filmaco?: DailyFilmacoEntry;
+  mapeamento?: DailyMapeamentoEntry;
+  organiku?: DailyOrganikuEntry;
+  palavreado?: DailyPalavreadoEntry;
+  panico?: DailyPanicoEntry;
+  portais?: DailyPortaisEntry;
+  quartetos?: DailyQuartetosEntry;
+  conjuntos?: DailyConjuntosEntry;
+  vitral?: DailyVitralEntry;
+  pirralhos?: DailyPirralhosEntry;
+};
+
+/**
+ * Contribution entries as delivered by the new nested server response shape.
+ */
+type ContributionsEntries = {
+  picaco?: DailyPicacoEntry;
+  'ta-na-cara'?: DailyTaNaCaraEntry;
+};
+
+/**
+ * The flat response shape used throughout the app.
+ * This is the normalized shape produced by `normalizeDailyResponse`,
+ * regardless of whether the server sent the legacy flat shape or the
+ * new nested shape (see `NewDailyResponse`).
+ */
 export type DailyResponse = {
   id: string;
   // Games
@@ -47,6 +81,59 @@ export type DailyResponse = {
   // Other
   dictionary?: Dictionary<string>;
 };
+
+/**
+ * The new nested response shape sent by the server once the migration is complete.
+ */
+export type NewDailyResponse = {
+  id: DateKey;
+  // Games
+  challenges: ChallengesEntries;
+  // Contributions
+  contributions: ContributionsEntries;
+  // Additional info
+  metadata?: {
+    dictionary?: Dictionary<string>;
+  };
+};
+
+/**
+ * The raw shape the API may return during the migration period:
+ * either the legacy flat shape or the new nested shape.
+ */
+export type RawDailyResponse = DailyResponse | NewDailyResponse;
+
+/**
+ * Type guard that distinguishes the new nested response shape from the legacy flat one.
+ */
+function isNewDailyResponse(data: RawDailyResponse): data is NewDailyResponse {
+  return 'challenges' in data && 'contributions' in data;
+}
+
+/**
+ * Normalizes a raw daily response (legacy flat shape or new nested shape) into
+ * the flat `DailyResponse` shape consumed by the rest of the app.
+ */
+export function normalizeDailyResponse(data: RawDailyResponse): DailyResponse {
+  console.log('HERE', JSON.parse(JSON.stringify(data)));
+  if (!isNewDailyResponse(data)) {
+    console.log('Returning the old type');
+    return data;
+  }
+  console.log('Normalizing new daily response', {
+    id: data.id,
+    ...data.challenges,
+    ...data.contributions,
+    dictionary: data.metadata?.dictionary,
+  });
+
+  return {
+    id: data.id,
+    ...data.challenges,
+    ...data.contributions,
+    dictionary: data.metadata?.dictionary,
+  } as DailyResponse;
+}
 
 export type LetterState = 'correct' | 'incorrect' | 'intermediate' | 'used' | 'idle';
 
