@@ -117,7 +117,7 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
 
   try {
     await userRef.doc(uid).update({ [`daily.${id}`]: { id, number, victory, hearts, letters } });
-  } catch (_) {
+  } catch {
     isError = true;
   }
 
@@ -130,7 +130,7 @@ const saveDaily = async (data: DailySetterPayload, auth: FirebaseAuth) => {
         },
       });
       isError = false;
-    } catch (_) {
+    } catch {
       isError = true;
     }
   }
