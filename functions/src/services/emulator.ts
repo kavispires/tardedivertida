@@ -110,6 +110,7 @@ export const feedEmulatorDaily = async () => {
   const dataEntries: Promise<FirebaseFirestore.WriteResult>[] = [];
 
   Object.values(DATA_DOCUMENTS).forEach((usedEntryName) => {
+    console.log(`Seeding data for document: ${usedEntryName}`);
     dataEntries.push(getDataCollectionRef().doc(usedEntryName).set(sample));
 
     dataEntries.push(getDataCollectionRef().doc(`${usedEntryName}PT`).set(sample));

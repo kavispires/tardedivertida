@@ -33,6 +33,7 @@ export const DATA_DOCUMENTS = {
   ALIEN_ITEMS: 'alienItems',
   CARDS_CLUES_EN: 'cardsCluesEN',
   CARDS_CLUES_PT: 'cardsCluesPT',
+  DAILY_IDEAS: 'dailyIdeas',
   IMAGE_CARDS_CLUES_EN: 'imageCardsCluesEN',
   IMAGE_CARDS_CLUES_PT: 'imageCardsCluesPT',
   IMAGE_CARDS_RELATIONSHIPS: 'imageCardsRelationships',

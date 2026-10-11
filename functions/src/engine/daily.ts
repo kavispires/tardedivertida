@@ -361,12 +361,59 @@ const saveConexoes = async (data: DailySaveConexoesPayload, auth: FirebaseAuth) 
   return true;
 };
 
+/**
+ * Payload for saving daily ideas
+ */
+type DailySaveIdeaPayload = {
+  /**
+   * The daily idea text
+   */
+  idea: { key: string; value: string };
+};
+
+/**
+ * Saves the daily idea
+ * @param data - The payload containing the daily idea
+ * @param auth - The Firebase authentication object
+ */
+const saveIdea = async (payload: DailySaveIdeaPayload, auth: FirebaseAuth) => {
+  const actionText = 'save idea';
+  const uid = auth?.uid;
+
+  if (!uid) {
+    return throwHttpsError('User not authenticated', actionText);
+  }
+
+  if (!payload.idea || typeof payload.idea !== 'object' || !payload.idea.key || !payload.idea.value) {
+    return throwHttpsError('Idea data is missing', actionText);
+  }
+
+  try {
+    const docRef = getDataCollectionRef().doc(DATA_DOCUMENTS.DAILY_IDEAS);
+
+    const entryKey = `${payload.idea.key}_${uid}_${Date.now()}`;
+
+    const value = JSON.stringify({
+      ...JSON.parse(payload.idea.value),
+      by: uid,
+    });
+
+    // Save back to Firestore
+    await docRef.update({ [entryKey]: value });
+  } catch (error) {
+    throwHttpsError(error, actionText);
+  }
+
+  return true;
+};
+
 const DAILY_API_ACTIONS = {
   GET_DAILY: getDaily,
   SAVE_DAILY: saveDaily,
   SAVE_DRAWING: saveDrawing,
   SAVE_TESTIMONIES: saveTestimonies,
   SAVE_CONEXOES: saveConexoes,
+  SAVE_IDEA: saveIdea,
 };
 
 /**
