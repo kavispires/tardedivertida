@@ -6,6 +6,30 @@
 
 ---
 
+## Commit Messages
+
+Use the repository's scope-first format for area-specific changes:
+
+```text
+[scope] Description
+```
+
+- Use a lowercase scope in square brackets, followed by one space and a concise English description starting with a capitalized action verb, such as `Added`, `Fixed`, `Updated`, or `Migrated`.
+- For game-specific changes, use the game's kebab-case slug, such as `[arte-ruim]`, `[megamix]`, or `[correio-do-amor]`, including changes to that game's backend in `functions/`.
+- For shared areas, use the relevant established scope: `[functions]` for shared backend code, `[components]` for shared UI components, `[daily]` for daily games, `[scripts]` for tooling, or `[app]`, `[pages]`, `[games]`, `[lobby]`, and `[hub]` for those areas.
+- Repository-wide maintenance, such as changelog or dependency updates, may omit the scope: `Updated changelog` or `Bumped dependencies`.
+- Do not use Conventional Commits prefixes such as `fix(functions):` or `feat(components):`.
+
+Examples:
+
+```text
+[functions] Fixed NSFW filtering for language-exclusive contenders
+[components] Created Text component
+[megamix] Fix api payload types
+```
+
+---
+
 ## 🚨 Critical Import Rules
 
 ### Icons (Bundle Size)
