@@ -40,7 +40,11 @@ import { buildGallery, buildRanking } from './helpers';
  * Setup
  * Build the card deck
  * Resets previous changes to the store
- * @returns
+ * @param store - The server-side game data used for this step
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
+ * @param additionalData - Additional resources loaded for game setup
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,

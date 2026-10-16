@@ -80,6 +80,9 @@ export const prepareSetupPhase = async (
 
 /**
  * Prepares the game for the Creating Concepts phase.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
  */
 export const prepareCreatingConceptsPhase = async (
   store: FirebaseStoreData,
@@ -126,6 +129,9 @@ export const prepareCreatingConceptsPhase = async (
 
 /**
  * Prepares the game for the Reveal Concepts phase.
+ * @param store - The server-side game data used for this step
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
  */
 export const prepareConceptsRevealPhase = async (
   store: FirebaseStoreData,
@@ -153,6 +159,9 @@ export const prepareConceptsRevealPhase = async (
 
 /**
  * Prepares the game for the Reveal Concepts phase.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
  */
 export const prepareCommunicatingThingsPhase = async (
   store: FirebaseStoreData,
@@ -185,6 +194,9 @@ export const prepareCommunicatingThingsPhase = async (
 
 /**
  * Prepares the game for the Reveal Concepts phase.
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
  */
 export const prepareGuessingPhase = async (
   _store: FirebaseStoreData,
@@ -220,6 +232,9 @@ export const prepareGuessingPhase = async (
 
 /**
  * Prepares the game for the Reveal Concepts phase.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
  */
 export const prepareResultsPhase = async (
   store: FirebaseStoreData,
@@ -249,11 +264,6 @@ export const prepareResultsPhase = async (
   };
 };
 /**
- * Guessing phase - players guess concepts from drawings
- * @param store - The Firebase store data
- * @param state - The Firebase state data
- * @param players - The players object
- *//**
  * Game Over phase - determines winners and saves game data
  * @param gameId - The game session ID
  * @param store - The Firebase store data

@@ -31,7 +31,11 @@ import {
 /**
  * Setup
  * Resets previous changes to the store
- * @returns
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
+ * @param additionalData - Additional resources loaded for game setup
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -139,7 +143,7 @@ export const preparePromptPhase = async (
 };
 /**
  * [Answering Phase] - Players answer questions about the secret word
- * @param _store - The Firebase store data
+ * @param store - The server-side game data used for this step
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareAnsweringPhase = async (
@@ -199,7 +203,7 @@ export const preparePromptPhase = async (
 /**
  * [Guessing Phase] - Players guess the secret word
  * @param _store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _state - Unused current game state
  * @param players - The players object
  */ export const prepareGuessingPhase = async (
   _store: FirebaseStoreData,

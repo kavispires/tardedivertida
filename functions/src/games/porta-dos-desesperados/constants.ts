@@ -1,6 +1,9 @@
 // Types
 import type { TrapEntry } from './types';
 
+/**
+ * Phase identifiers used by the `porta-dos-desesperados` engine.
+ */
 export const PORTA_DOS_DESESPERADOS_PHASES = {
   SETUP: 'SETUP',
   BOOK_POSSESSION: 'BOOK_POSSESSION',
@@ -9,18 +12,30 @@ export const PORTA_DOS_DESESPERADOS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `porta-dos-desesperados` engine.
+ */
 export const PORTA_DOS_DESESPERADOS_ACTIONS = {
   SUBMIT_PAGES: 'SUBMIT_PAGES',
   SUBMIT_DOOR: 'SUBMIT_DOOR',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
 } as const;
 
+/**
+ * The maximum number of rounds before the game ends.
+ */
 export const MAX_ROUNDS = 15;
 
+/**
+ * Available magic units indexed by the number of players.
+ */
 export const MAGIC_UNITS_PER_PLAYER_COUNT = {
   2: 15,
   3: 22,
@@ -33,25 +48,46 @@ export const MAGIC_UNITS_PER_PLAYER_COUNT = {
   10: 30,
 };
 
+/**
+ * The number of candidate doors offered in a round.
+ */
 export const DOOR_OPTIONS_PER_ROUND = 6;
 
+/**
+ * The number of door levels players must progress through.
+ */
 export const DOOR_LEVELS = 7;
 
+/**
+ * The number of clue-page cards available in each round.
+ */
 export const PAGES_PER_ROUND = 8;
 
+/**
+ * The number of image-card resources selected for the game.
+ */
 export const TOTAL_IMAGE_CARDS = 252;
 
+/**
+ * Outcome identifiers used to resolve game steps and phase progression.
+ */
 export const OUTCOME = {
   SUCCESS: 'SUCCESS',
   FAIL: 'FAIL',
 };
 
+/**
+ * Identifiers for game victory, defeat, or continued play.
+ */
 export const WIN_CONDITION = {
   LOSE: 'LOSE',
   WIN: 'WIN',
   CONTINUE: 'CONTINUE',
 };
 
+/**
+ * Identifiers of trap effects that modify clue creation or guessing.
+ */
 export const TRAPS = {
   // LEVEL 1
   NO_PREVIEW: 'NO_PREVIEW',
@@ -76,6 +112,9 @@ export const TRAPS = {
   FLIP_BOOK: 'FLIP_BOOK',
 } as const;
 
+/**
+ * Trap definitions indexed by their effect identifier.
+ */
 export const TRAPS_ENTRIES: Dictionary<TrapEntry> = {
   // LEVEL 1
   [TRAPS.NO_PREVIEW]: {

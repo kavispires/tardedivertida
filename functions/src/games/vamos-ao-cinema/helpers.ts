@@ -81,8 +81,8 @@ export const getPhaseOutcome = (wasMistake: boolean, mistakes: UID[], eliminated
 
 /**
  * Get the letter'd id of the final movie
- * @param eliminatedMovies
- * @returns
+ * @param eliminatedMovies - The movie-option identifiers already eliminated
+ * @returns The sole remaining movie-option identifier, or undefined when the selection is unresolved
  */
 export const getFinalMovieId = (eliminatedMovies: UID[]) => {
   if (eliminatedMovies.length !== TOTAL_MOVIE_OPTIONS - 1) {
@@ -117,13 +117,33 @@ export const getMovieTitle = (movies: MovieCardData[], letter: string) => {
   }[letter];
 };
 
+/**
+ * A selected movie with its completed title, poster, and cinema session.
+ */
 type FinalMovie = {
+  /**
+   * Unique identifier of this game entry.
+   */
   id: UID;
+  /**
+   * The title displayed for this entry.
+   */
   title: string;
+  /**
+   * Identifier of the poster selected for the final movie.
+   */
   posterId: UID;
+  /**
+   * The cinema session associated with this final movie.
+   */
   session: number;
 };
 
+/**
+ * Finds a repeated list value using its occurrence count.
+ * @param list - The values to search or count
+ * @returns The most frequent repeated value, or an empty string when no value repeats
+ */
 const getMostFrequentElementFromList = (list: string[]) => {
   let mf = 1;
   let m = 0;

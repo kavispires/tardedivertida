@@ -158,11 +158,11 @@ export const handleNextAnswers = async (
 
 /**
  * When player wants to add an answer to the answer group
- * @param gameName
- * @param gameId
- * @param playerId
- * @param answer
- * @returns
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param _playerId - Unused identifier of the submitting player
+ * @param answer - The submitted answer or recorded response
+ * @returns True after updating the answer group
  */
 export const handleAddAnswer = async (gameName: string, gameId: UID, _playerId: UID, answer: AnswerEntry) => {
   const actionText = 'add answer';

@@ -71,7 +71,7 @@ export const prepareSetupPhase = async (
 
 /**
  * Secret Clue phase - storyteller provides a secret clue for the scene
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -109,7 +109,7 @@ export const prepareSecretCluePhase = async (
 
 /**
  * Card Play phase - players select cards to support or oppose the storyteller
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -189,7 +189,7 @@ export const prepareDefensePhase = async (
 
 /**
  * Voting phase - players vote on which card doesn't match the clue
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */

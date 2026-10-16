@@ -87,6 +87,8 @@ export const determineNextPhase = (
  * @param warehouseGrid - An array representing the warehouse grid, where each
  * slot is an object containing properties such as `amenityId`, `goodId`, and
  * `available`.
+ * @param bossIdeaId - The identifier of the boss idea to apply
+ * @param status - The current progress, reveal state, or feedback classification
  */
 export const updateAvailableSlotsInWarehouse = (
   warehouseGrid: Dictionary<WarehouseSlot>,
@@ -117,11 +119,20 @@ export const updateAvailableSlotsInWarehouse = (
   }
 };
 
+/**
+ * Updates warehouse slots in place so only empty slots orthogonally adjacent to goods are available.
+ * @param warehouseGrid - The warehouse slots to update in place
+ */
 const updateWarehouseByAdjacency = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   // The warehouse grid is a 7x7 grid, if an empty slot is adjacent
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
 
   // Helper function to check if a neighboring slot contains a goodId
+  /**
+   * Checks whether a warehouse slot has an orthogonally adjacent good within the grid bounds.
+   * @param index - The zero-based warehouse-slot index
+   * @returns Whether a neighboring slot contains a good
+   */
   const hasAdjacentGood = (index: number): boolean => {
     const row = Math.floor(index / WAREHOUSE_SIZE);
     const col = index % WAREHOUSE_SIZE;
@@ -166,6 +177,11 @@ const updateWarehouseByAdjacency = (warehouseGrid: Dictionary<WarehouseSlot>) =>
   }
 };
 
+/**
+ * Updates available slots in place within the remembered aisle, choosing the emptiest aisle when necessary.
+ * @param warehouseGrid - The warehouse slots to update in place
+ * @param status - The current progress, reveal state, or feedback classification
+ */
 export const updateWarehouseByAisleAvailability = (
   warehouseGrid: Dictionary<WarehouseSlot>,
   status: Status,
@@ -243,6 +259,10 @@ export const updateWarehouseByAisleAvailability = (
   }
 };
 
+/**
+ * Rotates warehouse contents counterclockwise in place and recalculates adjacency-based availability.
+ * @param warehouseGrid - The warehouse slots to update in place
+ */
 export const updateWarehouseByRotation = (warehouseGrid: Dictionary<WarehouseSlot>) => {
   const totalSlots = WAREHOUSE_SIZE * WAREHOUSE_SIZE; // 49 slots in total
   const newGrid: Dictionary<WarehouseSlot> = {};
@@ -370,6 +390,8 @@ export const concealGoodsForEvent = (
  * @param goodsDict - The dictionary of all goods
  * @param warehouseGrid - The warehouse grid containing slots
  * @param store - The Firebase store data for tracking achievements
+ * @param previousOrdersLeft - The number of orders remaining before the current round
+ * @param currentRound - The current round number
  */
 export const buildRanking = (
   players: Players,
@@ -518,6 +540,12 @@ export const buildRanking = (
   };
 };
 
+/**
+ * Assigns unfulfilled orders to players while prioritizing stocked goods and avoiding previously seen orders.
+ * @param players - The players participating in this game step
+ * @param goodsDict - The goods indexed by identifier
+ * @returns The number of unfulfilled orders before assignment
+ */
 export function distributeOrders(players: Players, goodsDict: Dictionary<Good>) {
   const playerList = getListOfPlayers(players);
   const playerCount = playerList.length;

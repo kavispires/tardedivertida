@@ -67,10 +67,25 @@ export const buildRanking = (players: Players, currentRound: number) => {
   return scores.rank(players);
 };
 
+/**
+ * A resolved game entry prepared for the results gallery.
+ */
 type GalleryEntry = {
+  /**
+   * Identifier of the player associated with this entry.
+   */
   playerId: UID;
+  /**
+   * Identifier of the hidden character being guessed.
+   */
   characterId: UID;
+  /**
+   * Player identifiers grouped by their selected answer.
+   */
   playersSay: Dictionary<UID[]>;
+  /**
+   * Points awarded to each guessing player.
+   */
   playersPoints: Record<UID, number>;
 };
 

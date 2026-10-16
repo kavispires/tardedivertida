@@ -143,6 +143,11 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
   const available = grid.filter((entry) => entry.available && !entry.playerId);
   const shuffledCoordinates = shuffle(available);
 
+  /**
+   * Assigns a grid coordinate to a player and marks the corresponding cell as writable.
+   * @param player - The player receiving the assigned coordinate
+   * @param cell - The grid cell to assign to the player
+   */
   const distribute = (player: Player, cell: GridCell) => {
     if (cell) {
       // Add to player

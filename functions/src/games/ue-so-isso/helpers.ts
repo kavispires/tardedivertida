@@ -62,9 +62,10 @@ export const determineNextPhase = (
 };
 
 /**
- * Builds deck of cards with 5 words
- * @param allWords
- * @param numberOfRounds
+ * Builds serialized word-selection cards using the requested number of words per card
+ * @param allWords - Word resources available for generating prompts
+ * @param numberOfRounds - The number of rounds requiring word-selection cards
+ * @param wordsPerCard - The number of word choices grouped on each selection card
  */
 export const buildDeck = (allWords: TextCardData[], numberOfRounds: number, wordsPerCard) => {
   const shuffledWords = shuffle(allWords);
@@ -83,8 +84,8 @@ export const buildDeck = (allWords: TextCardData[], numberOfRounds: number, word
 
 /**
  * Build word object adding vote property
- * @param currentCard
- * @returns
+ * @param currentCard - The card being resolved, when one has been revealed
+ * @returns Word options indexed by identifier with zero initial votes
  */
 export const buildCurrentWords = (currentCard: TextCardData[]) => {
   return currentCard.reduce((wordObjects, word) => {
@@ -98,8 +99,8 @@ export const buildCurrentWords = (currentCard: TextCardData[]) => {
 
 /**
  * Determine the number of suggestions based on the number of Players
- * @param players
- * @returns
+ * @param players - The players participating in this game step
+ * @returns The number of clues each player should submit
  */
 export const determineSuggestionsNumber = (players: Players) => {
   const numberOfPlayers = getPlayerCount(players);
@@ -110,9 +111,9 @@ export const determineSuggestionsNumber = (players: Players) => {
 
 /**
  * Count votes each player gave to each word
- * @param currentWords
- * @param players
- * @returns
+ * @param currentWords - Word cards currently offered for selection
+ * @param players - The players participating in this game step
+ * @returns The word options with accumulated player votes
  */
 export const tallyVotes = (currentWords: UsedWords, players: Players): UsedWords => {
   const currentWordsCopy = { ...currentWords };
@@ -131,8 +132,8 @@ export const tallyVotes = (currentWords: UsedWords, players: Players): UsedWords
 /**
  * Determine the secret word by number of votes
  * In case of a tie, a random one from the tied ones
- * @param currentWords
- * @returns
+ * @param currentWords - Word cards currently offered for selection
+ * @returns A word sampled from those tied for the most positive votes, or undefined when none received votes
  */
 export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
   let mostVotes: UsedWord[] = [];
@@ -161,8 +162,8 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
 
 /**
  * Group suggestions in each player object into a single object
- * @param players
- * @returns
+ * @param players - The players participating in this game step
+ * @returns Player identifiers grouped by their normalized clue text
  */
 export const groupSuggestions = (players: Players): CurrentSuggestions => {
   return getListOfPlayers(players).reduce((acc: CurrentSuggestions, player: Player) => {
@@ -184,8 +185,8 @@ export const groupSuggestions = (players: Players): CurrentSuggestions => {
 
 /**
  * Mark suggestions as invalid if they are duplicated
- * @param currentSuggestions
- * @returns
+ * @param currentSuggestions - Player suggestions currently awaiting validation or guessing
+ * @returns Player clues annotated with whether their text was duplicated
  */
 export const validateSuggestions = (currentSuggestions: CurrentSuggestions): PlayerSuggestion[] => {
   return Object.entries(currentSuggestions).reduce((acc: PlayerSuggestion[], suggestionEntry) => {

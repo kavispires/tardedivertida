@@ -47,4 +47,7 @@ const achievements = achievementBuilder(GAME_KEYS.MEDIDAS_NAO_EXATAS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `medidas-nao-exatas`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

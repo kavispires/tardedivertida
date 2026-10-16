@@ -44,4 +44,7 @@ const achievements = achievementBuilder(GAME_KEYS.ADEDANHX)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `adedanhx`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

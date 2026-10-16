@@ -26,6 +26,13 @@ import {
   getGameSettings,
 } from './helpers';
 
+/**
+ * Loads level-four pair cards or special-library cards according to the selected game options.
+ * @param language - The language used to select resources or format the result
+ * @param playerCount - The number of players in the session
+ * @param options - The selected game configuration
+ * @returns The cards and level-four variants needed for this game
+ */
 const getPairsLevel = async (language: string, playerCount: number, options: ArteRuimGameOptions) => {
   const cardsPerRound = determineNumberOfCards(playerCount);
   const levelQuantity = options.forPoints ? 2 : 1;

@@ -1,3 +1,6 @@
+/**
+ * Phase identifiers used by the `controle-de-estoque` engine.
+ */
 export const CONTROLE_DE_ESTOQUE_PHASES = {
   SETUP: 'SETUP',
   // PHASE ONE
@@ -11,35 +14,62 @@ export const CONTROLE_DE_ESTOQUE_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `controle-de-estoque` engine.
+ */
 export const CONTROLE_DE_ESTOQUE_ACTIONS = {
   PLACE_GOOD: 'PLACE_GOOD',
   CONFIRM_PLACEMENT: 'CONFIRM_PLACEMENT',
   SUBMIT_FULFILL_ORDERS: 'SUBMIT_FULFILL_ORDERS',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 7,
 } as const;
 
+/**
+ * The minimum number of rounds required by the game rules.
+ */
 export const MIN_ROUNDS = 5;
+/**
+ * The standard number of rounds played in a game.
+ */
 export const TOTAL_ROUNDS = 5;
 
+/**
+ * The number of goods sprites available in the resource library.
+ */
 export const GOODS_LIBRARY_COUNT = 256;
+/**
+ * The number of rows and columns in the square warehouse grid.
+ */
 export const WAREHOUSE_SIZE = 7;
 
+/**
+ * Outcome identifiers used to resolve game steps and phase progression.
+ */
 export const OUTCOME = {
   NEW_IDEA: 'NEW_IDEA',
   CONTINUE: 'CONTINUE',
   END_PHASE: 'END_PHASE',
 } as const;
 
+/**
+ * Warehouse event identifiers for concealing, placing, and revealing goods.
+ */
 export const EVENT_TYPE = {
   CONCEAL: 'CONCEAL',
   PLACE_THEN_CONCEAL: 'PLACE_THEN_CONCEAL',
   REVEAL: 'REVEAL',
 } as const;
 
+/**
+ * Warehouse stock and order quantities indexed by player count.
+ */
 export const COUNTS_BY_PLAYER_COUNT = {
   2: {
     players: 2,
@@ -91,6 +121,9 @@ export const COUNTS_BY_PLAYER_COUNT = {
   },
 } as const;
 
+/**
+ * Grid coordinates occupied by goods at warehouse setup.
+ */
 export const STARTING_GOODS_CELLS = [
   [3, 3],
   [1, 1],

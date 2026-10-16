@@ -49,9 +49,10 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 
 /**
  * Distribute seeds to players
- * @param tracks
- * @param players
- * @param clubberIds
+ * @param tracks - The selected tracks and their initialized resource data
+ * @param players - The players participating in this game step
+ * @param clubberIds - Clubber sprite identifiers available for player avatars
+ * @param partyMode - Whether player-seeded party tracks are enabled
  */
 export const distributeSeeds = (
   tracks: Track[],
@@ -213,6 +214,9 @@ export const distributeSeeds = (
       });
     });
 
+    /**
+     * Advances the custom-track seed and question counters, wrapping the seed index when necessary.
+     */
     const increaseCustomSeedIndex = () => {
       customSeedIndex += 1;
       customQuestionCount += 1;
@@ -351,9 +355,11 @@ const distributeTracksEvenly = (tracks: Track[], count: number, playerCount: num
 
 /**
  * Parse seeds into game track data
- * @param tracks
- * @param players
- * @returns
+ * @param tracks - The selected tracks and their initialized resource data
+ * @param players - The players participating in this game step
+ * @param partyMode - Whether player-seeded party tracks are enabled
+ * @param language - The language used to select resources or format the result
+ * @returns The tracks populated with player-seeded options and optional party tracks
  */
 export const handleSeedingData = (
   tracks: Track[],
@@ -423,6 +429,11 @@ export const handleSeedingData = (
   return tracks;
 };
 
+/**
+ * Groups and shuffles scene tiles into weapon and evidence puzzles with randomly selected scene answers.
+ * @param sceneTiles - The scene resources to organize into crime puzzles
+ * @returns The weapon and evidence puzzle configurations
+ */
 export const parseCrimeTiles = (sceneTiles: CrimeSceneTileData[]) => {
   const result = sceneTiles.reduce(
     (acc: PlainObject, tile) => {
@@ -494,6 +505,12 @@ export const parseCrimeTiles = (sceneTiles: CrimeSceneTileData[]) => {
   };
 };
 
+/**
+ * Finds the most-voted values and partitions players into winning and losing teams.
+ * @param players - The players participating in this game step
+ * @param property - The player-data property containing the vote
+ * @returns The majority-vote outcome, including tie or draw classification
+ */
 export const getMostVotes = (players: Players, property = 'cardId'): MostScoring => {
   const listOfPlayers = getListOfPlayers(players);
   // Count all votes
@@ -543,6 +560,13 @@ export const getMostVotes = (players: Players, property = 'cardId'): MostScoring
   };
 };
 
+/**
+ * Updates VIP membership and scores, applying catch-up adjustments in the second half of the game.
+ * @param players - The players participating in this game step
+ * @param scoring - The winning teams and scoring classification for the round
+ * @param round - The current round number, total, and forced-ending flag
+ * @returns The ranking after applying round scores to players
+ */
 export const getRanking = (players: Players, scoring: MostScoring, round: Round): NewScore[] => {
   const currentRound = round.current;
   // Gained points: [already on Winning team, joining Winning team, bonus for being the worst player, penalty for being the best player]
@@ -645,6 +669,11 @@ export const getRanking = (players: Players, scoring: MostScoring, round: Round)
   return scores.rank(players);
 };
 
+/**
+ * Samples up to three interests, needs, and fun facts for a dating candidate.
+ * @param cards - The card resources to select from or evaluate
+ * @returns The selected personality cards grouped by category
+ */
 export const getCandidatePersonality = (cards: DatingCandidateCardData[]) => {
   const interests: DatingCandidateCardData[] = [];
   const needs: DatingCandidateCardData[] = [];
@@ -667,6 +696,11 @@ export const getCandidatePersonality = (cards: DatingCandidateCardData[]) => {
   };
 };
 
+/**
+ * Extracts the last nonempty storyteller prompt submitted by a player.
+ * @param players - The players participating in this game step
+ * @returns The selected prompt, or an empty string when none was submitted
+ */
 export const buildContadoresHistoriasOptions = (players: Players) => {
   let prompt = '';
   getListOfPlayers(players).forEach((player) => {
@@ -677,6 +711,11 @@ export const buildContadoresHistoriasOptions = (players: Players) => {
   return prompt;
 };
 
+/**
+ * Collects player answers while excluding accent-normalized near-duplicates.
+ * @param players - The players participating in this game step
+ * @returns Up to three distinct answer options
+ */
 export const buildMenteColetivaOptions = (players: Players) => {
   const answers: string[] = [];
   const sanitizedAnswers: string[] = [];
@@ -698,8 +737,8 @@ export const buildMenteColetivaOptions = (players: Players) => {
 };
 
 /**
- * Gather likes, count likes, return a array with 3 possible answers (total likes), always including the correct one
- * @param players
+ * Builds sorted, unique like-percentage options including the actual percentage and both endpoints
+ * @param players - The players participating in this game step
  */
 const buildPolemicaDaVezOptions = (players: Players) => {
   const playerCount = getPlayerCount(players);
@@ -718,6 +757,12 @@ const buildPolemicaDaVezOptions = (players: Players) => {
   return orderBy([...new Set([0, correctPercentage, 100, ...sampleSize(possibleLikes, 3)])]);
 };
 
+/**
+ * Collects the submitted monster drawings for the current track's card.
+ * @param players - The players participating in this game step
+ * @param track - The current track and its resource data
+ * @returns The submitted drawings paired with their player identifiers
+ */
 const buildRetratoFaladoOptions = (players: Players, track: Track) => {
   return getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
     if (player.data[track.data.card.id]) {
@@ -730,6 +775,11 @@ const buildRetratoFaladoOptions = (players: Players, track: Track) => {
   }, []);
 };
 
+/**
+ * Extracts the first player-submitted wave for the track's answer options.
+ * @param players - The players participating in this game step
+ * @returns The player and wave value, using the existing missing-input markers when absent
+ */
 const buildOndaTelepaticaOptions = (players: Players) => {
   const player = getListOfPlayers(players).find((p) => p.data.wave);
 
@@ -739,6 +789,11 @@ const buildOndaTelepaticaOptions = (players: Players) => {
   };
 };
 
+/**
+ * Normalizes submitted single-word clues and samples unique answer options.
+ * @param players - The players participating in this game step
+ * @returns Up to five distinct clues
+ */
 const buildUeSoIssoOptions = (players: Players) => {
   // Choose one card to be the card result
   const clues: string[] = [];
@@ -753,9 +808,9 @@ const buildUeSoIssoOptions = (players: Players) => {
 
 /**
  * Find the one drawing
- * @param players
- * @param track
- * @returns
+ * @param players - The players participating in this game step
+ * @param track - The current track and its resource data
+ * @returns The submitted drawing and its artist, using existing missing-input markers when absent
  */
 const buildArteRuimCardOptions = (players: Players, track: Track) => {
   const cardIds: UID[] = track.data.cards.map((card: TextCardData) => card.id);
@@ -777,9 +832,9 @@ const buildArteRuimCardOptions = (players: Players, track: Track) => {
 
 /**
  * Find the 2 or 3 drawings
- * @param players
- * @param track
- * @returns
+ * @param players - The players participating in this game step
+ * @param track - The current track and its resource data
+ * @returns The submitted drawings paired with their artist identifiers
  */
 const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
   const cardIds: UID[] = track.data.cards.map((card: TextCardData) => card.id);
@@ -801,9 +856,9 @@ const buildArteRuimDrawingsOptions = (players: Players, track: Track) => {
 
 /**
  * Get the 3 tree clues in order, add two random options, shuffle everything
- * @param players
- * @param track
- * @returns
+ * @param players - The players participating in this game step
+ * @param track - The current track and its resource data
+ * @returns Three shuffled clue-order options including the correct sequence
  */
 const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
   const treeIds: UID[] = track.data.trees.map((tree: TextCardData) => tree.id);
@@ -853,7 +908,16 @@ const buildLabirintoSecretoOptions = (players: Players, track: Track) => {
  */
 const buildPartyOptions = (players: Players, language: Language) => {
   const options: Record<string, string[]> = {};
-  const whoOptions: { text: string; playerId: string }[] = [];
+  const whoOptions: {
+    /**
+     * The text displayed for this card or entry.
+     */
+    text: string;
+    /**
+     * Identifier of the player associated with this entry.
+     */
+    playerId: string;
+  }[] = [];
   const listOfPlayers = getListOfPlayers(players);
 
   listOfPlayers.forEach((player) => {
@@ -915,6 +979,12 @@ const buildPartyOptions = (players: Players, language: Language) => {
   return tracks;
 };
 
+/**
+ * Selects the localized party-track question, falling back to the generic question for unknown variants.
+ * @param variant - The party-question variant to display
+ * @param language - The language used to select resources or format the result
+ * @returns The question text in the requested language
+ */
 export const getQuestion = (variant: string, language: Language) => {
   return (
     {
@@ -950,10 +1020,21 @@ export const getQuestion = (variant: string, language: Language) => {
   );
 };
 
+/**
+ * Finds a track candidate by its game identifier.
+ * @param list - The values to search or count
+ * @param name - The game identifier to find in the candidate list
+ * @returns The matching candidate, or undefined when it is not present
+ */
 export const getCandidateOnList = (list: TrackCandidate[], name: string): TrackCandidate | undefined => {
   return list.find((game) => game && game.game === name);
 };
 
+/**
+ * Builds shuffled trick-or-treat scenarios, home cards, and costume selections for a Megamix track.
+ * @param playerCount - The number of players in the session
+ * @returns The generated scenarios and character resources
+ */
 export const getNaRuaDoMedoScenario = (playerCount: number) => {
   const decks = buildDecks(true);
   const [lowCandy, mediumCandy, highCandy] = decks.candyDeck.reduce(
@@ -1004,6 +1085,11 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
   };
 };
 
+/**
+ * Samples one positive and one negative movie review from the supplied resources.
+ * @param reviews - Movie-review resources indexed by identifier
+ * @returns The selected reviews, with undefined values for empty categories
+ */
 export const getMovieReviews = (reviews: MovieReviewCardData[]) => {
   const [good, bad] = reviews.reduce(
     (acc: [MovieReviewCardData[], MovieReviewCardData[]], entry) => {
@@ -1020,6 +1106,11 @@ export const getMovieReviews = (reviews: MovieReviewCardData[]) => {
   };
 };
 
+/**
+ * Updates streak and team-switch achievements from each player's recorded team history.
+ * @param players - The players participating in this game step
+ * @param store - The server-side game data used for this step
+ */
 export const calculateAllAchievements = (players: Players, store: FirebaseStoreData) => {
   getListOfPlayers(players).forEach((player) => {
     if (player)

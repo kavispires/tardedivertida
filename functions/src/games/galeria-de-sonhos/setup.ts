@@ -87,11 +87,11 @@ export const prepareSetupPhase = async (
 };
 
 /**
- *
- * @param store
- * @param state
- * @param players
- * @returns
+ * Advances the round, selects the scout, and refreshes the table and word options.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The state and store changes for this phase
  */
 export const prepareWordSelectionPhase = async (
   store: FirebaseStoreData,
@@ -144,11 +144,6 @@ export const prepareWordSelectionPhase = async (
   };
 };
 /**
- * Word Selection phase - players select words for their dreams
- * @param store - The Firebase store data
- * @param state - The Firebase state data
- * @param players - The players object
- *//**
  * Dreams Selection phase - players select dream cards to match the word
  * @param store - The Firebase store data
  * @param state - The Firebase state data

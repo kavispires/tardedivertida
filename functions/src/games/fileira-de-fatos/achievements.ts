@@ -48,4 +48,7 @@ const achievements = achievementBuilder(GAME_KEYS.FILEIRA_DE_FATOS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `fileira-de-fatos`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

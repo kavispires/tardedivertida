@@ -8,7 +8,6 @@ import { nextPhaseDelegator } from '../../mechanics/session';
 /**
  * Determine the next phase based on the current one
  * @param state - The current state of the game
- * @param store - The Firebase store data
  */
 export const determineNextPhase = (state: TaNaCaraState): string => {
   const { SETUP, PROMPT, ANSWERING, GUESSING, GAME_OVER } = TA_NA_CARA_PHASES;

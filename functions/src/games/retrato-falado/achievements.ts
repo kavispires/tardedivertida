@@ -28,5 +28,8 @@ const retratoFaladoAchievements = achievementBuilder(GAME_KEYS.RETRATO_FALADO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `retrato-falado`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   retratoFaladoAchievements;

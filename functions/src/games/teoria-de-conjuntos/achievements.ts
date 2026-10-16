@@ -42,5 +42,8 @@ const teoriaDeConjuntosAchievements = achievementBuilder(GAME_KEYS.TEORIA_DE_CON
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `teoria-de-conjuntos`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   teoriaDeConjuntosAchievements;

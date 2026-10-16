@@ -23,6 +23,9 @@ import { buildBookDeck, buildRanking, buildBookSequence } from './helpers';
  * Setup
  * Build the card deck
  * Resets previous changes to the store
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,

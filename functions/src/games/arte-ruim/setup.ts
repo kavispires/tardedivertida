@@ -124,7 +124,7 @@ export const prepareDrawPhase = async (
 /**
  * Evaluation phase - prepares players to vote on which drawing matches which card
  * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareEvaluationPhase = async (

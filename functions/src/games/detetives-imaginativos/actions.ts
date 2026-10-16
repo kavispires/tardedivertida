@@ -97,6 +97,14 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
   return true;
 };
 
+/**
+ * Records the current player's defense duration and advances to the next defender or game phase.
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param defenseTime - The duration recorded for the player's defense
+ * @returns True after the defense has been processed
+ */
 export const handleDefend = async (gameName: string, gameId: UID, playerId: UID, defenseTime: number) => {
   const actionText = 'defend';
 
@@ -127,6 +135,14 @@ export const handleDefend = async (gameName: string, gameId: UID, playerId: UID,
   return true;
 };
 
+/**
+ * Saves the player's vote, marks them ready, and checks phase progression.
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param vote - The player identifier selected by the voter
+ * @returns The player update or phase-transition result
+ */
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await updatePlayer({
     gameName,

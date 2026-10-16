@@ -135,7 +135,7 @@ export function buildQuestionsDeck(allQuestions: TestimonyStatementCardData[]): 
  * Get a new question
  * @param questionsDeck - full deck of questions
  * @param totalQuestionsSoFar - number of questions already drawn
- * @returns
+ * @returns The next pair of testimony questions
  */
 export const getNewQuestions = (
   questionsDeck: TestimonyStatementCardData[],
@@ -146,10 +146,10 @@ export const getNewQuestions = (
 
 /**
  * Calculates round score
- * @param currentScore
- * @param currentRound
- * @param eliminatedSuspectsCount
- * @returns
+ * @param currentScore - The investigation score before this round
+ * @param currentRound - The current round number
+ * @param eliminatedSuspectsCount - The number of suspects eliminated this round
+ * @returns The updated investigation score
  */
 export const calculateScore = (
   currentScore: number,

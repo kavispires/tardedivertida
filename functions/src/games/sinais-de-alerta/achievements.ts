@@ -42,5 +42,8 @@ const sinaisDeAlertaAchievements = achievementBuilder(GAME_KEYS.SINAIS_DE_ALERTA
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `sinais-de-alerta`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   sinaisDeAlertaAchievements;

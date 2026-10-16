@@ -187,7 +187,7 @@ export const prepareSceneMarkingPhase = async (
 
 /**
  * Guessing phase - players attempt to solve the crime
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */

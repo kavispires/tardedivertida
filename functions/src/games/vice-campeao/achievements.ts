@@ -53,5 +53,8 @@ const viceCampeaoAchievements = achievementBuilder(GAME_KEYS.VICE_CAMPEAO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `vice-campeao`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
   viceCampeaoAchievements;

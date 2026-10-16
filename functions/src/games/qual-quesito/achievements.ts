@@ -50,5 +50,8 @@ const qualQuesitoAchievements = achievementBuilder(GAME_KEYS.QUAL_QUESITO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `qual-quesito`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   qualQuesitoAchievements;

@@ -54,6 +54,9 @@ export const getData = async (): Promise<ResourceData> => {
   };
 };
 
+/**
+ * Localized school-board locations used to build the location grid.
+ */
 const LOCATIONS = [
   {
     id: 'location-0',
@@ -173,6 +176,9 @@ const LOCATIONS = [
   },
 ];
 
+/**
+ * School staff definitions with their monitoring actions and localized descriptions.
+ */
 const STAFF: Dictionary<StaffMember> = {
   'staff-1': {
     id: 'staff-1',
@@ -285,6 +291,9 @@ const STAFF: Dictionary<StaffMember> = {
   },
 };
 
+/**
+ * School social-group definitions with localized names and display colors.
+ */
 const SOCIAL_GROUPS: Dictionary<SocialGroup> = {
   arts: {
     id: 'arts',

@@ -44,4 +44,7 @@ const achievements = achievementBuilder(GAME_KEYS.GALERIA_DE_SONHOS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `galeria-de-sonhos`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

@@ -161,7 +161,7 @@ export const prepareBetsPhase = async (
 
 /**
  * Starting Results phase - shows initial race positions
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -241,7 +241,7 @@ export const prepareStartingResultsPhase = async (
 
 /**
  * Boosts phase - players use boosts to affect skier positions
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -281,7 +281,7 @@ export const prepareBoostsPhase = async (
 
 /**
  * Preliminary Results phase - shows updated positions after boosts
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -324,7 +324,7 @@ export const preparePreliminaryResultsPhase = async (
 
 /**
  * Last Change phase - final opportunity to change bets
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */

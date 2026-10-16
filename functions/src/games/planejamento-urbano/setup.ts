@@ -39,7 +39,7 @@ import { setupAchievements, increaseAchievement, calculateAchievements } from '.
  * Prepares the setup phase for the urban planning game.
  *
  * @param store - The Firebase store data containing game options and settings.
- * @param state - The Firebase state data representing the current game state.
+ * @param _state - Unused current game state
  * @param players - The players participating in the game.
  * @param resourceData - The resource data containing all city locations.
  * @returns A promise that resolves to the payload required to save the game state.
@@ -267,6 +267,7 @@ export const preparePlacingPhase = async (
  * [Resolution Phase] - Calculate scores and update city grid
  * @param store - The Firebase store data
  * @param state - The Firebase state data
+ * @param players - The players participating in this game step
  */
 export const prepareResolutionPhase = async (
   store: FirebaseStoreData,
@@ -405,6 +406,14 @@ export const prepareResolutionPhase = async (
   };
 };
 
+/**
+ * Resolves pending placements, determines winners and achievements, saves results, and builds the final game state.
+ * @param gameId - The identifier of the game session
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The state and store changes for the game-over phase
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

@@ -15,12 +15,33 @@ export const handleSubmitConcepts = async (
   gameId: UID,
   playerId: UID,
   proposedConcepts: {
+    /**
+     * The meaning assigned to the concept.
+     */
     meaning: string;
+    /**
+     * Identifiers of items associated with this concept or name.
+     */
     itemsIds: UID[];
+    /**
+     * Identifier of the player associated with this entry.
+     */
     playerId: UID;
+    /**
+     * The age in which the concept was introduced.
+     */
     age: number;
+    /**
+     * Identifier of the sound used to pronounce the concept.
+     */
     soundId?: string;
+    /**
+     * The localized syllable associated with the concept sound.
+     */
     syllable?: DualLanguageValue;
+    /**
+     * The key used to identify or group this entry.
+     */
     key?: string;
   }[],
 ) => {

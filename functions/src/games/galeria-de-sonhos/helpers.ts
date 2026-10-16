@@ -30,6 +30,13 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Replaces table entries in place beginning at the requested offset.
+ * @param table - The table submissions currently available for evaluation
+ * @param newEntries - The replacement cards to insert into the table
+ * @param startingIndex - The first table position to replace
+ * @returns The updated table
+ */
 const replaceTableCards = (
   table: ImageCard[],
   newEntries: ImageCard[],

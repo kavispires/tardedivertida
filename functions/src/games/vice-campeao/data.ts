@@ -48,6 +48,9 @@ export const getResourceData = async (playerCount: number): Promise<ResourceData
   };
 };
 
+/**
+ * Runner card definitions with movement values, effect types, and deck quantities.
+ */
 const CARDS = [
   {
     imageId: 'vc-01',

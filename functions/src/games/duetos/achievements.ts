@@ -30,4 +30,7 @@ const achievements = achievementBuilder(GAME_KEYS.DUETOS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `duetos`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

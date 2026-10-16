@@ -71,4 +71,7 @@ const achievements = achievementBuilder(GAME_KEYS.LABIRINTO_SECRETO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `labirinto-secreto`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

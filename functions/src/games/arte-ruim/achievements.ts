@@ -38,4 +38,7 @@ const achievements = achievementBuilder(GAME_KEYS.ARTE_RUIM)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `arte-ruim`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

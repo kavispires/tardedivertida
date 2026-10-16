@@ -70,6 +70,9 @@ export const addSpecial = (pool: any[], quantity: number, receiver: any[], type:
   }
 };
 
+/**
+ * The delimiter used when serializing a pair of word identifiers.
+ */
 const PAIR_SEPARATOR = '+';
 
 /**
@@ -77,6 +80,7 @@ const PAIR_SEPARATOR = '+';
  * @param players - The collection of players in the game
  * @param pool - The array of item entries in the pool
  * @param store - The Firebase store data for tracking achievements
+ * @param currentRound - The current round number
  */
 export const calculateResults = (
   players: Players,

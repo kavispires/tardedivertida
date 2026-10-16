@@ -56,12 +56,33 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Crime-scene tiles separated into dedicated evidence, location, victim, and general scene groups.
+ */
 type ParsedTiles = {
+  /**
+   * The scene tile used to describe the cause of death.
+   */
   causeOfDeathTile?: CrimeSceneTileData;
+  /**
+   * The scene tile used to explain the evidence.
+   */
   reasonForEvidenceTile?: CrimeSceneTileData;
+  /**
+   * The scene tile used to describe the crime location.
+   */
   locationTile?: CrimeSceneTileData;
+  /**
+   * The scene tile used to describe the crime victim.
+   */
   victimTile?: CrimeSceneTileData;
+  /**
+   * Scene tiles available for describing victims.
+   */
   victimsTiles: CrimeSceneTileData[];
+  /**
+   * General scene tiles available for crime descriptions.
+   */
   sceneTiles: CrimeSceneTileData[];
 };
 
@@ -131,8 +152,17 @@ export const cleanupItemsLikelihood = (
   });
 };
 
+/**
+ * Crime item resources and the item identifiers assigned to each group.
+ */
 type GroupItems = {
+  /**
+   * The item resources associated with this game step.
+   */
   items: Dictionary<CrimesHediondosCardData>;
+  /**
+   * Item identifiers arranged into crime-table groups.
+   */
   groupedItems: GroupedItems;
 };
 
@@ -222,10 +252,22 @@ export const buildCrimes = (
   });
 };
 
+/**
+ * Scene tiles indexed by identifier with their display order.
+ */
 type BuiltScenes = {
+  /**
+   * Scene tiles or selected scene-option indices associated with the crime.
+   */
   scenes: {
+    /**
+     * Scene tiles indexed by their identifier.
+     */
     [key: string]: CrimeSceneTileData;
   };
+  /**
+   * The order in which the scene identifiers are displayed.
+   */
   order: string[];
 };
 
@@ -414,6 +456,13 @@ export const updateOrCreateGuessHistory = (
   return results;
 };
 
+/**
+ * Classifies a crime guess by matching details and whether the guessed items belong to the crime's group.
+ * @param crime - The secret crime being evaluated
+ * @param guess - The player's guess to compare with the secret answer
+ * @param groupedItems - The table groups containing the crime items
+ * @returns The matching guess-status identifier
+ */
 const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedItems): string => {
   const isWeaponCorrect = crime.weaponId === guess.weaponId;
   const isEvidenceCorrect = crime.evidenceId === guess.evidenceId;
@@ -442,6 +491,12 @@ const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedIt
   return isAnyGuessesItemThere ? GUESS_STATUS.WRONG : GUESS_STATUS.WRONG_GROUP;
 };
 
+/**
+ * Finds the item group containing both the guessed weapon and evidence.
+ * @param guess - The player's guess to compare with the secret answer
+ * @param groupedItems - The table groups containing the crime items
+ * @returns The group index, or -1 when no group contains both items
+ */
 const findWhatGroupTheItemBelongsTo = (guess: Guess, groupedItems: GroupedItems) => {
   let foundIndex = -1;
   Object.entries(groupedItems).forEach(([groupIndex, group]) => {
@@ -453,11 +508,23 @@ const findWhatGroupTheItemBelongsTo = (guess: Guess, groupedItems: GroupedItems)
   return foundIndex;
 };
 
+/**
+ * The scored ranking and identifiers of winning players.
+ */
 type BuiltRanking = {
+  /**
+   * The ranking produced after resolving player scores.
+   */
   ranking: RankingEntry[];
+  /**
+   * Players or player identifiers selected as winners.
+   */
   winners: UID[];
 };
 
+/**
+ * A crime owner's identifier paired with the guesses submitted against that crime.
+ */
 type HistoryEntry = [UID, GuessHistoryEntry[]];
 
 /**
@@ -639,6 +706,15 @@ export const mockSceneMarkForBots = (
   });
 };
 
+/**
+ * Orders the available crime cards according to the scene's likelihood priorities.
+ * @param likelihoodPriority - Crime-card categories in priority order
+ * @param weapon - The selected weapon card
+ * @param evidence - The selected evidence card
+ * @param location - The selected location card, when available
+ * @param victim - The selected victim card, when available
+ * @returns The crime cards in priority order
+ */
 const getPrioritizedCards = (
   likelihoodPriority: string[],
   weapon?: CrimesHediondosCardData,
@@ -665,6 +741,13 @@ const getPrioritizedCards = (
   return prioritizedCards;
 };
 
+/**
+ * Combines weighted card likelihoods and breaks ties using the highest-priority card.
+ * @param sceneId - The identifier of the scene being marked
+ * @param prioritizedCards - The available crime cards in priority order
+ * @param weights - Additional weights applied to each prioritized card
+ * @returns The selected scene-option index, defaulting to zero when no cards are available
+ */
 const getTheMostLikelySceneValue = (
   sceneId: string,
   prioritizedCards: CrimesHediondosCardData[],
@@ -727,6 +810,15 @@ const getTheMostLikelySceneValue = (
   return orderBy(selectedEntries, (entry) => tieBreaker?.indexOf(entry) ?? Number.POSITIVE_INFINITY)[0];
 };
 
+/**
+ * Chooses a bot's scene marking using specific card targets and weighted likelihood priorities.
+ * @param scene - The scene tile whose option must be selected
+ * @param weapon - The selected weapon card
+ * @param evidence - The selected evidence card
+ * @param location - The selected location card, when available
+ * @param victim - The selected victim card, when available
+ * @returns The selected scene-option index
+ */
 const botSmartSceneMarking = (
   scene: CrimeSceneTileData,
   weapon: CrimesHediondosCardData,

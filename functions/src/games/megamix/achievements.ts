@@ -58,5 +58,8 @@ const megamixAchievements = achievementBuilder(GAME_KEYS.MEGAMIX)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `megamix`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   megamixAchievements;

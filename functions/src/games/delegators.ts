@@ -1,7 +1,13 @@
 // Constants
 import { GAME_NAMES } from '../constants/games';
 
+/**
+ * Contract implemented by a game engine and loaded by the shared game delegator.
+ */
 type Engine = {
+  /**
+   * Creates the initial metadata, store, and state for a new game session.
+   */
   getInitialState: (
     gameId: string,
     uid: string,
@@ -9,12 +15,21 @@ type Engine = {
     version: string,
     options: AnyOrUnknownPlaceholder,
   ) => AnyOrUnknownPlaceholder;
+  /**
+   * Prepares and persists the next phase using the current game state.
+   */
   getNextPhase: (
     gameName: string,
     gameId: string,
     currentState?: (FirebaseFirestore.DocumentData & AnyOrUnknownPlaceholder) | undefined,
   ) => Promise<boolean>;
+  /**
+   * Returns the supported minimum and maximum player counts.
+   */
   getPlayerCounts: () => PlayerCounts;
+  /**
+   * Validates and handles a game-specific player action.
+   */
   submitAction: (data: AnyOrUnknownPlaceholder) => Promise<AnyOrUnknownPlaceholder>;
 };
 
@@ -72,8 +87,9 @@ const engineRegistry: Record<string, () => Promise<Engine>> = {
   [GAME_NAMES.VICE_CAMPEAO]: () => import('./vice-campeao'),
 };
 
-// In-memory cache to prevent re-importing the same engine multiple times
-// during the lifecycle of a warm Cloud Function instance.
+/**
+ * Loaded engines indexed by game name for reuse during a warm Cloud Function instance's lifetime.
+ */
 const engineCache = new Map<string, Engine>();
 
 /**

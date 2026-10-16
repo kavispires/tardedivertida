@@ -42,5 +42,8 @@ const planejamentoUrbanoAchievements = achievementBuilder(GAME_KEYS.PLANEJAMENTO
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `planejamento-urbano`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   planejamentoUrbanoAchievements;

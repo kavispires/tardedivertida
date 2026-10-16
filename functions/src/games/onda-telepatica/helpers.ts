@@ -71,10 +71,10 @@ export const buildDeck = (data: ResourceData): Deck => {
 };
 
 /**
- *
- * @param guess
- * @param target
- * @returns
+ * Awards spectrum-guess points based on distance from the hidden target.
+ * @param guess - The player's guess to compare with the secret answer
+ * @param target - The hidden target position on the spectrum
+ * @returns The points awarded for the distance between the guess and target
  */
 const determineScore = (guess: number, target: number): number => {
   const difference = Math.abs(target - guess);

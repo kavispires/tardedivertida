@@ -1,3 +1,6 @@
+/**
+ * Phase identifiers used by the `comunicacao-alienigena` engine.
+ */
 export const COMUNICACAO_ALIENIGENA_PHASES = {
   SETUP: 'SETUP',
   ALIEN_SEEDING: 'ALIEN_SEEDING',
@@ -10,6 +13,9 @@ export const COMUNICACAO_ALIENIGENA_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `comunicacao-alienigena` engine.
+ */
 export const COMUNICACAO_ALIENIGENA_ACTIONS = {
   SUBMIT_ALIEN: 'SUBMIT_ALIEN',
   SUBMIT_SEEDS: 'SUBMIT_SEEDS',
@@ -20,15 +26,27 @@ export const COMUNICACAO_ALIENIGENA_ACTIONS = {
   SUBMIT_OFFERINGS: 'SUBMIT_OFFERINGS',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 1,
   MAX: 4,
 } as const;
 
+/**
+ * The maximum number of rounds before the game ends.
+ */
 export const MAX_ROUNDS = 12;
 
+/**
+ * The number of item entries used to initialize the game board.
+ */
 export const TOTAL_ITEMS = 25;
 
+/**
+ * The number of alien signs included in the game resources.
+ */
 export const TOTAL_SIGNS = 25;
 
 /**
@@ -71,6 +89,9 @@ export const ITEMS_COUNT = {
   },
 };
 
+/**
+ * Identifiers distinguishing ordinary items, curses, and blank entries.
+ */
 export const ITEM_TYPES = {
   ITEM: 'ITEM',
   CURSE: 'CURSE',

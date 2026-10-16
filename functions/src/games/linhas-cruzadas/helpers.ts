@@ -119,6 +119,13 @@ export const addSlideToAlbum = (album: Album, players: Players): Album => {
   return album;
 };
 
+/**
+ * Assigns the latest album slide as each player's prompt, accounting for the first-slide distribution rule.
+ * @param album - The albums containing the slides to assign
+ * @param players - The players participating in this game step
+ * @param gameOrder - The player order used to rotate album assignments
+ * @param isFirstSlide - Whether the first album slide is being distributed
+ */
 export const assignSlideToPlayers = (
   album: Album,
   players: Players,

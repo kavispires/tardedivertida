@@ -54,5 +54,8 @@ const achievements = achievementBuilder(GAME_KEYS.CONTROLE_DE_ESTOQUE)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `controle-de-estoque`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements, pushAchievement } =
   achievements;

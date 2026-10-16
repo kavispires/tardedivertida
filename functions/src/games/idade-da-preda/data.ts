@@ -63,6 +63,12 @@ export const getResourceData = async (options: IdadeDaPredaOptions): Promise<Res
   };
 };
 
+/**
+ * Keeps an item's identifier and name and assigns it to the requested age deck.
+ * @param item - The source item resource
+ * @param age - The age-deck label to assign to the item
+ * @returns The reduced item resource
+ */
 const cleanUpItem = (item: ItemData, age: string): ItemData => {
   return {
     id: item.id,

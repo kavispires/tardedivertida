@@ -57,12 +57,12 @@ export const handlePlayCard = async (gameName: string, gameId: UID, playerId: UI
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param vote
- * @returns
+ * Records the player's selected table card and marks the player ready.
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param vote - The identifier of the table card selected by the voter
+ * @returns The vote submission result
  */
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await updatePlayer({

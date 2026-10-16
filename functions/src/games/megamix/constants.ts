@@ -3,6 +3,9 @@ import type { PartyTrackCandidate, TrackCandidate } from './types';
 // Constants
 import { GAME_NAMES } from '../../constants/games';
 
+/**
+ * Phase identifiers used by the `megamix` engine.
+ */
 export const MEGAMIX_PHASES = {
   SETUP: 'SETUP',
   SEEDING: 'SEEDING',
@@ -11,23 +14,38 @@ export const MEGAMIX_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `megamix` engine.
+ */
 export const MEGAMIX_ACTIONS = {
   SUBMIT_SEEDS: 'SUBMIT_SEEDS',
   SUBMIT_TRACK_ANSWER: 'SUBMIT_TRACK_ANSWER',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 25,
 } as const;
 
+/**
+ * The standard number of rounds played in a game.
+ */
 export const TOTAL_ROUNDS = 15;
 
+/**
+ * Identifiers of the teams used by this game.
+ */
 export const SIDES = {
   LOSER: 'L',
   WINNER: 'W',
 } as const;
 
+/**
+ * Points awarded for VIP membership changes and catch-up adjustments.
+ */
 export const SCORING_POINTS = {
   JOIN_VIP: 1,
   TIED_WITH_VIP: 1,
@@ -36,6 +54,9 @@ export const SCORING_POINTS = {
   CATCHUP_PENALTY: -2,
 } as const;
 
+/**
+ * Track candidates for the images category, including their variants and selection settings.
+ */
 export const IMAGES_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.DETETIVES_IMAGINATIVOS,
@@ -87,6 +108,9 @@ export const IMAGES_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the characters category, including their variants and selection settings.
+ */
 export const CHARACTERS_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.SUPER_CAMPEONATO,
@@ -114,6 +138,9 @@ export const CHARACTERS_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the drawing category, including their variants and selection settings.
+ */
 export const DRAWING_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.ARTE_RUIM,
@@ -153,6 +180,9 @@ export const DRAWING_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the people category, including their variants and selection settings.
+ */
 export const PEOPLE_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.TESTEMUNHA_OCULAR,
@@ -180,6 +210,9 @@ export const PEOPLE_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the icons category, including their variants and selection settings.
+ */
 export const ICONS_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.COMUNICACAO_ALIENIGENA,
@@ -223,6 +256,9 @@ export const ICONS_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the words category, including their variants and selection settings.
+ */
 export const WORDS_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.CRUZA_PALAVRAS,
@@ -251,6 +287,9 @@ export const WORDS_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the pattern category, including their variants and selection settings.
+ */
 export const PATTERN_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.CONTROLE_DE_ESTOQUE,
@@ -278,6 +317,9 @@ export const PATTERN_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the consensus category, including their variants and selection settings.
+ */
 export const CONSENSUS_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.VAMOS_AO_CINEMA,
@@ -313,6 +355,9 @@ export const CONSENSUS_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the input category, including their variants and selection settings.
+ */
 export const INPUT_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.LABIRINTO_SECRETO,
@@ -343,6 +388,9 @@ export const INPUT_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the opinions category, including their variants and selection settings.
+ */
 export const OPINIONS_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.POLEMICA_DA_VEZ,
@@ -371,6 +419,9 @@ export const OPINIONS_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the special category, including their variants and selection settings.
+ */
 export const SPECIAL_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.CRIMES_HEDIONDOS,
@@ -414,6 +465,9 @@ export const SPECIAL_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Track candidates for the other category, including their variants and selection settings.
+ */
 export const OTHER_TRACKS: TrackCandidate[] = [
   {
     game: GAME_NAMES.NAMORO_OU_AMIZADE,
@@ -425,18 +479,27 @@ export const OTHER_TRACKS: TrackCandidate[] = [
   },
 ];
 
+/**
+ * Identifiers of the custom party-mode track implementations.
+ */
 export const PARTY_GAMES = {
   CUSTOM_THIS_THAT: 'CUSTOM_THIS_THAT',
   CUSTOM_BEST_OF_THREE: 'CUSTOM_BEST_OF_THREE',
   WHO_SAID_THIS: 'WHO_SAID_THIS',
 };
 
+/**
+ * Display-name lookup keys for the custom party-mode games.
+ */
 export const PARTY_GAMES_NAMES = {
   [PARTY_GAMES.CUSTOM_THIS_THAT]: 'megamix-this-that',
   [PARTY_GAMES.CUSTOM_BEST_OF_THREE]: 'megamix-best-of-three',
   [PARTY_GAMES.WHO_SAID_THIS]: 'megamix-who-said-this',
 };
 
+/**
+ * Track candidates for the party category, including their variants and selection settings.
+ */
 export const PARTY_TRACKS: PartyTrackCandidate[] = [
   {
     game: PARTY_GAMES.CUSTOM_THIS_THAT,
@@ -545,6 +608,9 @@ export const PARTY_TRACKS: PartyTrackCandidate[] = [
   },
 ];
 
+/**
+ * Winning-condition identifiers used to evaluate track results.
+ */
 export const WINNING_CONDITION = {
   MOST_VOTED: 'MOST_VOTED',
   STRING_MATCH: 'STRING_MATCH',

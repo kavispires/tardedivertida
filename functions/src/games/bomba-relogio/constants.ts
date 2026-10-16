@@ -1,6 +1,9 @@
 // Types
 import type { DataCounts } from './types';
 
+/**
+ * Phase identifiers used by the `bomba-relogio` engine.
+ */
 export const BOMBA_RELOGIO_PHASES = {
   SETUP: 'SETUP',
   DECLARATION: 'DECLARATION',
@@ -8,19 +11,31 @@ export const BOMBA_RELOGIO_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `bomba-relogio` engine.
+ */
 export const BOMBA_RELOGIO_ACTIONS = {
   SUBMIT_DECLARATION: 'SUBMIT_DECLARATION',
   UPDATE_TARGET_PLAYER: 'UPDATE_TARGET_PLAYER',
   SUBMIT_TARGET: 'SUBMIT_TARGET',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 4,
   MAX: 10,
 } as const;
 
+/**
+ * The standard number of rounds played in a game.
+ */
 export const TOTAL_ROUNDS = 4;
 
+/**
+ * Role and card counts indexed by the number of players.
+ */
 export const DATA_COUNTS: Dictionary<DataCounts> = {
   4: {
     agents: 3,
@@ -73,17 +88,26 @@ export const DATA_COUNTS: Dictionary<DataCounts> = {
   },
 };
 
+/**
+ * Role identifiers used to assign and resolve player roles.
+ */
 export const ROLES = {
   AGENT: 'agent',
   TERRORIST: 'terrorist',
 } as const;
 
+/**
+ * Identifiers distinguishing bomb, wire, and blank cards.
+ */
 export const CARD_TYPES = {
   BOMB: 'bomb',
   WIRE: 'wire',
   BLANK: 'blank',
 } as const;
 
+/**
+ * Outcome identifiers used to resolve game steps and phase progression.
+ */
 export const OUTCOME = {
   START: 'START',
   RESTART: 'RESTART',

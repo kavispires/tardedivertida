@@ -102,8 +102,8 @@ export const prepareHintGivingPhase = async (
 
 /**
  * Hint Receiving phase - players receive and review hints
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareHintReceivingPhase = async (
@@ -127,8 +127,8 @@ export const prepareHintReceivingPhase = async (
 
 /**
  * Guess The Code phase - players attempt to guess the code
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareGuessTheCodePhase = async (
@@ -152,8 +152,8 @@ export const prepareGuessTheCodePhase = async (
 
 /**
  * Solution phase - reveals the code and evaluates guesses
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareSolutionPhase = async (

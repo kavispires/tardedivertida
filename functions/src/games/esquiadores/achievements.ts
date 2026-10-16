@@ -59,5 +59,8 @@ const achievements = achievementBuilder(GAME_KEYS.ESQUIADORES)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `esquiadores`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   achievements;

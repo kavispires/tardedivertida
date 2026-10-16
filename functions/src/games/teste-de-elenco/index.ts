@@ -67,6 +67,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
  * Handles phase progression and prepares the next game phase
  * @param gameName - The name of the game
  * @param gameId - The game session ID
+ * @param currentState - The current game state when already available
  */
 export const getNextPhase = async (
   gameName: string,

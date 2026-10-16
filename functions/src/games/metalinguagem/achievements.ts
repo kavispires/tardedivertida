@@ -41,5 +41,8 @@ const metalinguagemAchievements = achievementBuilder(GAME_KEYS.METALINGUAGEM)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `metalinguagem`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   metalinguagemAchievements;

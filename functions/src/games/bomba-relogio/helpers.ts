@@ -59,19 +59,6 @@ export const getStartingStatus = (players: Players): Status => {
 };
 
 /**
- * Returns an object containing the initial values for all achievement counters in the Bomba-Relógio game.
- * All achievement types are initialized to 0.
- *
- * @returns An object with the following achievement properties:
- *   - `terrorist`: Counter for terrorist-related achievements
- *   - `terroristBomb`: Counter for terrorist bomb achievements
- *   - `agentBomb`: Counter for agent bomb achievements
- *   - `wires`: Counter for wire-related achievements
- *   - `blank`: Counter for blank achievements
- *   - `picked`: Counter for picked achievements
- */
-
-/**
  * Builds and shuffles a deck of Time Bomb cards containing bombs, wires, and blank cards.
  *
  * @param dataCounts - An object containing the counts for each card type

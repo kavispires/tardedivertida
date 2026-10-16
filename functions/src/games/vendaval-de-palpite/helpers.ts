@@ -26,6 +26,14 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome?:
   return nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Combines player, round, clue position, and optional guess text into a clue identifier.
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param currentRound - The current round number
+ * @param index - The clue's position within this player's round
+ * @param guess - Optional guess text appended to the clue identifier
+ * @returns The composite clue identifier
+ */
 const buildClueId = (playerId: UID, currentRound: number, index: number, guess = '') => {
   return `${playerId}:${currentRound}:${index}${guess}`;
 };
@@ -42,7 +50,16 @@ export const gatherClues = (
   board: Board,
   players: Players,
   currentRound: number,
-): { clues: Clues; board: Board } => {
+): {
+  /**
+   * The submitted clues or clue identifiers associated with this round.
+   */
+  clues: Clues;
+  /**
+   * Round entries containing submitted clues and boss evaluations.
+   */
+  board: Board;
+} => {
   let newBoardEntry: Clue[] = [];
 
   getListOfPlayers(players).forEach((player) => {
@@ -97,7 +114,16 @@ export const verifyGuesses = (
   latestBoardEntry: BoardEntry,
   finalAnswersLeft: number,
   secretWord: string,
-): { outcome: string; finalAnswersLeft: number } => {
+): {
+  /**
+   * The result used to resolve this step or advance the game.
+   */
+  outcome: string;
+  /**
+   * The number of final-answer attempts still available.
+   */
+  finalAnswersLeft: number;
+} => {
   const newAnswerCount = latestBoardEntry.clues.filter((clueId) => clues[clueId].isGuess).length;
   const newAnswersLeft = finalAnswersLeft - newAnswerCount;
 

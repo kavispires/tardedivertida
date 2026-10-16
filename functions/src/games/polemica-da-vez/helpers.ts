@@ -38,8 +38,8 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 
 /**
  * Build deck and custom deck
- * @param allTweets
- * @returns
+ * @param allTweets - The standard and custom discussion prompts available for selection
+ * @returns The selected cards in deck order
  */
 export const buildDeck = (allTweets: CustomTweet[]): Decks => {
   const { deck, customDeck } = Object.values(allTweets).reduce(
@@ -80,9 +80,10 @@ export const countLikes = (players: Players, store: FirebaseStoreData): number =
 
 /**
  * Creates a ranking, modifies player with new score
- * @param players
- * @param totalLikes
- * @returns
+ * @param players - The players participating in this game step
+ * @param totalLikes - The total likes recorded for the current result
+ * @param store - The server-side game data used for this step
+ * @returns The ranking after resolving player scores
  */
 export const getRanking = (players: Players, totalLikes: number, store: FirebaseStoreData) => {
   const scores = new Scores(players, [0, 0]);

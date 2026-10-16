@@ -1,6 +1,9 @@
 // Types
 import type { MovieRole, MovieGenre } from './types';
 
+/**
+ * Phase identifiers used by the `teste-de-elenco` engine.
+ */
 export const TESTE_DE_ELENCO_PHASES = {
   SETUP: 'SETUP',
   MOVIE_GENRE_SELECTION: 'MOVIE_GENRE_SELECTION',
@@ -9,34 +12,70 @@ export const TESTE_DE_ELENCO_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `teste-de-elenco` engine.
+ */
 export const TESTE_DE_ELENCO_ACTIONS = {
   SELECT_MOVIE_GENRE: 'SELECT_MOVIE_GENRE',
   SELECT_ACTOR: 'SELECT_ACTOR',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
 } as const;
 
+/**
+ * The maximum number of rounds before the game ends.
+ */
 export const MAX_ROUNDS = 15;
 
+/**
+ * The total number of trait resources selected for casting.
+ */
 export const TOTAL_TRAITS = 5 * (3 + 3); // roles * (initial_traits + max_additional_traits)
 
+/**
+ * The total number of actor resources selected for casting.
+ */
 export const TOTAL_ACTORS = 5 * 12; // roles * pools
 
+/**
+ * The number of trait requirements for a small role.
+ */
 export const SMALL_ROLE_REQUIREMENTS = 1;
 
+/**
+ * The number of trait requirements for a medium role.
+ */
 export const MEDIUM_ROLE_REQUIREMENTS = 2;
 
+/**
+ * The number of trait requirements for a large role.
+ */
 export const LARGE_ROLE_REQUIREMENTS = 3;
 
+/**
+ * The actor candidate-pool size used for a small role.
+ */
 export const SMALL_ROLE_ACTORS = 8;
 
+/**
+ * The actor candidate-pool size used for a large role.
+ */
 export const LARGE_ROLE_ACTORS = 12;
 
+/**
+ * Movie genre identifiers available for generation.
+ */
 export const MOVIE_GENRES = ['ACTION', 'COMEDY', 'DRAMA', 'HORROR', 'SCI_FI'];
 
+/**
+ * Role definitions with localized descriptions, trait requirements, and candidate-pool sizes.
+ */
 export const ROLES: Record<string, MovieRole> = {
   THE_PROTAGONIST: {
     id: 'THE_PROTAGONIST',
@@ -208,6 +247,9 @@ export const ROLES: Record<string, MovieRole> = {
   },
 };
 
+/**
+ * Movie genre definitions and the roles available within each genre.
+ */
 export const GENRES: Record<string, MovieGenre> = {
   ACTION: {
     id: 'ACTION',

@@ -48,6 +48,9 @@ const achievements = achievementBuilder(GAME_KEYS.COMUNICACAO_ALIENIGENA)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `comunicacao-alienigena`.
+ */
 export const {
   constants,
   setupAchievements,

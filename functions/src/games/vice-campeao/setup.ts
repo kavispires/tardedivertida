@@ -27,7 +27,11 @@ import { buildRun, getCardIdentifierKey } from './helpers';
 /**
  * Setup
  * Resets previous changes to the store
- * @returns
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
+ * @param additionalData - Additional resources loaded for game setup
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,

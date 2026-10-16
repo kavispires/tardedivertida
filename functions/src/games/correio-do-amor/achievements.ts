@@ -83,4 +83,7 @@ const achievements = achievementBuilder(GAME_KEYS.CORREIO_DO_AMOR)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `correio-do-amor`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

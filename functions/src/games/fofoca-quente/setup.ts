@@ -120,8 +120,8 @@ export const prepareSetupPhase = async (
 
 /**
  * Gossiper Selection phase - players select who will be the gossiper
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareGossiperSelectionPhase = async (
@@ -144,7 +144,7 @@ export const prepareGossiperSelectionPhase = async (
 
 /**
  * Board Setup phase - sets up the school board with locations
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -179,7 +179,7 @@ export const prepareBoardSetupPhase = async (
 
 /**
  * Intimidation phase - gossiper intimidates other players
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */

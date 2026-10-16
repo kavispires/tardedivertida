@@ -85,7 +85,13 @@ export const handleElimination = async (
   gameId: UID,
   actionText: string,
   additionalPayload: {
+    /**
+     * Whether the investigator is passing instead of eliminating a suspect.
+     */
     pass?: boolean;
+    /**
+     * Identifier of the suspect selected by the player.
+     */
     suspectId?: UID;
   },
 ) => {

@@ -27,5 +27,8 @@ const testemunhaOcularAchievements = achievementBuilder(GAME_KEYS.TESTEMUNHA_OCU
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `testemunha-ocular`.
+ */
 export const { constants, setupAchievements, pushAchievement, setTruthyAchievement, calculateAchievements } =
   testemunhaOcularAchievements;

@@ -32,5 +32,8 @@ const polemicaDaVezAchievements = achievementBuilder(GAME_KEYS.POLEMICA_DA_VEZ)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `polemica-da-vez`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
   polemicaDaVezAchievements;

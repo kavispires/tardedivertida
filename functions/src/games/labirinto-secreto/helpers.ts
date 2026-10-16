@@ -95,8 +95,8 @@ const getIndex = (point: Point): number => {
 
 /**
  * Get the point of an index in the forest
- * @param index
- * @returns
+ * @param index - The zero-based forest-cell index
+ * @returns The horizontal and vertical coordinates of the forest cell
  */
 const getPoint = (index: number): Point => {
   const x = index % FOREST_WIDTH;
@@ -155,6 +155,15 @@ const isForbiddenCell = (point: Point): boolean => {
   return FORBIDDEN_CELLS.some(([fx, fy]) => fx === point[0] && fy === point[1]);
 };
 
+/**
+ * Samples an adjacent forest point that satisfies bounds, path, starting-point, and collision restrictions.
+ * @param point - The forest point from which to choose the next step
+ * @param usedIndexes - Forest cells already included in the generated path
+ * @param startingPoints - Starting positions that must remain accessible
+ * @param isLastStep - Whether the candidate will be the final path step
+ * @param avoidIndexes - Additional forest cells excluded to avoid collisions
+ * @returns An available point, or null when no step is possible
+ */
 const getAvailableNextStep = (
   point: Point,
   usedIndexes: number[],
@@ -165,6 +174,11 @@ const getAvailableNextStep = (
   const [x, y] = point;
 
   // Helper to check if a point is valid
+  /**
+   * Checks a candidate forest point against bounds, forbidden cells, and path-collision restrictions.
+   * @param p - The candidate forest coordinate
+   * @returns Whether the point can be used for this step
+   */
   const isValid = (p: Point) => {
     const [px, py] = p;
     const pIndex = getIndex(p);
@@ -207,6 +221,9 @@ const getAvailableNextStep = (
   return sample(available) ?? null;
 };
 
+/**
+ * The maximum number of step attempts allowed when generating a forest path.
+ */
 const WHILE_THRESHOLD = 300;
 
 /**
@@ -214,6 +231,7 @@ const WHILE_THRESHOLD = 300;
  * @param startingPoint - point to start the path from
  * @param startingPoints - all possible starting points
  * @param length - length of the path
+ * @param existingOccupiedIndexes - Forest cells reserved by previously generated paths
  * @returns - array of points representing the path
  */
 const buildPath = (
@@ -275,8 +293,9 @@ const buildPath = (
 
 /**
  * Builds forest
- * @param cards
- * @returns
+ * @param cards - The card resources to select from or evaluate
+ * @param isItemsForest - Whether forest cells display items instead of tree sprites
+ * @returns The forest cells with their appearance, coordinates, and blocked state
  */
 export const buildForest = (cards: TextCardData[], isItemsForest: boolean): Tree[] => {
   const trees = Array(5)
@@ -305,7 +324,7 @@ export const buildForest = (cards: TextCardData[], isItemsForest: boolean): Tree
 
 /**
  * Builds paths for players
- * @param players
+ * @param players - The players participating in this game step
  */
 export const buildPaths = (players: Players) => {
   const entryPoints = getEntryPoints();
@@ -381,6 +400,12 @@ export const buildPaths = (players: Players) => {
   });
 };
 
+/**
+ * Derives a compass direction from the difference between two forest cell identifiers.
+ * @param currentTree - The current forest-cell identifier
+ * @param nextTree - The following forest-cell identifier, when available
+ * @returns The matching direction, or null when the next cell is absent or unrecognized
+ */
 const determineDirection = (currentTree: number, nextTree?: number | null): Direction | null => {
   if (nextTree === null || nextTree === undefined) return null;
   if (nextTree - currentTree === 1) return DIRECTIONS.RIGHT as Direction;
@@ -394,6 +419,12 @@ const determineDirection = (currentTree: number, nextTree?: number | null): Dire
   return null;
 };
 
+/**
+ * Converts a forest movement direction into the lowercased achievement lookup key.
+ * @param currentTree - The current forest-cell identifier
+ * @param nextTree - The following forest-cell identifier, when available
+ * @returns The movement achievement key, or null when no direction is recognized
+ */
 const determineDirectionAchievement = (
   currentTree: number,
   nextTree: number,
@@ -411,6 +442,12 @@ const determineDirectionAchievement = (
     | null;
 };
 
+/**
+ * Initializes each player's clue-card deck and deals the starting hand.
+ * @param store - The server-side game data used for this step
+ * @param players - The players participating in this game step
+ * @param cards - The card resources to select from or evaluate
+ */
 export const distributeCards = (store: FirebaseStoreData, players: Players, cards: TextCardData[]) => {
   // Builds a 18 card deck per player
   utils.deck.setup(store, players, cards, CARDS_PER_PLAYER);
@@ -418,6 +455,12 @@ export const distributeCards = (store: FirebaseStoreData, players: Players, card
   utils.deck.deal(store, players, STARTING_CARDS);
 };
 
+/**
+ * Evaluates guessed map segments, updates histories and achievements, and awards guide and guesser points.
+ * @param players - The players participating in this game step
+ * @param store - The server-side game data used for this step
+ * @returns The ranking after applying the new scores to players
+ */
 export const getRankingAndProcessScoring = (players: Players, store: FirebaseStoreData) => {
   // Gained points index: [Correct guesses, from other players]
   const scores = new Scores(players, [0, 0]);
@@ -507,7 +550,7 @@ export const getRankingAndProcessScoring = (players: Players, store: FirebaseSto
 
 /**
  * In the beginning of each round, find the furthest tree a player has reached and moved all players there
- * @param players
+ * @param players - The players participating in this game step
  */
 export const updateMaps = (players: Players) => {
   const listOfPlayers = getListOfPlayers(players);

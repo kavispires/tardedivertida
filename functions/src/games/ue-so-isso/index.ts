@@ -89,6 +89,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
  * Handles phase progression and prepares the next game phase
  * @param gameName - The name of the game
  * @param gameId - The game session ID
+ * @param currentState - The current game state when already available
  */
 export const getNextPhase = async (
   gameName: string,
@@ -163,6 +164,7 @@ export const getNextPhase = async (
 /**
  * Handles word selection votes, suggestions, validation, and guess confirmation
  * May trigger next phase
+ * @param data - The game-specific player action payload
  */
 export const submitAction = async (data: UeSoIssoSubmitAction) => {
   const { gameId, gameName, playerId, action } = data;

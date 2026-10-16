@@ -70,6 +70,9 @@ const achievements = achievementBuilder(GAME_KEYS.CRIMES_HEDIONDOS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `crimes-hediondos`.
+ */
 export const {
   constants,
   setupAchievements,

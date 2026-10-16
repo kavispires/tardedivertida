@@ -56,6 +56,7 @@ export const handleSubmitSeeds = async (
  * @param gameId - The ID of the game.
  * @param playerId - The ID of the player who is submitting the action.
  * @param objectsIds - The IDs of the objects selected by the player.
+ * @param intention - Identifier of the item intended by the alien request
  * @returns - it triggers the next state when all players are ready.
  */
 export const handleSubmitHumanInquiry = async (
@@ -102,6 +103,14 @@ export const handleSubmitAlienResponses = async (
   });
 };
 
+/**
+ * Saves the player's confirmed translation notes, marks them ready, and checks phase progression.
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param notes - The player's confirmed alien-language notes
+ * @returns The player update or phase-transition result
+ */
 export const handleConfirmNotes = async (
   gameName: string,
   gameId: UID,

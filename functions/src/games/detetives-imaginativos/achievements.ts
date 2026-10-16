@@ -44,4 +44,7 @@ const achievements = achievementBuilder(GAME_KEYS.DETETIVES_IMAGINATIVOS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `detetives-imaginativos`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

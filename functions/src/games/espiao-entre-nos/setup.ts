@@ -67,7 +67,10 @@ export const prepareSetupPhase = async (
  * Assign roles to players
  * Determine rounds locations
  * Resets previous changes to the store
- * @returns
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The state and store changes for this phase
  */
 export const prepareAssignmentPhase = async (
   store: FirebaseStoreData,
@@ -118,9 +121,10 @@ export const prepareAssignmentPhase = async (
 
 /**
  * Investigation phase - players ask and answer questions to find the spy
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
+ * @param outcome - The result used to resolve this step or advance the game
  */
 export const prepareInvestigationPhase = async (
   _store: FirebaseStoreData,
@@ -155,11 +159,6 @@ export const prepareInvestigationPhase = async (
   };
 };
 /**
- * Assignment phase - assigns roles and locations to players
- * @param store - The Firebase store data
- * @param state - The Firebase state data
- * @param players - The players object
- *//**
  * Assessment phase - players vote on who they think is the spy
  * @param store - The Firebase store data
  * @param state - The Firebase state data
@@ -209,6 +208,7 @@ export const prepareAssessmentPhase = async (
  * @param store - The Firebase store data
  * @param state - The Firebase state data
  * @param players - The players object
+ * @param outcome - The result used to resolve this step or advance the game
  */
 export const prepareFinalAssessmentPhase = async (
   store: FirebaseStoreData,

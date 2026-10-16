@@ -27,5 +27,8 @@ const naoSouRoboAchievements = achievementBuilder(GAME_KEYS.NAO_SOU_ROBO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `nao-sou-robo`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   naoSouRoboAchievements;

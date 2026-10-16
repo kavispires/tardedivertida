@@ -67,5 +67,8 @@ const sensoLiterarioAchievements = achievementBuilder(GAME_KEYS.SENSO_LITERARIO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `senso-literario`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   sensoLiterarioAchievements;

@@ -42,10 +42,10 @@ import { buildRoundDeck, getCardKeyFromId } from './helpers';
 
 /**
  * Setup phase - initializes game state and resources
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
- * @param data - The game resources data
+ * @param resourceData - The resources loaded for game setup
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -240,7 +240,7 @@ export const prepareCardPlayPhase = async (
 
 /**
  * CardEffects phase - TODO: describe phase purpose
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */
@@ -298,7 +298,13 @@ export const prepareCardResolutionPhase = async (
   increaseAchievement(store.achievements, results.actorId, 'playedCards', 1);
   const playedCard = cardsDict[results.cardKey];
   if (playedCard && playedCard.rank >= 0 && playedCard.rank <= 11) {
+    /**
+     * Supported ranks of the Festa Junina cards.
+     */
     type CardRank = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+    /**
+     * Achievement identifiers supported by `correio-do-amor`.
+     */
     type PlayedRankAchievement = `playedRank${CardRank}`;
 
     const achievementKey = `playedRank${playedCard.rank}`;
@@ -344,6 +350,10 @@ export const prepareCardResolutionPhase = async (
   // });
 
   // INTERNAL PHASE HELPER FUNCTIONS
+  /**
+   * Resolves a target's counterattack by eliminating the acting player and recording the discarded card.
+   * @returns Whether a counterattack was resolved
+   */
   function performCounterAttackCheck(): boolean {
     if (targetPlayerCard?.keyword === KEYWORDS.COUNTER_ATTACK) {
       results.resolutionKeyword = RESOLUTION_KEYWORD.COUNTER_ATTACK;
@@ -358,6 +368,10 @@ export const prepareCardResolutionPhase = async (
     return false;
   }
 
+  /**
+   * Resolves an automatic comparison win for the target and eliminates the acting player.
+   * @returns Whether an automatic comparison win was resolved
+   */
   function performCompareAutoWinCheck(): boolean {
     if (targetPlayerCard?.keyword === KEYWORDS.AUTO_WIN_COMPARE) {
       results.resolutionKeyword = RESOLUTION_KEYWORD.AUTO_WIN_COMPARE;
@@ -372,6 +386,10 @@ export const prepareCardResolutionPhase = async (
     return false;
   }
 
+  /**
+   * Records a no-target resolution when the actor submitted the corresponding effect selection.
+   * @returns Whether the play has no available target
+   */
   function performNoAvailableTargetCheck(): boolean {
     if (results.selections?.effectInput === RESOLUTION_KEYWORD.NO_TARGET_AVAILABLE) {
       results.resolutionKeyword = RESOLUTION_KEYWORD.NO_TARGET_AVAILABLE;
@@ -381,6 +399,10 @@ export const prepareCardResolutionPhase = async (
     return false;
   }
 
+  /**
+   * Finds players in turn order who are neither immune nor eliminated.
+   * @returns The players eligible to be targeted
+   */
   function getNonImmunePlayers(): Player[] {
     const immunePlayers = ongoingEffects
       .filter((effect) => effect.effectKeyword === RESOLUTION_KEYWORD.IMMUNITY)

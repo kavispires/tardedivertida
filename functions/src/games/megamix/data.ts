@@ -649,7 +649,15 @@ export const getData = async (
   // OPINIONS_TRACKS: POLEMICA_DA_VEZ
   const polemicaDaVezTrack = getCandidateOnList(customTrackCandidates, GAME_NAMES.POLEMICA_DA_VEZ);
   if (polemicaDaVezTrack) {
-    type CustomTweet = TextCardData & { custom?: boolean };
+    /**
+     * A text prompt annotated to distinguish player-created content.
+     */
+    type CustomTweet = TextCardData & {
+      /**
+       * Whether this prompt was created by a player.
+       */
+      custom?: boolean;
+    };
     const tweets = Object.values(
       await fetchResource<Dictionary<CustomTweet>>(TDR_RESOURCES.TWEETS, { language }),
     ).filter((tweet) => !tweet.custom);
@@ -855,6 +863,12 @@ export const getData = async (
   };
 };
 
+/**
+ * Samples an enabled track by weight while respecting the NSFW setting.
+ * @param candidates - The track candidates eligible for weighted selection
+ * @param allowNSFW - Whether not-safe-for-work track candidates are allowed
+ * @returns The selected track candidate, or undefined when no eligible candidate exists
+ */
 const getRandomTrackGame = (candidates: TrackCandidate[], allowNSFW: boolean) => {
   const options: TrackCandidate[] = [];
 

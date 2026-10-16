@@ -40,7 +40,20 @@ export const determineNextPhase = (currentPhase: string, round: Round, state: Fi
  */
 const determineMovieVotes = (
   players: Players,
-): { genre: MovieGenre; movieTitle: string; selectedProps: string[] } => {
+): {
+  /**
+   * The genre associated with this book pattern or generated movie.
+   */
+  genre: MovieGenre;
+  /**
+   * The title selected or generated for the movie.
+   */
+  movieTitle: string;
+  /**
+   * Identifiers of the props selected for this movie.
+   */
+  selectedProps: string[];
+} => {
   const genreVotes = getRankedVotes(players, 'genre', true);
   const genreKey = sampleSize(genreVotes, 1)[0].value;
   const genre = GENRES[genreKey];
@@ -112,13 +125,12 @@ export const buildMovie = (players: Players, store: FirebaseStoreData, movieProp
 };
 
 /**
- * TODO: Refactor so if there's a majority (50+1) wins,
- * Otherwise get any actor who got more than one vote (if more than one)
- * Otherwise get any actor who got at least one vote
- * @param players
- * @param state
- * @param store
- * @returns
+ * Resolves casting votes, updates role progress, and awards voting points.
+ * @todo Refactor to prefer a strict majority, then actors with multiple votes, then actors with one vote.
+ * @param players - The players participating in this game step
+ * @param state - The current game state
+ * @param store - The server-side game data used for this step
+ * @returns The casting outcome and the ranking after applying voting points
  */
 export const determineCast = (players: Players, state: FirebaseStateData, store: FirebaseStoreData) => {
   // Gained Points [matches]

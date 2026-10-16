@@ -34,5 +34,8 @@ const vamosAoCinemaAchievements = achievementBuilder(GAME_KEYS.VAMOS_AO_CINEMA)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `vamos-ao-cinema`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   vamosAoCinemaAchievements;

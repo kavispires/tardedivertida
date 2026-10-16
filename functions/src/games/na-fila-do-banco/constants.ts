@@ -1,3 +1,6 @@
+/**
+ * Phase identifiers used by the `na-fila-do-banco` engine.
+ */
 export const NA_FILA_DO_BANCO_PHASES = {
   RULES: 'RULES',
   SETUP: 'SETUP',
@@ -6,16 +9,25 @@ export const NA_FILA_DO_BANCO_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `na-fila-do-banco` engine.
+ */
 export const NA_FILA_DO_BANCO_ACTIONS = {
   PLAY_CARD: 'PLAY_CARD',
 } as const;
 
+/**
+ * Outcome identifiers used to resolve game steps and phase progression.
+ */
 export const OUTCOME = {
   SETUP: 'SETUP',
   CONTINUE: 'CONTINUE',
   END_ROUND: 'END_ROUND',
 } as const;
 
+/**
+ * Customer character types used for queue effects and scoring.
+ */
 export const CHARACTER_TYPES = {
   KID: 'KID',
   RETIREE: 'RETIREE',
@@ -27,6 +39,9 @@ export const CHARACTER_TYPES = {
 } as const;
 
 // What character cuts in front of what character
+/**
+ * The customer type each character type may cut in front of.
+ */
 export const CUT_IN_HIERARCHY: Record<string, string> = {
   [CHARACTER_TYPES.RETIREE]: CHARACTER_TYPES.VETERAN,
   [CHARACTER_TYPES.VETERAN]: CHARACTER_TYPES.MOTHER,
@@ -36,22 +51,40 @@ export const CUT_IN_HIERARCHY: Record<string, string> = {
   [CHARACTER_TYPES.MOTOBOY]: CHARACTER_TYPES.RETIREE,
 };
 
+/**
+ * Teller identifiers distinguishing queue capacity and scoring behavior.
+ */
 export const TELLER_TYPES = {
   A: 'a', // High capacity, low points
   B: 'b', // Normal capacity, normal points
   C: 'c', // Low capacity, double points
 };
 
+/**
+ * Colors available for matching bank customer cards.
+ */
 export const CARD_COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'brown'];
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 5,
 };
 
+/**
+ * The standard number of rounds played in a game.
+ */
 export const TOTAL_ROUNDS = 3;
 
+/**
+ * Points awarded by the online-service trigger.
+ */
 export const ONLINE_TRIGGER_POINTS = 1;
+/**
+ * Points awarded to a child by the online-service trigger.
+ */
 export const ONLINE_TRIGGER_POINTS_KID = 2;
 
 /**
@@ -97,6 +130,9 @@ export const TELLERS = [
   },
 ];
 
+/**
+ * Effect identifiers used to resolve teller queue changes.
+ */
 export const TELLER_EFFECT_TYPE = {
   STAY: 'STAY',
   CUT_IN_FRONT: 'CUT_IN_FRONT',

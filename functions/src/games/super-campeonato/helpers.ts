@@ -129,6 +129,11 @@ export const getMostVotedChallenge = (players: Players, challenges: TextCardData
   return winner ? winner : challenges[0];
 };
 
+/**
+ * Maps a bracket position to the quarterfinal, semifinal, final, or winner tier.
+ * @param position - The zero-based position in the tournament bracket
+ * @returns The tier containing the position
+ */
 const getBracketTier = (position: number): BracketTier => {
   if (position < 8) return 'quarter';
   if (position < 12) return 'semi';
@@ -372,6 +377,11 @@ export const getPastBattle = (brackets: Bracket[], challenge: TextCardData) => {
   };
 };
 
+/**
+ * Updates contender, voting, and successful-bet achievements from the completed tournament brackets.
+ * @param store - The server-side game data used for this step
+ * @param brackets - The completed tournament bracket entries
+ */
 export const updateAchievements = (store: FirebaseStoreData, brackets: Bracket[]) => {
   Object.values(brackets).forEach((bracket) => {
     if (bracket.playerId !== 'CPU') {

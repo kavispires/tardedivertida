@@ -11,9 +11,18 @@ export type CorreioDoAmorOptions = {
   chaoticDeck: boolean;
 };
 
+/**
+ * Card tier controlling when a card becomes eligible for round setup.
+ */
 export type SetupCardTier = 'core' | 'plus' | 'advanced' | 'variant';
+/**
+ * Whether cards of the same rank are combined or replace one another during setup.
+ */
 export type SetupSelectionRule = 'COMBINE' | 'SINGLE';
 
+/**
+ * Resource definition of a Festa Junina card, including setup rules and card effects.
+ */
 export type FestaJuninaDatabaseEntry = {
   /**
    * Unique identifier for the card
@@ -78,6 +87,9 @@ export type FestaJuninaDatabaseEntry = {
   disabled?: boolean;
 };
 
+/**
+ * The resource fields retained for a Festa Junina card during gameplay.
+ */
 export type FestaJuninaCard = Pick<
   FestaJuninaDatabaseEntry,
   | 'id'
@@ -116,11 +128,23 @@ export type FestaJuninaCard = Pick<
  * Resource data loaded from TDR resources
  */
 export type ResourceData = {
+  /**
+   * Card definitions indexed by their resource identifier.
+   */
   cardsDict: Dictionary<FestaJuninaCard>;
+  /**
+   * The rotation of plus-tier cards introduced as rounds progress.
+   */
   plusRotation: UID[];
+  /**
+   * The rotation of advanced cards introduced in later rounds.
+   */
   advancedRotation: UID[];
 };
 
+/**
+ * Player selections supplied to resolve a card's targeted or interactive effect.
+ */
 export type PlaySelections = {
   /**
    * Primary selected target player for target-based effects
@@ -140,8 +164,17 @@ export type PlaySelections = {
  * Entry for ongoing effect that persist on a full turn or round
  */
 export type OngoingEffect = {
+  /**
+   * Identifier of the player affected by the ongoing effect.
+   */
   affectedPlayerId: UID;
+  /**
+   * The effect keyword used to resolve this ongoing effect.
+   */
   effectKeyword: string;
+  /**
+   * The category used to distinguish this entry during game resolution.
+   */
   type: 'TURN' | 'ROUND';
 };
 
@@ -149,23 +182,65 @@ export type OngoingEffect = {
  * Results of the current round, including ongoing effects and eliminated players
  */
 export type LogEntry = {
+  /**
+   * Identifier of the player who played the card.
+   */
   actorId: UID;
+  /**
+   * Identifier of the card associated with this entry.
+   */
   cardId: UID;
+  /**
+   * The base card identifier without its copy-specific suffix.
+   */
   cardKey: string;
+  /**
+   * The played card's effect keyword.
+   */
   cardKeyword: string;
   // Card Effect Actions
+  /**
+   * Available card-effect inputs recorded for this play.
+   */
   options?: (string | number)[];
+  /**
+   * Target and effect-input selections supplied for this play.
+   */
   selections?: PlaySelections;
   // Resolution Effects
+  /**
+   * Identifiers of players targeted by the card effect.
+   */
   targetPlayersIds: UID[];
+  /**
+   * The resolved effect outcome, or null before resolution.
+   */
   resolutionKeyword: string | null;
+  /**
+   * The ongoing effect created by this play, or null when none is created.
+   */
   newOngoingEffect: OngoingEffect | null;
+  /**
+   * The additional input selected to resolve an interactive card effect.
+   */
   effectInput?: UID | null;
+  /**
+   * Identifier of the card discarded while resolving the effect.
+   */
   discardedCardId?: UID | null;
+  /**
+   * Identifiers of players eliminated by this play.
+   */
   eliminatedPlayersIds: UID[];
+  /**
+   * Identifier of the player responsible for the elimination.
+   */
   eliminatedByPlayerId?: UID | null;
 };
 
+/**
+ * The actor, card, and submitted selections needed to record a card play.
+ */
 export type Play = Pick<
   LogEntry,
   'actorId' | 'cardId' | 'cardKey' | 'cardKeyword' | 'options' | 'selections'
@@ -176,6 +251,9 @@ export type Play = Pick<
  */
 export interface CorreioDoAmorStore extends DefaultStore<CorreioDoAmorOptions> {
   // TODO: Add game-specific store properties
+  /**
+   * Additional game-specific fields populated as the session progresses.
+   */
   [key: string]: AnyOrUnknownPlaceholder;
 }
 
@@ -184,6 +262,9 @@ export interface CorreioDoAmorStore extends DefaultStore<CorreioDoAmorOptions> {
  */
 export interface CorreioDoAmorState extends DefaultState {
   // TODO: Add game-specific state properties
+  /**
+   * Additional game-specific fields populated as the session progresses.
+   */
   [key: string]: AnyOrUnknownPlaceholder;
 }
 
@@ -191,7 +272,13 @@ export interface CorreioDoAmorState extends DefaultState {
  * Initial state structure for new game sessions
  */
 export interface CorreioDoAmorInitialState extends InitialState {
+  /**
+   * The game-specific server-side store initialized for the session.
+   */
   store: CorreioDoAmorStore;
+  /**
+   * The game-specific state exposed to the session.
+   */
   state: CorreioDoAmorState;
 }
 
@@ -199,6 +286,9 @@ export interface CorreioDoAmorInitialState extends InitialState {
  * Player action submission payload
  */
 export interface CorreioDoAmorSubmitAction extends Payload {
+  /**
+   * The game action identifier used to select the submission handler.
+   */
   action: keyof typeof CORREIO_DO_AMOR_ACTIONS;
 }
 

@@ -22,6 +22,9 @@ export const getData = async (): Promise<ResourceData> => {
   return { allBossIdeas, goodsIds };
 };
 
+/**
+ * Boss-idea definitions controlling warehouse rules and round presentation.
+ */
 export const BOSS_IDEAS: Dictionary<BossIdeaCardData> = {
   FIRST_DAY: {
     id: 'FIRST_DAY',

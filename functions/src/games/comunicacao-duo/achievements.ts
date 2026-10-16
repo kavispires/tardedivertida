@@ -43,6 +43,9 @@ const achievements = achievementBuilder(GAME_KEYS.COMUNICACAO_DUO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `comunicacao-duo`.
+ */
 export const {
   constants,
   setupAchievements,

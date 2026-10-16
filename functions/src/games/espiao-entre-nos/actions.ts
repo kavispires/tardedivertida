@@ -72,12 +72,12 @@ export const handleMakeAccusation = async (gameName: string, gameId: UID, player
 };
 
 /**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param vote
- * @returns
+ * Records the player's vote and checks whether the game can advance.
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param vote - The player identifier selected by the voter
+ * @returns The vote submission result
  */
 export const handleSubmitVote = async (gameName: string, gameId: UID, playerId: UID, vote: UID) => {
   return await updatePlayer({

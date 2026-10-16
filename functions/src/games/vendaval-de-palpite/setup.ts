@@ -16,7 +16,11 @@ import { gatherClues, verifyGuesses } from './helpers';
  * Setup
  * Build the card deck
  * Resets previous changes to the store
- * @returns
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
+ * @param resourceData - The resources loaded for game setup
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
@@ -43,6 +47,10 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Resets the round counter and enters the boss-selection phase.
+ * @returns The state changes for boss selection
+ */
 export const prepareBossPlayerSelection = async (): Promise<SaveGamePayload> => {
   // Save
   return {
@@ -58,6 +66,13 @@ export const prepareBossPlayerSelection = async (): Promise<SaveGamePayload> => 
   };
 };
 
+/**
+ * Marks the selected boss and exposes the words, categories, and guessing limits for secret-word selection.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The state changes for secret-word selection
+ */
 export const prepareSecretWordSelection = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -82,6 +97,13 @@ export const prepareSecretWordSelection = async (
   };
 };
 
+/**
+ * Archives the previous boss evaluation and starts a new round of player clues.
+ * @param _store - Unused server-side game data
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The state changes for clue submission
+ */
 export const preparePlayersClues = async (
   _store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -115,6 +137,14 @@ export const preparePlayersClues = async (
   };
 };
 
+/**
+ * Gathers the round's clues and resolves final guesses before requesting the boss's evaluations.
+ * @param gameId - The identifier of the game session
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The clue-evaluation changes, or game-over changes when the guesses finish the game
+ */
 export const prepareClueEvaluations = async (
   gameId: UID,
   store: FirebaseStoreData,

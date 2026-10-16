@@ -32,5 +32,8 @@ const testeDeElencoAchievements = achievementBuilder(GAME_KEYS.TESTE_DE_ELENCO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `teste-de-elenco`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   testeDeElencoAchievements;

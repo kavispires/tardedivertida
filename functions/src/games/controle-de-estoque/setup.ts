@@ -359,7 +359,7 @@ export const prepareGoodPlacementPhase = async (
 
 /**
  * Fulfillment phase - players fulfill orders from the warehouse
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */

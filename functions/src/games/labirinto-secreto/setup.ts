@@ -220,7 +220,7 @@ export const preparePathFollowingPhase = async (
 /**
  * Results phase - calculates scores and rankings
  * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareResultsPhase = async (

@@ -32,7 +32,11 @@ import { createVennDiagram } from './helpers';
 /**
  * Setup
  * Resets previous changes to the store
- * @returns
+ * @param store - The server-side game data used for this step
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
+ * @param additionalData - Additional resources loaded for game setup
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -111,8 +115,8 @@ export const prepareSetupPhase = async (
 };
 /**
  * [Judge Selection Phase] - Select judge and setup diagrams
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
  */ export const prepareJudgeSelectionPhase = async (
   _store: FirebaseStoreData,
@@ -135,6 +139,14 @@ export const prepareSetupPhase = async (
   };
 };
 
+/**
+ * Resolves the previous item guess, updates hands and scores, and selects the next active player.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @param currentGuess - The most recent item-placement guess to resolve
+ * @returns The state and store changes for item placement
+ */
 export const prepareItemPlacementPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -149,6 +161,10 @@ export const prepareItemPlacementPhase = async (
   }
 
   // Create player order in a way that the judge is always the first player
+  /**
+   * Builds a randomized turn order with the judge first.
+   * @returns The player identifiers in turn order
+   */
   const getPlayerOrder = () => {
     const po = turnOrderUtils.create(players, undefined, false, [judgeId]);
     return [judgeId, ...po.gameOrder];
@@ -249,11 +265,6 @@ export const prepareItemPlacementPhase = async (
   };
 };
 /**
- * [ItemData Placement Phase] - Players place items in the Venn diagram
- * @param store - The Firebase store data
- * @param state - The Firebase state data
- * @param players - The players object
- *//**
  * [Evaluation Phase] - Judge evaluates item placements
  * @param store - The Firebase store data
  * @param state - The Firebase state data
@@ -300,6 +311,15 @@ export const prepareEvaluationPhase = async (
   };
 };
 
+/**
+ * Resolves pending placements, determines winners and achievements, saves results, and builds the final game state.
+ * @param gameId - The identifier of the game session
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @param currentGuess - The most recent item-placement guess to resolve
+ * @returns The state and store changes for the game-over phase
+ */
 export const prepareGameOverPhase = async (
   gameId: UID,
   store: FirebaseStoreData,

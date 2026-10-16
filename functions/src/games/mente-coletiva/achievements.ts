@@ -32,5 +32,8 @@ const menteColetivaAchievements = achievementBuilder(GAME_KEYS.MENTE_COLETIVA)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `mente-coletiva`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
   menteColetivaAchievements;

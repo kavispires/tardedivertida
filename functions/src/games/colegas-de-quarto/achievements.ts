@@ -37,4 +37,7 @@ const achievements = achievementBuilder(GAME_KEYS.COLEGAS_DE_QUARTO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `colegas-de-quarto`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

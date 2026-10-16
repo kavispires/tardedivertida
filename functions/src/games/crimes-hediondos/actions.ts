@@ -17,13 +17,37 @@ export const handleSubmitCrime = async (
   gameId: UID,
   playerId: UID,
   data: {
+    /**
+     * Identifier of the selected crime weapon.
+     */
     weaponId: string;
+    /**
+     * Identifier of the selected crime evidence.
+     */
     evidenceId: string;
+    /**
+     * Identifier of the selected crime victim.
+     */
     victimId?: string;
+    /**
+     * Identifier of the location associated with this entry.
+     */
     locationId?: string;
+    /**
+     * The selected cause-of-death option index.
+     */
     causeOfDeathIndex: number;
+    /**
+     * The selected evidence-reason option index.
+     */
     reasonForEvidenceIndex: number;
+    /**
+     * The selected victim-tile option index.
+     */
     victimIndex: number;
+    /**
+     * The selected location-tile option index.
+     */
     locationIndex: number;
   },
 ) => {
@@ -73,6 +97,14 @@ export const handleSubmitMark = async (gameName: string, gameId: UID, playerId: 
   });
 };
 
+/**
+ * Saves the player's crime guesses, marks them ready, and checks phase progression.
+ * @param gameName - The game identifier used to locate the session
+ * @param gameId - The identifier of the game session
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @param guesses - The guesses submitted for the hidden answers
+ * @returns The player update or phase-transition result
+ */
 export const handleSubmitGuesses = async (gameName: string, gameId: UID, playerId: UID, guesses: Guesses) => {
   return await updatePlayer({
     gameName,

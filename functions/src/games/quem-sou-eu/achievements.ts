@@ -41,5 +41,8 @@ const quemSouEuAchievements = achievementBuilder(GAME_KEYS.QUEM_SOU_EU)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `quem-sou-eu`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   quemSouEuAchievements;

@@ -47,7 +47,11 @@ import {
  * Setup
  * Build the card deck
  * Resets previous changes to the store
- * @returns
+ * @param store - The server-side game data used for this step
+ * @param _state - Unused current game state
+ * @param players - The players participating in this game step
+ * @param allWords - Word resources available for generating prompts
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -190,7 +194,7 @@ export const prepareSuggestPhase = async (
 };
 /**
  * [Compare Phase] - Players compare and group their clues
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareComparePhase = async (
@@ -220,7 +224,7 @@ export const prepareSuggestPhase = async (
 };
 /**
  * [Guess Phase] - Active player guesses based on clues
- * @param _store - The Firebase store data
+ * @param store - The server-side game data used for this step
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareGuessPhase = async (

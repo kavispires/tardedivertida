@@ -220,6 +220,11 @@ export const determineStudentsThatCanBeRumored = (
   });
 };
 
+/**
+ * Finds surrounding school-board location identifiers while excluding out-of-bounds neighbors.
+ * @param locationId - Identifier of the location associated with this entry
+ * @returns The neighboring location identifiers
+ */
 const getNeighboringLocationIds = (locationId: string): string[] => {
   // Given than the school board is a 4x4 grid, starting with id `location-0`, determine the neighboring locations of a given location
   const locationIndex = Number.parseInt(locationId.split('-')[1], 10);

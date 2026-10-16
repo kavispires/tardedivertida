@@ -1,3 +1,6 @@
+/**
+ * Phase identifiers used by the `adedanhx` engine.
+ */
 export const ADEDANHX_PHASES = {
   SETUP: 'SETUP',
   ANSWERING: 'ANSWERING',
@@ -6,21 +9,42 @@ export const ADEDANHX_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Player action identifiers accepted by the `adedanhx` engine.
+ */
 export const ADEDANHX_ACTIONS = {
   SUBMIT_ANSWERS: 'SUBMIT_ANSWERS',
   SUBMIT_EVALUATIONS: 'SUBMIT_EVALUATIONS',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
 } as const;
 
+/**
+ * The standard number of rounds played in a game.
+ */
 export const TOTAL_ROUNDS = 5;
+/**
+ * The number of rounds used by the shorter-game option.
+ */
 export const SHORT_GAME_ROUNDS = 3;
+/**
+ * The number of topic cards selected for each round.
+ */
 export const TOPICS_PER_ROUND = 5;
+/**
+ * The number of letter constraints selected for each round.
+ */
 export const LETTERS_PER_ROUND = 4;
 
+/**
+ * Letter constraints and their difficulty levels grouped by language.
+ */
 export const LETTERS_ENTRIES_BY_LANGUAGE = {
   en: [
     {

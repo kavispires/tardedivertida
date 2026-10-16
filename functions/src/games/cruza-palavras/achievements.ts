@@ -40,4 +40,7 @@ const achievements = achievementBuilder(GAME_KEYS.CRUZA_PALAVRAS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `cruza-palavras`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

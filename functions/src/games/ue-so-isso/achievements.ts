@@ -43,5 +43,8 @@ const ueSoIssoAchievements = achievementBuilder(GAME_KEYS.UE_SO_ISSO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `ue-so-isso`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   ueSoIssoAchievements;

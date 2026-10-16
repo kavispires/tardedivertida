@@ -11,6 +11,8 @@ import { nextPhaseDelegator } from '../../mechanics/session';
  * Determines the next phase based on the current phase and round
  * @param currentPhase - The current phase of the game
  * @param round - The round object containing current round information
+ * @param outcome - The result used to resolve this step or advance the game
+ * @param shouldTakeAction - Whether the selected card requires another interactive action
  */
 export const determineNextPhase = (
   currentPhase: string,
@@ -45,6 +47,7 @@ export const determineNextPhase = (
 
 /**
  * Get the card key which is used as a key for cardsDict
+ * @param cardId - Identifier of the card associated with this entry
  * @returns The key of the card
  */
 export const getCardKeyFromId = (cardId: string) => {
@@ -81,6 +84,15 @@ const updateCardsCount = (cardsDict: Dictionary<FestaJuninaCard>, deck: UID[]) =
   });
 };
 
+/**
+ * Builds and shuffles uniquely identified card copies using round progression and player-count requirements.
+ * @param cardsDict - The card definitions indexed by identifier
+ * @param currentRound - The current round number
+ * @param playerCount - The number of players in the session
+ * @param plusCardsRotation - The sequence of plus-tier cards used across rounds
+ * @param advancedCardsRotation - The sequence of advanced cards used in later rounds
+ * @returns The shuffled card identifiers for this round
+ */
 export function buildRoundDeck(
   cardsDict: Dictionary<FestaJuninaCard>,
   currentRound: number,
@@ -91,6 +103,11 @@ export function buildRoundDeck(
   const totalCardsNeeded = DECK_INFO_BY_PLAYER_COUNT[playerCount].totalCards;
   // Golden rule: Pad with Rank 1 cards until quantity for player count is met, but there's a minimum of 4 Rank 1 cards)
   const rank1Cards = Object.values(cardsDict).filter((card) => card.rank === 1);
+  /**
+   * Alternates rank-one card identifiers to fill the remaining deck positions.
+   * @param quantityNeeded - The number of padding card identifiers to generate
+   * @returns The rank-one card identifiers used for padding
+   */
   const padWithRank1 = (quantityNeeded: number): UID[] => {
     // There are two Rank 1 cards, they must be alternately repeated until quantity is met
     const rank1Deck: UID[] = [];

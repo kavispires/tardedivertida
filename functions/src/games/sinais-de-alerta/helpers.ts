@@ -75,9 +75,24 @@ export const dealCardsToPlayers = (players: Players, store: FirebaseStoreData) =
   return cards;
 };
 
+/**
+ * Combines descriptor, subject, and player identifiers into a drawing-entry key.
+ * @param descriptorId - The identifier of the drawing descriptor
+ * @param subjectId - The identifier of the drawing subject
+ * @param playerId - The identifier of the player submitting or receiving the update
+ * @returns The composite drawing identifier
+ */
 const buildId = (descriptorId: UID, subjectId: UID, playerId: UID) => {
   return `${descriptorId}-${subjectId}-${playerId}`;
 };
+/**
+ * Combines subject and descriptor text using the selected language's word order.
+ * @param cards - The card resources to select from or evaluate
+ * @param descriptorId - The identifier of the drawing descriptor
+ * @param subjectId - The identifier of the drawing subject
+ * @param language - The language used to select resources or format the result
+ * @returns The localized drawing title
+ */
 const getTitle = (cards: Dictionary<TextCardData>, descriptorId: UID, subjectId: UID, language: Language) => {
   if (language === 'pt') {
     return `${cards[subjectId].text} ${cards[descriptorId].text}`;

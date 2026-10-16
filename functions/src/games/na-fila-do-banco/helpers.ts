@@ -116,6 +116,12 @@ export const getDistantColors = (players: Players, minDistance = 2): string[] =>
     .filter((hue): hue is number => hue !== undefined);
 
   // Helper function to check if a hue is distant enough from a list of hues
+  /**
+   * Checks that a hue is separated from every target hue by the minimum circular color distance.
+   * @param hue - The candidate hue in degrees
+   * @param targetHues - Previously assigned hues to keep sufficiently distant
+   * @returns Whether all target hues satisfy the distance requirement
+   */
   const isDistantFrom = (hue: number, targetHues: number[]): boolean => {
     return targetHues.every((targetHue) => {
       const diff = Math.abs(hue - targetHue);

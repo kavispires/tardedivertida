@@ -98,6 +98,13 @@ export function applySeedsToAlienItemKnowledge(items: AlienItem[], players: Play
   });
 }
 
+/**
+ * Removes starting-attribute sprites and duplicates from the learned sprite list.
+ * @param knownSpriteIds - The learned sprite identifiers to clean up
+ * @param attributes - Alien attributes available for learning and constructing messages
+ * @param startingAttributesIds - Identifiers of attributes known at the beginning of the game
+ * @returns The unique learned sprites that are not provided at setup
+ */
 export function cleanupKnownSpriteIds(
   knownSpriteIds: string[],
   attributes: AlienAttribute[],

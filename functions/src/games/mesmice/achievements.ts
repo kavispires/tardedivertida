@@ -39,5 +39,8 @@ const mesmiceAchievements = achievementBuilder(GAME_KEYS.MESMICE)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `mesmice`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
   mesmiceAchievements;

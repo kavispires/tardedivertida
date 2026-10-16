@@ -79,4 +79,7 @@ const achievements = achievementBuilder(GAME_KEYS.NA_FILA_DO_BANCO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `na-fila-do-banco`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

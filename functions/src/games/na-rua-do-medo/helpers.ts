@@ -54,6 +54,11 @@ export const determineNextPhase = (currentPhase: string, round: Round, outcome: 
   return nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * Creates horror, candy, and jackpot decks and initializes horror counters for the selected game length.
+ * @param isShortGame - Whether to build decks for the shorter game
+ * @returns The card decks and horror counters
+ */
 export const buildDecks = (isShortGame: boolean): Decks => {
   // 1. Build horror deck: get one random horror of each set and make 3 copies of it
   const horrorCount = {};
@@ -107,6 +112,12 @@ export const buildDecks = (isShortGame: boolean): Decks => {
   };
 };
 
+/**
+ * Shuffles available candy, unused horrors, and unlocked jackpots, rotating special cards away from the next draw when possible.
+ * @param store - The server-side game data used for this step
+ * @param currentRound - The current round number
+ * @returns The street deck for this round
+ */
 export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number): HouseCard[] => {
   // Remove last used horror, if any
   const horrorDeckWithoutAnyUsedHorrors = store.horrorDeck.filter(
@@ -136,6 +147,12 @@ export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number):
   return shuffledStreet;
 };
 
+/**
+ * Distributes a candy card evenly into continuing players' hands, leaving any remainder on the sidewalk.
+ * @param players - The players participating in this game step
+ * @param currentCard - The card being resolved, when one has been revealed
+ * @returns The per-player share and leftover candy
+ */
 export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStatus => {
   if (!currentCard || ['jackpot', 'horror'].includes(currentCard.type)) {
     return {
@@ -162,13 +179,22 @@ export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStat
 /**
  * Deal a new card to the current street
  * This function modifies store and players
- * @param store
- * @param players
+ * @param store - The server-side game data used for this step
+ * @param players - The players participating in this game step
  */
 export const dealNewCard = (
   store: FirebaseStoreData,
   players: Players,
-): { currentCard: HouseCard; candyStatus: CandyStatus } => {
+): {
+  /**
+   * The card most recently revealed on the street.
+   */
+  currentCard: HouseCard;
+  /**
+   * The distribution of candy from the newly revealed card.
+   */
+  candyStatus: CandyStatus;
+} => {
   // Deal card
   const currentCard = store.streetDeck.pop();
 
@@ -186,16 +212,48 @@ export const dealNewCard = (
   };
 };
 
+/**
+ * The street and player groups after resolving departures, candy, and jackpot claims.
+ */
 type ParsedDecisions = {
+  /**
+   * Cards revealed along the current street.
+   */
   street: HouseCard[];
+  /**
+   * Per-card candy shares and unclaimed candy left on the street.
+   */
   candySidewalk: CandyStatus[];
+  /**
+   * Identifiers of jackpots already claimed by players.
+   */
   claimedJackpotIds: string[];
+  /**
+   * Identifiers of players returning home on this step.
+   */
   goingHomePlayerIds: UID[];
+  /**
+   * Identifiers of players continuing to the next house.
+   */
   continuingPlayerIds: UID[];
+  /**
+   * Identifiers of players who were already home before this step.
+   */
   alreadyAtHomePlayerIds: UID[];
+  /**
+   * Sidewalk candy banked by each player returning home.
+   */
   cashedInCandy: number;
 };
 
+/**
+ * Resolves player departures, banks their candy, awards unclaimed jackpots to a sole returnee, and redistributes leftovers.
+ * @param players - The players participating in this game step
+ * @param candySidewalk - Candy shares and leftovers associated with the street cards
+ * @param street - The cards revealed on the current street
+ * @param store - The server-side game data used for this step
+ * @returns The updated street, candy distribution, and player groups
+ */
 export const parseDecisions = (
   players: Players,
   candySidewalk: CandyStatus[],
@@ -328,10 +386,23 @@ export const parseDecisions = (
   };
 };
 
+/**
+ * Checks whether revealing another copy of a horror would repeat an already revealed horror.
+ * @param horrorCount - The occurrence count for each horror key
+ * @param newHorrorKey - The horror key that would be revealed next
+ * @returns Whether the horror has already appeared once
+ */
 export const checkIfIsPanic = (horrorCount: Dictionary<number>, newHorrorKey: string) => {
   return horrorCount[newHorrorKey] === 1;
 };
 
+/**
+ * Determines whether to continue, start a street, or end the current street based on phase, players, and the next card.
+ * @param store - The server-side game data used for this step
+ * @param state - The current game state
+ * @param players - The players participating in this game step
+ * @returns The street outcome and whether another card should be revealed
+ */
 export const determineOutcome = (
   store: FirebaseStoreData,
   state: FirebaseStateData,
@@ -388,6 +459,11 @@ export const determineOutcome = (
   };
 };
 
+/**
+ * Marks returning players as home and clears their current jackpot display.
+ * @param players - The players participating in this game step
+ * @returns The identifiers of players who are now home
+ */
 export const sendPlayersHome = (players: Players): UID[] => {
   const atHome: UID[] = [];
   getListOfPlayers(players).forEach((player) => {
@@ -405,12 +481,22 @@ export const sendPlayersHome = (players: Players): UID[] => {
   return atHome;
 };
 
+/**
+ * Sums the unclaimed candy left on the sidewalk.
+ * @param candySidewalk - Candy shares and leftovers associated with the street cards
+ * @returns The total leftover candy
+ */
 export const getTotalCandyInSidewalk = (candySidewalk: CandyStatus[]): number => {
   return candySidewalk.reduce((total, candyObj): number => {
     return total + candyObj.leftover;
   }, 0);
 };
 
+/**
+ * Resets all horror occurrence counters in place.
+ * @param horrorCount - The occurrence count for each horror key
+ * @returns The reset counter dictionary
+ */
 export const resetHorrorCount = (horrorCount: Dictionary<number>): Dictionary<number> => {
   Object.keys(horrorCount).forEach((key) => {
     horrorCount[key] = 0;
@@ -418,6 +504,10 @@ export const resetHorrorCount = (horrorCount: Dictionary<number>): Dictionary<nu
   return horrorCount;
 };
 
+/**
+ * Updates each player's score from banked candy and collected jackpot values.
+ * @param players - The players participating in this game step
+ */
 export const tallyCandyAsScore = (players: Players) => {
   getListOfPlayers(players).forEach((player) => {
     const jackpots = player.jackpots.reduce((t: number, j: HouseCard) => t + j.value, 0);
@@ -425,6 +515,11 @@ export const tallyCandyAsScore = (players: Players) => {
   });
 };
 
+/**
+ * Counts the horror cards revealed on a street.
+ * @param street - The cards revealed on the current street
+ * @returns The number of revealed horror cards
+ */
 export const countMonsters = (street: HouseCard[]) => {
   return street.reduce((acc: number, entry) => {
     if (entry.type === 'horror') {

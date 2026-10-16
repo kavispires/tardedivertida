@@ -194,7 +194,7 @@ export const prepareAlienSeedingPhase = async (
 
 /**
  * Human Ask phase - humans select items to inquire about
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */

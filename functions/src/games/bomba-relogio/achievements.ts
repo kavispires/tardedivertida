@@ -54,4 +54,7 @@ const achievements = achievementBuilder(GAME_KEYS.BOMBA_RELOGIO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `bomba-relogio`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

@@ -35,7 +35,6 @@ import {
  * @param uid - The user ID of the game creator
  * @param language - The language code
  * @param version - The game version
- * @param options - Optional game configuration options
  */
 export const getInitialState = (
   gameId: UID,
@@ -64,6 +63,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
  * Handles phase progression and prepares the next game phase
  * @param gameName - The name of the game
  * @param gameId - The game session ID
+ * @param currentState - The current game state when already available
  */
 export const getNextPhase = async (
   gameName: string,

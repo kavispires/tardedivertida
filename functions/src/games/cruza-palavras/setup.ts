@@ -81,7 +81,7 @@ export const prepareSetupPhase = async (
 /**
  * Words Selection phase - players select words to place on the grid
  * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _state - Unused current game state
  * @param players - The players object
  */
 export const prepareWordsSelectionPhase = async (

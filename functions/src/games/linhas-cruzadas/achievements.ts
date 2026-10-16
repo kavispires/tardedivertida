@@ -28,5 +28,8 @@ const linhasCruzadasAchievements = achievementBuilder(GAME_KEYS.LINHAS_CRUZADAS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `linhas-cruzadas`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
   linhasCruzadasAchievements;

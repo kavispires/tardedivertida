@@ -63,5 +63,8 @@ const portaDosDesesperadosAchievements = achievementBuilder(GAME_KEYS.PORTA_DOS_
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `porta-dos-desesperados`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   portaDosDesesperadosAchievements;

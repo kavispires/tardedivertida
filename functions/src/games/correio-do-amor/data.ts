@@ -4,6 +4,9 @@ import type { ResourceData, FestaJuninaDatabaseEntry, CorreioDoAmorOptions, Fest
 // Constants
 import { KEYWORDS } from './constants';
 
+/**
+ * Card definitions indexed by identifier, including ranks, effects, and targeting rules.
+ */
 const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
   '0_SANFONEIRO': {
     id: '0_SANFONEIRO',
@@ -562,7 +565,6 @@ const CARDS: Dictionary<FestaJuninaDatabaseEntry> = {
  * Get game resources based on the game's language
  * @param language - The language code for localized resources
  * @param options - Game options that may affect resource loading
- * @param playerCount - The number of players in the game, which may affect resource loading
  * @returns Resource data containing game-specific resources
  */
 export const getData = async (language: Language, options: CorreioDoAmorOptions): Promise<ResourceData> => {

@@ -47,6 +47,9 @@ const achievements = achievementBuilder(GAME_KEYS.TA_NA_CARA)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `ta-na-cara`.
+ */
 export const {
   constants,
   setupAchievements,

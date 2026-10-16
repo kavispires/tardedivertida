@@ -31,5 +31,8 @@ const ondaTelepaticaAchievements = achievementBuilder(GAME_KEYS.ONDA_TELEPATICA)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `onda-telepatica`.
+ */
 export const { constants, setupAchievements, increaseAchievement, pushAchievement, calculateAchievements } =
   ondaTelepaticaAchievements;

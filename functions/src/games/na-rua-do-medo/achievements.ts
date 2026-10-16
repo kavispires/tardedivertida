@@ -36,4 +36,7 @@ const achievements = achievementBuilder(GAME_KEYS.NA_RUA_DO_MEDO)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `na-rua-do-medo`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

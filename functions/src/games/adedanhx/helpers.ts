@@ -22,9 +22,9 @@ import { increaseAchievement } from './achievements';
 
 /**
  * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @returns
+ * @param currentPhase - The phase currently active in the game
+ * @param round - The current round number, total, and forced-ending flag
+ * @returns The next game phase identifier
  */
 export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { SETUP, ANSWERING, EVALUATION, RESULTS, GAME_OVER } = ADEDANHX_PHASES;

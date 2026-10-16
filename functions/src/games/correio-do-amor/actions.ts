@@ -11,15 +11,24 @@ import { getNextPhase } from './index';
  * @param gameName - The name of the game
  * @param gameId - The game session ID
  * @param playerId - The player ID submitting card
- * @param card - The card data
+ * @param payload - The played card, retained card, and selected effect
  */
 export const handleCard = async (
   gameName: string,
   gameId: UID,
   playerId: UID,
   payload: {
+    /**
+     * Identifier of the card the player chose to play.
+     */
     playedCardId: UID;
+    /**
+     * Identifier of the card the player kept in hand.
+     */
     keptCardId: UID;
+    /**
+     * The selected effect to resolve for the played card.
+     */
     playedEffect: string;
   },
 ) => {

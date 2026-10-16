@@ -21,10 +21,10 @@ import { increaseAchievement } from './achievements';
 
 /**
  * Determine the next phase based on the current one
- * @param currentPhase
- * @param round
- * @param isGameOver
- * @returns
+ * @param currentPhase - The phase currently active in the game
+ * @param round - The current round number, total, and forced-ending flag
+ * @param isGameOver - Whether the game has reached an ending condition
+ * @returns The next game phase identifier
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
@@ -43,8 +43,9 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
 
 /**
  * Determine if a player has passed max points and it should be game over
- * @param players
- * @returns
+ * @param players - The players participating in this game step
+ * @param round - The current round number, total, and forced-ending flag
+ * @returns Whether the game has reached its ending condition
  */
 export const determineGameOver = (players: Players, round: Round): boolean => {
   // In a short game, the points threshold doesn't count
@@ -57,8 +58,8 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
 
 /**
  * Get game settings
- * @param isShortGame
- * @returns
+ * @param options - The selected game configuration
+ * @returns The round count and difficulty-level schedule
  */
 export const getGameSettings = (options: ArteRuimGameOptions) => {
   const levelsReference = options.basicLevelsOnly ? BASIC_LEVELS : DEFAULT_LEVELS;
@@ -72,8 +73,8 @@ export const getGameSettings = (options: ArteRuimGameOptions) => {
 
 /**
  * Split cards into respective levels
- * @param cards
- * @returns
+ * @param cards - The card resources to select from or evaluate
+ * @returns The card resources grouped by difficulty level
  */
 export const distributeCardsByLevel = (cards: ArteRuimCardData[]): CardsByLevel => {
   const cardsPerLevel: CardsByLevel = {
@@ -105,7 +106,13 @@ export const getAvailableCards = (
   roundLevels: number[],
   playerCount: number,
 ): {
+  /**
+   * The card resources or identifiers associated with this entry.
+   */
   cards: CardsByLevel;
+  /**
+   * Whether the used-card tracker needs to be reset for this selection.
+   */
   resetUsedCards: boolean;
 } => {
   const cardsNeeded: Record<number, number> = {
@@ -156,10 +163,10 @@ export const getAvailableCards = (
 
 /**
  * Get enough level 5 cards
- * @param deck
- * @param usedCards
- * @param cardsNeeded
- * @returns
+ * @param deck - The card collection retained for dealing or selecting game content
+ * @param usedCards - Previously used card identifiers to exclude where possible
+ * @param cardsNeeded - The number of cards required for the selection
+ * @returns The selected group-card identifiers, prioritizing unused cards where possible
  */
 export const getEnoughUnusedLevel5Cards = (
   deck: ArteRuimGroupData[],
@@ -197,10 +204,10 @@ export const getEnoughUnusedLevel5Cards = (
 
 /**
  * Builds the deck as evenly as possible with cards needed per level
- * @param resourceData
- * @param playerCount
- * @param isShortGame
- * @returns
+ * @param resourceData - The resources loaded for game setup
+ * @param playerCount - The number of players in the session
+ * @param levels - The difficulty-level schedule for the game
+ * @returns The selected cards in deck order
  */
 export const buildDeck = (
   resourceData: ResourceData,
@@ -271,6 +278,12 @@ export const buildDeck = (
 export const getEnoughLevel4Cards = (cards: ArteRuimPairData[], playerCount: number) => {
   let result: ArteRuimCardData[] = [];
 
+  /**
+   * Creates a sampled pair-card hand that contains both values and uniquely identifies repeated copies.
+   * @param card - The card to expand, classify, or resolve
+   * @param count - The number of cards required
+   * @returns The requested number of pair cards
+   */
   function buildNecessaryArray(card: ArteRuimPairData, count: number): ArteRuimCardData[] {
     const newCards: ArteRuimCardData[] = card.values.map((value, index) => ({
       id: `${card.id}--${index}`,
@@ -318,8 +331,8 @@ export const getTwoUniquePairCards = (cards: ArteRuimCardData[]): ArteRuimCardDa
 
 /**
  * Determine the number of cards in a round
- * @param playerCount
- * @returns
+ * @param playerCount - The number of players in the session
+ * @returns The number of drawing cards required for this player count
  */
 export const determineNumberOfCards = (playerCount: number): number => {
   if (playerCount < 5) {
@@ -354,6 +367,11 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
   });
 };
 
+/**
+ * Removes copy-specific suffixes while preserving the pair and value identifiers.
+ * @param id - The source identifier to normalize
+ * @returns The identifier shared by copies of the same pair value
+ */
 const getPairCardId = (id: string): string => {
   const split = id.split('--');
   return split.length === 1 ? id : `${split[0]}--${split[1]}`;
@@ -361,9 +379,11 @@ const getPairCardId = (id: string): string => {
 
 /**
  * Build gallery
- * @param drawings
- * @param players
- * @returns
+ * @param drawings - The submitted drawings to evaluate
+ * @param players - The players participating in this game step
+ * @param store - The server-side game data used for this step
+ * @param tableCardsIds - Identifiers of table cards not assigned to an artist
+ * @returns The evaluated drawings with grouped guesses and accuracy data
  */
 export const buildGallery = (
   drawings: ArteRuimDrawing[],
@@ -464,9 +484,9 @@ export const buildGallery = (
 
 /**
  * Build round ranking
- * @param drawings
- * @param players
- * @returns
+ * @param drawings - The submitted drawings to evaluate
+ * @param players - The players participating in this game step
+ * @returns The ranking after resolving player scores
  */
 export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
   // Gained Points [correct guesses, guesses on your drawing]
@@ -497,9 +517,9 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
 
 /**
  * Builds list of past drawings
- * @param players
- * @param gallery
- * @returns
+ * @param players - The players participating in this game step
+ * @param gallery - Resolved entries retained for gallery presentation
+ * @returns The completed player drawing cards annotated with their gallery accuracy
  */
 export const getNewPastDrawings = (players: Players, gallery) => {
   // Remove currentCard from players and add it to past drawings in the store
@@ -513,6 +533,12 @@ export const getNewPastDrawings = (players: Players, gallery) => {
   });
 };
 
+/**
+ * Appends serialized drawings to the public drawing history grouped by card identifier.
+ * @param drawings - The drawings to append to the retained history
+ * @param publicDrawings - The existing public drawing history
+ * @returns The merged drawing history
+ */
 export const buildPastDrawingsDict = (drawings, publicDrawings) => {
   const newDrawings = { ...publicDrawings };
 

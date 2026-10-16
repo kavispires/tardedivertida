@@ -41,9 +41,21 @@ export const getData = async (
   );
 
   const featuresByLevel: {
+    /**
+     * Object-feature cards at difficulty level 1.
+     */
     1: ObjectFeatureCardData[];
+    /**
+     * Object-feature cards at difficulty level 2.
+     */
     2: ObjectFeatureCardData[];
+    /**
+     * Object-feature cards at difficulty level 3.
+     */
     3: ObjectFeatureCardData[];
+    /**
+     * Object-feature cards at difficulty level 4.
+     */
     4: ObjectFeatureCardData[];
   } = Object.values(allObjectFeatures).reduce(
     (acc, feature) => {
@@ -58,6 +70,10 @@ export const getData = async (
     },
   );
 
+  /**
+   * Samples object features from each difficulty level using the configured level counts.
+   * @returns The combined feature selection
+   */
   function getObjectFeatures() {
     const features: ObjectFeatureCardData[] = [];
 

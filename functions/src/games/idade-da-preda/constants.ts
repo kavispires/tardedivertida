@@ -1,6 +1,9 @@
 // Types
 import type { ConceptData } from './types';
 
+/**
+ * Phase identifiers used by the `idade-da-preda` engine.
+ */
 export const IDADE_DA_PREDA_PHASES = {
   SETUP: 'SETUP',
   CREATING_CONCEPTS: 'CREATING_CONCEPTS',
@@ -11,10 +14,16 @@ export const IDADE_DA_PREDA_PHASES = {
   GAME_OVER: 'GAME_OVER',
 } as const;
 
+/**
+ * Achievement identifiers awarded by the `idade-da-preda` engine.
+ */
 export const IDADE_DA_PREDA_ACHIEVEMENTS = {
   // Add achievements here
 } as const;
 
+/**
+ * Player action identifiers accepted by the `idade-da-preda` engine.
+ */
 export const IDADE_DA_PREDA_ACTIONS = {
   SUBMIT_CONCEPTS: 'SUBMIT_CONCEPTS',
   DOWNVOTE_CONCEPTS: 'DOWNVOTE_CONCEPTS',
@@ -22,20 +31,44 @@ export const IDADE_DA_PREDA_ACTIONS = {
   SUBMIT_GUESSES: 'SUBMIT_GUESSES',
 } as const;
 
+/**
+ * Minimum and maximum numbers of players supported by this game.
+ */
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
 } as const;
 
+/**
+ * The standard number of rounds played in a game.
+ */
 export const TOTAL_ROUNDS = 5;
 
+/**
+ * The number of item resources selected for the first age.
+ */
 export const AGE_1_ITEMS_COUNT = 30;
+/**
+ * The number of new item resources selected for later ages.
+ */
 export const NEW_AGES_COUNT = 12;
+/**
+ * The number of items assigned to each player in an age.
+ */
 export const ITEMS_PER_PLAYER_PER_AGE = 3;
 
+/**
+ * The number of concepts available in the first round.
+ */
 export const CONCEPTS_FOR_FIRST_ROUND = 13;
+/**
+ * The number of concepts introduced for subsequent ages.
+ */
 export const CONCEPTS_FOR_NEW_AGES = 6;
 
+/**
+ * Built-in concepts and sounds available before players create new meanings.
+ */
 export const BASIC_CONCEPTS: ConceptData[] = [
   {
     id: 'c-0-yes',
@@ -109,6 +142,9 @@ export const BASIC_CONCEPTS: ConceptData[] = [
   },
 ];
 
+/**
+ * Localized syllables indexed by sound identifier.
+ */
 export const SOUNDS: Dictionary<DualLanguageValue> = {
   1: {
     en: 'ah',

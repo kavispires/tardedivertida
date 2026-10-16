@@ -32,4 +32,7 @@ const achievements = achievementBuilder(GAME_KEYS.CONTADORES_HISTORIAS)
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `contadores-historias`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;

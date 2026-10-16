@@ -29,9 +29,21 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   return nextPhaseDelegator(currentPhase, order);
 };
 
+/**
+ * The player currently affected by each supported ongoing runner effect.
+ */
 type OngoingPlayerEffectsType = {
+  /**
+   * Identifier of the frozen player, or null when the effect is inactive.
+   */
   [TRIGGER_KEYS.FREEZE]: UID | null;
+  /**
+   * Identifier of the player receiving the ongoing movement bonus, or null when inactive.
+   */
   [TRIGGER_KEYS.ONGOING_PLUS_ONE]: UID | null;
+  /**
+   * Identifier of the player receiving the ongoing movement penalty, or null when inactive.
+   */
   [TRIGGER_KEYS.ONGOING_MINUS_ONE]: UID | null;
 };
 
@@ -337,10 +349,21 @@ export const buildRun = (
   return race;
 };
 
+/**
+ * Clamps a runner position to the allowed range of -10 through 20.
+ * @param value - The runner position to constrain to the track bounds
+ * @returns The bounded position
+ */
 const minMaxValue = (value: number) => {
   return Math.max(Math.min(value, 20), -10);
 };
 
+/**
+ * Finds the ongoing movement bonus or penalty affecting a player.
+ * @param ongoingPlayerEffects - The players affected by ongoing runner effects
+ * @param targetId - The identifier of the player targeted by the effect
+ * @returns One for a bonus, minus one for a penalty, or zero when neither applies
+ */
 const getOngoingModifier = (ongoingPlayerEffects: OngoingPlayerEffectsType, targetId: UID) => {
   if (ongoingPlayerEffects[TRIGGER_KEYS.ONGOING_PLUS_ONE] === targetId) {
     return 1;
@@ -351,6 +374,12 @@ const getOngoingModifier = (ongoingPlayerEffects: OngoingPlayerEffectsType, targ
   return 0;
 };
 
+/**
+ * Moves the target ahead of the highest position, respecting the track bounds.
+ * @param endingPositions - The player positions to resolve
+ * @param targetId - The identifier of the player targeted by the effect
+ * @returns The updated position dictionary
+ */
 const triggerEffectFirstPlace = (endingPositions: Record<UID, number>, targetId: UID) => {
   // Get the first place player
   const orderedPositions = Object.values(endingPositions).sort((a, b) => b - a);
@@ -359,6 +388,12 @@ const triggerEffectFirstPlace = (endingPositions: Record<UID, number>, targetId:
   return endingPositions;
 };
 
+/**
+ * Moves the target behind the lowest position, respecting the track bounds.
+ * @param endingPositions - The player positions to resolve
+ * @param targetId - The identifier of the player targeted by the effect
+ * @returns The updated position dictionary
+ */
 const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: UID) => {
   // Get the last place player
   const orderedPositions = Object.values(endingPositions).sort((a, b) => a - b);
@@ -367,6 +402,12 @@ const triggerEffectLastPlace = (endingPositions: Record<UID, number>, targetId: 
   return endingPositions;
 };
 
+/**
+ * Moves the target ahead of the second entry in the descending position list, respecting the track bounds.
+ * @param endingPositions - The player positions to resolve
+ * @param targetId - The identifier of the player targeted by the effect
+ * @returns The updated position dictionary
+ */
 const triggerEffectSecondPlace = (endingPositions: Record<UID, number>, targetId: UID) => {
   // Get the first place player
   const orderedPositions = Object.values(endingPositions).sort((a, b) => b - a);
@@ -375,6 +416,11 @@ const triggerEffectSecondPlace = (endingPositions: Record<UID, number>, targetId
   return endingPositions;
 };
 
+/**
+ * Swaps the positions of all players tied for the highest and lowest positions.
+ * @param endingPositions - The player positions to resolve
+ * @returns The updated position dictionary
+ */
 const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   // Get the first place player
   const orderedPositions = uniq(Object.values(endingPositions).sort((a, b) => b - a));
@@ -397,6 +443,11 @@ const triggerEffectSwap = (endingPositions: Record<UID, number>) => {
   return endingPositions;
 };
 
+/**
+ * Reverses the order of distinct occupied positions without mutating the input dictionary.
+ * @param endingPositions - The player positions to resolve
+ * @returns A position dictionary with the reversed placements
+ */
 const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   // Create a copy to avoid mutation conflicts
   const newPositions = { ...endingPositions };
@@ -419,6 +470,13 @@ const triggerEffectTwist = (endingPositions: Record<UID, number>) => {
   return newPositions;
 };
 
+/**
+ * Moves every player except the target forward, applying the movement modifier and track bounds.
+ * @param endingPositions - The player positions to resolve
+ * @param targetId - The identifier of the player targeted by the effect
+ * @param modifier - The additional movement adjustment applied by the effect
+ * @returns The updated position dictionary
+ */
 const triggerEffectEveryElseGo = (endingPositions: Record<UID, number>, targetId: UID, modifier: number) => {
   Object.keys(endingPositions).forEach((id) => {
     if (id !== targetId) {
@@ -428,6 +486,13 @@ const triggerEffectEveryElseGo = (endingPositions: Record<UID, number>, targetId
   return endingPositions;
 };
 
+/**
+ * Moves every player except the target backward, applying the movement modifier and track bounds.
+ * @param endingPositions - The player positions to resolve
+ * @param targetId - The identifier of the player targeted by the effect
+ * @param modifier - The additional movement adjustment applied by the effect
+ * @returns The updated position dictionary
+ */
 const triggerEffectEverybodyElseBack = (
   endingPositions: Record<UID, number>,
   targetId: UID,
@@ -441,6 +506,11 @@ const triggerEffectEverybodyElseBack = (
   return endingPositions;
 };
 
+/**
+ * Groups movement cards by value and other runner cards by effect type.
+ * @param card - The card to expand, classify, or resolve
+ * @returns The card key used to identify equivalent cards
+ */
 export const getCardIdentifierKey = (card: RunnerCard) => {
   if (card.type.startsWith('movement')) {
     return `movement-${card.value}`;

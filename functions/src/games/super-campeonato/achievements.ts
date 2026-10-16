@@ -62,5 +62,8 @@ const superCampeonatoAchievements = achievementBuilder(GAME_KEYS.SUPER_CAMPEONAT
   })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for `super-campeonato`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } =
   superCampeonatoAchievements;

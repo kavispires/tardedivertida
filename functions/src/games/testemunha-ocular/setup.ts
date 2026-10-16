@@ -37,7 +37,10 @@ import { buildQuestionsDeck, calculateScore, getNewQuestions, getPoolOfSuspects 
  * Setup
  * Build the card deck
  * Resets previous changes to the store
- * @returns
+ * @param store - The server-side game data used for this step
+ * @param players - The players participating in this game step
+ * @param additionalData - Additional resources loaded for game setup
+ * @returns The state and store changes for this phase
  */
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
@@ -206,7 +209,7 @@ export const prepareQuestionSelectionPhase = async (
 };
 /**
  * [Questioning Phase] - Players question the witness
- * @param _store - The Firebase store data
+ * @param store - The server-side game data used for this step
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareQuestioningPhase = async (
@@ -235,7 +238,7 @@ export const prepareQuestionSelectionPhase = async (
 };
 /**
  * [Trial Phase] - Players vote on suspect identifications
- * @param store - The Firebase store data
+ * @param _store - Unused server-side game data
  * @param state - The Firebase state data
  * @param players - The players object
  */ export const prepareTrialPhase = async (
