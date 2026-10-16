@@ -19,7 +19,7 @@ function generateAchievements(metadata) {
  */
 
 import { GAME_KEYS } from '../../constants/games';
-import { achievementBuilder } from '../../utils/tool-kits';
+import { achievementBuilder } from '../../tool-kits/achievements';
 
 /**
  * Build achievement utilities for ${pascalName} game
@@ -34,6 +34,9 @@ const achievements = achievementBuilder(GAME_KEYS.${gameKey})
   // })
   .build();
 
+/**
+ * Achievement definitions and tracking helpers configured for \`${gameName}\`.
+ */
 export const { constants, setupAchievements, increaseAchievement, calculateAchievements } = achievements;
 `;
 }

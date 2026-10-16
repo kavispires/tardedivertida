@@ -19,7 +19,9 @@ function generateTypes(metadata) {
  * Game options for ${pascalName}
  */
 export type ${pascalName}Options = {
-  // TODO: Define options structure
+  /**
+   * Game-specific configuration options supplied when creating a session.
+   */
   [key: string]: AnyOrUnknownPlaceholder;
 };
 
@@ -27,40 +29,55 @@ export type ${pascalName}Options = {
  * Resource data loaded from TDR resources
  */
 export type ResourceData = {
-  // TODO: Define resource structure
+  /**
+   * Resource collections needed to initialize the game.
+   */
   [key: string]: unknown;
 };
 
 /**
  * Game store persisting across phases
  */
-export interface ${pascalName}Store extends DefaultStore<${pascalName}Options> {
-  // TODO: Add game-specific store properties
+export type ${pascalName}Store = DefaultStore<${pascalName}Options> & {
+  /**
+   * Additional server-side data retained between phases.
+   */
   [key: string]: AnyOrUnknownPlaceholder;
-}
+};
 
 /**
  * Game state for the current phase
  */
-export interface ${pascalName}State extends DefaultState {
-  // TODO: Add game-specific state properties
- [key: string]: AnyOrUnknownPlaceholder;
-}
+export type ${pascalName}State = DefaultState & {
+  /**
+   * Additional public state shared with players as the session progresses.
+   */
+  [key: string]: AnyOrUnknownPlaceholder;
+};
 
 /**
  * Initial state structure for new game sessions
  */
-export interface ${pascalName}InitialState extends InitialState {
+export type ${pascalName}InitialState = InitialState & {
+  /**
+   * The game-specific server-side store initialized for the session.
+   */
   store: ${pascalName}Store;
+  /**
+   * The game-specific public state initialized for the session.
+   */
   state: ${pascalName}State;
-}
+};
 
 /**
  * Player action submission payload
  */
-export interface ${pascalName}SubmitAction extends Payload {
+export type ${pascalName}SubmitAction = Payload & {
+  /**
+   * Identifier of the player action to validate and route to its handler.
+   */
   action: keyof typeof ${gameKey}_ACTIONS;
-}
+};
 
 /**
  * Firebase-compatible state type

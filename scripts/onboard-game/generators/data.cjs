@@ -13,40 +13,29 @@ function generateData(metadata) {
   const { gameName } = metadata;
   const pascalName = convertToPascalCase(gameName);
 
-  return `// Constants
-import { TDR_RESOURCES } from '../../constants/resources';
-// Types
+  return `// Types
 import type { ResourceData, ${pascalName}Options } from './types';
-// Utils
-import * as resourceUtils from '../resource';
-import * as dataUtils from '../collections';
-import utils from '../../utils';
 
 /**
  * Get game resources based on the game's language
- * @param language - The language code for localized resources
- * @param options - Game options that may affect resource loading
+ * @param _language - The language code for localized resources
+ * @param _options - Game options that may affect resource loading
  * @returns Resource data containing game-specific resources
  */
-export const getData = async (language: Language, options: ${pascalName}Options): Promise<ResourceData> => {
+export const getData = async (_language: Language, _options: ${pascalName}Options): Promise<ResourceData> => {
   // TODO: Implement resource loading
-  // Example:
-  // const resource = await resourceUtils.fetchResource(TDR_RESOURCES.SOME_RESOURCE, language);
 
   return {};
 };
 
 /**
  * Save used game resources
- * @param language - The language code for the saved data
- * @param data - Game-specific data to save
+ * @param _language - The language code for the saved data
+ * @param _data - Game-specific data to save
+ * @returns Completion of the resource-saving hook.
  */
-export const saveData = async (language: Language, data: PlainObject) => {
+export const saveData = async (_language: Language, _data: PlainObject) => {
   // TODO: Implement data saving logic
-  // Example:
-  // const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(data));
-  // await utils.tdr.saveUsedResource(usedIds);
-  // await dataUtils.updateCardDataCollection('collection-name', language, data);
 };
 `;
 }

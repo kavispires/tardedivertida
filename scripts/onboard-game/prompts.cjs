@@ -2,7 +2,12 @@
  * Interactive prompts for game onboarding
  */
 
-const { validatePhaseName, validateActionName } = require('./utils.cjs');
+const {
+  validatePhaseName,
+  validateActionName,
+  actionToHandlerName,
+  actionToPropName,
+} = require('./utils.cjs');
 
 /**
  * Prompts for game phases
@@ -27,19 +32,24 @@ async function promptForPhases(prompt) {
     .map((p) => p.trim().toUpperCase().replace(/\s+/g, '_'))
     .filter((p) => p.length > 0);
 
+  if (phases.length === 0) {
+    console.log('❌ At least one playable phase is required\n');
+    return promptForPhases(prompt);
+  }
+
   // Validate
   const invalidPhases = phases.filter((p) => !validatePhaseName(p));
   if (invalidPhases.length > 0) {
     console.log(`❌ Invalid phase names: ${invalidPhases.join(', ')}`);
-    console.log('Phase names must be UPPER_SNAKE_CASE (letters and underscores only)\n');
+    console.log('Phase names must use letters separated by single underscores (UPPER_SNAKE_CASE)\n');
     return promptForPhases(prompt);
   }
 
   // Check for reserved words
-  const reserved = ['LOBBY', 'RULES'];
+  const reserved = ['LOBBY', 'RULES', 'SETUP', 'GAME_OVER'];
   const hasReserved = phases.some((p) => reserved.includes(p));
   if (hasReserved) {
-    console.log('❌ Cannot use reserved phase names: LOBBY, RULES\n');
+    console.log('❌ LOBBY and RULES are reserved; SETUP and GAME_OVER are added automatically\n');
     return promptForPhases(prompt);
   }
 
@@ -80,11 +90,16 @@ async function promptForActions(prompt) {
     .map((a) => a.trim().toUpperCase().replace(/\s+/g, '_'))
     .filter((a) => a.length > 0);
 
+  if (actions.length === 0) {
+    console.log('❌ At least one action is required\n');
+    return promptForActions(prompt);
+  }
+
   // Validate
   const invalidActions = actions.filter((a) => !validateActionName(a));
   if (invalidActions.length > 0) {
     console.log(`❌ Invalid action names: ${invalidActions.join(', ')}`);
-    console.log('Action names must be UPPER_SNAKE_CASE (letters and underscores only)\n');
+    console.log('Action names must be UPPER_SNAKE_CASE and generate valid payload names other than the routing field "action"\n');
     return promptForActions(prompt);
   }
 
@@ -92,6 +107,13 @@ async function promptForActions(prompt) {
   const uniqueActions = [...new Set(actions)];
   if (uniqueActions.length !== actions.length) {
     console.log('❌ Duplicate action names detected\n');
+    return promptForActions(prompt);
+  }
+
+  const handlerNames = uniqueActions.map(actionToHandlerName);
+  const propertyNames = uniqueActions.map(actionToPropName);
+  if (new Set(handlerNames).size !== uniqueActions.length || new Set(propertyNames).size !== uniqueActions.length) {
+    console.log('❌ Actions must generate distinct handler and payload names after removing SUBMIT_ and underscores\n');
     return promptForActions(prompt);
   }
 

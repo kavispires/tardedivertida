@@ -2,8 +2,6 @@
  * Generator for helpers.ts file
  */
 
-const { phaseToPascalCase } = require('../utils.cjs');
-
 /**
  * Generates the contents of helpers.ts
  * @param {Object} metadata - Game metadata
@@ -31,19 +29,20 @@ function generateHelpers(metadata) {
 
   return `// Constants
 import { ${gameKey}_PHASES } from './constants';
-// Utils
-import utils from '../../utils';
+// Mechanics
+import { nextPhaseDelegator } from '../../mechanics/session';
 
 /**
  * Determines the next phase based on the current phase and round
  * @param currentPhase - The current phase of the game
- * @param round - The round object containing current round information
+ * @param ${rounds ? 'round' : '_round'} - The round object containing current round information
+ * @returns The identifier of the next phase in the game sequence.
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
+export const determineNextPhase = (currentPhase: string, ${rounds ? 'round' : '_round'}: Round): string => {
   const { SETUP, ${phasesCommaSeparated}, GAME_OVER } = ${gameKey}_PHASES;
   const order = [SETUP, ${phasesCommaSeparated}, GAME_OVER];
 ${roundCheckLogic}
-  return utils.game.nextPhaseDelegator(currentPhase, order);
+  return nextPhaseDelegator(currentPhase, order);
 };
 `;
 }

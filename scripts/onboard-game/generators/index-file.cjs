@@ -36,8 +36,11 @@ import type {
   FirebaseStateData,
   FirebaseStoreData,
 } from './types';
-// Utils
-import utils from '../../utils';
+// Services
+import { validateSubmitActionPayload, validateSubmitActionProperties, throwHttpsError } from '../../services/firebase-core';
+import { getStateAndStoreReferences, saveGame, triggerSetupPhase } from '../../services/game-session';
+// Mechanics
+import { getDefaultInitialState } from '../../mechanics/session';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {
@@ -54,15 +57,16 @@ import { getData } from './data';
 
   // getInitialState function
   const roundsProperty = rounds
-    ? `\n    'totalRounds': ${rounds.type === 'fixed' ? 'TOTAL_ROUNDS' : 'MAX_ROUNDS'},`
-    : '';
+    ? `\n    totalRounds: ${rounds.type === 'fixed' ? 'TOTAL_ROUNDS' : 'MAX_ROUNDS'},`
+    : '\n    totalRounds: 0,';
   const getInitialState = `/**
  * Gets the initial state for a new game session
  * @param gameId - The game session ID
  * @param uid - The user ID of the game creator
  * @param language - The language code
  * @param version - The game version
- * @param options - Optional game configuration options
+ * @param options - Configuration options supplied when creating the session
+ * @returns The initial metadata, server-side store, and public state for the session.
  */
 export const getInitialState = (
   gameId: UID,
@@ -71,7 +75,7 @@ export const getInitialState = (
   version: string,
   options: ${pascalName}Options,
 ): ${pascalName}InitialState => {
-  return utils.game.getDefaultInitialState<${pascalName}InitialState>({
+  return getDefaultInitialState<${pascalName}InitialState>({
     gameId,
     gameName: GAME_NAMES.${gameKey},
     uid,
@@ -87,6 +91,7 @@ export const getInitialState = (
   // getPlayerCounts function
   const getPlayerCounts = `/**
  * Gets the player count requirements for the game
+ * @returns The minimum and maximum supported player counts.
  */
 export const getPlayerCounts = () => PLAYER_COUNTS;
 `;
@@ -102,7 +107,7 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
       return `  // ${previousPhase} -> ${phase}
   if (nextPhase === ${gameKey}_PHASES.${phase}) {
     const newPhase = await prepare${pascalPhase}Phase(store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 `;
     })
@@ -115,13 +120,14 @@ export const getPlayerCounts = () => PLAYER_COUNTS;
  * @param gameName - The name of the game
  * @param gameId - The game session ID
  * @param currentState - Optional current state for optimization
+ * @returns Whether phase progression and any required persistence completed successfully.
  */
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
   currentState?: FirebaseStateData,
 ): Promise<boolean> => {
-  const { sessionRef, state, store, players } = await utils.firestore.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
@@ -132,12 +138,12 @@ export const getNextPhase = async (
   // LOBBY -> SETUP
   if (nextPhase === ${gameKey}_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await utils.firestore.triggerSetupPhase(sessionRef);
+    await triggerSetupPhase(sessionRef);
 
     // Request data and prepare setup phase
     const additionalData = await getData(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await utils.firestore.saveGame(sessionRef, newPhase);
+    await saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId);
   }
 
@@ -145,7 +151,7 @@ ${phaseBlocks}
   // ${lastMiddlePhase} -> GAME_OVER
   if (nextPhase === ${gameKey}_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    return utils.firestore.saveGame(sessionRef, newPhase);
+    return saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -160,7 +166,7 @@ ${phaseBlocks}
       const description = actionToDescription(action);
 
       return `    case ${gameKey}_ACTIONS.${action}:
-      utils.firebase.validateSubmitActionProperties(data, ['${propName}'], '${description}');
+      validateSubmitActionProperties(data, ['${propName}'], '${description}');
       return ${handlerName}(gameName, gameId, playerId, data.${propName});`;
     })
     .join('\n');
@@ -168,16 +174,17 @@ ${phaseBlocks}
   const submitAction = `/**
  * Handles player action submissions and routes to appropriate handlers
  * @param data - The action data containing player information and action payload
+ * @returns The result of updating the player and any resulting phase progression.
  */
 export const submitAction = async (data: ${pascalName}SubmitAction) => {
   const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
+  validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
 ${actionCases}
     default:
-      utils.firebase.throwException(\`Given action \${action} is not allowed\`, action);
+      throwHttpsError(\`Given action \${action} is not allowed\`, action);
   }
 };
 `;

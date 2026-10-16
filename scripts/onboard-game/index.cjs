@@ -11,8 +11,7 @@ const path = require('path');
 // Import modules
 const {
   convertNameToKey,
-  convertToCamelCase,
-  convertToPascalCase,
+  addGameDefinition,
   validateGameName,
   validateGameCode,
 } = require('./utils.cjs');
@@ -47,53 +46,7 @@ async function updateGamesConstant(gameName, gameCode) {
   }
 
   const fileContent = fs.readFileSync(constantsPath, 'utf-8');
-  const gamesArrayMatch = fileContent.match(/export const GAMES = \[([\s\S]*?)\];/);
-
-  if (!gamesArrayMatch) {
-    console.error('❌ Error: Could not find GAMES array in constants.ts');
-    return false;
-  }
-
-  const gamesArrayContent = gamesArrayMatch[1];
-  const existingGamesMatches = [...gamesArrayContent.matchAll(/name: '([^']+)'/g)];
-  const existingGameNames = existingGamesMatches.map((match) => match[1]);
-
-  if (existingGameNames.includes(gameName)) {
-    console.error(`❌ Error: Game '${gameName}' already exists in GAMES array`);
-    return false;
-  }
-
-  const gameObjectRegex =
-    /\{[\s\S]*?name: '([^']+)',[\s\S]*?code: '([^']+)',[\s\S]*?key: '([^']+)',[\s\S]*?\}/g;
-  const existingGames = [];
-  let match;
-  while ((match = gameObjectRegex.exec(gamesArrayContent)) !== null) {
-    existingGames.push({
-      name: match[1],
-      code: match[2],
-      key: match[3],
-      fullText: match[0],
-    });
-  }
-
-  const gameKey = convertNameToKey(gameName);
-  const newGame = {
-    name: gameName,
-    code: gameCode,
-    key: gameKey,
-    fullText: `  {
-    name: '${gameName}',
-    code: '${gameCode}',
-    key: '${gameKey}',
-  }`,
-  };
-
-  existingGames.push(newGame);
-  existingGames.sort((a, b) => a.name.localeCompare(b.name));
-
-  const sortedGamesContent = existingGames.map((game) => game.fullText).join(',\n');
-  const updatedGamesArray = `const GAMES = [\n${sortedGamesContent},\n];`;
-  const updatedContent = fileContent.replace(/const GAMES = \[[\s\S]*?\];/, updatedGamesArray);
+  const updatedContent = addGameDefinition(fileContent, gameName, gameCode);
 
   fs.writeFileSync(constantsPath, updatedContent, 'utf-8');
   console.log(`✅ Updated GAMES constant with ${gameName} (added in alphabetical order)`);
@@ -105,13 +58,13 @@ async function updateGamesConstant(gameName, gameCode) {
  * Creates game folder and generates pre-populated files
  */
 async function createGameFolder(gameName, metadata) {
-  const enginePath = path.resolve(__dirname, '../../functions/src/engine', gameName);
+  const enginePath = path.resolve(__dirname, '../../functions/src/games', gameName);
 
   if (!fs.existsSync(enginePath)) {
     fs.mkdirSync(enginePath, { recursive: true });
-    console.log(`✅ Created folder: functions/src/engine/${gameName}`);
+    console.log(`✅ Created folder: functions/src/games/${gameName}`);
   } else {
-    console.log(`⚠️  Folder already exists: functions/src/engine/${gameName}`);
+    console.log(`⚠️  Folder already exists: functions/src/games/${gameName}`);
   }
 
   // Generate files with content
@@ -219,9 +172,9 @@ async function runBackendSetup(prompt) {
   console.log('   • helpers.ts - Utility functions (determineNextPhase)');
   console.log('   • achievements.ts - Achievement system template');
   console.log('   • data.ts - Resource loading template\n');
-  console.log(`📂 Game engine location: functions/src/engine/${gameName}/index.ts\n`);
+  console.log(`📂 Game engine location: functions/src/games/${gameName}/index.ts\n`);
   console.log('Next steps:');
-  console.log(`   1. Review and customize the generated files in functions/src/engine/${gameName}/`);
+  console.log(`   1. Review and customize the generated files in functions/src/games/${gameName}/`);
   console.log('   2. Implement game-specific logic in setup.ts phase functions');
   console.log('   3. Define proper types in types.d.ts');
   console.log('   4. Implement resource loading in data.ts if needed\n');
@@ -229,9 +182,6 @@ async function runBackendSetup(prompt) {
     'After implementing the game logic, run the "Backend engine hookup" option in this CLI to connect your game engine to the backend delegators.\n',
   );
 }
-
-// Keep existing functions for steps 2, 3, 4 (backend hookup, frontend game-info, frontend setup)
-// These remain unchanged from the original script
 
 module.exports = {
   runBackendSetup,

@@ -17,8 +17,8 @@ const {
 function generateActions(metadata) {
   const { actions } = metadata;
 
-  const imports = `// Helpers
-import utils from '../../utils';
+  const imports = `// Services
+import { updatePlayer } from '../../services/game-session';
 // Internal functions
 import { getNextPhase } from './index';
 `;
@@ -36,6 +36,7 @@ import { getNextPhase } from './index';
  * @param gameId - The game session ID
  * @param playerId - The player ID submitting ${actionText}
  * @param ${propName} - The ${actionText} data
+ * @returns The result of saving the submission and advancing when all players are ready.
  */
 export const ${handlerName} = async (
   gameName: string,
@@ -43,7 +44,7 @@ export const ${handlerName} = async (
   playerId: UID,
   ${propName}: unknown,
 ) => {
-  return await utils.firestore.updatePlayer({
+  return await updatePlayer({
     gameName,
     gameId,
     playerId,

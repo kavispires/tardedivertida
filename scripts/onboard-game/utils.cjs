@@ -2,6 +2,93 @@
  * Utility functions for game onboarding script
  */
 
+const ts = require('typescript');
+const CONSTANT_NAME_PATTERN = /^[A-Z]+(?:_[A-Z]+)*$/;
+
+/**
+ * Finds a named collection initializer without depending on its export or assertion syntax.
+ */
+function getCollection(source, name, isCollection) {
+  for (const statement of source.statements) {
+    if (!ts.isVariableStatement(statement)) continue;
+    for (const declaration of statement.declarationList.declarations) {
+      if (declaration.name.getText(source) !== name) continue;
+      let initializer = declaration.initializer;
+      while (initializer && (
+        ts.isAsExpression(initializer) ||
+        ts.isSatisfiesExpression(initializer) ||
+        ts.isParenthesizedExpression(initializer)
+      )) {
+        initializer = initializer.expression;
+      }
+      if (initializer && isCollection(initializer)) return initializer;
+    }
+  }
+  throw new Error(`Could not find ${name} collection`);
+}
+
+/**
+ * Reads a registry property's literal name or computed constant key.
+ */
+function getPropertyKey(property) {
+  const name = property.name;
+  if (name && (ts.isIdentifier(name) || ts.isStringLiteral(name))) return name.text;
+  if (name && ts.isComputedPropertyName(name) && ts.isPropertyAccessExpression(name.expression)) {
+    return name.expression.name.text;
+  }
+  throw new Error('Unsupported registry property');
+}
+
+/**
+ * Inserts an entry while retaining existing collection entries, comments, and surrounding source.
+ */
+function insertCollectionEntry(content, entries, entry, before) {
+  const position = before ? before.getFullStart() : entries.end;
+  const comma = !before && entries.length && !entries.hasTrailingComma ? ',' : '';
+  const newline = /^\s*\n/.test(content.slice(position)) ? '' : '\n';
+  return content.slice(0, position) + `${comma}\n  ${entry},${newline}` + content.slice(position);
+}
+
+/**
+ * Adds a game definition to the backend registry without rewriting existing definitions.
+ */
+function addGameDefinition(content, gameName, gameCode) {
+  const source = ts.createSourceFile('games.ts', content, ts.ScriptTarget.Latest, true);
+  const games = getCollection(source, 'GAMES', ts.isArrayLiteralExpression);
+  const names = games.elements.map(element => {
+    if (!ts.isObjectLiteralExpression(element)) throw new Error('Unsupported GAMES entry');
+    const name = element.properties.find(property => getPropertyKey(property) === 'name');
+    if (!name || !ts.isPropertyAssignment(name) || !ts.isStringLiteral(name.initializer)) {
+      throw new Error('Game definition is missing a literal name');
+    }
+    return name.initializer.text;
+  });
+  if (names.includes(gameName)) throw new Error(`Game '${gameName}' already exists in GAMES`);
+  const index = names.findIndex(name => name.localeCompare(gameName) > 0);
+  const entry = `{\n    name: '${gameName}',\n    code: '${gameCode}',\n    key: '${convertNameToKey(gameName)}',\n  }`;
+  return insertCollectionEntry(content, games.elements, entry, games.elements[index]);
+}
+
+/**
+ * Adds a missing object-registry entry without altering existing registrations.
+ */
+function addRegistryEntry(content, registryName, key, entry) {
+  const source = ts.createSourceFile('registry.ts', content, ts.ScriptTarget.Latest, true);
+  const registry = getCollection(source, registryName, ts.isObjectLiteralExpression);
+  const keys = registry.properties.map(getPropertyKey);
+  if (keys.includes(key)) return content;
+  const index = keys.findIndex(name => name !== '_TEMPLATE' && name.localeCompare(key) > 0);
+  return insertCollectionEntry(content, registry.properties, entry, registry.properties[index]);
+}
+
+/**
+ * Reads the keys of an object constant used by generated phase and action references.
+ */
+function getRegistryKeys(content, name) {
+  const source = ts.createSourceFile('constants.ts', content, ts.ScriptTarget.Latest, true);
+  return getCollection(source, name, ts.isObjectLiteralExpression).properties.map(getPropertyKey);
+}
+
 /**
  * Converts game name to UPPER_SNAKE_CASE constant key
  * @param {string} name - Game name (e.g., "arte-ruim")
@@ -109,18 +196,20 @@ function validateGameCode(code) {
  * @returns {boolean} True if valid
  */
 function validatePhaseName(phase) {
-  const regex = /^[A-Z_]+$/;
-  return regex.test(phase);
+  return CONSTANT_NAME_PATTERN.test(phase);
 }
 
 /**
- * Validates action name format
+ * Validates action name format and the generated payload parameter
  * @param {string} action - Action name to validate
  * @returns {boolean} True if valid
  */
 function validateActionName(action) {
-  const regex = /^[A-Z_]+$/;
-  return regex.test(action);
+  if (!CONSTANT_NAME_PATTERN.test(action)) return false;
+  const parameter = actionToPropName(action);
+  const token = ts.createScanner(ts.ScriptTarget.Latest, false, ts.LanguageVariant.Standard, parameter).scan();
+  const isReservedWord = token >= ts.SyntaxKind.FirstKeyword && token <= ts.SyntaxKind.LastFutureReservedWord;
+  return !isReservedWord && !['await', 'eval', 'arguments', 'action'].includes(parameter);
 }
 
 /**
@@ -146,6 +235,9 @@ function phaseToCamelCase(phase) {
 }
 
 module.exports = {
+  addGameDefinition,
+  addRegistryEntry,
+  getRegistryKeys,
   convertNameToKey,
   convertToCamelCase,
   convertToPascalCase,

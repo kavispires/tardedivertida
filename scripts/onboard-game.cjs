@@ -9,16 +9,19 @@ const { runBackendSetup } = require('./onboard-game/index.cjs');
 const {
   convertNameToKey,
   convertToPascalCase,
+  addRegistryEntry,
+  getRegistryKeys,
   validateGameName,
   validateGameCode,
 } = require('./onboard-game/utils.cjs');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+let rl;
 
 function prompt(question) {
+  rl ??= readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   return new Promise((resolve) => {
     rl.question(question, (answer) => {
       resolve(answer.trim());
@@ -42,16 +45,16 @@ async function runBackendEngineHookup() {
   }
 
   // Check engine folder exists
-  const enginePath = path.resolve(__dirname, '../functions/src/engine', gameName);
+  const enginePath = path.resolve(__dirname, '../functions/src/games', gameName);
   if (!fs.existsSync(enginePath)) {
-    console.error(`❌ Error: Engine folder not found at functions/src/engine/${gameName}`);
+    console.error(`❌ Error: Engine folder not found at functions/src/games/${gameName}`);
     return;
   }
 
   // Check index.ts exists
   const indexPath = path.join(enginePath, 'index.ts');
   if (!fs.existsSync(indexPath)) {
-    console.error(`❌ Error: index.ts not found in functions/src/engine/${gameName}`);
+    console.error(`❌ Error: index.ts not found in functions/src/games/${gameName}`);
     return;
   }
 
@@ -77,44 +80,20 @@ async function runBackendEngineHookup() {
 
   const gameKey = convertNameToKey(gameName);
 
-  let delegatorsContent = fs.readFileSync(delegatorsPath, 'utf-8');
-
-  // --- Insert lazy engine loader ---
-  if (delegatorsContent.includes(`[GAME_NAMES.${gameKey}]`)) {
+  const delegatorsContent = fs.readFileSync(delegatorsPath, 'utf-8');
+  const updatedContent = addRegistryEntry(
+    delegatorsContent,
+    'engineRegistry',
+    gameKey,
+    `[GAME_NAMES.${gameKey}]: () => import('./${gameName}')`,
+  );
+  if (updatedContent === delegatorsContent) {
     console.log(`⚠️  Engine loader for '${gameName}' already exists in delegators.ts`);
   } else {
-    const entryRegex = /^  \[GAME_NAMES\.(\w+)\]: \(\) => import\('\.\/([^']+)'\),$/gm;
-    const entries = [];
-    let e;
-    while ((e = entryRegex.exec(delegatorsContent)) !== null) {
-      entries.push({ key: e[1], gamePath: e[2], fullLine: e[0], index: e.index });
-    }
-
-    if (entries.length === 0) {
-      console.error('❌ Could not find engineRegistry entries in delegators.ts');
-      return;
-    }
-
-    const newEntry = `  [GAME_NAMES.${gameKey}]: () => import('./${gameName}'),`;
-    let insertAfterEntry = null;
-    for (const entry of entries) {
-      if (entry.key < gameKey) {
-        insertAfterEntry = entry;
-      }
-    }
-
-    if (insertAfterEntry) {
-      const pos = insertAfterEntry.index + insertAfterEntry.fullLine.length;
-      delegatorsContent = delegatorsContent.slice(0, pos) + '\n' + newEntry + delegatorsContent.slice(pos);
-    } else if (entries.length > 0) {
-      const first = entries[0];
-      delegatorsContent = delegatorsContent.slice(0, first.index) + newEntry + '\n' + delegatorsContent.slice(first.index);
-    }
-
+    fs.writeFileSync(delegatorsPath, updatedContent, 'utf-8');
     console.log(`✅ Added lazy engine loader for '${gameName}'`);
   }
 
-  fs.writeFileSync(delegatorsPath, delegatorsContent, 'utf-8');
   console.log(`\n✨ Engine hookup complete for '${gameName}'!\n`);
 }
 
@@ -125,51 +104,19 @@ function updateInfoTs(gameName) {
     return false;
   }
 
-  let content = fs.readFileSync(infoPath, 'utf-8');
-
-  // Check already exists
-  if (content.includes(`import('games/${gameName}/game-info.json')`)) {
+  const content = fs.readFileSync(infoPath, 'utf-8');
+  const updatedContent = addRegistryEntry(
+    content,
+    'GAME_INFO_PATHS',
+    gameName,
+    `'${gameName}': () => import('@games/${gameName}/game-info.json')`,
+  );
+  if (updatedContent === content) {
     console.log(`⚠️  Entry for '${gameName}' already exists in info.ts`);
     return true;
   }
 
-  const lines = content.split('\n');
-
-  // Find lines in GAME_INFO_PATHS object (new format)
-  // Pattern: '  gameName: () => import('games/gameName/game-info.json'),'
-  const pathEntryRegex = /^  '?([a-z][a-z0-9-]*)'?:\s*\(\)\s*=>\s*import\('games\/([^']+)\/game-info\.json'\),?$/;
-
-  const pathEntries = [];
-  lines.forEach((line, idx) => {
-    const match = line.match(pathEntryRegex);
-    if (match) {
-      pathEntries.push({ idx, name: match[1] });
-    }
-  });
-
-  if (pathEntries.length === 0) {
-    console.error('❌ Could not find GAME_INFO_PATHS entries in info.ts');
-    return false;
-  }
-
-  // Find where to insert (alphabetically)
-  let insertBefore = pathEntries.findIndex((entry) => entry.name > gameName);
-  if (insertBefore === -1) insertBefore = pathEntries.length;
-
-  // Determine insertion index
-  const insertIdx = insertBefore < pathEntries.length
-    ? pathEntries[insertBefore].idx
-    : pathEntries[pathEntries.length - 1].idx + 1;
-
-  // Create new line (use quotes if game name has hyphens)
-  const needsQuotes = gameName.includes('-');
-  const key = needsQuotes ? `'${gameName}'` : gameName;
-  const newLine = `  ${key}: () => import('games/${gameName}/game-info.json'),`;
-
-  // Insert the line
-  lines.splice(insertIdx, 0, newLine);
-
-  fs.writeFileSync(infoPath, lines.join('\n'), 'utf-8');
+  fs.writeFileSync(infoPath, updatedContent, 'utf-8');
   console.log(`✅ Updated src/utils/info.ts with '${gameName}' entry`);
   return true;
 }
@@ -238,7 +185,7 @@ async function runFrontendGameInfo() {
   // Try to read playerCounts from engine constants.ts
   let playerMin = gameInfo.playerCount.min;
   let playerMax = gameInfo.playerCount.max;
-  const engineConstantsPath = path.resolve(__dirname, `../functions/src/engine/${gameName}/constants.ts`);
+  const engineConstantsPath = path.resolve(__dirname, `../functions/src/games/${gameName}/constants.ts`);
   if (fs.existsSync(engineConstantsPath)) {
     const engineConstants = fs.readFileSync(engineConstantsPath, 'utf-8');
     const minMatch = engineConstants.match(/PLAYER_COUNTS\s*=\s*\{[\s\S]*?MIN:\s*(\d+)/);
@@ -271,27 +218,37 @@ async function runFrontendGameInfo() {
   console.log(`✅ Created file: src/games/${gameName}/game-info.json`);
 
   // Update info.ts
-  updateInfoTs(gameName);
+  if (!updateInfoTs(gameName)) return;
 
   console.log(`\n✨ Frontend game-info setup complete for '${gameName}'!\n`);
   console.log('Next steps:');
   console.log('   1. You must create and add the images for the banner, strip, and logo.');
   console.log('   2. Create and add the video backend.');
-  console.log('   3. Implement the frontend game components in src/games/${gameName}/\n');
+  console.log(`   3. Implement the frontend game components in src/games/${gameName}/\n`);
 }
 
-function copyDirRecursive(src, dest, excludeFiles = []) {
+function copyDirRecursive(src, dest, transform, relativePath = '') {
   if (!fs.existsSync(dest)) {
     fs.mkdirSync(dest, { recursive: true });
   }
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    if (excludeFiles.includes(entry.name)) continue;
+    if (!relativePath && entry.name === 'game-info.json') continue;
     const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
+    const sourceRelativePath = path.join(relativePath, entry.name);
+    const { filename, content } = entry.isDirectory()
+      ? { filename: entry.name }
+      : transform(sourceRelativePath, srcPath);
+    const destPath = path.join(dest, filename);
     if (entry.isDirectory()) {
-      copyDirRecursive(srcPath, destPath, excludeFiles);
+      copyDirRecursive(srcPath, destPath, transform, sourceRelativePath);
+    } else if (fs.existsSync(destPath)) {
+      console.log(`⚠️  File already exists, skipping: ${sourceRelativePath}`);
+    } else if (content !== undefined) {
+      fs.writeFileSync(destPath, content, { encoding: 'utf-8', flag: 'wx' });
+      console.log(`✅ Created file: ${sourceRelativePath}`);
     } else {
-      fs.copyFileSync(srcPath, destPath);
+      fs.copyFileSync(srcPath, destPath, fs.constants.COPYFILE_EXCL);
+      console.log(`✅ Copied file: ${sourceRelativePath}`);
     }
   }
 }
@@ -304,42 +261,14 @@ function updateGameCollection(gameName) {
   }
 
   const gameKey = convertNameToKey(gameName);
-  let content = fs.readFileSync(constantsPath, 'utf-8');
-
-  if (content.includes(`${gameKey}: '${gameName}'`)) {
+  const content = fs.readFileSync(constantsPath, 'utf-8');
+  const updatedContent = addRegistryEntry(content, 'GAME_COLLECTION', gameKey, `${gameKey}: '${gameName}'`);
+  if (updatedContent === content) {
     console.log(`⚠️  GAME_COLLECTION.${gameKey} already exists in src/utils/constants.ts`);
     return true;
   }
 
-  // Find all existing entries like "  KEY: 'value'," within GAME_COLLECTION
-  const entryRegex = /^  ([A-Z][A-Z0-9_]+): '[^']+',?(?:\s*\/\/.*)?$/gm;
-  const entries = [];
-  let m;
-  while ((m = entryRegex.exec(content)) !== null) {
-    entries.push({ key: m[1], fullLine: m[0], index: m.index });
-  }
-
-  const newEntry = `  ${gameKey}: '${gameName}',`;
-  let insertAfter = null;
-  for (const entry of entries) {
-    if (entry.key < gameKey && entry.key !== '_TEMPLATE') {
-      insertAfter = entry;
-    }
-  }
-
-  if (insertAfter) {
-    const pos = insertAfter.index + insertAfter.fullLine.length;
-    content = content.slice(0, pos) + '\n' + newEntry + content.slice(pos);
-  } else {
-    // Insert after _TEMPLATE line
-    const templateMatch = content.match(/  _TEMPLATE: '[^']+',?\n/);
-    if (templateMatch) {
-      const pos = content.indexOf(templateMatch[0]) + templateMatch[0].length;
-      content = content.slice(0, pos) + newEntry + '\n' + content.slice(pos);
-    }
-  }
-
-  fs.writeFileSync(constantsPath, content, 'utf-8');
+  fs.writeFileSync(constantsPath, updatedContent, 'utf-8');
   console.log(`✅ Added GAME_COLLECTION.${gameKey} to src/utils/constants.ts`);
   return true;
 }
@@ -351,42 +280,14 @@ function updateAchievementsDict(gameName) {
     return false;
   }
 
-  const needsQuotes = gameName.includes('-');
-  const returnKey = needsQuotes ? `'${gameName}'` : gameName;
-
-  let content = fs.readFileSync(achievementsPath, 'utf-8');
-
-  if (content.includes(`${returnKey}: `)) {
+  const content = fs.readFileSync(achievementsPath, 'utf-8');
+  const updatedContent = addRegistryEntry(content, 'ACHIEVEMENTS_DICT', gameName, `'${gameName}': null`);
+  if (updatedContent === content) {
     console.log(`⚠️  ACHIEVEMENTS_DICT entry for '${gameName}' already exists`);
     return true;
   }
 
-  // Find all existing entries like "  'game-name': VALUE," or "  gamename: VALUE,"
-  const entryRegex = /^  ('?[a-z][a-z0-9-]*'?): (?:null|[A-Z_]+),?$/gm;
-  const entries = [];
-  let m;
-  while ((m = entryRegex.exec(content)) !== null) {
-    const rawKey = m[1].replace(/'/g, '');
-    entries.push({ rawKey, fullLine: m[0], index: m.index });
-  }
-
-  const newEntry = `  ${returnKey}: null,`;
-  let insertAfter = null;
-  for (const entry of entries) {
-    if (entry.rawKey < gameName) {
-      insertAfter = entry;
-    }
-  }
-
-  if (insertAfter) {
-    const pos = insertAfter.index + insertAfter.fullLine.length;
-    content = content.slice(0, pos) + '\n' + newEntry + content.slice(pos);
-  } else if (entries.length > 0) {
-    const first = entries[0];
-    content = content.slice(0, first.index) + newEntry + '\n' + content.slice(first.index);
-  }
-
-  fs.writeFileSync(achievementsPath, content, 'utf-8');
+  fs.writeFileSync(achievementsPath, updatedContent, 'utf-8');
   console.log(`✅ Added '${gameName}' to ACHIEVEMENTS_DICT in src/utils/achievements.ts`);
   return true;
 }
@@ -401,47 +302,19 @@ function updateGameLoader(gameName) {
   const gameKey = convertNameToKey(gameName);
   const pascalName = convertToPascalCase(gameName);
 
-  let content = fs.readFileSync(loaderPath, 'utf-8');
-
-  if (content.includes(`games/${gameName}/Session${pascalName}`)) {
+  const content = fs.readFileSync(loaderPath, 'utf-8');
+  const updatedContent = addRegistryEntry(
+    content,
+    'gameSessions',
+    gameKey,
+    `[GAME_COLLECTION.${gameKey}]: lazy(() => import('@games/${gameName}/Session${pascalName}'))`,
+  );
+  if (updatedContent === content) {
     console.log(`⚠️  gameLoader entry for '${gameName}' already exists`);
     return true;
   }
 
-  const entryRegex = /^  \[GAME_COLLECTION\.([A-Z][A-Z0-9_]+)\]: lazy\(\(\) => import\('games\/([^']+)\/Session[^']+'\)\),$/gm;
-  const entries = [];
-  let m;
-  while ((m = entryRegex.exec(content)) !== null) {
-    entries.push({ key: m[1], gamePath: m[2], fullLine: m[0], index: m.index });
-  }
-
-  // Also match multi-line entries (wrapped with lazy())
-  const multiLineRegex = /  \[GAME_COLLECTION\.([A-Z][A-Z0-9_]+)\]: lazy\(\n.*?import\('games\/([^']+)\/Session[^']+'\),?\n  \),/gs;
-  while ((m = multiLineRegex.exec(content)) !== null) {
-    // avoid duplicates
-    if (!entries.find((e) => e.key === m[1])) {
-      entries.push({ key: m[1], gamePath: m[2], fullLine: m[0], index: m.index });
-    }
-  }
-
-  const newEntry = `  [GAME_COLLECTION.${gameKey}]: lazy(() => import('games/${gameName}/Session${pascalName}')),`;
-
-  let insertAfter = null;
-  for (const entry of entries) {
-    if (entry.key < gameKey) {
-      insertAfter = entry;
-    }
-  }
-
-  if (insertAfter) {
-    const pos = insertAfter.index + insertAfter.fullLine.length;
-    content = content.slice(0, pos) + '\n' + newEntry + content.slice(pos);
-  } else if (entries.length > 0) {
-    const first = entries[0];
-    content = content.slice(0, first.index) + newEntry + '\n' + content.slice(first.index);
-  }
-
-  fs.writeFileSync(loaderPath, content, 'utf-8');
+  fs.writeFileSync(loaderPath, updatedContent, 'utf-8');
   console.log(`✅ Added '${gameName}' to src/games/gameLoader.ts`);
   return true;
 }
@@ -469,57 +342,38 @@ async function runFrontendSetup() {
   const pascalName = convertToPascalCase(gameName);
   const gameKey = convertNameToKey(gameName);
 
-  // Try to detect phases and actions from engine constants
-  const engineConstantsPath = path.resolve(__dirname, `../functions/src/engine/${gameName}/constants.ts`);
-  let firstPhase = 'UNKNOWN';
-  let allPhases = [];
-  let firstAction = 'UNKNOWN';
-  if (fs.existsSync(engineConstantsPath)) {
-    const engineConstants = fs.readFileSync(engineConstantsPath, 'utf-8');
-    const phasesMatch = engineConstants.match(/PHASES\s*=\s*\{([\s\S]*?)\}/);
-    if (phasesMatch) {
-      const keyMatches = [...phasesMatch[1].matchAll(/([A-Z_]+)\s*:/g)];
-      allPhases = keyMatches.map((m) => m[1]);
-      if (allPhases.length > 0) {
-        firstPhase = allPhases[0];
-      }
-    }
-    const actionsMatch = engineConstants.match(/ACTIONS\s*=\s*\{([\s\S]*?)\}/);
-    if (actionsMatch) {
-      const firstActionMatch = actionsMatch[1].match(/([A-Z_]+)\s*:/);
-      if (firstActionMatch) {
-        firstAction = firstActionMatch[1];
-      }
-    }
+  const replaceConstants = content => content
+    .replace(/\bTEMPLATE_PHASES\b/g, `${gameKey}_PHASES`)
+    .replace(/\bTEMPLATE_ACTIONS\b/g, `${gameKey}_ACTIONS`);
+  const engineConstantsPath = path.resolve(__dirname, `../functions/src/games/${gameName}/constants.ts`);
+  const clientConstantsPath = path.join(gameFolderPath, 'utils', 'constants.ts');
+  let constantsContent;
+  if (fs.existsSync(clientConstantsPath)) {
+    constantsContent = fs.readFileSync(clientConstantsPath, 'utf-8');
+  } else if (fs.existsSync(engineConstantsPath)) {
+    constantsContent = fs.readFileSync(engineConstantsPath, 'utf-8');
+  } else {
+    constantsContent = replaceConstants(fs.readFileSync(path.join(templatePath, 'utils', 'constants.ts'), 'utf-8'));
+    constantsContent = addRegistryEntry(constantsContent, `${gameKey}_PHASES`, 'GAME_OVER', "GAME_OVER: 'GAME_OVER'");
+  }
+  const allPhases = getRegistryKeys(constantsContent, `${gameKey}_PHASES`);
+  const allActions = getRegistryKeys(constantsContent, `${gameKey}_ACTIONS`);
+  const firstPhase = allPhases.find(phase => phase !== 'GAME_OVER');
+  const firstAction = allActions[0];
+  if (!firstPhase || !allPhases.includes('GAME_OVER') || !firstAction) {
+    throw new Error('Game constants must define a playable phase, GAME_OVER, and a player action');
   }
 
-  // Copy all template files except game-info.json, renaming SessionTemplate
   console.log('\n🔧 Copying template files...\n');
-  for (const entry of fs.readdirSync(templatePath, { withFileTypes: true })) {
-    if (entry.name === 'game-info.json') continue;
-
-    const srcPath = path.join(templatePath, entry.name);
-
-    if (entry.isDirectory()) {
-      const destDir = path.join(gameFolderPath, entry.name);
-      copyDirRecursive(srcPath, destDir);
-      console.log(`✅ Copied folder: ${entry.name}/`);
-      continue;
-    }
-
-    // Rename SessionTemplate.tsx
-    const destName = entry.name === 'SessionTemplate.tsx' ? `Session${pascalName}.tsx` : entry.name;
-    const destPath = path.join(gameFolderPath, destName);
-
-    if (fs.existsSync(destPath)) {
-      console.log(`⚠️  File already exists, skipping: ${destName}`);
-      continue;
-    }
-
-    let fileContent = fs.readFileSync(srcPath, 'utf-8');
-
+  copyDirRecursive(templatePath, gameFolderPath, (relativePath, srcPath) => {
+    const filename = relativePath === 'SessionTemplate.tsx' ? `Session${pascalName}.tsx` : path.basename(srcPath);
+    if (relativePath === path.join('utils', 'constants.ts')) return { filename, content: constantsContent };
+    if (!/\.tsx?$/.test(srcPath)) return { filename };
+    let fileContent = replaceConstants(fs.readFileSync(srcPath, 'utf-8'))
+      .replace(new RegExp(`${gameKey}_PHASES\\.UNKNOWN\\b`, 'g'), `${gameKey}_PHASES.${firstPhase}`)
+      .replace(new RegExp(`${gameKey}_ACTIONS\\.UNKNOWN\\b`, 'g'), `${gameKey}_ACTIONS.${firstAction}`);
     // Replace references inside the session file
-    if (entry.name === 'SessionTemplate.tsx') {
+    if (relativePath === 'SessionTemplate.tsx') {
       fileContent = fileContent
         .replace(/SessionTemplate/g, `Session${pascalName}`)
         .replace(/GAME_COLLECTION\._TEMPLATE/g, `GAME_COLLECTION.${gameKey}`)
@@ -548,39 +402,17 @@ async function runFrontendSetup() {
       }
     }
 
-    // Replace references inside PhaseTemplate.tsx
-    if (entry.name === 'PhaseTemplate.tsx') {
-      fileContent = fileContent
-        .replace(/TEMPLATE_PHASES/g, `${gameKey}_PHASES`)
-        .replace(new RegExp(`${gameKey}_PHASES\\.UNKNOWN`, 'g'), `${gameKey}_PHASES.${firstPhase}`);
-    }
-
-    // Replace references inside api-requests.ts
-    if (entry.name === 'api-requests.ts') {
-      fileContent = fileContent
-        .replace(/TEMPLATE_ACTIONS/g, `${gameKey}_ACTIONS`)
-        .replace(new RegExp(`${gameKey}_ACTIONS\\.UNKNOWN`, 'g'), `${gameKey}_ACTIONS.${firstAction}`);
-    }
-
-    fs.writeFileSync(destPath, fileContent, 'utf-8');
-    console.log(`✅ Created file: ${destName}`);
-  }
-
-  // If engine constants exist, copy them to utils/constants.ts
-  if (fs.existsSync(engineConstantsPath)) {
-    const destConstantsPath = path.join(gameFolderPath, 'utils', 'constants.ts');
-    fs.copyFileSync(engineConstantsPath, destConstantsPath);
-    console.log(`✅ Copied engine constants.ts to src/games/${gameName}/utils/constants.ts`);
-  }
+    return { filename, content: fileContent };
+  });
 
   // Add to GAME_COLLECTION
-  updateGameCollection(gameName);
+  if (!updateGameCollection(gameName)) return;
 
   // Add to gameLoader.ts
-  updateGameLoader(gameName);
+  if (!updateGameLoader(gameName)) return;
 
   // Add to ACHIEVEMENTS_DICT
-  updateAchievementsDict(gameName);
+  if (!updateAchievementsDict(gameName)) return;
 
   console.log(`\n✨ Frontend setup complete for '${gameName}'!\n`);
 }
@@ -620,9 +452,22 @@ async function main() {
     }
   } catch (error) {
     console.error('\n❌ An error occurred:', error.message);
+    process.exitCode = 1;
   } finally {
-    rl.close();
+    rl?.close();
   }
 }
 
-main();
+module.exports = {
+  runBackendEngineHookup,
+  runFrontendGameInfo,
+  runFrontendSetup,
+};
+
+if (require.main === module) {
+  main().catch(error => {
+    console.error('\n❌ An error occurred:', error.message);
+    rl?.close();
+    process.exitCode = 1;
+  });
+}

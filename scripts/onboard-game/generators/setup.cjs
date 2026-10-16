@@ -2,7 +2,7 @@
  * Generator for setup.ts file
  */
 
-const { convertToPascalCase, phaseToPascalCase, phaseToCamelCase } = require('../utils.cjs');
+const { phaseToPascalCase } = require('../utils.cjs');
 
 /**
  * Generates the contents of setup.ts
@@ -11,8 +11,6 @@ const { convertToPascalCase, phaseToPascalCase, phaseToCamelCase } = require('..
  */
 function generateSetup(metadata) {
   const { gameKey, phases, rounds } = metadata;
-  const pascalName = convertToPascalCase(metadata.gameName);
-
   const middlePhases = phases.filter((p) => p !== 'SETUP' && p !== 'GAME_OVER');
 
   const roundsImport = rounds ? `, ${rounds.type === 'fixed' ? 'TOTAL_ROUNDS' : 'MAX_ROUNDS'}` : '';
@@ -22,8 +20,13 @@ import { ${gameKey}_PHASES${roundsImport} } from './constants';
 import { GAME_NAMES } from '../../constants/games';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-// Utils
-import utils from '../../utils';
+// Services
+import { cleanupStore, markGameAsComplete } from '../../services/game-session';
+import { saveGameToUsers } from '../../services/user';
+// Mechanics
+import { getListOfPlayersIds, setPlayersReadyState, cleanupPlayers } from '../../mechanics/players';
+import { determineWinners } from '../../mechanics/scoring';
+${rounds ? "import { increaseRound } from '../../mechanics/round';\n" : ''}// Internal
 import { setupAchievements, calculateAchievements } from './achievements';
 `;
 
@@ -38,18 +41,19 @@ import { setupAchievements, calculateAchievements } from './achievements';
 
   const prepareSetupPhase = `/**
  * Setup phase - initializes game state and resources
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * @param _store - Unused server-side game data
+ * @param _state - Unused current game state
  * @param players - The players object
- * @param data - The game resources data
+ * @param _resourceData - The game resources data
+ * @returns Store and state updates that initialize the session.
  */
 export const prepareSetupPhase = async (
   _store: FirebaseStoreData,
-  state: FirebaseStateData,
+  _state: FirebaseStateData,
   players: Players,
-  resourceData: ResourceData,
+  _resourceData: ResourceData,
 ): Promise<SaveGamePayload> => {
-  const achievements = setupAchievements(utils.players.getListOfPlayersIds(players));
+  const achievements = setupAchievements(getListOfPlayersIds(players));
 
   return {
     update: {
@@ -69,31 +73,31 @@ export const prepareSetupPhase = async (
   const middlePhaseFunctions = middlePhases
     .map((phase, index) => {
       const pascalPhase = phaseToPascalCase(phase);
-      const camelPhase = phaseToCamelCase(phase);
       const isFirst = index === 0;
 
       const roundIncrement =
         rounds && isFirst
           ? `\n  // Increment round
-  const round = utils.game.increaseRound(state.round);
+  const round = increaseRound(state.round);
 `
           : '';
 
       const roundProperty = rounds && isFirst ? '\n        round,' : '';
 
       return `/**
- * ${pascalPhase} phase - TODO: describe phase purpose
- * @param store - The Firebase store data
- * @param state - The Firebase state data
+ * Prepares the ${phase.toLowerCase().replace(/_/g, ' ')} phase and resets player readiness.
+ * @param _store - Unused server-side game data
+ * @param ${rounds && isFirst ? 'state' : '_state'} - The current game state
  * @param players - The players object
+ * @returns Updates for entering the ${phase.toLowerCase().replace(/_/g, ' ')} phase.
  */
 export const prepare${pascalPhase}Phase = async (
   _store: FirebaseStoreData,
-  state: FirebaseStateData,
+  ${rounds && isFirst ? 'state' : '_state'}: FirebaseStateData,
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.players.unReadyPlayers(players);
+  setPlayersReadyState(players, false);
 ${roundIncrement}
   return {
     update: {
@@ -117,6 +121,7 @@ ${roundIncrement}
  * @param store - The Firebase store data
  * @param state - The Firebase state data
  * @param players - The players object
+ * @returns The final state and store cleanup for the completed session.
  */
 export const prepareGameOverPhase = async (
   gameId: UID,
@@ -125,16 +130,16 @@ export const prepareGameOverPhase = async (
   players: Players,
 ): Promise<SaveGamePayload> => {
   // Determine winners
-  const winners = utils.players.determineWinners(players);
+  const winners = determineWinners(players);
 
   // Calculate achievements
   const achievements = calculateAchievements(store.achievements);
 
   // Mark game meta as complete
-  await utils.firestore.markGameAsComplete(gameId);
+  await markGameAsComplete(gameId);
 
   // Save game to each user's profile
-  await utils.user.saveGameToUsers({
+  await saveGameToUsers({
     gameName: GAME_NAMES.${gameKey},
     gameId,
     startedAt: store.createdAt,
@@ -148,11 +153,11 @@ export const prepareGameOverPhase = async (
   // await saveData(store.language, store.pastStuff);
 
   // Cleanup player for game over screen
-  utils.players.cleanup(players, []); // add in the array any props you want to keep on the player object
+  cleanupPlayers(players, []);
 
   return {
     update: {
-      storeCleanup: utils.firestore.cleanupStore(store, []),
+      storeCleanup: cleanupStore(store, []),
     },
     set: {
       state: {
