@@ -223,7 +223,7 @@ export const getContenders = async (
 
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
-    .filter((c) => (c.exclusivity ? c.exclusivity === language : true && allowNSFW ? true : !c.nsfw))
+    .filter((c) => (!c.exclusivity || c.exclusivity === language) && (allowNSFW || !c.nsfw))
     .reduce((acc: Dictionary<ContenderCardData>, entry) => {
       // Special Decks are held in a separate object
       if (
