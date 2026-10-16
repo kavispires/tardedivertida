@@ -26,10 +26,7 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+let rl;
 
 const HISTORY_FILE = path.join(__dirname, '.commit-history.json');
 const MAX_HISTORY = 3;
@@ -40,6 +37,10 @@ const MAX_HISTORY = 3;
  * @returns {Promise<string>} The user's answer
  */
 function prompt(question) {
+  rl ??= readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   return new Promise((resolve) => {
     rl.question(question, (answer) => {
       resolve(answer.trim());
@@ -135,7 +136,7 @@ function analyzeStagedFiles(files) {
 
   for (const file of files) {
     // Check for games
-    const engineMatch = file.match(/^functions\/src\/engine\/([a-z-]+)\//);
+    const engineMatch = file.match(/^functions\/src\/games\/([a-z-]+)\//);
     const frontendGameMatch = file.match(/^src\/games\/([a-z-]+)\//);
 
     if (engineMatch) {
@@ -223,7 +224,7 @@ async function main() {
   if (stagedFiles.length === 0) {
     console.error('❌ Error: No staged files found');
     console.error('   Please stage your changes first using "git add" or "yarn stage-game"');
-    rl.close();
+    rl?.close();
     process.exit(1);
   }
 
@@ -337,4 +338,8 @@ async function main() {
   rl.close();
 }
 
-main();
+module.exports = { analyzeStagedFiles };
+
+if (require.main === module) {
+  main();
+}

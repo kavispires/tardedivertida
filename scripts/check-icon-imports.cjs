@@ -1,51 +1,81 @@
 #!/usr/bin/env node
 
 /**
- * Check for imports from 'icons/collection' outside of allowed files
+ * Checks restricted icon-collection imports outside the development and per-game collection files.
  *
  * Usage: node scripts/check-icon-imports.cjs
  */
 
-const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const ts = require('typescript');
 
-// Files that are allowed to import from icons/collection
-const ALLOWED_FILES = [
-  'src/pages/Dev/',
-  'src/icons/collectionByGame.tsx',
-  'src/icons/collection.ts', // The file itself
-];
+const ROOT = path.resolve(__dirname, '..');
+const RESTRICTED_MODULE = '@pages/Dev/utils/iconsCollection';
+const COLLECTION_PATH = path.join(ROOT, 'src/pages/Dev/utils/iconsCollection');
+const ALLOWED_FILE = 'src/icons/iconsCollectionByGame.tsx';
 
-try {
-  // Search for imports from icons/collection or @icons/collection (must start with 'import')
-  const grepCommand = 'grep -rn "^import.*from.*[@]\\?icons/collection" src/ || true';
-  const result = execSync(grepCommand, { encoding: 'utf-8' });
+/**
+ * Finds actual module references, including multiline imports, re-exports, and dynamic imports.
+ * @param {string} filename - Absolute source-file path
+ * @param {string} content - File contents to inspect
+ * @returns {string[]} Violations with repository-relative paths and line numbers
+ */
+function getImportViolations(filename, content) {
+  const relativePath = path.relative(ROOT, filename).split(path.sep).join('/');
+  if (relativePath.startsWith('src/pages/Dev/') || relativePath === ALLOWED_FILE) return [];
 
-  if (!result.trim()) {
-    console.log('✅ No imports from icons/collection found');
-    process.exit(0);
+  const violations = [];
+  for (const reference of ts.preProcessFile(content, true, true).importedFiles) {
+    const modulePath = reference.fileName.replace(/\.[cm]?[jt]sx?$/, '');
+    const isRestricted = modulePath === RESTRICTED_MODULE ||
+      modulePath === 'pages/Dev/utils/iconsCollection' ||
+      modulePath.startsWith('.') && path.resolve(path.dirname(filename), modulePath) === COLLECTION_PATH;
+    if (isRestricted) {
+      const line = content.slice(0, reference.pos).split(/\r\n?|\n/).length;
+      violations.push(`${relativePath}:${line}: ${reference.fileName}`);
+    }
   }
+  return violations;
+}
 
-  const lines = result.trim().split('\n');
-  const violations = lines.filter((line) => {
-    const filePath = line.split(':')[0];
-    return !ALLOWED_FILES.some((allowed) => filePath.includes(allowed));
-  });
-
-  if (violations.length === 0) {
-    console.log('✅ All icons/collection imports are in allowed files');
-    process.exit(0);
+/**
+ * Recursively inspects JavaScript and TypeScript source files without following symlinks.
+ * @param {string} directory - Directory to inspect
+ * @returns {string[]} Unauthorized imports found beneath the directory
+ */
+function findViolations(directory) {
+  const violations = [];
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const filename = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      violations.push(...findViolations(filename));
+    } else if (entry.isFile() && /\.[cm]?[jt]sx?$/.test(entry.name)) {
+      violations.push(...getImportViolations(filename, fs.readFileSync(filename, 'utf8')));
+    }
   }
+  return violations;
+}
 
-  console.error('❌ Found unauthorized imports from icons/collection:\n');
-  violations.forEach((violation) => {
-    console.error(`  ${violation}`);
-  });
-  console.error('\n⚠️  Use direct imports instead:');
-  console.error('   ❌ BAD:  import { MyIcon } from \'@icons/collection\';');
-  console.error('   ✅ GOOD: import { MyIcon } from \'@icons/MyIcon\';\n');
+function main() {
+  try {
+    const violations = findViolations(path.join(ROOT, 'src'));
+    if (violations.length === 0) {
+      console.log('✅ No unauthorized icon-collection imports found');
+      return;
+    }
+    console.error(`❌ Found unauthorized imports from ${RESTRICTED_MODULE}:\n`);
+    violations.forEach(violation => console.error(`  ${violation}`));
+    console.error("\nUse direct imports instead: import { MyIcon } from '@icons/MyIcon';");
+    process.exitCode = 1;
+  } catch (error) {
+    console.error('Error running check:', error.message);
+    process.exitCode = 1;
+  }
+}
 
-  process.exit(1);
-} catch (error) {
-  console.error('Error running check:', error.message);
-  process.exit(1);
+module.exports = { getImportViolations, findViolations };
+
+if (require.main === module) {
+  main();
 }

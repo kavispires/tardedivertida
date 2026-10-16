@@ -1,5 +1,51 @@
 const fs = require('fs');
 const path = require('path');
+const ts = require('typescript');
+
+/**
+ * Collects helper calls using their imported names, including aliased named imports.
+ * @param {ts.SourceFile} source - Parsed backend setup module
+ * @returns {{calls: ts.CallExpression[], isCall: Function}} Calls and a helper-name predicate
+ */
+function getHelperCalls(source) {
+  const modules = new Map([
+    ['./achievements', ['setupAchievements', 'calculateAchievements']],
+    ['../../mechanics/players', ['getListOfPlayersIds', 'getListOfPlayers']],
+    ['../../services/user', ['saveGameToUsers']],
+  ]);
+  const imports = new Map();
+  for (const statement of source.statements) {
+    if (!ts.isImportDeclaration(statement) || !ts.isStringLiteral(statement.moduleSpecifier)) continue;
+    const helpers = modules.get(statement.moduleSpecifier.text);
+    const bindings = statement.importClause?.namedBindings;
+    if (!helpers || statement.importClause?.isTypeOnly || !bindings || !ts.isNamedImports(bindings)) continue;
+    for (const binding of bindings.elements) {
+      const name = (binding.propertyName ?? binding.name).text;
+      if (!binding.isTypeOnly && helpers.includes(name)) imports.set(binding.name.text, name);
+    }
+  }
+  const calls = [];
+  function visit(node) {
+    if (ts.isCallExpression(node)) calls.push(node);
+    ts.forEachChild(node, visit);
+  }
+  visit(source);
+  const isCall = (node, name) => node && ts.isCallExpression(node) &&
+    ts.isIdentifier(node.expression) && imports.get(node.expression.text) === name;
+  return { calls, isCall };
+}
+
+/**
+ * Checks a direct property reference without matching source comments or unrelated object properties.
+ * @param {ts.Node} node - Expression to inspect
+ * @param {string} object - Expected object identifier
+ * @param {string} property - Expected property name
+ * @returns {boolean} Whether the expression accesses the requested property
+ */
+function isProperty(node, object, property) {
+  return node && ts.isPropertyAccessExpression(node) && ts.isIdentifier(node.expression) &&
+    node.expression.text === object && node.name.text === property;
+}
 
 module.exports = {
   id: 'achievements-implementation',
@@ -34,32 +80,56 @@ module.exports = {
     if (!fs.existsSync(beSetupPath)) return fail('Backend: setup.ts is missing');
     const setupContent = fs.readFileSync(beSetupPath, 'utf8');
 
-    // Match either pattern:
-    // 1. const achievements = setupAchievements(utils.players.getListOfPlayersIds(players))
-    // 2. store.achievements = setupAchievements(utils.players.getListOfPlayers(players).map(...))
-    const setupLineRegex = /^\s*(const achievements|store\.achievements)\s*=\s*setupAchievements\(\s*utils\.players\.getListOfPlayers(Ids)?\(/m;
-    if (!setupLineRegex.test(setupContent)) {
+    const setupSource = ts.createSourceFile(beSetupPath, setupContent, ts.ScriptTarget.Latest, true);
+    if (setupSource.parseDiagnostics.length > 0) return fail('Backend: setup.ts could not be parsed');
+    const { calls, isCall } = getHelperCalls(setupSource);
+    const initializesAchievements = calls.some(call => {
+      if (!isCall(call, 'setupAchievements')) return false;
+      if (!ts.isVariableDeclaration(call.parent) && !(ts.isBinaryExpression(call.parent) &&
+        call.parent.operatorToken.kind === ts.SyntaxKind.EqualsToken && call.parent.right === call)) return false;
+      const argument = call.arguments[0];
+      if (isCall(argument, 'getListOfPlayersIds')) {
+        return argument.arguments[0]?.getText(setupSource) === 'players';
+      }
+      if (!argument || !ts.isCallExpression(argument) || !ts.isPropertyAccessExpression(argument.expression) ||
+        argument.expression.name.text !== 'map') return false;
+      const playersCall = argument.expression.expression;
+      const mapper = argument.arguments[0];
+      return isCall(playersCall, 'getListOfPlayers') &&
+        playersCall.arguments[0]?.getText(setupSource) === 'players' &&
+        mapper && ts.isArrowFunction(mapper) && mapper.parameters.length === 1 &&
+        isProperty(mapper.body, mapper.parameters[0].name.getText(setupSource), 'id');
+    });
+    if (!initializesAchievements) {
       return fail('Backend: setup.ts missing setupAchievements initialization line');
     }
 
     // 3. Backend: calculateAchievements uses store.achievements
-    // Matches "calculateAchievements(" followed by "store.achievements" as the first argument
-    const calcRegex = /calculateAchievements\(\s*store\.achievements/;
-    if (!calcRegex.test(setupContent)) {
+    if (!calls.some(call => isCall(call, 'calculateAchievements') && isProperty(call.arguments[0], 'store', 'achievements'))) {
       return fail('Backend: setup.ts missing calculateAchievements called with store.achievements');
     }
 
     // 4. Backend: saveGameToUsers audit
-    if (!setupContent.includes('await utils.user.saveGameToUsers')) {
+    const saveCalls = calls.filter(call => isCall(call, 'saveGameToUsers') && ts.isAwaitExpression(call.parent));
+    if (saveCalls.length === 0) {
       return fail('Backend: setup.ts missing saveGameToUsers call');
     }
 
-    const saveGameRegex = /await utils\.user\.saveGameToUsers\([\s\S]{0,200}achievements[\s\S]{0,200}\)/;
-    if (!saveGameRegex.test(setupContent)) {
+    const achievementProperties = saveCalls.map(call => {
+      const argument = call.arguments[0];
+      return argument && ts.isObjectLiteralExpression(argument)
+        ? [...argument.properties].reverse().find(property =>
+          (ts.isPropertyAssignment(property) || ts.isShorthandPropertyAssignment(property)) &&
+          (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name)) &&
+          property.name.text === 'achievements')
+        : undefined;
+    });
+    if (achievementProperties.some(property => !property)) {
       return fail('Backend: setup.ts saveGameToUsers is not passing achievements');
     }
 
-    if (setupContent.includes('achievements: []')) {
+    if (achievementProperties.some(property => ts.isPropertyAssignment(property) &&
+      ts.isArrayLiteralExpression(property.initializer) && property.initializer.elements.length === 0)) {
       return fail('Backend: setup.ts is passing empty achievements: []');
     }
 

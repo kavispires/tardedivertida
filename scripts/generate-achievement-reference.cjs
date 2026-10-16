@@ -10,6 +10,7 @@
  * This script:
  * - Reads backend achievements.ts (functions/src/games/{game}/achievements.ts)
  * - Extracts achievement IDs and doc strings
+ * - Adds missing JSDoc to backend achievement-helper exports
  * - Generates/merges frontend achievements.ts (src/games/{game}/utils/achievements.ts)
  * - Preserves existing icons, titles, and descriptions
  * - Removes redundant ACHIEVEMENTS constant if present
@@ -18,6 +19,7 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const ts = require('typescript');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -153,6 +155,40 @@ function parseBackendAchievements(content) {
   }
 
   return achievements;
+}
+
+/**
+ * Adds missing documentation to backend achievement-helper exports without replacing existing JSDoc
+ * @param content - The backend achievement source
+ * @param gameName - The game identifier used in the generated description
+ * @returns The source with documented achievement-helper exports
+ */
+function documentBackendAchievements(content, gameName) {
+  const source = ts.createSourceFile('achievements.ts', content, ts.ScriptTarget.Latest, true);
+  const documentation = `/**\n * Achievement definitions and tracking helpers configured for \`${gameName}\`.\n */\n`;
+  let updated = content;
+
+  for (const statement of [...source.statements].reverse()) {
+    if (
+      !ts.isVariableStatement(statement) ||
+      !statement.modifiers?.some(modifier => modifier.kind === ts.SyntaxKind.ExportKeyword)
+    ) {
+      continue;
+    }
+
+    const exportsHelpers = statement.declarationList.declarations.some(declaration =>
+      ts.isObjectBindingPattern(declaration.name) &&
+      declaration.name.elements.some(element =>
+        (element.propertyName ?? element.name).getText(source) === 'setupAchievements'
+      )
+    );
+    if (!exportsHelpers || statement.jsDoc?.some(doc => doc.comment || doc.tags?.length)) continue;
+
+    const start = statement.jsDoc?.[0]?.getStart(source) ?? statement.getStart(source);
+    updated = updated.slice(0, start) + documentation + updated.slice(statement.getStart(source));
+  }
+
+  return updated;
 }
 
 /**
@@ -385,6 +421,12 @@ async function processGame(gameName, silent = false) {
   if (achievements.length === 0) {
     if (!silent) console.error('❌ No achievements found in backend file');
     return { success: false, reason: 'no_achievements' };
+  }
+
+  const documentedBackend = documentBackendAchievements(backendContent, gameName);
+  if (documentedBackend !== backendContent) {
+    fs.writeFileSync(backendPath, documentedBackend, 'utf-8');
+    if (!silent) console.log('✅ Added backend achievement export documentation');
   }
 
   if (!silent) {

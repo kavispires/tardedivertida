@@ -18,15 +18,13 @@
  *   ✅ Staged: functions/src/games/bomba-relogio src/games/bomba-relogio
  */
 
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const ROOT = path.resolve(__dirname, '..');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+let rl;
 
 /**
  * Prompts the user for input
@@ -34,6 +32,10 @@ const rl = readline.createInterface({
  * @returns {Promise<string>} The user's answer
  */
 function prompt(question) {
+  rl ??= readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
   return new Promise((resolve) => {
     rl.question(question, (answer) => {
       resolve(answer.trim());
@@ -43,18 +45,36 @@ function prompt(question) {
 
 /**
  * Execute a git command and return the output
- * @param {string} command - Git command to execute
- * @returns {string|null} Command output or null on error
+ * @param {string[]} args - Arguments passed directly to Git
+ * @returns {string} Unmodified command output
  */
-function gitCommand(command) {
-  try {
-    return execSync(command, {
-      encoding: 'utf-8',
-      stdio: 'pipe'
-    }).trim();
-  } catch (error) {
-    return null;
+function gitCommand(args) {
+  return execFileSync('git', args, {
+    cwd: ROOT,
+    encoding: 'utf-8',
+    stdio: 'pipe',
+  });
+}
+
+/**
+ * Reads destination and original paths from NUL-delimited porcelain status records.
+ * @param {string} output - Git status output with its status columns intact
+ * @returns {string[]} Changed paths, including both sides of renames and copies
+ */
+function parseStatusPaths(output) {
+  const records = output.split('\0');
+  const paths = [];
+  for (let index = 0; index < records.length; index++) {
+    const record = records[index];
+    if (!record) continue;
+    paths.push(record.slice(3));
+    if (/[RC]/.test(record.slice(0, 2))) {
+      const original = records[++index];
+      if (!original) throw new Error('Git status returned a rename or copy without its original path');
+      paths.push(original);
+    }
   }
+  return paths;
 }
 
 /**
@@ -62,16 +82,10 @@ function gitCommand(command) {
  * @returns {string[]} Array of unique game names
  */
 function getModifiedGames() {
-  const output = gitCommand('git status --short');
-  if (!output) return [];
-
   const games = new Set();
-  const lines = output.split('\n').filter(Boolean);
+  const paths = parseStatusPaths(gitCommand(['status', '--porcelain=v1', '-z', '--untracked-files=all']));
 
-  for (const line of lines) {
-    // Extract file path (everything after status markers)
-    const filePath = line.replace(/^.../, '').trim();
-
+  for (const filePath of paths) {
     // Check if it's a game file in either location
     const backendMatch = filePath.match(/^functions\/src\/games\/([a-z-]+)\//);
     const frontendMatch = filePath.match(/^src\/games\/([a-z-]+)\//);
@@ -106,6 +120,18 @@ function directoryExists(dirPath) {
 }
 
 /**
+ * Finds game directories that exist or still contain tracked files pending deletion.
+ * @param {string} gameName - Validated game slug
+ * @returns {string[]} Repository-relative paths that Git can stage
+ */
+function getGamePaths(gameName) {
+  return [`functions/src/games/${gameName}`, `src/games/${gameName}`].filter(candidate =>
+    directoryExists(path.join(ROOT, candidate)) ||
+    gitCommand(['ls-files', '-z', '--', candidate]).length > 0
+  );
+}
+
+/**
  * Main function
  */
 async function main() {
@@ -129,7 +155,7 @@ async function main() {
 
     if (!selection) {
       console.error('❌ Error: Selection cannot be empty');
-      rl.close();
+      rl?.close();
       process.exit(1);
     }
 
@@ -148,7 +174,7 @@ async function main() {
 
     if (!gameName) {
       console.error('❌ Error: Game name cannot be empty');
-      rl.close();
+      rl?.close();
       process.exit(1);
     }
   }
@@ -157,7 +183,7 @@ async function main() {
     console.error(
       '❌ Error: Invalid game name format. Use lowercase letters with hyphens (e.g., bomba-relogio)'
     );
-    rl.close();
+    rl?.close();
     process.exit(1);
   }
 
@@ -169,11 +195,12 @@ async function main() {
   const backendExists = directoryExists(backendPath);
   const frontendExists = directoryExists(frontendPath);
 
-  if (!backendExists && !frontendExists) {
+  const pathsToStage = getGamePaths(gameName);
+  if (pathsToStage.length === 0) {
     console.error(`❌ Error: Game "${gameName}" not found in either location:`);
     console.error(`   - functions/src/games/${gameName}`);
     console.error(`   - src/games/${gameName}`);
-    rl.close();
+    rl?.close();
     process.exit(1);
   }
 
@@ -185,23 +212,25 @@ async function main() {
     console.warn(`⚠️  Warning: Frontend not found at src/games/${gameName}`);
   }
 
-  // Stage the files
-  const pathsToStage = `functions/src/games/${gameName} src/games/${gameName}`;
-
   try {
-    execSync(`git add ${pathsToStage}`, { stdio: 'inherit' });
-    console.log(`\n✅ Staged: ${pathsToStage}`);
-    console.log(`   Metadata: src/games/${gameName}/metadata.md`);
-    console.log(`   Game Info: src/games/${gameName}/game-info.json`);
-    console.log(`   Backend: functions/src/games/${gameName}/index.ts`);
+    execFileSync('git', ['add', '--', ...pathsToStage], { cwd: ROOT, stdio: 'inherit' });
+    console.log(`\n✅ Staged: ${pathsToStage.join(' ')}`);
   } catch (error) {
     console.error('\n❌ Error: Failed to stage files');
     console.error(error.message);
-    rl.close();
+    rl?.close();
     process.exit(1);
   }
 
-  rl.close();
+  rl?.close();
 }
 
-main();
+module.exports = { parseStatusPaths, getModifiedGames, getGamePaths, main };
+
+if (require.main === module) {
+  main().catch(error => {
+    console.error('\n❌ Error:', error.message);
+    rl?.close();
+    process.exitCode = 1;
+  });
+}
