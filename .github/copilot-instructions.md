@@ -28,6 +28,12 @@ Examples:
 [megamix] Fix api payload types
 ```
 
+### Synchronized Resource Types
+
+When a commit includes changes under `src/` or `functions/src/`, also include any pending changes to `src/types/tdr.ts` and `functions/src/types/tdr.ts` in that same commit. Treat these synchronized resource-type updates as part of the source commit rather than unrelated changes.
+
+Do not include these files automatically in scripts-only or documentation-only commits.
+
 ---
 
 ## 🚨 Critical Import Rules

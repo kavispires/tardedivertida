@@ -1,7 +1,7 @@
 {
 	"name": "tardedivertida",
 	"homepage": "http://www.kavispires.com/tardedivertida/",
-	"version": "50.13.522",
+	"version": "50.13.523",
 	"private": true,
 	"type": "module",
 	"dependencies": {
@@ -45,7 +45,7 @@
 		"lint": "biome check . --write --no-errors-on-unmatched",
 		"check:icons": "node scripts/check-icon-imports.cjs",
 		"sync:icons": "node scripts/sync-icons-collection.cjs",
-		"sync:types": "curl -s https://raw.githubusercontent.com/kavispires/td-resources/main/types/tdr.ts | tee src/types/tdr.ts functions/src/types/tdr.ts > /dev/null",
+		"sync:types": "curl -s https://raw.githubusercontent.com/kavispires/td-resources/main/types/tdr.d.ts | tee src/types/tdr.ts functions/src/types/tdr.ts > /dev/null",
 		"scripts:list": "node scripts/list-scripts.cjs",
 		"prepare": "husky",
 		"update-commit": "td amend-commit-date",

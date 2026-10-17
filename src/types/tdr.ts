@@ -1,7 +1,3 @@
-// ==========================================
-// SHARED PRIMITIVES
-// ==========================================
-
 export type UID = string;
 export type Language = 'en' | 'pt';
 export type DualLanguageValue<T = string> = { en: T; pt: T };
@@ -1162,6 +1158,59 @@ export type DailyDiagramItemData = {
    * The date in milliseconds the rule was last updated
    */
   updatedAt: DateMilliseconds;
+};
+
+/**
+ * Represents the historical events for a specific year.
+ */
+export interface DailyHistoryYearEventsData {
+  /**
+   * The year for which the historical events are listed.
+   */
+  year: number;
+  /**
+   * The list of historical events for the year with their respective categories and descriptions.
+   */
+  events: {
+    /**
+     * The text describing the historical event.
+     */
+    text: string;
+    /**
+     * The category of the historical event.
+     */
+    category: 'brasil' | 'curiosidade' | 'esportes' | 'mundo' | 'pop' | 'tecnologia';
+  }[];
+}
+
+/**
+ * Represents a quote from a song lyric, including details about the song and its content.
+ */
+type SongLyricQuoteData = {
+  /**
+   * The unique identifier for the song lyric quote.
+   */
+  id: string;
+  /**
+   * The artist of the song.
+   */
+  artist: string;
+  /**
+   * The title of the song.
+   */
+  title: string;
+  /**
+   * The lyric of the song.
+   */
+  lyric: string;
+  /**
+   * If the song is not in Brazilian portuguese, indicate the language of the song.
+   */
+  internationalization?: 'en' | 'es' | string;
+  /**
+   * Indicates whether the song lyric quote contains content that is not safe for work (NSFW).
+   */
+  nsfw?: boolean;
 };
 
 // ==========================================
