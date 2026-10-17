@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { combineDuplicateImports } = require('./import-utils.cjs');
 
 const IMPORT_COMMENTS = [
   '// Ant Design Resources',
@@ -162,83 +163,6 @@ const sortImports = (imports) => {
   return newLines.join('\n');
 };
 
-// Combine duplicate imports from the same module
-const combineDuplicateImports = (importLines) => {
-  // Group imports by module path
-  const importsByModule = {};
-  const sideEffectImports = []; // Track side-effect imports (no 'from' clause)
-
-  importLines.forEach((line) => {
-    const match = line.match(/from\s+['"]([^'"]+)['"]/);
-    if (!match) {
-      // Side-effect import (e.g., import './styles.scss')
-      sideEffectImports.push(line);
-      return;
-    }
-
-    const modulePath = match[1];
-
-    if (!importsByModule[modulePath]) {
-      importsByModule[modulePath] = {
-        lines: [],
-        isType: line.includes('import type'),
-      };
-    }
-
-    importsByModule[modulePath].lines.push(line);
-  });
-
-  // Combine duplicates
-  const combinedImports = [];
-
-  Object.entries(importsByModule).forEach(([modulePath, { lines, isType }]) => {
-    if (lines.length === 1) {
-      combinedImports.push(lines[0]);
-      return;
-    }
-
-    // Extract all imported items from multiple imports
-    const allImports = [];
-
-    lines.forEach((line) => {
-      // Match named imports: import { A, B } or import type { A, B }
-      const namedMatch = line.match(/import\s+(?:type\s+)?\{\s*([^}]+)\s*\}/);
-      if (namedMatch) {
-        const items = namedMatch[1]
-          .split(',')
-          .map((item) => item.trim())
-          .filter(Boolean);
-        allImports.push(...items);
-      }
-      // Match default imports: import X from or import type X from
-      else {
-        const defaultMatch = line.match(/import\s+(?:type\s+)?([^\s{]+)\s+from/);
-        if (defaultMatch) {
-          allImports.push(defaultMatch[1]);
-        }
-      }
-    });
-
-    // Remove duplicates while preserving order
-    const seen = new Set();
-    const uniqueImports = [];
-    allImports.forEach((item) => {
-      if (!seen.has(item)) {
-        seen.add(item);
-        uniqueImports.push(item);
-      }
-    });
-
-    // Create combined import statement
-    const typeKeyword = isType ? 'type ' : '';
-    const combinedLine = `import ${typeKeyword}{ ${uniqueImports.join(', ')} } from '${modulePath}';`;
-    combinedImports.push(combinedLine);
-  });
-
-  // Add side-effect imports back
-  return [...combinedImports, ...sideEffectImports];
-};
-
 // Process a single file
 const processFile = (filePath) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -322,4 +246,8 @@ const processStagedFiles = () => {
   });
 };
 
-processStagedFiles();
+module.exports = { processFile };
+
+if (require.main === module) {
+  processStagedFiles();
+}

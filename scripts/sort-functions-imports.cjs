@@ -1,116 +1,5 @@
 const fs = require('fs');
-
-/**
- * Determines the import style of an import statement
- * @param {string} line - The import line to analyze
- * @returns {'namespace'|'default'|'named'|'type'|'side-effect'} The import style
- */
-function getImportStyle(line) {
-  // Side-effect import (no 'from' clause)
-  if (!line.includes('from')) {
-    return 'side-effect';
-  }
-
-  // Namespace import: import * as X from
-  if (line.match(/import\s+\*\s+as\s+\w+\s+from/)) {
-    return 'namespace';
-  }
-
-  // Type import: import type
-  if (line.match(/import\s+type\s+/)) {
-    return 'type';
-  }
-
-  // Named import: import { ... } from
-  if (line.match(/import\s+\{/)) {
-    return 'named';
-  }
-
-  // Default import: import X from
-  return 'default';
-}
-
-/**
- * Combines duplicate imports from the same module, but only if they use the same import style
- * @param {string[]} importLines - Array of import statements
- * @returns {string[]} Array of deduplicated import statements
- */
-const combineDuplicateImports = (importLines) => {
-  // Group imports by module path AND import style
-  const importsByModuleAndStyle = {};
-  const sideEffectImports = [];
-
-  importLines.forEach((line) => {
-    const match = line.match(/from\s+['"]([^'"]+)['"]/);
-    if (!match) {
-      // Side-effect import
-      sideEffectImports.push(line);
-      return;
-    }
-
-    const modulePath = match[1];
-    const style = getImportStyle(line);
-    const key = `${modulePath}::${style}`;
-
-    if (!importsByModuleAndStyle[key]) {
-      importsByModuleAndStyle[key] = {
-        lines: [],
-        modulePath,
-        style,
-      };
-    }
-
-    importsByModuleAndStyle[key].lines.push(line);
-  });
-
-  // Combine duplicates with same module path AND style
-  const combinedImports = [];
-
-  Object.entries(importsByModuleAndStyle).forEach(([_, { lines, modulePath, style }]) => {
-    if (lines.length === 1) {
-      combinedImports.push(lines[0]);
-      return;
-    }
-
-    // Only combine if it's named or type imports with same style
-    if (style === 'named' || style === 'type') {
-      // Extract all imported items from multiple imports
-      const allImports = [];
-
-      lines.forEach((line) => {
-        const namedMatch = line.match(/import\s+(?:type\s+)?\{\s*([^}]+)\s*\}/);
-        if (namedMatch) {
-          const items = namedMatch[1]
-            .split(',')
-            .map((item) => item.trim())
-            .filter(Boolean);
-          allImports.push(...items);
-        }
-      });
-
-      // Remove duplicates while preserving order
-      const seen = new Set();
-      const uniqueImports = [];
-      allImports.forEach((item) => {
-        if (!seen.has(item)) {
-          seen.add(item);
-          uniqueImports.push(item);
-        }
-      });
-
-      // Create combined import statement
-      const typeKeyword = style === 'type' ? 'type ' : '';
-      const combinedLine = `import ${typeKeyword}{ ${uniqueImports.join(', ')} } from '${modulePath}';`;
-      combinedImports.push(combinedLine);
-    } else {
-      // Don't combine namespace, default, or other import styles - keep all separate
-      combinedImports.push(...lines);
-    }
-  });
-
-  // Add side-effect imports back
-  return [...combinedImports, ...sideEffectImports];
-};
+const { combineDuplicateImports } = require('./import-utils.cjs');
 
 /**
  * Sorts import groups and adds comment headers
@@ -429,4 +318,8 @@ const processStagedFiles = () => {
   });
 };
 
-processStagedFiles();
+module.exports = { processFile };
+
+if (require.main === module) {
+  processStagedFiles();
+}
